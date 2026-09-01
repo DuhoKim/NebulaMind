@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "stage two \u2014 R-A ruled: NERSC coadd bricks"
+    "topic": "stage two \u2014 R-E ruled: own P0-prime freeze, BS-3g under it"
   },
   "humanFeedback": {
     "captured": true
@@ -378,6 +378,54 @@
       "feedbackText": "Path 2 \u2014 NERSC coadd bricks (Recommended)",
       "changed": {
         "summary": "STAGE-TWO R-A RULED: imagery is acquired via the NERSC coadd brick tree - whole survey tiles pulled and cutouts cut LOCALLY, so the lane holds the actual DESI bricks for self-contained durable provenance; the ~148 GB volume is accepted over the lighter cutout-service path. R-B (cutout geometry) and R-C (the authorized one-time FITS probe) now design against Path 2 specifically. NO real image bytes yet - R-C's probe authorization is a separate decision still on his board. Recorded in the stage-two scoping as the ruled access path."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Authorize a single blind structural probe (Recommended)",
+      "changed": {
+        "summary": "STAGE-TWO R-C RULED: ONE real DESI brick FITS may be opened SOLELY to pin the format contract (HDU layout, dtype, WCS cards, edge behavior), logged with a receipt, NO science pixels interpreted. This discharges stage one's reserved image-byte boundary FOR THIS PROBE ONLY; any touch beyond the single structural probe requires a NEW authorization. It unblocks BS-9's design against the ruled NERSC path."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Seats propose, you ratify (Recommended)",
+      "changed": {
+        "summary": "STAGE-TWO R-B RULED: cutout geometry (size, centering, rotation) is PROPOSED by codex/agy with reasons argued against the real brick data from the R-C probe, then RATIFIED by Duho before it freezes. Pixel scale 0.262 arcsec/px stays frozen. The proposal comes back through Blanc as a ratify item."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Both \u2014 human + machine committees (Recommended)",
+      "changed": {
+        "summary": "STAGE-TWO R-D RULED: the DUAL committee architecture - machine committee + human committee + an INDEPENDENT VERIFIER that recomputes the stratum index from Row D receipts and refuses mismatch (the Row D2/BS-SI obligation agy flagged as catastrophically omitted from my v1 scoping). Human-committee composition details: seats propose, Duho ratifies through Blanc."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Yes \u2014 own P0' + gate ladder, BS-3g under it (Recommended)",
+      "changed": {
+        "summary": "STAGE-TWO R-E RULED: stage two gets its OWN manifest, its own P0-prime freeze signature, and its own gate ladder - the same discipline stage one ran. The relocated real BS-3g sweep runs UNDER STAGE TWO'S FREEZE (it needs BS-8f's measured calibration, which is stage two's to produce), per the stage-one BS-6 cycle ruling."
       }
     }
   ]

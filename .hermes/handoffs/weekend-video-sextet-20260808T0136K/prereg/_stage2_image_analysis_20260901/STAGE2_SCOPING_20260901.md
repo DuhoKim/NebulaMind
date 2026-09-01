@@ -147,17 +147,40 @@ reconnaissance surfaced:
   on provenance/verifiability/volume (~1–13 GB by cutout size vs ~148 GB
   predecessor-scale full-brick), and no published rate limit exists for Path 1
   — 49,211 requests need a preregistered pace. **His call.**
-- **R-B — cutout GEOMETRY.** Size (px), centering/rounding, orientation, and
-  the resampling prohibition-or-kernel. Frozen: 0.262″/px only. **His call.**
-- **R-C — the AUTHORIZED PROBE.** The FITS HDU/dtype/WCS/edge contract cannot
-  be known from documentation; pinning it requires touching real image bytes
-  ONCE, under an authorization that stage one's boundary reserves to him.
-  **His call** (and it is the gate that unblocks BS-9's design).
-- **R-D — hand-check committee COMPOSITION and rendering surface** (Row G):
-  who checks, and what they see. NOT the ABSTAIN policy — already ruled
-  2026-08-30.
-- **R-E — stage two's own freeze scope**: its own P0′ signature and gate
-  ladder. (Recommended: yes.)
+- **R-B — RULED 2026-09-01 (direction #33), verbatim: "Seats propose, you
+  ratify (Recommended)".** Cutout geometry — size, centering/rounding,
+  rotation — is PROPOSED by codex/agy with reasons argued **against the real
+  brick data the R-C probe reveals**, then RATIFIED by the principal before it
+  freezes. Pixel scale 0.262″/px stays frozen. The proposal returns through
+  Blanc as a ratify item.
+- **R-C — RULED 2026-09-01 (direction #32), verbatim: "Authorize a single blind
+  structural probe (Recommended)".** **ONE** real DESI brick FITS may be opened
+  **solely to pin the format contract** — HDU layout, dtype, WCS cards, edge
+  behavior — **logged with a receipt, NO science pixels interpreted.** This
+  discharges stage one's reserved image-byte boundary **FOR THIS PROBE ONLY**;
+  **any touch beyond the single structural probe requires a NEW authorization.**
+  It unblocks BS-9's design against the ruled NERSC path. *(Discipline for the
+  probe, mine to enforce: one brick, structure read from headers/shape only, no
+  pixel statistics, no χ, no instrument inference, a receipt naming the brick,
+  its source URL, its published SHA-256, what was read, and what was NOT.)*
+- **R-D — RULED 2026-09-01 (direction #34), verbatim: "Both — human + machine
+  committees (Recommended)".** The **dual committee architecture**: a machine
+  committee AND a human committee, plus an **independent verifier that
+  recomputes the stratum index from Row D receipts and refuses mismatch** — the
+  Row D2 / BS-SI obligation agy flagged as catastrophically omitted from my v1.
+  Human-committee composition details: seats propose, the principal ratifies
+  through Blanc.
+- **R-E — RULED 2026-09-01 (direction #35), verbatim: "Yes — own P0' + gate
+  ladder, BS-3g under it (Recommended)".** Stage two gets its **own manifest,
+  its own P0′ freeze signature, and its own gate ladder** — the same discipline
+  stage one ran. The relocated **real BS-3g sweep runs under stage two's
+  freeze** (it needs BS-8f's measured calibration, which is stage two's to
+  produce), per the stage-one BS-6 cycle ruling.
+
+**ALL FIVE STAGE-TWO OPENING CHOICES ARE NOW RULED (R-A…R-E, directions
+#31–#35).** What returns to the principal from here are RATIFY items — the
+geometry proposal (R-B) and the human-committee composition (R-D) — plus any
+new question the design surfaces, one at a time.
 
 **Struck from v1 as already settled — do NOT re-ask:** the estimator form and
 calibration entry (frozen: `Â_L = β̂/(2â−1)` / `β̂/ŵ`); the verdict thresholds
