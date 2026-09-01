@@ -75,3 +75,53 @@ than removing the anomaly. That is neither the "it explains the anomaly" of the 
 **Not yet done, and required before any of the above is claimed anywhere:** independent verification
 of point 3; a cut-sky treatment for point 2; and an adversarial gate on the whole thing. **No tier
 implication is drawn here, and none may be drawn without Duho.**
+
+---
+
+## The §1ap flag, discharged — and a second finding that may matter more
+
+`cutoffA_afortiori_check.py`, run to completion. Last section flagged that the "upper bound" status
+of the ~3% figure rested on the physics gate's unverified claim that the hard IR cut is the
+*model-favourable* reading. Tested rather than left standing:
+
+| spectrum | S₁/₂ of mean spectrum | P(Ŝ ≤ 1150) |
+|---|---|---|
+| ΛCDM, no cut | 34,924 | 0.106% |
+| **HARD cut (Reading A)** | **6,897** | **3.312%** |
+| smoothed, width 0.3 k_§ | 6,113 | 3.119% |
+| smoothed, width 1.0 k_§ | 8,713 | 1.934% |
+| smoothed, width 3.0 k_§ | 10,095 | 1.932% |
+| adversarial: excess power below k_§ | 157,151 | 0.001% |
+
+**The a-fortiori claim survives.** Nothing tested beats the hard cut. This is the right family to
+test because Paley–Wiener forces any Reading-B spectrum to be *entire*, hence to approach the cut
+smoothly — so the smoothed cuts are Reading-B-compatible where the hard cut is not.
+
+**Stated limitation, per the absence-claim standard.** *Pattern:* hard cut vs smoothed cuts at the
+same `k_§`. *One class it misses:* a Reading-B spectrum need not be a smoothed ΛCDM at all — it could
+carry different structure near `k_§`. *What was done anyway:* the most hostile cheaply-available
+member was included — excess power *below* `k_§`, which is what the compact-ξ construction actually
+produces (measured earlier: under Reading B, `P` is **largest at the smallest k**). It loses
+catastrophically (0.001%). So the claim survives the most adverse member available, but **this is a
+family test, not a proof over all of Reading B**, and must not be quoted as one.
+
+### The second finding
+
+The paper claims (L457) that "**CMB temperature should not be correlated above θ > θ§ ≃ 60 deg**" —
+which is the statement `S₁/₂ = 0`. Its own most favourable implementation does not deliver that:
+
+> **the hard cut leaves `S₁/₂ = 6,897 μK⁴` — six times the OBSERVED 1,150, and only 5.1× below
+> ΛCDM's 34,924.**
+
+So the causal cut produces a **partial** suppression, not the vanishing correlation asserted. It
+moves ~4/5 of the way in `S₁/₂` and ~25× in probability, and then stops — overshooting the observed
+value by a factor of six. This is a sharper and more direct statement about the paper's own claim
+than the p-value shift, because it needs no distributional argument at all.
+
+**MC precision, noted honestly:** the ΛCDM baseline reads 0.106% here against 0.126% in the previous
+run (different seed, 100k vs 200k draws) — consistent within ~1.5σ of Monte-Carlo scatter, but it
+means the headline figures carry a relative uncertainty of order 10% and should be quoted as
+"~0.1%" and "~3%", never to three digits.
+
+**Unchanged:** analysis only; no tier moves; the cut-sky treatment and an adversarial gate on all of
+this are still owed before any of it is claimed anywhere.
