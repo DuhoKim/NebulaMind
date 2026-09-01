@@ -1343,3 +1343,15 @@ broken" from "my call broken."
   claim about them stands. Their entries above are suspect for the same reason.
 - The `--dangerously-skip-permissions` flag is **not** implicated; it was present in the successful
   foreground run.
+
+**CONFIRMED ACROSS ALL THREE SEATS, 2026-09-01 23:2x (Duho: "retest codex and kimi in the
+foreground").** Foreground positive controls, all trivial prompts:
+- **agy** → `PONG`, 5 B, exit 0, **11 s**
+- **codex** → `PONG`, 5 B, exit 0, **6 s**
+- **kimi** → `PONG`, exit 0, **10 s**
+
+Three vendors, three successes, zero changes to flags, paths, auth or prompts — **the only variable
+removed was backgrounding.** The diagnosis is closed: §1am, §1am-CORRECTION and §1aq were all
+misdiagnoses of one bug of mine, and each blamed something external. **The lane's two-seat gating
+capability is intact and was never lost.** Any claim resting on "the seats are down" is void,
+including the sentence in the 07:00 handover, now corrected.
