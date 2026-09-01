@@ -1263,3 +1263,40 @@ rigour as favourable ones.* A refutation that flatters the current direction —
 result about a model we had been failing to rescue — is exactly when the check gets skipped. Ask of
 any flag: **which numbers came from the source and which did the critic choose?** Every quantity in
 a critical claim needs the same provenance discipline as one in a supportive claim.
+
+### 1aq — TOTAL EXTERNAL-SEAT OUTAGE: ALL THREE SEATS FAIL IDENTICALLY AND SILENTLY
+
+**2026-09-01 late / 2026-09-02 early.** Recording this as a capability fact, not a puzzle, because
+it changes what this lane can do.
+
+**The tally today, all the same shape — exit 0, no output, empty stderr:**
+- **codex ×3** — twice on the amendment-B check, once on the Program (A) step-2 gate. Wrote no
+  verdict file any time.
+- **kimi ×2** — returned only the echoed query, no answer.
+- **agy ×2** — the p-value gate. **0 bytes both times**, exit 0, empty stderr.
+
+**Both of my explanations are now refuted, in order:**
+1. §1am blamed context exhaustion on a 1,607-line file with thousand-character lines. Refuted when
+   the same seats failed on a ~5 KB self-contained brief (§1am-CORRECTION).
+2. The fallback explanation — "reading a file at all is where they die" — is refuted **here**: agy's
+   retry inlined the entire brief into the `--print=` argument, opened nothing, and was explicitly
+   told not to open files. **Still 0 bytes.** So it is not the file, not the size, and not file I/O.
+
+**Absence-claim discipline on the diagnosis.** *Pattern used:* exit status, output-file byte count,
+and stderr contents on each dispatch. *One class this misses:* a seat that emits a well-formed
+refusal or an authentication prompt on a channel I am not capturing (e.g. a TTY-only prompt, or a
+provider-side block delivered out-of-band). *What was done about it anyway:* stderr was captured
+separately on every dispatch and is **empty**, and exit status is **0** — a refusal or auth failure
+would normally produce one or the other. That still leaves a TTY-only interactive prompt as an
+uneliminated possibility, and it is the first thing to check with a human present.
+
+**Operational consequence, which is the point of this entry: the lane currently has NO working
+external gate seat.** The only mechanism that produced complete adversarial verdicts today was a
+**Claude subagent with quotes inline** — which returned two full, correct, and independently
+verifiable refutations — and that route is budget-barred until Friday. So substantive claims made
+between now and then **cannot be gated to this lane's normal standard**, and must be labelled
+UNGATED rather than presented as if they had passed review. The p-value result is in exactly that
+state.
+
+**Do not spend further dispatches on this tonight.** Three seats, seven attempts, two refuted
+hypotheses. It needs a human at a terminal, not another retry.
