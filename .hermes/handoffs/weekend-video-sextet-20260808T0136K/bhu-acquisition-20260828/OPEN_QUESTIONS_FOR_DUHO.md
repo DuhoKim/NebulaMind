@@ -6,6 +6,48 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ YOUR CALL 2026-09-01 — pick the BHU research topic (team of three has reported)
+
+You said "assemble a team for finding a BHU research topic." Three seats worked the corpus audit
+independently from different angles (codex = theory, agy = observations, kimi = frontier/contested).
+Their proposals converge, and the shortlist is ready. **The choice of what to actually build is
+yours — I won't pick a research direction for you.** Full write-up: `BHU_TOPIC_SHORTLIST_20260901.md`
+(seat results in `TOPIC_{codex,agy,kimi}_RESULT.md`).
+
+The three that survived all angles, best-first:
+
+**(A) Calibrate — or formally kill — the 60° CMB cutoff.** *All three seats proposed this; two ranked
+it #1.* Take the audit's headline finding (the one real BHU prediction fixes *where* the CMB cuts off
+but not *how much*) and settle it: either derive a physically-forced completion that predicts a
+definite low-quadrupole number, or prove a theorem that no admissible completion can — that the
+amplitude is permanently free. *Cost:* pure theory + public Planck maps; likely lands on the "it's
+provably free" side. *Gain:* **both endpoints are a publishable paper** — a real falsifier or a no-go
+theorem. It cannot come back empty. This directly finishes the new-physics program I already ran.
+
+**(B) The rotating-parent test — your own spin-parity idea, sharpened.** *agy #1, kimi #2; matches
+your standing interest.* Does spiral-galaxy handedness show a dipole along an axis **fixed from the
+CMB before anyone looks at the spin data**, with the same amplitude at every redshift? That a-priori
+shared axis is the new content — it fixes what sank every earlier spin-dipole claim (axis picked
+after the fact + systematics). *Cost:* public data (DECaLS/Galaxy-Zoo spins, Planck axes); a null is
+the likely result. *Gain:* a detected axis would be a genuine BHU signal; a null is still a real
+bound in a contested area.
+
+**(C) The Einstein–Cartan bounce transfer function.** *codex's strongest; deepest theory, one seat.*
+Derive how perturbations actually pass through the torsion bounce — the missing equation in the
+corpus's one developed mechanism — yielding real numbers (spectral tilt, isocurvature, primordial
+black holes) or a proof the model isn't closed enough to predict them. *Cost:* hardest, longest, pure
+theory. *Gain:* the most fundamental result if it lands.
+
+The team also filtered one out: codex floated re-deriving the Popławski mass floor; kimi refuted it as
+untestable (a non-detection can't kill a floor while the abundance is free). Agreed — not a project.
+
+**My recommendation: (A).** Three-angle convergence, guaranteed-publishable either way, non-circular,
+and it converts the audit's central finding into a result. Pick **(B)** instead if you'd rather lead
+with your own observational interest and a data-first test; **(C)** is the deep-theory long game.
+**Tell me A, B, or C** (or "mix" / your own steer) and I'll stand up the chosen program.
+
+---
+
 ## ✅ DONE 2026-09-01 — live-falsifier freshness check (paper-independent): BARS_UNMOVED, both hold
 
 Re-checked the corpus's two LIVE calibrated-falsifiers against current (2026) data (codex web scan;

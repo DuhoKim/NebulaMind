@@ -1,0 +1,22 @@
+Here are 3 candidate BHU research topics from the observational/data angle, ranked best-first, with a focus on predictions testable against existing data.
+
+### 1. Galaxy Spin-Parity / Hemispherical Asymmetry (Single Strongest Candidate)
+1. **The question:** Does the large-scale distribution of spiral galaxy spin directions exhibit a preferred axis or hemispherical dipole asymmetry indicative of inheritance from a rotating parent black hole?
+2. **Why it's a frontier:** Standard $\Lambda$CDM rigorously predicts isotropy on the largest scales. A rotating BHU parent (e.g., a Kerr interior) explicitly breaks this, implying a cosmic preferred axis—a contested anomaly that is often dismissed as sample variance but has rarely been tested directly against the newest, deepest machine-classified spin catalogs. 
+3. **Tractability:** Highly tractable for a small team. The required data already exists in the Galaxy Zoo / DECaLS spin catalogs in VizieR (specifically utilizing the ~208k parent galaxies with a spiral floor $\ge$ 5 votes). Analyzing the dipole moments in the spin direction distribution requires only standard spherical harmonic/multipole statistical tools.
+4. **Result-shape:** A measured dipole amplitude (e.g., an anisotropy significance $>3\sigma$) identifying a preferred cosmic axis, or a sharp null result bounding the maximum allowable angular momentum inherited from the parent.
+5. **Non-circularity + risk:** The DECaLS spin catalog was gathered entirely independently of BHU theory and cannot be tuned. The main risk is a null result (a perfectly isotropic distribution) or that systematic classification biases in the crowdsourced data mimic a false dipole.
+
+### 2. Calibrating the $S_{1/2}$ CMB Anomaly via the Gaztañaga Causal Cutoff
+1. **The question:** Can we construct the missing stochastic-completion physics for the Gaztañaga causal horizon to predict a specific amplitude for the CMB $S_{1/2}$ large-angle deficit, and does it match observations?
+2. **Why it's a frontier:** The $60^\circ$ cutoff is the one true *a priori* BHU prediction (fixed by $H_0/\Omega_\Lambda$), but it remains amplitude-free. Deriving the IR-normalization physics would transform a qualitative low-$\ell$ "deficit" into a sharp, calibrated falsifier against standard $\Lambda$CDM's cosmic variance argument.
+3. **Tractability:** Requires a theoretical derivation for the completion, followed by a direct data comparison of the predicted $C_\ell$ (for $\ell < 5$) and $S_{1/2}$ statistic against the Planck 2018 (PR3/PR4) Commander or SMICA low-$\ell$ CMB maps.
+4. **Result-shape:** A calibrated numerical prediction for the $S_{1/2}$ statistic (in $\mu\text{K}^4$), producing a hard falsification threshold if the prediction drastically overshoots or undershoots the observed $\sim 1150\ \mu\text{K}^4$ deficit.
+5. **Non-circularity + risk:** The causal horizon scale was fixed out-of-sample; it does not fit the CMB anomaly, it predicts it. The risk is that the stochastic completion introduces free parameters (ruining its strict falsifier status) or that the theoretical completion proves impossible to derive.
+
+### 3. Testing Closed-Universe ($\Omega_k < 0$) BHU Geometries against DESI+Planck
+1. **The question:** Do the recent DESI BAO and Planck PR4 data jointly favor or explicitly falsify the specific closed-universe ($\Omega_k < 0$) geometries naturally required by certain BHU interior embeddings?
+2. **Why it's a frontier:** Many BHU models naturally embed in closed ($k=+1$) geometries, directly clashing with the flat $\Lambda$CDM consensus. Recent data tensions (the "Planck legacy anomaly" for curvature and DESI Year 1 hints) make $\Omega_k$ a highly contested, live observational battleground.
+3. **Tractability:** Easily executable using off-the-shelf cosmological MCMC framework tools (e.g., Cobaya) to run the exact predicted BHU $\Omega_k$ ranges against the newly released DESI DR1 BAO catalogs and Planck PR4 CMB likelihoods.
+4. **Result-shape:** A joint posterior constraint on $\Omega_k$; if the explicitly required BHU curvature value is excluded at $>3\sigma$, that specific interior embedding is falsified.
+5. **Non-circularity + risk:** DESI and Planck data sets are independent of BHU formulations. The primary risk is that the required BHU curvature magnitude is too close to zero to be statistically resolved by current DR1/PR4 errors, leaving the test as a weak bound rather than a definitive falsifier.
