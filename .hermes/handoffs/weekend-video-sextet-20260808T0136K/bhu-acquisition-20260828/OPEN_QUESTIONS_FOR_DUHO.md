@@ -6,6 +6,19 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ✅ DONE 2026-09-01 — Gaztañaga cutoff calibration attempted → UNDETERMINED (cannot calibrate from the model)
+
+Duho RELAY "calibrate the Gaztañaga cutoff (clamp overridden)." Two independent CAMB derivations (codex + agy)
+agree: the model fixes the cutoff LOCATION (60°, a priori — the directional content) but NOT the
+amplitude/shape/transfer, so the predicted S₁/₂ slides from 0 (sharp angular cutoff) to ≈6,900 μK⁴ (sharp
+k-cutoff, which Planck would *refute*) to ≈34,900 (ΛCDM); Planck measures ≈1,150 μK⁴. No non-circular
+number/threshold follows (forcing one would be tuning to the observation it must predict). **Tier UNCHANGED —
+23/24/25/26/27 stay QUALITATIVE-DIRECTIONAL.** The exact original-theory it would take is now named (a
+predicted primordial amplitude A + a unique window W(k) + the bounce and ISW/lensing transfer). Detail:
+`GAZTANAGA_CALIBRATION_RECONCILIATION_20260901.md`. No decision required — reported for the record.
+
+---
+
 ## ✅ DONE 2026-09-01 — sub-27 sweep ("sweep the rest below 27", RELAY): 9/9 sourced entries blind-double-CONFIRMED, no tier changes
 
 codex + kimi confirmed all 9 sub-27 entries that have a full source (6, 9, 10, 12, 14, 16, 18, 23, 24) at
