@@ -32,6 +32,29 @@ after the fact + systematics). *Cost:* public data (DECaLS/Galaxy-Zoo spins, Pla
 the likely result. *Gain:* a detected axis would be a genuine BHU signal; a null is still a real
 bound in a contested area.
 
+> **[CORRECTION to (B)'s cost, 2026-09-01 21:5x — I filed the packet above with a wrong cost line
+> and am fixing it before you decide on it.]** I wrote (B) as a program to "stand up." **It is not.**
+> Checked against the record and the live process, not recalled: **Hwao is acquiring the imaging for
+> exactly this test right now.** At 19:35 you stopped its paper ("stop the paper, start downloading
+> the data"); Hwao surfaced that a bulk pull exceeded the single-brick probe authorization, put two
+> options to you, and on your "1" got a **new scoped authorization** — **~148 GB / 12,117 bricks
+> closing the 49,211-object mask**, NERSC coadd path, ratified geometry, resumable, per-brick
+> SHA-256 verified. The download **is running** (`fetch_bricks.py --workers 4`, PID 74563 since
+> 19:42, ~12.6 h ETA → lands overnight). Recorded in `spin-parity_history.json`, directions #31/#36
+> + tonight's.
+> **What this changes:** (B)'s data cost is **already paid and authorized** — it is not a new
+> program but a **design upgrade to a study already in flight** (add the a-priori CMB-fixed axis +
+> z-tomography veto to the existing preregistered handedness pipeline). **What it does NOT change:**
+> the authorization Hwao holds is **acquisition only** — explicitly no cutout production, no
+> instrument inference, no χ measurement, no handedness label; each stays behind its own gate, and
+> Hwao records that **the calibration limit is unchanged by having the images**. And stage one is
+> **frozen / P0-SIGNED**, so a design change goes through the **amendment machinery**, not a quiet
+> edit — that is Hwao's lane and your call, not mine to start.
+> **Also correcting myself to you in chat:** I first answered that spin-parity was retired and
+> declined by your August signature. That was **stale** — true on 2026-08-25, superseded by the
+> successor build. The retirement I cited (`spin-parity-census-…/RETIRED.md`, 08-21) retired the
+> *census/autopilot* lane, not the successor.
+
 **(C) The Einstein–Cartan bounce transfer function.** *codex's strongest; deepest theory, one seat.*
 Derive how perturbations actually pass through the torsion bounce — the missing equation in the
 corpus's one developed mechanism — yielding real numbers (spectral tilt, isocurvature, primordial
