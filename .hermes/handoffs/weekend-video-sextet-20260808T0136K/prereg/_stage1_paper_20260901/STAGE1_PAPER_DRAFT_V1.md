@@ -1,3 +1,5 @@
+<!-- SUPERSEDED — pre-repair draft, REJECTED by AGY_FULL_REFEREE_20260901. The canonical manuscript is PAPER_DRAFT_V2_20260901.md. Kept as the audit record of what was rejected. -->
+
 # A cryptographically frozen, adversarially audited methodology for galaxy-handedness measurement: a pre-image validation study
 
 ## Abstract

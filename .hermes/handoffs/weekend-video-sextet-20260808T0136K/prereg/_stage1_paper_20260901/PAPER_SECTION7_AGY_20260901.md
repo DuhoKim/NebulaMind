@@ -1,3 +1,5 @@
+<!-- SUPERSEDED FRAGMENT — folded into PAPER_DRAFT_V2_20260901.md. -->
+
 ## 7. Discussion
 
 The preregistration and auditing machinery deployed in this study arrested several failure modes that ordinary software development and peer review typically permit. However, this discipline imposed substantial costs and revealed the limits of cryptographic rigidity when applied to operational science. The outcomes demonstrate both the value of adversarial pre-execution verification and the necessity of aligning human resources with frozen constraints.

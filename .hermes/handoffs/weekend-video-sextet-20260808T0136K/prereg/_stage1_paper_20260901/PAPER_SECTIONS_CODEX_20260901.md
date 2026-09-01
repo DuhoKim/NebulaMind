@@ -1,3 +1,5 @@
+<!-- SUPERSEDED FRAGMENT — one seat's sections, folded into the canonical PAPER_DRAFT_V2_20260901.md. This assembly is what the first referee read; do not edit or cite it. -->
+
 # A cryptographically frozen, adversarially audited design for galaxy-handedness measurement
 
 ## Abstract

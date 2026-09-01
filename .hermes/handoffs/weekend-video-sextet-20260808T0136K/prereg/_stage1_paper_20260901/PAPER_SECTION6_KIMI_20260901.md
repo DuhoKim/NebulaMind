@@ -1,3 +1,5 @@
+<!-- SUPERSEDED FRAGMENT — folded into PAPER_DRAFT_V2_20260901.md. -->
+
 6. Human calibration capacity as the binding constraint
 
 The design, instrument, and sign conventions reported in this paper were frozen under preregistration, and every stage of the pre-image machinery (sample definition, selection, presentation schedule, controls, and validation checks) was executed and passed. The study then halted before image analysis, as the preregistered protocol required once its calibration condition could not be met. This section states why, and reports the reason as a result in its own right: for this class of measurement, the binding constraint is neither sky coverage nor sample size but human calibration capacity.
