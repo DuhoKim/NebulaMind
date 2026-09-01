@@ -1355,3 +1355,41 @@ removed was backgrounding.** The diagnosis is closed: §1am, §1am-CORRECTION an
 misdiagnoses of one bug of mine, and each blamed something external. **The lane's two-seat gating
 capability is intact and was never lost.** Any claim resting on "the seats are down" is void,
 including the sentence in the 07:00 handover, now corrected.
+
+### 1ar — THE COMMIT GUARD ITSELF FAILED FOUR TIMES IN ONE DAY, ALWAYS THE SAME WAY
+
+**2026-09-01/02.** The standing guard says: *verify an edit landed with `grep -qi` on the new
+content, gating the commit with `&&`.* The guard is sound and it caught real problems today. But
+**my use of it failed four separate times**, every time for the same reason, and each failure cost a
+round-trip:
+
+1. `grep -q "20.1"` against a number the script **computes at runtime** and never contains.
+2. `grep -q "mutually exclusive"` — case-sensitive, against text written **capitalised**.
+3. `grep -qi "constructive output is currently"` — the phrase **wraps a line** in the file.
+4. `grep -qi "the check reported that failure rather than hiding it"` — same, wraps a line.
+
+**The pattern:** I gate on **sentences I just wrote**, from memory of having written them, against
+files where prose is **hard-wrapped at ~100 columns** and my own capitalisation is inconsistent. A
+multi-word phrase has an excellent chance of straddling a newline; `grep` is line-oriented; the gate
+then fails on a file that is perfectly correct. **Four for four, the file was fine and the gate was
+wrong** — so the failure mode is not "the edit didn't land", it is "my probe cannot see it".
+
+**Why this is worth an entry rather than a shrug.** A guard that cries wolf teaches you to bypass
+it, and bypassing this one is exactly how §1t happened (three commits claiming changes that never
+landed). The guard's value depends on its false-positive rate being near zero. Mine was 4 failures
+in ~14 commits today.
+
+**The rule, adopted:**
+- **Gate on SHORT DISTINCTIVE TOKENS, never on sentences.** `"say-so"`, `"34,856"`, `"1ar"`,
+  a function name, a numeric literal that is actually *in the file*.
+- **Prefer tokens that cannot wrap:** a single word, a number with no spaces, an identifier.
+- **Use `-i` by default** unless case is the thing being checked.
+- **Never gate on a value the file computes at runtime** — grep sees the source, not the output.
+- If a phrase really must be checked, strip newlines first (`tr -d '\n'`) rather than hoping the
+  wrap falls elsewhere.
+
+**Absence-claim note on this entry's own diagnosis.** *Pattern:* I re-ran each failing gate
+component individually and compared against the file. *One class it would miss:* a gate that fails
+because the edit genuinely did **not** land, which looks identical from the exit code alone. *What
+was done about it:* in every one of the four cases I checked the file content directly before
+concluding the probe was at fault, and in all four the content was present and correct.
