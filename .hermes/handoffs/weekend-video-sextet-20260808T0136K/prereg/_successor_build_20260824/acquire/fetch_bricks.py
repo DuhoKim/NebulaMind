@@ -24,10 +24,12 @@ DISCIPLINE:
     brick, URL, bytes, published sha, computed sha, verdict, UTC time.
 """
 import argparse
+import concurrent.futures as cf
 import hashlib
 import json
 import re
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -93,6 +95,8 @@ def main():
                     help="seconds between bricks (politeness pacing)")
     ap.add_argument("--timeout", type=float, default=180.0)
     ap.add_argument("--start", type=int, default=0, help="manifest index to start at")
+    ap.add_argument("--workers", type=int, default=1,
+                    help="concurrent fetchers (4 authorized 2026-09-01; be polite)")
     args = ap.parse_args()
 
     bricks = json.loads(MANIFEST.read_text())
@@ -102,43 +106,60 @@ def main():
 
     done = skipped = failed = 0
     t0 = time.time()
-    for i, brick in enumerate(bricks[args.start:], start=args.start):
+    lock = threading.Lock()
+    todo = []
+    for brick in bricks[args.start:]:
+        if (DEST / f"legacysurvey-{brick}-image-r.fits.fz").exists():
+            skipped += 1
+        else:
+            todo.append(brick)
+    print(f"{skipped} already present; {len(todo)} to fetch with {args.workers} workers")
+    if args.limit:
+        todo = todo[:args.limit]
+
+    def one(brick):
+        """Fetch, verify, journal a single brick. Returns 'ok' or 'fail'."""
+        nonlocal done, failed
         out = DEST / f"legacysurvey-{brick}-image-r.fits.fz"
         if out.exists():
-            skipped += 1
-            if skipped % 200 == 0:
-                print(f"  … {skipped} already present")
-            continue
+            return "skip"
         rec = {"utc": utc(), "brick": brick, "url": brick_url(brick)}
         try:
             pub = published_sha(brick, args.timeout)
-            blob, url = fetch(brick, args.timeout)
+            blob, _url = fetch(brick, args.timeout)
             got = hashlib.sha256(blob).hexdigest()
             rec.update(bytes=len(blob), published_sha256=pub, computed_sha256=got)
             if pub is not None and pub != got:
                 (QUARANTINE / out.name).write_bytes(blob)
                 rec["verdict"] = "SHA-MISMATCH-QUARANTINED"
-                failed += 1
+                result = "fail"
             else:
-                tmp = out.with_suffix(out.suffix + ".part")
+                tmp = out.with_suffix(out.suffix + f".part{threading.get_ident()}")
                 tmp.write_bytes(blob)
                 tmp.replace(out)
                 rec["verdict"] = "OK" if pub else "OK-NO-PUBLISHED-SHA"
-                done += 1
+                result = "ok"
         except Exception as e:
             rec.update(verdict="FETCH-FAILED", error=f"{type(e).__name__}: {e}")
-            failed += 1
-        with JOURNAL.open("a") as fh:
-            fh.write(json.dumps(rec, sort_keys=True) + "\n")
-        if done and done % 25 == 0:
-            gb = sum(f.stat().st_size for f in DEST.glob("*.fits.fz")) / 2**30
-            rate = done / max(time.time() - t0, 1) * 3600
-            print(f"  {done} fetched, {skipped} skipped, {failed} failed | "
-                  f"{gb:.1f} GiB on disk | ~{rate:.0f} bricks/hr")
-        if args.limit and done >= args.limit:
-            print(f"--limit {args.limit} reached")
-            break
+            result = "fail"
+        with lock:
+            if result == "ok":
+                done += 1
+            else:
+                failed += 1
+            with JOURNAL.open("a") as fh:
+                fh.write(json.dumps(rec, sort_keys=True) + "\n")
+            if (done + failed) % 100 == 0 and done:
+                gb = sum(f.stat().st_size for f in DEST.glob("*.fits.fz")) / 2**30
+                rate = done / max(time.time() - t0, 1) * 3600
+                eta = (len(todo) - done) / max(rate, 1)
+                print(f"  {done} fetched, {failed} failed | {gb:.1f} GiB | "
+                      f"~{rate:.0f} bricks/hr | ETA {eta:.1f}h", flush=True)
         time.sleep(args.delay)
+        return result
+
+    with cf.ThreadPoolExecutor(max_workers=args.workers) as pool:
+        list(pool.map(one, todo))
 
     gb = sum(f.stat().st_size for f in DEST.glob("*.fits.fz")) / 2**30
     print(f"\nfetched {done} | skipped {skipped} | failed {failed} | "
