@@ -1,5 +1,47 @@
 # PROGRAM (A) — calibrate or kill the 60° causal cutoff. Charter + step 1.
 
+> # ⛔ THE METHOD IN THIS CHARTER IS REFUTED (2026-09-01, both gate seats, confirmed by me)
+>
+> **Do not run the program as specified below.** Step 2 gated the formalization and both seats
+> refuted it from independent directions. **I then verified the two decisive physics objections
+> myself** with the real CAMB spectrum and this lane's validated operator — not the seat's toy —
+> in `cutoffA_verify_refutation.py`. Both confirmed:
+>
+> 1. **The admissible class is structurally broken ("the killer lemma").** Constraint (ii) says
+>    `P(k) ≥ 0`, and `≥ 0` permits `= 0`. So the class *contains* the completion "delete all power
+>    below `k_norm`" — and the charter pinned `k_§` but **never pinned `k_norm`**. Measured:
+>    suppressing multipoles below `ℓ_keep` gives `S₁/₂` = 34,926 → 1,786 → 835 → 185 → 12.9 as
+>    `ℓ_keep` goes 2 → 5 → 6 → 10 → 30, crossing below the observed 1,150 at `ℓ_keep = 6`.
+>    **`S_min` measures an arbitrary modelling choice, not the causal model.** The refutation branch
+>    could never have fired; the accommodation branch fires trivially. The "pre-registered fork" was
+>    decoration.
+> 2. **The pre-registered decision rule is invalid, and would have produced a false refutation.**
+>    `S₁/₂` is *quadratic* in `C`, so its sampling distribution is violently skewed: the ΛCDM
+>    sampling mean is **62,069 μK⁴** against a mean-spectrum value of 34,926. And by direct Monte
+>    Carlo (200,000 skies, real spectrum): **`P(Ŝ ≤ 1150) = 0.125%` under ΛCDM** — i.e. **ΛCDM
+>    itself produces the observed value.** My rule ("if the model's minimum exceeds the observed
+>    value, the model cannot produce it") compares a point prediction against a random variable.
+>    Applied to ΛCDM it would have "refuted" ΛCDM. That is a reductio, and it is my error.
+>    *(Side benefit: 0.125% independently reproduces the known ~0.1% low-ℓ anomaly significance,
+>    which is evidence the operator is right even though the rule built on it was wrong.)*
+>
+> Further gate findings **not** independently verified by me and carried as flags, not results:
+> `S_max = +∞` so the advertised interval does not exist; lensing makes `C` quadratic in `P`, so the
+> "linear ⟹ convex ⟹ unique optimum" headline is false as stated; the observed 1,150 is a
+> **cut-sky** number being compared to a **full-sky** theory quantity; Reading A is *hyperuniform*
+> (`P(k→0)=0` is long-range **order**, requiring cancellation across causally disconnected regions —
+> so it is anti-causal and is the model-favourable reading); and, flagged for any successor,
+> `√(3/Λ) = 5.38 Gpc` against `D_M = 13.885 Gpc` subtends **22°, not 60°**, so the `Eq.17 → χ_§ → θ`
+> chain must be derived rather than assumed.
+>
+> **What survives:** the `S₁/₂` operator itself (validated, and now corroborated by the 0.125%
+> reproduction), the Paley–Wiener incompatibility result, and the step-2 textual finding. **What
+> dies:** the admissible class, the optimization, and the decision rule. The successor framing both
+> seats and my own step-2 finding converge on is a **p-value shift** — "the causal cutoff moves the
+> anomaly from p ≈ 0.1% to p ≈ X% and no further" — which is immune to the a-posteriori objection.
+> **That is a different program and it is Duho's to authorize.** See
+> `PROGRAM_A_STEP2_FINDING_20260901.md`.
+
 **Authority:** Duho, in chat 2026-09-01, verbatim: **"start (A)"** — the topic the three-seat team
 converged on. **Status: OPEN, step 1 complete.** No tier is changed by this program; entries
 23–27 remain QUALITATIVE-DIRECTIONAL unless a gated result says otherwise, which would be a
