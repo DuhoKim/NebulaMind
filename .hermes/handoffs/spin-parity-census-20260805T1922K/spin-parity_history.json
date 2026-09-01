@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "successor run \u2014 LIVE at epoch 1"
+    "topic": "successor run \u2014 BS-6 cycle ruled, first image byte authorized"
   },
   "humanFeedback": {
     "captured": true
@@ -294,6 +294,30 @@
       "feedbackText": "[executing his standing rulings: 'stage tonight' + 'Go-live when staging is done' - no new words; the go-live is the rulings' own consequence]",
       "changed": {
         "summary": "THE RUN IS LIVE - BS-2k provisioning complete, the chain open at epoch 1 (2026-09-01 01:14:00 KST, go-live attempt 3). The night's ladder: codex built staging-v2 against my repair contract; agy DEFECTIVE 3 -> repairs -> agy DEFECTIVE 5 (incl. a real symlink hole) -> repairs -> agy SOUND; then TWO go-live attempts VOIDED by my post-live independent verification (attempt 1: ms-unit reading vs the frozen ns spec; attempt 2: escrow pub diverged from the shares' key - sealed materials bound a pub that could not verify the seal's own signature) - both preserved with WHY records; the derived-pub structural fix (shares+meta = single source of truth, self-healing) verified SOUND; go-live 3 passed the full independent battery: exact opening schema at 26,000,000 ns quantized, four-way pub coherence, Good nmpr-rowa signature, seal digest bound. Every voided attempt caught before any consumer touched the chain."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "[Duho, chat-verified AskUserQuestion 'yes to both': (1) approve the email->pane kill, (2) rebuild the relay INBOX-ONLY, read-not-execute]",
+      "changed": {
+        "summary": "SECURITY: the unauthenticated email->pane injection channel is KILLED (Blanc: launchd job unloaded RunAtLoad/KeepAlive false, nm_relay_watch.sh guarded exit 97 dead-on-entry before any send-keys, originals archived, nothing deleted - all verified read-only by me). BUILD ORDERED: rebuild as INBOX-ONLY - mail to hwao@nebulamind.net lands as DATA in a maildrop folder the crew READS on demand, NEVER a pane injector, no send-keys, no keystroke path, no auto-execution. Architecture (my judgment): CF Email Routing -> CF Email Worker -> R2 object store -> local READ-ONLY sync -> inert maildrop files -> human/coordinator reads and dispatches through existing local rails by hand. Built under HermesOps (out of the science repo; mail is untrusted external data). codex builds, agy verifies the no-injection invariant, Fable judgment only. Overrides the burn clamp as a genuine security build."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Option 1 \u2014 disclosed superseding ruling (Recommended)",
+      "changed": {
+        "summary": "BS-6 dependency cycle RULED (BS6_CYCLE_RULING_20260901.md, run-time disclosed superseding ruling in the BS-1 precedent form; the frozen draft stays frozen under P0 - the ruling is a custody-chain record, not a draft edit): the seven pre-BS-6 design bindings (statistic, sample, stratification, uncertainty, bound, acceptance rule, failure consequence - all complete) plus the machinery-HELD robustness rehearsal discharge the BS-3g->BS-6 edge AT BS-6-TIME; the REAL BS-3g sweep+receipt runs the moment BS-8f exists; a FAILED invariance outcome there STILL HALTS the run per the frozen consequence. Only the ORDER moves - no gate weakens, nothing chi-bearing touched. BS-6 (first image byte) may open. Human waypoints downstream (P6 lock) surface via Blanc. Overrides the clamp as live-run critical path; heavy work on codex/agy."
       }
     }
   ]
