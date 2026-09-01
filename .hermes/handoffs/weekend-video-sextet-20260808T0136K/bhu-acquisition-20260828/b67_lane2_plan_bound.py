@@ -44,10 +44,10 @@ chk("PLAN STRUCTURE: five RQ cards + gated-trio + recommendation present",
     and "gated trio" in plan.lower() and "Recommendation & sequencing" in plan)
 
 # 2. tier counts the plan prints must match a live parse of the record
-chk("TIER COUNTS MATCH: plan's 32/7/4/3 reflect the record",
-    tiers["CONSISTENCY-ONLY"] == 32 and tiers["QUALITATIVE-DIRECTIONAL"] == 7
+chk("TIER COUNTS MATCH: plan's 31/8/4/3 reflect the record (entry 27 promoted 2026-09-01)",
+    tiers["CONSISTENCY-ONLY"] == 31 and tiers["QUALITATIVE-DIRECTIONAL"] == 8
     and tiers["CALIBRATED-FALSIFIER"] == 4 and tiers["THEORETICAL-OBSTRUCTION"] == 3
-    and "32 consistency-only" in plan and "4 calibrated-falsifier" in plan,
+    and "31 consistency-only" in plan and "4 calibrated-falsifier" in plan,
     f"record={dict(tiers)}")
 
 # 3. the calibrated four + their FIRED/LIVE split, computed from the entry blocks

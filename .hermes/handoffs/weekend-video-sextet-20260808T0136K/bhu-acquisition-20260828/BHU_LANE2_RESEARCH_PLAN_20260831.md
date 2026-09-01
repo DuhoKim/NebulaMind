@@ -44,7 +44,7 @@ historical/context papers, not inputs to any forward computation; they stay gate
 
 ## 1 · The seedbed (corpus state Lane 2 builds on)
 
-**Tier map (parsed, not recited — `BHU_PUBLISHED_BIBLIOGRAPHY.md` §0):** 32 consistency-only · 7
+**Tier map (parsed, not recited — `BHU_PUBLISHED_BIBLIOGRAPHY.md` §0):** 31 consistency-only · 7
 qualitative-directional · **4 calibrated-falsifier** · 3 theoretical-obstruction (5, 22, 48) · 3
 prospect · 7 support · 2 unread (42, 47).
 
