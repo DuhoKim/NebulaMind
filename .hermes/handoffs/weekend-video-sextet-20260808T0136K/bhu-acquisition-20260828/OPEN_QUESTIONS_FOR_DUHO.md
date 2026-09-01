@@ -48,9 +48,50 @@ built.**
 - **(3) Stop (A).** *Cost:* the validated `S₁/₂` machinery and the incompatibility proof go unused.
   *Gain:* nothing further spent on a corpus whose central prediction is scale-only.
 
-**My recommendation: (2), with (1) only if you want a paper rather than a record.** I am recommending
-the cheaper option against my own earlier advice, because the day's evidence is that my constructive
-judgement in this area has been wrong six times out of six and the gates have been right.
+**UPDATE 2026-09-02 — I read the two recovered step-2 verdicts in full, and they bear directly on
+this choice. Option (1) is weaker than I described it.**
+
+I had only logged their verdict tokens. Read properly, **both seats say the repair I offered you as
+option (1) does not exist**:
+
+- **codex, verbatim:** the class "commits both errors in different respects: it is **too narrow** in
+  imposing an unlicensed A-or-B support rule, exact ΛCDM short-scale equality, and usually implicit
+  homogeneity/isotropy; yet, below `k_norm`, it is **too wide**… The former can manufacture a
+  prediction; the latter can make a no-go trivial. **There is no principled repair available from
+  this source alone.**"
+- **kimi:** "narrow in the load-bearing place and wide in the cosmetic ones — **the worst
+  combination**", and its bottom line is to "**report underdetermination as the finding**, with A and
+  B exhibited as the two formally incompatible refinements whose minima straddle the observed
+  ~1150 μK⁴."
+
+**So doing the repairs would still not yield a prediction licensed by the paper** — codex: it "would
+not turn either constraint into a prediction licensed by the paper." Option (1) buys a
+better-executed calculation of something the theory never claimed.
+
+**Two substantive criticisms in those files that nobody has raised before, and that I had not read:**
+
+1. **codex:** the paper's core inference may be a non-sequitur — "**equating absence of causal
+   influence with zero correlation; common initial conditions can correlate causally disconnected
+   regions.**" This is the standard inflationary point, and it attacks the 60° prediction's *logic*
+   rather than its arithmetic. **It is tier-relevant for entries 23–27 and I have moved nothing** —
+   flagging it for you, not acting on it.
+2. **kimi:** "**Φ(χ>χ§)=0 never imposed on the perturbed solution** — the only derived constraint
+   unused, so every optimized number may be a minimum over inadmissible spectra." The paper's one
+   genuinely derived condition was never applied to the perturbations at all, in my work or anyone's.
+
+**My recommendation, now with the seats behind it: (2).** Write it up as the documented no-go, in the
+shape kimi specifies — report the underdetermination, exhibit A and B as formally incompatible
+refinements, and *do not* emit a number from either reading alone. That is a real, defensible result
+about what the theory can and cannot support, and it is what four independent seats converged on.
+
+**Option (1) only makes sense if you want a paper rather than a record**, and both seats say it would
+not get you a licensed prediction even then. **(3) stop** remains available and costs only the unused
+machinery.
+
+*(I first recommended (2) on the grounds that my own constructive judgement had been wrong six times
+out of six today. That reasoning still holds, but it is no longer the main reason — the main reason
+is now that the seats independently specified this outcome and said the alternative has no principled
+repair.)*
 
 **One thing you should weigh in deciding how much to trust me here:** everything above was caught by
 gating before it left the lane, which is the system working — but the yield was zero, and I was
