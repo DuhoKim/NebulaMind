@@ -92,3 +92,42 @@ Start with ONE token: `READING_A` / `READING_B` / `READING_C` / `CLASS_REFUTED`.
 Then: the deciding quotation; your answer to 2, 3 and 4; and any way this formalization could make
 the eventual result wrong. Be adversarial — I would rather lose the program now than publish a
 number built on the wrong constraint. Review only; change no file except your verdict file.
+
+---
+
+## CORRECTION TO THIS BRIEF, 2026-09-01 — I truncated the key quote, and it mattered
+
+**The textual gate seat caught this brief committing the §1ak defect that §1ak exists to prevent.**
+The quotation above beginning "smooth background across disconnected regions…" is **truncated**.
+The clean-text render wraps the sentence across two lines: L250 ends **"There should be a"**, and
+L251 continues **"smooth background across disconnected regions with an infrared cutoff in the
+spectrum of inhomogeneities for χ>χ§."** I grepped L251 alone and lost the existential head — which
+is why the excerpt "reads oddly," as this brief itself noticed and then failed to chase.
+
+**Restored, the grammar changes the answer.** The asserted existent is **"a smooth background"**;
+the infrared cutoff sits two levels down inside a `with`-adjunct, in **expectational modality
+("There should be")**. Compare the register the paper uses for its actual condition three paragraphs
+earlier: "we will require… **This implies:**" followed by a numbered equation. The cutoff receives
+none of that.
+
+**Two further decisive lines are OUTSIDE this brief's quote set**, so the instruction "everything you
+need is quoted inline" was false and an obedient seat could not have reached the right answer:
+- **L435:** "there are temperature differences on scales larger θ§, **but they are not correlated**,
+  as expected in causality disconnected regions." — this **affirmatively refutes READING A**: under
+  `P(k)=0` for `k<k_§` those large-scale temperature differences would not exist at all.
+- **L466:** "Continuity across nearby disconnected regions forces these differences to be small,
+  **but it is impossible to quantify this without a model for the initial conditions** and a better
+  understanding of the process that generates the primordial homogeneity."
+  *(Scope note, stated precisely: "this" refers to the inter-patch energy-content differences, not
+  literally to S₁/₂. What it establishes is that the author names the missing ingredient — a model
+  for the initial conditions — as absent, which is exactly the stochastic completion Program (A)
+  set out to supply.)*
+- **L558:** the cited supplier "Gaztañaga E., 2019" resolves to **"In preparation"** — an empty
+  citation trail; and Sanghai & Clifton 2015 is invoked once as "**could** be matched", with no
+  equation adopted and never reused.
+- **"infrared" is a hapax** — exactly one occurrence in the paper (verified `grep -c` = 1), never
+  restated, and absent from §5 where the author restates every claim he owns.
+
+All of the above verified by me directly against `2003.11544_clean.txt`, not accepted on the seat's
+word. **The lesson is the brief's own: an instruction to work only from inline quotes is safe only
+if the quote set is complete, and mine was not.**
