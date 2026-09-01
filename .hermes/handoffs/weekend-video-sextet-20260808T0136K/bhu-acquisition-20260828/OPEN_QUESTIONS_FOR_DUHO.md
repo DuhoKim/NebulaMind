@@ -6,6 +6,20 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ✅ DONE 2026-09-01 — new-physics program → STILL_AMBIGUOUS (cutoff robustly NOT calibratable; IR amplitude irreducibly free)
+
+Duho RELAY "start the new-physics program (clamp overridden)." Two principled completions (codex max-entropy,
+agy causal-Green) + kimi verification. **codex+kimi:** the max-entropy completion provably has NO maximizer
+(log det unbounded via the ξ₀+λq family), and the causal condition fixes only the support scale (60°), not the
+profile → the IR/large-scale amplitude is IRREDUCIBLY FREE. **agy's CALIBRATED (S₁/₂=9,913) refuted** — one
+arbitrary completion, not forced (sits inside codex's 6,230–22,327 span). Finding: every principled completion
+predicts S₁/₂ ~6,000–22,000 μK⁴ — suppressed vs ΛCDM's 34,900 (right direction) but still ~5–20× above Planck's
+~1,150 (moves toward the deficit, doesn't reach it, can't be pinned). Calibration needs a forced IR
+normalization = new physics not derivable from the model. **Tier UNCHANGED — 23/24/25/26/27 stay
+QUALITATIVE-DIRECTIONAL.** The frontier program is at its honest end. Detail: `NEWPHYS_RESULT_20260901.md`.
+
+---
+
 ## ✅ DONE 2026-09-01 — cutoff THEORY pursued → IRREDUCIBLE_AMBIGUITY (cannot calibrate even from the causal axiom)
 
 Duho RELAY "pursue the cutoff theory (clamp overridden)." Derived from the model's causal boundary condition
