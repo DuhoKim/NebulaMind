@@ -127,7 +127,21 @@ agy struck four of my five v1 questions as already-frozen or already-ruled, and
 it was right (verified against the bytes). What survives, plus what the
 reconnaissance surfaced:
 
-- **R-A — the image ACCESS PATH.** Path 1 (Legacy Survey viewer `fits-cutout`,
+- **R-A — RULED 2026-09-01 (direction #31), verbatim: "Path 2 — NERSC coadd
+  bricks (Recommended)".** Stage two acquires imagery from the **NERSC coadd
+  brick tree** (`portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/coadd/
+  <AAA>/<brick>/legacysurvey-<brick>-image-r.fits.fz`): whole survey tiles are
+  pulled and cutouts are cut **locally**, so the lane holds the actual DESI
+  bricks — self-contained, durable provenance, with the per-brick SHA-256 lists
+  as native integrity anchors and the frozen neighbor-brick closure rule already
+  in force. The ~148 GB volume is accepted over the lighter cutout-service path.
+  **Consequences for the design: R-B and R-C now design against Path 2
+  specifically** — the local cutter is stage two's own producer (the predecessor
+  runner stays prohibited), the byte ceiling covers brick transport plus
+  retained cutouts, and the manifest carries one row per masked object plus a
+  separate source-brick table so shared brick hashes are unambiguous. **No real
+  image byte is touched until R-C is separately authorized.**
+  *(superseded question, kept for the record:)* — **the image ACCESS PATH.** Path 1 (Legacy Survey viewer `fits-cutout`,
   coordinate-native, server-side cutouts) vs Path 2 (NERSC coadd tree,
   brick-native, whole tile-compressed FITS cut locally). Genuinely open, bears
   on provenance/verifiability/volume (~1–13 GB by cutout size vs ~148 GB
