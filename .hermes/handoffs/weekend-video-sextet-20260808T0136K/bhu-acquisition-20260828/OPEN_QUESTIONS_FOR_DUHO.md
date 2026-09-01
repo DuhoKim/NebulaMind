@@ -42,7 +42,16 @@ questions below remain genuinely open.
 
 ---
 
-## OPEN — BHU sweep batch 1: one criterion call (blocks the sweep) + three tier-adjacent entries (2026-09-01)
+## ✅ RESOLVED 2026-09-01 — Duho ruled A(a), B(a), C(a) (RELAY); all applied. The 27-onward sweep is COMPLETE.
+
+**Outcome:** entry **27 → QUALITATIVE-DIRECTIONAL** (the only tier change; matches 25/26 for the same
+Gaztañaga cutoff, tally directional 7→8 / consistency 32→31). **40/41/52 stay CONSISTENCY-ONLY** (A(a):
+closure is *assumed*, not derived — corroborates the 2026-08-28 "do-not-promote" blind-flag on 40/41).
+**45 stays CONSISTENCY-ONLY** (C(a): kimi+agy 2–1 — authors disclaim relevance to our universe).
+**53/55/56/57 confirmed** (agy reliable small-batch re-read, correct sources). **Sweep total: 1 tier
+change, 11 confirmed.** Detail: `ENTRY_SWEEP_BATCH2_RECONCILIATION_20260901.md`. Original question below.
+
+## (original, now resolved) OPEN — BHU sweep batch 1: one criterion call + three tier-adjacent entries (2026-09-01)
 
 Sweep resumed on your "run the whole sweep" (RELAY ~16:12). Batch 1 = 12 entries, blind-double codex+agy.
 **3 confirmed, tier holds (36, 46, 49).** The items below need you. Detail:

@@ -30,9 +30,9 @@ entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
 by two seats**: **4 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51),
-7 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 32 CONSISTENCY-ONLY, **3 THEORETICAL-OBSTRUCTION
+8 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 31 CONSISTENCY-ONLY, **3 THEORETICAL-OBSTRUCTION
 (entries 22, 5, 48 — 5 re-tiered at question 5, 48 tiered at question 8, both 2026-08-30)**,
-2 UNREAD (entries 42, 47 — the last two unacquired-and-unread) — sums to 51. *(Superseded
+2 UNREAD (entries 42, 47 — the last two unacquired-and-unread) — sums to 51. *(2026-09-01 sweep: entry 27 promoted CONSISTENCY-ONLY → QUALITATIVE-DIRECTIONAL per Duho ruling B(a), matching entries 25/26 for the same Gaztañaga causal-horizon CMB cutoff; hand-adjusted from the 2026-08-29 script tally — directional 7→8, consistency 32→31, still sums to 51.)* *(Superseded
 2026-08-30 by the question-8 ruling and the day's reads: previously "31 CONSISTENCY-ONLY,
 2 THEORETICAL-OBSTRUCTION, 4 UNREAD" — entries 50 and 14 read into/confirmed in
 CONSISTENCY-ONLY, entry 48 read and tiered.)* *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
@@ -872,7 +872,8 @@ Testability: **QUALITATIVE-DIRECTIONAL** (with Part I). Record: new to us. Audit
 
 **27. E. Gaztañaga (2022). "How the Big Bang Ends Up Inside a Black Hole." Universe 8, 257.**
 DOI 10.3390/universe8050257 — VERIFIED (Crossref: Universe, v8, 257, 2022-04-21).
-Claim: the collapse-to-bounce route into the BHU picture. Testability: **CONSISTENCY-ONLY**.
+Claim: the collapse-to-bounce route into the BHU picture. Testability: **QUALITATIVE-DIRECTIONAL**.
+**Sweep promotion (2026-09-01; Duho ruling B(a)):** blind-double codex + agy both found CONSISTENCY-ONLY too weak. The paper derives a causal-horizon CMB power cutoff from the finite collapse (largest modes λ>2R absent → anomalously low largest-scale CMB power; θ≈60°, cf. measured Θ_H=66±9°) — the SAME causal-horizon cutoff as entries 25/26 (ruled QUALITATIVE-DIRECTIONAL at q3), fixed a priori, no C_ℓ amplitude → directional not calibrated. **Promoted CONSISTENCY-ONLY → QUALITATIVE-DIRECTIONAL** to match 25/26. Receipts `2204.11608_clean.txt:12-13,252-257,292-306,331-339`; `ENTRY_SWEEP_BATCH1_{codex,agy}_RESULT.md` + `ENTRY_SWEEP_BATCH1_RECONCILIATION_20260901.md`.
 Record: new to us. Audit-worthiness: **medium**.
 
 **56. "The mass of our observable Universe." MNRAS Lett. 521, L59–L63 (2023).**
