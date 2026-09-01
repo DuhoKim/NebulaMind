@@ -24,7 +24,9 @@ questions below remain genuinely open.
 
 ---
 
-## OPEN — 1 question (q4 · RQ-B outcome). LANE 2 COMPLETE — all four computed + the watcher live.
+## OPEN — none. Lane 2 COMPLETE; all four RQ verdicts recorded; close-out packet being written.
+
+### ✅ q4 RESOLVED 2026-09-01 — Duho ruled "annotate q4, keep tier". Entries 8–12 now carry the RQ-B UNDETERMINED verdict (transfer function not derivable from the literature; falsifier question open), tiers unchanged. Original question below.
 
 ### q4 · RQ-B is in — the Popławski transfer function is UNDETERMINED. How to record it on entries 8–12?
 

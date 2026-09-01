@@ -415,6 +415,7 @@ Audit-worthiness: **high** — now discharged for the falsifier statement itself
 ## 3. Popławski torsion-bounce parentage — the published mechanism chain
 
 **8. N. J. Popławski (2010). "Radial motion into an Einstein–Rosen bridge." Phys. Lett. B 687, 110–113.**
+**RQ-B map (BHU Lane 2, 2026-09-01; Duho ruling q4 = annotate, keep tier):** The interior transfer function (parent -> torsion bounce -> daughter observable) is **UNDETERMINED by the published literature** -- the mechanism has field equations for the homogeneous BACKGROUND bounce but NO perturbation action; the closure is not fixed (a spin/number isocurvature mode gives delta-p_nad != 0), the bounce matching is undetermined (the PRD-85 realization is a cusp), and the particle-production constant beta is free. Poplawski himself states the density-fluctuation derivation "remains to be done." So the branch's falsifier question is genuinely OPEN (not closed by omission), needing an original linearized Einstein-Cartan perturbation action. Blind-double + independent third read (kimi): codex+kimi UNDETERMINED, agy NEW_FALSIFIER (outlier, assumed the adiabatic closure). **Tier UNCHANGED.** See `RQ_B_RECONCILIATION_20260901.md` + `RQ_B_kimi_CRUX_RESULT.md`.
 DOI 10.1016/j.physletb.2010.03.029 — VERIFIED (Crossref: PLB, v687, p110-113, 2010-04).
 Claim: our universe may be the Einstein–Rosen-bridge interior of a black hole; radial geodesics
 pass through. Testability: **CONSISTENCY-ONLY**
@@ -426,6 +427,7 @@ packet cites his series generically). Audit-worthiness: **medium** — the kinem
 parentage chain.
 
 **9. N. J. Popławski (2010). "Cosmology with torsion: an alternative to cosmic inflation." Phys. Lett. B 694, 181–185.**
+**RQ-B map (BHU Lane 2, 2026-09-01; Duho ruling q4 = annotate, keep tier):** The interior transfer function (parent -> torsion bounce -> daughter observable) is **UNDETERMINED by the published literature** -- the mechanism has field equations for the homogeneous BACKGROUND bounce but NO perturbation action; the closure is not fixed (a spin/number isocurvature mode gives delta-p_nad != 0), the bounce matching is undetermined (the PRD-85 realization is a cusp), and the particle-production constant beta is free. Poplawski himself states the density-fluctuation derivation "remains to be done." So the branch's falsifier question is genuinely OPEN (not closed by omission), needing an original linearized Einstein-Cartan perturbation action. Blind-double + independent third read (kimi): codex+kimi UNDETERMINED, agy NEW_FALSIFIER (outlier, assumed the adiabatic closure). **Tier UNCHANGED.** See `RQ_B_RECONCILIATION_20260901.md` + `RQ_B_kimi_CRUX_RESULT.md`.
 DOI 10.1016/j.physletb.2010.09.056 — VERIFIED (Crossref: PLB, v694, p181-185, 2010-11).
 (Erratum: PLB 701, 672 — pinned at the Phase 1 custody audit.)
 Claim: Einstein–Cartan torsion generates a nonsingular bounce that explains apparent flatness,
@@ -437,6 +439,7 @@ Record: characterized in packet §1.2 (full-text audited by Tori). Audit-worthin
 the family** — see ranked target 1.
 
 **10. N. J. Popławski (2012). "Nonsingular, big-bounce cosmology from spinor-torsion coupling." Phys. Rev. D 85, 107502.**
+**RQ-B map (BHU Lane 2, 2026-09-01; Duho ruling q4 = annotate, keep tier):** The interior transfer function (parent -> torsion bounce -> daughter observable) is **UNDETERMINED by the published literature** -- the mechanism has field equations for the homogeneous BACKGROUND bounce but NO perturbation action; the closure is not fixed (a spin/number isocurvature mode gives delta-p_nad != 0), the bounce matching is undetermined (the PRD-85 realization is a cusp), and the particle-production constant beta is free. Poplawski himself states the density-fluctuation derivation "remains to be done." So the branch's falsifier question is genuinely OPEN (not closed by omission), needing an original linearized Einstein-Cartan perturbation action. Blind-double + independent third read (kimi): codex+kimi UNDETERMINED, agy NEW_FALSIFIER (outlier, assumed the adiabatic closure). **Tier UNCHANGED.** See `RQ_B_RECONCILIATION_20260901.md` + `RQ_B_kimi_CRUX_RESULT.md`.
 DOI 10.1103/PhysRevD.85.107502 — VERIFIED (Crossref: PRD, v85, 107502, 2012-05-29).
 Claim: the Dirac-spinor–torsion coupling generates the nonsingular big bounce.
 Testability: **CONSISTENCY-ONLY**. Record: **new to us**. Audit-worthiness: **medium-high** — the
@@ -446,6 +449,7 @@ gravity with spin and torsion," Astronomical Review 8, 108–115 (2013),
 DOI 10.1080/21672857.2013.11519725.)
 
 **11. N. J. Popławski (2016). "Universe in a black hole in Einstein–Cartan gravity." ApJ 832, 96.**
+**RQ-B map (BHU Lane 2, 2026-09-01; Duho ruling q4 = annotate, keep tier):** The interior transfer function (parent -> torsion bounce -> daughter observable) is **UNDETERMINED by the published literature** -- the mechanism has field equations for the homogeneous BACKGROUND bounce but NO perturbation action; the closure is not fixed (a spin/number isocurvature mode gives delta-p_nad != 0), the bounce matching is undetermined (the PRD-85 realization is a cusp), and the particle-production constant beta is free. Poplawski himself states the density-fluctuation derivation "remains to be done." So the branch's falsifier question is genuinely OPEN (not closed by omission), needing an original linearized Einstein-Cartan perturbation action. Blind-double + independent third read (kimi): codex+kimi UNDETERMINED, agy NEW_FALSIFIER (outlier, assumed the adiabatic closure). **Tier UNCHANGED.** See `RQ_B_RECONCILIATION_20260901.md` + `RQ_B_kimi_CRUX_RESULT.md`.
 DOI 10.3847/0004-637X/832/2/96 — VERIFIED (Crossref: ApJ, v832, 96, 2016-12-01).
 (arXiv:1410.3881; the v1 title differs — version-bound at the Phase 1 custody audit.)
 Claim: spin-fluid bounce inside the horizon yields a nonsingular closed universe with a finite
@@ -456,6 +460,7 @@ spectral-index, or tensor forecast. Record: characterized in packet §1.2.
 Audit-worthiness: **high** — pairs with entry 9 as the published core of the parentage mechanism.
 
 **12. N. Popławski (2025). "Gravitational collapse with torsion and universe in a black hole." Int. J. Mod. Phys. A 40, 2544007.**
+**RQ-B map (BHU Lane 2, 2026-09-01; Duho ruling q4 = annotate, keep tier):** The interior transfer function (parent -> torsion bounce -> daughter observable) is **UNDETERMINED by the published literature** -- the mechanism has field equations for the homogeneous BACKGROUND bounce but NO perturbation action; the closure is not fixed (a spin/number isocurvature mode gives delta-p_nad != 0), the bounce matching is undetermined (the PRD-85 realization is a cusp), and the particle-production constant beta is free. Poplawski himself states the density-fluctuation derivation "remains to be done." So the branch's falsifier question is genuinely OPEN (not closed by omission), needing an original linearized Einstein-Cartan perturbation action. Blind-double + independent third read (kimi): codex+kimi UNDETERMINED, agy NEW_FALSIFIER (outlier, assumed the adiabatic closure). **Tier UNCHANGED.** See `RQ_B_RECONCILIATION_20260901.md` + `RQ_B_kimi_CRUX_RESULT.md`.
 DOI 10.1142/S0217751X25440075 — VERIFIED (Crossref: IJMPA, v40, 2025-09-17).
 Claim: continues the torsion-collapse/bounce line (per Kun's abstract check: not the axis line).
 Testability: **CONSISTENCY-ONLY**. Record: pinned at Kun's Phase 1 gate. Audit-worthiness:
