@@ -1,5 +1,14 @@
 # STAGE-TWO SCOPING — the image-analysis preregistration
 
+> **v2, CORRECTED after AGY-SCOPING-REVIEW-V1 (DEFECTIVE, 19).** My v1 asked the
+> principal to rule on matters stage one already froze, and omitted mandatory
+> design obligations from six covenant rows. Both corrections are applied below;
+> the review is the authority on what was wrong. Verified verbatim from the
+> frozen bytes before correcting: the estimator IS frozen (`Â_L = β̂/(2â−1)`
+> scalar, `Â_L = β̂/ŵ` profile) and the pre-lock exclusion list IS closed to
+> three reasons — "No other reason is admissible. A reason not on this list
+> requires a new text."
+
 **Opened 2026-09-01 on the principal's direction** ("START THE STAGE-TWO
 SUCCESSOR PREREGISTRATION", human direction #30), immediately after stage one
 banked clean at its pre-image boundary (`_successor_build_20260824/run/
@@ -92,6 +101,19 @@ Enumerated so nothing is smuggled in later as "obvious":
 14. The pre-unblinding lock content and the unblinding sequence for THIS stage.
 15. What constitutes the result, and the failure/inconclusive branches.
 
+**A′. Row-derived obligations agy found missing from v1 (all newly open)**
+18. **Row C** — the cutout-completion receipt's definition/schema.
+19. **Row C2** — the hermetic worker, capability allowlist and blindness fixture;
+    the acceptance-evidence projection schema; the exact-parent
+    stage-completion artifact schema.
+20. **Row D** — the per-object χ-bearing measurement receipt schema.
+21. **Row D2 / BS-SI** — the TWO committee architectures, the machine-committee
+    state logic, and the independent verifier that recomputes the index from Row
+    D receipts and refuses mismatch. (agy: "catastrophically omitted" in v1.)
+22. **Row H** — the χ-bearing label-set receipt schema and the label-set store.
+23. **BS-2a / BS-9** — their SLOT_SCHEMA entries and canonical receipt field
+    definitions (stage one has the names, not the schemas).
+
 **E. Process**
 16. Does stage two get its own freeze signature (P0′) and its own gate ladder?
     (Recommended: yes — same discipline, its own manifest and signature.)
@@ -99,25 +121,37 @@ Enumerated so nothing is smuggled in later as "obvious":
     stage-one BS-6 cycle ruling? (Recommended: yes — it needs BS-8f, which is
     stage two's.)
 
-## 4. THE CHOICES THAT ARE DUHO'S TO RULE
+## 4. THE CHOICES THAT ARE DUHO'S TO RULE — CORRECTED
 
-Surfaced through Blanc as each arises, exactly like stage one's rulings — with
-options, plain words, and a recommendation:
+agy struck four of my five v1 questions as already-frozen or already-ruled, and
+it was right (verified against the bytes). What survives, plus what the
+reconnaissance surfaced:
 
-- **R1 — the estimator form** (item 13): what quantity, how calibration enters,
-  what the verdict thresholds are.
-- **R2 — acceptance thresholds** (items 1, 4): what disqualifies a cutout and
-  how strict; the confidence threshold.
-- **R3 — the hand-check protocol** (items 10–12): committee composition
-  (himself alone, as stage one's rosters? more?), the rendering surface, checker
-  instructions, ABSTAIN policy.
-- **R4 — cutout geometry** (item 9): size/centering/rotation convention.
-- **R5 — scope of stage two's freeze** (items 16–17): its own P0′ and ladder;
-  whether BS-3g rides stage two.
+- **R-A — the image ACCESS PATH.** Path 1 (Legacy Survey viewer `fits-cutout`,
+  coordinate-native, server-side cutouts) vs Path 2 (NERSC coadd tree,
+  brick-native, whole tile-compressed FITS cut locally). Genuinely open, bears
+  on provenance/verifiability/volume (~1–13 GB by cutout size vs ~148 GB
+  predecessor-scale full-brick), and no published rate limit exists for Path 1
+  — 49,211 requests need a preregistered pace. **His call.**
+- **R-B — cutout GEOMETRY.** Size (px), centering/rounding, orientation, and
+  the resampling prohibition-or-kernel. Frozen: 0.262″/px only. **His call.**
+- **R-C — the AUTHORIZED PROBE.** The FITS HDU/dtype/WCS/edge contract cannot
+  be known from documentation; pinning it requires touching real image bytes
+  ONCE, under an authorization that stage one's boundary reserves to him.
+  **His call** (and it is the gate that unblocks BS-9's design).
+- **R-D — hand-check committee COMPOSITION and rendering surface** (Row G):
+  who checks, and what they see. NOT the ABSTAIN policy — already ruled
+  2026-08-30.
+- **R-E — stage two's own freeze scope**: its own P0′ signature and gate
+  ladder. (Recommended: yes.)
 
-Nothing in section 3 is decided by me alone where it bears on the science: the
-stage-one pattern holds — blind commitments where a value must be picked before
-data, and the principal rules anything that shapes the result.
+**Struck from v1 as already settled — do NOT re-ask:** the estimator form and
+calibration entry (frozen: `Â_L = β̂/(2â−1)` / `β̂/ŵ`); the verdict thresholds
+and calibration floor (frozen: `a_LB_b < 0.85`, Row J); the acceptance/exclusion
+REASONS (frozen closed list of three; "No other reason is admissible" — what
+stage two designs is the *machinery* implementing them, not the list); the
+ABSTAIN policy (ruled); BS-3g's sequence (ruled — it runs in stage two once
+BS-8f exists).
 
 ## 5. Method and pacing (burn-honest)
 
@@ -138,9 +172,11 @@ repeated on the ~2% remaining.** Therefore:
 
 ## 6. Immediate next steps (seat work, no Fable grind)
 
-1. **codex**: inventory what real DESI Legacy cutout access actually requires
-   (endpoints, formats, the coadd tree for Branch B DR10.1, byte ceilings) —
-   READ-ONLY reconnaissance, no transport, so BS-9's design starts from facts.
+1. **codex**: DONE — `CODEX_CUTOUT_RECON_20260901.md`, documentation-only, NO
+   image byte touched (agy's sequencing finding is satisfied by construction:
+   the boundary was in the dispatch and the report states no cutout was
+   requested and no FITS opened). Anything further that would need real bytes
+   is R-C, the principal's authorized probe.
 2. **codex**: draft the R1–R5 candidate definitions from what the stage-one text
    says they must accomplish (the five checks' *purpose* is inferable even where
    their definitions are absent) — as a proposal for referee, not a fill.
