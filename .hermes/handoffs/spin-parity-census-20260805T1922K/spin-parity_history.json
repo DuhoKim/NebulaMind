@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "stage two \u2014 R-E ruled: own P0-prime freeze, BS-3g under it"
+    "topic": "stage two \u2014 R-B ratified: cutout geometry"
   },
   "humanFeedback": {
     "captured": true
@@ -426,6 +426,18 @@
       "feedbackText": "Yes \u2014 own P0' + gate ladder, BS-3g under it (Recommended)",
       "changed": {
         "summary": "STAGE-TWO R-E RULED: stage two gets its OWN manifest, its own P0-prime freeze signature, and its own gate ladder - the same discipline stage one ran. The relocated real BS-3g sweep runs UNDER STAGE TWO'S FREEZE (it needs BS-8f's measured calibration, which is stage two's to produce), per the stage-one BS-6 cycle ruling."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Ratify codex's proposal (Recommended)",
+      "changed": {
+        "summary": "STAGE-TWO R-B RATIFIED: CODEX_GEOMETRY_PROPOSAL_20260901.md adopted as filed - 128x128 px (0.262 arcsec/px frozen; the SIZE is forced by the frozen instrument's CUTOUT_PIX=128 / IC6_SHAPE=(1,128,128), verified in v9 line 96, not a free choice); exact celestial centering on catalogue (ra,dec) with the even-array TAN WCS at CRPIX 64.5 and NO coordinate rounding; north-up/east-left with NO object rotation and parity STRICTLY preserved (a wrong-parity Jacobian REFUSES the cutout - the instrument's mirror is the only chirality transform, and the identical reprojection applies to both branches); ONE deterministic geometry-mandated bilinear reprojection (binary64 accumulate, float32 materialize) as the sole permitted resample; stitch-neighbouring-bricks-first with exclusion only if the full 128x128 cannot be formed, retaining the 7,226/49,211 (14.7%) seam-exposed objects per the frozen neighbour-brick closure. The no-interpolation alternative is DECLINED (it would have cost exact centering and those 7,226 objects). Design ratification only - nothing chi, no galaxy pixels interpreted. Disclosed with the ratification: bilinear is a low-pass phase-dependent operation that could attenuate a weak chirality signal; whether it measurably does needs authorized handedness-blind validation, which remains open."
       }
     }
   ]

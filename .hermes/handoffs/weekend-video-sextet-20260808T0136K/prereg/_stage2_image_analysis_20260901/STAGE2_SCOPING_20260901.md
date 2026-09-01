@@ -147,7 +147,35 @@ reconnaissance surfaced:
   on provenance/verifiability/volume (~1–13 GB by cutout size vs ~148 GB
   predecessor-scale full-brick), and no published rate limit exists for Path 1
   — 49,211 requests need a preregistered pace. **His call.**
-- **R-B — RULED 2026-09-01 (direction #33), verbatim: "Seats propose, you
+- **R-B — RATIFIED 2026-09-01 (direction #36), verbatim: "Ratify codex's
+  proposal (Recommended)".** `CODEX_GEOMETRY_PROPOSAL_20260901.md` is adopted as
+  filed and is now stage two's cutout geometry:
+  1. **Size 128 × 128 px = 33.536″** — NOT a choice: forced by the frozen
+     instrument (`CUTOUT_PIX = 128`, `IC6_SHAPE = (1,128,128)`, v9 line 96,
+     verified). Disclosed cost: the smallest allowed galaxies (`shape_r > 1.5″`)
+     span ~11 px, thin for human arm judgment — to be handled by eligibility and
+     hand-check calibration, never by a post-freeze resize.
+  2. **Centering** — exact catalogue `(ra, dec)` at output `CRPIX = (64.5, 64.5)`
+     in the FITS one-based pixel-center convention; **no coordinate rounding**.
+  3. **Rotation — none**; north-up/east-left, and **parity is strictly
+     preserved**: a transform whose source→output Jacobian has the wrong parity
+     **REFUSES the cutout** rather than silently flipping it. The instrument's
+     own mirror is the ONLY chirality-changing transform, and the identical
+     reprojection is applied to both the image and its mirror branch.
+  4. **Resampling** — exactly ONE deterministic geometry-mandated bilinear
+     reprojection (binary64 accumulate, float32 materialize); all other
+     resizing, rotation, PSF homogenization and discretionary interpolation
+     prohibited. **Disclosed with the ratification:** bilinear is a low-pass,
+     phase-dependent operation that *could* attenuate a weak chirality signal;
+     whether it measurably does requires authorized handedness-blind validation
+     and remains OPEN.
+  5. **Edges/coverage** — stitch frozen-planner neighbour bricks first; exclude
+     only when the full 128×128 raster cannot be formed under the frozen
+     integrity/retry rules. The **7,226/49,211 (14.7%) seam-exposed objects are
+     RETAINED**, per the frozen neighbour-brick closure.
+  **The no-interpolation alternative is DECLINED** (it would have cost exact
+  centering and those 7,226 objects).
+  *(superseded question, kept for the record:)* — "Seats propose, you
   ratify (Recommended)".** Cutout geometry — size, centering/rounding,
   rotation — is PROPOSED by codex/agy with reasons argued **against the real
   brick data the R-C probe reveals**, then RATIFIED by the principal before it
