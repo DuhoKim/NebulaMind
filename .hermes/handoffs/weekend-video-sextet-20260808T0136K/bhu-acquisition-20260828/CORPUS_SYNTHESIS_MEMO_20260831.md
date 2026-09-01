@@ -20,7 +20,7 @@ Sweep state: **58 entries = 51 BHU papers + 7 support instruments.** 55 read in 
 
 | tier | count | what it means |
 |---|---:|---|
-| CONSISTENCY-ONLY | 31 | a construction shown compatible with observation; **predicts nothing measurable** |
+| CONSISTENCY-ONLY | 32 | a construction shown compatible with observation; **predicts nothing measurable** |
 | QUALITATIVE-DIRECTIONAL | 7 | a *direction* (sign, inequality) but no calibrated window |
 | CALIBRATED-FALSIFIER | 4 | a number **and** a threshold that a measurement can cross — **entries 7, 31, 44, 51** |
 | THEORETICAL-OBSTRUCTION | 3 | a no-go: proves a class cannot satisfy a conjunction — **entries 5, 22, 48** |

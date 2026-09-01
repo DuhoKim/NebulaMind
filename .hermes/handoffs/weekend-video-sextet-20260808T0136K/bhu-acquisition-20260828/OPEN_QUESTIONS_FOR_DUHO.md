@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — entries 42 & 47 read; proposed first tiers for your sign-off (2026-09-01)
+## ✅ RESOLVED 2026-09-01 — Duho ruled 42(a)=CONSISTENCY-ONLY, 47(a)=PROSPECT (RELAY); applied + re-tallied (consistency 31→32, prospect 3→4, UNREAD 2→0), b66/b67 + plan/memo propagated, battery 80/80. **The BHU corpus is now FULLY READ — 0 UNREAD; all 51 papers read and tiered.** Original proposal below.
 
 You fetched the last two UNREAD papers; I pinned and read them (blind-double codex+agy + kimi tie-break).
 Both came out 2–1; both are new tiers, so yours. Detail: `ENTRY_4247_RECONCILIATION_20260901.md`.

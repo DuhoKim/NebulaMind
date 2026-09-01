@@ -44,10 +44,10 @@ chk("PLAN STRUCTURE: five RQ cards + gated-trio + recommendation present",
     and "gated trio" in plan.lower() and "Recommendation & sequencing" in plan)
 
 # 2. tier counts the plan prints must match a live parse of the record
-chk("TIER COUNTS MATCH: plan's 31/8/4/3 reflect the record (entry 27 promoted 2026-09-01)",
-    tiers["CONSISTENCY-ONLY"] == 31 and tiers["QUALITATIVE-DIRECTIONAL"] == 8
+chk("TIER COUNTS MATCH: plan's 32/8/4/3 reflect the record (entries 27 + 42/47, 2026-09-01)",
+    tiers["CONSISTENCY-ONLY"] == 32 and tiers["QUALITATIVE-DIRECTIONAL"] == 8
     and tiers["CALIBRATED-FALSIFIER"] == 4 and tiers["THEORETICAL-OBSTRUCTION"] == 3
-    and "31 consistency-only" in plan and "4 calibrated-falsifier" in plan,
+    and "32 consistency-only" in plan and "4 calibrated-falsifier" in plan,
     f"record={dict(tiers)}")
 
 # 3. the calibrated four + their FIRED/LIVE split, computed from the entry blocks
@@ -74,10 +74,10 @@ chk("CANDIDATES: entry 21 PROSPECT, 22 THEORETICAL-OBSTRUCTION -- as the plan us
     and "entry 21" in plan and "entry 22" in plan and "entry 58" in plan,
     f"tier(21)={tier_of.get(21)} tier(22)={tier_of.get(22)} tier(58)={tier_of.get(58)}")
 
-# 5. gated trio -- 42 & 47 still the two UNREAD entries; plan lists 2/42/47
+# 5. corpus fully read -- 42 & 47 read 2026-09-01; no UNREAD entries remain (plan's gated list 2/42/47 is historical)
 unread = sorted(n for n in tier_of if tier_of[n] == "UNREAD")
-chk("GATED TRIO: the record's UNREAD set is exactly {42,47}; plan lists 2/42/47",
-    unread == [42, 47] and "2/42/47" in plan, f"unread={unread}")
+chk("FULLY READ: no UNREAD entries remain (42/47 read 2026-09-01); plan's historical gated list 2/42/47 present",
+    unread == [] and "2/42/47" in plan, f"unread={unread}")
 
 # 6. the live-falsifier figures the plan leans on are bound in the record too
 chk("FALSIFIER FIGURES BOUND: 2.5 M and 2.35 appear in BOTH plan and record",

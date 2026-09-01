@@ -49,10 +49,10 @@ for n in blocks:
     b = " ".join(blocks[n].split())
     t = re.search(r"Testability: \*\*([A-Z][A-Z /-]*[A-Z])\*\*", b)
     tiers[(t.group(1).split("/")[0].strip() if t else "support")] += 1
-chk("TIER COUNTS MATCH: the memo's 31 consistency / 4 calibrated / 3 obstruction reflect the record (entry 27 promoted 2026-09-01)",
-    tiers["CONSISTENCY-ONLY"] == 31 and tiers["CALIBRATED-FALSIFIER"] == 4
+chk("TIER COUNTS MATCH: the memo's 32 consistency / 4 calibrated / 3 obstruction reflect the record (entries 27 + 42/47, 2026-09-01)",
+    tiers["CONSISTENCY-ONLY"] == 32 and tiers["CALIBRATED-FALSIFIER"] == 4
     and tiers["THEORETICAL-OBSTRUCTION"] == 3
-    and "CONSISTENCY-ONLY | 31" in memo and "entries 7, 31, 44, 51" in memo,
+    and "CONSISTENCY-ONLY | 32" in memo and "entries 7, 31, 44, 51" in memo,
     f"record tiers={dict(tiers)}")
 
 chk("RECEIPTS DISCIPLINE: the memo cites primary refs (Planck eq 19, Smolin §4, PRL 101 091101)",

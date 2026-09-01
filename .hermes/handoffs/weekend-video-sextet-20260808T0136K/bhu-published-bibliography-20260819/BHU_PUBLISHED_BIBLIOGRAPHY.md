@@ -30,9 +30,9 @@ entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
 by two seats**: **4 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51),
-8 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 31 CONSISTENCY-ONLY, **3 THEORETICAL-OBSTRUCTION
+8 QUALITATIVE-DIRECTIONAL**, 4 PROSPECT, 32 CONSISTENCY-ONLY, **3 THEORETICAL-OBSTRUCTION
 (entries 22, 5, 48 — 5 re-tiered at question 5, 48 tiered at question 8, both 2026-08-30)**,
-2 UNREAD (entries 42, 47 — the last two unacquired-and-unread) — sums to 51. *(2026-09-01 sweep: entry 27 promoted CONSISTENCY-ONLY → QUALITATIVE-DIRECTIONAL per Duho ruling B(a), matching entries 25/26 for the same Gaztañaga causal-horizon CMB cutoff; hand-adjusted from the 2026-08-29 script tally — directional 7→8, consistency 32→31, still sums to 51.)* *(Superseded
+0 UNREAD — **the corpus is now FULLY READ** (entries 42→CONSISTENCY-ONLY, 47→PROSPECT, acquired + read 2026-09-01 on Duho rulings 42a/47a) — sums to 51. *(2026-09-01 sweep: entry 27 promoted CONSISTENCY-ONLY → QUALITATIVE-DIRECTIONAL per Duho ruling B(a), matching entries 25/26 for the same Gaztañaga causal-horizon CMB cutoff; hand-adjusted from the 2026-08-29 script tally — directional 7→8, consistency 32→31, still sums to 51.)* *(Superseded
 2026-08-30 by the question-8 ruling and the day's reads: previously "31 CONSISTENCY-ONLY,
 2 THEORETICAL-OBSTRUCTION, 4 UNREAD" — entries 50 and 14 read into/confirmed in
 CONSISTENCY-ONLY, entry 48 read and tiered.)* *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
@@ -703,7 +703,8 @@ Audit-worthiness: **low-medium**.
 **42. P. F. González-Díaz (1991). "Baby universe metric equivalent to an interior black-hole metric." Phys. Lett. B 261, 357–362.**
 DOI 10.1016/0370-2693(91)90440-2 — VERIFIED (Crossref: PLB, v261, p357-362, 1991-06). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**.
+**READ 2026-09-01 (Duho fetched via ScienceDirect; pinned `gonzalez-diaz_1991_plb261_357{.pdf,_clean.txt}`). Blind-double + kimi → CONSISTENCY-ONLY (2–1, Duho ruling 42a):** a conformal-equivalence construction (maximally-extended n=1 wormhole ↔ Schwarzschild BH interior) reinterpreting BH evaporation as baby-universe branching. Its one observable-looking result — real observer sees positive Hawking flux (T_00)_bh=(129πM²)⁻¹, ideal observer sees 0 — is standard Hawking radiation restated (S=πM², T=1/4πM, M free) plus a claim needing a global view of the causally-disconnected baby universe; neither is a novel test of our universe (same bar as entry 45). codex read it DIRECTIONAL; agy+kimi CONSISTENCY-ONLY. Receipts `gonzalez-diaz_1991_plb261_357_clean.txt:292-337,399-455`; `ENTRY_4247_RECONCILIATION_20260901.md`.
 Record: harvest #31; early interior-equivalence result. Author filled 2026-08-23 from INSPIRE metadata (the record, not recall), resolving the earlier deliberate omission. Full text: paywalled, needs-access queue.
 
 **43. "Birth of baby universes from gravitational collapse in a modified-gravity scenario." JCAP 06 (2023) 028.**
@@ -1088,7 +1089,8 @@ recalled by the second-family gate and in neither the bibliography nor any harve
 **47. K. Sato, H. Kodama, M. Sasaki & K. Maeda (1982). "Multi-production of universes by first-order phase transition of a vacuum." Phys. Lett. B 108, 103–107.**
 DOI 10.1016/0370-2693(82)91152-2 — VERIFIED (Crossref: PLB, v108, p103-107, 1982). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **PROSPECT**.
+**READ 2026-09-01 (Duho fetched via ScienceDirect; pinned `sato_kodama_sasaki_maeda_1982_plb108_103{.pdf,_clean.txt}`). Blind-double + kimi → PROSPECT (2–1, Duho ruling 47a):** a first-order vacuum transition producing ~10⁷⁷ child universes (present child radius > H₀⁻¹, used to show OUR universe could be one — consistency material). The PROSPECT is the authors' own flag that evaporation entropy "may lower the baryon-to-entropy ratio too far" — n_B/s is a real observable, named as a possible conflict of their own model, but with no amplitude/cutoff and a call for more study. agy read it CONSISTENCY-ONLY; codex+kimi PROSPECT. Receipts `sato_kodama_sasaki_maeda_1982_plb108_103_clean.txt:124-162,283-358`; `ENTRY_4247_RECONCILIATION_20260901.md`.
 Record: kimi recall R4; the earliest multi-universe-production construction.
 
 **48. E. Farhi & A. H. Guth (1987). "An obstacle to creating a universe in the laboratory." Phys. Lett. B 183, 149–155.**
