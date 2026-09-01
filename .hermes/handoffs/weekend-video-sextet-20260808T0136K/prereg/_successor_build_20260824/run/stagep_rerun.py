@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage-P rerun on the authenticated 49,211-object mask.
+"""Stage-P rerun on the full raw planning table and authenticated final mask.
 
 Governing frozen clauses (PREREG_SUCCESSOR_DRAFT_V134_20260831.md):
 
@@ -52,6 +52,8 @@ COUNTS = LANE_PARENT / "_tori_parent_row_count_evidence/footprint_variance_brick
 UNIVERSE = LANE_PARENT / "_tori_parent_row_count_evidence/footprint_variance_brick_counts_20260814/static/survey-bricks-dr10-south.fits.gz"
 CHECKPOINTS = ROOT / "run" / "stagep_checkpoints"
 CANDIDATES = ROOT / "run" / "classp_candidates"
+FAST_GREEDY_PATH = ROOT / "real" / "greedy_fast.py"
+FAST_REDUCE_PATH = ROOT / "real" / "reduce_fast.py"
 
 PINS = {
     V9_PATH: "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
@@ -96,7 +98,7 @@ WORK_PREFIX = None
 
 
 def load_inputs():
-    """Load the real mask and derive v9 inputs without substituting old NPZ receipts."""
+    """Load the final mask and the distinct, full raw planning count table."""
     auth = authenticate()
     v9 = import_file("stagep_frozen_v9", V9_PATH)
     v9.require_environment()
@@ -123,18 +125,32 @@ def load_inputs():
     if empty:
         raise RuntimeError(f"STOP-AND-BLOCKED: {len(empty)} selected bricks have no mask rows; first={empty[0]}")
 
-    # Frozen planning is brick-level. c is evaluated by v9 at the authenticated
-    # universe brick centre, not estimated from the accepted object rows.
+    # Frozen planning is brick-level over every positive row of COUNTS.  The
+    # final 6,104-brick object mask is deliberately not reused as planning input.
     geom, sidecar_sha = v9.load_pinned_geometry(None)
     by_id = {int(r["brickid"]): r for r in geom.by_name.values()}
-    bid = np.asarray(sorted(selected), dtype=np.int64)
+    count_rows = []
+    with COUNTS.open(newline="") as f:
+        rd = csv.DictReader(f)
+        if rd.fieldnames != ["brickid", "n_cut6_dered"]:
+            raise RuntimeError(f"STOP-AND-BLOCKED: count-table columns {rd.fieldnames!r}")
+        for row in rd:
+            b, n = int(row["brickid"]), int(row["n_cut6_dered"])
+            if n <= 0:
+                raise RuntimeError(f"STOP-AND-BLOCKED: nonpositive raw count for brick {b}")
+            count_rows.append((b, n))
+    if len(count_rows) != 270_577 or len({b for b, _ in count_rows}) != len(count_rows):
+        raise RuntimeError(f"STOP-AND-BLOCKED: raw count-table cardinality {len(count_rows)}")
+    if sum(n for _, n in count_rows) != 832_393:
+        raise RuntimeError("STOP-AND-BLOCKED: raw count-table total is not frozen 832393")
+    bid = np.asarray([b for b, _ in count_rows], dtype=np.int64)
     missing_geom = [int(b) for b in bid if int(b) not in by_id]
     if missing_geom:
         raise RuntimeError(f"STOP-AND-BLOCKED: selected brick absent from universe sidecar: {missing_geom[0]}")
     ra = np.asarray([float(by_id[int(b)]["ra"]) for b in bid])
     dec = np.asarray([float(by_id[int(b)]["dec"]) for b in bid])
     c = v9.cos_theta(ra, dec)
-    n_raw = np.asarray([len(per_brick[int(b)]) for b in bid], dtype=np.int64)
+    n_raw = np.asarray([n for _, n in count_rows], dtype=np.int64)
     mask = v9.FixtureMask(np.asarray(object_bid, dtype=np.int64),
                           np.arange(len(object_bid), dtype=np.int64),
                           np.asarray(object_c, dtype=np.float64))
@@ -176,13 +192,44 @@ def receipt_json(slot: str, fields: dict[str, bytes], detail: dict) -> dict:
 
 
 def derive_static(v9, bid, c, n_raw):
-    order, ledger = v9.greedy_ledger(bid, c, n_raw)
+    # v9.greedy_ledger is the definition but its literal Python loop is O(n^2)
+    # at 270,577 rows.  These vectorized helpers implement the same comparisons;
+    # each invocation first runs their frozen-route small-case agreement proofs.
+    fast_greedy = import_file("stagep_fast_greedy", FAST_GREEDY_PATH)
+    fast_reduce = import_file("stagep_fast_reduce", FAST_REDUCE_PATH)
+    greedy_proofs = int(fast_greedy.prove_agreement())
+    reduction_proofs = int(fast_reduce.prove_agreement())
     nret = v9.retained_counts(n_raw)
-    curve = [v9.sse(nret[order[:k]], c[order[:k]]) for k in range(1, len(order) + 1)]
-    eligible = next((k for k, val in enumerate(curve, 1) if 3.0 * val >= v9.NEQ_MIN), None)
-    if eligible is None:
+    order, l_min, _ = fast_greedy.greedy_prefix(
+        bid, c, n_raw, nret, v9.NEQ_MIN / 3.0)
+    if 3.0 * l_min < v9.NEQ_MIN:
         raise v9.InconclusiveByPower("no traversal prefix reaches N_eq minimum")
-    return order, ledger, nret, curve, eligible
+    eligible = len(order)
+    l_plan = v9.L_PLAN_MARGIN * l_min
+    full_order, _, _ = fast_greedy.greedy_prefix(bid, c, n_raw, nret, l_plan)
+    keep, l_ret, moves = fast_reduce.reduce_removals(
+        bid[full_order], c[full_order], nret[full_order], l_plan)
+    selected_idx = np.asarray(full_order, dtype=np.int64)[keep]
+    return {"order": order, "nret": nret, "eligible": eligible,
+            "l_min_plan": float(l_min), "l_plan": float(l_plan),
+            "selected_idx": selected_idx, "L_ret": float(l_ret),
+            "moves": len(moves), "greedy_agreement_trials": greedy_proofs,
+            "reduction_agreement_trials": reduction_proofs}
+
+
+def closure_summary(bid, selected_idx):
+    got_ids = sorted(int(bid[i]) for i in selected_idx)
+    want_ids = [int(x) for x in SELECTED.read_text().split()]
+    got_set, want_set = set(got_ids), set(want_ids)
+    return {"status": "PASS" if got_ids == want_ids else "FAIL",
+            "expected_count": len(want_ids), "actual_count": len(got_ids),
+            "expected_sha256": PINS[SELECTED],
+            "actual_sha256": hashlib.sha256(
+                "".join(f"{b}\n" for b in got_ids).encode()).hexdigest(),
+            "missing_count": len(want_set - got_set),
+            "extra_count": len(got_set - want_set),
+            "first_missing": sorted(want_set - got_set)[:10],
+            "first_extra": sorted(got_set - want_set)[:10]}
 
 
 def plan_mode(args, v9, auth, bid, c, n_raw, object_mask):
@@ -193,24 +240,22 @@ def plan_mode(args, v9, auth, bid, c, n_raw, object_mask):
     per_trial = seconds / 10.0
     # Planning needs one battery per tested prefix and one final-set re-pass.
     estimate_one_battery = per_trial * v9.N_TRIALS
-    try:
-        order, ledger, nret, curve, eligible = derive_static(v9, bid, c, n_raw)
-        planning = {"status": "READY", "traversal_rows": len(ledger),
-                    "first_neq_eligible_prefix": eligible,
-                    "first_neq_eligible_L_ret": curve[eligible - 1]}
-    except v9.InconclusiveByPower as exc:
-        # This is the expected fail-closed result if the already-retained
-        # post-exclusion mask is incorrectly treated as the raw planning table.
-        nret = v9.retained_counts(n_raw)
-        planning = {"status": "BLOCKED", "reason": str(exc),
-                    "exact_missing_artifact":
-                        "authenticated raw pre-retention planning table whose frozen local_pass output is selected_brickids_cut.txt",
-                    "max_post_retention_N_eq": 3.0 * v9.sse(nret, c)}
+    static = derive_static(v9, bid, c, n_raw)
+    closure = closure_summary(bid, static["selected_idx"])
+    planning = {"status": "READY" if closure["status"] == "PASS" else "BLOCKED",
+                "raw_positive_rows": len(bid), "raw_total": int(n_raw.sum()),
+                "first_neq_eligible_prefix": static["eligible"],
+                "L_min_plan": static["l_min_plan"], "L_plan": static["l_plan"],
+                "local_pass_L_ret": static["L_ret"],
+                "local_pass_moves": static["moves"], "closure_test": closure,
+                "agreement_proofs": {"greedy": static["greedy_agreement_trials"],
+                                     "reduction": static["reduction_agreement_trials"]}}
     report = {
         "mode": "plan", "authenticated": auth, "mask_rows": int(object_mask.n),
-        "selected_bricks": int(len(bid)), "positive_bricks": int(np.count_nonzero(n_raw)),
+        "selected_bricks": 6104, "positive_bricks": int(np.count_nonzero(n_raw)),
         "planning": planning,
-        "plan_status": "L_min_plan requires both the missing raw planning input and the full exact battery; not inferred from 10 trials",
+        "plan_status": ("PLAN-COMPLETE" if closure["status"] == "PASS" else
+                        "STOP-AND-BLOCKED: local_pass closure fixture mismatch"),
         "smoke": {"prefix": 0, "trials": 10,
                   "successes": sum(x["success"] for x in results.values()),
                   "seconds": seconds, "seconds_per_trial_wall": per_trial},
@@ -224,7 +269,14 @@ def plan_mode(args, v9, auth, bid, c, n_raw, object_mask):
 
 
 def full_mode(args, v9, auth, bid, c, n_raw, object_mask):
-    order, ledger, nret, curve, eligible = derive_static(v9, bid, c, n_raw)
+    static = derive_static(v9, bid, c, n_raw)
+    closure = closure_summary(bid, static["selected_idx"])
+    if closure["status"] != "PASS":
+        raise RuntimeError("STOP-AND-BLOCKED: local_pass closure fixture mismatch: "
+                           + json.dumps(closure, sort_keys=True))
+    order, nret, eligible = static["order"], static["nret"], static["eligible"]
+    curve = [v9.sse(nret[order[:k]], c[order[:k]]) for k in range(1, len(order) + 1)]
+    ledger = v9.greedy_ledger(bid[order], c[order], n_raw[order])[1]
     l_min = None
     successes = None
     for k in range(eligible, len(order) + 1):
