@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "stage two \u2014 R-B ratified: cutout geometry"
+    "topic": "stage two \u2014 accuracy from known-answer checks, number still open"
   },
   "humanFeedback": {
     "captured": true
@@ -438,6 +438,30 @@
       "feedbackText": "Ratify codex's proposal (Recommended)",
       "changed": {
         "summary": "STAGE-TWO R-B RATIFIED: CODEX_GEOMETRY_PROPOSAL_20260901.md adopted as filed - 128x128 px (0.262 arcsec/px frozen; the SIZE is forced by the frozen instrument's CUTOUT_PIX=128 / IC6_SHAPE=(1,128,128), verified in v9 line 96, not a free choice); exact celestial centering on catalogue (ra,dec) with the even-array TAN WCS at CRPIX 64.5 and NO coordinate rounding; north-up/east-left with NO object rotation and parity STRICTLY preserved (a wrong-parity Jacobian REFUSES the cutout - the instrument's mirror is the only chirality transform, and the identical reprojection applies to both branches); ONE deterministic geometry-mandated bilinear reprojection (binary64 accumulate, float32 materialize) as the sole permitted resample; stitch-neighbouring-bricks-first with exclusion only if the full 128x128 cannot be formed, retaining the 7,226/49,211 (14.7%) seam-exposed objects per the frozen neighbour-brick closure. The no-interpolation alternative is DECLINED (it would have cost exact centering and those 7,226 objects). Design ratification only - nothing chi, no galaxy pixels interpreted. Disclosed with the ratification: bilinear is a low-pass phase-dependent operation that could attenuate a weak chirality signal; whether it measurably does needs authorized handedness-blind validation, which remains open."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "i cannot see hundreads checks, only use me as very limited manner.",
+      "changed": {
+        "summary": "CONSTRAINT FROM THE PRINCIPAL, load-bearing: he cannot personally perform hundreds of eye-checks; his own involvement must be VERY LIMITED. This rules out C1 (Duho as the HC-1H checker doing 850 presentations / 1,700 render commits). Consequences being worked: (a) the human checking must be done by someone/something other than Duho at volume, with his role reduced to a small verification/audit sample if the frozen text permits one; (b) HC-1H is carried by quotation and names 'one human checker (Duho), 850 blinded labels' - so honoring this constraint requires either an explicit successor revision of that quotation (stage two is a NEW prereg and may do this openly) or a design where the calibration comes from a different admissible source; (c) the key-custody question for a non-Duho checker becomes live. Investigating what the frozen text permits before proposing options - no option will ask him for hundreds of checks."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "use the 200 known-answer test pictures for the accuracy, but 200 still sounds too much for me, let's see",
+      "changed": {
+        "summary": "STEER (not yet a ruling - the number is explicitly still open, 'let's see'): the accuracy 'a' should come from the KNOWN-ANSWER (blind synthetic ground-truth) presentations rather than from human labels on real galaxies - the path he named. And 200 is still too many for him personally. So the work now is the ARITHMETIC: how few known-answer checks can carry the calibration before sigma_a swamps A_L = beta/(2a-1), given the frozen per-bin floor a_LB_b >= 0.85 and the frozen cell/stratum floors (10 per cell, 30 per stratum, 9 strata). Deliver him a small menu of concrete numbers with what each costs in precision/power - e.g. what 200 vs 100 vs 60 vs 30 checks actually buy - so he can pick a number he can genuinely do. Do NOT present a number as settled; he said 'let's see'."
       }
     }
   ]
