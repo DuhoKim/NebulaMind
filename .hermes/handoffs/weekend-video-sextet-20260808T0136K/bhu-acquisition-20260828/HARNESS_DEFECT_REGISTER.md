@@ -1101,3 +1101,83 @@ and the Lane 2 close-out — **noting the authority arrived late and from chat, 
 lines.** Every one was an annotation; **no tier was ever changed.** So the artifacts are sound and
 their provenance is now Duho-in-chat. What remains genuinely open is only whether the OpenClaw
 channel becomes trusted going forward — his call, pending.
+
+---
+
+### 1ak — A VERBATIM QUOTATION THAT WAS FALSE BECAUSE IT STOPPED ONE SENTENCE SHORT
+
+**2026-09-01 ~22:1x, found by an adversarial seat, verified by me against the source.**
+Building the option-B amendment proposal I quoted the frozen preregistration's §3 estimand
+exactly — "A sign-symmetric classifier of accuracy a gives `E[s_obs|c] = (2a−1)·A_L·c`. Scalar
+path: `Â_L = β̂/(2â−1)`" — and drew from it the load-bearing claim that **`â` is a divisor and
+nothing else**, therefore detection is calibration-free. The quotation was accurate. The claim was
+false, and **the sentence that refutes it is the next one in the same section** (line 423):
+"Decision bands evaluate at â / {â_b}; **the detection floor evaluates at a_LB / {a_LB_b}**." A
+hard gate 54 lines later (477) finishes it: "**Only if all bins satisfy `a_LB_b >= 0.85` may Stage
+C run.**"
+
+**The class, which is new here and not §1w.** §1w was *inventing* content to fill a truncated read.
+This is the opposite failure mode and more dangerous: **every word I quoted was real, checkable,
+and in the source.** The defect is the *boundary of the excerpt*, and an excerpt boundary leaves no
+trace in the excerpt. A reader auditing my proposal against the source by searching for my quoted
+string would find it, byte-for-byte, and conclude the citation was sound.
+
+**Why the lane's existing habits did not catch it.** The absence-claim standard (§1d, §1aa) governs
+claims that something is *not* present; this was a claim that something *is* present, which that
+standard never covers. The pin/receipt discipline authenticates *that the document says what I say
+it says* — which it did.
+
+**The rule this yields.** When a quotation is load-bearing for a conclusion, **read to the end of
+its containing subsection and quote the disposition, not the definition.** A definition sentence
+states machinery; the sentences after it state where that machinery is *evaluated*, and that is
+usually where the constraint lives. Concretely: before citing a formula as licensing an inference,
+grep the same section for the formula's own symbols (here `a_LB`, `â_b`) and read every hit.
+
+### 1al — A VALIDATION THAT PASSED BECAUSE OF THE ERROR IT EXISTED TO CATCH
+
+**Same episode, and this is the one that should have stopped me on my own.** My power model used
+`σ_β = 1/√N_eq`, treating the frozen gate threshold `N_eq = 3·N·Var(cos θ)` as an inverse variance.
+The frozen text defines the variance itself — `Var(β̂) = Var_pop(s)/((N−1)·Var_pop(c))` — so the
+true `σ_β` is **√3 larger**. Everything downstream was optimistic by 73%.
+
+I did not ship that unchecked. I **built a validation step for exactly this risk**: predict the
+study's own positive control (BATTERY-POS, `Â_L = 0.04243`, receipt `p = 2.2e-21` ≈ 9.5σ) from my
+model. It returned **9.9σ**, I recorded "model reproduces the receipt", and I cited that agreement
+to Duho as the reason to trust the table. **Under the corrected variance the same check gives 5.71σ
+— and 8.16σ even at a perfect classifier — so no admissible `a` reproduces the receipt at all.**
+The check did not merely fail to catch the error; **the error is what made it pass.**
+
+**The class.** §1x was a predicate that could not fail; §1ab was a detector left asserting a fixed
+defect, so red meant success; §1k was a green reachable by destroying the audited record. This is
+their sibling and it is the subtlest: **a check that consumes the same wrong quantity as the claim
+it checks agrees with the claim, and its agreement is evidence of nothing.** A validation is only
+independent if it reaches the reference value by a path that does not share the suspect step. Mine
+shared `σ_β` with the thing under test, so it was a tautology wearing the costume of a control.
+
+**The rule.** A model-vs-receipt check must be stated as: *which quantity in this comparison could
+be wrong, and does the comparison use it on both sides?* If yes, the check is void — recompute the
+reference from the frozen definition instead of from the model's own machinery. Better still,
+**check the dimension/normalisation first**: `N_eq` was documented in the text as a *gate
+threshold*, and I never asked what units it was in before inverting it.
+
+**Both defects are now fixed in place, not just described:** `axis_leverage_power.py` carries the
+corrected variance, prints the validation as an explicit FAILURE rather than repairing it away, and
+applies the frozen `N_eq ≥ 100,000` gate that the original never applied at all.
+
+### 1am — THE ADVERSARIAL SEATS BOTH DIED ON THE SAME FILE, TWICE EACH
+
+**Operational, recorded so a future tick does not burn four dispatches learning it.** Attempting to
+gate the option-B proposal, **codex** was dispatched twice and twice read the frozen prereg, exited
+0, and wrote no verdict file; **kimi** was dispatched twice and twice returned only the echoed
+brief. Under the failure rule I stopped rather than trying a third time.
+
+**Probable cause, stated as probable and not verified:** `PREREG_SUCCESSOR_DRAFT_V134_20260831.md`
+is 1,607 lines but individual lines run to **several thousand characters** (the §7 binding-slot rows
+and §10 repair trace are single-line paragraphs). A seat that reads it whole exhausts its context
+before producing output. **Mitigation that worked:** a third seat on a different mechanism, given
+the quotes inline plus an explicit instruction to use targeted `grep -n … | cut -c1-400` and narrow
+`sed -n` ranges and to NOT read the file whole, returned a complete, correct refutation.
+
+**The rule:** when gating anything against that preregistration, hand the seat the quotes inline and
+forbid the whole-file read. Do not treat an exit-0-with-no-artifact as a soundness signal — a seat
+that dies silently is indistinguishable from one that found nothing, which is the §1u shape again.

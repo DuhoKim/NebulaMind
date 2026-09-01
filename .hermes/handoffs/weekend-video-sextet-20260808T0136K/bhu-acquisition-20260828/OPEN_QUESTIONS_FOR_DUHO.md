@@ -24,6 +24,23 @@ amplitude is permanently free. *Cost:* pure theory + public Planck maps; likely 
 provably free" side. *Gain:* **both endpoints are a publishable paper** — a real falsifier or a no-go
 theorem. It cannot come back empty. This directly finishes the new-physics program I already ran.
 
+**(B) — ⛔ WITHDRAWN 2026-09-01. Do not choose this; it is refuted.** You asked me to draft the
+amendment that would make (B) executable. I drafted it, had it adversarially reviewed, and the
+review returned **`AMENDMENT_B_REFUTED`** — which I then verified against the frozen text myself,
+point by point. It is right, and all four of my load-bearing claims fail. In short: the frozen
+run **halts before any statistic is formed** without the human calibration that closed stage two
+("Only if all bins satisfy `a_LB_b >= 0.85` may Stage C run"); the signed text **disclaims this
+exact use by name** ("It does not test A ≈ 0.02, Shamir, **BHU**, or whether the sky is isotropic.
+**Fixed-axis.**"); my power arithmetic was **wrong by √3** and the validation I offered you passed
+*only because of that error*; corrected, the frozen power gate admits only axes within **20.1°**
+while the candidate CMB axes sit at ~48–61°, so every one returns `INCONCLUSIVE-BY-POWER`; and the
+reframing would have **deleted the amplitude band that is the only defence** against a sky gradient
+in classifier sensitivity — a systematic already *measured* at `corr(psfsize_r, cos θ) = +0.4188`.
+Full record: `AMENDMENT_B_PROPOSAL_20260901.md` (kept beneath a refutation header) and
+`TOPIC_AMENDMENT_B_claude_VERDICT.md`. **Nothing was amended; no frozen byte, tier, gate or
+signature was touched.** Your stage-one ruling stands as correct. The live choice is now **(A) or
+(C), or neither.** *(Original text of (B) preserved below for the record.)*
+
 **(B) The rotating-parent test — your own spin-parity idea, sharpened.** *agy #1, kimi #2; matches
 your standing interest.* Does spiral-galaxy handedness show a dipole along an axis **fixed from the
 CMB before anyone looks at the spin data**, with the same amplitude at every redshift? That a-priori
