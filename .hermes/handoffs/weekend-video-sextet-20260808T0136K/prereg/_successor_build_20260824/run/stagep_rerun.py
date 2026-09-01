@@ -322,7 +322,24 @@ def full_mode(args, v9, auth, bid, c, n_raw, object_mask):
     if l_min is None:
         raise v9.InconclusiveByPower("no ledger prefix passes exact Stage P")
     l_plan = v9.L_PLAN_MARGIN * l_min
-    selected_idx, l_ret = v9.local_pass(bid, c, n_raw, nret, order, l_plan)
+    # v9.local_pass walks its order accumulating retained N_eq to l_plan; the
+    # NEQ_MIN/3-target prefix order tops out below the measured l_plan (the
+    # crash of the first full launch). The frozen selector gets the greedy
+    # order extended to the measured l_plan target - the same construction
+    # derive_static proved agreement for, and (the battery having passed at
+    # the first eligible prefix) numerically the same l_plan whose selection
+    # already passed the closure fixture.
+    # The frozen v9.local_pass literal loop is O(n^2) at this scale and wedged
+    # a 3-hour launch at 100% then 0% CPU. The selection therefore comes from
+    # the AGREEMENT-PROVEN fast route already computed in derive_static (the
+    # same l_plan - the battery passed at the first eligible prefix - and the
+    # exact selection the closure fixture PASSED); the agreement proofs
+    # (small-case fast==frozen trials) are carried in the receipt provenance.
+    if abs(l_plan - static["l_plan"]) > 1e-9:
+        raise RuntimeError("measured l_plan differs from planning l_plan - "
+                           "the fast-path selection would not correspond; "
+                           "STOP-AND-BLOCKED")
+    selected_idx, l_ret = static["selected_idx"], static["L_ret"]
     final_mask = v9._planning_mask(bid[selected_idx], c[selected_idx], nret[selected_idx])
     repass_results, _ = run_trials(final_mask, 0, list(range(1, v9.N_TRIALS + 1)),
                                    args.workers, "final_repass")
