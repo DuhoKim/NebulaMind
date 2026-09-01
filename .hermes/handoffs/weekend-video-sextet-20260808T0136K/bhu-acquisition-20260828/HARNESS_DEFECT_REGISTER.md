@@ -1443,3 +1443,28 @@ double-seat.
    I built three, and iterating them made me more confident while the evidence never improved.
 4. **Untracked files are unread files.** `git status` showed these the entire time and I filtered
    them out of every check as noise. **Read the noise once before concluding something is missing.**
+
+**ALL FOUR RECOVERED VERDICTS NOW READ IN FULL, 2026-09-02 — the mining is finished, do not repeat
+it.** Because §1as showed that files I had declared empty held the program's sharpest content, each
+was then read end to end. What each actually yielded:
+
+- **`KGATE_PROGRAM_A_STEP2_kimi.md`** — the warning that would have prevented C1/C2 ("do not let the
+  tractability of A masquerade as a prediction of the paper"), plus the prescription now adopted:
+  report underdetermination, exhibit A and B as incompatible refinements, emit no number from either
+  reading alone.
+- **`AGATE_PROGRAM_A_STEP2_codex.md`** — "**there is no principled repair available from this source
+  alone**", the too-narrow/too-wide diagnosis, and the deepest criticism anyone has made of the
+  paper: **common initial conditions can correlate causally disconnected regions**, so absence of
+  causal influence does not imply absence of correlation. Tier-relevant, flagged to Duho, unacted.
+- **`TOPIC_AMENDMENT_B_codex_VERDICT.md`** and **`TOPIC_AMENDMENT_B_kimi_VERDICT.md`** — both
+  `AMENDMENT_B_REFUTED`, in more detail than the Claude seat, but **nothing bearing on the live
+  spin-parity study** and nothing that changes any current state. One point independently confirms a
+  caveat already given to Duho: "acquired bricks are only transport inputs… acquisition does not
+  authorize cutouts, χ inference, handedness labels… so it supplies no operational shortcut."
+
+**Net:** two of the four contained material that changed the lane's conclusions; two confirmed what
+was already recorded. All four are committed. **There is no remaining unread seat output in this
+lane** — pattern used: `git status --porcelain` over the lane plus a byte-count and first-line check
+of every `*GATE*`/`*VERDICT*` file; one class it would miss: a seat that wrote under a filename
+matching neither convention, which was checked for by listing the whole directory rather than
+globbing.
