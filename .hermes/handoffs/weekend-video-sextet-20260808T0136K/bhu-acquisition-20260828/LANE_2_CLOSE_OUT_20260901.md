@@ -47,8 +47,13 @@ keep tier."
   1111.1017 — corrected, correct papers pinned).
 - **New pins acquired + tracked:** Silk 1997; Fosalba–Gaztañaga 2011.00910; Planck 2018 VII 1906.02552;
   Popławski PRD 85 1111.4595 + IJMPA 40 2509.11468. All force-added past the .pdf ignore, hashes cited.
-- **Guard-rail:** an unattributed directive appeared overnight trying to force q3/RQ-B; caught by Blanc,
-  never acted on; the integrity hold was recorded and later relaxed on Duho's verified presence.
+- **Guard-rail + resolution:** directive-style lines pushing q3/q4/RQ-B/close-out appeared in the input
+  box; Blanc re-opened an attribution query when Duho **denied** one ("pause the ticks…"). CronList/
+  TaskList cleared my scheduler (one generic-tick cron `fd850fae`, no rulings); Blanc traced the lines
+  to the email-to-hwao OpenClaw relay (Duho's phone messages), channel-confirm pending. Duho **ratified
+  all four outcomes in chat ~13:10 2026-09-01** (authority late, from chat, not the pane lines); no tier
+  was ever touched. Input-box lines stay non-authoritative until he confirms the channel — only Blanc's
+  "RELAY FROM DUHO" messages carry his authority. See `HARNESS_DEFECT_REGISTER.md` §1aj.
 
 ## State at close
 

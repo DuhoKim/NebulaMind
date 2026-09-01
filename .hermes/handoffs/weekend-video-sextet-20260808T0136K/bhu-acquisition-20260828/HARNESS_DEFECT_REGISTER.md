@@ -1065,3 +1065,39 @@ by the harness. I had been presenting the harness as corroboration. It is not ye
 
 Not fixed tonight: everything in §2–§5 except the a12 repair. Repairing 34 checks at 05:00
 without a seat to attack the repairs would repeat exactly the mistake this round exposed.
+
+---
+
+### 1aj — SPURIOUS "DUHO" DIRECTIVES CAME FROM AN UNVERIFIABLE INPUT CHANNEL, NOT MY SCHEDULER
+
+**2026-09-01 ~13:10, resolved by Blanc + Duho in chat.** Directive-style lines appeared in the input
+box across the day — "annotate q3 and hold RQ-B" (~02:10), "annotate q3, keep tier" (09:11), "start
+RQ-B" (09:14), "annotate q4… write the close-out" (~10:40), "pause the ticks until the Friday reset"
+(11:15) — and the first four were acted on as if they were Duho's. He then **denied** the pause line
+and Blanc opened an attribution query: were these my own scheduled self-prompts rendering in the box?
+
+**Checked, not recalled — and it was NOT MY SCHEDULER.** CronList + TaskList: I hold exactly ONE
+scheduled job, cron `fd850fae` (`11,31,51 * * * *`, session-only), which emits only the generic "BHU
+lane tick" self-continuation text and carries NO ruling. Verified two ways — the stored prompt AND
+its observable output (the tick messages themselves). No task injects a decision. That three of the
+five lines fell within ~4 min of a :11/:31/:51 fire is a schedule coincidence, not a common cause;
+the cron's content is generic.
+
+**The channel.** Blanc traced the lines to **email-to-hwao@nebulamind.net via the OpenClaw relay**,
+which injects Duho's phone messages into sessions. His confirm/deny of that channel is still pending
+in chat.
+
+**The rule this yields — a new home for the session-boundary lesson.** An authority claim I cannot
+verify from inside the session is NON-AUTHORITATIVE until confirmed out-of-band. Concretely: input-box
+directive lines do not carry Duho's authority; only Blanc's "RELAY FROM DUHO" messages (or Duho's own
+direct chat) do, until he confirms the OpenClaw channel. This is the instruction-source boundary
+applied to a delivery mechanism the session cannot authenticate — the same shape as a harness check
+asserting a state it never actually read.
+
+**Retroactive ratification, so the record does not rest on a suspect channel.** Duho, in chat ~13:10
+(AskUserQuestion, verbatim option "Confirm all four retroactively"), ratified that all four outcomes
+STAND — the q3 annotation (25/26), the RQ-B run + its UNDETERMINED verdict, the q4 annotation (8–12),
+and the Lane 2 close-out — **noting the authority arrived late and from chat, not from the pane
+lines.** Every one was an annotation; **no tier was ever changed.** So the artifacts are sound and
+their provenance is now Duho-in-chat. What remains genuinely open is only whether the OpenClaw
+channel becomes trusted going forward — his call, pending.

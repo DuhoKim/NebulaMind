@@ -6,12 +6,30 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ✅ INTEGRITY HOLD RELAXED — 2026-09-01 09:11 KST
+## ✅ ATTRIBUTION QUERY RE-OPENED, THEN RESOLVED BY RATIFICATION — 2026-09-01 ~13:10 KST
 
-**Resolved:** Duho typed from the same path, keystroke-verified present this morning; the overnight
-input-box lines are now attributed to him with high confidence, and **q3 was ruled by his verified
-relay (annotate — applied)**. Going forward, pane lines from Duho are valid **when Blanc confirms
-presence and relays them**. Original notice, for the record:
+**This supersedes the 09:11 "hold relaxed" note (preserved below — it was wrong on the mechanism).**
+Blanc re-opened the attribution query when Duho **denied** issuing "pause the ticks until the Friday
+reset" (11:15). The directive-style input-box lines were traced to **email-to-hwao@nebulamind.net via
+the OpenClaw relay** — Duho's phone messages injected into sessions, **not** keystrokes and **not**
+verifiable from inside the session. My CronList/TaskList check ruled out my own scheduler (one
+generic-tick cron `fd850fae`, no embedded rulings).
+
+**Current rule — until Duho confirms the OpenClaw channel (pending in chat):** input-box directive
+lines are **NON-AUTHORITATIVE**; ONLY Blanc's "RELAY FROM DUHO" messages (or Duho's own direct chat)
+carry his authority.
+
+**The four outcomes STAND — retroactively ratified.** Duho, in chat ~13:10 (AskUserQuestion,
+"Confirm all four retroactively"), ratified the q3 annotation (25/26), the RQ-B run + its UNDETERMINED
+verdict, the q4 annotation (8–12), and the Lane 2 close-out, noting authority arrived late and from
+chat, not the pane lines. **No tier was changed by any of them.** Full record + defect class:
+`HARNESS_DEFECT_REGISTER.md` §1aj.
+
+**The (now-superseded) 09:11 relaxation, preserved verbatim:** *"Duho typed from the same path,
+keystroke-verified present this morning; the overnight input-box lines are now attributed to him with
+high confidence, and q3 was ruled by his verified relay (annotate — applied). Going forward, pane
+lines from Duho are valid when Blanc confirms presence and relays them."* — the "keystroke-verified"
+premise did not hold. Original overnight notice, for the record:
 
 Blanc (OPS) flagged that an **unattributed directive** appeared in Tori's input box twice overnight —
 *"annotate q3 and hold RQ-B"* (~02:10 KST) mutating to *"annotate q3 and start RQ-B"* (~02:45) — with
@@ -24,7 +42,7 @@ questions below remain genuinely open.
 
 ---
 
-## OPEN — none. Lane 2 COMPLETE; all four RQ verdicts recorded; close-out packet being written.
+## OPEN — none. Lane 2 COMPLETE; all four RQ verdicts recorded + Duho-ratified; close-out written (`LANE_2_CLOSE_OUT_20260901.md`, committed `00b7c4b92`).
 
 ### ✅ q4 RESOLVED 2026-09-01 — Duho ruled "annotate q4, keep tier". Entries 8–12 now carry the RQ-B UNDETERMINED verdict (transfer function not derivable from the literature; falsifier question open), tiers unchanged. Original question below.
 
