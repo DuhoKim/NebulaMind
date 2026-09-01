@@ -1,65 +1,79 @@
+All verification passes done. Supporting files are confirmed absent (mdfind, full-home ripgrep, session DB all negative), arithmetic and external primary sources checked. Writing the report.
+
 REFEREE REPORT — RAS Techniques & Instruments
-Manuscript: "A Preregistered, Blind-Validated Design for Re-Testing the Longo Spiral-Handedness Dipole — and the Human-Calibration Limit It Reveals"
+Manuscript: "A Preregistered, Blind-Validated Design for Re-Testing the Longo Spiral-Handedness Dipole — and the Human-Calibration Limit It Reveals" (PAPER_DRAFT_V2_20260901.md)
+Referee posture: hostile; default REJECT; manuscript must earn otherwise.
 
-VERDICT: MAJOR-REVISION. It earned better than REJECT: all five prior-repair items are verifiably fixed on the face of the text, the overclaim discipline is now airtight, and the paper argues and evidences a thesis. One blocking defect remains — the entire evidence base is unreachable by the reader — plus citation omissions and derivation gaps. All fixable; none cosmetic in effect.
+SCOPE OF THIS REVIEW (read first)
+The review bundle was incomplete. AGY_FULL_REFEREE_20260901.md, VERIFIED_NUMBERS_20260901.md and OUTLINE_AND_BRIEFS_20260901.md were not present in the working directory; I searched the host filesystem (Spotlight, full-home content search, session history) and none of the three exists on this machine. Consequently: (a) finding-by-finding verification against the previous referee's 11 findings was impossible — I verified only the four repair priorities stated in the editor's cover note; (b) no number could be checked against the verified-number table — I checked internal consistency, in-text provenance, and primary external sources instead. Items requiring the absent files are marked UNVERIFIABLE, not passed.
 
-────────────────────────────────
-PART I — VERIFICATION OF THE FIVE CLAIMED REPAIRS
-────────────────────────────────
+1. DISPOSITION OF THE PREVIOUS REFEREE'S FINDINGS (as verifiable)
 
-(a) Pre-cut vs post-cut leverage figures — REPAIRED.
-Abstract carries only the post-cut pair (0.7517, N_eq 110,983) and explicitly denies the pre-cut precursor. Section 2 labels 0.754664 / 120,002.9 as the "frozen planning selection before the later quality cut"; Section 4.1 repeats the ordering ("This ordering reconciles the counts and prevents the pre-cut leverage from being presented as the analysed geometry"). Cross-consistency attack failed: treating N_eq = 3N·Var(cos theta), the implied Var from each receipt matches the printed Var to rounding for all three populations (post-cut 110,982.5/(3×49,211)=0.751746→0.7517; pre-cut 120,002.9/(3×53,005)=0.754664; predecessor 36,253/(3×208,407)=0.05798→0.0580). No residue of the old defect.
+F1. LANDED. Abstract and Section 2 now describe the analysed sample: 49,211 objects, Var(cos theta) = 0.7517, N_eq = 110,983, with the abstract explicitly stating "these are the figures for the sample actually analysed, not its pre-cut precursor."
 
-(b) Aggregate pass/fail accuracy — REPAIRED.
-The killing sentence of the old version is gone and actively prohibited: §4.4 ends "neither should be erased by saying that every stage passed." Abstract: "The machinery was executed; its failures were caught and recorded, and the pre-image validations completed under their stated scopes passed" — scoped. Planner FAIL documented in §4.1; both voided custody transitions in §4.4 with receipts; 334-item retained debt in §3 and in the AI disclosure; §5 closes with "completed pre-image checks passed under bounded scopes, while invalid transitions and unresolved edges remained visible." I searched for any unscoped aggregate "passed" and found none.
+F2. LANDED. The pre-cut figures (53,005 objects, 0.754664, N_eq = 120,002.9) appear only in Section 2, labelled "frozen planning selection before the later quality cut," with the explicit sentence "only the latter pair describes this paper's analysed mask." Section 4.1 repeats the reconciliation. No pre-cut figure is presented as analysed geometry anywhere I found.
 
-(c) The four numbers — REPAIRED, with one external-citation gap (Finding 2).
-850 = 500+200+150, sourced to CODEX_LOW_HUMAN_OPTIONS_20260901.md, with the crucial clarification that these are presentations, not independent objects. 51 appears as the verified grid factor 5,049 = 99×51 under the rehearsal receipt. 8.67 million is sourced to CODEX_EXTERNAL_LABELS_20260901.md, and I verified the underlying claim externally: Galaxy Zoo DESI (Walmsley et al. 2023, MNRAS 526, 4768; Zenodo 8331338) does contain 8.67M galaxies as model-predicted vote fractions — the manuscript's characterization is factually correct. 120 is sourced to CODEX_LOOSENING_COST_20260901.md. Internal arithmetic closes everywhere.
+F3. LANDED. The false "every stage passed" claim is gone. In its place: abstract ("its failures were caught and recorded, and the pre-image validations completed under their stated scopes passed"), Section 4.1 (blocked planner, FAIL closure), Section 4.4 (two voided go-live attempts, and the explicit injunction that "neither should be erased by saying that every stage passed"). The replacement is accurate and appropriately bounded.
 
-(d) RASTI structure — REPAIRED.
-Abstract: 216 words, single paragraph (counted programmatically). Conclusions is §8, the last numbered section; Acknowledgements / Data availability / Conflict of interest / References all unnumbered after it. Five keywords (within 3–6). AI-use disclosure present and unusually candid (703 findings, 84 seat-rounds, dispositions 177/192/334).
+F4. PARTIALLY VERIFIABLE. All four flagged figures now carry in-text provenance: 850 -> CODEX_LOW_HUMAN_OPTIONS_20260901.md; 51 (within 5,049 = 99 x 51) -> gates/CALIBRATION_ROBUSTNESS_REHEARSAL_RECEIPT_20260831.md; 8.67 million -> CODEX_EXTERNAL_LABELS_20260901.md; 120 -> CODEX_LOOSENING_COST_20260901.md. Whether they appear in the verified-number table is UNVERIFIABLE (table absent).
 
-(e) Longo 2011 in Section 1 — REPAIRED and externally verified.
-Section 1 quotes "a dipole asymmetry of −0.0408 ± 0.011 and a probability of occurring by chance of 7.9 × 10^-4." I checked against the primary paper's abstract (arXiv:1104.2815 / Phys. Lett. B 699, 224): verbatim match on amplitude, uncertainty and significance, and the manuscript correctly frames them as Longo's reported figures, "not results reproduced or endorsed here."
+F5. PROCESS FINDING. A full finding-by-finding audit of all 11 previous findings could not be performed because the previous report was not supplied. The editor should not treat this review as certifying repairs beyond F1–F4.
 
-────────────────────────────────
-PART II — OVERCLAIM AUDIT (abstract + introduction + conclusions read together)
-────────────────────────────────
-No quotable physics or detection sentence exists. Abstract: "No handedness label was read and no physics result is reported... The results are a validated pre-image design and a quantified human-calibration limit." Introduction: "no physics claim is made." Conclusions: "two results, neither of them a physics result." Every validation sentence carries its scope in-sentence (receipt-backed, synthetic-only, fixture-only). The strongest aggregate word, "validated," is bounded each time by the disclosed failures (blocked planner, voided transitions, retained debt, HELD-but-not-discharged counterfactual). The one residual hazard is the fixture label string "REPRODUCED-LONGO" — disclaimed twice in-line, but liftable out of context (Finding 4). Not fatal; fix at zero cost.
+2. OVERCLAIM
 
-────────────────────────────────
-PART III — RESEARCH OR PROJECT REPORT
-────────────────────────────────
-Research, narrowly, and here is why. The paper states a thesis (§1): a contested signed parameter can be prepared for re-examination without the historical sources of discretion, and doing so exposes the true limiting resource. It then evidences the thesis rather than chronicling activity: (i) the declined 208,407-object design is presented as a negative result for the design principle — prospective geometry ruling out a larger sample before unblinding; (ii) validation outcomes are reported with their discriminating failures as evidence that the gates were real; (iii) the terminal result is quantitative and novel in form — 270 real labels at the nine-stratum floor, 1,860 decisions, ≥38 checkers — and §7 converts it into a general design rule (fix calibration capacity before population scope). The custody chronicle is subordinated to the argument. The earlier assembly's "project report" character does not survive. The condition on this judgement is Finding 1: a thesis evidenced by receipts nobody can inspect is, at review time, a thesis asserted.
+F6. PASS. I scanned abstract, introduction and conclusions as a composite, plus every result-bearing sentence, for anything quotable as a detection or physics claim. None found. Every booby-trap token is defused in situ: "REPRODUCED-LONGO" is immediately followed by "That stored label names a convention test; it is not an observational reproduction"; the 5,049-cell counterfactual carries "it was not the frozen invariance outcome and discharged no frozen edge"; the power results carry "They are not evidence about galaxy handedness"; the Longo figures carry "not results reproduced or endorsed here." Abstract, introduction and conclusions each independently restate that no label was read and no physics is reported. The composite does not exceed the parts.
 
-────────────────────────────────
-PART IV — FINDINGS (ranked; fatal/fixable marked)
-────────────────────────────────
-F1. [FIXABLE, BLOCKING] Unverifiable evidence base. Data Availability contains an unresolved placeholder: "A public repository identifier should be inserted before submission." Every receipt, checkpoint, manifest and debt-appendix citation resolves to an archive the reader cannot reach. For a paper whose contribution is receipt-backed validation, this is the one defect that defeats the paper's own standard. Fix: archive the frozen package (Zenodo DOI), cite it in Data Availability and References. Trivial to execute, mandatory for acceptance.
-F2. [FIXABLE] Missing published citations for external-catalogue claims. The GZ DESI 8.67M-row / predicted-vote-fraction characterization and the GZ1 direction-vote characterization rest only on internal memos. The facts check out externally; the citations do not exist in the reference list. Add Walmsley et al. 2023 (MNRAS 526, 4768) and the GZ1 data-release papers.
-F3. [FIXABLE] The 1,860-decision panel figure is asserted without decomposition. What checks: ceil(1860/50)=38 ✓; 270×3 votes = 810 real-label decisions. What doesn't: the remaining 1,050 (synthetics + mirrored repeats) is not derived from §6's own floors or the 500/200/150 single-checker ratio. One sentence of composition makes it self-checking.
-F4. [MINOR] Fixture label "REPRODUCED-LONGO" is a quotable-out-of-context hazard. The in-line disclaimers are correct and adjacent; rename the fixture (e.g. CONVENTION-ANCHOR) so a lifted sentence cannot manufacture the physics claim the paper refuses to make.
-F5. [MINOR] Two self-checking aids missing: the N_eq = 3N·Var(cos theta) definition is used but never written (one line in §2), and the 110,982.5 → 110,983 rounding convention should be stated once.
-F6. [NIT] Keyword capitalization inconsistent ("Data Methods" vs sentence-case siblings).
-F7. [NIT] AI-use disclosure is exemplary in content but sits as an unnumbered subsection inside §4; RASTI convention is a standalone statement — confirm placement with the journal.
+F7. MAJOR (fixable). The one remaining overclaim is framing, not sentence-level: the paper elevates "the human-calibration limit" to a co-headline result (title, abstract, conclusions). But this "limit" is an arithmetic consequence of the paper's own frozen design constants (nine strata, 30-per-stratum floor, 50-decision cap), sourced entirely to internal memos. No checker was recruited, no pilot labelling run was executed, and the claim that "no available checker could complete the role" is asserted, not evidenced. As the paper itself concedes (the 120-decision breakpoint), a different estimand evades the limit entirely. The quantity demonstrated is a design requirement, not an empirical property of human calibration capacity. The paper's second "result" is therefore overclaimed in kind. Fix: reframe as a design-requirement/costing analysis, or document an actual procurement attempt.
 
-No finding is fatal in substance. F1 is fatal to acceptance as submitted only because the paper's own evidentiary standard demands inspectable receipts; it is the cheapest fix on the list.
+3. NUMBERS
 
-────────────────────────────────
-FAILED ATTACKS (what I tried that held)
-────────────────────────────────
-- Hunted a quotable detection/physics sentence across abstract, intro, conclusions: none exists.
-- Tried to catch 0.754664 presented as analysed geometry anywhere: labeled pre-cut in every occurrence.
-- Tried to find an unscoped "every stage passed": the manuscript explicitly forbids the sentence (§4.4).
-- Recomputed all derived arithmetic: 99×51=5,049; 9×max(30,30)=270; 500+200+150=850; ceil(1,860/50)=38; N_eq↔Var closure across all three populations.
-- Byte-checked the Longo quote against the primary abstract externally: verbatim.
-- Checked the GZ DESI characterization externally (8.67M, predicted vote fractions): accurate.
-- Structure sweep: 216-word single-paragraph abstract; §8 last numbered; unnumbered back matter in required order; 5 keywords; AI disclosure present.
+F8. MINOR (fixable). "The count-weighted full brick universe gave 0.445201" (Section 2) has no provenance — no receipt, no preregistration line, no citation. Every other figure I spot-checked carries an in-text source. Add provenance or delete.
 
-EVIDENCE LEDGER / LIMITS
-Verified with tools: abstract word count (216), all arithmetic above, Longo 2011 abstract (arXiv:1104.2815), GZ DESI catalogue (MNRAS 526, 4768; Zenodo 8331338; data.galaxyzoo.org). NOT inspected (does not exist to me): the frozen package, receipts, checkpoints, debt appendix — all citations to run/, gates/, acquire/, P0_* artifacts are taken as internal assertions, which is precisely Finding 1. Manuscript-internal consistency was verified; artifact-level truth was not and cannot be until the archive is public.
+F9. MINOR (fixable). 1,860 decisions is not derived in the text. The arithmetic works — (270 real + 200 synthetic + 150 mirrored) x 3 votes = 1,860, and ceil(1,860/50) = 38 checkers — but the reader cannot reproduce it from stated quantities; it rests on an internal memo. One line of derivation fixes this.
+
+F10. PASS. Internal arithmetic verified: 99 x 51 = 5,049; 9 x max(30, 3x10) = 270; 500+200+150 = 850; 177+192+334 = 703; 984 and 996 both exceed the 962 floor; the manifest SHA-256 is a well-formed 64-hex string; Var(cos theta) = 1/3 is the correct isotropic value. External spot-checks: Longo's -0.0408 +/- 0.011 and 7.9 x 10^-4 match the primary abstract (arXiv:1104.2815) exactly; the Galaxy Zoo DESI characterisation ("model-predicted morphology vote fractions") matches Walmsley et al. 2023 ("8.7M galaxies... predicted vote fractions"). The precise "8.67 million" figure is plausible against that source but must appear in the verified-number table — UNVERIFIABLE here. Note also the sample hierarchy is internally coherent: 65,060 parent -> 53,005 planning -> 49,211 analysed.
+
+4. RASTI CONFORMANCE
+
+F11. MAJOR (fixable; converts to REJECT if unresolved). Data Availability contains the unresolved placeholder "A public repository identifier should be inserted before submission." For this manuscript that is not a clerical gap — it is the central defect. Every substantive claim is receipt-backed, and not one receipt, manifest, checkpoint or memo is inspectable by the reader. A preregistration-and-provenance paper whose provenance is a set of private file paths is unfalsifiable in every particular. Deposit the archived package (Zenodo or equivalent) with a cited DOI. Absent that, my recommendation converts to REJECT without further review.
+
+F12. FIXABLE (must fix). The manuscript ends with an author-side certification block: "SEAT: CODEX / VERSION: PAPER-V2 / VERDICT: REPAIRED / COUNT: 11." The authors' own agent declaring the referee's findings repaired, inside the submission, is self-certification and has no place in the manuscript. Remove it. Its presence also indicates the draft was never cleaned for submission.
+
+F13. TRIVIAL. The AI disclosure refers to "Section [6]" — an unresolved cross-reference marker. Should read "Section 6."
+
+F14. PASS. Abstract: 216 words, single paragraph (limit 250). Keywords: 5 (required 3–6). Conclusions is the last numbered section (Section 8). Acknowledgements, Data availability, Conflict of interest, References are unnumbered and follow it. AI disclosure is present within Methods (Section 4), is unusually candid, and correctly states no AI system is an author. References are in acceptable MNRAS-style format; the three cited works check out bibliographically.
+
+5. RESEARCH OR PROJECT REPORT
+
+F15. FIXABLE. Scholarship: the factual claims about external catalogues — GZ1 containing direction votes, GZ DESI's 8.67M predicted-fraction rows, "modern Galaxy Zoo products encode winding tightness rather than winding direction" — rest on the internal memo CODEX_EXTERNAL_LABELS_20260901.md and cite none of the underlying catalogue papers (Walmsley et al. 2023 is absent from a reference list that totals three entries). The "reviewed here" scoping is honest but points at an invisible review. Add citations for the catalogues actually assessed, and minimal methodology citations (permutation/exact-power testing, preregistration practice).
+
+F16. CONDITIONAL PASS. On the real bar: the repaired draft argues and evidences a thesis rather than chronicling activity. The declined 208,407-object predecessor is deployed as negative evidence for the design thesis; the bounded validation results are presented with their scopes as part of the result; the halt is quantified. That is argument, not diary. Residue remains: the Section 3 audit inventory (703/84/177/192/334) is bookkeeping that evidences process hygiene more than any claim, and the entire evidentiary base is internal documents. It crosses the research bar, narrowly, and only stays across it if F11 and F15 are resolved — an uninspectable internal record is a project report's evidence, not a paper's.
+
+6. WHAT I WOULD REJECT ON
+
+Fatal as submitted, if uncured in revision:
+- F11 (unverifiable evidentiary core; no public archive). This alone justifies rejection of a provenance-centred paper if not cured.
+- F7 (headline "limit" is design arithmetic + unevidenced procurement claim). If the authors insist on the current framing, I reject on overclaim of the second result.
+Fixable by revision: F4-table-confirmation, F8, F9, F12, F13, F15.
+Not reject-worthy: F1–F3, F6, F10, F14 (landed/passed).
+
+7. REQUIRED BEFORE RECONSIDERATION
+1. Deposit the frozen package and all cited receipts/memos; cite the DOI in Data Availability (F11).
+2. Reframe the calibration result as a design requirement, or evidence the procurement claim (F7).
+3. Delete the self-verdict block (F12).
+4. Add catalogue and methodology citations; specify which GZ products were reviewed (F15).
+5. Source or cut 0.445201 (F8); show the 1,860 derivation (F9); fix "Section [6]" (F13).
+6. Supply the verified-number table and the previous referee report to the reviewer so F4 and F5 can be closed.
+
+8. QUESTIONS TO AUTHORS
+Q1. What is the relationship between the 984-success "eligible prefix" battery and the 996-success "final re-pass"? Same trials re-run? Was the re-pass itself frozen before execution, and what defined "eligible" checkpoint batteries? Any post-hoc selection here would reopen the exact-power claim.
+Q2. Was any checker recruitment or pilot labelling actually attempted? If yes, document it; if no, justify "could not be supplied."
+Q3. Provide the archive DOI.
+
+SUMMARY
+The named repairs landed: the analysed 49,211 / 0.7517 / 110,983 figures now anchor abstract and leverage section, pre-cut figures are labelled, the "every stage passed" falsehood is replaced with an accurate bounded statement, and the four orphaned numbers carry sources. Overclaim control at sentence level is genuinely good — I could not extract a quotable detection claim. Structure conforms to RASTI. What prevents acceptance is not the repair job but the paper's foundations as submitted: nothing it asserts is inspectable (F11), and its second headline result claims more than its evidence kind supports (F7). Both are curable in one revision. Under a hostile mandate this manuscript has earned exactly one step above rejection, contingent on the conditions above; failure on F11 converts this to REJECT.
 
 SEAT: KIMI
 VERSION: FULL-REFEREE-V2
 VERDICT: MAJOR-REVISION
-COUNT: 7
+COUNT: 16
