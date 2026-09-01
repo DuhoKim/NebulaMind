@@ -1300,3 +1300,46 @@ state.
 
 **Do not spend further dispatches on this tonight.** Three seats, seven attempts, two refuted
 hypotheses. It needs a human at a terminal, not another retry.
+
+### 1aq-CORRECTION — THERE WAS NO SEAT OUTAGE. I WAS KILLING THEM MYSELF.
+
+**2026-09-01 23:2x, on Duho's direct question "is agy prompting in the terminal?"** The answer is
+**no**, and the entry above is **wrong in its central claim**. Struck and replaced by this.
+
+**What I actually found.** The `agy-meter:0.0` pane holds a healthy Gemini session (pid 28406,
+4 days uptime) **idle at its ordinary `>` prompt**, last task completed cleanly. No auth dialog, no
+permission prompt, nothing blocked. Then the positive control I should have run seven dispatches
+earlier: `agy --print='Reply with exactly the word PONG'` returned **`PONG`, 5 bytes, exit 0, 11
+seconds.** The seat was never broken.
+
+**The real cause: I ran every failing dispatch in the BACKGROUND.** Same seat, same flags, same
+multi-KB prompt, run in the **foreground**: **4,964 bytes, exit 0, 66 seconds, a complete adversarial
+verdict.** Backgrounded, the child was being killed before it could write. Every "silent seat
+failure" today was **self-inflicted by my own dispatch pattern**, not a provider block, not a TTY
+prompt, not context exhaustion, and not file I/O.
+
+**So all three of my explanations were wrong, in sequence** — §1am (huge file), §1am-CORRECTION
+(file reading at all), §1aq (external outage) — and each was proposed with more confidence than the
+last while the actual variable, *backgrounding*, went unexamined because it was mine.
+
+**The defect class, which is the part worth keeping.** Every hypothesis I formed located the fault
+**in the tool**. Not one located it in **how I was invoking the tool**, even after two refutations
+pointed away from the tool. A shared failure across three independent vendors' CLIs was overwhelming
+evidence of a common cause on **my** side, and I read it instead as evidence of an outage — the more
+seats that failed, the more certain I became of the wrong conclusion.
+
+**The rule: when N independent tools fail identically, suspect the caller, not the tools — and run
+the positive control FIRST.** One 11-second trivial invocation would have shown the seats were alive
+before a single explanatory entry was written. §1u's "a control you cannot observe failing is not a
+control" applies exactly: I had no working-seat control at all, so I could not distinguish "seat
+broken" from "my call broken."
+
+**Operational consequences, immediate:**
+- **The lane's gating capability is NOT lost.** `AGATE_PROGRAM_A_PVALUE_agy.md` was obtained minutes
+  after this diagnosis and is a full, specific refutation.
+- **Dispatch seats in the FOREGROUND** (accepting the wait), or find a backgrounding method that
+  survives parent exit. Do not background a seat and read its empty output as a verdict.
+- **codex and kimi are very likely fine too** and should be re-tested in the foreground before any
+  claim about them stands. Their entries above are suspect for the same reason.
+- The `--dangerously-skip-permissions` flag is **not** implicated; it was present in the successful
+  foreground run.

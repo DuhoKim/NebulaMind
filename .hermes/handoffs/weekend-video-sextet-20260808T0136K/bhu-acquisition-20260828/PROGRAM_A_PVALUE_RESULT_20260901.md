@@ -125,3 +125,46 @@ means the headline figures carry a relative uncertainty of order 10% and should 
 
 **Unchanged:** analysis only; no tier moves; the cut-sky treatment and an adversarial gate on all of
 this are still owed before any of it is claimed anywhere.
+
+---
+
+## GATED at last — `PVALUE_RESULT_REFUTED`. C1 is retracted; C2 survives and is strengthened.
+
+The gate ran once the dispatch bug was fixed (see register §1aq-CORRECTION: the "seat outage" was
+my own backgrounding). Verdict: `AGATE_PROGRAM_A_PVALUE_agy.md`.
+
+**C1 — "the cutoff moves the anomaly to AT MOST ~3%" — RETRACTED.** The gate broke it **using my own
+table**, which I had printed and not read properly: the smoothed cut at 0.3 k_§ gives
+**S₁/₂ = 6,113 against the hard cut's 6,897** — so the hard cut is *not* the strongest suppressor,
+and my a-fortiori reasoning ("Reading A suppresses maximally, so Reading B cannot do better") is
+false. I had checked the *p-value* column, where the hard cut does lead (3.31% vs 3.12%), and stated
+a conclusion about *suppression* that the S₁/₂ column beside it contradicted. **The "at most" is
+withdrawn**: with only three smoothing widths tested, nothing establishes an upper bound, and a
+different admissible spectrum could plausibly reach a higher p-value.
+
+**C2 — the 6× overshoot — HOLDS, and the gate says it is conservative.** On the ISW sign question I
+asked explicitly: late ISW and lensing *add* large-angle power, and since S₁/₂ integrates C(θ)²,
+including them **increases** the model's predicted S₁/₂. So omitting them *flatters* the model, and
+a correct treatment **widens** the gap between the model's 6,897 and the observed 1,150 rather than
+closing it.
+
+**Three further objections, all substantive and none yet answered:**
+1. **Cut-sky is not a detail.** The observed 1,150 comes from a masked sky, and the mask suppresses
+   exactly the low multipoles that dominate S₁/₂. Full-sky MC against a cut-sky observation is
+   apples-to-oranges; the gate expects the correct treatment to move the p-values materially.
+2. **ΛCDM transfer functions may smuggle in the answer.** A strict causal boundary should make the
+   mode spectrum discrete and alter the transfer functions; keeping infinite-volume late-time
+   transfer functions while imposing a primordial horizon cut is internally inconsistent.
+3. **The deepest one — the model I built cannot represent the claim I tested it against.** A sharp
+   *k*-space cut mathematically *guarantees* C(θ) ≠ 0 above 60° (its ξ has sinc-like infinite
+   tails). So "the cut fails to deliver S₁/₂ = 0" is partly an artifact of implementing the causal
+   condition in Fourier space. **This is step 2's incompatibility result returning as a
+   methodological verdict:** testing the paper's real-space claim requires the real-space (Reading
+   B) construction, which is precisely the one this analysis did not build.
+
+**Minimum repairs the gate demands:** build P(k) from a genuine real-space cut ξ(r>χ_§)=0; apply the
+actual mask and pseudo-C_ℓ estimator to the MC; add late ISW and lensing to the theory expectation;
+and retract C1 (done here).
+
+**Standing status:** C2 is the surviving claim and it is now gated, with the caveat that repair 3
+could still change what it means. No tier moves. Still Duho's call.
