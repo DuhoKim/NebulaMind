@@ -40,6 +40,56 @@ by your standing ruling, nothing outward.**
 
 ---
 
+## ⏳ YOUR CALL 2026-09-02 (15:20) — the five bought papers are swept: three confirmed, TWO tier challenges
+
+You bought all five; they are pinned, identity-verified from their own bytes, and blind-double
+swept (codex + agy independent; Stuckey's image-only body got two multimodal readers — agy's
+native PDF read and mine). **Source-limited is now ZERO — the corpus is fully read at full text.**
+
+**Confirmed, tier unchanged (both readers agree, receipts in the bibliography):**
+- **Entry 2 (Good 1972)** — a one-page speculative letter; CONSISTENCY-ONLY confirmed.
+- **Entry 3 (Stuckey 1994)** — embedding/methodology by its own words; CONSISTENCY-ONLY confirmed.
+- **Entry 13 (Frolov–Markov–Mukhanov 1989)** — limiting-curvature construction, possibilities only;
+  CONSISTENCY-ONLY confirmed.
+
+**Challenge 1 — Entry 1 (Pathria 1972): both seats say the BODY is a calibrated falsifier.**
+The abstract-level tier was CONSISTENCY-ONLY. The full text goes further: from measured H₀ and q₀
+it derives explicit numeric bounds — Λ ∈ (−6.7, 1.0]×10⁻⁵⁷ cm⁻², **ρ₀ ∈ (1.5, 2.3]×10⁻²⁹ g cm⁻³**,
+R₀ ≥ 1.1×10²⁸ cm — "so these parameters can be estimated from the kinematics of the universe
+alone" (p. 299; quotes verified in the pinned text).
+- **(a) Re-tier CALIBRATED-FALSIFIER.** *For:* explicit numbers + thresholds, measurement-refutable;
+  both seats, independently. *Cost & consequence:* the standing (LIVE/FIRED) then needs its own
+  gated adjudication — and note the model requires a closed, decelerating universe (his inputs
+  assume q₀ = 1) while the modern measurement is q₀ ≈ −0.55; **if re-tiered, it very plausibly
+  adjudicates FIRED**, which would change the corpus headline (a third fired calibrated falsifier).
+- **(b) Keep CONSISTENCY-ONLY.** *For:* Pathria frames the inequalities as parameter *estimation
+  within* the model, not as a proposed test of it; the bounds restate the closure condition rather
+  than predict a novel observable. *Cost:* both independent readers, with the text in hand, read it
+  the other way.
+- **My read, for what it is worth after this week:** the quotes support (a), and the shape matches
+  entry 44's precedent (a model whose stated numbers the data then contradicted). But (a) commits
+  us to the FIRED adjudication next, and the tier is yours.
+
+**Challenge 2 — Entry 4 (Knutsen 2009): both seats say it proves an OWNED no-go.**
+Knutsen derives the necessary-and-sufficient smooth-matching conditions himself and applies them to
+Pathria's boundary choice r_b = 1: "the fluid sphere is static, and the surface of the fluid sphere
+merges with its event horizon. Thus this particular model cannot describe our expanding universe"
+(p. 277; verified). Ownership-of-proof is satisfied — he does the proving.
+- **(a) Re-tier THEORETICAL-OBSTRUCTION**, with a scoped domain like entry 5's (smooth matching,
+  FLRW perfect-fluid interior + vacuum exterior, Pathria's r_b = 1; shell-bearing and other choices
+  not excluded). *For:* the exact precedent of entry 5 (its sequel note!), the owned derivation, the
+  operative-contribution test. *Cost:* the obstruction count goes 3 → 4 and consistency 31 → 30
+  (with challenge 1 also 30 → 29).
+- **(b) Keep CONSISTENCY-ONLY.** *For:* one could read it as criticism of a single parameter choice.
+  *Cost:* that reading was already rejected for entry 5, whose no-go is narrower still.
+- **My read:** (a) is hard to resist given entry 5; the two papers are a pair and would then carry
+  matching scoped domains.
+
+**Nothing has been re-tiered.** The bibliography carries dated annotations marking both challenges
+as pending your word; tallies untouched.
+
+---
+
 ## ✅ RESOLVED 2026-09-02 (11:10) — Duho ruled "run the third seat"; it settled the split and found the real bug
 
 **Ruling executed. Verdict: `POSITIVITY_HOLDS` — and both seats were half-wrong.** agy's negative

@@ -162,6 +162,7 @@ statistic. CONSISTENCY-ONLY holds. **CAVEAT: abstract-level, not a full-text rea
 body would need the browser/ILL; the tier does not depend on it.
 Audit-worthiness: **low-medium** — historically
 foundational, but a strict night needs the full text first (still unobtained).
+**FULL TEXT ACQUIRED + PINNED 2026-09-02** (Duho's purchase; `pathria_1972_universe_black_hole_nature240_298{.pdf,_clean.txt}`, sha256 `712fc540`). **Blind-double full-text sweep (codex + agy, independent): BOTH seats returned `CHALLENGE_CALIBRATED-FALSIFIER`** — the body derives numeric bounds from H₀/q₀ (Λ, ρ₀ ∈ (1.5, 2.3]×10⁻²⁹ g cm⁻³, R₀ ≥ 1.1×10²⁸ cm at the stated "representative values"; quotes verified in the pinned text, lines 431–453). **TIER UNCHANGED PENDING DUHO** — the challenge is filed in OPEN_QUESTIONS_FOR_DUHO.md; the "[VERIFY]/unobtained" caveats above are now stale (full text in hand).
 
 **2. I. J. Good (1972). "Chinese universes." Physics Today 25(7), 15.**
 DOI 10.1063/1.3070923 — VERIFIED (Crossref: Physics Today, v25, p15, 1972-07).
@@ -170,6 +171,7 @@ Testability: **CONSISTENCY-ONLY** (a short note; content not read this session).
 Record: was an open [VERIFY] in the packet ("not located online") — **the publication itself is
 resolved here**; content remains unread. Audit-worthiness: **low** — a page-long note; historical
 context only.
+**READ IN FULL 2026-09-02 — CONSISTENCY-ONLY CONFIRMED, blind-double (codex + agy), tier unchanged.** Full text acquired + pinned (`good_1972_chinese_universes_phystoday25_15{.pdf,_clean.txt}`, sha256 `6772c3fb`). The one-page letter is a speculative nested black/white-hole picture; its "physical probability one" follows from the stipulated infinite-time setup, no construction, no number, no statistic ("The speculative theory that I shall put forward is of this form"). The "content not read" line above is superseded.
 
 **3. W. M. Stuckey (1994). "The observable universe inside a black hole." Am. J. Phys. 62, 788–795.**
 DOI 10.1119/1.17460 — VERIFIED (Crossref: AJP, v62, p788-795, 1994-09).
@@ -196,6 +198,7 @@ embedding CONSTRUCTION (with singularities), not a regular-BH result and not a n
 with CONSISTENCY-ONLY. Exact bytes would need Duho's own logged-in browser or ILL; the tier does
 not depend on them. Audit-worthiness: **low** as a
 target, **useful** as the cleanest pedagogical baseline for any strict interior-matching rebuild.
+**READ IN FULL 2026-09-02 — CONSISTENCY-ONLY CONFIRMED, tier unchanged.** Full text acquired + pinned (`stuckey_1994_observable_universe_black_hole_ajp62_788.pdf`, sha256 `91aa1fae`; article pages are image-only scans — no text layer, so the read was multimodal). **Two independent full readers:** agy (native PDF) and Tori (page images), both CONFIRM: an embedding/methodology paper by its own words — "While this result is not necessarily of astrophysical importance, the methodology has been used extensively" (p. 788); conclusions offer possibilities ("may be connected… it is possible to have expanding Friedmann dust inside a black hole", p. 794), no statistic, no numbers, no owned no-go. Every "not freely obtainable / browser blocked" caveat above is superseded.
 
 **4. H. Knutsen (2009). "The idea of the universe as a black hole revisited." Grav. Cosmol. 15, 273–277.**
 DOI 10.1134/S0202289309030128 — VERIFIED (Crossref: Gravitation and Cosmology, v15, p273-277, 2009-07).
@@ -203,6 +206,7 @@ Claim: critical re-examination of the Pathria-style identification.
 Testability: **CONSISTENCY-ONLY**. Record: **new to us** (surfaced by this session's Crossref
 search, absent from packet and sweep). Audit-worthiness: **low-medium** — a published critique of
 target #1; cheap due-diligence read before any Pathria-line audit.
+**FULL TEXT ACQUIRED + PINNED 2026-09-02** (`knutsen_2009_gravcosmol15_273{.pdf,_clean.txt}`, sha256 `63c21258`). **Blind-double sweep: BOTH seats returned `CHALLENGE_THEORETICAL-OBSTRUCTION`** — Knutsen derives the necessary-and-sufficient smooth-matching conditions himself and, applying them to Pathria's boundary choice r_b = 1, proves "the fluid sphere is static… Thus this particular model cannot describe our expanding universe" (quote verified, pinned text lines 1063–1088; ownership-of-proof satisfied). Parallel in shape to entry 5's re-tier. **TIER UNCHANGED PENDING DUHO** — filed in OPEN_QUESTIONS_FOR_DUHO.md.
 
 **5. S. Khakshournia (2010). "A note on Pathria's model of the universe as a black hole." Grav. Cosmol. 16, 178–180.**
 DOI 10.1134/S0202289310020131 — VERIFIED (Crossref: Gravitation and Cosmology, v16, p178-180, 2010-04).
@@ -613,6 +617,7 @@ DOI 10.1016/0370-2693(89)91114-3 — VERIFIED (Crossref: PLB, v216, p272-276, 19
 Claim: black-hole interior evolves into a new universe under a limiting-curvature hypothesis.
 Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 (abstract level). Audit-worthiness:
 **medium** — the branch's founding calculation.
+**READ IN FULL 2026-09-02 — CONSISTENCY-ONLY CONFIRMED, blind-double (codex + agy), tier unchanged.** Full text acquired + pinned (`frolov_markov_mukhanov_1989_plb216_272{.pdf,_clean.txt}`, sha256 `04df8bd6`; the 1989 scan's OCR layer substitutes digits for letters — B→8, O→0, I→1, S→5, T→7, G→6 — decoded and cross-checked by agy's native PDF read). A limiting-curvature interior construction via Israel junctions: the future of Σ₂ "will coincide with the spacetime of an expanding closed Friedmann universe" or "a white hole in a new asymptotically flat universe" (pp. 275–276) — possibilities, no daughter-universe observable, no threshold.
 
 **14. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1990). "Black holes as possible sources of closed and semiclosed worlds." Phys. Rev. D 41, 383–394.**
 **ACQUIRED 2026-08-30, free frontier route 2 (KEK):** the ICTP preprint scan IC/88/91 (1988
