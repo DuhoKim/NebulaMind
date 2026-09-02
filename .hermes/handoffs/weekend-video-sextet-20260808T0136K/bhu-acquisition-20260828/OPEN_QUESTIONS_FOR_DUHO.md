@@ -6,6 +6,24 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ YOUR CALL 2026-09-02 (19:45) — entry 45 (Firouzjahi 2022, white-hole Hawking radiation): does it belong in the base layer?
+
+**What surfaced.** The deep audit found the paper is a quantum-field calculation on the white-hole half of an
+eternal black hole. Its own words: the analysis "may not be directly relevant to observable Universe" and is "a
+non-trivial example of quantum field theory in curved backgrounds"; it places our universe in the black hole's
+exterior. It never says, or tests, that our universe is inside a black hole. Two blind seats agree; the 08-23
+read had already flagged it as "family-adjacent". Its tier (CONSISTENCY-ONLY) is fine either way.
+
+**Your options:**
+- **(a) Move it to context (Appendix A) as a white-hole method reference.** The base layer becomes 50 BHU papers
+  (tally 5 / 8 / 4 / 29 / 4 = 50). *Cost:* one renumbered tally line; the branch "white-hole cosmology" keeps
+  entry 44. *Recommended.*
+- **(b) Keep it in the base layer** as the second white-hole route, with the annotation as written.
+
+Why it cannot be mine: base-layer membership was gate-built on 08-19 and 08-22; removing an entry is your call.
+
+---
+
 ## ⏳ YOUR CALL 2026-09-02 (18:45) — a paper the corpus missed: Desai & Popławski 2016 computes the torsion bounce's CMB numbers
 
 **What surfaced.** Auditing entry 52 (Unger & Popławski 2019), both seats found its one observation-facing
