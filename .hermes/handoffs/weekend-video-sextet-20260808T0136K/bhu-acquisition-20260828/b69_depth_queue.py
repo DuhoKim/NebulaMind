@@ -33,6 +33,7 @@ RQ={"RQ_A":{21},"RQ_C":{25,26},"RQ_D":{22,25,26}}
 def audited(n):
     if any(re.match(rf"^ENTRY{n}_RECONCILIATION_",f) or re.match(rf"^[bc]\d+_entry{n}_",f) or re.match(rf"^ENTRY{n}_STUDY",f) for f in files): return True
     if n==1 and any(f.startswith("PATHRIA_STANDING_RECONCILIATION") for f in files): return True
+    if n==23 and any(f.startswith("PROGRAM_C_FLUX_RESULT") for f in files) and any(f.startswith("PROGRAM_A_FREEDOM_MAP") for f in files): return True   # Programs A/B/C (2026-09-02): receipts are PROGRAM_*, not ENTRY23_*
     return any(any(f.startswith(k) and "RECONCILIATION" in f for f in files) and n in v for k,v in RQ.items())
 Q=re.compile(r"\d[\d.,]*\s*(M☉|M_\{?\\?odot|Msun|Mpc|kpc|Gpc|km|GeV|MeV|eV|K\b|σ|sigma|%|Gyr|yr|cm|kg|Hz)|[=<>≃≈≲≳]\s*-?\d")
 rows=[]; unmapped=[]; verify_fail=[]

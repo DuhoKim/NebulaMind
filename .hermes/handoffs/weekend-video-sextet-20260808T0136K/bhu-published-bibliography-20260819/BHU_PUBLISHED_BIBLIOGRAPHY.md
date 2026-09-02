@@ -689,6 +689,7 @@ Claim: the full development of entry 13. Testability: **CONSISTENCY-ONLY**. Reco
 Audit-worthiness: **medium**.
 
 **15. D. A. Easson, R. H. Brandenberger (2001). "Universe generation from black hole interiors." JHEP 06 (2001) 024.**
+**Deep audit (2026-09-02, STEP 3 queue draw #6; blind double codex + kimi, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY15_RECONCILIATION_20260902.md`):** the limiting-curvature construction is ref. [3]'s and its 4D realization is left to future work (lines 365–372); the paper argues the SBB problems "might be solved … not necessarily requiring a long period of inflation" (lines 12–16) and concedes the bounce is "presumably of too short duration" (lines 92–94); no scale, duration, perturbation or relic. Closest to a direction: a topological matching argument selecting FLAT baby slices, k = 0 (lines 305–311) — conditional on an unrealized construction, not derived from a model (A(a)); recorded because it would predict the opposite curvature sign to entries 11/54. No CNS-type claim. **Tier UNCHANGED.**
 DOI 10.1088/1126-6708/2001/06/024 — VERIFIED (Crossref: JHEP, v2001, 024, 2001-06-11).
 Claim: universe generation from black-hole interiors with limiting curvature.
 Testability: **CONSISTENCY-ONLY**

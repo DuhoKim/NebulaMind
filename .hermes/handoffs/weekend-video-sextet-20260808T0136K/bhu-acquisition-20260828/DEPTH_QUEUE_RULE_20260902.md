@@ -17,3 +17,5 @@ but nowhere defines it. From here the queue is computed by `b69_depth_queue.py`,
    matched on the bibliography title against each source's first 60 lines; unmatched entries are listed
    UNMAPPED and excluded from the ranking until pinned by hand.
 5. The rule is a preregistration: changing it is a dated edit here, never a silent re-sort.
+
+**Dated edit 2026-09-02 19:05 KST:** entry 23 (Gaztañaga 2020) counts as audited at depth via Programs (A), (b) and (C) (`PROGRAM_A_FREEDOM_MAP_20260902.md`, `PHASEB_RESULT_RECONCILIATION_20260902.md`, `PROGRAM_C_FLUX_RESULT_20260902.md`); the receipt-name proxy missed it because those receipts are not named for the entry. Entry 19 mapped to its full text (earlier today).
