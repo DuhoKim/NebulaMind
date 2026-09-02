@@ -57,7 +57,9 @@ would not exist); and the author's own L466 concession. **Two criticisms from th
 carried as open flags:** (i) equating absence of causal influence with zero correlation is a
 non-sequitur — common initial conditions can correlate causally disconnected regions (the standard
 inflationary point); (ii) the paper's one derived condition, `Φ(χ>χ§)=0`, has never been imposed on
-the perturbed solution by anyone, including this program.
+the perturbed solution by anyone, including this program. *(Flag (ii) CLOSED 2026-09-02 by Program (C),
+`PROGRAM_C_FLUX_RESULT_20260902.md`: imposed at linear order, the condition constrains only the observer's
+monopole (F1, FLUX_ALPHA) or admits no continuous spectrum (F2, FLUX_GAMMA) — not a cutoff.)*
 
 ## 3. The two refinements computed here are mutually exclusive (computed, both directions)
 
