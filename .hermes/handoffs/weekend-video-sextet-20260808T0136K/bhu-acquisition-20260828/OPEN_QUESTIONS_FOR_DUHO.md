@@ -16,12 +16,18 @@ analytic: `P_B''(0) = −(4π/3)·Cov(r²,ξ) > 0` since ξ decreases with r, so
 upward — grid-independent, any χ_§. The mandated sanity gates are what caught everything.
 
 **The repaired computation (codex, one-line fix, converged to 7.7e-11, positivity PASS, sanity
-ratio 1.9e-7):** **Reading B S₁/₂ = 8,777 μK⁴.** agy's 10,063 not confirmed (12.8% high, his
-diagnosed transform noise); a normalization-treatment residual of similar size also remains. Honest
-statement: **Reading B ≈ 8,800–10,100 μK⁴.**
+ratio 1.9e-7): Reading B S₁/₂ = 8,777 μK⁴ (spliced) — and the residuals are now CLOSED (11:25).**
+Both residuals were one thing. Computing both normalization treatments in one script: spliced
+(high-k forced onto ΛCDM, the program's own held-out constraint) gives **8,777**; no-splice (the raw
+construction, which approaches ΛCDM on its own: P_B/P_ΛCDM = 1.053 → 1.0006 over k = 0.01 → 2)
+gives **10,132** — and agy's independent 10,063 lands on that branch to 0.7%, corroborating the
+fixed run rather than contradicting it. So: **Reading B = 8,777–10,132 μK⁴ (7.6–8.8× observed)**,
+the spread being a normalization convention the paper does not fix; the spliced end is the one that
+satisfies the program's own high-ℓ constraint (the no-splice branch carries a ~5% primordial excess
+at k≈0.01 — first-acoustic-peak territory — which measured high-ℓ data would notice).
 
 **Where the program now stands:** ΛCDM 34,924 · Reading A 6,897–14,000 (convention) · **Reading B
-~8,800–10,100** · observed ~1,150. Every natural refinement lands in a **narrow band 6–12× above
+8,777–10,132** · observed ~1,150. Every natural refinement lands in a **narrow band 6–12× above
 the observed value**. The original "no number" no-go is dead (my own claim, overturned twice); what
 replaces it is sharper — the freedom is small, and none of it reaches the data. Old known caveats
 stand: full-sky vs cut-sky, ISW/lensing not separated. **No tier moved.** *(Superseded question kept
