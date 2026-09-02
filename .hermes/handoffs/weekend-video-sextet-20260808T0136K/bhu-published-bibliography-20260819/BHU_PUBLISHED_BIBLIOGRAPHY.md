@@ -649,6 +649,7 @@ Record: triage pick #7; a same-group companion analysis (Cubero & Popławski) �
 ## 4. The baby-universe branch
 
 **13. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1989). "Through a black hole into a new universe?" Phys. Lett. B 216, 272–276.**
+**Deep audit (2026-09-02, STEP 3 queue draw #25; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY13_DEEP_RECONCILIATION_20260902.md`):** a limiting-curvature Schwarzschild interior joined through a Planckian thin shell to a de Sitter core (Israel idealisation, microphysics unspecified); the closed Friedmann future is a chosen decay outcome — "may create a new macroscopic universe … one may expect that a new closed Friedmann universe will arise" (decoded lines 577–586) — with no equation, matter content or parent-mass map; energy dominance "may be violated" (lines 660–674); no claim about our universe. **Tier UNCHANGED.**
 DOI 10.1016/0370-2693(89)91114-3 — VERIFIED (Crossref: PLB, v216, p272-276, 1989-01).
 Claim: black-hole interior evolves into a new universe under a limiting-curvature hypothesis.
 Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 (abstract level). Audit-worthiness:
