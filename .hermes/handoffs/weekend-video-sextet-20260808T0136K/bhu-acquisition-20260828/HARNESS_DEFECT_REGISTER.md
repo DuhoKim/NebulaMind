@@ -1502,3 +1502,26 @@ support `2A` to 9 significant figures. Testimony-vs-formula, not testimony-vs-te
 3. When two seats disagree numerically, **check first that they computed the same object** — here
    the "disagreement" was two correct computations of two different windows plus one aliasing
    artifact, and no amount of re-voting would have converged them.
+
+### 1au — THE SYNTHESIS RESURRECTED CLAIMS ITS OWN SOURCES HAD RETRACTED
+
+**2026-09-02, caught by the document gate before it left the lane.** The first draft of the Program
+(A) write-up (`PROGRAM_A_FREEDOM_MAP_20260902.md`, revision 1) was gated `WRITEUP_REFUTED` on nine
+findings — and the striking property is that **most of them cited this program's own records against
+it**: the draft revived the refuted observed-sky comparison (C2, refuted in files I wrote), turned
+the retracted three-window family test back into a bound (C1, retracted by me), called the smoothed
+cuts "Reading-B-compatible" (part of the retracted a-fortiori reasoning), and claimed "four seats
+returned READING_C" when one seat's token was `CLASS_REFUTED`. It even got its own table's
+arithmetic wrong (claimed "2.5–5×" while the table contained 34,924/6,113 = 5.71×).
+
+**The class, distinct from §1ai.** §1ai is appending new state while stale text stands in the same
+file. This is the *synthesis* failure mode: a write-up composed from memory of the program's arc
+re-imports the punchy versions of claims whose precise versions live in the receipts — because the
+punchy version is what memory keeps. Retraction happens in the file where the claim died; the
+resurrection happens in the new file where no retraction is visible.
+
+**The rule.** A synthesis document gets the same adversarial gate as a computation, WITH the
+receipts in hand — and the gate brief should explicitly instruct: "hunt for claims from refuted
+rounds that survived into the text." That instruction is what caught eight of the nine here.
+Revision 2 repaired all findings and re-gated `WRITEUP_SOUND` with zero new findings
+(`FREEDOM_MAP_GATE_codex.md`, `FREEDOM_MAP_REGATE_codex.md`).
