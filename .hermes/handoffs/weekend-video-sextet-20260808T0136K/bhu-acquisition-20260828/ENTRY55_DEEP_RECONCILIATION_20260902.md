@@ -22,8 +22,9 @@ black hole," PRD 102, 066010** (arXiv 2007.06664). Tier **CONSISTENCY-ONLY**. Br
 3. **Our universe:** the only bridge is Sec. VII's conditional speculation — IF a renormalised Λ ∝ 1/(Gm)² can be
    obtained (eq. 70–71, "proposal", "future work"), inserting the baryonic mass m ≃ 1.46×10⁵³ kg gives
    λ̄ ≃ 0.85×10⁻⁵² m⁻² vs 1.1×10⁻⁵² observed (line 1144). **claude-seat's arithmetic, Tori checked: this reduces to
-   the flatness relation R_s(M_baryon) ≈ 0.8 c/H₀** — the same large-number identity entry 46 dressed up — and it
-   breaks by ×52 with total matter. Recorded as PROSPECT-adjacent prose; no promotion (no number the mechanism owns).
+   a flatness-type identity R_s(M_baryon) ∼ c/H₀** (claude-seat 0.8; Tori: 2GM/c² = 2.17×10²⁶ m vs c/H₀ = 1.37×10²⁶ m,
+   ratio 1.6 — order unity either way; the prefactor depends on the undelivered eq. 71) — the same large-number
+   identity entry 46 dressed up — and it breaks by ×52 with total matter. Recorded as PROSPECT-adjacent prose; no promotion (no number the mechanism owns).
 4. **The BHU relation:** an expanding Kantowski–Sachs interior approaching de Sitter behind the horizon; "our
    observable universe could have emerged from within the interior of a black hole" is discussed as a possibility
    (lines 1148–1155), not derived.
