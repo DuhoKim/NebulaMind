@@ -1000,6 +1000,7 @@ cosmologies constructed inside a black hole, found by the bibliography gate (one
 two training-memory recalls).
 
 **36. J. Smoller & B. Temple (2000). "Cosmology with a shock-wave." Commun. Math. Phys. 210, 275–308.**
+**Deep audit (2026-09-02, STEP 3 queue draw #19; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY36_DEEP_RECONCILIATION_20260902.md`):** H₀ and T₀ are INPUTS normalising a flat FRW interior (Q₀ = H₀²; α, β from 7.13–7.14); the "predicted" present shock position is a family indexed by the free start epoch R* — ≈ 0.019–0.029 H₀⁻¹ at the paper's fiducial R* = 2.7/4000, up to 0.87 H₀⁻¹ at R* = 1 — so "comparable to the Hubble length" is set by the knob, contradicting line 103's "no adjustable parameters"; no observer position, no signature ("nothing quantitative could be said", lines 302–306). Three internal slips recorded (R*² for R*; 118 vs ≈ 346 h₀H₀⁻¹ in 8.6; 2.2/4000). **The 2026-08-28 BLIND FLAG below is now ADJUDICATED: it does not survive.** **Tier UNCHANGED.**
 DOI 10.1007/s002200050780 — VERIFIED (Crossref: CMP, v210, p275-308, 2000-03). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 **Full text OBTAINED 2026-08-23** via its arXiv version (astro-ph/9812063 — the eprint my
