@@ -6,6 +6,40 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ YOUR CALL 2026-09-02 (11:40) — Program (A)'s write-up: theory-only now, or cut-sky first?
+
+**The theory-side work is done and the freedom is fully mapped.** Final state, all blind-doubled,
+third-seat adjudicated, residuals closed:
+
+> ΛCDM 34,924 · Reading A 6,897–14,000 (k-convention) · Reading B 8,777–10,132 (normalization)
+> · observed ~1,150 μK⁴
+
+What stands behind it: the two readings of the paper's causal condition are provably incompatible
+(Paley–Wiener); the paper licenses neither (READING_C, four seats); each carries a quantified
+convention-freedom the paper does not fix; Reading B is admissible by a curvature theorem
+(`P_B''(0) = −(4π/3)·Cov(r²,ξ) > 0`); and **every natural refinement lands 6–12× above the observed
+deficit.**
+
+**But one sentence in that summary is not yet licensed:** "above the *observed*" compares full-sky
+theory to a cut-sky measured number — the exact mismatch the C2 gate refused. Hence the fork:
+
+- **(a) Write up the theory-side result now.** The freedom map, the incompatibility, the theorem,
+  and the band — stated against the full-sky ΛCDM baseline (a 3.4–5× suppression that stops well
+  short of the ~30× the data shows), with the observational comparison explicitly deferred.
+  *Cost:* the punchiest sentence ("cannot reach the data") is withheld. *Gain:* complete, defensible
+  with receipts already in hand, cheap; nothing spoils by doing (b) later.
+- **(b) Do the cut-sky/estimator matching first.** Apply the actual Planck mask and a pseudo-C_ℓ
+  estimator to every simulated sky, then compare like with like. *Cost:* real work — mask handling,
+  estimator validation, and a fresh round of gates; this program's history says budget for my
+  constructions being refuted at least once. *Gain:* licenses the full claim, and the write-up
+  happens once instead of twice.
+
+**Recommendation: (a) now, (b) as its named follow-on.** The theory map stands alone, and writing it
+does not prejudge (b)'s answer. **The write-up itself stays in-lane either way — the paper is HELD
+by your standing ruling, nothing outward.**
+
+---
+
 ## ✅ RESOLVED 2026-09-02 (11:10) — Duho ruled "run the third seat"; it settled the split and found the real bug
 
 **Ruling executed. Verdict: `POSITIVITY_HOLDS` — and both seats were half-wrong.** agy's negative
