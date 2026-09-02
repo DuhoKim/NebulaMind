@@ -626,6 +626,7 @@ in `OPEN_QUESTIONS_FOR_DUHO.md`; it changes no action here. Entry 51's tier is U
 Record: kimi recall R6; the singularity-avoidance mechanism paper under the torsion-bounce line.
 
 **52. "Big Bounce and Closed Universe from Spin and Torsion." ApJ 870, 78 (2019).**
+**Deep audit (2026-09-02, STEP 3 queue draw #5; blind double codex + kimi, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY52_RECONCILIATION_20260902.md`):** the aT ≥ √(8/9)·a_cr T_cr threshold is an existence condition inside an assumed k = +1 branch (lines 134–136, 205–220); flat/open unrestricted; every printed number reproduces (T_cr, a_cr, λ, x_eq, C > 1.9×10⁴⁸); T_eq and Λ inserted uncited; the production parameter never printed. **The CMB claim at line 54 is delegated ("as was shown in SD") to Desai & Popławski, PLB 755, 183 (2016), arXiv 1510.08834 — a peer-reviewed computation of r, n_s and its running for this mechanism, ABSENT from this corpus; packet to Duho filed 2026-09-02.** **Tier UNCHANGED.**
 DOI 10.3847/1538-4357/aaf169 — VERIFIED (Crossref: ApJ, v870, 78, 2019). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **CONSISTENCY-ONLY**

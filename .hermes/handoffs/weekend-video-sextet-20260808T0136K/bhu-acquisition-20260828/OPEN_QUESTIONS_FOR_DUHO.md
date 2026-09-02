@@ -6,6 +6,33 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ YOUR CALL 2026-09-02 (18:45) — a paper the corpus missed: Desai & Popławski 2016 computes the torsion bounce's CMB numbers
+
+**What surfaced.** Auditing entry 52 (Unger & Popławski 2019), both seats found its one observation-facing
+sentence delegates to another paper: *"This expansion also predicts the cosmic microwave background radiation
+parameters that are consistent with the Planck 2015 observations, as was shown in SD."* SD is **S. Desai &
+N. J. Popławski, Phys. Lett. B 755, 183 (2016), arXiv 1510.08834** — peer-reviewed, and not in our
+bibliography. Its abstract says it computes the tensor-to-scalar ratio, the spectral index and its running
+from the torsion bounce with particle production, with "minimal dependence" on the bounce scale.
+
+**Why it matters.** The whole Popławski branch (entries 8–12, 39–41, 51–53) has been filed as "field equations
+for the background, no observable" — RQ-B called the transfer function undetermined in the published
+literature. This paper claims exactly that computation. If its n_s is a definite number, it is the branch's
+first calibratable prediction, testable against Planck's n_s = 0.9649 ± 0.0042 today; if it depends on free
+inputs, it is the same freedom as before, but written down.
+
+**Your options:**
+- **(a) Add it to the base layer as entry 59 and let the lane deep-audit it now** (arXiv text pinned already;
+  the PLB version of record can be fetched later through the campus route). Tier assigned after the audit,
+  by you. *Cost:* one audit round. *Recommended.*
+- **(b) Add it as context only (Appendix A)** — keeps the base layer as gated on 08-19. *Cost:* leaves the
+  branch's only observable computation outside the audit.
+- **(c) Do nothing.** *Cost:* the record would keep saying "no observable" about a branch that has a published one.
+
+Why it cannot be mine: base-layer membership and tiers are yours; the 08-19 gate built the list.
+
+---
+
 ## ✅ RESOLVED 2026-09-02 (16:2x) — delegated by Duho ("ask as various models as possible and decide on your own"); Tori ruled (a) after a unanimous four-model poll
 
 codex, agy, kimi and a fresh Claude context all voted (a). Applied: entries 23–27 stay
