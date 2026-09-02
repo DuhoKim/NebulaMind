@@ -228,7 +228,7 @@ class HttpClient:
                 self.sleep(delay if delay is not None else (2 ** attempt) + self.rng())
 
 
-def discover_interfaces(capabilities: bytes) -> tuple[str, str, list[dict]]:
+def discover_interfaces(capabilities: bytes, capabilities_url: str | None = None) -> tuple[str, str, list[dict]]:
     root = ET.fromstring(capabilities)
     interfaces = []
     standard_bases = []
@@ -244,8 +244,18 @@ def discover_interfaces(capabilities: bytes) -> tuple[str, str, list[dict]]:
             standard_bases.extend(urls)
     if not standard_bases:
         _fail("capabilities exposes no standard TAP interface")
-    base = standard_bases[0].rstrip("/")
-    return base + "/async", base + "/sync", interfaces
+    base = standard_bases[0].rstrip("/") + "/"
+    # Some Data Lab capability documents retain an obsolete http/ivoa-dal
+    # alias.  The actual capabilities response URL is the canonical mirror of
+    # that advertised service interface.  Resolve TAP resources with URL
+    # semantics (never string concatenation) against that location.
+    if capabilities_url:
+        advertised_host = urllib.parse.urlsplit(base).hostname
+        resolved_host = urllib.parse.urlsplit(capabilities_url).hostname
+        if advertised_host == resolved_host:
+            base = urllib.parse.urljoin(capabilities_url, "./")
+    return (urllib.parse.urljoin(base, "async"),
+            urllib.parse.urljoin(base, "sync"), interfaces)
 
 
 def parse_votable(raw: bytes) -> tuple[list[dict[str, str]], dict]:
@@ -299,8 +309,12 @@ def probe(base_url: str, output_dir: Path, client: HttpClient | None = None) -> 
     requested = base_url.rstrip("/")
     capabilities_url = requested + "/capabilities"
     caps, cap_headers, resolved_caps, _ = client.request(capabilities_url)
-    advertised_async, advertised_sync, interfaces = discover_interfaces(caps)
-    sync_url = requested + "/sync"
+    advertised_async, advertised_sync, interfaces = discover_interfaces(caps, resolved_caps)
+    # The execution endpoint is authority supplied by the TAP capabilities
+    # document.  Do not guess it from the URL used to fetch capabilities.
+    if not advertised_sync:
+        _fail("capabilities exposes no standard TAP sync endpoint")
+    sync_url = advertised_sync
     tq = "SELECT table_name, description FROM TAP_SCHEMA.tables WHERE table_name IN ('ls_dr10.tractor','ls_dr10.tractor_s') ORDER BY table_name"
     table_rows, table_status = parse_votable(sync_query(client, sync_url, tq))
     found = {r.get("table_name", "").lower(): r for r in table_rows}
@@ -369,9 +383,14 @@ class TAPCandidateSource(CandidateSource):
 
     @property
     def provenance(self) -> Mapping[str, object]:
+        entries = self._checkpoint_entries()
         return {"backend": "NOIRLab-Astro-Data-Lab-sync-TAP-q3c",
                 "release_identity": self.relation,
-                "enumeration": "complete-all-candidates", "query_artifacts": [],
+                "enumeration": "complete-all-candidates",
+                "query_artifacts": [
+                    {"chunk_id": e["chunk_id"], "raw_result": e["raw_result"],
+                     "raw_sha256": e["raw_sha256"], "cap_signal": e["cap_signal"]}
+                    for e in entries],
                 "magnitude_predicate": False, "truncated": False,
                 "sync_endpoint": self.sync_url, "cap_signal": "QUERY_STATUS=OK"}
 
@@ -500,7 +519,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     write_manifest(args.artifacts / "chunk_manifest.json")
     receipt = load_probe(args.probe_receipt)
     columns = [r["column_name"] for r in receipt["columns"]]
-    sync_endpoint = receipt.get("sync_endpoint", receipt["requested_tap_base"].rstrip("/") + "/sync")
+    sync_endpoint = receipt.get("advertised_sync_endpoint")
+    if not sync_endpoint:
+        _fail("probe receipt lacks advertised TAP sync endpoint")
     source = TAPCandidateSource(sync_endpoint, receipt["relation"], columns,
                                 args.artifacts)
     result = source.run_chunk(0, rows[:args.rows])

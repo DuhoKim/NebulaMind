@@ -1,4 +1,4 @@
-# Definitive DR10-south catalogue crossmatch plan — V3
+# Definitive DR10-south catalogue crossmatch plan — V4
 
 This lane is catalogue-only and never opens pixels. It uses the complete public
 `ls_dr10.tractor_s` relation (2,825,807,500 rows in the captured TAP_SCHEMA
@@ -77,3 +77,33 @@ Finalization must prove the exact 893,212-row input-index set, one terminal
 disposition per GZ1 object, complete multi-candidate enumeration, collision
 handling, pinned input hashes, the 1-arcsec inclusive rule, and terminal
 dispositions for all 13,725 prior-unresolved OBJIDs.
+
+## V4 executable finalization
+
+`run_full.py` now performs those obligations as one worker. Before networking it
+digest-checks GZ1 Tables 2/3, Tier A, and the parent; checks their exact row
+counts/index set; and checks `prior_unresolved_13725.json` for exactly 13,725
+unique integer OBJIDs. The latter is a canonical derived artifact (SHA-256
+`73a1d8e10e15d0b501745b008be370afc82151472177e3a1ac334966bef1bafa`)
+whose embedded provenance binds the parsed reconnaissance catalogue, accelerated
+match result, brick table, and exact rectangle/absence rule. Its provenance also
+records that one reported-set member is within 1 arcsec of the parent, an
+inconsistency in the historical “outside-parent” shorthand that is not silently
+edited out of the reported 13,725 set.
+
+Every checkpoint is unique by chunk ID and re-hashes its raw VOTable. On full
+coverage, the runner reconstructs candidates from all raw chunks and calls
+`run_pinned_files()`. Only then can it emit timestamped §5 receipt and pair-list
+files. `--max-chunks` bounds requests, `--resume` continues after verification,
+and `--dry-finalise` reports and refuses any gap without a receipt.
+
+The capabilities integration uses the advertised standard interface through URL
+resolution. NOIRLab currently returns a stale `http/ivoa-dal` alias in the XML;
+when the host agrees, the resolved capabilities response location supplies its
+canonical service mirror. There is no requested-base string-concatenation or
+fallback sync URL, and absence of the capability-derived endpoint refuses.
+
+V4 test output: 30 tests ran in 11.632 s, all OK. The authorized live bound ran
+three chunks (300 inputs, 354 associations) in 33.896302 s. Dry finalization then
+refused the gap: 3/8,933 chunks and 300/893,212 input indices admitted; no
+completeness receipt was emitted.
