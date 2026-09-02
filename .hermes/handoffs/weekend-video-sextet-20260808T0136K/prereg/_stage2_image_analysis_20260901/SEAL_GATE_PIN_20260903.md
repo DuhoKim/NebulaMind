@@ -24,4 +24,4 @@ be2e154d91875d37528722b67235c2ebc565b4f5455de690d5465d155d548fee  seal_gate/test
 21a9ddd0e1c37774fccd13d10e1c0f8d0bd866961cb923ddf318dad4e85be435  seal_gate/README.md
 ```
 
-Note (Hwao, 08:0x KST): the V2 pin sheet file was found MISSING from the lane at 07:59 KST (it had never been tracked by git despite the 7b2082732 commit message; the runner read it successfully at 07:46). Rebuilt here from the recorded hashes; the runner's byte check refused correctly while it was absent.
+Note (Hwao, 08:0x KST): the V2 sheet is the tracked file `SEAL_GATE_PIN_20260902.md` (dated 0902). This 0903 sheet supersedes it for the V3 run; Hwao's first rebuild attempt wrongly reported the 0902 file missing — it was a filename slip, nothing was lost.
