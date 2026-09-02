@@ -1,0 +1,4 @@
+W_EXPLICIT
+borrowed_inputs: none
+The Sec. 4 model computes a scale-invariant curvature spectrum, while displaying the observed near-scale-invariant spectrum for comparison (../bhu-reading-20260823/sources/1309.1487_clean.txt:631-648). The authors explicitly state that their simple model is ruled out above 5σ because it predicts no deviation from scale invariance (lines 911-915). They distinguish that derived n_s = 1 result from a merely imagined ≈4% correction (lines 915-924) and defer the gravitational-backreaction calculation needed for the repair (lines 932-946). Thus the claim that actually fired is explicit in the model; the underived successor is not the §0 claim.
+contested: no — the receipts agree the base model’s exact scale invariance is derived, and W_EXPLICIT matches §0’s EXPLICIT AND UNDISPUTED cell.

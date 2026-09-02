@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: closed-slicing ansatz f(R) = −sin²R and r = a sin R (SOURCE lines 204–214); black-hole threshold from ref. [5] (SOURCE lines 240–244); inflation/data and interior-origin links from refs. [9–11] (SOURCE lines 320–325)
+Within the chosen closed Tolman–Oppenheimer–Snyder ansatz (SOURCE lines 204–214), the paper derives a closed FLRW interior and background turning-point condition (SOURCE lines 240–247). But closure enters through the ansatz rather than emerging, and the claim that our universe may be a black-hole interior plus the inflation/data connection are delegated to citations (SOURCE lines 320–325). The equation-level background is derived, while the cosmological identification and observation-facing link are asserted or cited.
+contested: no — both deep-audit seats agreed on this derived-background/asserted-link structure (ENTRY12_RECONCILIATION_20260902.md, Verdict and items 1–4).

@@ -51,3 +51,5 @@ against today's deep-audit receipts, not re-derived.
 - Output: `WARRANT_TABLE_20260903.md` in this lane (entry | tier | warrant token | borrowed inputs | receipts),
   plus a one-line `Warrant (2026-09-03):` annotation per entry in the bibliography and, at the end, a §0 pointer.
   Tier words untouched.
+
+**Dated amendment, 2026-09-03 00:58 KST (first split, entry 31):** when a calibrated cell is both borrowed/underived AND the subject of a pinned challenge, the cell token records the DERIVATION status (`W_EXPLICIT` / `W_BORROWED` / `W_UNDERIVED`) and the pinned challenge is recorded in the notes field as `pinned challenge: …` — "disputed" describes the literature, not the derivation. `W_DISPUTED` is reserved for cells where the derivation itself is contested and no derivation-status token can be assigned. Entry 31 is therefore `W_BORROWED` with the challenge noted (codex `W_DISPUTED`, claude-seat `W_BORROWED`; both contents preserved).

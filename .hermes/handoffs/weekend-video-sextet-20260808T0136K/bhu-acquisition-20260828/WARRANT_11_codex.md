@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: Papapetrou point-particle spin-fluid closure (SOURCE lines 67-75); random-spin averaging (SOURCE lines 82-83); unpolarized-spin relation s²=(ℏcn_f)²/8 (SOURCE lines 84-86); closed FLRW/black-hole-interior link (SOURCE lines 93-94, 121-122)
+The paper derives the finite-temperature bounce after inserting the effective negative spin term: the Friedmann system is displayed at SOURCE lines 95-98, the thermodynamic reduction at lines 103-119, and the turning-point argument at lines 147-155. But the load-bearing spin-fluid relations are imported, while closure and homogeneity/isotropy are ansätze rather than consequences of a black-hole interior (SOURCE lines 93-94, 121-122). Thus the background construction is derived, but its asserted cosmological identification is not.
+contested: no — both deep-audit seats agreed on the derivation structure and tier logic.

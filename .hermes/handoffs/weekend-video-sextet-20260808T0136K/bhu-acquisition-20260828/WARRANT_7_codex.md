@@ -1,0 +1,4 @@
+W_BORROWED
+borrowed_inputs: Brown–Bethe maximum-mass calculation (../brown-prl.txt:25-35); VM/HLS and kaon-condensation chain (../brown-prl.txt:36-45)
+The paper states the approximately 1.5 M☉ maximum and the safe ≳2 M☉ observational threshold, but assigns the mass result to prior Brown–Bethe calculations and anchors kaon condensation in HLS work (../brown-prl.txt:25-45). Its own operational statement is that a ≳2 M☉ neutron star falsifies VM/HLS and consequently kaon condensation (../brown-prl.txt:42-45); for the broader BB/CNS scenarios it says only “serious obstacle” (../brown-prl.txt:233-237). Thus the calibrated claim is produced by a borrowed theoretical chain rather than both number and threshold being derived in this paper.
+contested: no — the receipts do not disagree, and W_BORROWED does not contradict §0’s instrument-chain scope or its no-pinned-challenge statement.

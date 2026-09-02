@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: Kerlick/Hehl–Datta Dirac-torsion result (SOURCE lines 68-74); asserted average ⟨s²⟩=3n²/4 (SOURCE lines 75-83); closed FLRW ansatz imported “as in [16]” (SOURCE lines 100-108); ultrarelativistic equilibrium closure (SOURCE lines 118-121)
+The Dirac-torsion effective source is developed through SOURCE lines 38-83 and then inserted into an assumed closed FLRW background at lines 100-108. The reduced evolution yields only a cusp-like reversal, explicitly jumping from −v to +v (SOURCE lines 139-145), without a derived regular matching across it. Thus there is real background algebra, but the cosmological geometry, macroscopic averaging, and load-bearing bounce continuation are asserted or imported. That combination warrants a mixed construction rather than a wholly derived one.
+contested: yes — the deep-audit seats proposed different derivations for the printed v_ant/Ω discrepancy, although both agreed on the mixed consistency-level structure.

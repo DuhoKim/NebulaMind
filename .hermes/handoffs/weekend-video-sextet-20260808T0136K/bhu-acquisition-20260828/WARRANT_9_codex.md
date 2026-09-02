@@ -1,0 +1,4 @@
+W_ROUTE_NAMED_ONLY
+borrowed_inputs: random-spin averaging (SOURCE lines 74-75); unpolarized-spin relation s²=(ℏcn)²/8 (SOURCE lines 90-93); closed FLRW ansatz (SOURCE line 77); WMAP, H₀, Ω_R, and relic-neutrino density inputs (SOURCE lines 140-143); Kerr-radius relation and comparison model (SOURCE lines 243-249)
+The prospect is explicitly named: a rotating parent should supply a preferred direction, Kerr-radius corrections could couple to other fields, and that coupling might verify the black-hole origin (SOURCE lines 243-249). The paper derives no such correction, coupling, observable, sign, amplitude, or instrument response. Its numerical background instead uses present cosmological and neutrino inputs (SOURCE lines 140-145). The theory-to-observation route is therefore only verbal, not a derived connection.
+contested: no — both deep-audit seats agreed that the route is named but unconnected.

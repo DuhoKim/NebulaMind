@@ -1,0 +1,4 @@
+W_UNDERIVED
+borrowed_inputs: none
+Equation (33) supplies only an order-of-magnitude Cartan-radius scaling (../bhu-reading-20260823/sources/0910.1181_clean.txt:318-325). The paper then estimates ρ_Ce ≈10^51 kg m^-3 (lines 359-360) and, without an intermediate equation, states that this density gives a minimum black-hole mass ≈10^16 kg (lines 368-369). The publisher version repeats the same unsupported transition word-for-word (../bhu-reading-20260823/sources/poplawski_plb690_vor_clean.txt:625-633,662-667). Because neither held version derives the load-bearing density-to-mass connection, the printed floor is stated rather than derived.
+contested: no — both named receipts agree the floor is unreproduced/underived; their cautions about non-exhaustiveness prevent calling it erroneous and match §0.

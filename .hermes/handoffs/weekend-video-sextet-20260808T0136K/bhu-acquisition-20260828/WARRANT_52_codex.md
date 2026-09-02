@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: cited EC spin-fluid closure (SOURCE lines 35-46); ultrarelativistic equilibrium and Standard-Model state counts (SOURCE lines 111-113); assumed closed branch (SOURCE lines 134-136); Λ and T_eq inputs (SOURCE lines 408-412, 459-468)
+Inside the selected closed branch, the paper derives xy=C (SOURCE lines 170-179) and the turning-point discriminant C≥√(8/9) (SOURCE lines 186-218). It likewise derives the late no-recollapse bound after inserting Λ and equality temperature (SOURCE lines 472-487). But “closed” is assumed before this algebra (SOURCE lines 134-136), and the effective spin fluid is cited rather than derived (SOURCE lines 35-46). The result is therefore a derived background/existence calculation attached to asserted cosmological and microphysical links.
+contested: no — both deep-audit seats agreed on the derivation and its conditional closed-branch scope.
