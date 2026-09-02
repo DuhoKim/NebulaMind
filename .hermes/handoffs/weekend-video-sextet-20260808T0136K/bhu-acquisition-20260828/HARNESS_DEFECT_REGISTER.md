@@ -1525,3 +1525,19 @@ receipts in hand — and the gate brief should explicitly instruct: "hunt for cl
 rounds that survived into the text." That instruction is what caught eight of the nine here.
 Revision 2 repaired all findings and re-gated `WRITEUP_SOUND` with zero new findings
 (`FREEDOM_MAP_GATE_codex.md`, `FREEDOM_MAP_REGATE_codex.md`).
+
+### 1av — THE SHELL'S WORKING DIRECTORY DRIFTED AND A WHOLE SEAT POLL LANDED IN THE REPO ROOT
+
+**2026-09-02 16:1x KST (Tori, Fable 5.1), caught by the fourth seat.** The adjudication brief for
+entries 23–27 and three seats' vote files (codex, agy, kimi) were written to the repository root, not
+the lane directory. Cause, verified: my commit chains run `cd <repo root> && git …`, and the harness
+persists the working directory between calls, so every later call that relied on "the lane dir is
+where I am" ran from the root. The three seats were dispatched with `-C "$PWD"` / `--add-dir "$PWD"`
+= root; they found the receipts by search (their line citations are correct) — but only the
+Claude-seat, which was given the lane path explicitly and found no brief there, exposed the drift by
+refusing to guess. Files moved into the lane (`mv`, contents untouched); no commit was affected.
+
+**The rule.** Never rely on a persisted working directory. Every lane file operation names the lane
+directory by absolute path (a `$L=…` variable at the top of the command), and every seat dispatch
+passes that absolute path. A seat that reports "file not found" is a control, not an obstacle
+(cf. §1aq-CORR: positive control first) — its report is what caught this.

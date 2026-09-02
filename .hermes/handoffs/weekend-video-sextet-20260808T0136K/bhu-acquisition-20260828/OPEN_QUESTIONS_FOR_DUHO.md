@@ -6,7 +6,16 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (16:00) — Do the phase (b) numbers change how we file Gaztañaga's 60° cutoff (entries 23–27)?
+## ✅ RESOLVED 2026-09-02 (16:2x) — delegated by Duho ("ask as various models as possible and decide on your own"); Tori ruled (a) after a unanimous four-model poll
+
+codex, agy, kimi and a fresh Claude context all voted (a). Applied: entries 23–27 stay
+QUALITATIVE-DIRECTIONAL, each annotated with a dated Phase (b) map; four repairs to my own draft
+adopted (the "before the data" claim was wrong — the defensible word is non-circular; the ~15× belongs
+to the lane's completions; L466 is not an amplitude concession; "NOT yet calibrated" → "NOT
+CALIBRATABLE from the papers"). Ruling and poll in `INTERP_RULING_23_27_20260902.md`. Nothing open.
+*(Original packet below, kept for the record.)*
+
+## ⏳ SUPERSEDED (16:00) — Do the phase (b) numbers change how we file Gaztañaga's 60° cutoff (entries 23–27)?
 
 *(Ordered by you in direct chat: "start the phase (b) interpretation packet for 23–27". Gated `PACKET_SOUND_WITH_REPAIRS` by codex; full file `PHASEB_INTERPRETATION_PACKET_23_27_20260902.md`.)*
 
