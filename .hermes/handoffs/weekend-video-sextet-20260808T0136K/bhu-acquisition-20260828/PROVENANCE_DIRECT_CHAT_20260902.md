@@ -23,3 +23,5 @@ what closes it. Any future pane-typed ruling is filed here the same way until co
 | ~22:44 | `RELAY FROM DUHO: a for all three` (typed into the pane) | rulings on the three open packets: entry 59 added, entry 45 to context, entry 4 domain narrowed | commit aadf821c2 — **CONFIRMED by Blanc 22:58 KST, Duho verbatim "yes it was me"** |
 
 **Confirmation (Blanc, chat channel, 2026-09-02 22:58 KST), Duho verbatim: "yes it was me."** All four pane-typed rulings of the day are now chat-confirmed.
+
+| 2026-09-03 ~01:10 KST | pane | "RELAY FROM DUHO: a — keep tier, carry the warrant flag" | packet 01:00 (warrant axis, entries 6, 23–27) | applied (reversible annotation; no tier moved) | PENDING Blanc confirmation |

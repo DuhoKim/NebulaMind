@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-03 (01:00) — the warrant audit finds the 60° cutoff's DIRECTION is assumed, not derived (entries 23–27): does your "derived direction only" rule reach the warrant axis?
+## ⏳ RESOLVED 2026-09-03 (01:00 packet) — Duho: "a — keep tier, carry the warrant flag" (pane relay, provenance row pending Blanc confirmation). Was: YOUR CALL — the warrant audit finds the 60° cutoff's DIRECTION is assumed, not derived (entries 23–27): does your "derived direction only" rule reach the warrant axis?
 
 **What surfaced.** Two blind seats agree on entry 23's warrant cell: the angular SCALE (about 60°) is derived
 non-circularly, as you ruled yesterday, but the DIRECTION — that correlations are suppressed beyond it — never comes
