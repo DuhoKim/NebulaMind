@@ -52,3 +52,23 @@ language. Interpretation beyond the percentile table returns to Duho.
 The pipeline is built once, then a second seat reruns it independently from this pre-registration
 (not from the first implementation). Disagreement beyond MC error → third-seat adjudication with
 sanity gates mandated, per the established pattern.
+
+---
+
+## AMENDMENT 1 — 2026-09-02, BEFORE any observed byte was opened
+
+**Bin width 1° → 3°.** Reason, discovered during pipeline validation and not by looking at data: the
+production estimator evaluates the pair sums through spherical harmonics truncated at
+ℓ_max = 3·Nside − 1 = 191, which resolves angular structure down to ~0.94° — so 1° bins sit at the
+smearing limit and the harmonic route measurably disagrees with literal pair-counting. At 3° bins
+the two agree on `S_1/2` to 0.09–0.6% (exactness test, Nside 64, chunked brute force, committed
+output). 3° binning is irrelevant to an ℓ ≲ 20-dominated statistic. Also fixed pre-data:
+`anafast(..., iter=0)` (pure quadrature a_ℓm, which the pair-count algebra requires), and C1's
+reference formula (first version mis-weighted C_ℓ by an extra (2ℓ+1)/4π and failed by 100× — the
+control caught it, receipt in the pipeline's revision note).
+
+**Validation state at amendment time:** exactness PASS (worst S_1/2 deviation 6.2e-3); C1 PASS
+(map-route vs χ²-route medians 3.3% apart at n=2000, tail probabilities 0.30% vs 0.14%, both
+consistent with the analytic ~0.125%). C2 (literature-value reproduction) and C3 (reductio in
+reporting) remain to run once the mask and map arrive. The five model rows are exported with a
+regression gate reproducing every gated S_1/2 (worst 4.7e-5 relative): `phaseB_model_cls.npz`.
