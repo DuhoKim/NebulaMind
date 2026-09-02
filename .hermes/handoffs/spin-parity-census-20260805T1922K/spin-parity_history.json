@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "bulk brick download authorized (option 1)"
+    "topic": "mini-prereg V7 signing intent \u2014 validation only, not GZ calibration of the flagship"
   },
   "humanFeedback": {
     "captured": true
@@ -630,6 +630,54 @@
       "feedbackText": "1",
       "changed": {
         "summary": "BULK IMAGE DOWNLOAD AUTHORIZED (option 1 of the two I put to him): a NEW scoped authorization superseding the single-probe limit of R-C (direction #32), running under the ruled NERSC coadd path (R-A, #31) with the ratified geometry (R-B, #36), receipted with the same custody discipline as everything else. Scope as I framed it and he selected: the ~148 GB / 12,117-brick closure for the 49,211-object mask, resumable, with published per-brick SHA-256 verified on arrival. This authorizes ACQUISITION ONLY - no cutout production, no instrument inference, no chi measurement, no handedness label; those remain behind their own gates and the calibration limit is unchanged by having the images."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "re-open stage two now that the data is here",
+      "changed": {
+        "summary": "Stage two (the image-analysis half), closed 2026-09-01 at the calibration wall, is RE-OPENED following completion of the bulk brick acquisition (12,117 bricks / 143.37 GiB, all SHA-verified). Stated plainly on re-opening: the wall was human-labelling capacity, not data access, so local pixels do not by themselves dissolve it \u2014 frozen V134 line 417 halts pre-unblinding with INCONCLUSIVE-BY-CALIBRATION on any a_LB_b < 0.85. What the data DOES change is that three previously-argued claims become measurable: (1) the exact GZ1 x 49,211-mask overlap, previously asserted to lack coverage; (2) whether the GZ1 screen-relative sign can be anchored empirically to our East-of-North convention by rendering through our own ratified geometry; (3) how far the pipeline runs with zero human labels. codex dispatched to answer all three from the frozen text, defaulting to DOES-NOT-REOPEN unless evidence overturns it. No pixels processed; the cutout/instrument/chi/label boundary stays gated."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "measure galaxy spin for overlapped galaxies with Galaxy Zoo and compare with GZ label",
+      "changed": {
+        "summary": "Step-1 reconnaissance ONLY executed (no spin measured, no chi, no cutouts, no handedness label read, any tier): codex recon CODEX_GZ_SPIN_RECON_20260902.md. GZ1 confirmed as the only human-chirality release (later trees measure winding tightness; the 8.67M GZ DESI catalogue is model predictions). Three-tier disjoint overlap at 1.0 arcsec: Tier A inside the frozen 49,211 mask (burns the blind) 16,600 objects / 363 high-confidence; Tier B parent-but-quality-cut (blind status needs a ruling) 8,465 / 346; Tier C outside the parent (burns nothing) at least 542,865 / at least 22,693 high-confidence. Tier C needs ~17,577 additional bricks ~208 GiB, NOT covered by direction #52 and not started. codex recommends (i) measure only outside the frozen sample under a new signed preregistration, deliverable = empirical sign determination + signed agreement rate, sample-split, phrased as inter-method concordance never accuracy. Measurement itself HELD pending Duho's blind ruling."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "RULING",
+        "categories": []
+      },
+      "feedbackText": "as Hwao's rec",
+      "changed": {
+        "summary": "Duho selects choice 2 of the four GZ options exactly as presented (verify, then go): (a) agy dispatched to independently recompute the Tier B and Tier C counts (Tier A already blind-doubled); (b) on agy confirmation the (i) path is ADOPTED \u2014 Tier-C-only measurement under a NEW signed mini-preregistration, P0 blind untouched \u2014 and the ~208 GiB Tier-C brick acquisition is AUTHORIZED to start without a further round-trip; (c) any divergence stops the lane and reports through Blanc. NOT ruled: Tier B blind status \u2014 Tier B stays held and excluded from measurement. Tier A stays untouched. The mini-prereg text itself still returns to Duho for signature before any measurement runs; this pre-authorization covers verification plus the download only."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "so i wated to use GZ to calibrate your spin measurements, and use the whole sample to measure spin parity. is that what the doc saying? / i'm sorry not the whole sample but your carefully selected sample with enough spread / (offered a: sign as validation only, b: hold + amendment memo, c: both) a",
+      "changed": {
+        "summary": "Signing intent filed in MINI_PREREG_CEREMONY_PACKET_20260902.md: Duho signs mini-prereg V7 (sha a7cdc045, agy SIGNABLE after 7 rounds) as a Tier-C inter-method validation study only. Blanc's answer on record: the doc does NOT calibrate a-hat or feed the flagship (\u00a714.4-14.6); that path would need a V134 amendment. No amendment memo ordered; nothing feeds the flagship; ceremony steps 1-4 by Duho; 'mini-prereg signed' arrives as a Blanc relay; authorizes what was presented, nothing wider."
       }
     }
   ]

@@ -81,3 +81,34 @@ disagrees with its seal receipt voids the run).
 
 Ruling #55 scope unchanged throughout: Tier-C only; P0 blind and Tier A
 untouched; Tier B held; signature before any measurement.
+
+## Signing intent — clarifying question and ruling (filed 2026-09-02 17:2x KST)
+
+Relayed by Blanc from Duho's chat channel at 17:16 KST, after the V7 SIGNABLE
+signature reading. Filed verbatim so the intent behind the signature is on the
+record.
+
+**Duho's clarifying question (verbatim):** "so i wated to use GZ to calibrate
+your spin measurements, and use the whole sample to measure spin parity. is
+that what the doc saying?" — then corrected: "i'm sorry not the whole sample
+but your carefully selected sample with enough spread".
+
+**Blanc's answer (summary, on the record):** NO. V7 measures Tier-C
+inter-method concordance only. §14.4–14.6 forbid calibrating â, supplying
+labels to the flagship, or transferring anything to Tier A, Tier B, or the
+parent run. The calibration path Duho described would require an amendment to
+the signed parent preregistration V134, which excludes external catalogues
+from â at any count.
+
+**Options presented:** (a) sign V7 as the validation it is; (b) hold the
+signature and have Hwao write the V134 amendment path (what changes, what it
+costs in blindness, referee prospects); (c) both.
+
+**Duho's ruling (verbatim):** "a".
+
+**Effect:** Duho signs V7 as a validation study and nothing more. No amendment
+memo is ordered. Nothing from this study feeds the flagship measurement, the
+parent run, or â. He performs ceremony steps 1–4 himself; his "mini-prereg
+signed" arrives as a Blanc relay. This authorizes what was presented in this
+packet, nothing wider. The calibration question is not closed by this ruling;
+it is simply not opened.
