@@ -6,7 +6,9 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (21:20) — entry 4 (Knutsen 2009): the obstruction you stamped this afternoon is narrower than its wording
+## ✅ RESOLVED 2026-09-02 (22:45) — Duho "a for all three": entry 4 domain narrowed to the third-seat wording, tier kept
+
+## ⏳ SUPERSEDED (21:20) — entry 4 (Knutsen 2009): the obstruction you stamped this afternoon is narrower than its wording
 
 **What surfaced.** The deep audit split, and a third seat with mandated sanity checks ruled against the stamped
 wording. Knutsen's own equations at Pathria's boundary do not force a static sphere: that reading divides by a
@@ -32,7 +34,9 @@ mine: you stamped this domain at 15:17 today; changing a stamped domain or tier 
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (19:45) — entry 45 (Firouzjahi 2022, white-hole Hawking radiation): does it belong in the base layer?
+## ✅ RESOLVED 2026-09-02 (22:45) — Duho "a for all three": entry 45 moved to Appendix A as A-45
+
+## ⏳ SUPERSEDED (19:45) — entry 45 (Firouzjahi 2022, white-hole Hawking radiation): does it belong in the base layer?
 
 **What surfaced.** The deep audit found the paper is a quantum-field calculation on the white-hole half of an
 eternal black hole. Its own words: the analysis "may not be directly relevant to observable Universe" and is "a
@@ -50,7 +54,9 @@ Why it cannot be mine: base-layer membership was gate-built on 08-19 and 08-22; 
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (18:45) — a paper the corpus missed: Desai & Popławski 2016 computes the torsion bounce's CMB numbers
+## ✅ RESOLVED 2026-09-02 (22:45) — Duho "a for all three": Desai & Popławski 2016 added as entry 59, CONSISTENCY-ONLY
+
+## ⏳ SUPERSEDED (18:45) — a paper the corpus missed: Desai & Popławski 2016 computes the torsion bounce's CMB numbers
 
 **What surfaced.** Auditing entry 52 (Unger & Popławski 2019), both seats found its one observation-facing
 sentence delegates to another paper: *"This expansion also predicts the cosmic microwave background radiation

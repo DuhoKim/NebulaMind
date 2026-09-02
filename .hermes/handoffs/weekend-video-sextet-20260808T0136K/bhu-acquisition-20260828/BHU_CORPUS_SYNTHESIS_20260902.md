@@ -29,7 +29,7 @@ those bins.
 - **CONSISTENCY-ONLY (30):** shows the picture can be made to agree with what is known; no
   distinguishing observational statement. The bulk of the corpus.
 - **THEORETICAL-OBSTRUCTION (4):** a proof that a construction cannot work in a stated domain, owned
-  by the paper that proves it (ownership-of-proof rule, 2026-08-29). Entries 22, 5, 48, 4.
+  by the paper that proves it (ownership-of-proof rule, 2026-08-29). Entries 22, 5, 48, 4 (4's domain narrowed 2026-09-02 to what its algebra derives).
 
 The record insists on one discipline worth repeating here: **tier count is not live-falsifier
 count.** "Five calibrated" describes the shape of five claims; whether the family can still be killed
@@ -148,7 +148,7 @@ universe, Λ = 3/r_S²) states the same smoking gun and sits in the same bin.
   from parent to interior; entry 39 re-audited 2026-09-01, tier confirmed by two seats), the
   Smoller–Temple shock-wave interiors (36, 37, 38, 57 — theorem-grade GR with no stated falsifier),
   the Dymnikova regular interiors (18, 19, 20, 55), Frolov–Markov–Mukhanov (13, 14), the
-  baby-universe branch (15, 17, 42, 43), holographic cosmology (28), white-hole cosmology (45), the
+  baby-universe branch (15, 17, 42, 43), holographic cosmology (28), the Popławski surrogate-inflaton paper (59, added 2026-09-02), the
   false-vacuum bubble papers (49, 50), and the founding-era identifications (2, 3, 46). Five of these
   (36, 37, 38, 40, 41) carry BLIND-FLAGGED, NOT ADJUDICATED notes from a sweep that failed its own
   control; the flags are candidates from a biased instrument, not findings.
@@ -183,8 +183,8 @@ blind-double, verify against the pinned source, gate the synthesis, quote the de
   the one split. **Every tier held.** Old blind flags on 36, 37, 40, 41 closed as not surviving; the
   Easson obstruction mapped onto 19 and 20 (inapplicable to both); non-reproducing printed numbers found in
   Popławski 2010/2012/2016 (entries 9, 10, 11) and Smoller–Temple 2000; one corpus omission surfaced
-  (Desai & Popławski 2016, packet) and one membership question (entry 45, packet); one stamped domain
-  found narrower than its wording (entry 4, packet). Not audited at depth: entries 18 (Dymnikova 1992
+  (Desai & Popławski 2016 — now entry 59) and one membership question (entry 45 — now Appendix A-45); one
+  stamped domain found narrower than its wording (entry 4 — narrowed). All three ruled "a" by Duho, 22:44 KST. Not audited at depth: entries 18 (Dymnikova 1992
   GRG) and 56 (Gaztañaga 2023 MNRAS Lett.), which have no clean text pinned — acquisition targets.
 - **The corpus-wide warrant audit** has not been done; the warrant column covers the five calibrated
   rows only.

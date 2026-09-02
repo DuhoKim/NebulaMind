@@ -19,3 +19,5 @@ Note for the record: the first line carried a "RELAY FROM DUHO" prefix although 
 pane, not from Blanc. It was treated as Duho's direct chat at the time (the prefix alone does not
 confer authority — see the input-box spoofing note in the lane memory); the confirmation above is
 what closes it. Any future pane-typed ruling is filed here the same way until confirmed.
+
+| ~22:44 | `RELAY FROM DUHO: a for all three` (typed into the pane) | rulings on the three open packets: entry 59 added, entry 45 to context, entry 4 domain narrowed | this commit — **awaiting Blanc's confirmation**, acted on per the standing practice for pane-typed rulings |

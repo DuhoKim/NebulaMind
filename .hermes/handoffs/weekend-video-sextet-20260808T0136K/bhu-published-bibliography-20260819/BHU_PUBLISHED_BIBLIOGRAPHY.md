@@ -23,8 +23,8 @@ Otherwise one theorem makes an obstruction entry of every paper that cites it.
 Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 **QUALITATIVE-DIRECTIONAL** / **CONSISTENCY-ONLY** / **PROSPECT** (points at other instruments).
 
-**Counts: 58 verified-published entries — 51 BHU papers (1–28, 31, 36–57) and 7 support entries
-(29–30, 32–35, 58); 8 appendix items plus 5 pending-verification / ruled-context items. Numbering note: additions
+**Counts: 59 numbered entries — 51 BHU papers (1–28, 31, 36–44, 46–57, 59) and 7 support entries
+(29–30, 32–35, 58); 9 appendix items (A-45 moved from the base layer 2026-09-02 on Duho's ruling) plus 5 pending-verification / ruled-context items. *(2026-09-02: entry 59 Desai & Popławski 2016 added, entry 45 moved to context — both on Duho's "a for all three"; the class tally is unchanged at 5/8/4/30/4 = 51 because one CONSISTENCY-ONLY paper left and one entered.)* Numbering note: additions
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
@@ -226,18 +226,7 @@ Testability: **THEORETICAL-OBSTRUCTION** *(re-tiered from CONSISTENCY-ONLY 2026-
 ruling, verbatim "a for both", after both sweep seats independently returned
 `CHALLENGE_THEORETICAL-OBSTRUCTION` on the full text; ownership-of-proof satisfied — Knutsen
 derives the necessary-and-sufficient smooth-matching conditions himself and applies them.)*
-**Domain, scoped per the entry-5 convention:** *for an FLRW perfect-fluid interior matched smoothly
-to the vacuum exterior at Pathria's boundary choice r_b = 1, the junction forces the fluid sphere
-to be static with its surface merged into the event horizon — "Thus this particular model cannot
-describe our expanding universe" (p. 277, pinned text lines 1063–1088). Shell-bearing junctions
-and other boundary choices are not excluded.* A matched pair with entry 5 (its sequel note), which
-holds the null-shell no-go for the same Pathria construction.
-Record: **new to us** (surfaced by this session's Crossref
-search, absent from packet and sweep). Audit-worthiness: **discharged** — the due-diligence read
-happened 2026-09-02 and produced the re-tier.
-**FULL TEXT ACQUIRED + PINNED 2026-09-02** (`knutsen_2009_gravcosmol15_273{.pdf,_clean.txt}`, sha256 `63c21258`). **Blind-double sweep: BOTH seats returned `CHALLENGE_THEORETICAL-OBSTRUCTION`** — Knutsen derives the necessary-and-sufficient smooth-matching conditions himself and, applying them to Pathria's boundary choice r_b = 1, proves "the fluid sphere is static… Thus this particular model cannot describe our expanding universe" (quote verified, pinned text lines 1063–1088; ownership-of-proof satisfied). Parallel in shape to entry 5's re-tier. **TIER UNCHANGED PENDING DUHO** — filed in OPEN_QUESTIONS_FOR_DUHO.md.
-
-**5. S. Khakshournia (2010). "A note on Pathria's model of the universe as a black hole." Grav. Cosmol. 16, 178–180.**
+**Domain, scoped per the entry-5 convention — NARROWED 2026-09-02 on Duho's ruling (a) to the packet of 21:20 (third-seat wording, `ENTRY4_THIRD_SEAT_ADJUDICATION.md`):** *an FLRW perfect-fluid interior matched smoothly to a Λ-vacuum (Kottler) exterior forces dust and m = (4πG/3c²)ρa³r_b³ for every r_b (eqs. 36, 40–43); at Pathria's r_b = 1 the matching forces ṪB = 0, i.e. B(A) = −Ȧ²/c² ≤ 0: the fluid surface is never in the exterior static region (B > 0) and touches the horizon only at maximum expansion A_max = R_s. No smooth matching exists with the surface in the T-timelike exterior assumed at Knutsen's eq. 24. Shell-bearing junctions and other boundary choices are not excluded.* *(Dead wording, stamped 15:17 and narrowed 22:4x the same day: "…forces the fluid sphere to be static with its surface merged into the event horizon — 'Thus this particular model cannot describe our expanding universe'" — the "static" clause divides ṪB = 0 by Ṫ under an assumption the result violates; the surviving branch is a non-static Oppenheimer–Snyder ball. The residual realises Pathria's a_max = R_s identity as the junction condition; the tier stays THEORETICAL-OBSTRUCTION by Duho's ruling, with re-tiering explicitly declined.)*
 **Deep audit (2026-09-02, STEP 3 queue draw #22; blind double codex + claude-seat, both `AUDIT_HOLDS_THEORETICAL_OBSTRUCTION`; `bhu-acquisition-20260828/ENTRY5_DEEP_RECONCILIATION_20260902.md`):** the jump is computed in the paper and reproduces — [K_uu] = −2πρa ≠ 0 (eqs. 14, 16), Λ-independent, so nonzero across the whole stamped range; the shell's p = ρa/4 (eq. 17) is the paper's value under its χ = π/2 evaluation *(as computed in the paper's evaluation at χ = π/2; "not smooth" survives every extension)*; the paper excludes neither shell-bearing nor timelike realisations. **Domain exactly as stamped; tier UNCHANGED.**
 DOI 10.1134/S0202289310020131 — VERIFIED (Crossref: Gravitation and Cosmology, v16, p178-180, 2010-04).
 (arXiv:1412.0105 is the posting of this published note.)
@@ -650,6 +639,30 @@ DOI 10.1088/1361-6382/ab5cb9 — VERIFIED (Crossref: CQG, v37, 025011, 2019). Ad
 Testability: **CONSISTENCY-ONLY**
 **OBSTRUCTION CONTENT FOUND 2026-08-30** (`b37` census; found by CGATE on a full read, missed by my triage, verified in the source directly): the abstract's headline result is an existence exclusion — *"a closed universe exists only when {a function of scale factor and temperature} is higher than a particular threshold"* — derived from the paper's Einstein–Cartan Friedmann system, refutable by exhibiting a sub-threshold closed solution, not by measurement. Open and flat universes are unrestricted. **QUESTION 7 RULED 2026-08-30** (Duho's instruction, verbatim: "answer question 7"): **tier stays CONSISTENCY-ONLY** — and the ruling's first-stated basis was corrected by its implementation gate (CGATE_Q7, Q7_IMPL_REFUTED_THRESHOLD_CONFLATION; disposition expressly unchanged). **The corrected picture (CGATE_Q7, derived from both papers' equations):** there are TWO thresholds and my ruling text conflated them. The *existence* inequality — entry 52's (33), C > √(8/9); entry 53's (24), C > e^(−1/2), below which 53 expressly says "the universe would not exist" — bounds whether a nonstationary closed EC trajectory exists AT ALL, and **CGATE_B37's "no dynamical closed-universe solution exists below it" stands at full strength; my proposed cyclic-not-absent refinement is WITHDRAWN** (the cycling belongs to the separate, far larger *dark-energy* threshold — 52's (51) — which an above-existence universe must reach to escape recollapse; "this threshold" in 52's closing refers to (51), not (33), and 53 cites rather than derives that later bound). **The tier disposition survives on the operative-contribution weighing:** both closings carry construction-level rhetorical emphasis (the cyclic universe-in-a-black-hole scenario) *alongside* the exclusion — 53's Conclusions restate it prominently — and the exclusion delimits the papers' own constructed EC family, the entry-37 disposition, rather than being the sole operative point. The theorems stay claim-level here, now stated at true strength. Entry 53 additionally derives the DOUBLE bounce structure.. READ 2026-08-23 (Tori). CORRECTION: this is Cubero & POPŁAWSKI — same UNH group, companion to entry 52, NOT an independent line as the triage-derived record here briefly claimed. New structural result: the scale-factor bounce is double, with a single temperature bounce and a little crunch between.
 Record: triage pick #7; a same-group companion analysis (Cubero & Popławski) — the 'independent line' triage claim was wrong and is corrected above.
+
+**59. S. Desai & N. J. Popławski (2016). "Non-parametric reconstruction of an inflaton potential from Einstein–Cartan–Sciama–Kibble gravity with particle production." Phys. Lett. B 755, 183–189.**
+DOI 10.1016/j.physletb.2016.02.014 — VERIFIED (Crossref: PLB, v755, p183-189, 2016-04). **Added 2026-09-02 on Duho's
+ruling (a) to the packet of 18:45**, surfaced by the entry-52 deep audit (entry 52's and entry 53's "predicts the CMB
+parameters consistent with Planck 2015, as was shown in SD" delegate to this paper). arXiv 1510.08834v1 pinned
+(`bhu-reading-20260823/sources/desai_poplawski_2016_plb755_183_arxiv1510.08834{.pdf,_clean.txt}`, sha256 `2687f65d`);
+the Elsevier version of record is still to be fetched through the campus route.
+Claim: quantum particle production near the last torsion bounce drives >60 e-folds of near-exponential expansion;
+an Ellis–Madsen inflaton potential is reconstructed from the resulting a(t) and the tensor-to-scalar ratio, scalar
+spectral index and its running are computed from it "as functions of the production coefficient", consistent with
+Planck 2015.
+Testability: **CONSISTENCY-ONLY** *(stamped by Duho 2026-09-02 on the lane's recommendation after a blind double,
+codex `UNDETERMINED_NEEDS_DERIVED_TORSION_SPECTRUM` / claude-seat `CANDIDATE_CONSISTENCY_ONLY` — same finding, label
+split; `bhu-acquisition-20260828/CANDIDATE_SD2016_RECONCILIATION_20260902.md`)* — the branch's only published
+computation of CMB observables, and they are a surrogate's: the torsion universe's own perturbations are deferred by
+the authors ("we shall address this in a future publication", lines 283–306); the numbers are read off canonical
+slow-roll formulas for a reconstructed scalar with the same background. **Surrogate arithmetic, carried as annotation,
+not as the mechanism's prediction:** n_s ≈ 0.96 at N = 20–25 (LIVE, −1.2σ vs Planck 2018 0.9649 ± 0.0042) but ≈ 0.99
+at the conventional N = 50–60 (FIRED, +6.0σ; the paper's own "about 6σ" vs Planck 2015 computes to 3.7σ); r ≈ 0.01–0.03
+and running ~ −10⁻³ LIVE but non-discriminating; β free (1 − β/β_cr ≈ 1.7×10⁻⁴ for ~60 e-folds); Table I's 0.965 is
+β/β_cr, not n_s. The missing item is a number-generating derivation (the torsion spectrum and an in-model N), which the
+lane may not supply. If the authors' promised torsion-perturbation paper exists, it is the next acquisition target.
+Record: **new to the base layer 2026-09-02**; belongs with the Popławski spine (entries 8–12, 39–41, 51–53).
+Audit-worthiness: **done** (deep audit 2026-09-02).
 
 ## 4. The baby-universe branch
 
@@ -1144,12 +1157,7 @@ BAO (n_s = 0.9665 ± 0.0038). **So the paper's ">5σ" is true and conservative.*
 instrument named*, invisible to the sweep's original vocabulary.
 Record: harvest #24; the 5D holographic/white-hole origin — the line the caption-era Afshordi identification traced back to.
 
-**45. "White hole cosmology and Hawking radiation from quantum cosmological perturbations." Phys. Rev. D 106, 123505 (2022).**
-**Deep audit (2026-09-02, STEP 3 queue draw #11; blind double codex + claude-seat, both `AUDIT_FLAG_MEMBERSHIP` with tier CONSISTENCY-ONLY holding; `bhu-acquisition-20260828/ENTRY45_DEEP_RECONCILIATION_20260902.md`):** a correct near-horizon Bogoliubov calculation on the white-hole quadrant of an eternal Schwarzschild manifold; the "departure from Planck" |C₁|² coth(πω̃/κ) (lines 827–830) rests on a free function C₁ whose natural value gives exactly Planck (lines 381–383) — a null cannot contradict it. **Membership flagged, not decided:** the paper says the analysis "may not be directly relevant to observable Universe" and is "a non-trivial example of quantum field theory in curved backgrounds" (lines 40–42), places "our part of the universe" in the black-hole exterior (line 657), and neither makes nor tests the corpus identification. Packet to Duho 2026-09-02 (a: move to support/context; b: keep). **Tier UNCHANGED.**
-DOI 10.1103/PhysRevD.106.123505 — VERIFIED (Crossref: PRD, v106, 2022-12). Added 2026-08-22 from the bibliography gate
-(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). QFT in the white-hole interior; Hawking radiation from cosmological-style perturbations. Reading revises the triage: not a universe-origin claim — family-adjacent; flagged for possible demotion to support, not unseated unilaterally.
-Record: harvest #7; a second published white-hole cosmology route.
+**45 — MOVED TO APPENDIX A (context, not base) 2026-09-02 on Duho's ruling (a) to the packet of 19:45.** Firouzjahi 2022, PRD 106, 123505: a white-hole QFT calculation on an eternal Schwarzschild manifold that neither makes nor tests the corpus identification (its own words: "may not be directly relevant to observable Universe"; "a non-trivial example of quantum field theory in curved backgrounds"). Both blind seats flagged membership; the 08-23 read had flagged it "family-adjacent". Number 45 is retired from the base layer, not reused. Full record now under Appendix A as **A-45**.
 
 ## 11. False-vacuum / laboratory child universes
 
@@ -1438,6 +1446,17 @@ spot-check.
 ---
 
 ## Appendix A — context, not base (excluded from the base layer, with reasons)
+
+**A-45 (MOVED FROM THE BASE LAYER 2026-09-02, Duho's ruling (a)).** The former entry 45, kept in full below as a white-hole method reference; tier language retained for the record only (it no longer counts in the class tally).
+
+**[A-45, formerly 45.] "White hole cosmology and Hawking radiation from quantum cosmological perturbations." Phys. Rev. D 106, 123505 (2022).**
+**Deep audit (2026-09-02, STEP 3 queue draw #11; blind double codex + claude-seat, both `AUDIT_FLAG_MEMBERSHIP` with tier CONSISTENCY-ONLY holding; `bhu-acquisition-20260828/ENTRY45_DEEP_RECONCILIATION_20260902.md`):** a correct near-horizon Bogoliubov calculation on the white-hole quadrant of an eternal Schwarzschild manifold; the "departure from Planck" |C₁|² coth(πω̃/κ) (lines 827–830) rests on a free function C₁ whose natural value gives exactly Planck (lines 381–383) — a null cannot contradict it. **Membership flagged, not decided:** the paper says the analysis "may not be directly relevant to observable Universe" and is "a non-trivial example of quantum field theory in curved backgrounds" (lines 40–42), places "our part of the universe" in the black-hole exterior (line 657), and neither makes nor tests the corpus identification. Packet to Duho 2026-09-02 (a: move to support/context; b: keep). **Tier UNCHANGED.**
+DOI 10.1103/PhysRevD.106.123505 — VERIFIED (Crossref: PRD, v106, 2022-12). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). QFT in the white-hole interior; Hawking radiation from cosmological-style perturbations. Reading revises the triage: not a universe-origin claim — family-adjacent; flagged for possible demotion to support, not unseated unilaterally.
+Record: harvest #7; a second published white-hole cosmology route.
+
+
 
 **A0 (VERIFIED 2026-08-23).** T. Rothman & G.F.R. Ellis, "Smolin's Natural Selection Hypothesis,"
 Q. J. R. astr. Soc. (1993) 34, 201–212. Verified against the ADS-hosted journal scan
