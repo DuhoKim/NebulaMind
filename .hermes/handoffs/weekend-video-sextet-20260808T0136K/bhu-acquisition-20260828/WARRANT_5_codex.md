@@ -1,0 +1,4 @@
+W_PROOF_OWNED
+borrowed_inputs: Barrabès–Israel null-shell formalism (SOURCE lines 49-55, 137-140)
+Khakshournia performs the application rather than merely citing its conclusion: induced-metric continuity supplies the matching conditions (SOURCE lines 98-106), then the paper calculates both transverse curvatures (SOURCE lines 137-168). Their angular components agree, while the uu jump is nonzero and yields a null shell with surface pressure (SOURCE lines 169-183). This proves, under the paper’s instantaneous null-horizon identification at maximum expansion, that Pathria’s FRW–Schwarzschild junction is not smooth and requires a shell (SOURCE lines 15-23, 191-197). The formalism is borrowed, but the no-go application and calculation are owned here.
+contested: no — the blind seats agreed that the paper proves this narrowly stamped null-junction obstruction; the cited Knutsen challenge concerns a timelike formulation (SOURCE lines 198-209).

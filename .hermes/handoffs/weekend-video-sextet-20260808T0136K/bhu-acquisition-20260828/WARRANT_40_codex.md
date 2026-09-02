@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: homogeneous closed-FLRW ansatz f(R)=-sin²R and r=a sin R (SOURCE lines 256-265); phenomenological particle-production law βH⁴ (SOURCE lines 346-349)
+The paper substitutes a chosen closed-FLRW form into the collapse equations and derives the resulting spin-fluid evolution (SOURCE lines 256-268). It also derives the conditional shear criterion: shear and fermion density scale alike, so initially dominant shear produces a singularity unless particle production changes the scaling (SOURCE lines 330-344). But homogeneity and closed geometry enter as an ansatz, while realistic inhomogeneous and rotating collapse remains open (SOURCE lines 413-419). The baby-universe construction therefore combines derived dynamics with asserted geometry and a phenomenological production closure.
+contested: no — both deep-audit seats agreed that the closed, shear-free construction is chosen and the tier remains consistency-only.

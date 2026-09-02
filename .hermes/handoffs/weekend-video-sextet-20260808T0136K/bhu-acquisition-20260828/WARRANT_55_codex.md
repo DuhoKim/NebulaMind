@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: asymptotic de Sitter Laurent-series ansatz (SOURCE lines 1229-1237); tuned coherent-state parameters and free spin j (SOURCE lines 903-915, 969-978, 1002-1006); Planck-2018 baryonic-mass and observed-Λ inputs (SOURCE lines 1140-1144)
+The Hamiltonian equations yield an asymptotically Schwarzschild–de Sitter interior after the quantum parameters are tuned, and the paper derives the corresponding asymptotic solution and Λ∝1/(ℓP²j) (SOURCE lines 969-1006, 1350-1358). But the asymptotic form is assumed, the spin remains free, and the our-universe value uses a proposed, not derived, renormalization plus observed baryonic mass and Λ (SOURCE lines 1130-1146). Thus the interior consistency is derived conditionally, while the cosmological bridge and numerical coincidence are asserted/imported.
+contested: no — both deep-audit seats agreed on the tuned derivation and the speculative status of the our-universe link.
