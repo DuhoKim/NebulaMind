@@ -44,6 +44,15 @@ class SealGateTests(unittest.TestCase):
     def _write_journal(self):
         (self.root / "journal.jsonl").write_text("".join(json.dumps(r) + "\n" for r in self.rows))
 
+    def failed_row(self, brick, verdict="FETCH-FAILED"):
+        if verdict == "FETCH-FAILED":
+            return {"brick": brick, "error": "OSError: synthetic", "url": "synthetic://" + brick,
+                    "utc": "2026-09-01T23:59:59Z", "verdict": verdict}
+        row = dict(next(row for row in self.rows if row["brick"] == brick), verdict=verdict)
+        if verdict == "OK-NO-PUBLISHED-SHA":
+            row["published_sha256"] = None
+        return row
+
     def fetcher(self, url, timeout):
         return self.payloads[url]
 
@@ -167,11 +176,45 @@ class SealGateTests(unittest.TestCase):
         self._write_journal()
         self.assert_refusal(self.run_fixture(), "acquisition_set_incomplete")
 
-    def test_non_ok_without_later_ok(self):
-        bad = dict(self.rows[1], verdict="FETCH-FAILED")
+    def test_fetch_failed_without_later_ok_refuses(self):
+        self.rows = [row for row in self.rows if row["brick"] != self.names[1]]
+        self.rows.append(self.failed_row(self.names[1]))
+        self._write_journal()
+        self.assert_refusal(self.run_fixture(), "non_ok_without_later_ok")
+
+    def test_fetch_failed_then_later_ok_passes(self):
+        self.rows.insert(1, self.failed_row(self.names[1]))
+        self._write_journal()
+        self.assertEqual("PASS", self.run_fixture()["status"])
+
+    def test_ok_no_published_sha_without_later_ok_refuses_as_non_ok(self):
+        bad = self.failed_row(self.names[1], "OK-NO-PUBLISHED-SHA")
+        self.rows = [row for row in self.rows if row["brick"] != self.names[1]]
         self.rows.append(bad)
         self._write_journal()
         self.assert_refusal(self.run_fixture(), "non_ok_without_later_ok")
+
+    def test_sha_mismatch_quarantined_then_later_ok_passes(self):
+        self.rows.insert(1, self.failed_row(self.names[1], "SHA-MISMATCH-QUARANTINED"))
+        self._write_journal()
+        self.assertEqual("PASS", self.run_fixture()["status"])
+
+    def test_five_key_ok_is_malformed(self):
+        row = self.failed_row(self.names[1])
+        row["verdict"] = "OK"
+        self.rows.append(row)
+        self._write_journal()
+        self.assert_refusal(self.run_fixture(), "malformed_journal_schema")
+
+    def test_ok_with_published_null_is_malformed(self):
+        self.rows[1]["published_sha256"] = None
+        self._write_journal()
+        self.assert_refusal(self.run_fixture(), "malformed_journal_schema")
+
+    def test_unknown_verdict_is_malformed(self):
+        self.rows[1]["verdict"] = "UNKNOWN"
+        self._write_journal()
+        self.assert_refusal(self.run_fixture(), "malformed_journal_schema")
 
     def test_process_running(self):
         self.assert_refusal(self.run_fixture(process_checker=lambda: True), "acquisition_process_running")

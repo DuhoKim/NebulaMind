@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draft V9 Tier-C freeze-time seal gate.  It never opens image pixels."""
+"""Draft V3 Tier-C freeze-time seal gate.  It never opens image pixels."""
 
 from __future__ import annotations
 
@@ -19,9 +19,12 @@ from typing import Callable
 ZERO_DIGEST = "0" * 64
 EXPECTED_BLOB_ID = "df704bed1c5fd872cf9dee9f4be2e88f64bb94a0"
 SHA_RE = re.compile(rb"^([0-9a-f]{64})[ \t]+(?:\*)?(\S+)[ \t]*$")
-ACQUISITION_KEYS = {
+SEVEN_KEY_RECEIPT_KEYS = {
     "brick", "bytes", "computed_sha256", "published_sha256", "url", "utc", "verdict"
 }
+FETCH_FAILED_KEYS = {"brick", "error", "url", "utc", "verdict"}
+SEVEN_KEY_VERDICTS = {"OK", "OK-NO-PUBLISHED-SHA", "SHA-MISMATCH-QUARANTINED"}
+ACQUISITION_VERDICTS = SEVEN_KEY_VERDICTS | {"FETCH-FAILED"}
 BASE = "https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/coadd"
 
 
@@ -93,7 +96,19 @@ def _journal(path: Path) -> tuple[list[dict], bytes]:
             record = json.loads(line)
         except (json.JSONDecodeError, UnicodeDecodeError) as exc:
             raise GateFailure("malformed_journal") from exc
-        if not isinstance(record, dict) or set(record) != ACQUISITION_KEYS:
+        if not isinstance(record, dict):
+            raise GateFailure("malformed_journal_schema")
+        verdict = record.get("verdict")
+        if verdict not in ACQUISITION_VERDICTS:
+            raise GateFailure("malformed_journal_schema")
+        expected_keys = (FETCH_FAILED_KEYS if verdict == "FETCH-FAILED"
+                         else SEVEN_KEY_RECEIPT_KEYS)
+        if set(record) != expected_keys:
+            raise GateFailure("malformed_journal_schema")
+        if verdict == "OK" and (record["published_sha256"] is None or
+                                record["published_sha256"] != record["computed_sha256"]):
+            raise GateFailure("malformed_journal_schema")
+        if verdict == "OK-NO-PUBLISHED-SHA" and record["published_sha256"] is not None:
             raise GateFailure("malformed_journal_schema")
         records.append(record)
     return records, raw
@@ -211,14 +226,14 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
             by_brick.setdefault(record.get("brick"), []).append((index, record))
             if record["verdict"] == "OK" and record["computed_sha256"] != record["published_sha256"]:
                 raise GateFailure("ok_receipt_digest_mismatch")
-        manifest_bricks = {brick for brick, _ in entries}
-        ok_bricks = {brick for brick, rows in by_brick.items() if any(r["verdict"] == "OK" for _, r in rows)}
-        if ok_bricks != manifest_bricks:
-            raise GateFailure("acquisition_set_incomplete")
         for rows in by_brick.values():
             ok_indices = [i for i, row in rows if row["verdict"] == "OK"]
             if any(row["verdict"] != "OK" and not any(j > i for j in ok_indices) for i, row in rows):
                 raise GateFailure("non_ok_without_later_ok")
+        manifest_bricks = {brick for brick, _ in entries}
+        ok_bricks = {brick for brick, rows in by_brick.items() if any(r["verdict"] == "OK" for _, r in rows)}
+        if ok_bricks != manifest_bricks:
+            raise GateFailure("acquisition_set_incomplete")
         final_ok = {}
         for brick in manifest_bricks:
             rows = by_brick[brick]

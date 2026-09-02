@@ -1,7 +1,7 @@
-# Tier-C seal gate — draft V2
+# Tier-C seal gate — draft V3
 
 This unpinned, run-side draft implements the freeze-time gate prescribed by
-Mini-prereg V9 §§7.9–7.11 and 16.3/16.7c. It is for referee review and must not
+Mini-prereg V10 §§7.9–7.11 and 16.3/16.7c. It is for referee review and must not
 be treated as frozen or executable authority until a later amendment-free
 freeze record pins it.
 
@@ -14,7 +14,18 @@ rehashes each on-disk file, and cross-checks the final OK receipt. Network
 fetching is disabled unless `--fetch` is supplied; `run_gate()` accepts a
 fetcher callable so tests never use the network.
 
-The V2 referee ruling rejects a checksum-name fallback: V9 §7.11 line 215 says
+The V3 journal parser accepts exactly the four receipt verdicts and shapes
+written by the pinned acquisition script. `OK`, `OK-NO-PUBLISHED-SHA`, and
+`SHA-MISMATCH-QUARANTINED` require exactly the seven keys `brick`, `bytes`,
+`computed_sha256`, `published_sha256`, `url`, `utc`, and `verdict`;
+`FETCH-FAILED` requires exactly `brick`, `error`, `url`, `utc`, and `verdict`.
+An `OK` must have a non-null published digest equal to its computed digest.
+`OK-NO-PUBLISHED-SHA` must have a null published digest and is treated as
+non-OK for completion: like every non-OK receipt, it is admissible only when a
+later `OK` exists for the same brick. Unknown verdicts and wrong shapes refuse
+as `malformed_journal_schema`.
+
+The V2 referee ruling rejects a checksum-name fallback: V10 §7.11 says
 that the seal check MUST fetch
 `legacysurvey_dr10_south_coadd_<AAA>_<brick>.sha256sum` at the §2.14 URL. The
 three-name fallback in the pinned acquisition script is acquisition-time
@@ -37,7 +48,7 @@ prints its receipt. `--append` is required to append it to the seal journal, so
 tests and dry runs do not write.
 
 The gate treats an extra regular file in the bricks directory as
-`DATA-INTEGRITY-FAIL`: V9 §7.8 explicitly rules that missing, **extra**,
+`DATA-INTEGRITY-FAIL`: V10 §7.8 explicitly rules that missing, **extra**,
 duplicate, substituted, or hash-mismatched required files fail. The gate does
 not inspect unrelated directories.
 
