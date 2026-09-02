@@ -88,6 +88,7 @@ def fetch(brick, timeout, retries=3):
 
 
 def main():
+    global DEST, JOURNAL
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0,
                     help="stop after N newly downloaded bricks (0 = all)")
@@ -97,9 +98,18 @@ def main():
     ap.add_argument("--start", type=int, default=0, help="manifest index to start at")
     ap.add_argument("--workers", type=int, default=1,
                     help="concurrent fetchers (4 authorized 2026-09-01; be polite)")
+    ap.add_argument("--manifest", type=Path, default=MANIFEST,
+                    help="brick-list JSON (defaults to the original #52 closure; "
+                         "Tier-C acquisition authorized 2026-09-02 passes its own)")
+    ap.add_argument("--dest", type=Path, default=DEST,
+                    help="destination directory (Tier C uses its own so the #52 "
+                         "closure's zero-extra-files invariant stays checkable)")
+    ap.add_argument("--journal", type=Path, default=JOURNAL,
+                    help="receipt journal (one per authorization)")
     args = ap.parse_args()
 
-    bricks = json.loads(MANIFEST.read_text())
+    DEST, JOURNAL = args.dest, args.journal
+    bricks = json.loads(args.manifest.read_text())
     DEST.mkdir(exist_ok=True)
     QUARANTINE.mkdir(exist_ok=True)
     print(f"{len(bricks)} bricks in the authorized closure; destination {DEST}")
