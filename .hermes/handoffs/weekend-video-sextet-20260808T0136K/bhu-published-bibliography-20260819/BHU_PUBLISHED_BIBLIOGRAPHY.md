@@ -787,6 +787,7 @@ Claim: explicit universes-inside-a-regular-BH construction. Testability: **CONSI
 Record: **new to us**. Audit-worthiness: **medium**.
 
 **20. K. A. Bronnikov, V. N. Melnikov & H. Dehnen (2007): "Regular black holes and black universes." Gen. Rel. Grav. 39, 973–987.**
+**Deep audit (2026-09-02, STEP 3 queue draw #14; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY20_DEEP_RECONCILIATION_20260902.md`):** an exact existence witness (phantom scalar, reconstructed potential; Kantowski–Sachs T-region with a de Sitter far end) whose throat requires NEC violation (2r″/r = −φ′², line 219); the "our Universe originated from phantom-dominated collapse" claim is "looks possible" / "could appear" (lines 25–27, 592–594), with isotropisation assumed and viability imported by citation. **Easson map (entry 22, Prop. 2): INAPPLICABLE** — the interior is Kantowski–Sachs, not closed FRW, and ANEC is violated by construction; a worked instance of the proposition's contrapositive, neither killed nor restricted on the merits. Λ_eff > 0 is branch selection (C > 0), not a prediction (A(a)). **Tier UNCHANGED.**
 *(Author field corrected 2026-08-30, CGATE_B38: the record said "Bronnikov, J. C. Fabris", but the
 Crossref-verified DOI 10.1007/s10714-007-0430-6 and the pinned paper's own byline are
 Bronnikov–Melnikov–Dehnen. Fabris co-authored "Regular phantom black holes", PRL 96 251101 — a
@@ -892,6 +893,7 @@ map §1 — and what is unfixed is the amplitude; see the Phase (b) map above)*.
 Audit-worthiness: **high** — see ranked target 3.
 
 **24. E. Gaztañaga (2022). "A peek outside our Universe." Symmetry 14, 285.**
+**Deep audit (2026-09-02, STEP 3 queue draw #15; blind double codex + kimi, both `AUDIT_HOLDS_QUALITATIVE_DIRECTIONAL`; `bhu-acquisition-20260828/ENTRY24_DEEP_RECONCILIATION_20260902.md`):** Israel matching of interior FLRW to exterior Schwarzschild at χ_§ is cited to Gaztañaga 2021, not derived (lines 129–131); the exterior mass R* = 2GM = 1/H_Λ (line 138) is our own Λ re-expressed. The "imprint" of incoming photons is the series' 60° causal scale restated (θ = χ_§/d_A), no morphology, amplitude or sign; the "fossil record" is Fosalba & Gaztañaga 2021's Ω_Λ maps (line 189) compared after the fact. Nothing calibratable beyond 23/25/26/27. **Tier UNCHANGED.**
 **Phase (b) map (2026-09-02):** same cutoff claim as entries 23/25/26/27 — see their Phase (b) map paragraphs. **Tier UNCHANGED (QUALITATIVE-DIRECTIONAL);** amplitude NOT CALIBRATABLE from the papers. Ruling `bhu-acquisition-20260828/INTERP_RULING_23_27_20260902.md`.
 DOI 10.3390/sym14020285 — VERIFIED (Crossref: Symmetry, v14, 285, 2022-01-31).
 Claim: the observable universe as the interior of a BHU with observational traces at the boundary.
