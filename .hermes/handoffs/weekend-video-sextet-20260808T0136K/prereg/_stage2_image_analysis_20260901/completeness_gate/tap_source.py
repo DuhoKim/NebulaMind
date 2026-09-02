@@ -37,6 +37,55 @@ SERVER_RADIUS_DEG = math.nextafter(1.0 / 3600.0, math.inf)
 NS = {"v": "http://www.ivoa.net/xml/VOTable/v1.3"}
 
 
+class OutageBudgetExhausted(Exception):
+    """A retryable outage exceeded its configured continuous-failure budget."""
+
+
+def append_jsonl(path: Path, record: Mapping[str, object]) -> None:
+    """Durably append exactly one complete JSON record and trailing LF."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    encoded = (json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n").encode()
+    with path.open("ab") as stream:
+        stream.write(encoded)
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def read_checkpoint(path: Path, *, repair_tail: bool = False,
+                    run_log: Path | None = None) -> list[dict]:
+    if not path.exists():
+        return []
+    raw = path.read_bytes()
+    lines = raw.splitlines(keepends=True)
+    entries: list[dict] = []
+    offset = 0
+    for index, line in enumerate(lines):
+        is_tail = index == len(lines) - 1
+        valid_lf = line.endswith(b"\n")
+        try:
+            entry = json.loads(line)
+            valid = (valid_lf and isinstance(entry, dict)
+                     and isinstance(entry.get("raw_sha256"), str)
+                     and bool(entry["raw_sha256"]))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            entry, valid = None, False
+        if not valid:
+            if repair_tail and is_tail:
+                with path.open("r+b") as stream:
+                    stream.truncate(offset)
+                    stream.flush()
+                    os.fsync(stream.fileno())
+                if run_log is not None:
+                    append_jsonl(run_log, {"event": "checkpoint_tail_discarded",
+                                          "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+                                          "discarded_bytes": len(raw) - offset})
+                return entries
+            _fail("checkpoint_corrupt")
+        entries.append(entry)
+        offset += len(line)
+    return entries
+
+
 def _fail(message: str) -> None:
     raise GateError(f"COMPLETENESS-FAIL: {message}")
 
@@ -163,10 +212,15 @@ def multipart(fields: Mapping[str, str], upload: bytes) -> tuple[bytes, str]:
 
 class HttpClient:
     def __init__(self, sleep: Callable[[float], None] = time.sleep,
-                 rng: Callable[[], float] = random.random, max_retries: int = 6,
-                 capture_dir: Path | None = None):
-        self.sleep, self.rng, self.max_retries = sleep, rng, max_retries
+                 rng: Callable[[], float] = random.random,
+                 max_outage_minutes: float = 180,
+                 capture_dir: Path | None = None, run_log: Path | None = None,
+                 monotonic: Callable[[], float] = time.monotonic):
+        self.sleep, self.rng = sleep, rng
+        self.max_outage_seconds = max_outage_minutes * 60
         self.capture_dir = capture_dir
+        self.run_log = run_log
+        self.monotonic = monotonic
         self._capture_n = 0
 
     def _capture(self, *, method: str, url: str, params: Mapping[str, object] | None,
@@ -197,7 +251,9 @@ class HttpClient:
     def request(self, url: str, *, method: str = "GET", data: bytes | None = None,
                 headers: Mapping[str, str] | None = None,
                 params: Mapping[str, object] | None = None) -> tuple[bytes, Mapping[str, str], str, int]:
-        for attempt in range(self.max_retries + 1):
+        failure_started: float | None = None
+        attempt = 0
+        while True:
             req = urllib.request.Request(url, data=data, method=method,
                                          headers=dict(headers or {}))
             try:
@@ -207,6 +263,7 @@ class HttpClient:
                                   reason=str(response.reason), version=response.version,
                                   headers=dict(response.headers), body=raw,
                                   resolved_url=response.geturl())
+                    failure_started = None
                     return raw, dict(response.headers), response.geturl(), response.status
             except urllib.error.HTTPError as exc:
                 raw = exc.read()
@@ -215,8 +272,6 @@ class HttpClient:
                               body=raw, resolved_url=exc.geturl())
                 if exc.code != 429 and not 500 <= exc.code < 600:
                     return raw, dict(exc.headers), exc.geturl(), exc.code
-                if attempt == self.max_retries:
-                    raise
                 retry = exc.headers.get("Retry-After")
                 delay = None
                 if retry:
@@ -225,7 +280,29 @@ class HttpClient:
                     except ValueError:
                         dt = email.utils.parsedate_to_datetime(retry)
                         delay = max(0.0, dt.timestamp() - time.time())
-                self.sleep(delay if delay is not None else (2 ** attempt) + self.rng())
+                delay = min(300.0, max(0.0, delay)) if exc.code == 429 and delay is not None else min(60.0, (2 ** attempt) + self.rng())
+                failure_started = self.monotonic() if failure_started is None else failure_started
+                elapsed = self.monotonic() - failure_started
+                if elapsed + delay > self.max_outage_seconds:
+                    raise OutageBudgetExhausted("outage_budget_exhausted") from exc
+                if self.run_log is not None:
+                    append_jsonl(self.run_log, {"event": "outage_retry_wait", "attempt": attempt + 1,
+                                               "delay_s": delay, "http_status": exc.code,
+                                               "timestamp_utc": datetime.now(timezone.utc).isoformat()})
+                self.sleep(delay)
+                attempt += 1
+            except (urllib.error.URLError, TimeoutError, OSError) as exc:
+                delay = min(60.0, (2 ** attempt) + self.rng())
+                failure_started = self.monotonic() if failure_started is None else failure_started
+                elapsed = self.monotonic() - failure_started
+                if elapsed + delay > self.max_outage_seconds:
+                    raise OutageBudgetExhausted("outage_budget_exhausted") from exc
+                if self.run_log is not None:
+                    append_jsonl(self.run_log, {"event": "outage_retry_wait", "attempt": attempt + 1,
+                                               "delay_s": delay, "error": type(exc).__name__,
+                                               "timestamp_utc": datetime.now(timezone.utc).isoformat()})
+                self.sleep(delay)
+                attempt += 1
 
 
 def discover_interfaces(capabilities: bytes, capabilities_url: str | None = None) -> tuple[str, str, list[dict]]:
@@ -377,6 +454,8 @@ class TAPCandidateSource(CandidateSource):
         self.client = client or HttpClient(capture_dir=artifacts / "http")
         if self.client.capture_dir is None:
             self.client.capture_dir = artifacts / "http"
+        if self.client.run_log is None:
+            self.client.run_log = artifacts / "run.log.jsonl"
         self.poll_seconds, self.create_interval = poll_seconds, create_interval
         self._last_creation = 0.0
         self._results: dict[int, list[Candidate]] = {}
@@ -420,9 +499,8 @@ class TAPCandidateSource(CandidateSource):
 
     def _checkpoint_entries(self) -> list[dict]:
         path = self.artifacts / "checkpoint.jsonl"
-        if not path.exists():
-            return []
-        entries = [json.loads(line) for line in path.read_text().splitlines() if line]
+        entries = read_checkpoint(path, repair_tail=True,
+                                  run_log=self.artifacts / "run.log.jsonl")
         for entry in entries:
             raw_path = self.artifacts / entry["raw_result"]
             if not raw_path.exists() or sha256_file(raw_path) != entry["raw_sha256"]:
@@ -445,7 +523,7 @@ class TAPCandidateSource(CandidateSource):
         expected = list(range(records[0].input_index, records[0].input_index + len(records))) if records else []
         if [r.input_index for r in records] != expected:
             _fail("chunk input_index sequence is not contiguous")
-        attempt = f"chunk_{chunk_id:04d}_{utc_stamp()}"
+        attempt = f"chunk_{chunk_id:04d}_{utc_stamp()}_{uuid.uuid4().hex[:8]}"
         attempt_dir = self.artifacts / attempt
         attempt_dir.mkdir()
         query = make_sync_adql(records, self.relation, "ls_id" in self.columns)
@@ -478,9 +556,7 @@ class TAPCandidateSource(CandidateSource):
                     "wall_s": time.monotonic() - started,
                     "raw_result": f"{attempt}/result.vot", "raw_sha256": sha256_bytes(raw)}
         (attempt_dir / "metadata.json").write_text(json.dumps(metadata, sort_keys=True, indent=2) + "\n")
-        with (self.artifacts / "checkpoint.jsonl").open("a", encoding="utf-8") as f:
-            f.write(json.dumps(metadata, sort_keys=True, separators=(",", ":")) + "\n")
-            f.flush(); os.fsync(f.fileno())
+        append_jsonl(self.artifacts / "checkpoint.jsonl", metadata)
         return metadata
 
     def candidates(self, record: GZRecord, radius_arcsec: float) -> Sequence[Candidate]:

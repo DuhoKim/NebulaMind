@@ -4,12 +4,15 @@ import re
 import tempfile
 import threading
 import unittest
+from contextlib import redirect_stderr
+from io import StringIO
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
 
 from completeness_gate import GateError
-from run_full import execute, load_prior
+from run_full import execute, load_prior, main
+from tap_source import OutageBudgetExhausted
 
 
 class RunnerHandler(BaseHTTPRequestHandler):
@@ -73,6 +76,14 @@ class RunFullE2E(unittest.TestCase):
             prior=Path(td)/"prior.json"; prior.write_text(json.dumps({"objids":[1]}))
             with self.assertRaisesRegex(GateError,"expected 13725.*got 1"):
                 load_prior(prior)
+
+    @patch("run_full.execute", side_effect=OutageBudgetExhausted("outage_budget_exhausted"))
+    def test_cli_outage_budget_exhaustion_exits_75_with_status(self, _):
+        stderr = StringIO()
+        with redirect_stderr(stderr):
+            rc = main(["--max-outage-minutes", "1"])
+        self.assertEqual(rc, 75)
+        self.assertEqual(json.loads(stderr.getvalue()), {"status": "outage_budget_exhausted"})
 
     def test_one_dr10_row_is_attributed_to_both_positions(self):
         # The full runner uses TAPCandidateSource's client expansion; exercise it

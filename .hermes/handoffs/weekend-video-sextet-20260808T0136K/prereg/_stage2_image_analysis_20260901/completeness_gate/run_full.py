@@ -14,8 +14,9 @@ from typing import Mapping, Sequence
 from completeness_gate import (GateError, PINNED_DIGESTS, run_pinned_files,
                                sha256_file)
 from tap_source import (CHUNK_SIZE, DEFAULT_TAP, TOTAL_ROWS, HttpClient,
-                        TAPCandidateSource, load_probe, probe, read_gz_tables,
-                        validate_manifest, write_manifest)
+                        OutageBudgetExhausted, TAPCandidateSource, load_probe,
+                        probe, read_checkpoint, read_gz_tables, validate_manifest,
+                        write_manifest)
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -51,9 +52,11 @@ def load_prior(path: Path, expected: int = 13_725) -> tuple[list[int], str, Mapp
     return objids, sha256_file(path), raw.get("provenance", {})
 
 
-def _checkpoint_map(artifacts: Path, manifest: Mapping[str, object]) -> dict[int, dict]:
+def _checkpoint_map(artifacts: Path, manifest: Mapping[str, object],
+                    repair_tail: bool = False) -> dict[int, dict]:
     path = artifacts / "checkpoint.jsonl"
-    entries = [] if not path.exists() else [json.loads(x) for x in path.read_text().splitlines() if x]
+    entries = read_checkpoint(path, repair_tail=repair_tail,
+                              run_log=artifacts / "run.log.jsonl")
     allowed = {c["chunk_id"]: c for c in manifest["chunks"]}
     out: dict[int, dict] = {}
     for entry in entries:
@@ -103,7 +106,7 @@ def execute(*, table2: Path, table3: Path, tier_a: Path, parent: Path,
     prior_ids, prior_sha, prior_prov = load_prior(prior, expected_prior)
     manifest = write_manifest(artifacts / "chunk_manifest.json", total_rows, chunk_size)
     validate_manifest(manifest, total_rows)
-    admitted = _checkpoint_map(artifacts, manifest)
+    admitted = _checkpoint_map(artifacts, manifest, repair_tail=resume)
     if admitted and not (resume or dry_finalise):
         fail("checkpoint exists; use --resume")
 
@@ -172,11 +175,22 @@ def main(argv: Sequence[str] | None = None) -> int:
     p.add_argument("--max-chunks", type=int)
     p.add_argument("--resume", action="store_true")
     p.add_argument("--dry-finalise", action="store_true")
+    p.add_argument("--max-outage-minutes", type=float, default=180)
     a = p.parse_args(argv)
     if a.max_chunks is not None and a.max_chunks < 0:
         p.error("--max-chunks must be non-negative")
+    if a.max_outage_minutes <= 0:
+        p.error("--max-outage-minutes must be positive")
+    outage_minutes = a.max_outage_minutes
+    delattr(a, "max_outage_minutes")
+    client = HttpClient(max_outage_minutes=outage_minutes,
+                        capture_dir=a.artifacts / "http",
+                        run_log=a.artifacts / "run.log.jsonl")
     try:
-        result = execute(**vars(a))
+        result = execute(**vars(a), client=client)
+    except OutageBudgetExhausted:
+        print(json.dumps({"status": "outage_budget_exhausted"}), file=sys.stderr)
+        return 75
     except (GateError, FileNotFoundError, json.JSONDecodeError) as exc:
         print(str(exc), file=sys.stderr)
         return 2

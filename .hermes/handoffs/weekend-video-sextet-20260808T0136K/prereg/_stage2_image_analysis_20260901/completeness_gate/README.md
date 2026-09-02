@@ -29,6 +29,8 @@ Tier-C-pair files. It never reads pixels.
 ```sh
 ./run_full.py                         # new full run
 ./run_full.py --resume                # hash-verified continuation
+./run_full.py --resume --max-outage-minutes 180 # continuous-outage budget
+./run_full_resume.sh                  # retry exit 75 every 5 min, up to 48 h
 ./run_full.py --max-chunks 3          # bounded execution
 ./run_full.py --resume --dry-finalise # report coverage; never receipt a gap
 ```

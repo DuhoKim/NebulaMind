@@ -6,8 +6,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from completeness_gate import GateError, GZRecord
-from tap_source import (HttpClient, TAPCandidateSource, canonical_manifest,
-                        make_sync_adql, validate_manifest)
+from tap_source import (HttpClient, OutageBudgetExhausted, TAPCandidateSource,
+                        canonical_manifest, make_sync_adql, validate_manifest)
 
 
 def result_votable(status="OK", include_status=True, tag=0):
@@ -29,6 +29,7 @@ class FakeHandler(BaseHTTPRequestHandler):
     rate_limit_once = False
     rate_limit_hits = 0
     creations = 0
+    failures_remaining = 0
 
     def log_message(self, *args): pass
 
@@ -36,6 +37,9 @@ class FakeHandler(BaseHTTPRequestHandler):
         if self.path == "/sync":
             type(self).creations += 1
             self.rfile.read(int(self.headers.get("Content-Length", 0)))
+            if type(self).failures_remaining:
+                type(self).failures_remaining -= 1
+                self.send_response(503); self.end_headers(); return
             self.send_response(200)
             self.send_header("Content-Type", "application/x-votable+xml")
             self.end_headers()
@@ -58,6 +62,7 @@ class FakeServerTest(unittest.TestCase):
     def setUp(self):
         FakeHandler.status = "OK"; FakeHandler.include_status = True; FakeHandler.tag = 0
         FakeHandler.rate_limit_once = False; FakeHandler.rate_limit_hits = 0; FakeHandler.creations = 0
+        FakeHandler.failures_remaining = 0
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), FakeHandler)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True); self.thread.start()
         self.base = f"http://127.0.0.1:{self.server.server_port}"
@@ -118,6 +123,64 @@ class FakeServerTest(unittest.TestCase):
             (Path(td) / entry["raw_result"]).write_bytes(b"corrupt")
             with self.assertRaisesRegex(GateError, "resume hash mismatch"):
                 self.source(td).run_chunk(0, [row])
+
+    def test_torn_checkpoint_tail_is_discarded_and_exactly_one_chunk_reruns(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td); source = self.source(td)
+            rows = [GZRecord(i, i + 1, 10, 0, .9, .1) for i in range(2)]
+            FakeHandler.tag = 0; source.run_chunk(0, [rows[0]])
+            FakeHandler.tag = 1; source.run_chunk(1, [rows[1]])
+            checkpoint = root / "checkpoint.jsonl"
+            lines = checkpoint.read_bytes().splitlines(keepends=True)
+            checkpoint.write_bytes(lines[0] + lines[1][:len(lines[1]) // 2])
+            before = FakeHandler.creations
+            resumed = self.source(td)
+            self.assertTrue(resumed.run_chunk(0, [rows[0]])["resumed"])
+            rerun = resumed.run_chunk(1, [rows[1]])
+            self.assertNotIn("resumed", rerun)
+            self.assertEqual(FakeHandler.creations - before, 1)
+            events = [json.loads(x) for x in (root / "run.log.jsonl").read_text().splitlines()]
+            self.assertEqual([x["event"] for x in events], ["checkpoint_tail_discarded"])
+            self.assertEqual(len(checkpoint.read_text().splitlines()), 2)
+
+    def test_corrupt_middle_checkpoint_line_refuses(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td); source = self.source(td)
+            rows = [GZRecord(i, i + 1, 10, 0, .9, .1) for i in range(3)]
+            for i, row in enumerate(rows):
+                FakeHandler.tag = i
+                source.run_chunk(i, [row])
+            lines = (root / "checkpoint.jsonl").read_bytes().splitlines(keepends=True)
+            (root / "checkpoint.jsonl").write_bytes(lines[0] + b'{"broken":\n' + lines[2])
+            with self.assertRaisesRegex(GateError, "checkpoint_corrupt"):
+                self.source(td).run_chunk(0, [rows[0]])
+
+    def test_outage_failures_then_recovery_retries_same_chunk(self):
+        with tempfile.TemporaryDirectory() as td:
+            FakeHandler.failures_remaining = 3; sleeps = []
+            source = self.source(td, sleeps)
+            result = source.run_chunk(0, [GZRecord(0, 1, 10, 0, .9, .1)])
+            self.assertEqual(result["chunk_id"], 0)
+            self.assertEqual(FakeHandler.creations, 4)
+            self.assertEqual(sleeps, [1, 2, 4])
+            self.assertEqual(len((Path(td) / "checkpoint.jsonl").read_text().splitlines()), 1)
+
+    def test_outage_budget_exhaustion_leaves_checkpoint_unchanged(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td); row = GZRecord(0, 1, 10, 0, .9, .1)
+            self.source(td).run_chunk(0, [row])
+            checkpoint = root / "checkpoint.jsonl"; before = checkpoint.read_bytes()
+            FakeHandler.failures_remaining = 99
+            clock = [0.0]
+            def sleep(delay): clock[0] += delay
+            client = HttpClient(sleep=sleep, rng=lambda: 0, max_outage_minutes=.05,
+                                monotonic=lambda: clock[0], run_log=root / "run.log.jsonl")
+            source = TAPCandidateSource(self.base + "/sync", "ls_dr10.tractor_s",
+                ["release", "brickid", "objid", "brickname", "ra", "dec"], root,
+                client=client, create_interval=0)
+            with self.assertRaisesRegex(OutageBudgetExhausted, "outage_budget_exhausted"):
+                source.run_chunk(1, [GZRecord(1, 2, 10, 0, .9, .1)])
+            self.assertEqual(checkpoint.read_bytes(), before)
 
     def test_query_is_all_candidate_q3c_case_and_no_upload(self):
         q = make_sync_adql([GZRecord(4, 1, 10, -2, .9, .1)], "ls_dr10.tractor_s", False)
