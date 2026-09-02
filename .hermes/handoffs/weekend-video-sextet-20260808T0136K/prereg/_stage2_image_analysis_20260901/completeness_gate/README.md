@@ -1,10 +1,21 @@
 # Catalogue-only completeness gate
 
-This draft implements the pre-signature catalogue gates allowed by
-`MINI_PREREG_GZ_TIERC_DRAFT_V9_20260902.md` §1.5. The live backend is
-deliberately a refusing stub; Hwao must approve the data-source plan and a
-separately reviewed artifact-backed implementation before any live catalogue
-run.
+This V2 draft implements the pre-signature catalogue gates and an
+artifact-backed, one-worker async TAP candidate source. It never opens pixels.
+The full run has not been started.
+
+## TAP probe and dry run (2026-09-03 KST)
+
+The metadata-only probe selected `ls_dr10.tractor_s`. Its TAP_SCHEMA description
+exposes **2,825,807,500 rows** and identifies it as the DR10 southern-region
+Tractor catalogue. Required identity/position columns and optional `ls_id` are
+present. The capabilities document contains no result-cap hint. It advertises a
+legacy standard base but no async access URL; the legacy path resolved to the
+public HTML frontend rather than UWS. The requested service's `/tap/async` child
+also returned no UWS job `Location` for the sole 50-row dry run, after 7.09 s.
+The runner refused before checkpointing: rows out are 0 and cap status is not
+assessable. The TAP route is therefore blocked rather than proven uncapped, and
+no full-run runtime extrapolation is defensible.
 
 ## Clause map
 
@@ -20,15 +31,14 @@ run.
 | §§5.4--5.7 | Receipt binds inputs/source/artifacts/software/radius, row-once coverage, funnel counts, candidate proof, and every prior-unresolved terminal disposition; gaps refuse |
 
 `InMemoryCandidateSource` exists only for deterministic fixtures.
-`AstroDataLabCandidateSource` performs no network operation and always refuses.
-The approved production adapter must consume already-downloaded, hashed complete
-query artifacts (or equivalently proven local Tractor partitions) and expose
-their provenance through the same interface.
+`TAPCandidateSource` in `tap_source.py` implements canonical manifests, VOTable
+uploads, async lifecycle/pacing/retries, raw-result hashing, overflow refusal,
+resume verification, and authoritative binary64 separation filtering.
 
 Run the tests from this directory:
 
 ```sh
-python3 -m unittest -v test_completeness_gate.py
+python3 -m unittest -v test_completeness_gate.py test_tap_source.py
 ```
 
 ## Explicit non-actions
@@ -41,7 +51,13 @@ explicitly called, and that function writes only `tier_c_pairs.csv` and
 does not modify acquisition state, journals, pins, seals, preregistrations,
 referee reports, Git state, or any file outside that output directory.
 
-## Test log (2026-09-03 KST)
+## V2 test log (2026-09-03 KST)
+
+Command: `python3 -m unittest -v test_completeness_gate.py test_tap_source.py`
+
+Result: **23/23 passed** (the original 17 plus six fake-TAP/manifest tests).
+
+## V1 test log (2026-09-03 KST)
 
 Command: `python3 -m unittest -v test_completeness_gate.py`
 

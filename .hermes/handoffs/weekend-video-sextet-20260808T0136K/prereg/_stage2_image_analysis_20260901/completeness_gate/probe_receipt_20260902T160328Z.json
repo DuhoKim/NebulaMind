@@ -1,0 +1,1161 @@
+{
+  "async_endpoint": "https://datalab.noirlab.edu/tap/async",
+  "capabilities_headers": {
+    "Connection": "close",
+    "Content-Type": "text/xml",
+    "Date": "Wed, 02 Sep 2026 16:03:25 GMT",
+    "Server": "nginx/1.31.3",
+    "Strict-Transport-Security": "max-age=31536000",
+    "Transfer-Encoding": "chunked"
+  },
+  "capabilities_sha256": "8327b2339955d4fbf56d17cb730b3c73b3106363a9782085e07e586924d03f07",
+  "capabilities_url": "https://datalab.noirlab.edu/tap/capabilities",
+  "columns": [
+    {
+      "column_name": "allmask_g",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from all images satisfy each condition in g as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "allmask_i",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from all images satisfy each condition in i as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "allmask_r",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from all images satisfy each condition in r as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "allmask_z",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from all images satisfy each condition in z as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "anymask_g",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from any image satisfies each condition in g as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "anymask_i",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from any image satisfies each condition in i as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "anymask_r",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from any image satisfies each condition in r as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "anymask_z",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask set if the central pixel from any image satisfies each condition in z as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "blob_nea_g",
+      "datatype": "adql:REAL",
+      "description": "Blob-masked noise equivalent area_ in g."
+    },
+    {
+      "column_name": "blob_nea_i",
+      "datatype": "adql:REAL",
+      "description": "Blob-masked noise equivalent area_ in i."
+    },
+    {
+      "column_name": "blob_nea_r",
+      "datatype": "adql:REAL",
+      "description": "Blob-masked noise equivalent area_ in r."
+    },
+    {
+      "column_name": "blob_nea_z",
+      "datatype": "adql:REAL",
+      "description": "Blob-masked noise equivalent area_ in z."
+    },
+    {
+      "column_name": "brickid",
+      "datatype": "adql:INTEGER",
+      "description": "Brick ID [1,662174]"
+    },
+    {
+      "column_name": "brickname",
+      "datatype": "adql:VARCHAR",
+      "description": "Name of brick, encoding the brick sky position, eg 1126p222 near RA=112.6, Dec=+22.2"
+    },
+    {
+      "column_name": "brick_primary",
+      "datatype": "adql:SMALLINT",
+      "description": "True if the object is within the brick boundary"
+    },
+    {
+      "column_name": "bx",
+      "datatype": "adql:REAL",
+      "description": "X position (0-indexed) of coordinates in the brick image stack (*i.e.* in the *e.g.* legacysurvey-<brick>-image-g.fits.fz coadd file_)"
+    },
+    {
+      "column_name": "by",
+      "datatype": "adql:REAL",
+      "description": "Y position (0-indexed) of coordinates in brick image stack"
+    },
+    {
+      "column_name": "dchisq_1",
+      "datatype": "adql:REAL",
+      "description": "Difference in |chi|^2 between successively more-complex model fits: PSF, REX, DEV, EXP, SER.  The difference is versus no source."
+    },
+    {
+      "column_name": "dchisq_2",
+      "datatype": "adql:REAL",
+      "description": "Difference in |chi|^2 between successively more-complex model fits: PSF, REX, DEV, EXP, SER.  The difference is versus no source."
+    },
+    {
+      "column_name": "dchisq_3",
+      "datatype": "adql:REAL",
+      "description": "Difference in |chi|^2 between successively more-complex model fits: PSF, REX, DEV, EXP, SER.  The difference is versus no source."
+    },
+    {
+      "column_name": "dchisq_4",
+      "datatype": "adql:REAL",
+      "description": "Difference in |chi|^2 between successively more-complex model fits: PSF, REX, DEV, EXP, SER.  The difference is versus no source."
+    },
+    {
+      "column_name": "dchisq_5",
+      "datatype": "adql:REAL",
+      "description": "Difference in |chi|^2 between successively more-complex model fits: PSF, REX, DEV, EXP, SER.  The difference is versus no source."
+    },
+    {
+      "column_name": "dec",
+      "datatype": "adql:DOUBLE",
+      "description": "Declination at equinox J2000"
+    },
+    {
+      "column_name": "dec_ivar",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of DEC, excluding astrometric calibration errors"
+    },
+    {
+      "column_name": "dered_flux_g",
+      "datatype": "adql:REAL",
+      "description": "Dereddened g band flux"
+    },
+    {
+      "column_name": "dered_flux_i",
+      "datatype": "adql:REAL",
+      "description": "Dereddened i band flux"
+    },
+    {
+      "column_name": "dered_flux_r",
+      "datatype": "adql:REAL",
+      "description": "Dereddened r band flux"
+    },
+    {
+      "column_name": "dered_flux_w1",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w1 band flux"
+    },
+    {
+      "column_name": "dered_flux_w2",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w2 band flux"
+    },
+    {
+      "column_name": "dered_flux_w3",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w3 band flux"
+    },
+    {
+      "column_name": "dered_flux_w4",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w4 band flux"
+    },
+    {
+      "column_name": "dered_flux_z",
+      "datatype": "adql:REAL",
+      "description": "Dereddened z band flux"
+    },
+    {
+      "column_name": "dered_mag_g",
+      "datatype": "adql:REAL",
+      "description": "Dereddened g-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_i",
+      "datatype": "adql:REAL",
+      "description": "Dereddened i-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_r",
+      "datatype": "adql:REAL",
+      "description": "Dereddened r-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_w1",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w1-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_w2",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w2-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_w3",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w3-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_w4",
+      "datatype": "adql:REAL",
+      "description": "Dereddened w4-band magnitude"
+    },
+    {
+      "column_name": "dered_mag_z",
+      "datatype": "adql:REAL",
+      "description": "Dereddened z-band magnitude"
+    },
+    {
+      "column_name": "ebv",
+      "datatype": "adql:REAL",
+      "description": "Galactic extinction E(B-V) reddening from SFD98_, used to compute the mw_transmission_ columns"
+    },
+    {
+      "column_name": "elat",
+      "datatype": "adql:DOUBLE",
+      "description": "Ecliptic Latitude"
+    },
+    {
+      "column_name": "elon",
+      "datatype": "adql:DOUBLE",
+      "description": "Ecliptic Longitude"
+    },
+    {
+      "column_name": "fiberflux_g",
+      "datatype": "adql:REAL",
+      "description": "Predicted g-band flux within a fiber of diameter 1.5 arcsec from this object in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fiberflux_i",
+      "datatype": "adql:REAL",
+      "description": "Predicted i-band flux within a fiber of diameter 1.5 arcsec from this object in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fiberflux_r",
+      "datatype": "adql:REAL",
+      "description": "Predicted r-band flux within a fiber of diameter 1.5 arcsec from this object in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fiberflux_z",
+      "datatype": "adql:REAL",
+      "description": "Predicted z-band flux within a fiber of diameter 1.5 arcsec from this object in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fibertotflux_g",
+      "datatype": "adql:REAL",
+      "description": "Predicted g-band flux within a fiber of diameter 1.5 arcsec from all sources at this location in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fibertotflux_i",
+      "datatype": "adql:REAL",
+      "description": "Predicted i-band flux within a fiber of diameter 1.5 arcsec from all sources at this location in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fibertotflux_r",
+      "datatype": "adql:REAL",
+      "description": "Predicted r-band flux within a fiber of diameter 1.5 arcsec from all sources at this location in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fibertotflux_z",
+      "datatype": "adql:REAL",
+      "description": "Predicted z-band flux within a fiber of diameter 1.5 arcsec from all sources at this location in 1 arcsec Gaussian seeing"
+    },
+    {
+      "column_name": "fitbits",
+      "datatype": "adql:SMALLINT",
+      "description": "Bitwise mask detailing pecularities of how an object was fit, as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "flux_g",
+      "datatype": "adql:REAL",
+      "description": "model flux in g"
+    },
+    {
+      "column_name": "flux_i",
+      "datatype": "adql:REAL",
+      "description": "model flux in i"
+    },
+    {
+      "column_name": "flux_ivar_g",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_g"
+    },
+    {
+      "column_name": "flux_ivar_i",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_i"
+    },
+    {
+      "column_name": "flux_ivar_r",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_r"
+    },
+    {
+      "column_name": "flux_ivar_w1",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_w1 (AB system)"
+    },
+    {
+      "column_name": "flux_ivar_w2",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_w2 (AB)"
+    },
+    {
+      "column_name": "flux_ivar_w3",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_w3 (AB)"
+    },
+    {
+      "column_name": "flux_ivar_w4",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_w4 (AB)"
+    },
+    {
+      "column_name": "flux_ivar_z",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of flux_z"
+    },
+    {
+      "column_name": "flux_r",
+      "datatype": "adql:REAL",
+      "description": "model flux in r"
+    },
+    {
+      "column_name": "flux_w1",
+      "datatype": "adql:REAL",
+      "description": "WISE model flux in W1 (AB system)"
+    },
+    {
+      "column_name": "flux_w2",
+      "datatype": "adql:REAL",
+      "description": "WISE model flux in W2 (AB)"
+    },
+    {
+      "column_name": "flux_w3",
+      "datatype": "adql:REAL",
+      "description": "WISE model flux in W3 (AB)"
+    },
+    {
+      "column_name": "flux_w4",
+      "datatype": "adql:REAL",
+      "description": "WISE model flux in W4 (AB)"
+    },
+    {
+      "column_name": "flux_z",
+      "datatype": "adql:REAL",
+      "description": "model flux in z"
+    },
+    {
+      "column_name": "fracflux_g",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in g (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_i",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in i (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_r",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in r (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_w1",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in W1 (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_w2",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in W2 (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_w3",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in W3 (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_w4",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in W4 (typically [0,1])"
+    },
+    {
+      "column_name": "fracflux_z",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of the flux from other sources divided by the total flux in z (typically [0,1])"
+    },
+    {
+      "column_name": "fracin_g",
+      "datatype": "adql:REAL",
+      "description": "Fraction of a source flux within the blob in g, near unity for real sources"
+    },
+    {
+      "column_name": "fracin_i",
+      "datatype": "adql:REAL",
+      "description": "Fraction of a source flux within the blob in i, near unity for real sources"
+    },
+    {
+      "column_name": "fracin_r",
+      "datatype": "adql:REAL",
+      "description": "Fraction of a source flux within the blob in r, near unity for real sources"
+    },
+    {
+      "column_name": "fracin_z",
+      "datatype": "adql:REAL",
+      "description": "Fraction of a source flux within the blob in z, near unity for real sources"
+    },
+    {
+      "column_name": "fracmasked_g",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of pixels masked from all observations of this object in g, strictly between [0,1]"
+    },
+    {
+      "column_name": "fracmasked_i",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of pixels masked from all observations of this object in i, strictly between [0,1]"
+    },
+    {
+      "column_name": "fracmasked_r",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of pixels masked from all observations of this object in r, strictly between [0,1]"
+    },
+    {
+      "column_name": "fracmasked_z",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted fraction of pixels masked from all observations of this object in z, strictly between [0,1]"
+    },
+    {
+      "column_name": "gaia_a_g_val",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ line-of-sight extinction in the G band"
+    },
+    {
+      "column_name": "gaia_astrometric_excess_noise",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ astrometric excess noise"
+    },
+    {
+      "column_name": "gaia_astrometric_excess_noise_sig",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ astrometric excess noise uncertainty"
+    },
+    {
+      "column_name": "gaia_astrometric_n_good_obs_al",
+      "datatype": "adql:SMALLINT",
+      "description": "Gaia EDR3_ number of good astrometric observations along scan direction"
+    },
+    {
+      "column_name": "gaia_astrometric_n_obs_al",
+      "datatype": "adql:SMALLINT",
+      "description": "Gaia EDR3_ number of astrometric observations along scan direction"
+    },
+    {
+      "column_name": "gaia_astrometric_params_solved",
+      "datatype": "adql:SMALLINT",
+      "description": "Which astrometric parameters were estimated for a Gaia EDR3_ source"
+    },
+    {
+      "column_name": "gaia_astrometric_sigma5d_max",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ longest semi-major axis of the 5-d error ellipsoid"
+    },
+    {
+      "column_name": "gaia_astrometric_weight_al",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ astrometric weight along scan direction"
+    },
+    {
+      "column_name": "gaia_duplicated_source",
+      "datatype": "adql:SMALLINT",
+      "description": "Gaia EDR3_ duplicated source flag"
+    },
+    {
+      "column_name": "gaia_e_bp_min_rp_val",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ line-of-sight reddening E(BP-RP)"
+    },
+    {
+      "column_name": "gaia_phot_bp_mean_flux_over_error",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ BP signal-to-noise"
+    },
+    {
+      "column_name": "gaia_phot_bp_mean_mag",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ BP mag"
+    },
+    {
+      "column_name": "gaia_phot_bp_n_obs",
+      "datatype": "adql:SMALLINT",
+      "description": "Gaia EDR3_ BP number of observations"
+    },
+    {
+      "column_name": "gaia_phot_bp_rp_excess_factor",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ BP/RP excess factor"
+    },
+    {
+      "column_name": "gaia_phot_g_mean_flux_over_error",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ G band signal-to-noise"
+    },
+    {
+      "column_name": "gaia_phot_g_mean_mag",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ G band mag"
+    },
+    {
+      "column_name": "gaia_phot_g_n_obs",
+      "datatype": "adql:INTEGER",
+      "description": "Gaia EDR3_ G band number of observations"
+    },
+    {
+      "column_name": "gaia_phot_rp_mean_flux_over_error",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ RP signal-to-noise"
+    },
+    {
+      "column_name": "gaia_phot_rp_mean_mag",
+      "datatype": "adql:REAL",
+      "description": "Gaia EDR3_ RP mag"
+    },
+    {
+      "column_name": "gaia_phot_rp_n_obs",
+      "datatype": "adql:SMALLINT",
+      "description": "Gaia EDR3_ RP number of observations"
+    },
+    {
+      "column_name": "gaia_phot_variable_flag",
+      "datatype": "adql:SMALLINT",
+      "description": "Gaia EDR3_ photometric variable flag"
+    },
+    {
+      "column_name": "galdepth_g",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_g but for a galaxy (0.45s exp, round) detection sensitivity"
+    },
+    {
+      "column_name": "galdepth_i",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_i but for a galaxy (0.45s exp, round) detection sensitivity"
+    },
+    {
+      "column_name": "galdepth_r",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_r but for a galaxy (0.45s exp, round) detection sensitivity"
+    },
+    {
+      "column_name": "galdepth_z",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_z but for a galaxy (0.45s exp, round) detection sensitivity"
+    },
+    {
+      "column_name": "glat",
+      "datatype": "adql:DOUBLE",
+      "description": "Galactic Latitude"
+    },
+    {
+      "column_name": "glon",
+      "datatype": "adql:DOUBLE",
+      "description": "Galactic Longitude"
+    },
+    {
+      "column_name": "g_r",
+      "datatype": "adql:REAL",
+      "description": "Computed (g-r) color"
+    },
+    {
+      "column_name": "htm9",
+      "datatype": "adql:INTEGER",
+      "description": "HTM index (order 9 => ~10 arcmin size)"
+    },
+    {
+      "column_name": "i_z",
+      "datatype": "adql:REAL",
+      "description": "Computed (i-z) color"
+    },
+    {
+      "column_name": "ls_id",
+      "datatype": "adql:BIGINT",
+      "description": "Unique LS object ID"
+    },
+    {
+      "column_name": "mag_g",
+      "datatype": "adql:REAL",
+      "description": "Converted g magnitude"
+    },
+    {
+      "column_name": "mag_i",
+      "datatype": "adql:REAL",
+      "description": "Converted i magnitude"
+    },
+    {
+      "column_name": "mag_r",
+      "datatype": "adql:REAL",
+      "description": "Converted r magnitude"
+    },
+    {
+      "column_name": "mag_w1",
+      "datatype": "adql:REAL",
+      "description": "Converted W1 magnitude"
+    },
+    {
+      "column_name": "mag_w2",
+      "datatype": "adql:REAL",
+      "description": "Converted W2 magnitude"
+    },
+    {
+      "column_name": "mag_w3",
+      "datatype": "adql:REAL",
+      "description": "Converted W3 magnitude"
+    },
+    {
+      "column_name": "mag_w4",
+      "datatype": "adql:REAL",
+      "description": "Converted W4 magnitude"
+    },
+    {
+      "column_name": "mag_z",
+      "datatype": "adql:REAL",
+      "description": "Converted g magnitude"
+    },
+    {
+      "column_name": "maskbits",
+      "datatype": "adql:INTEGER",
+      "description": "Bitwise mask indicating that an object touches a pixel in the coadd/*/*/*maskbits* maps, as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "mjd_max",
+      "datatype": "adql:DOUBLE",
+      "description": "Maximum Modified Julian Date of observations used to construct the model of this object"
+    },
+    {
+      "column_name": "mjd_min",
+      "datatype": "adql:DOUBLE",
+      "description": "Minimum Modified Julian Date of observations used to construct the model of this object"
+    },
+    {
+      "column_name": "mw_transmission_g",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in g filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_i",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in i filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_r",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in r filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_w1",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in W1 filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_w2",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in W2 filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_w3",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in W3 filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_w4",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in W4 filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "mw_transmission_z",
+      "datatype": "adql:REAL",
+      "description": "Galactic transmission in z filter in linear units [0, 1]"
+    },
+    {
+      "column_name": "nea_g",
+      "datatype": "adql:REAL",
+      "description": "Noise equivalent area_ in g."
+    },
+    {
+      "column_name": "nea_i",
+      "datatype": "adql:REAL",
+      "description": "Noise equivalent area_ in i."
+    },
+    {
+      "column_name": "nea_r",
+      "datatype": "adql:REAL",
+      "description": "Noise equivalent area_ in r."
+    },
+    {
+      "column_name": "nea_z",
+      "datatype": "adql:REAL",
+      "description": "Noise equivalent area_ in z."
+    },
+    {
+      "column_name": "nest4096",
+      "datatype": "adql:INTEGER",
+      "description": "HEALPIX index (Nsides 4096, Nest scheme => ~52 arcsec size)"
+    },
+    {
+      "column_name": "ngood_g",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of good (unmasked) images that contribute in g (this quantity is consistent with the nexp maps in the image stacks_)"
+    },
+    {
+      "column_name": "ngood_i",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of good (unmasked) images that contribute in i (this quantity is consistent with the nexp maps in the image stacks_)"
+    },
+    {
+      "column_name": "ngood_r",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of good (unmasked) images that contribute in r (this quantity is consistent with the nexp maps in the image stacks_)"
+    },
+    {
+      "column_name": "ngood_z",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of good (unmasked) images that contribute in z (this quantity is consistent with the nexp maps in the image stacks_)"
+    },
+    {
+      "column_name": "nobs_g",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in g filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_i",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in i filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_r",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in r filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_w1",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in W1 filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_w2",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in W2 filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_w3",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in W3 filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_w4",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in W4 filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "nobs_z",
+      "datatype": "adql:SMALLINT",
+      "description": "Number of images that contribute to the central pixel in z filter for this object (not profile-weighted)"
+    },
+    {
+      "column_name": "objid",
+      "datatype": "adql:INTEGER",
+      "description": "Catalog object number within this brick; a unique identifier hash is release,brickid,objid;  objid spans [0,N-1] and is contiguously enumerated within each brick"
+    },
+    {
+      "column_name": "parallax",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog parallax"
+    },
+    {
+      "column_name": "parallax_ivar",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog inverse-variance on parallax"
+    },
+    {
+      "column_name": "pmdec",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog proper motion in the Dec direction"
+    },
+    {
+      "column_name": "pmdec_ivar",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog inverse-variance on pmdec"
+    },
+    {
+      "column_name": "pmra",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog proper motion in the RA direction"
+    },
+    {
+      "column_name": "pmra_ivar",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog inverse-variance on pmra"
+    },
+    {
+      "column_name": "psfdepth_g",
+      "datatype": "adql:REAL",
+      "description": "For a 5-sigma point source detection limit in g, 5/(sqrt psfdepth_g) gives flux in nanomaggies and -2.5[log10(5 / (sqrt psfdepth_g)) - 9] gives corresponding AB magnitude"
+    },
+    {
+      "column_name": "psfdepth_i",
+      "datatype": "adql:REAL",
+      "description": "For a 5-sigma point source detection limit in i, 5/(sqrt psfdepth_i) gives flux in nanomaggies and -2.5[log10(5 / (sqrt psfdepth_i)) - 9] gives corresponding AB magnitude"
+    },
+    {
+      "column_name": "psfdepth_r",
+      "datatype": "adql:REAL",
+      "description": "For a 5-sigma point source detection limit in r, 5/(sqrt psfdepth_r) gives flux in nanomaggies and -2.5[log10(5 / (sqrt psfdepth_r)) - 9] gives corresponding AB magnitude"
+    },
+    {
+      "column_name": "psfdepth_w1",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_g (and also on the AB system) but for WISE W1"
+    },
+    {
+      "column_name": "psfdepth_w2",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_g (and also on the AB system) but for WISE W2"
+    },
+    {
+      "column_name": "psfdepth_w3",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_g (and also on the AB system) but for WISE W3"
+    },
+    {
+      "column_name": "psfdepth_w4",
+      "datatype": "adql:REAL",
+      "description": "As for psfdepth_g (and also on the AB system) but for WISE W4"
+    },
+    {
+      "column_name": "psfdepth_z",
+      "datatype": "adql:REAL",
+      "description": "For a 5-sigma point source detection limit in z, 5/(sqrt psfdepth_z) gives flux in nanomaggies and -2.5[log10(5 / (sqrt psfdepth_z)) - 9] gives corresponding AB magnitude"
+    },
+    {
+      "column_name": "psfsize_g",
+      "datatype": "adql:REAL",
+      "description": "Weighted average PSF FWHM in the g band"
+    },
+    {
+      "column_name": "psfsize_i",
+      "datatype": "adql:REAL",
+      "description": "Weighted average PSF FWHM in the i band"
+    },
+    {
+      "column_name": "psfsize_r",
+      "datatype": "adql:REAL",
+      "description": "Weighted average PSF FWHM in the r band"
+    },
+    {
+      "column_name": "psfsize_z",
+      "datatype": "adql:REAL",
+      "description": "Weighted average PSF FWHM in the z band"
+    },
+    {
+      "column_name": "ra",
+      "datatype": "adql:DOUBLE",
+      "description": "Right ascension at equinox J2000"
+    },
+    {
+      "column_name": "ra_ivar",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of RA (no cosine term!), excluding astrometric calibration errors"
+    },
+    {
+      "column_name": "random_id",
+      "datatype": "adql:DOUBLE",
+      "description": "Random ID in the range 0.0 => 100.0"
+    },
+    {
+      "column_name": "rchisq_g",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in g"
+    },
+    {
+      "column_name": "rchisq_i",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in i"
+    },
+    {
+      "column_name": "rchisq_r",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in r"
+    },
+    {
+      "column_name": "rchisq_w1",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in W1"
+    },
+    {
+      "column_name": "rchisq_w2",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in W2"
+    },
+    {
+      "column_name": "rchisq_w3",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in W3"
+    },
+    {
+      "column_name": "rchisq_w4",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in W4"
+    },
+    {
+      "column_name": "rchisq_z",
+      "datatype": "adql:REAL",
+      "description": "Profile-weighted |chi|^2 of model fit normalized by the number of pixels in z"
+    },
+    {
+      "column_name": "ref_cat",
+      "datatype": "adql:VARCHAR",
+      "description": "Reference catalog source for this star: T2 for Tycho-2_, GE for Gaia EDR3_, L3 for the SGA_, empty otherwise"
+    },
+    {
+      "column_name": "ref_epoch",
+      "datatype": "adql:REAL",
+      "description": "Reference catalog reference epoch (eg, 2015.5 for Gaia EDR3_)"
+    },
+    {
+      "column_name": "ref_id",
+      "datatype": "adql:BIGINT",
+      "description": "Reference catalog identifier for this star; Tyc1*1,000,000+Tyc2*10+Tyc3 for Tycho2; sourceid for Gaia EDR3_ and SGA"
+    },
+    {
+      "column_name": "release",
+      "datatype": "adql:SMALLINT",
+      "description": "Integer denoting the camera and filter set used, which will be unique for a given processing run of the data (as documented here_)"
+    },
+    {
+      "column_name": "r_i",
+      "datatype": "adql:REAL",
+      "description": "Computed (r-i) color"
+    },
+    {
+      "column_name": "ring256",
+      "datatype": "adql:INTEGER",
+      "description": "HEALPIX index (Nsides 256, Ring scheme => ~14 arcmin size)"
+    },
+    {
+      "column_name": "r_z",
+      "datatype": "adql:REAL",
+      "description": "Computed (r-z) color"
+    },
+    {
+      "column_name": "sersic",
+      "datatype": "adql:REAL",
+      "description": "Power-law index for the Sersic profile model (type=SER)"
+    },
+    {
+      "column_name": "sersic_ivar",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of sersic"
+    },
+    {
+      "column_name": "shape_e1",
+      "datatype": "adql:REAL",
+      "description": "Ellipticity component 1 of galaxy model for galaxy type type"
+    },
+    {
+      "column_name": "shape_e1_ivar",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of shape_e1"
+    },
+    {
+      "column_name": "shape_e2",
+      "datatype": "adql:REAL",
+      "description": "Ellipticity component 2 of galaxy model for galaxy type type"
+    },
+    {
+      "column_name": "shape_e2_ivar",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of shape_e2"
+    },
+    {
+      "column_name": "shape_r",
+      "datatype": "adql:REAL",
+      "description": "Half-light radius of galaxy model for galaxy type type (>0)"
+    },
+    {
+      "column_name": "shape_r_ivar",
+      "datatype": "adql:REAL",
+      "description": "Inverse variance of shape_r"
+    },
+    {
+      "column_name": "snr_g",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in g"
+    },
+    {
+      "column_name": "snr_i",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in i"
+    },
+    {
+      "column_name": "snr_r",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in r"
+    },
+    {
+      "column_name": "snr_w1",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in W1"
+    },
+    {
+      "column_name": "snr_w2",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in W2"
+    },
+    {
+      "column_name": "snr_w3",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in W3"
+    },
+    {
+      "column_name": "snr_w4",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in W4"
+    },
+    {
+      "column_name": "snr_z",
+      "datatype": "adql:REAL",
+      "description": "Signal-to-Noise ratio in z"
+    },
+    {
+      "column_name": "type",
+      "datatype": "adql:VARCHAR",
+      "description": "Morphological model: PSF=stellar, REX=round exponential galaxy, DEV=deVauc, EXP=exponential, SER=Sersic, DUP=Gaia source fit by different model. See also the larger description_."
+    },
+    {
+      "column_name": "w1_w2",
+      "datatype": "adql:REAL",
+      "description": "Computed (w1-w2) color"
+    },
+    {
+      "column_name": "w2_w3",
+      "datatype": "adql:REAL",
+      "description": "Computed (w2-w3) color"
+    },
+    {
+      "column_name": "w3_w4",
+      "datatype": "adql:REAL",
+      "description": "Computed (w3-w4) color"
+    },
+    {
+      "column_name": "wise_coadd_id",
+      "datatype": "adql:VARCHAR",
+      "description": "unWISE coadd brick name (corresponding to the, *e.g.*, legacysurvey-<brick>-image-W1.fits.fz coadd file_) for the center of each object"
+    },
+    {
+      "column_name": "wisemask_w1",
+      "datatype": "adql:SMALLINT",
+      "description": "W1 bitmask as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "wisemask_w2",
+      "datatype": "adql:SMALLINT",
+      "description": "W2 bitmask as cataloged on the DR10 bitmasks page"
+    },
+    {
+      "column_name": "wise_x",
+      "datatype": "adql:REAL",
+      "description": "X position of coordinates in the brick image stack that corresponds to wise_coadd_id (see the DR9 updates page_ for transformations between wise_x and bx)"
+    },
+    {
+      "column_name": "wise_y",
+      "datatype": "adql:REAL",
+      "description": "Y position of coordinates in the brick image stack that corresponds to wise_coadd_id (see the DR9 updates page_ for transformations between wise_y and by)"
+    },
+    {
+      "column_name": "z_w1",
+      "datatype": "adql:REAL",
+      "description": "Computed (z-w1) color"
+    }
+  ],
+  "interfaces": [
+    {
+      "access_urls": [
+        "http://datalab.noirlab.edu/ivoa-dal/tap/capabilities"
+      ],
+      "role": "",
+      "type": "vod:ParamHTTP"
+    },
+    {
+      "access_urls": [
+        "http://datalab.noirlab.edu/ivoa-dal/tap/availability"
+      ],
+      "role": "",
+      "type": "vod:ParamHTTP"
+    },
+    {
+      "access_urls": [
+        "http://datalab.noirlab.edu/ivoa-dal/tap/"
+      ],
+      "role": "std",
+      "type": "vod:ParamHTTP"
+    },
+    {
+      "access_urls": [
+        "http://datalab.noirlab.edu/ivoa-dal/tapserviceName"
+      ],
+      "role": "",
+      "type": "vod:ParamHTTP"
+    },
+    {
+      "access_urls": [
+        "http://datalab.noirlab.edu/ivoa-dal/tap/tables"
+      ],
+      "role": "",
+      "type": "vod:ParamHTTP"
+    }
+  ],
+  "metadata_query_status": [
+    {
+      "overflow": false,
+      "query_status": [
+        {
+          "text": "",
+          "value": "OK"
+        }
+      ]
+    },
+    {
+      "overflow": false,
+      "query_status": [
+        {
+          "text": "",
+          "value": "OK"
+        }
+      ]
+    }
+  ],
+  "relation": "ls_dr10.tractor_s",
+  "relation_justification": "The explicit south-only Tractor relation is exposed and is the complete DR10-south relation; the unsuffixed relation is not substituted.",
+  "requested_tap_base": "https://datalab.noirlab.edu/tap",
+  "result_cap_hints": [
+    "none found in capabilities document"
+  ],
+  "row_count": 2825807500,
+  "row_count_source": "TAP_SCHEMA.tables.description parenthetical row count",
+  "tap_schema_tables": [
+    {
+      "description": "Main tractor photometry catalog (combined DR10 southern region and DR9 northern region); Less frequently used columns placed in apflux and wise tables (3,145,841,852 rows)",
+      "table_name": "ls_dr10.tractor"
+    },
+    {
+      "description": "Main tractor photometry catalog (DR10 southern region); Less frequently used columns placed in apflux and wise tables (2,825,807,500 rows)",
+      "table_name": "ls_dr10.tractor_s"
+    }
+  ],
+  "timestamp_utc": "2026-09-02T16:03:28.499614+00:00"
+}

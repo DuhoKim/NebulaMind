@@ -29,9 +29,10 @@ remain unresolved until the definitive run.
 ## Chosen definitive source and query
 
 Use NOIRLab Astro Data Lab's DR10 public catalogue service and its complete
-DR10-south Tractor relation (confirm the service's canonical relation name at
-run preparation; it is expected to be `ls_dr10.tractor` or the south-only view
-`ls_dr10.tractor_s`). Before live execution, record a small metadata-only schema
+DR10-south Tractor relation, confirmed by the 2026-09-03 probe as
+`ls_dr10.tractor_s`. TAP_SCHEMA describes it as the DR10 southern-region Tractor
+catalogue with **2,825,807,500 rows**; all required columns and `ls_id` are
+present. Before live execution, record a small metadata-only schema
 response proving the selected relation, release field/value, row count exposed
 by the service, and relevant columns. The run must select only identity and
 position columns (`release`, `brickid`, `objid`, `brickname`, `ra`, `dec`, and
@@ -72,6 +73,15 @@ status; any overflow/truncation warning refuses the chunk. At an expected
 30--90 seconds per 1,000-position spatial join, one worker takes about 7.5--22.5
 hours plus retries; budget **12--30 wall-clock hours** for a polite definitive
 run. Two explicitly permitted workers would likely take 6--15 hours.
+
+The 2026-09-03 dry run used a conservative 50-row sub-chunk. The capabilities-
+advertised legacy base resolved to an HTML frontend, while the requested TAP
+service's `/tap/async` child returned no UWS job Location after **7.09 s**. It
+produced no result rows and no cap/truncation assertion. This is a failed
+submission time, not an observed per-chunk query time, so the earlier runtime
+estimate cannot responsibly be revised numerically. The definitive run is
+blocked until a working async upload endpoint is supplied or the complete local
+partition fallback is used.
 
 If TAP upload/crossmatch is unavailable or unreliable, the fallback is a local
 sweep over the complete NERSC DR10-south per-brick Tractor catalogues under the
