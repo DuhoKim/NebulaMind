@@ -1091,6 +1091,7 @@ family, everywhere-subluminal propagation requires σ ≤ 1/3; σ > 1/3 is exclu
 Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Crossref says 2003 — the verified year is used.)
 
 **38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_MIXED` — the shock construction (r̄_crit = 1/H, the A < 0 TOV system, Theorems 3 and 6) is fully derived here; the link to cosmology is asserted ("loosely" galaxies; "we suggest", lines 89, 108–110) and the beyond-Hubble black-hole necessity leans on a cited result (lines 55–57, 320–321). Two seats agreed on the facts (codex filed CONSTRUCTION_DERIVED on the construction alone).
 DOI 10.4310/maa.2004.v11.n1.a7 — VERIFIED (Crossref: MAA, v11, p77-132, 2004). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 Testability: **CONSISTENCY-ONLY**

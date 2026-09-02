@@ -6,6 +6,30 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ YOUR CALL 2026-09-03 (01:00) — the warrant audit finds the 60° cutoff's DIRECTION is assumed, not derived (entries 23–27): does your "derived direction only" rule reach the warrant axis?
+
+**What surfaced.** Two blind seats agree on entry 23's warrant cell: the angular SCALE (about 60°) is derived
+non-circularly, as you ruled yesterday, but the DIRECTION — that correlations are suppressed beyond it — never comes
+out of an equation. It rests on the paper's premise that causally disconnected regions carry no correlations,
+which is the direction restated, and the author concedes no initial-conditions model exists. Entry 24 is the same
+claim by citation; 25, 26, 27 are being read now and will carry the same question.
+
+**Why it is yours.** Your record defines the warrant axis for exactly this case ("a directional claim can fail to
+follow in the asserted direction") and says tiers describe the claim's shape, so the cell alone does not move a
+tier. But your 09-01 ruling A(a) said a direction counts for QUALITATIVE-DIRECTIONAL only when DERIVED. Read
+together they conflict for 23–27. Two readings:
+- **(a) A(a) applies to the tier only where the direction is an assumed ansatz of the MODEL (a closed-FRW input);
+  here the direction is the paper's stated physical premise, so 23–27 stay QUALITATIVE-DIRECTIONAL with the warrant
+  cell recording "assumed".** *Cost:* the record carries a directional tier whose direction is flagged unwarranted.
+- **(b) A(a) applies in full: an assumed direction is not a directional claim, and 23–27 fall to CONSISTENCY-ONLY.**
+  *Cost:* the corpus's one a-priori scale prediction leaves the directional bin; tally 8 → 3 directional, 30 → 35.
+
+**Recommendation: (a).** The scale is a real, non-circular prediction; the flag belongs on the warrant axis, which
+is what you built it for. Why it cannot be mine: it is a tier decision on five entries you ruled on yesterday.
+
+---
+
+
 ## ✅ RESOLVED 2026-09-02 (22:45) — Duho "a for all three": entry 4 domain narrowed to the third-seat wording, tier kept
 
 ## ⏳ SUPERSEDED (21:20) — entry 4 (Knutsen 2009): the obstruction you stamped this afternoon is narrower than its wording

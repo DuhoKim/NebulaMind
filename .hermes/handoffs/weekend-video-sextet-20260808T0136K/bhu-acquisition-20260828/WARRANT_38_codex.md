@@ -1,0 +1,4 @@
+W_CONSTRUCTION_DERIVED
+borrowed_inputs: standard critical-FRW equations and k=0 specialization (SOURCE lines 280-299); constant equation-of-state closure p=σρ (SOURCE lines 1919-1930)
+The paper derives the A<0 matching system and states that its solutions determine weak Einstein solutions (SOURCE lines 1907-1915), then constructs the constant-σ exact family (SOURCE lines 1917-1939). Its invariant-region argument supplies global existence of the unique orbit (SOURCE lines 2145-2178), so the operative finite-mass shock cosmology is owned rather than asserted. The record’s impossibility statements delimit this construction; they do not replace its constructive warrant. The cited critical-FRW equations and assumed equation of state remain borrowed inputs.
+contested: yes — the audit seats disagreed whether the infinite-FRW matching limitation was coordinate/idealization-based or a finite-mass junction result; the record adopts the latter.
