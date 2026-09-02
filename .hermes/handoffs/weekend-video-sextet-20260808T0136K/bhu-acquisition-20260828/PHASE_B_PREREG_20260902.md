@@ -72,3 +72,13 @@ control caught it, receipt in the pipeline's revision note).
 consistent with the analytic ~0.125%). C2 (literature-value reproduction) and C3 (reductio in
 reporting) remain to run once the mask and map arrive. The five model rows are exported with a
 regression gate reproducing every gated S_1/2 (worst 4.7e-5 relative): `phaseB_model_cls.npz`.
+
+## AMENDMENT 2 — 2026-09-02, before the observed statistic is computed
+
+**Monopole and dipole are removed by least squares on the UNMASKED pixels, identically for the
+observed map and every simulated sky.** The prereg omitted this; the literature's cut-sky ~1,150 is
+defined on the mono/dipole-removed cut sky (Copi et al. convention), so without it C2 compares
+against the wrong convention. Fixed now, before the observed map is opened. Data path also fixed
+here: SMICA I_STOKES (K_CMB → μK), ud_grade 2048→64 (pixel window at ℓ≤20 is <0.1%, negligible),
+smoothing FWHM 160′ at Nside 64 (SMICA's intrinsic 5′ beam negligible against it), mask downgraded
+with the >0.9 threshold rule as pre-registered.
