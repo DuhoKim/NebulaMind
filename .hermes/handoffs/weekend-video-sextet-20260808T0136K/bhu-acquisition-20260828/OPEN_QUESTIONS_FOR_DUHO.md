@@ -6,7 +6,49 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (11:40) — Program (A)'s write-up: theory-only now, or cut-sky first?
+## ⏳ YOUR CALL 2026-09-02 (15:45) — Pathria 1972 (entry 1): stamp its standing as FIRED?
+
+**Background.** You re-tiered Pathria to CALIBRATED-FALSIFIER this afternoon ("a for both"). A calibrated
+falsifier carries a standing — has the observable it bet on come in for it or against it? That standing is
+your stamp, not mine (entry 44's FIRED was your word). The gated adjudication is done.
+
+**What was tested.** Pathria's paper says the universe-as-black-hole identity holds only if space is
+closed AND the cosmological constant is small enough that the universe reaches a maximum size — his own
+words: "we must have K = +1 and Λ ≤ Λ_c" (his eq. 18). That is his requirement, not a bar we invented.
+
+**What the modern numbers say (Planck 2018, pinned):**
+- His requirement allows only q₀ > 1/2 (a closed, decelerating universe) or, on a second branch,
+  q₀ < −1; everything in between is forbidden. Measured: **q₀ = −0.53 ± 0.01**, inside the forbidden
+  gap by 43σ on one side and 94σ on the other.
+- His own printed ceiling for Λ (1.0×10⁻⁵⁷ cm⁻²) is **10.9× smaller** than the measured value. Re-evaluated
+  at today's matter density the ceiling is ~5×10⁸ times too small. Equivalently, his bound would need
+  **Ω_K ≤ −0.77**; Planck+BAO gives 0.001 ± 0.002.
+- The strongest defence (a positive Λ within his allowed range) was checked explicitly by both seats: it
+  fails, because at the measured densities no Λ satisfies both halves of his requirement at once.
+
+**Independent check.** codex and agy, blind to each other, both returned **FIRED_CANDIDATE**. I
+recomputed every number myself (`pathria_standing_verify.py`); one imprecision in each seat's stated
+boundary, neither affecting the outcome; details in `PATHRIA_STANDING_RECONCILIATION_20260902.md`.
+A side result: codex's formula reproduces Pathria's own printed Λ_c (1.02 vs 1.0 ×10⁻⁵⁷), so his 1972
+arithmetic was sound — the universe simply did not turn out closed and decelerating.
+
+**Your options:**
+- **(a) Stamp FIRED.** Entry 1 joins entries 7 and 44 in the standing table; the corpus headline becomes
+  3 fired / 2 live calibrated falsifiers. *Cost:* none beyond the edit; the case is as clean as entry 44's.
+- **(b) Hold as PENDING** and name what else you want checked (e.g. a non-flat Planck fit rather than the
+  flat-fit numbers, or a third seat). *Cost:* a round of work; the margin is so large I do not expect it
+  to move anything.
+- **(c) Stamp LIVE.** I cannot construct a reading of the pinned text that supports this; listed only for
+  completeness.
+
+**Recommendation: (a).** Why it cannot be mine: standing stamps on calibrated falsifiers are yours by
+precedent, and this one changes the corpus headline.
+
+---
+
+## ✅ RESOLVED 2026-09-02 (14:26) — Duho ruled "a then b"; (a) filed (`PROGRAM_A_FREEDOM_MAP_20260902.md` rev 3, regated) and (b) done (`PHASE_B_PREREG_20260902.md`, `PHASEB_RESULT_RECONCILIATION_20260902.md`). Interpretation of (b) and any 23–27 tier implication remain yours.
+
+## ⏳ SUPERSEDED (11:40) — Program (A)'s write-up: theory-only now, or cut-sky first?
 
 **The theory-side work is done and the freedom is fully mapped.** Final state, all blind-doubled,
 third-seat adjudicated, residuals closed:
