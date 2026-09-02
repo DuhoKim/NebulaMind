@@ -1,0 +1,4 @@
+W_CONSTRUCTION_ASSERTED
+borrowed_inputs: universe-as-black-hole identification from Alfonso-Faus 2010 (SOURCE lines 34, 56–57); black-hole quantization relation from He and Ma 2011 (SOURCE lines 34, 43–46); R ≈ 10^28 cm, M ≈ 10^56 g, t0 ≈ 4.3×10^17 s stated without source (SOURCE line 57)
+The load-bearing identification of the universe as a black hole is explicitly taken from previous work, not derived here (SOURCE lines 34, 56–57). Once that identification and the stated cosmic scales are supplied, Rλ̄ = 2l_p² follows identically by multiplying the Schwarzschild radius and Compton wavelength (SOURCE lines 43–50), and the conjugate quantities are definitional consequences (SOURCE lines 51–61). The resulting large number therefore checks an assumed construction rather than independently establishing it.
+contested: no — both reconciliation seats agree that the black-hole identification is assumed and the subsequent arithmetic is internally consistent.

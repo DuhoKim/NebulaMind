@@ -1,0 +1,4 @@
+W_MIXED
+borrowed_inputs: Rindler elliptic identification of antipodal horizons (SOURCE lines 23, 243–245); throat source/energy-condition result [V; Gue] (SOURCE lines 258–264)
+The local background is equation-derived: the isotropic Schwarzschild metric is invariant under r → rg²/(16r), making the inner sheet an image of the second exterior (SOURCE lines 33–60), and the chosen patching yields the expansion-scalar jump used for radial completeness (SOURCE lines 162–172). But the global passage requires treating Rindler’s elliptic horizon identification as physical (SOURCE lines 243–245), while the glued throat needs a divergent, energy-condition-violating source (SOURCE lines 258–264). The further “new universe inside” claim is only suggested (SOURCE lines 24–25).
+contested: no — the seats agree on the derived local isometry and on the asserted global/cosmological link.

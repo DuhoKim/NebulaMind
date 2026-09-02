@@ -1,0 +1,4 @@
+W_DIRECTION_DERIVED
+borrowed_inputs: junction reduction from Gaztañaga 2021 (SOURCE lines 119–140); χ§ ≃ 3.34c/H0 from Gaztañaga 2021 (SOURCE lines 172–175); 40°–70° partial-sky ΩΛ regions from Fosalba and Gaztañaga 2021 (SOURCE lines 189–194)
+The paper does not rederive χ§: it cites Gaztañaga 2021 for that scale (SOURCE lines 172–175). Given that borrowed input, however, it explicitly projects the causal boundary at last scattering through θ = χ§/dA ≲ 1 rad ≃ 60° (SOURCE lines 159–168, 184–185). Thus the angular direction follows here conditionally on a cited scale, rather than being merely repeated as an unsupported sign. The claimed fossil-record comparison is borrowed after-the-fact evidence, not part of this projection (SOURCE lines 189–197).
+contested: no — both reconciliation seats agree the ~60° content reduces to the cited causal scale; the source itself performs the angular projection.

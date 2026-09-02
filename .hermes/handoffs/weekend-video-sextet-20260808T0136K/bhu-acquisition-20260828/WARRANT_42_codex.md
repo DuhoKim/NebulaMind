@@ -1,0 +1,4 @@
+W_CONSTRUCTION_DERIVED
+borrowed_inputs: Schwarzschild–Kruskal interior metric [13] (SOURCE lines 329–337); conformal-field/Hawking result [17] (SOURCE lines 399–408)
+The paper constructs new coordinates and an explicit conformal factor that is real, continuous, finite, and nonvanishing only for 0 < r < M (SOURCE lines 245–310), then identifies the n = 1 baby-universe submanifold with the Schwarzschild interior of mass M/2 (SOURCE lines 329–337). Thus the limited interior causal equivalence is equation-derived. The Hawking interpretation is imported conformal-field physics and carries the free radius M (SOURCE lines 399–408, 450–455), but it is downstream of the geometric consistency witness.
+contested: no — the reconciled seats agree that the exact interior equivalence is derived; the flux OCR issue does not affect that construction.
