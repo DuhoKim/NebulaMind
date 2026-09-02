@@ -12,3 +12,11 @@ b51369e4dc6b836d0860738e8448c73c3a35e5d3aab1d68785abb084ae892e79  completeness_g
 ```
 
 Route c: anonymous sync ADQL, q3c all-candidate cones, 100 positions/chunk, 8,933 chunks, MAXREC+QUERY_STATUS cap detection, one worker, ≥2 s pacing. Catalogue-only; no pixels. Output confined to completeness_gate/artifacts_full/.
+
+
+**Post-referee wrapper fix (Hwao, 2026-09-03 02:2x KST):** `run_full_resume.sh` died at first run with `EPOCHSECONDS: parameter not set` (zsh needs `zmodload zsh/datetime`; `zsh -n` cannot catch it). One line added at the top. New hash:
+
+```
+c8cdf22ebbcdc844b0b6b6cc86a64acd88b184f98705f57bf09ac35a07705279  completeness_gate/run_full_resume.sh
+```
+The refereed Python bytes are unchanged. Run restarted with `--resume` semantics from the 3 admitted chunks.
