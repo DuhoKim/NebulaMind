@@ -177,10 +177,15 @@ blind-double, verify against the pinned source, gate the synthesis, quote the de
 
 ## 10. What is not yet done
 
-- **Deep audits.** Equation-level audits exist for entries 7, 31, 44, 51, 54, 1 and 39 (the
-  `b`-series and `c5` scripts, phase-6 and 2026-09 lane files). Per Duho's 2026-09-02 order, 36
-  papers parked on 2026-08-29 remain unaudited at depth; STEP 3 resumes with entry 27 next by the
-  density rule (entry 39 having been taken 2026-09-01).
+- **Deep audits — STEP 3 COMPLETE for every entry with pinned text (2026-09-02, 17:2x–21:2x KST).**
+  Thirty-one queue draws under the written rule (`DEPTH_QUEUE_RULE_20260902.md`, `b69_depth_queue.py`),
+  each a blind double (codex + claude-seat, or kimi/agy where the source allowed) with a third seat on
+  the one split. **Every tier held.** Old blind flags on 36, 37, 40, 41 closed as not surviving; the
+  Easson obstruction mapped onto 19 and 20 (inapplicable to both); non-reproducing printed numbers found in
+  Popławski 2010/2012/2016 (entries 9, 10, 11) and Smoller–Temple 2000; one corpus omission surfaced
+  (Desai & Popławski 2016, packet) and one membership question (entry 45, packet); one stamped domain
+  found narrower than its wording (entry 4, packet). Not audited at depth: entries 18 (Dymnikova 1992
+  GRG) and 56 (Gaztañaga 2023 MNRAS Lett.), which have no clean text pinned — acquisition targets.
 - **The corpus-wide warrant audit** has not been done; the warrant column covers the five calibrated
   rows only.
 

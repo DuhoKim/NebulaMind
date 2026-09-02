@@ -54,7 +54,7 @@ chk("every frame entry is mapped+verified or listed UNMAPPED with a reason", len
 chk("no verification failures (a wrong file would poison the ranking)", verify_fail==[], str(verify_fail))
 chk("no two entries share a source file", len({r[5] for r in rows})==len(rows))
 chk("already deep-audited entries 1, 27, 31, 39, 44, 51, 54 are NOT in the queue", all(r[0] not in (1,27,31,39,44,51,54) for r in queue))
-chk("queue is non-empty and ordered by density desc, then entry asc", len(queue)>0 and all((-queue[i][2],queue[i][0])<=(-queue[i+1][2],queue[i+1][0]) for i in range(len(queue)-1)))
+chk("queue is ordered by density desc, then entry asc (empty = depth audit COMPLETE for all mapped entries)", all((-queue[i][2],queue[i][0])<=(-queue[i+1][2],queue[i+1][0]) for i in range(len(queue)-1)))
 json.dump({"rule":"DEPTH_QUEUE_RULE_20260902.md","queue":[r[0] for r in queue],"density":{r[0]:round(r[2],2) for r in queue},"unmapped":unmapped,"audited":sorted(set(aud))}, open(os.path.join(_HERE,"depth_queue_state.json"),"w"), indent=1, ensure_ascii=False)
 fails=[n for n,p,_ in checks if not p]; print(f"\n{len(checks)-len(fails)}/{len(checks)} checks pass"+(f"  FAILING: {fails}" if fails else ""))
 raise SystemExit(1 if fails else 0)

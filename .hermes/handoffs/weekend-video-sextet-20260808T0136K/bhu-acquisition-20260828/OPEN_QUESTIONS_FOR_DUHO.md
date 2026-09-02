@@ -6,6 +6,32 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ YOUR CALL 2026-09-02 (21:20) — entry 4 (Knutsen 2009): the obstruction you stamped this afternoon is narrower than its wording
+
+**What surfaced.** The deep audit split, and a third seat with mandated sanity checks ruled against the stamped
+wording. Knutsen's own equations at Pathria's boundary do not force a static sphere: that reading divides by a
+quantity his own conditions then set to zero. What his algebra does prove is narrower: a smoothly matched dust
+sphere at that boundary can never have its surface out in the exterior region; it touches the horizon only at
+maximum expansion, exactly at Pathria's own identity R_max = R_s. The phrases "forces a static sphere merged
+with its horizon" and "cannot describe our expanding universe" are Knutsen's words, not his mathematics.
+
+**Why it matters.** The surviving content realises Pathria's identity rather than refuting it, so whether this is
+still an obstruction to Pathria's model, or a confirmation of its geometry, is a judgement your tier scheme
+reserves to you. Pathria himself is FIRED today on independent grounds (q₀, Λ), so nothing about that stamp moves.
+
+**Your options:**
+- **(a) Narrow the domain wording to what is derived and keep THEORETICAL-OBSTRUCTION.** The exclusion that
+  survives is real: no smooth junction at r_b = 1 with the surface outside the horizon. *Cost:* one wording edit.
+- **(b) Narrow the wording and re-tier to CONSISTENCY-ONLY**, on the entry-37 convention that a result which
+  delimits a construction without excluding it is not an obstruction. *Cost:* tally 4 → 3 obstructions.
+- **(c) Keep as stamped** (codex's reading). *Cost:* the record would carry a clause two seats and the algebra
+  say is not derived.
+
+**Recommendation: (a)**, with (b) explicitly open if you read the residual as non-exclusionary. Why it cannot be
+mine: you stamped this domain at 15:17 today; changing a stamped domain or tier is yours.
+
+---
+
 ## ⏳ YOUR CALL 2026-09-02 (19:45) — entry 45 (Firouzjahi 2022, white-hole Hawking radiation): does it belong in the base layer?
 
 **What surfaced.** The deep audit found the paper is a quantum-field calculation on the white-hole half of an
