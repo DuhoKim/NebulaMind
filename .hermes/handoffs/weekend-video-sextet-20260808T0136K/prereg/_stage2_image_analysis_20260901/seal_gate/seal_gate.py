@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Callable
 
 ZERO_DIGEST = "0" * 64
+EXPECTED_BLOB_ID = "df704bed1c5fd872cf9dee9f4be2e88f64bb94a0"
 SHA_RE = re.compile(rb"^([0-9a-f]{64})[ \t]+(?:\*)?(\S+)[ \t]*$")
 ACQUISITION_KEYS = {
     "brick", "bytes", "computed_sha256", "published_sha256", "url", "utc", "verdict"
@@ -44,6 +45,9 @@ def canonical_bytes(value: dict) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode() + b"\n"
 
 
+# V9 §7.11 line 215: "For the seal check, no fallback name is allowed: … the
+# fetched filename MUST be `legacysurvey_dr10_south_coadd_<AAA>_<brick>.sha256sum`
+# at the §2.14 URL."
 def checksum_url(brick: str) -> str:
     aaa = brick[:3]
     name = f"legacysurvey_dr10_south_coadd_{aaa}_{brick}.sha256sum"
@@ -104,13 +108,16 @@ def process_running() -> bool:
                for line in proc.stdout.splitlines())
 
 
-def _git_custody(live: Path, pinned: Path, git_runner: Callable[..., subprocess.CompletedProcess]) -> dict:
+def _git_custody(live: Path, pinned: Path, expected_blob_id: str,
+                 git_runner: Callable[..., subprocess.CompletedProcess]) -> dict:
     ls = git_runner(["git", "ls-files", "-s", "--", str(live)], capture_output=True)
     text = ls.stdout.decode() if isinstance(ls.stdout, bytes) else ls.stdout
     match = re.fullmatch(r"100644 ([0-9a-f]{40,64}) 0\t.+\n?", text or "")
     if ls.returncode != 0 or not match:
         raise GateFailure("git_ls_files_mismatch")
     blob_id = match.group(1)
+    if blob_id != expected_blob_id:
+        raise GateFailure("git_blob_id_mismatch")
     cat = git_runner(["git", "cat-file", "-p", blob_id], capture_output=True)
     if cat.returncode != 0:
         raise GateFailure("git_blob_unreadable")
@@ -132,6 +139,31 @@ def _git_custody(live: Path, pinned: Path, git_runner: Callable[..., subprocess.
     return values
 
 
+def _seal_predecessor(path: Path) -> str:
+    if not path.exists() or path.stat().st_size == 0:
+        return ZERO_DIGEST
+    try:
+        raw = path.read_bytes()
+        lines = raw.splitlines(keepends=True)
+        if not lines or any(not line.strip() for line in lines):
+            raise ValueError("empty seal-journal record")
+        last_line = lines[-1]
+        record = json.loads(last_line)
+        if not isinstance(record, dict) or not isinstance(record.get("receipt_digest"), str):
+            raise ValueError("invalid seal-journal record")
+        if last_line != canonical_bytes(record):
+            raise ValueError("non-canonical seal-journal record")
+        body = dict(record)
+        recorded_digest = body.pop("receipt_digest")
+        if recorded_digest != sha256_bytes(canonical_bytes(body)):
+            raise ValueError("seal-journal receipt digest mismatch")
+        return recorded_digest
+    except Exception as exc:
+        if isinstance(exc, GateFailure):
+            raise
+        raise GateFailure("seal_journal_chain_broken") from exc
+
+
 def _published_line(payload: bytes, wanted_filename: str) -> tuple[bytes, str]:
     hits = []
     for raw_line in payload.splitlines():
@@ -144,10 +176,10 @@ def _published_line(payload: bytes, wanted_filename: str) -> tuple[bytes, str]:
 
 
 def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Path,
-             pinned_copy: Path, expected_manifest_count: int = 17947,
+             pinned_copy: Path, seal_journal: Path, expected_manifest_count: int = 17947,
+             expected_blob_id: str = EXPECTED_BLOB_ID,
              fetch: bool = False, fetcher: Callable[[str, float], bytes] | None = None,
              timeout: float = 30.0, delay: float = 0.0,
-             predecessor_digest: str = ZERO_DIGEST,
              process_checker: Callable[[], bool] = process_running,
              git_runner: Callable[..., subprocess.CompletedProcess] = subprocess.run,
              timestamp: str | None = None) -> dict:
@@ -164,7 +196,9 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
     status, verdict, failure = "PASS", "PASS", None
     acquisition_completion = False
     git_custody = {"passed": False}
+    predecessor_digest = ZERO_DIGEST
     try:
+        predecessor_digest = _seal_predecessor(seal_journal)
         entries = _manifest_entries(manifest)
         counts["manifest_count"] = len(entries)
         if len(entries) != expected_manifest_count:
@@ -192,7 +226,7 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
         if process_checker():
             raise GateFailure("acquisition_process_running")
         acquisition_completion = True
-        git_custody = _git_custody(live_script, pinned_copy, git_runner)
+        git_custody = _git_custody(live_script, pinned_copy, expected_blob_id, git_runner)
         if not git_custody["passed"]:
             raise GateFailure(git_custody["failure"])
         if not fetch:
@@ -211,7 +245,9 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
             except Exception as exc:
                 if isinstance(exc, GateFailure):
                     raise
-                raise GateFailure("published_checksum_fetch_failed") from exc
+                raise GateFailure(
+                    f"published_checksum_fetch_failed: {type(exc).__name__}: {exc}"
+                ) from exc
             bound_lines.append(line)
             receipt = final_ok[brick]
             if receipt["computed_sha256"] != published or receipt["published_sha256"] != published:
@@ -229,9 +265,10 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
                 time.sleep(delay)
         observed["published_checksum_lines_sha256"] = sha256_bytes(b"".join(bound_lines))
         counts["published_checksum_refetch_complete"] = True
-    except (GateFailure, OSError, ValueError, TypeError) as exc:
+    except Exception as exc:
         status, verdict = "REFUSE", "DATA-INTEGRITY-FAIL"
-        failure = str(exc) or type(exc).__name__
+        failure = (str(exc) or type(exc).__name__) if isinstance(exc, GateFailure) else \
+            f"{type(exc).__name__}: {exc}"
     data_integrity_pass = bool(
         status == "PASS" and counts["files_checked"] == counts["manifest_count"] == expected_manifest_count
         and counts["mismatches"] == 0 and counts["published_checksum_refetch_complete"]
@@ -241,7 +278,8 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
     body = {
         "timestamp": timestamp,
         "operation": "tier-c-freeze-time-seal-gate",
-        "paths": {"manifest": str(manifest), "journal": str(journal), "bricks_dir": str(bricks_dir),
+        "paths": {"manifest": str(manifest), "journal": str(journal),
+                  "seal_journal": str(seal_journal), "bricks_dir": str(bricks_dir),
                   "live_acquisition_script": str(live_script), "pinned_acquisition_copy": str(pinned_copy)},
         "expected_digests": expected,
         "observed_digests": observed,
@@ -266,17 +304,34 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--bricks-dir", type=Path, required=True)
     parser.add_argument("--live-script", type=Path, required=True)
     parser.add_argument("--pinned-copy", type=Path, required=True)
+    parser.add_argument("--seal-journal", type=Path, required=True)
     parser.add_argument("--expected-manifest-count", type=int, default=17947)
-    parser.add_argument("--predecessor-digest", default=ZERO_DIGEST)
+    parser.add_argument("--expected-blob-id", default=EXPECTED_BLOB_ID)
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--delay", type=float, default=0.5)
     parser.add_argument("--fetch", action="store_true", help="authorize fresh checksum-file network reads")
+    parser.add_argument("--append", action="store_true", help="append the receipt to --seal-journal")
     args = parser.parse_args(argv)
     receipt = run_gate(manifest=args.manifest, journal=args.journal, bricks_dir=args.bricks_dir,
                        live_script=args.live_script, pinned_copy=args.pinned_copy,
+                       seal_journal=args.seal_journal,
                        expected_manifest_count=args.expected_manifest_count, fetch=args.fetch,
-                       timeout=args.timeout, delay=args.delay, predecessor_digest=args.predecessor_digest)
-    sys.stdout.buffer.write(canonical_bytes(receipt))
+                       expected_blob_id=args.expected_blob_id,
+                       timeout=args.timeout, delay=args.delay)
+    encoded = canonical_bytes(receipt)
+    if args.append:
+        try:
+            with args.seal_journal.open("ab") as stream:
+                stream.write(encoded)
+        except Exception as exc:
+            receipt["status"] = "REFUSE"
+            receipt["verdict"] = "DATA-INTEGRITY-FAIL"
+            receipt["failure"] = f"{type(exc).__name__}: {exc}"
+            receipt["data_integrity_pass"] = False
+            receipt.pop("receipt_digest")
+            receipt["receipt_digest"] = sha256_bytes(canonical_bytes(receipt))
+            encoded = canonical_bytes(receipt)
+    sys.stdout.buffer.write(encoded)
     return 0 if receipt["status"] == "PASS" else 1
 
 
