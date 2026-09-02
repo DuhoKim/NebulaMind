@@ -1,9 +1,9 @@
 # The 60° causal cutoff: what the theory fixes, and what it does not
 
-**Program (A) theory-side write-up — Duho's ruling "a then b" (2026-09-02). Revision 2: the first
-draft was gated `WRITEUP_REFUTED` (`FREEDOM_MAP_GATE_codex.md`) for resurrecting claims this
-program's own rounds had retracted; this revision repairs every finding. IN-LANE ONLY: the paper is
-HELD; nothing outward. No tier is changed by this document; entries 23–27 remain
+**Program (A) write-up — Duho's ruling "a then b" (2026-09-02). Revision 3: adds §9, the completed
+phase-(b) like-for-like comparison. (Revision 2 repaired the nine findings of the first draft's
+`WRITEUP_REFUTED` gate; see `FREEDOM_MAP_GATE_codex.md`/`FREEDOM_MAP_REGATE_codex.md`.) IN-LANE
+ONLY: the paper is HELD; nothing outward. No tier is changed by this document; entries 23–27 remain
 QUALITATIVE-DIRECTIONAL.**
 
 ## The question, and the answer in three sentences
@@ -14,8 +14,10 @@ turned into a definite number for the large-angle statistic `S₁/₂` — or wh
 permanently free. The answer: **the paper supplies no perturbation prescription at all, so every
 route to a number passes through choices external to the theory; the specific natural constructions
 computed here (with all external choices declared) give full-sky `S₁/₂` between 6,113 and 14,000
-μK⁴ — a 2.5–5.7× suppression of ΛCDM's 34,924 — and the observed value enters only in phase (b),
-because it is not comparable to these full-sky numbers.**
+μK⁴ — a 2.5–5.7× suppression of ΛCDM's 34,924. Phase (b) then made the observed value comparable
+(one estimator, masked sky, controls passed, blind-doubled): the observed deficit sits at the
+0.15–0.2 percentile under ΛCDM and at 0.4–2.8% under the causal-cutoff refinements — every
+refinement leaves it at or below the ~3% level (§9).**
 
 ## 1. What the paper actually derives (verified from the source, with line numbers)
 
@@ -156,14 +158,15 @@ non-circularly) and fixes *nothing else* — no reading, no convention, no state
 
 ## 7. What this document deliberately does NOT claim
 
-- **No comparison to the observed value.** The literature's ~1,150 μK⁴ is a cut-sky,
-  estimator-specific number; every value above is a full-sky spectrum statistic. Comparing them is
-  the mismatch the C2 gate refused, and no "the model overshoots/undershoots the data" claim is made
-  or implied here. **That comparison is phase (b), ruled and next:** apply the actual mask and a
-  pseudo-C_ℓ estimator to every simulated sky, then compare like with like.
-- **No p-value claims.** `S₁/₂` is quadratic in `C_ℓ` with a violently skewed sampling distribution
-  (ΛCDM's sampling mean is 62,069 against its spectrum value of 34,924). Any distributional
-  statement belongs after (b).
+- **No full-sky-vs-observed comparison.** The values in §6 are full-sky spectrum statistics; the
+  literature's ~1,150 μK⁴ is cut-sky and estimator-specific, and comparing them directly is the
+  mismatch the C2 gate refused. **The licensed comparison is §9's**, made with one estimator on the
+  masked sky under the pre-registration — the §6 table itself is never compared to the observed
+  value.
+- **No p-value claims for §§4–6's full-sky numbers.** `S₁/₂` is quadratic in `C_ℓ` with a violently
+  skewed sampling distribution (ΛCDM's sampling mean is 62,069 against its spectrum value of
+  34,924). The only distributional statements in this document are §9's, made under the
+  pre-registration.
 - **No ISW/lensing separation.** All values unlensed; the late-ISW cross term can carry either sign
   (computed counterexample: adding positive power at ℓ=4 *lowers* S₁/₂).
 - **A structural assumption underlies every row:** standard infinite-volume ΛCDM transfer physics
@@ -186,6 +189,39 @@ mandated-sanity-gate third-seat adjudication with closed-form cross-checks (posi
 window bug), regulator convergence to ~1e-10, and regression checks (the spliced branch). The
 defect classes learned are `HARNESS_DEFECT_REGISTER.md` §1ak–§1at.
 
+## 9. Phase (b): the like-for-like comparison (completed 2026-09-02)
+
+Pre-registered before any observed byte (`PHASE_B_PREREG_20260902.md`, with two dated pre-data
+amendments: 3° bins, forced by the ℓ_max=191 kernel resolution; monopole+dipole removal on unmasked
+pixels for data and MC alike). One uniform-weight pixel-pair estimator, computed exactly through
+harmonics (validated against literal chunked pair-counting at production config: S₁/₂ agreement
+0.09–0.6%). Controls passed **before** the observed value was used: C1 (full-sky estimator
+distribution matches the direct quadratic-form route; medians within MC error, tails consistent
+with the analytic 0.125%) and C2 (**the estimator reproduces the literature's cut-sky value on the
+real masked SMICA map: 1,223 μK⁴, inside the mask-dependent ~1,000–1,300 range** — the prereg's
+stop rule did not fire). Then 5 × 2,000 masked skies, identical per-sky treatment, seeds recorded —
+and an **independent blind rebuild** (codex, from the prereg alone, barred from this implementation,
+dispatched before the production numbers existed) agreeing on every quantity: observed 1,223.3 vs
+1,217.4 μK⁴ (0.5%), all percentiles within MC error (`PHASEB_RESULT_RECONCILIATION_20260902.md`).
+
+| model | P(S₁/₂ ≤ observed) |
+|---|---|
+| ΛCDM | 0.15–0.20% |
+| Reading A, `2π/χ_§` | **2.2–2.8%** |
+| Reading A, `π/χ_§` | 0.4–0.8% |
+| Reading B construction, spliced | 1.1–1.6% |
+| Reading B construction, no splice | 0.60–0.65% |
+
+**Stated in the pre-registered grammar (percentiles, never verdicts):** the observed correlation
+deficit is unlikely-but-possible under ΛCDM (0.15–0.2%), and unlikely-but-possible under every
+causal-cutoff refinement (0.4–2.8%, best row Reading A at `2π/χ_§`). The best improvement over ΛCDM
+is roughly 15×; **no refinement raises the observed sky above the ~3% level.** Each row still
+carries §6's licensing caveat — its number is attributable to a declared completion, not to the
+theory. An earlier full-sky version of this comparison was refuted on method (C2 gate); the licence
+for this one is the pre-registration, the passed controls, and the blind double — recorded so the
+two are never conflated. **Whether ~3% "explains" the anomaly is an interpretation question, and it
+is Duho's, as is anything it implies for entries 23–27 — nothing moved.**
+
 ## Receipts index
 
 `cutoffA_s12_machinery.py` (operator, validated) · `cutoffA_readings_incompatible.py` (§3) ·
@@ -194,4 +230,6 @@ defect classes learned are `HARNESS_DEFECT_REGISTER.md` §1ak–§1at.
 `cutoffA_monopole*.py`, `MONOPOLE_*_RESULT.md`, `POSITIVITY_third_VERDICT.md`,
 `cutoffA_positivity_third.py` (§5.2–5.3) · `MONOPOLE_NORM_RESIDUAL_codex.md` (§5, §6) ·
 step-2 gate verdicts ×4 (§2) · `FREEDOM_MAP_GATE_codex.md` (revision-1 refutation) ·
-`2003.11544_clean.txt` (§1).
+`PHASE_B_PREREG_20260902.md`, `phaseB_pipeline.py`, `phaseB_export_cls.py`, `phaseB_c2.py`,
+`phaseB_production.py`, `phaseB_blind_codex.py`, `PHASEB_BLIND_codex_RESULT.md`,
+`PHASEB_RESULT_RECONCILIATION_20260902.md` (§9) · `2003.11544_clean.txt` (§1).
