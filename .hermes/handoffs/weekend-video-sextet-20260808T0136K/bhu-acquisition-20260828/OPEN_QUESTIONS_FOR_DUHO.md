@@ -13,6 +13,9 @@ non-circularly, as you ruled yesterday, but the DIRECTION — that correlations 
 out of an equation. It rests on the paper's premise that causally disconnected regions carry no correlations,
 which is the direction restated, and the author concedes no initial-conditions model exists. Entry 24 is the same
 claim by citation; 25, 26, 27 are being read now and will carry the same question.
+**Extended 01:03 — entry 6 (Smolin 1992) carries the same token by two blind seats:** the "local maximum" step that
+gives its direction is, in Smolin's words, "sufficient to assume" (lines 220–227). Your reading (a)/(b) below applies to
+entry 6 as well; under (b) the directional bin would fall to 2 (54 and 56).
 
 **Why it is yours.** Your record defines the warrant axis for exactly this case ("a directional claim can fail to
 follow in the asserted direction") and says tiers describe the claim's shape, so the cell alone does not move a

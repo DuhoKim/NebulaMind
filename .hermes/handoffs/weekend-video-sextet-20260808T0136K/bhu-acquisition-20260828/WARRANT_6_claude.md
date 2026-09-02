@@ -1,0 +1,7 @@
+W_DIRECTION_ASSUMED
+borrowed_inputs: none — the load-bearing steps are the paper's own postulates (bounce, lines 143–149, citing [9],[10] as prior advocacy not as an imported theorem; small random step, 150–158).
+
+Justification (blind claude-seat; source ../bhu-reading-20260823/sources/smolin_1992_clean.txt):
+The local-maximum property enters at lines 220–227: "the following are likely consequences of the assumptions we have made so far: (i) the limit ... converges ... and (ii) A(p) is peaked around local maxima of R(p) ... it will be important to show that (i) and (ii) do, indeed, follow in an appropriate set of models. For the moment it is sufficient to assume them." Assumed, in the author's words, alongside a typicality assumption (229–230). The direction then follows definitionally (232–238: "near a local maximum ... Thus modifications in any of the parameters should generally result in a decrease of R(p)"); all directional content sits in assumed (ii) plus typicality. The 1-D toy model (488–503) asserts "stays peaked ... because R(λ) is peaked" — a walk-through, not a derivation of (ii). No free parameter is chosen, so CONDITIONAL does not apply.
+
+contested: yes — packet-class token (prereg §3, contradiction flag against tier gate A(a)), and the DERIVED gloss "follows with stated assumptions" could be read to fit since Smolin states (ii) explicitly; adjudication turns on whether an explicitly assumed concentration step counts as derived. Receipt ENTRY6_DEEP_RECONCILIATION_20260902.md item 3 already records it as assumed.
