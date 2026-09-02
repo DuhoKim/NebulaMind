@@ -1098,6 +1098,7 @@ limitation motivates and delimits a construction rather than being the paper's o
 Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
 
 **57. J. Smoller & B. Temple (1997). "General relativistic shock waves that extend the Oppenheimer–Snyder model." Arch. Rational Mech. Anal. 138, 239–277.**
+**Deep audit (2026-09-02, STEP 3 queue draw #29; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY57_DEEP_RECONCILIATION_20260902.md`):** the theorem base of the shock branch — Theorems 4–13 proved here (Theorems 1–3 recalled from ARMA 1994), all under the explicit restriction to shocks OUTSIDE the Schwarzschild radius (A > 0, lines 41–42, 1512–1518); no cosmological claim of its own (the big-bang-as-shock line is a bracketed scenario credited to PRD 1995, lines 53–55; no "Hubble", no "observ"); the model is shown maximally flexible (four free initial conditions, equations of state freely assignable). The inside-the-horizon step is owed by entries 36/37. **Tier UNCHANGED.**
 DOI 10.1007/s002050050041 — VERIFIED (Crossref: ARMA, v138, p239-277, 1997). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 **Full text OBTAINED 2026-08-23**: the published version is self-archived on Blake Temple's UC
