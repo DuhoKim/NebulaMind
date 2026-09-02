@@ -6,7 +6,28 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (10:30) — the two seats disagree on substance, and my own tie-break failed
+## ✅ RESOLVED 2026-09-02 (11:10) — Duho ruled "run the third seat"; it settled the split and found the real bug
+
+**Ruling executed. Verdict: `POSITIVITY_HOLDS` — and both seats were half-wrong.** agy's negative
+power is grid aliasing (reproduced, attributed, confined to k≈1.6–1.9/Mpc — irrelevant to S₁/₂);
+codex's sign was right but **his window was supported on 28,030 Mpc, twice the causal horizon** —
+and that bug traces to an ambiguous formula in MY brief, not to the seat. The decisive part is
+analytic: `P_B''(0) = −(4π/3)·Cov(r²,ξ) > 0` since ξ decreases with r, so the spectrum leaves k=0
+upward — grid-independent, any χ_§. The mandated sanity gates are what caught everything.
+
+**The repaired computation (codex, one-line fix, converged to 7.7e-11, positivity PASS, sanity
+ratio 1.9e-7):** **Reading B S₁/₂ = 8,777 μK⁴.** agy's 10,063 not confirmed (12.8% high, his
+diagnosed transform noise); a normalization-treatment residual of similar size also remains. Honest
+statement: **Reading B ≈ 8,800–10,100 μK⁴.**
+
+**Where the program now stands:** ΛCDM 34,924 · Reading A 6,897–14,000 (convention) · **Reading B
+~8,800–10,100** · observed ~1,150. Every natural refinement lands in a **narrow band 6–12× above
+the observed value**. The original "no number" no-go is dead (my own claim, overturned twice); what
+replaces it is sharper — the freedom is small, and none of it reaches the data. Old known caveats
+stand: full-sky vs cut-sky, ISW/lensing not separated. **No tier moved.** *(Superseded question kept
+below for the record.)*
+
+## ⏳ SUPERSEDED (10:30) — the two seats disagree on substance, and my own tie-break failed
 
 **Program (A) is running on your "topic A" ruling and has produced a real result — plus one
 disagreement I could not settle, which the rules say comes to you.**
