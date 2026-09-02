@@ -12,3 +12,6 @@ The statement and the digest are therefore valid in content; the freeze takes ef
 moment Blanc's relay lands (either Duho repeats the sentence in the Blanc chat, or Duho rules
 that this pane counts as the channel — that ruling would itself need a V10 referee round).
 Nothing is frozen yet; the V9 file is untouched; ruling "a" stands.
+
+**Superseded 2026-09-03 08:0x KST:** V9 was replaced by V10 (§7.9 correction) before any freeze; the
+V9 digest statement above is void as a signature. See MINI_PREREG_V10_SIGNING_HANDOFF_20260903.md.
