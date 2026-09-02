@@ -15,3 +15,10 @@ overnight; its receipt lands during 2026-09-03/04. Reported in the morning repor
 
 **Boundaries unchanged:** catalogue-only; no pixel opened, rendered, or measured; V9 signature
 pending relay; audio hold; text reports.
+
+**Update 2026-09-03 02:2x KST — full run STARTED.** agy V3 verdict PINNABLE (COMPLETENESS_GATE_PIN_20260903.md).
+Hwao's earlier sequencing (crossmatch after the seal gate) was caution about network load, not a
+dependency: the crossmatch is catalogue-only (NOIRLab), the seal gate is file-level (NERSC). Under
+Duho's ruling "Hwao a" the run starts now via `completeness_gate/run_full_resume.sh` (one worker,
+≥2 s pacing, resume on exit 75), log `completeness_gate/run_full_resume.log`; expected ~28 h →
+receipt ~2026-09-04 06:00 KST. No pixel is touched by this run.
