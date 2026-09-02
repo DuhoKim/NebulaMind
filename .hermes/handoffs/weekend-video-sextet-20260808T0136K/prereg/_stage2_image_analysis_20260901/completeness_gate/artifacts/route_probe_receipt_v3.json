@@ -1,0 +1,36 @@
+{
+  "anonymous": true,
+  "positions": 10,
+  "routes": {
+    "a": {
+      "cap_signal": null,
+      "endpoint": "http://datalab.noirlab.edu/ivoa-dal/tap/async",
+      "rows": 0,
+      "uncapped_proven": false,
+      "wall_s": 1.111643875,
+      "worked": false,
+      "reason": "capabilities-advertised legacy endpoint returned HTML, not UWS"
+    },
+    "b": {
+      "cap_signal": null,
+      "endpoint": "http://datalab.noirlab.edu/ivoa-dal/tap/sync",
+      "rows": 0,
+      "uncapped_proven": false,
+      "wall_s": 1.105735209,
+      "worked": false,
+      "reason": "capabilities-advertised legacy endpoint returned HTML, not VOTable"
+    },
+    "c": {
+      "all_candidate_cones": true,
+      "cap_signal": "QUERY_STATUS=OK",
+      "endpoint": "https://datalab.noirlab.edu/tap/sync",
+      "maxrec": 10000,
+      "query_chars": 2266,
+      "rows": 12,
+      "uncapped_proven": true,
+      "wall_s": 1.8013565,
+      "worked": true
+    }
+  },
+  "selected": "c"
+}

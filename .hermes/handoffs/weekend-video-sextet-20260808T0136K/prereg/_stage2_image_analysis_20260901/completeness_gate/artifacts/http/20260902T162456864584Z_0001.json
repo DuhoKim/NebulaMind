@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "params": {
+      "FORMAT": "votable",
+      "LANG": "ADQL",
+      "MAXREC": "10000",
+      "QUERY": "SELECT CASE WHEN q3c_radial_query(t.ra,t.dec,0.0017083333333333332,(0+10.373805555555556),0.00027777777777777783)=true THEN 0 WHEN q3c_radial_query(t.ra,t.dec,0.0030833333333333333,(0+9.2222777777777782),0.00027777777777777783)=true THEN 1 WHEN q3c_radial_query(t.ra,t.dec,0.004291666666666667,(0+10.946666666666667),0.00027777777777777783)=true THEN 2 WHEN q3c_radial_query(t.ra,t.dec,0.005749999999999999,15.509805555555555,0.00027777777777777783)=true THEN 3 WHEN q3c_radial_query(t.ra,t.dec,0.006458333333333333,(0+0.092583333333333323),0.00027777777777777783)=true THEN 4 WHEN q3c_radial_query(t.ra,t.dec,0.006541666666666667,(0+9.4945277777777761),0.00027777777777777783)=true THEN 5 WHEN q3c_radial_query(t.ra,t.dec,0.00775,0.7192500000000001,0.00027777777777777783)=true THEN 6 WHEN q3c_radial_query(t.ra,t.dec,0.008333333333333333,15.697166666666666,0.00027777777777777783)=true THEN 7 WHEN q3c_radial_query(t.ra,t.dec,0.00875,15.881722222222223,0.00027777777777777783)=true THEN 8 WHEN q3c_radial_query(t.ra,t.dec,0.010041666666666667,14.821944444444444,0.00027777777777777783)=true THEN 9 END AS input_index,t.release,t.brickid,t.objid,t.brickname,t.ra,t.dec,t.ls_id FROM ls_dr10.tractor_s AS t WHERE (q3c_radial_query(t.ra,t.dec,0.0017083333333333332,(0+10.373805555555556),0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.0030833333333333333,(0+9.2222777777777782),0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.004291666666666667,(0+10.946666666666667),0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.005749999999999999,15.509805555555555,0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.006458333333333333,(0+0.092583333333333323),0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.006541666666666667,(0+9.4945277777777761),0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.00775,0.7192500000000001,0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.008333333333333333,15.697166666666666,0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.00875,15.881722222222223,0.00027777777777777783)=true) OR (q3c_radial_query(t.ra,t.dec,0.010041666666666667,14.821944444444444,0.00027777777777777783)=true)",
+      "REQUEST": "doQuery"
+    },
+    "url": "https://datalab.noirlab.edu/tap/sync"
+  },
+  "response": {
+    "body_bytes_observed": 328,
+    "body_first_4096_hex": "3c3f786d6c2076657273696f6e3d22312e302220656e636f64696e673d225554462d38223f3e0d0a3c564f5441424c4520786d6c6e733d22687474703a2f2f7777772e69766f612e6e65742f786d6c2f564f5461626c652f76312e322220786d6c6e733a7873693d22687474703a2f2f7777772e77332e6f72672f323030312f584d4c536368656d612d696e7374616e6365222076657273696f6e3d22312e32223e0d0a20203c5245534f5552434520747970653d22726573756c7473223e0d0a202020203c494e464f206e616d653d2251554552595f535441545553222076616c75653d224552524f52223e496c6c6567616c417267756d656e74457863657074696f6e3a20436f6c756d6e205b747275655d20646f6573206e6f742065786973742e3c2f494e464f3e0d0a20203c2f5245534f555243453e0d0a3c2f564f5441424c453e0d0a",
+    "body_first_4096_text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<VOTABLE xmlns=\"http://www.ivoa.net/xml/VOTable/v1.2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.2\">\r\n  <RESOURCE type=\"results\">\r\n    <INFO name=\"QUERY_STATUS\" value=\"ERROR\">IllegalArgumentException: Column [true] does not exist.</INFO>\r\n  </RESOURCE>\r\n</VOTABLE>\r\n",
+    "body_truncated_for_capture": false,
+    "headers": {
+      "Connection": "close",
+      "Content-Disposition": "attachment; filename=\"error_x0ljsdfqzig3hkmh.xml\"",
+      "Content-Type": "application/x-votable+xml",
+      "Date": "Wed, 02 Sep 2026 16:24:57 GMT",
+      "Server": "nginx/1.31.3",
+      "Strict-Transport-Security": "max-age=31536000",
+      "Transfer-Encoding": "chunked"
+    },
+    "reason": "OK",
+    "resolved_url": "https://datalab.noirlab.edu/tap/sync",
+    "status": 200,
+    "status_line": "HTTP/1.1 200 OK"
+  },
+  "timestamp_utc": "2026-09-02T16:24:56.864605+00:00"
+}

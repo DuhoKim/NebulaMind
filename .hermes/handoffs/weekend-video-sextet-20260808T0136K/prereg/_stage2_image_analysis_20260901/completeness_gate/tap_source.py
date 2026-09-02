@@ -30,7 +30,7 @@ from completeness_gate import (Candidate, CandidateSource, GateError, GZRecord,
 
 DEFAULT_TAP = "https://datalab.noirlab.edu/tap"
 TOTAL_ROWS = 893_212
-CHUNK_SIZE = 1_000
+CHUNK_SIZE = 100
 POLL_SECONDS = 5.0
 CREATE_INTERVAL_SECONDS = 2.0
 SERVER_RADIUS_DEG = math.nextafter(1.0 / 3600.0, math.inf)
@@ -82,8 +82,9 @@ def validate_manifest(manifest: Mapping[str, object], total_rows: int) -> None:
         _fail("manifest input_index set is not exactly 0..N-1")
 
 
-def write_manifest(path: Path, total_rows: int = TOTAL_ROWS) -> dict:
-    manifest = canonical_manifest(total_rows)
+def write_manifest(path: Path, total_rows: int = TOTAL_ROWS,
+                   chunk_size: int = CHUNK_SIZE) -> dict:
+    manifest = canonical_manifest(total_rows, chunk_size)
     encoded = json.dumps(manifest, sort_keys=True, separators=(",", ":")) + "\n"
     if path.exists() and path.read_text(encoding="utf-8") != encoded:
         _fail("existing chunk manifest is not canonical")
@@ -123,6 +124,32 @@ JOIN {relation} AS t
 ORDER BY g.input_index, t.brickid, t.objid"""
 
 
+def _adql_number(value: float) -> str:
+    # Data Lab's ADQL parser mishandles a leading negative literal in some UDF
+    # argument positions; an equivalent parenthesized subtraction is stable.
+    return f"(0{value:+.17g})" if value < 0 else repr(value)
+
+
+def make_sync_adql(records: Sequence[GZRecord], relation: str,
+                   include_ls_id: bool) -> str:
+    if not records:
+        _fail("cannot construct an empty cone query")
+    selected = "t.release,t.brickid,t.objid,t.brickname,t.ra,t.dec"
+    if include_ls_id:
+        selected += ",t.ls_id"
+    def predicate(r: GZRecord) -> str:
+        return (f"q3c_radial_query(t.ra,t.dec,{_adql_number(r.ra)},"
+                f"{_adql_number(r.dec)},{SERVER_RADIUS_DEG!r})='true'")
+    # CASE is an auditable server-side tag.  A source can lie in overlapping
+    # cones, so the client recomputes all memberships and expands it to every
+    # matching input_index rather than silently retaining only the first CASE.
+    case = "CASE " + " ".join(
+        f"WHEN {predicate(r)} THEN {r.input_index}" for r in records
+    ) + " END AS input_index"
+    where = " OR ".join(f"({predicate(r)})" for r in records)
+    return f"SELECT {case},{selected} FROM {relation} AS t WHERE {where}"
+
+
 def multipart(fields: Mapping[str, str], upload: bytes) -> tuple[bytes, str]:
     boundary = "----completeness-" + uuid.uuid4().hex
     out = io.BytesIO()
@@ -136,20 +163,58 @@ def multipart(fields: Mapping[str, str], upload: bytes) -> tuple[bytes, str]:
 
 class HttpClient:
     def __init__(self, sleep: Callable[[float], None] = time.sleep,
-                 rng: Callable[[], float] = random.random, max_retries: int = 6):
+                 rng: Callable[[], float] = random.random, max_retries: int = 6,
+                 capture_dir: Path | None = None):
         self.sleep, self.rng, self.max_retries = sleep, rng, max_retries
+        self.capture_dir = capture_dir
+        self._capture_n = 0
+
+    def _capture(self, *, method: str, url: str, params: Mapping[str, object] | None,
+                 status: int, reason: str, version: object,
+                 headers: Mapping[str, str], body: bytes, resolved_url: str) -> None:
+        if self.capture_dir is None:
+            return
+        self.capture_dir.mkdir(parents=True, exist_ok=True)
+        self._capture_n += 1
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        safe_params = {str(k): ("<binary upload omitted>" if str(k).upper() == "UPLOAD_BODY" else str(v))
+                       for k, v in (params or {}).items()
+                       if str(k).lower() not in {"token", "password", "authorization", "x-dl-authtoken"}}
+        record = {
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "request": {"method": method, "url": url, "params": safe_params},
+            "response": {
+                "status_line": f"HTTP/{ {10: '1.0', 11: '1.1'}.get(version, version) } {status} {reason}".strip(),
+                "status": status, "reason": reason, "resolved_url": resolved_url,
+                "headers": dict(headers), "body_first_4096_hex": body[:4096].hex(),
+                "body_first_4096_text": body[:4096].decode("utf-8", "replace"),
+                "body_bytes_observed": len(body), "body_truncated_for_capture": len(body) > 4096,
+            },
+        }
+        path = self.capture_dir / f"{stamp}_{self._capture_n:04d}.json"
+        path.write_text(json.dumps(record, sort_keys=True, indent=2) + "\n", encoding="utf-8")
 
     def request(self, url: str, *, method: str = "GET", data: bytes | None = None,
-                headers: Mapping[str, str] | None = None) -> tuple[bytes, Mapping[str, str], str, int]:
+                headers: Mapping[str, str] | None = None,
+                params: Mapping[str, object] | None = None) -> tuple[bytes, Mapping[str, str], str, int]:
         for attempt in range(self.max_retries + 1):
             req = urllib.request.Request(url, data=data, method=method,
                                          headers=dict(headers or {}))
             try:
                 with urllib.request.urlopen(req, timeout=180) as response:
-                    return response.read(), dict(response.headers), response.geturl(), response.status
+                    raw = response.read()
+                    self._capture(method=method, url=url, params=params, status=response.status,
+                                  reason=str(response.reason), version=response.version,
+                                  headers=dict(response.headers), body=raw,
+                                  resolved_url=response.geturl())
+                    return raw, dict(response.headers), response.geturl(), response.status
             except urllib.error.HTTPError as exc:
+                raw = exc.read()
+                self._capture(method=method, url=url, params=params, status=exc.code,
+                              reason=str(exc.reason), version="?", headers=dict(exc.headers),
+                              body=raw, resolved_url=exc.geturl())
                 if exc.code != 429 and not 500 <= exc.code < 600:
-                    raise
+                    return raw, dict(exc.headers), exc.geturl(), exc.code
                 if attempt == self.max_retries:
                     raise
                 retry = exc.headers.get("Retry-After")
@@ -163,10 +228,10 @@ class HttpClient:
                 self.sleep(delay if delay is not None else (2 ** attempt) + self.rng())
 
 
-def discover_async_endpoint(capabilities: bytes, requested_base: str) -> tuple[str, list[dict]]:
+def discover_interfaces(capabilities: bytes) -> tuple[str, str, list[dict]]:
     root = ET.fromstring(capabilities)
     interfaces = []
-    async_url = None
+    standard_bases = []
     for interface in root.iter():
         if interface.tag.rsplit("}", 1)[-1] != "interface":
             continue
@@ -175,15 +240,12 @@ def discover_async_endpoint(capabilities: bytes, requested_base: str) -> tuple[s
         urls = [e.text.strip() for e in interface.iter()
                 if e.tag.rsplit("}", 1)[-1] == "accessURL" and e.text]
         interfaces.append({"role": role, "type": itype, "access_urls": urls})
-        for url in urls:
-            if role == "std" and url.rstrip("/").endswith("/async"):
-                async_url = url.rstrip("/")
-    if not async_url:
-        # This service advertises a legacy /ivoa-dal base, not an async
-        # accessURL. The operational UWS child belongs to the requested TAP
-        # base; retain interfaces verbatim so the discrepancy is auditable.
-        async_url = requested_base.rstrip("/") + "/async"
-    return async_url, interfaces
+        if role == "std":
+            standard_bases.extend(urls)
+    if not standard_bases:
+        _fail("capabilities exposes no standard TAP interface")
+    base = standard_bases[0].rstrip("/")
+    return base + "/async", base + "/sync", interfaces
 
 
 def parse_votable(raw: bytes) -> tuple[list[dict[str, str]], dict]:
@@ -197,7 +259,8 @@ def parse_votable(raw: bytes) -> tuple[list[dict[str, str]], dict]:
                    or "truncat" in s["text"].lower() for s in statuses)
     table = next((e for e in root.iter() if e.tag.rsplit("}", 1)[-1] == "TABLE"), None)
     if table is None:
-        return [], {"query_status": statuses, "overflow": overflow}
+        return [], {"query_status": statuses, "overflow": overflow,
+                    "cap_signal": statuses[-1]["value"].upper() if statuses else None}
     fields = [e.attrib.get("name", "") for e in table
               if e.tag.rsplit("}", 1)[-1] == "FIELD"]
     rows = []
@@ -206,7 +269,19 @@ def parse_votable(raw: bytes) -> tuple[list[dict[str, str]], dict]:
             continue
         vals = [(td.text or "") for td in tr if td.tag.rsplit("}", 1)[-1] == "TD"]
         rows.append(dict(zip(fields, vals)))
-    return rows, {"query_status": statuses, "overflow": overflow}
+    return rows, {"query_status": statuses, "overflow": overflow,
+                  "cap_signal": statuses[-1]["value"].upper() if statuses else None}
+
+
+def require_uncapped(status: Mapping[str, object], chunk_id: int) -> str:
+    signal = status.get("cap_signal")
+    if not signal:
+        _fail(f"TAP result lacks QUERY_STATUS cap signal for chunk {chunk_id}")
+    if status.get("overflow") or signal == "OVERFLOW":
+        _fail(f"TAP result overflow/truncation for chunk {chunk_id}")
+    if signal != "OK":
+        _fail(f"TAP result QUERY_STATUS={signal} for chunk {chunk_id}")
+    return "QUERY_STATUS=OK (MAXREC=10000)"
 
 
 def sync_query(client: HttpClient, sync_url: str, query: str) -> bytes:
@@ -218,11 +293,13 @@ def sync_query(client: HttpClient, sync_url: str, query: str) -> bytes:
 
 
 def probe(base_url: str, output_dir: Path, client: HttpClient | None = None) -> dict:
-    client = client or HttpClient()
+    client = client or HttpClient(capture_dir=output_dir / "artifacts" / "http")
+    if client.capture_dir is None:
+        client.capture_dir = output_dir / "artifacts" / "http"
     requested = base_url.rstrip("/")
     capabilities_url = requested + "/capabilities"
     caps, cap_headers, resolved_caps, _ = client.request(capabilities_url)
-    async_url, interfaces = discover_async_endpoint(caps, requested)
+    advertised_async, advertised_sync, interfaces = discover_interfaces(caps)
     sync_url = requested + "/sync"
     tq = "SELECT table_name, description FROM TAP_SCHEMA.tables WHERE table_name IN ('ls_dr10.tractor','ls_dr10.tractor_s') ORDER BY table_name"
     table_rows, table_status = parse_votable(sync_query(client, sync_url, tq))
@@ -257,7 +334,9 @@ def probe(base_url: str, output_dir: Path, client: HttpClient | None = None) -> 
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "requested_tap_base": requested, "capabilities_url": resolved_caps,
         "capabilities_sha256": sha256_bytes(caps), "capabilities_headers": dict(cap_headers),
-        "async_endpoint": async_url, "interfaces": interfaces,
+        "advertised_async_endpoint": advertised_async,
+        "advertised_sync_endpoint": advertised_sync,
+        "sync_endpoint": sync_url, "interfaces": interfaces,
         "relation": relation,
         "relation_justification": "The explicit south-only Tractor relation is exposed and is the complete DR10-south relation; the unsuffixed relation is not substituted.",
         "tap_schema_tables": table_rows, "columns": column_rows,
@@ -273,26 +352,52 @@ def probe(base_url: str, output_dir: Path, client: HttpClient | None = None) -> 
 
 
 class TAPCandidateSource(CandidateSource):
-    """One-worker async TAP runner backed by immutable chunk artifacts."""
-    def __init__(self, async_url: str, relation: str, columns: Iterable[str],
+    """One-worker synchronous, no-upload TAP runner with immutable artifacts."""
+    def __init__(self, sync_url: str, relation: str, columns: Iterable[str],
                  artifacts: Path, *, client: HttpClient | None = None,
                  poll_seconds: float = POLL_SECONDS,
                  create_interval: float = CREATE_INTERVAL_SECONDS):
-        self.async_url, self.relation = async_url.rstrip("/"), relation
+        self.sync_url, self.relation = sync_url.rstrip("/"), relation
         self.columns = {c.lower() for c in columns}
         self.artifacts = artifacts
-        self.client = client or HttpClient()
+        self.client = client or HttpClient(capture_dir=artifacts / "http")
+        if self.client.capture_dir is None:
+            self.client.capture_dir = artifacts / "http"
         self.poll_seconds, self.create_interval = poll_seconds, create_interval
         self._last_creation = 0.0
         self._results: dict[int, list[Candidate]] = {}
 
     @property
     def provenance(self) -> Mapping[str, object]:
-        return {"backend": "NOIRLab-Astro-Data-Lab-async-TAP",
+        return {"backend": "NOIRLab-Astro-Data-Lab-sync-TAP-q3c",
                 "release_identity": self.relation,
                 "enumeration": "complete-all-candidates", "query_artifacts": [],
                 "magnitude_predicate": False, "truncated": False,
-                "async_endpoint": self.async_url}
+                "sync_endpoint": self.sync_url, "cap_signal": "QUERY_STATUS=OK"}
+
+    def _admit_rows(self, rows: Sequence[Mapping[str, str]],
+                    records: Sequence[GZRecord]) -> None:
+        seen: set[tuple[int, tuple[int, int, int]]] = set()
+        for row in rows:
+            candidate = Candidate(int(row["release"]), int(row["brickid"]),
+                                  int(row["objid"]), float(row["ra"]),
+                                  float(row["dec"]), row.get("brickname", ""))
+            matches = [r.input_index for r in records if separation_arcsec(
+                r.ra, r.dec, candidate.ra, candidate.dec) <= 1.0]
+            if not matches:
+                _fail("TAP returned a source outside every submitted cone")
+            try:
+                server_tag = int(row["input_index"])
+            except (KeyError, TypeError, ValueError):
+                _fail("TAP result lacks a parseable CASE input_index tag")
+            if server_tag not in matches:
+                _fail("TAP CASE input_index tag does not match source position")
+            for idx in matches:
+                key = (idx, candidate.identity)
+                if key in seen:
+                    _fail("TAP returned duplicate candidate identity/provenance")
+                seen.add(key)
+                self._results.setdefault(idx, []).append(candidate)
 
     def _checkpoint_entries(self) -> list[dict]:
         path = self.artifacts / "checkpoint.jsonl"
@@ -312,78 +417,51 @@ class TAPCandidateSource(CandidateSource):
         if len(completed) > 1:
             _fail(f"multiple successful checkpoint entries for chunk {chunk_id}")
         if completed:
-            return completed[0] | {"resumed": True}
+            entry = completed[0]
+            raw = (self.artifacts / entry["raw_result"]).read_bytes()
+            rows, status = parse_votable(raw)
+            require_uncapped(status, chunk_id)
+            self._admit_rows(rows, records)
+            return entry | {"resumed": True}
         expected = list(range(records[0].input_index, records[0].input_index + len(records))) if records else []
         if [r.input_index for r in records] != expected:
             _fail("chunk input_index sequence is not contiguous")
         attempt = f"chunk_{chunk_id:04d}_{utc_stamp()}"
         attempt_dir = self.artifacts / attempt
         attempt_dir.mkdir()
-        upload = votable_upload(records)
-        query = make_adql(self.relation, "ls_id" in self.columns)
-        (attempt_dir / "upload.xml").write_bytes(upload)
+        query = make_sync_adql(records, self.relation, "ls_id" in self.columns)
         (attempt_dir / "query.adql").write_text(query + "\n", encoding="utf-8")
         wait = self.create_interval - (time.monotonic() - self._last_creation)
         if wait > 0:
             self.client.sleep(wait)
         fields = {"REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "votable",
-                  "QUERY": query, "UPLOAD": "gz_chunk,param:gz_chunk", "PHASE": "RUN"}
-        body, ctype = multipart(fields, upload)
+                  "QUERY": query, "MAXREC": "10000"}
+        body = urllib.parse.urlencode(fields).encode()
         started = time.monotonic()
-        submit_raw, headers, final_url, submit_status = self.client.request(
-            self.async_url, method="POST", data=body, headers={"Content-Type": ctype})
+        raw, result_headers, final_url, submit_status = self.client.request(
+            self.sync_url, method="POST", data=body,
+            headers={"Content-Type": "application/x-www-form-urlencoded"}, params=fields)
         self._last_creation = time.monotonic()
-        (attempt_dir / "submission_response.bin").write_bytes(submit_raw)
-        (attempt_dir / "submission.json").write_text(json.dumps({
-            "status": submit_status, "headers": dict(headers), "final_url": final_url,
-            "response_sha256": sha256_bytes(submit_raw)}, sort_keys=True, indent=2) + "\n")
-        job_url = headers.get("Location") or final_url
-        if not job_url.startswith("http"):
-            job_url = urllib.parse.urljoin(self.async_url + "/", job_url)
-        job_id = job_url.rstrip("/").rsplit("/", 1)[-1]
-        if job_url.rstrip("/") == self.async_url or not headers.get("Location"):
-            _fail("async TAP submission returned no UWS job Location")
-        phases = []
-        while True:
-            phase_raw, _, _, _ = self.client.request(job_url.rstrip("/") + "/phase")
-            phase = phase_raw.decode("utf-8", "replace").strip().upper()
-            if phase not in {"PENDING", "QUEUED", "EXECUTING", "COMPLETED", "ERROR", "ABORTED", "UNKNOWN", "HELD", "SUSPENDED"}:
-                _fail(f"TAP job {job_id} returned invalid UWS phase")
-            phases.append({"at_utc": datetime.now(timezone.utc).isoformat(), "phase": phase})
-            if phase in {"COMPLETED", "ERROR", "ABORTED"}:
-                break
-            self.client.sleep(max(5.0, self.poll_seconds))
-        if phase != "COMPLETED":
-            _fail(f"TAP job {job_id} ended in phase {phase}")
-        raw, result_headers, _, _ = self.client.request(job_url.rstrip("/") + "/results/result")
         rows, status = parse_votable(raw)
-        (attempt_dir / "phase_log.json").write_text(json.dumps(phases, indent=2) + "\n")
         (attempt_dir / "result.vot").write_bytes(raw)
-        if status["overflow"]:
-            _fail(f"TAP result overflow/truncation for chunk {chunk_id}")
-        clean = []
-        by_index = {r.input_index: r for r in records}
-        for row in rows:
-            idx = int(row["input_index"])
-            if idx not in by_index:
-                _fail("TAP returned unknown input_index")
-            c = Candidate(int(row["release"]), int(row["brickid"]), int(row["objid"]),
-                          float(row["ra"]), float(row["dec"]), row.get("brickname", ""))
-            if separation_arcsec(by_index[idx].ra, by_index[idx].dec, c.ra, c.dec) <= 1.0:
-                clean.append((idx, c))
-        metadata = {"chunk_id": chunk_id, "attempt": attempt, "job_id": job_id,
-                    "job_url": job_url, "rows_in": len(records),
-                    "service_row_count": len(rows), "client_row_count": len(clean),
-                    "overflow": False, "query_status": status["query_status"],
-                    "result_headers": dict(result_headers), "phase_log": phases,
+        cap_signal = require_uncapped(status, chunk_id)
+        before = sum(len(v) for v in self._results.values())
+        self._admit_rows(rows, records)
+        clean_count = sum(len(v) for v in self._results.values()) - before
+        metadata = {"chunk_id": chunk_id, "attempt": attempt,
+                    "endpoint": final_url, "http_status": submit_status,
+                    "rows_in": len(records), "service_row_count": len(rows),
+                    "client_row_count": clean_count, "overflow": False,
+                    "cap_signal": cap_signal, "maxrec": 10000,
+                    "query_status": status["query_status"],
+                    "result_headers": dict(result_headers),
+                    "query_chars": len(query), "request_body_bytes": len(body),
                     "wall_s": time.monotonic() - started,
                     "raw_result": f"{attempt}/result.vot", "raw_sha256": sha256_bytes(raw)}
         (attempt_dir / "metadata.json").write_text(json.dumps(metadata, sort_keys=True, indent=2) + "\n")
         with (self.artifacts / "checkpoint.jsonl").open("a", encoding="utf-8") as f:
             f.write(json.dumps(metadata, sort_keys=True, separators=(",", ":")) + "\n")
             f.flush(); os.fsync(f.fileno())
-        for idx, c in clean:
-            self._results.setdefault(idx, []).append(c)
         return metadata
 
     def candidates(self, record: GZRecord, radius_arcsec: float) -> Sequence[Candidate]:
@@ -406,7 +484,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     d.add_argument("--probe-receipt", type=Path, required=True)
     d.add_argument("--table2", type=Path, default=Path(__file__).parent.parent / "scratch/gz1_t2.csv.gz")
     d.add_argument("--table3", type=Path, default=Path(__file__).parent.parent / "scratch/gz1_t3.csv.gz")
-    d.add_argument("--rows", type=int, choices=(50, 1000), default=50)
+    d.add_argument("--rows", type=int, choices=(100,), default=100)
     d.add_argument("--artifacts", type=Path, default=Path(__file__).parent / "artifacts")
     args = parser.parse_args(argv)
     if args.command == "probe":
@@ -422,7 +500,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     write_manifest(args.artifacts / "chunk_manifest.json")
     receipt = load_probe(args.probe_receipt)
     columns = [r["column_name"] for r in receipt["columns"]]
-    source = TAPCandidateSource(receipt["async_endpoint"], receipt["relation"], columns,
+    sync_endpoint = receipt.get("sync_endpoint", receipt["requested_tap_base"].rstrip("/") + "/sync")
+    source = TAPCandidateSource(sync_endpoint, receipt["relation"], columns,
                                 args.artifacts)
     result = source.run_chunk(0, rows[:args.rows])
     print(json.dumps(result, sort_keys=True))

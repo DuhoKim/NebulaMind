@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "params": {
+      "FORMAT": "votable",
+      "LANG": "ADQL",
+      "PHASE": "RUN",
+      "QUERY": "SELECT g.input_index, t.release, t.brickid, t.objid, t.brickname, t.ra, t.dec, t.ls_id\nFROM TAP_UPLOAD.gz_chunk AS g\nJOIN ls_dr10.tractor_s AS t\n  ON 1 = CONTAINS(\n       POINT('ICRS', t.ra, t.dec),\n       CIRCLE('ICRS', g.ra, g.dec, 0.00027777777777777783))\nORDER BY g.input_index, t.brickid, t.objid",
+      "REQUEST": "doQuery",
+      "UPLOAD": "gz_chunk,param:gz_chunk",
+      "UPLOAD_BODY": "<binary upload omitted>"
+    },
+    "url": "https://datalab.noirlab.edu/tap/async"
+  },
+  "response": {
+    "body_bytes_observed": 719,
+    "body_first_4096_hex": "3c3f786d6c2076657273696f6e3d22312e302220656e636f64696e673d225554462d38223f3e0d0a3c7577733a6a6f6220786d6c6e733a7577733d22687474703a2f2f7777772e69766f612e6e65742f786d6c2f5557532f76312e302220786d6c6e733a786c696e6b3d22687474703a2f2f7777772e77332e6f72672f313939392f786c696e6b223e0d0a20203c7577733a6a6f6249643e793372717579627870316c71326974303c2f7577733a6a6f6249643e0d0a20203c7577733a72756e4964202f3e0d0a20203c7577733a6f776e6572496420786d6c6e733a7873693d22687474703a2f2f7777772e77332e6f72672f323030312f584d4c536368656d612d696e7374616e636522207873693a6e696c3d227472756522202f3e0d0a20203c7577733a70686173653e50454e44494e473c2f7577733a70686173653e0d0a20203c7577733a71756f74653e323032362d30392d30325431373a32323a33392e3935333c2f7577733a71756f74653e0d0a20203c7577733a737461727454696d6520786d6c6e733a7873693d22687474703a2f2f7777772e77332e6f72672f323030312f584d4c536368656d612d696e7374616e636522207873693a6e696c3d227472756522202f3e0d0a20203c7577733a656e6454696d6520786d6c6e733a7873693d22687474703a2f2f7777772e77332e6f72672f323030312f584d4c536368656d612d696e7374616e636522207873693a6e696c3d227472756522202f3e0d0a20203c7577733a657865637574696f6e4475726174696f6e3e333630303c2f7577733a657865637574696f6e4475726174696f6e3e0d0a20203c7577733a6465737472756374696f6e3e323032362d30392d30395431363a32323a33392e3935323c2f7577733a6465737472756374696f6e3e0d0a20203c7577733a706172616d6574657273202f3e0d0a20203c7577733a726573756c7473202f3e0d0a3c2f7577733a6a6f623e0d0a",
+    "body_first_4096_text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<uws:job xmlns:uws=\"http://www.ivoa.net/xml/UWS/v1.0\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n  <uws:jobId>y3rquybxp1lq2it0</uws:jobId>\r\n  <uws:runId />\r\n  <uws:ownerId xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\" />\r\n  <uws:phase>PENDING</uws:phase>\r\n  <uws:quote>2026-09-02T17:22:39.953</uws:quote>\r\n  <uws:startTime xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\" />\r\n  <uws:endTime xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\" />\r\n  <uws:executionDuration>3600</uws:executionDuration>\r\n  <uws:destruction>2026-09-09T16:22:39.952</uws:destruction>\r\n  <uws:parameters />\r\n  <uws:results />\r\n</uws:job>\r\n",
+    "body_truncated_for_capture": false,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Connection": "close",
+      "Content-Type": "text/xml",
+      "Date": "Wed, 02 Sep 2026 16:22:40 GMT",
+      "Server": "nginx/1.31.3",
+      "Strict-Transport-Security": "max-age=31536000",
+      "Transfer-Encoding": "chunked",
+      "Vary": "Accept-Charset, Accept-Encoding, Accept-Language, Accept"
+    },
+    "reason": "OK",
+    "resolved_url": "https://datalab.noirlab.edu/tap/async/y3rquybxp1lq2it0",
+    "status": 200,
+    "status_line": "HTTP/1.1 200 OK"
+  },
+  "timestamp_utc": "2026-09-02T16:22:40.365689+00:00"
+}
