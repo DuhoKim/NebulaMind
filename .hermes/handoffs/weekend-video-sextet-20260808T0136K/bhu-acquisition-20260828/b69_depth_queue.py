@@ -12,7 +12,8 @@ MAP={1:("pathria_1972_universe_black_hole_nature240_298_clean.txt","pathria"),2:
 5:("khakshournia_2010_note_pathria_arxiv1412.0105_clean.txt","pathria"),6:("smolin_1992_clean.txt","smolin"),8:("0902.1994_clean.txt","pop"),
 9:("1007.0587_clean.txt","pop"),10:("1111.4595v2_poplawski_prd85_clean.txt","pop"),11:("1410.3881_clean.txt","pop"),12:("2509.11468v2_poplawski_ijmpa40_clean.txt","pop"),
 13:("frolov_markov_mukhanov_1989_plb216_272_clean.txt","216"),14:("frolov_markov_mukhanov_ic8891_clean.txt","frolov"),15:("hep-th_0103019_clean.txt","easson"),
-16:("pourhassan_2025_npb1020_clean.txt","pourhassan"),17:("1909.07129_clean.txt","chakrabarty"),19:("universe5050111_dymnikova2019_clean.txt","dymnikova"),
+16:("pourhassan_2025_npb1020_clean.txt","pourhassan"),17:("1909.07129_clean.txt","chakrabarty"),19:("dymnikova_2019_universe_clean.txt","dymnikova"),   # full MDPI text (2026-09-01) supersedes the abridged browser capture universe5050111_*
+
 20:("gr-qc_0611022_clean.txt","bronnikov"),21:("2203.13295_clean.txt","roupas"),22:("2606.25023_clean.txt","easson"),23:("2003.11544_clean.txt","causal"),
 24:("2104.00521_clean.txt","peek"),25:("sym14091849_clean.txt","black hole universe"),26:("sym14101984_clean.txt","black hole universe"),27:("2204.11608_clean.txt","big bang"),
 28:("2411.14673_clean.txt","holographic"),31:("smolin_2004_cns_clean.txt","smolin"),36:("smoller_temple_2000_clean.txt","smoller"),37:("0210105_clean.txt","shock"),
