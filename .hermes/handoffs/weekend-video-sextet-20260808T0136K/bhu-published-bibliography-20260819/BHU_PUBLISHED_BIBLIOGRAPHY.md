@@ -1217,6 +1217,7 @@ remains unheld and un-compared is the PLB version of record.**
 Record: kimi recall R1; the no-go analysis for manufacturing a child universe. (Kimi remembered p149-153; Crossref says 149-155 — verified pages used.)
 
 **49. S. K. Blau, E. I. Guendelman & A. H. Guth (1987). "Dynamics of false-vacuum bubbles." Phys. Rev. D 35, 1747–1766.**
+**Deep audit (2026-09-02, STEP 3 queue draw #27; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY49_DEEP_RECONCILIATION_20260902.md`):** an exhaustive thin-wall solution catalogue (types A–E) — a construction, not an exclusion (the singularity theorem is cited as entry 48's work-in-progress and hedged); the critical mass M̄ = 1/(2Gχ) reproduces the paper's 56 kg for M_GUT = 10¹⁴ GeV (Tori recomputed; OCR-lost exponent recovered); the child is "indistinguishable by local measurements from a flat FRW universe" (lines 2199–2211) with no curvature sign predicted; nothing observation-facing for our universe. **Tier UNCHANGED.**
 DOI 10.1103/physrevd.35.1747 — VERIFIED (Crossref: PRD, v35, p1747-1766, 1987). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 **Full text OBTAINED 2026-08-23 22:30 KST** via APS's IP-based institutional entitlement on the
