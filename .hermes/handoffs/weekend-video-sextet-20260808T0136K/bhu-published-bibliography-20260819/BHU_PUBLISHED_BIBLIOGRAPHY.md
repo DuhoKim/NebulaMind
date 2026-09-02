@@ -265,6 +265,7 @@ commentary). Audit-worthiness: **medium** — now discharged: the strict junctio
 note anticipated is what b29/b30 performed.
 
 **46. "Quantization of the universe as a black hole." Astrophys. Space Sci. 337, 19–20 (2012).**
+**Deep audit (2026-09-02, STEP 3 queue draw #13; blind double codex + kimi, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY46_DEEP_RECONCILIATION_20260902.md`):** relation (1), R·λ̄ = 2l_p², is an algebraic identity for any mass once R = 2GM/c² is imposed (lines 43–46); the 10¹²² bit count is (M/m_p)² up to a factor — a large-number input dressed as output; the universe-as-black-hole identification is imported from prior work (line 34), not derived; inputs R, M, t₀ (line 57) unsourced; no H₀, no threshold. **Tier UNCHANGED.**
 DOI 10.1007/s10509-011-0909-1 — VERIFIED (Crossref: ApSS, v337, p19-20, 2011-11). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Two pages of Bohr-quantization dimensional analysis — 10¹²² bits, no dynamics, no falsifier. The gate's low-weight/high-fit triage note was exactly right.
@@ -741,6 +742,7 @@ Testability: **CONSISTENCY-ONLY**
 Audit-worthiness: **low-medium**.
 
 **42. P. F. González-Díaz (1991). "Baby universe metric equivalent to an interior black-hole metric." Phys. Lett. B 261, 357–362.**
+**Deep audit (2026-09-02, STEP 3 queue draw #12; blind double codex + kimi, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY42_DEEP_RECONCILIATION_20260902.md`):** the conformal equivalence (n = 1 wormhole baby sector ↔ Schwarzschild interior of mass m = M/2, line 337) is derived and exact on the interior submanifold; the physical reading (evaporation as one universe's view of branching) is interpretive; "our universe" is the exterior observer's region, no interior-cosmology claim. The OCR's "(129πM²)⁻¹" (line 404) is the standard 1+1 Hawking flux 1/(192πM²) for mass M/2 (Tori computed; "129" ≈ OCR of 192) — standard Hawking radiation restated with S = πM², T = 1/(4πM), M free. The 09-01 2–1 split is settled. **Tier UNCHANGED.**
 DOI 10.1016/0370-2693(91)90440-2 — VERIFIED (Crossref: PLB, v261, p357-362, 1991-06). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 Testability: **CONSISTENCY-ONLY**.
