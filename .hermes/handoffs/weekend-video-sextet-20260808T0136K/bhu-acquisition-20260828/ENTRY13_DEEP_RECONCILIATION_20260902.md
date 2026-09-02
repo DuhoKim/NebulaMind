@@ -23,5 +23,14 @@
 4. **Our universe:** not claimed; "our universe" appears only as the place one might travel from into a new one
    (lines 678–695). The title's question receives a conditional possibility.
 
+## Amendment (21:10 KST)
+When first filed at 21:04 the claude-seat file was a 3-line stub (the seat wrote a placeholder before its full
+212-line result); the reconciliation above was written on codex + the stub's token. The full result adds: the computed
+junction is at Σ₀ (Σ₂ carries no computation); the de Sitter scale is set by assumption ("if we assume … α = 24",
+lines 209–211), no parent-mass dependence; the "closed" daughter is one arm of a dichotomy whose other arm is a new
+asymptotically FLAT universe (lines 589, 656–658), so the curvature sign is not fixed; the sole mention of our universe
+places us as the parent (lines 692–695). Verdict unchanged; annotation amended. Seats are now instructed to write
+results only when complete.
+
 ## Applied
 Dated deep-audit annotation on entry 13 (tier word untouched). Queue recomputed.
