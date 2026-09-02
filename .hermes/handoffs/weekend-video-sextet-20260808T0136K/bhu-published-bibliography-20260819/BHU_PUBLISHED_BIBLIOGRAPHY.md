@@ -193,6 +193,7 @@ context only.
 **READ IN FULL 2026-09-02 — CONSISTENCY-ONLY CONFIRMED, blind-double (codex + agy), tier unchanged.** Full text acquired + pinned (`good_1972_chinese_universes_phystoday25_15{.pdf,_clean.txt}`, sha256 `6772c3fb`). The one-page letter is a speculative nested black/white-hole picture; its "physical probability one" follows from the stipulated infinite-time setup, no construction, no number, no statistic ("The speculative theory that I shall put forward is of this form"). The "content not read" line above is superseded.
 
 **3. W. M. Stuckey (1994). "The observable universe inside a black hole." Am. J. Phys. 62, 788–795.**
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_CONSTRUCTION_DERIVED` — borrowed inputs: Birkhoff theorem (SOURCE p. 790); junction conditions from MTW (SOURCE pp. 790–793); Schwarzschild interface trajectories adapted from ref. 14 (SOURCE pp. 790–791)
 **Deep audit (2026-09-02, STEP 3 queue draw #31; blind double agy + claude-seat, both reading the image-only PDF visually, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY3_DEEP_RECONCILIATION_20260902.md`):** a fully worked Oppenheimer–Snyder-type junction of a dust FRW ball (all three k) to Schwarzschild vacuum; the apparent-horizon identity R_n = 2GM/c² (eq. 11, p. 789) is called "only suggestive" by the author and its black/white-hole reading reversible (p. 794); no numerical inputs; "the observable universe MAY lie inside a black or white hole" is a pedagogical possibility. By-product: the paper proves the "universe fits its own Schwarzschild radius" coincidence is an FRW identity (cf. entries 46, 55). **Tier UNCHANGED.**
 DOI 10.1119/1.17460 — VERIFIED (Crossref: AJP, v62, p788-795, 1994-09).
 Claim: pedagogical demonstration that a closed FLRW dust universe can be embedded as the interior
@@ -657,6 +658,7 @@ Testability: **CONSISTENCY-ONLY**
 Record: triage pick #7; a same-group companion analysis (Cubero & Popławski) — the 'independent line' triage claim was wrong and is corrected above.
 
 **59. S. Desai & N. J. Popławski (2016). "Non-parametric reconstruction of an inflaton potential from Einstein–Cartan–Sciama–Kibble gravity with particle production." Phys. Lett. B 755, 183–189.**
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_MIXED` — borrowed inputs: phenomenological particle-production law K = β(κ ε̃)² (SOURCE lines 116–130); Ellis–Madsen scalar-field reconstruction [43,44] (SOURCE lines 307–325); standard slow-roll perturbation formulas [45–47] (SOURCE lines 325–370)
 DOI 10.1016/j.physletb.2016.02.014 — VERIFIED (Crossref: PLB, v755, p183-189, 2016-04). **Added 2026-09-02 on Duho's
 ruling (a) to the packet of 18:45**, surfaced by the entry-52 deep audit (entry 52's and entry 53's "predicts the CMB
 parameters consistent with Planck 2015, as was shown in SD" delegate to this paper). arXiv 1510.08834v1 pinned
@@ -683,6 +685,7 @@ Audit-worthiness: **done** (deep audit 2026-09-02).
 ## 4. The baby-universe branch
 
 **13. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1989). "Through a black hole into a new universe?" Phys. Lett. B 216, 272–276.**
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_MIXED` — borrowed inputs: limiting-curvature hypothesis and de Sitter high-curvature core (SOURCE lines 193–211); Israel thin-shell method [5] (SOURCE lines 239–247); unspecified effective high-curvature equations/matter (SOURCE lines 189–211)
 **Deep audit (2026-09-02, STEP 3 queue draw #25; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY13_DEEP_RECONCILIATION_20260902.md`):** a limiting-curvature Schwarzschild interior joined through a Planckian thin shell to a de Sitter core (Israel idealisation, microphysics unspecified); the closed Friedmann future is a chosen decay outcome — "may create a new macroscopic universe … one may expect that a new closed Friedmann universe will arise" (decoded lines 577–586) — with no equation, matter content or parent-mass map; energy dominance "may be violated" (lines 660–674); no claim about our universe — the sole mention places us as the PARENT (lines 692–695). Claude-seat (full read, 21:0x): the computed Israel junction is at Σ₀ (Schwarzschild → de Sitter core; Σ₂ carries no computation), the de Sitter scale is set by assumption ("if we assume … α = 24", lines 209–211) with no parent-mass dependence, and the "closed" daughter is one arm of a stated dichotomy whose other arm is a new asymptotically FLAT universe (lines 589, 656–658) — the model does not fix the daughter's curvature sign. **Tier UNCHANGED.**
 DOI 10.1016/0370-2693(89)91114-3 — VERIFIED (Crossref: PLB, v216, p272-276, 1989-01).
 Claim: black-hole interior evolves into a new universe under a limiting-curvature hypothesis.
@@ -691,6 +694,7 @@ Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 (abstract level). Audit-
 **READ IN FULL 2026-09-02 — CONSISTENCY-ONLY CONFIRMED, blind-double (codex + agy), tier unchanged.** Full text acquired + pinned (`frolov_markov_mukhanov_1989_plb216_272{.pdf,_clean.txt}`, sha256 `04df8bd6`; the 1989 scan's OCR layer substitutes digits for letters — B→8, O→0, I→1, S→5, T→7, G→6 — decoded and cross-checked by agy's native PDF read). A limiting-curvature interior construction via Israel junctions: the future of Σ₂ "will coincide with the spacetime of an expanding closed Friedmann universe" or "a white hole in a new asymptotically flat universe" (pp. 275–276) — possibilities, no daughter-universe observable, no threshold.
 
 **14. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1990). "Black holes as possible sources of closed and semiclosed worlds." Phys. Rev. D 41, 383–394.**
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_CONSTRUCTION_ASSERTED` — borrowed inputs: limiting-curvature hypothesis (SOURCE lines 199–225); de Sitter limiting form imposed as “our second main hypothesis” (SOURCE lines 231–249); Israel thin-shell method [9] (SOURCE lines 270–294)
 **ACQUIRED 2026-08-30, free frontier route 2 (KEK):** the ICTP preprint scan IC/88/91 (1988
 Miramare–Trieste; KEKSCAN 2000-33-351), pinned at
 `../bhu-reading-20260823/sources/frolov_markov_mukhanov_ic8891_kekscan_2000_33_351.pdf` (sha256
@@ -738,6 +742,7 @@ Testability: **CONSISTENCY-ONLY**
 **ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — constructive; its inside-horizon coordinate-role remark is a limitation of setting, not a class exclusion.. Record: packet §1.6. Audit-worthiness: **medium**.
 
 **16. B. Pourhassan (2025). "Multiversal entropy and information conservation in black hole nucleated baby universes." Nucl. Phys. B 1020, 117160.** *(heading corrected from "et al." 2026-08-30 — single-author, CGATE_B48)*
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_ROUTE_NAMED_ONLY` — borrowed inputs: thin-wall bubble dynamics and critical-mass framework from ref. [18] (SOURCE lines 150–205); gravitational-wave echo proposals [34–36] (SOURCE lines 610–618); PBH survey capabilities named without a model likelihood (SOURCE lines 622–630)
 **ACQUIRED 2026-08-30, the VERSION OF RECORD itself — SCOAP3 gold OA (CC-BY), fetched through
 Duho's connected Chrome (ScienceDirect serves it free; only scripts are robot-walled):**
 `../bhu-reading-20260823/sources/pourhassan_2025_npb1020_117160_scoap3.pdf` (sha256
@@ -844,6 +849,7 @@ Testability: **CONSISTENCY-ONLY**
 **ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — a comparative catalogue of regular-BH/black-universe solutions. **It cites, does not own, a real no-go:** charged solutions "impossible whatever be the choice of L(F)" — proved in its ref [16], **Bronnikov 2001, PRD 63 044005, gr-qc/0006014**, now pinned as a reference. It also reproduces structural restrictions (a regular centre only in an R-region; minimum horizon structure). Ownership-of-proof: tier untouched.. Record: **new to us**. Audit-worthiness: **low-medium**.
 
 **21. Z. Roupas (2022). "Detectable universes inside regular black holes." Eur. Phys. J. C 82, 255.**
+**Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_ROUTE_CONNECTED` — borrowed inputs: axial/polar isospectrality for ultracompact de Sitter-core objects from ref. [28] (SOURCE line 245); generalized Bohr–Sommerfeld method [30] and gravastar validation [31] (SOURCE lines 369–389); LISA sensitivity band (SOURCE line 399)
 DOI 10.1140/epjc/s10052-022-10202-6 — VERIFIED (Crossref: EPJC, v82, 2022-03).
 Claim: regular black holes can contain dark-energy universes with matched mass-energy and entropy,
 claimed detectable by gravitational-wave experiments in the μHz–Hz band (LISA-class).
