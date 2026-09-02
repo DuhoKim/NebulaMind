@@ -6,7 +6,13 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (15:45) — Pathria 1972 (entry 1): stamp its standing as FIRED?
+## ✅ RESOLVED 2026-09-02 (15:50) — Duho ruled "a — stamp Pathria FIRED" (relay via Blanc)
+
+Applied to the bibliography: entry 1's tier line now CALIBRATED-FALSIFIER / FIRED with the ruling quoted;
+standing-table row added in §0 alongside 7/31/51/44; tally headline now 3 FIRED (7, 44, 1) / 2 LIVE
+(31, 51). Nothing else open for Duho. *(Original packet below, kept for the record.)*
+
+## ⏳ SUPERSEDED (15:45) — Pathria 1972 (entry 1): stamp its standing as FIRED?
 
 **Background.** You re-tiered Pathria to CALIBRATED-FALSIFIER this afternoon ("a for both"). A calibrated
 falsifier carries a standing — has the observable it bet on come in for it or against it? That standing is

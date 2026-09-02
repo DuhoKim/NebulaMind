@@ -29,8 +29,9 @@ after 2026-08-22 take the next free number rather than renumbering, so cross-ref
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
-by two seats**: **5 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51;
-1 standing-pending — entry 1, re-tiered 2026-09-02 on Duho's "a for both"),
+by two seats**: **5 CALIBRATED-FALSIFIER (3 FIRED — entries 7, 44, 1; 2 LIVE — entries 31, 51;
+entry 1 re-tiered 2026-09-02 on Duho's "a for both" and its standing stamped FIRED the same day on
+Duho's relayed ruling, verbatim "a — stamp Pathria FIRED"),
 8 QUALITATIVE-DIRECTIONAL**, 4 PROSPECT, 30 CONSISTENCY-ONLY, **4 THEORETICAL-OBSTRUCTION
 (entries 22, 5, 48, and 4 — 5 re-tiered at question 5, 48 tiered at question 8, both 2026-08-30;
 4 re-tiered 2026-09-02 on the same "a for both" ruling)**,
@@ -101,9 +102,10 @@ abstract repeats the same assertion, and a published erratum exists correcting e
 stays an unreproduced step and is NOT called an error** — *and both seats hold that acquiring the
 publisher version of record is still owed before any stronger wording is considered* (`b13`, arithmetic confirmed by both seats; shortfall 3.1–4.1 decades, and refining the inputs widens it). *(Read "DOES NOT FOLLOW" until CGATE_Q4 pointed out that converts a failure to reproduce into a proof of non-entailment and prejudges **open question 2**, which is still Duho's.)* **Contrast, added at the Q6 ruling: the paper's best-warranted content is its Papapetrou nonsingularity THEOREM (both seats verified the derivation; domain in the entry's prose) — while the floor claim — retained as the paper-level tier under the Q6 ruling — is its unreproduced corollary.** | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
 | 44 | CALIBRATED-FALSIFIER | **FIRED** | **EXPLICIT AND UNDISPUTED for the claim in this row** — the Sec. 4 model derives n_s = 1 openly; observation then rejected it at 8σ, which is its *standing*, not a failure of its derivation. **What lacks warrant is the successor**: an uncomputed ~4% correction sized to the measurement it must reproduce, deferred by the authors. *(Read "the warrant is what died" until CGATE_Q4 showed that collapses warrant into standing and defeats the point of a separate axis.)* | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
+| 1 | CALIBRATED-FALSIFIER | **FIRED** — stamped by Duho 2026-09-02 (relay via Blanc, verbatim "a — stamp Pathria FIRED") | **EXPLICIT AND AUTHOR-SUPPLIED** — eq. (18) "we must have K = +1 and Λ ≤ Λ_c" is asserted as necessary in the paper's own words (pinned text lines 409–410), and eqs. (20)–(22) are his numerical consequences of it; the lane supplied only the evaluation convention (Gaussian σ from Planck 2018 68% errors). Closed form λ_c(q₀) reproduces his printed Λ_c (1.02 vs 1.0 ×10⁻⁵⁷ cm⁻²), so the 1972 arithmetic is sound. | the requirement of a closed, decelerating dust universe with Λ ≤ Λ_c, which is satisfiable only for q₀ > 1/2 or q₀ < −1. Planck 2018: **q₀ = −0.527 ± 0.011**, inside the forbidden gap by 43σ / 94σ; measured Λ = 1.09×10⁻⁵⁶ cm⁻² is **10.9×** his printed ceiling and ~5×10⁸× the ceiling re-evaluated at today's densities; equivalently his bound needs Ω_K ≤ −0.77 vs Planck+BAO 0.001 ± 0.002. Blind double codex + agy both `FIRED_CANDIDATE`, reconciled and recomputed in `bhu-acquisition-20260828/PATHRIA_STANDING_RECONCILIATION_20260902.md` + `pathria_standing_verify.py`. Added 2026-09-02. |
 
-So: **4 calibrated — 2 live, 2 fired — and TWO bear directly on a black-hole-universe theory:
-entry 31, live; and entry 44, ALREADY FIRED.** *(Corrected 2026-08-29 when entry 44 was filed here.
+So: **5 calibrated — 2 live, 3 fired — and THREE bear directly on a black-hole-universe theory:
+entry 31, live; entry 44, ALREADY FIRED; and entry 1 (Pathria, the founding identification), FIRED 2026-09-02.** *(Read "4 calibrated — 2 live, 2 fired — and TWO" until entry 1's stamp.)* *(Corrected 2026-08-29 when entry 44 was filed here.
 This previously read "3 calibrated, 2 live … only ONE (entry 31) bears directly on a
 black-hole-universe theory".)* Entry 51 constrains BHU only where a model inherits its ECKS
 premise, and entry 7 fired an instrument rather than a cosmology — **but entry 44 is a BHU
@@ -139,7 +141,7 @@ content", sighted on entry 48's page). The true credential wall is the 4 Elsevie
 Entry 54 is no longer calibrated** (re-tiered 2026-08-28 to QUALITATIVE-DIRECTIONAL; its Eq. 27 is
 not a predicted window). The live calibrated falsifiers are **entry 31** (no neutron star above
 Smolin's stated 2.5 M☉ bar — live as stated, though C08 adjudicated its Brown–Bethe instrument limb
-broken at ≥8σ) and **entry 51**. The fired ones are entries 7 and 44. See the standing table in §0. Reading
+broken at ≥8σ) and **entry 51**. The fired ones are entries 7, 44 and, since 2026-09-02, 1. See the standing table in §0. Reading
 corrected three triage-derived record claims in batches 1–5 and this floor claim in batch 6).
 
 ---
@@ -150,15 +152,20 @@ corrected three triage-derived record claims in batches 1–5 and this floor cla
 DOI 10.1038/240298a0 — VERIFIED (Crossref: Nature, v240, p298-299, 1972-12).
 Claim: a closed uniform-density universe sits inside a black hole and may oscillate within it,
 provided its radius exceeds the Schwarzschild radius; it cannot expand without limit.
-Testability: **CALIBRATED-FALSIFIER — standing PENDING ADJUDICATION** *(re-tiered from
+Testability: **CALIBRATED-FALSIFIER / FIRED** *(standing stamped by Duho 2026-09-02, relay via Blanc,
+verbatim "a — stamp Pathria FIRED", after a blind double (codex + agy, both `FIRED_CANDIDATE`) and
+Tori's recomputation: Pathria's own eq. (18) requirement "K = +1 and Λ ≤ Λ_c" admits only q₀ > 1/2 or
+q₀ < −1; Planck 2018 gives q₀ = −0.527 ± 0.011, and the measured Λ = 1.09×10⁻⁵⁶ cm⁻² is 10.9× his
+printed ceiling. Receipts: `PATHRIA_STANDING_RECONCILIATION_20260902.md`, `pathria_standing_verify.py`.
+Standing-table row in §0. Read "standing PENDING ADJUDICATION" until the stamp.)* *(re-tiered from
 CONSISTENCY-ONLY 2026-09-02 on Duho's ruling, verbatim "a for both", after both sweep seats
 independently returned `CHALLENGE_CALIBRATED-FALSIFIER` on the full text; the body derives numeric
 bounds — Λ ∈ (−6.7, 1.0]×10⁻⁵⁷ cm⁻², ρ₀ ∈ (1.5, 2.3]×10⁻²⁹ g cm⁻³, R₀ ≥ 1.1×10²⁸ cm at
 H₀ = 75, q₀ = 1 "representative values" — "so these parameters can be estimated from the kinematics
 of the universe alone", p. 299, pinned text lines 431–453. The pre-2026-09-02 line read
 CONSISTENCY-ONLY "no distinguishing observational statistic in the accessible abstract", which was
-true of the abstract and superseded by the body.)* The LIVE/FIRED standing requires its own gated
-adjudication against pinned modern values — held for Duho after gating.
+true of the abstract and superseded by the body.)* The LIVE/FIRED standing went through its own gated
+adjudication against pinned modern values and came back to Duho, who stamped FIRED (above).
 Record: characterized in the Phase 1 packet §1.1.
 **READ (abstract-level) 2026-08-31 (overnight research) — CONSISTENCY-ONLY CONFIRMED, tier
 unchanged.** The full Nature 1972 body is paywalled and not freely obtainable (not on arXiv/INSPIRE;
