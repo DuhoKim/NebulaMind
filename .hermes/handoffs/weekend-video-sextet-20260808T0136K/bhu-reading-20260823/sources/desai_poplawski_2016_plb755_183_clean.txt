@@ -1,0 +1,534 @@
+                                                                   Non-parametric reconstruction of an inflaton potential from
+                                                                 Einstein-Cartan-Sciama-Kibble gravity with particle production
+                                                                                   Shantanu Desai1,2∗ and Nikodem J. Poplawski3†
+                                                            1
+                                                                Faculty of Physics, Ludwig-Maximilians University, Scheinerstrasse 1, 81679 Munich, Germany
+                                                                      2
+                                                                        Excellence Cluster Universe, Boltzmannstrasse 2, 85748 Garching, Germany and
+                                                                             3
+                                                                               Department of Mathematics and Physics, University of New Haven,
+                                                                                    300 Boston Post Road, West Haven, CT 06516, USA
+
+                                                               The coupling between spin and torsion in the Einstein-Cartan-Sciama-Kibble theory of gravity
+                                                            generates gravitational repulsion at very high densities, which prevents a singularity in a black hole
+                                                            and may create there a new universe. We show that quantum particle production in such a universe
+                                                            near the last bounce, which represents the Big Bang gives the dynamics that solves the horizon,
+
+
+
+
+arXiv:1510.08834v1 [astro-ph.CO] 18 Oct 2015
+                                                            flatness, and homogeneity problems in cosmology. For a particular range of the particle production
+                                                            coefficient, we obtain a nearly constant Hubble parameter that gives an exponential expansion of
+                                                            the universe with more than 60 e-folds, which lasts about ∼ 10−42 s. This scenario can thus explain
+                                                            cosmic inflation without requiring a fundamental scalar field and reheating. From the obtained time
+                                                            dependence of the scale factor, we follow the prescription of Ellis and Madsen to reconstruct in a
+                                                            non-parametric way a scalar field potential which gives the same dynamics of the early universe.
+                                                            This potential gives the slow-roll parameters of cosmic inflation, from which we calculate the tensor-
+                                                            to-scalar ratio, the scalar spectral index of density perturbations, and its running as functions of
+                                                            the production coefficient. We find that these quantities do not significantly depend on the scale
+                                                            factor at the Big Bounce. Our predictions for these quantities are consistent with the Planck 2015
+                                                            observations.
+
+
+                                                                  I.   INTRODUCTION                              the universe. However despite these predictions, many
+                                                                                                                 concerns have been raised about conceptual problems
+                                                                                                                 with models of inflation based on single-field scalar po-
+                                                  It has been known since the 1970s that the standard            tentials [12]. Moreover, most models of inflation do not
+                                               hot Big Bang model suffers from the horizon, flatness,            address other problems such as Big Bang singularity, ori-
+                                               and homogeneity problems [1] and there must be another            gin of the matter-antimatter asymmetry, arrow of time,
+                                               dynamical mechanism prior to Big Bang nucleosynthesis             or the nature of dark matter/dark energy.
+                                               to alleviate these problems. Currently, the most widely
+                                               accepted solution to these problems is the process of cos-           In this paper, we consider a model of cosmic inflation
+                                               mic inflation, which is a brief period of exponential ex-         which is motivated by an extension of general relativity,
+                                               pansion, where the Universe is temporarily in a de Sit-           called the Einstein-Cartan-Sciama-Kibble (ECSK) the-
+                                               ter phase dominated by the vacuum energy [2–7]. When              ory of gravity [13–16]. The ECSK theory naturally ex-
+                                               the inflationary epoch ends, the Universe starts deceler-         tends the metric general relativity (GR) by removing its
+                                               ating, which is followed by the phenomenon of reheat-             constraint that the affine connection is symmetric and
+                                               ing when the energy in the inflaton field is dumped into          thus allowing the exchange between the orbital and spin
+                                               standard model particles. Most of the generic models              components of the total angular momentum [17]. The
+                                               of cosmic inflation are usually due to scalar field in the        antisymmetric part of the connection, which is the tor-
+                                               slow-roll approximation, where potential energy of the            sion tensor, becomes a dynamical variable related to the
+                                               field dominates over its kinetic energy. In the last three        spin density of matter. The source of torsion is pro-
+                                               decades a plethora of inflationary potentials have been           vided by the spin of fermions approximated as a spin
+                                               constructed, and currently single-field models are obser-         fluid [16, 18, 19]. The ECSK theory may also solve the
+                                               vationally the most favored ones [8]. The basic predic-           problem of divergent integrals in quantum field theory by
+                                               tions of single scalar field slow-roll inflation models, such     providing fermions with spatial extension and thus intro-
+                                               as flatness, super-horizon correlations, adiabatic density        ducing an effective ultraviolet cutoff for their propagators
+                                               perturbations, nearly scale-invariant spectrum of curva-          [20]. At extremely high densities existing in black holes
+                                               ture perturbations, and no observable non-gaussianity,            and in the very early Universe, the minimal spin-torsion
+                                               have been verified by the Cosmic Microwave Background             coupling manifests itself as a repulsive force, which avoids
+                                               (CMB) observations from Planck and WMAP [9–11]. In-               the formation of singularities from fermionic matter [18–
+                                               flation also provides a mechanism to seed the density per-        28]. Accordingly, the singular Big Bang is replaced by
+                                               turbations which give rise to the observed structure in           a non-singular Big Bounce, before which the Universe
+                                                                                                                 was contracting [23, 24]. The ECSK theory agrees with
+                                                                                                                 all solar system, binary pulsar and cosmological tests of
+                                                                                                                 GR, since even at nuclear densities, the contribution from
+                                               ∗ shantanu@usm.lmu.de                                             torsion to the Einstein equations is negligible. Torsion
+                                               † NPoplawski@newhaven.edu                                         therefore provides the simplest and most natural mecha-
+                                                                                                                          2
+
+nism that solves the singularity problem of the standard      minimally to the torsion tensor, fermions are the source
+Big Bang cosmology.                                           of torsion [13–16]. At macroscopic scales, these particles
+   In this paper, we study how a scenario of a closed uni-    can be averaged as a spin fluid [18–20, 23, 24], which
+verse inside a black hole with torsion and quantum parti-     results from the multipole expansion of the conservation
+cle production [29–31], which was introduced in [32], can     law for the spin tensor in the ECSK theory [16, 34]. Even
+provide a viable model of inflation. We numerically solve     if the spin orientation of particles is random, the terms
+the Friedmann equations which describe the dynamics           with the spin tensor in the field equations are quadratic
+of such a universe [32] and calculate the number of e-        and do not vanish in a spin fluid. The Einstein-Cartan
+folds as a function of the particle production coefficient.   equations for a spin fluid are equivalent to the Einstein
+In order to make predictions for observables such as the      equations for an ideal fluid with the effective energy den-
+tensor-to-scalar ratio and scalar spectral index of den-      sity ˜ and pressure p̃ given by [16, 18, 19, 23, 24]
+sity fluctuations, we reconstruct a dynamically equivalent
+single-field scalar potential from the time dependence of                           ˜ =  − αn2f ,                     (1)
+the scale factor calculated in our model. We then cal-                              p̃ = p − αn2f ,                     (2)
+culate the slow roll parameters from this non-parametric
+potential by applying the quantization of a scalar field      where nf is the number density of fermions and α =
+in curved spacetime [33], and compare our results to the      κ(~c)2 /32.
+Planck 2015 results [10]. We emphasize that our model of         The spin fluid in the early Universe is formed by an ul-
+inflation does not contain a fundamental scalar, and the      trarelativistic matter in kinetic equilibrium, for which  =
+reconstruction of an inflation potential is only a mathe-     h? T 4 , p = /3 and nf = hnf T 3 , where T is the tempera-
+matical technique we use to calculate the scalar spectral     ture of the Universe, h? = (π 2 /30)(gb +(7/8)gf )kB4
+                                                                                                                    /(~c)3 ,
+index and tensor-to-scalar ratio. We also briefly discuss     and hnf = (ζ(3)/π 2 )(3/4)gf kB    3
+                                                                                                   /(~c)3 . For standard-
+some other models of inflation based upon torsion and         model particles, gb = 28 and gf = 90. If we assume that
+compare them with our approach.                               the Universe is closed, homogeneous, and isotropic, then
+                                                              it is described by the Friedmann-Lemaı̂tre-Robertson-
+                                                              Walker (FLRW) metric. In the presence of spin and
+   II.   UNIVERSE IN A BLACK HOLE WITH                        torsion, the first Friedmann equation can be written as
+                  TORSION                                     [25, 32]
+
+                                                                      ȧ2      1      1
+   A model of a closed universe in a black hole with tor-                        a2 = κ(h? T 4 − αh2nf T 6 )a2 ,
+                                                                          + k = κ˜                                      (3)
+sion was introduced in [32]. In this section, we briefly              c2       3      3
+review the ECSK theory of gravity which provides tor-         where a is the scale factor, k = 1, and dot denotes the
+sion as a mechanism for this scenario and then write the      derivative with respect to the cosmic time. The second
+equations describing the dynamics of such a universe. We      Friedmann equation can be written as a continuity equa-
+use the same notation as [32].                                tion which in the presence of particle production becomes
+   In the ECSK theory, the antisymmetric part of the          [32]
+affine connection (the torsion tensor) does not vanish but
+is determined by the field equations which are obtained                            ȧ Ṫ   cK
+by varying the total action for the gravitational field and                          + =          ,                     (4)
+                                                                                   a T   3hn1 T 3
+matter with respect to the metric and torsion tensors [13–
+16]. Varying the action with respect to the torsion gives     where hn1 = (ζ(3)/π 2 )gn1 kB
+                                                                                          3
+                                                                                            /(~c)3 and gn1 = 9. A scalar
+the Cartan equations that relate algebraically the tor-                                  −4
+                                                              K has the dimension of m and is related to the square
+sion of spacetime to the canonical spin tensor of mat-        of the curvature tensor [29–31, 35]. For a rigorous treat-
+ter. Varying the action with respect to the metric gives      ment, it should be derived from quantum field theory in
+the Einstein equations that relate the curvature of space-    the Riemann-Cartan spacetime. Following [32], we as-
+time to the canonical energy-momentum tensor of mat-          sume that
+ter. The Einstein and Cartan equations can be com-
+bined to give the Einstein equations of GR in which the                                      )2 ,
+                                                                                      K = β(κ˜                          (5)
+energy-momentum tensor is modified by corrections aris-
+ing from the spin tensor [15, 16, 19]. These corrections      where β is a dimensionless particle production coefficient.
+are significant only at extremely high densities which are    Equations (3) and (4) describe the dynamics of the early
+much higher than the nuclear density, on the order of         Universe.
+           3
+1045 kg/m [20, 24]. Below this density, the predictions          Since the negative term on the right-hand side of Eq.
+of the ECSK theory are physically indistinguishable from      (3) scales with T faster (∼ T 6 ) than the positive term
+the predictions of GR and reduce to them in vacuum,           (∼ T 4 ), ȧ reaches zero and the universe undergoes a non-
+where torsion vanishes.                                       singular bounce at a positive minimum scale factor. The
+   Fermions are described in relativistic quantum me-         temperature at a bounce is the maximum temperature of
+chanics by the Dirac equation. Since Dirac fields couple      the Universe. This temperature is given by Eq. (3) with
+                                                                                                                             3
+
+ȧ = 0 in which we can omit k (which is negligible relative     factor at the preceding crunch. When the universe pro-
+to the other terms) [25, 32]:                                   duces sufficient amounts of mass, it reaches the size at
+                            h 1/2                             which the temperature decreases to the matter-radiation
+                                ?                               equality value for which the energy density of nonrela-
+                   Tmax =             .                 (6)
+                              αh2nf                             tivistic matter exceeds the energy density of radiation.
+                                                                The universe then expands according to the first Fried-
+For standard-model particles, it is equal to 1.1524 × 1032
+                                                                mann equation in which the energy density is dominated
+K. Particle production should vanish at a bounce, other-
+                                                                by nonrelativistic matter. The universe has contracting
+wise the temperature at that instant could exceed Tmax
+                                                                and expanding phases until the scale factor reaches the
+which would contradict Eq. (3). This condition justifies
+                                                                size at which the energy density for the cosmological con-
+the choice of the scalar K in Eq. (5).
+                                                                stant exceeds the energy density of nonrelativistic mat-
+   The contraction of the Universe before the Big Bounce
+                                                                ter. The universe then begins to accelerate and expands
+could correspond to gravitational collapse of matter in-
+                                                                indefinitely.
+side a black hole existing in another universe [24, 36, 37].
+                                                                   The last bounce (if there are more than one) is the
+During the collapse of a dustlike medium in GR, each
+                                                                Big Bounce that corresponds to the Big Bang [32]. It is
+spatial point in the interior of a black hole locally evolves
+                                                                followed by the accelerating torsion-dominated era (in-
+toward a singularity as an independent, spatially homo-
+                                                                flation), which lasts for a finite time because αh2nf T 6 in
+geneous and isotropic universe [38]. Numerical analysis of
+                                                                Eq. (3) eventually becomes negligible relative to h? T 4 .
+generic gravitational collapse shows that spatial deriva-
+                                                                The universe then enters the radiation-dominated era
+tives of the metric and curvature tensors can be neglected
+                                                                (decelerating) without needing reheating, which is fol-
+and each spatial point in the interior of a black hole lo-
+                                                                lowed by the matter-dominated era (decelerating) and
+cally evolves as a spatially homogeneous universe [39].
+                                                                cosmological-constant era (accelerating). Accordingly,
+In GR, a singularity forms before the collapse has com-
+                                                                our Universe may have been formed in a black hole exist-
+pleted [38, 40]. The infalling matter makes the interior of
+                                                                ing in another universe [24, 32]. We note that, although
+the black hole a dynamical spacetime with large inhomo-
+                                                                this scenario can naturally explain the origin of the Uni-
+geneities and anisotropies. During the collapse, multiple
+                                                                verse, Eqs. (3) and (4) can describe the dynamics of the
+trapped null surfaces with a very complicated structure
+                                                                early Universe even if we do not assume a black hole as
+and at least two dynamical wormhole throats form in
+                                                                its origin.
+the interior [40]. In the ECSK theory, we expect that
+each spatial point evolves toward a state of an extremely
+high but finite density and curvature, avoiding a singu-
+                                                                         III.   INFLATIONARY DYNAMICS
+larity [32]. At such a state, the local contraction ends,
+the matter undergoes a bounce, and the local expansion
+begins. Quantum effects in the presence of an extremely            The dynamics of a universe inside a black hole with tor-
+strong gravitational field cause an intense particle pro-       sion is encapsulated in Eqs. (3) and (4). Near a bounce,
+duction [29–31, 35], which creates an enormous amount           where we can neglect k, these equations and Eq. (5) give
+of mass without changing the total energy (matter plus          [32]
+gravitational field) in the black hole [41].
+   We conjecture that eventually the wormholes merge                            ȧ h      3β  ȧ 3 i   Ṫ
+                                                                                     1− 3              =− .                (7)
+into one wormhole and the outermost trapped surface                             a      c hn1 T 3 a       T
+becomes an event horizon. Asymptotically, the throat of
+this wormhole and the event horizon coincide. The entire        The signs of ȧ and Ṫ must be opposite to avoid an in-
+interior of a black hole would then become a new, closed        definite increase of the scale factor. Thus, during an ex-
+universe whose dynamics cannot be observed from the             panding phase, the second term in the square bracket in
+outside of the black hole because of an infinite redshift       Eq. (7) should √be less than 1. This term has a maximum
+at its event horizon. This universe can be thought of           at T = Tmax / 2. Therefore, the value of the particle
+as a three-dimensional analogue of the two-dimensional          production coefficient must satisfy [32]
+surface of a sphere [24]. We posit that particle production                                √
+in such a universe would make it effectively homogeneous                                     6 hn1 h3nf (~c)3
+                                                                                β < βcr =                     .        (8)
+and isotropic [32].                                                                        32       h3?
+   After a bounce, the universe expands and its temper-
+ature decreases to the values at which k cannot be ne-          For standard-model particles, βcr = 1/929.0915.
+glected in Eq. (3). Eventually, ȧ reaches zero and the            For β = 0, the universe in a black hole is oscillatory
+universe undergoes a crunch at a maximum scale fac-             with an infinite number of bounces and crunches (cycles)
+tor. The universe then contracts until it reaches another       [32]. If 0 < β < βcr , then the universe is cyclic with a fi-
+bounce, and expands again. Because of particle produc-          nite number of cycles, after which it expands indefinitely.
+tion near a bounce, the scale factor at a given bounce          As β increases, the number of cycles decreases and the
+is larger than the scale factor at the preceding bounce.        early accelerated expansion of the universe in each cycle
+The scale factor at a given crunch is larger than the scale     is closer to exponential. If β is slightly less than βcr , then
+                                                                                                                                4
+
+                  β/βcr Number of bounces
+                  0.996        1
+                  0.984        2
+                  0.965        3
+                  0.914        5
+                  0.757        10
+
+TABLE I: The number of bounces before the universe reaches
+the matter-radiation equality temperature as a function of the
+ratio of the particle production coefficient to its critical value
+(β/βcr ).
+
+
+
+
+the universe
+           √has only one bounce. In this case, Eq. (7) at
+T = Tmax / 2 gives Ṫ ≈ 0 and ȧ/a ≈ const. Accordingly,
+the universe has a finite period of a nearly exponential
+expansion at a nearly constant energy density [32]                   FIG. 1: The ratio of the comoving scale factor a(t) to its
+                                                                     initial value as a function of time. The dashed magenta line
+                                   h3?                               at t ∼ 1.33 × 10−42 seconds represents the transition from
+                          ˜ ≈            .                   (9)    acceleration to deceleration. We obtain about 60 e-folds. The
+                                 8α2 h4nf
+                                                                     time t = 0 is set at the Big Bounce.
+This period is a part of the torsion-dominated era. If
+β ≥ βcr , then an exponential expansion of the universe
+would last indefinitely (eternal inflation). The number of
+bounces before the universe reaches the matter-radiation
+equality temperature Teq = 8820 K [11] as a function of
+β/βcr is shown in Table I.
+   Now, we find the time dependence of the scale factor
+and its time derivative by numerically solving Eqs. (3)
+and (4) with a given set of the initial conditions. We
+need an initial condition for a0 at the Big Bounce. We
+estimate that the minimum value of a0 would be on the
+order of the Cartan radius of an electron which is on the
+order of 10−27 m [25]. We need a value of β which is
+slightly smaller than βcr . Thus, we choose β = 1/929.25
+and a0 = 10−27 m. The initial temperature T0 should
+be slightly less than Tmax given by Eq. (6). We choose
+T0 = 0.99Tmax . As long as T0 is near Tmax , the dynamics
+of the expansion is not sensitive to the exact value of
+T0 . We shall show later that the dynamics of such a
+universe is also insensitive to the initial values a0 , as long      FIG. 2: The Hubble parameter as a function of time. The
+as β . βcr .                                                         dashed magenta line is at the same location as in Fig. 1. The
+                                                                     Hubble parameter is roughly constant during the inflationary
+   With these initial conditions, the numerical solutions
+                                                                     phase.
+of Eqs. (3) and (4) for a(t), H(t), and T (t) starting from
+the last bounce are shown as functions of time in Fig. 1, 2,
+and 3, respectively. As we can see from Fig. 1, after the
+Big Bounce (shown by t = 0 in these figures), the comov-             IV.   RECONSTRUCTION OF A SCALAR FIELD
+ing scale factor expands exponentially and the universe                            POTENTIAL
+is in an accelerating phase until t = 1.33×10−42 seconds.
+The total number of e-folds with these initial conditions               In order to compare our inflationary model with the ob-
+and particle production coefficient is about 60 from the             servational data such as the tensor-to-scalar ratio, spec-
+start of the inflationary phase. The Hubble parameter                tral index of density perturbations, and its running, one
+is also roughly constant until t = 1.33 × 10−42 seconds.             needs to consider the quantized perturbations of the tor-
+The comoving Hubble radius also decreases during this                sion field in a background FLRW universe. This ap-
+period. Therefore, the dynamics of the scale factor im-              proach has been studied for a single Dirac field with tor-
+mediately after the Big Bounce provides a realistic model            sion [42]. For our model, we shall address this in a future
+of inflation.                                                        publication. Here, we find a scalar field potential which
+                                                                                                                             5
+
+
+
+
+FIG. 3: The ratio of the temperature of the universe to its      FIG. 4: The reconstruction of single-field scalar potential
+initial value as a function of time. The dashed line is at the   V (φ) from the inflationary dynamics depicted in Fig. 1, 2,
+same location as in Fig. 1.                                      and 3. The vertical line indicates the end of inflation in our
+                                                                 model when the universe transitions to a decelerating phase.
+                                                                 Since we are only interested in the shape of the potential, we
+gives the same dynamics of the scale factor as the numer-        do not show units on the axes.
+ical solution for a(t) computed in the preceding section.
+This way, we can use the standard method of calculating
+quantum fluctuations of the scalar field and background          which, combined with V (t), gives an expression for V (φ)
+spacetime to determine the scalar and tensor perturba-           which gives the same dynamics of the scale factor as that
+tions [33] and compare them with observations.                   found in the preceding section. This inflaton potential is
+   The procedure for finding a scalar field corresponding        shown in Fig. 4. At early times we obtain a nearly flat
+to a given dynamics of the scale factor was studied by El-       potential which satisfies V 0 (φ)  V (φ), which is then
+lis and Madsen [43]. Given any functional form of a(t) on        followed by a scalar field rolling down the potential. The
+a background FLRW spacetime, which results in a con-             universe transitions from an acceleration to deceleration
+sistent cosmological evolution, one can always construct         near the minimum of the potential. In scalar field mod-
+a potential V (φ) corresponding to a scalar field φ(t) (in-      els of inflation, the height of the potential usually corre-
+flaton) [43, 44]. To calculate an inflaton potential, we re-     sponds to the vacuum energy density and its width to the
+construct a scalar field potential from the evolution of the     change in value of the scalar field during inflation. The
+Hubble parameter in our model and calculate its slow-roll        energy scale is usually associated with particle physics
+parameters. We then calculate the tensor-to-scalar ratio         phenomenology. However, since we want to find nondi-
+r, scalar spectral index of density perturbations ns and         mensional quantities that characterize the CMB, we are
+its running αs using these calculated values of the slow-        only interested in the shape of V (φ) and not its abso-
+roll parameters. The equations from [43] (their equations        lute scale. Hence, we ignore the absolute scale of the
+17-18) which are used to reconstruct a scalar field poten-       potential.
+tial V (φ) from the expansion history of the universe on            Using a(t) and V (φ), we now calculate the slow-roll
+a FLRW background are:                                           parameters , η, ηv , and ξ as functions of the number of
+                                                                 e-folds before end of inflation, in order to make observable
+          V (t) = (m2P /8π)(Ḣ + 3H 2 + 2c2 /a2 ),       (10)    predictions for the spectrum of tensor and scalar pertur-
+                                                                 bations. We use the expressions for  and η from [45],
+             φ̇2 (t) = (m2P /4π)(−Ḣ + c2 /a2 ).         (11)    whereas ηv , and ξ are obtained from [46]:
+
+Here, V (t) is the potential, φ(t) is the scalar field, and                                 äa
+mP is the Planck mass [45]. The third/second term in the                             = 1−      ,                         (12)
+                                                                                            ȧ2
+right-hand sides of Eqs. 10 and 11 represent the curvature                                φ̈
+terms. These terms are usually omitted in models of                                η = −      ,                           (13)
+inflation, since it is assumed that the process of inflation                             H φ̇
+drives the universe towards flatness.                                                  m2P d2 V
+                                                                                  ηv =            ,                       (14)
+   From the non-parametric expressions for a(t), H(t),                                 8πV dφ2
+        ˙
+and H(t),   one can use Eqs. 10 and 11 to obtain expres-                                 m4P dV d3 V
+sions for V (t) and φ̇2 (t). The integration of φ̇ gives φ(t)                      ξ =                  .                 (15)
+                                                                                       64π 2 V 2 dφ dφ3
+                                                                                                                             6
+
+Note that both η and ηv are the second slow-roll pa-
+rameters, where η is denoted as the Hubble slow-roll pa-
+rameter and ηv as the potential slow-roll parameter. The
+tensor-to-scalar ratio r, scalar spectral index of curvature
+perturbations ns , and the running of the spectral index,
+αs ≡ d ln ns /d ln k, where k is the comoving wavenum-
+ber, can be calculated from the above parameters using
+the slow-roll approximation [45, 46]:
+
+                ns ≈ 1 − 4 + 2η,                      (16)
+                 r ≈ 16,                              (17)
+                αs ≈ 16ηv − 242 − 2ξ.                (18)
+
+To compare these quantities with observations, one calcu-
+lates the slow-roll parameters for the value of N (number
+of e-folds before end of inflation) when the present Hub-
+ble scale crossed outside the horizon during inflation. For
+most inflationary models, N is about 50-60 [9, 10], de-        FIG. 5: The scalar spectral index ns as a function of the num-
+pending on the dynamics of the reheating era. However,         ber of e-folds before the end of inflation (N ), evaluated using
+the lower limit on the horizon crossing scale can be as low    Eq. 16. The hatched regions show the 1σ estimates for ns
+as N = 18 [47]. We shall calculate more precise bounds         from the Planck 2015 TT + lowP + lensing data release [48]
+on this scale for our model in a forthcoming work.             which is ns = 0.968 ± 0.006.
+   For a conservative estimate, we evaluate the slow-roll
+parameters for values of N between 18 and 60, and use
+these parameters to obtain ns , r, and αs from Eqs (16),
+(17), and (18) respectively. The scalar spectral index ns
+obtained using Eq. 16 is shown in Fig. 5. We always can
+observe a red tilt. For values of N between about 20
+and 25, we obtain ns ≈ 0.96, which is consistent with
+the best-fit estimate of ns = 0.968 ± 0.006 from Planck
+2015 [48]. However, if the horizon crossing scale in our
+model occurs for the same values of N as in most other
+inflationary models (between 50-60), we would obtain a
+value of ns ≈ 0.99, which on face value is in tension with
+the Planck 2015 best-fit estimate at about 6σ. However,
+if we assume an extra relativistic degree of freedom, then
+the best fit estimate of ns from Planck 2015 is closer to
+our estimate of ≈ 0.99 [48]. The tensor-to-scalar ratio r
+obtained using Eq. 17 is shown in Fig. 6. Our estimated
+value of r for all permissible values of N is about an or-
+der of magnitude smaller than the 95% confidence upper
+limit on r0.05 < 0.12, where r0.05 is evaluated at the pivot   FIG. 6: The solid red curve shows the tensor-to-scalar ratio
+                                                               r as a function of the number of e-folds before the end of
+scale of 0.05 Mpc−1 . This limit is obtained from a joint
+                                                               inflation (N ), evaluated using Eq. 17. The dashed black line
+analysis of Planck 2015 and BICEP2/KECK Array [49].            shows the upper limit of r0.05 < 0.12 at 95% confidence level
+The running of the spectral index αs is shown in Fig. 7.       (at the pivot scale of 0.05 Mpc−1 ), which is obtained from
+Our estimated value for the running is about O(10−3 ),         a joint analysis of BICEP2/Keck Array and the 2015 Planck
+which is consistent with the no running of the spectral        observations [49].
+index found from Planck 2015 observations [48]. We also
+note that our values of r and αs are of the same order of
+magnitude as in Starobinsky’s model of inflation [2].          it must be close to Tmax in order to obtain inflation-like
+                                                               behavior. The total number of e-folds from the start of an
+                                                               inflationary phase as a function of a0 and β/βcr is shown
+ V.    SENSITIVITY TO INITIAL CONDITIONS                       in Fig. 8. The total number of e-folds is insensitive to
+                                                               initial values of a0 and only depends on β. We now do
+   After calculating the expansion dynamics and the in-        the same exercise for r, ns , and αs , where we evaluate
+flationary observables for one set of values of a0 and β,      these quantities 20 e-folds before the end of inflation for
+we now examine the sensitivity of the dynamics to initial      the same range of a0 and β. These variations are shown
+conditions by varying a0 and β. We do not vary T0 , since      in Figs. 9, 10, and 11 respectively. We always find a red
+                                                                                                                             7
+
+
+
+
+FIG. 7: The solid red curve shows the running of the spectral    FIG. 9: The scalar spectral index (ns ) evaluated 20 e-folds
+index (αs ) as a function of the number of e-folds before the    before the end of inflation as a function of the initial scale
+end of inflation (N ), evaluated using Eq. 18. The Planck 2015   factor a0 (in meters) and one minus the ratio of the particle
+results are consistent with no running [48].                     production coefficient to its critical value β/βcr .
+
+
+
+
+                                                                 FIG. 10: The tensor-to-scalar ratio (r) evaluated 20 e-folds
+FIG. 8: The total number of expansion e-folds since the be-      before the end of inflation as a function of the initial scale
+ginning of an inflationary phase as a function of the initial    factor a0 (in meters) and one minus the ratio of the particle
+scale factor a0 (in meters) and one minus the ratio of the       production coefficient to its critical value β/βcr .
+particle production coefficient to its critical value β/βcr .
+
+                                                                   VI.   OTHER MODELS OF INFLATION WITH
+                                                                                   SPIN
+tilt in the spectrum of scalar perturbations for different
+values of a0 and β. The value of the tensor-to-scalar ratio        The first model of inflation based on the ECSK theory
+is approximately constant and is between 0.01 and 0.03.          was by Gasperini [19], who also has considered the dy-
+The running of the spectral index is always less than 0          namics of a spin fluid in the FLRW spacetime. In that
+and its absolute value is O(10−3 − 10−4 ) Therefore, the         model, a spin fluid with w = −1/3 + δ, where w = p/
+values of ns ,r, and αs do not change significantly with a0      and 0 < δ  1 is a number extremely close to zero,
+and are only sensitive to β. The total number of e-folds         can characterize a physically viable inflationary scenario
+also effectively depends only on β. Therefore, our infla-        with three distinct phases of acceleration which can give
+tionary model does not rely on the initial scale factor a0       about 70 e-folds. The origin of such a fine tuning would
+but depends on the particle production coefficient β.            be, however, difficult to explain. Obukhov [50] has con-
+                                                                                                                              8
+
+                                                                   of state of matter. Adding quantum particle production
+                                                                   can explain the origin of matter in the Universe and gen-
+                                                                   erate an inflationary phase without constraining a poten-
+                                                                   tial driving inflation. The only relevant parameter in this
+                                                                   scenario is the production coefficient β which ultimately
+                                                                   should be derived from quantum gravity.
+
+
+                                                                                    VII.   CONCLUSIONS
+
+                                                                      We studied the dynamics of a universe formed in a
+                                                                   black hole, using the Einstein-Cartan-Sciama-Kibble the-
+                                                                   ory of gravity which extends general relativity by includ-
+                                                                   ing the spin of matter and torsion of spacetime. We
+                                                                   solved numerically the equations describing such a uni-
+                                                                   verse in the torsion-dominated era which follows the last
+                                                                   bounce. We demonstrated that for values of the particle
+FIG. 11: The running of the spectral index (αs ) evaluated 20      production coefficient below a critical value, the dynam-
+e-folds before the end of inflation as a function of the initial   ics of the scale factor is similar to that in typical models
+scale factor a0 (in meters) and one minus the ratio of the         of cosmic inflation. We obtain about 60-150 e-folds, de-
+particle production coefficient to its critical value β/βcr .      pending on the value of the production coefficient. From
+                                                                   the calculated expansion of the scale factor, we recon-
+                                                                   structed a dynamically equivalent scalar field and the cor-
+sidered a GR fluid with the spin-spin interactions char-           responding inflaton potential, and showed that the shape
+acterized by an effective potential, which was chosen to           of such a potential is similar to those in most generic
+be similar to that used in vector field models of infla-           models of inflation. We also demonstrated that the dy-
+tion. That model can give an inflationary phase which              namics of the universe is insensitive to the initial values
+lasts for about 10−43 s, but does not specify the origin           of the scale factor and effectively depends on the particle
+of such a potential. Watanabe [42] has considered a sin-           production coefficient only.
+gle Dirac spinor field in the ECSK theory, characterized              We calculated the slow-roll parameters corresponding
+by a generic potential which depends on the scalar con-            to the reconstructed scalar field. Using the slow-roll ap-
+structed from the spinors. That model can give a viable            proximations, we found the tensor-to-scalar ratio, scalar
+inflationary phase with an almost scale invariant spec-            spectral index of curvature perturbations, and its run-
+trum of perturbations of the Dirac field on the FLRW               ning as functions of the number of e-folds before the end
+background and a de Sitter expansion phase with more               of inflation. Our values of the tensor-to-scalar ratio are
+than 60 e-folds if such a potential is appropriately cho-          about ten times smaller than the 95 % confidence level
+sen. Most recently, Choudhury et al. [51] have considered          limits obtained from the joint analysis of Bicep-2/Keck
+an effective potential for a scalar field associated with          and Planck data. The values of the scalar spectral in-
+torsion and its quantum corrections. That model gives              dex agree with the Planck 2015 results when evaluated
+an inflationary phase with ns ≈ 0.96, r ≈ 0.056, and               about 20 e-folds before the end of inflation for a particular
+αs ≃ −10−4 . There also exist models of inflation based            range of the particle production coefficient. We also find
+on fermion fields with a symmetric affine connection and           that the running of the scalar spectral index is negligible.
+other theories with torsion such as teleparallel gravity           Therefore, a universe in a black hole with spin, torsion,
+or f(T) gravity. In those theories, however, the orbital           and particle production provides a simple and natural
+angular momentum is conserved, which contradicts the               mechanism for inflation which does not require hypothet-
+exchange between the orbital and spin parts of the angu-           ical fields and is consistent with the Planck 2015 obser-
+lar momentum, that happens for electrons in atoms [17].            vations. Other observables such as non-gaussianities of
+   The model presented in this paper is similar to that            the CMB radiation will be considered in future work.
+in [19, 24] with the addition of the temperature depen-
+dences of the terms in the energy-momentum tensor [25].
+The spin-spin corrections to the energy-momentum ten-
+sor arising from the minimal coupling between spin and                        VIII.   ACKNOWLEDGMENTS
+torsion in the ECSK theory give the dynamics of the scale
+factor that avoids the singularity and solves the flatness           We would like to thank I-Non Chiu and Valeria Pet-
+and horizon problems without constraining the equation             torino for helpful correspondence.
+                                                                                                                            9
+
+
+
+
+ [1] R. H. Dicke and P. J. E. Peebles, in General Relativity:   [29] L. Parker, Phys. Rev. Lett. 21, 562 (1968).
+     An Einstein centenary survey, ed. S. W. Hawking and        [30] Ya. B. Zel’dovich, J. Exp. Theor. Phys. Lett. 12, 307
+     W. Israel, p. 504 (Cambridge University Press, 1979).           (1970).
+ [2] A. A. Starobinsky, Phys. Lett. B 91, 99 (1980).            [31] Ya. B. Zel’dovich and A. A. Starobinskii, J. Exp. Theor.
+ [3] D. Kazanas, Astrophys. J. 241, L59 (1980).                      Phys. Lett. 26, 252 (1977).
+ [4] K. Sato, Mon. Not. R. Astron. Soc. 195, 467 (1981).        [32] N. J. Poplawski, arXiv:1410.3881 (2014).
+ [5] A. H. Guth, Phys. Rev. D 23, 347 (1981).                   [33] V. F. Mukhanov, H. A. Feldman, and R. H. Branden-
+ [6] A. Linde, Phys. Lett. B 108, 389 (1982).                        berger, Phys. Rept. 215, 203 (1992).
+ [7] A. Albrecht and P. J. Steinhardt, Phys. Rev. Lett. 48,     [34] K. Nomura, T. Shirafuji, and K. Hayashi, Prog. Theor.
+     1220 (1982).                                                    Phys. 86, 1239 (1991).
+ [8] J. Martin, C. Ringeval, and V. Vennin, Phys. Dark Univ.    [35] V. A. Beilin, G. M. Vereshkov, Yu. S. Grishkan, N. M.
+     5-6, 75 (2014).                                                 Ivanov, V. A. Nesterenko, and A. N. Poltavtsev, Sov.
+ [9] P. A. R. Ade et al., Astron. Astrophys. 571, A22 (2014).        Phys. J. Exp. Theor. Phys. 51, 1045 (1980).
+[10] P. A. R. Ade et al., arXiv:1502.02114 (2015).              [36] R. K. Pathria, Nature 240, 298 (1972).
+[11] G. Hinshaw et al., Astrophys. J. Suppl. Ser. 208, 19       [37] L. Smolin, Class. Quantum Grav. 9, 173 (1992).
+     (2013).                                                    [38] L. D. Landau and E. M. Lifshitz, The Classical Theory
+[12] A. Ijjas, P. J. Steinhardt, and A. Loeb, Phys. Lett. B          of Fields (Pergamon, 1975).
+     723, 261 (2013).                                           [39] D. Garfinkle, Phys. Rev. Lett. 93, 161101 (2004).
+[13] T. W. B. Kibble, J. Math. Phys. 2, 212 (1961).             [40] D. Hochberg and M. Visser, Phys. Rev. D 58, 044021
+[14] D. W. Sciama, Rev. Mod. Phys. 36, 463 (1964).                   (1998).
+[15] F. W. Hehl, P. von der Heyde, G. D. Kerlick, and J. M.     [41] N. J. Poplawski, Class. Quantum Grav. 31, 065005
+     Nester, Rev. Mod. Phys. 48, 393 (1976).                         (2014).
+[16] N. J. Poplawski, arXiv:0911.0334 (2009).                   [42] T. Watanabe, arXiv:0902.1392 (2009).
+[17] N. Poplawski, arXiv:1304.0047 (2013).                      [43] G. F. R. Ellis and M. S. Madsen, Class. Quantum Grav.
+[18] F. W. Hehl, P. von der Heyde, and G. D. Kerlick, Phys.          8, 667 (1991).
+     Rev. D 10, 1066 (1974).                                    [44] T. Padmanabhan, Phys. Rev. D 66, 021301 (2002).
+[19] M. Gasperini, Phys. Rev. Lett. 56, 2873 (1986).            [45] W. H. Kinney, arXiv:0902.1529 (2009).
+[20] N. J. Poplawski, Phys. Lett. B 690, 73 (2010).             [46] C.-Q. Geng, M. W. Houssain, R. Myrzakulov, M. Sami,
+[21] W. Kopczyński, Phys. Lett. A 39, 219 (1972).                   and E. N. Saridakis, Phys. Rev. D 92, 023522 (2015).
+[22] A. Trautman, Nature (Phys. Sci.) 242, 7 (1973).            [47] A. R. Liddle and S. M. Leach, Phys. Rev. D 68, 103503
+[23] B. Kuchowicz, Gen. Relativ. Gravit. 9, 511 (1978).              (2003).
+[24] N. J. Poplawski, Phys. Lett. B 694, 181 (2010).            [48] P. A. R. Ade et al., arXiv:1502.01589 (2015).
+[25] N. J. Poplawski, Gen. Relativ. Gravit. 44, 1007 (2012).    [49] P. A. R. Ade et al., Phys. Rev. Lett. 114, 101301 (2015).
+[26] N. Poplawski, Phys. Rev. D 85, 107502 (2012).              [50] Y. N. Obukhov, Phys. Lett. A 182, 214 (1993).
+[27] S. Alexander, C. Bambi, A. Marcianò, and L. Modesto,      [51] S. Choudhury, B. K. Pal, B. Basu, and P. Bandyopad-
+     Phys. Rev. D 90, 123510 (2014).                                 hyay, arXiv:1409.6036 (2014).
+[28] J. Magueijo, T. G. Zlosnik, and T. W. B. Kibble, Phys.
+     Rev. D. 87, 063504 (2013).
+
