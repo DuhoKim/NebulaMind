@@ -973,6 +973,7 @@ Record: triage pick #27; the newest published bounce mechanism in the family.
 ## 7. Holographic interior cosmology
 
 **28. A. Sahu et al. (2025). "Holographic black hole cosmologies." JHEP 05 (2025) 233.**
+**Deep audit (2026-09-02, STEP 3 queue draw #7; blind double codex + kimi, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY28_RECONCILIATION_20260902.md`):** an explicit 3D, Λ < 0 construction — a(t) = cos(t/ℓ_AdS), a saddle-dominance condition, D_crit ≈ 1.3 ℓ_AdS — whose cosmology is "the interior geometry of a multi-boundary Lorentzian wormhole" (line 31), i.e. many black-hole interiors as a holographic state, not our universe inside one parent; "potentially realistic" (line 13) refers to spatial-curvature signs within Λ < 0, and the only higher-dimensional statement is an expectation (line 356). No Λ > 0, no observable. **Tier UNCHANGED.**
 DOI 10.1007/JHEP05(2025)233 — VERIFIED (Crossref: JHEP, v2025, 2025-05-28). Note: the arXiv page
 (2411.14673) carries no journal-ref field — the Crossref journal record is the evidence, and this
 is exactly why arXiv metadata alone is not trusted in either direction.
