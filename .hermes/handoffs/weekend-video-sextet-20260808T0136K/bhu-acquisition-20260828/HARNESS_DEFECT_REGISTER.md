@@ -1468,3 +1468,37 @@ lane** — pattern used: `git status --porcelain` over the lane plus a byte-coun
 of every `*GATE*`/`*VERDICT*` file; one class it would miss: a seat that wrote under a filename
 matching neither convention, which was checked for by listing the whole directory rather than
 globbing.
+
+### 1at — A FORMULA IN MY BRIEF WITH ONE UNQUALIFIED SYMBOL COST TWO SEAT-RUNS AND NEARLY A WRONG NUMBER
+
+**2026-09-02, found by the third-seat adjudication, provenance verified by me.** My Reading-B brief
+(`_PROGRAM_A2_READINGB_BRIEF.md:35`) defined the window by `x = r/χ_§` — support `χ_§` — and then
+gave its transform as `[3j₁(ka)/(ka)]²` with **`a` never defined**. The natural reading, `a = χ_§`,
+is wrong: for the overlap kernel, `a` must be the top-hat **half**-support. My own earlier script
+(`cutoffA_readings_incompatible.py:79`) had it right, with a comment saying so — I paraphrased my
+own code into the brief and dropped the qualifier.
+
+**Consequence:** codex implemented the formula as written and computed everything on a window
+supported on **2χ_§ = 28,030 Mpc** — twice the causal horizon. Two full runs (the diverging series
+252k→900k AND the "converged" 23,900) were for the wrong object, and the 23,900 was minutes from
+being reported as the program's number. agy, who built the window in **real space from the
+definition** and never touched my transform formula, got it right — which is also why the seats
+"disagreed": they were computing different windows.
+
+**Why this is not §1ak.** §1ak is truncating a quotation of *someone else's* text. This is the
+supply side: **authoring** a formula for a seat with a symbol whose binding lives only in my head.
+A brief is an interface, and an unqualified symbol in an interface is an underspecified contract —
+the seat did not err by taking the natural reading.
+
+**Detection credit, worth recording:** the bug was found not by rerunning but by a **closed-form
+cross-check** — the third seat matched codex's reported `c` values against the analytic form for
+support `2A` to 9 significant figures. Testimony-vs-formula, not testimony-vs-testimony.
+
+**Rules adopted:**
+1. **Every symbol in a brief-supplied formula gets bound in the same line** ("`a = χ_§/2`, the
+   top-hat half-support"), or the formula is omitted and the seat derives its own.
+2. **Prefer giving seats the real-space definition and letting them derive the transform** — the
+   seat that did that was the one that got it right.
+3. When two seats disagree numerically, **check first that they computed the same object** — here
+   the "disagreement" was two correct computations of two different windows plus one aliasing
+   artifact, and no amount of re-voting would have converged them.
