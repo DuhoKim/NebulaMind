@@ -29,6 +29,15 @@ inputs, it is the same freedom as before, but written down.
   branch's only observable computation outside the audit.
 - **(c) Do nothing.** *Cost:* the record would keep saying "no observable" about a branch that has a published one.
 
+**Update 19:00 — the candidate has now been read blind by two seats (`CANDIDATE_SD2016_RECONCILIATION_20260902.md`).**
+Both agree: the paper never computes the torsion universe's own perturbations (its authors defer that to a
+future publication) and instead reads the CMB numbers off a stand-in inflaton built to match the background.
+The tilt depends on a free choice of when the observed scales left the horizon: about 0.96 for an early exit
+(live against Planck, 1.2σ) but about 0.99 for the conventional exit (fired, 6σ), and the model's own physics
+points to the latter. r and the running are live but not discriminating. **Lane recommendation: option (a),
+filed CONSISTENCY-ONLY with the surrogate arithmetic as an annotation** — it names a route the authors
+themselves left open, and gives no number the mechanism owns. Your stamp.
+
 Why it cannot be mine: base-layer membership and tiers are yours; the 08-19 gate built the list.
 
 ---
