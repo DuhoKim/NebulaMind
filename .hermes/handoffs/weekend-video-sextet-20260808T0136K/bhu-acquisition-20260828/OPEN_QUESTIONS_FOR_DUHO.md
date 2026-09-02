@@ -6,7 +6,64 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 — (A) WAS RUN. It produced nothing constructive. What now?
+## ⏳ YOUR CALL 2026-09-02 (10:30) — the two seats disagree on substance, and my own tie-break failed
+
+**Program (A) is running on your "topic A" ruling and has produced a real result — plus one
+disagreement I could not settle, which the rules say comes to you.**
+
+**First, a correction to my own finding from an hour ago.** I reported that Reading B (the
+real-space "no correlation beyond χ_§" refinement) **yields no number**, because its answer depended
+on an infrared regulator. I also flagged, against myself, that a referee would say "just subtract the
+monopole." **The referee is right.** Both seats, blind, now agree: after subtracting the monopole
+`S₁/₂` **converges** (successive changes down to 1.6e-9). **My "no number" claim is withdrawn.**
+
+**The disagreement.** The same two blind runs give:
+
+| | codex | agy |
+|---|---|---|
+| converges? | yes | yes |
+| **value** | **23,900 μK⁴** | **10,063 μK⁴** |
+| **is it a valid spectrum?** | **PASS** — power stays positive | **FAIL** — power goes negative |
+
+The second row is the one that matters. A power spectrum that goes negative is not physically
+possible, so if agy is right, **the whole Reading-B construction is excluded** — which would be a
+*stronger* result than a number, not a weaker one. If codex is right, Reading B is admissible and
+predicts ~24,000 against an observed ~1,150.
+
+**My tie-break failed, and I am reporting that rather than papering over it.** I wrote an independent
+check; it found no negative values, which would favour codex — **but the script failed its own
+sanity condition.** It should have produced zero power at zero wavenumber (that is the condition it
+imposes) and instead produced a small non-zero value, which was also the minimum it reported. So the
+implementation does not enforce what it claims, and its verdict cannot be trusted. Reporting it as
+"codex confirmed" would have been the same error I recorded yesterday as §1al — a check that agrees
+with a conclusion for reasons unrelated to the conclusion being true.
+
+**Why it is genuinely hard, not just sloppy:** the no-zero-mode condition forces the power to be
+*exactly* zero at zero wavenumber, so that point sits on the boundary of the allowed region. Whether
+the curve dips below zero just above it is decided by fine numerical behaviour, not by any theorem —
+which is precisely how two competent seats can disagree without either making a visible mistake, and
+how a slightly coarse grid reports "pass".
+
+**Options:**
+
+- **(1) Third seat, tightly specified** — hand kimi (or a Claude seat) the single question "does the
+  spectrum go negative, and over what range", with the grid resolution and the zero-wavenumber
+  sanity check *mandated* so the answer is checkable. *Cost:* one dispatch. *Gain:* likely settles it,
+  and the sanity check makes a wrong answer visible.
+- **(2) I re-derive it analytically** rather than numerically — the sign near zero is a curvature
+  condition and may be settleable in closed form. *Cost:* my time, and my last two constructions here
+  were both refuted. *Gain:* a proof rather than a grid result.
+- **(3) Park it and report both branches** — say the result depends on an unsettled admissibility
+  question. *Cost:* weakens the write-up considerably. *Gain:* nothing further spent.
+
+**My recommendation: (1), then (2) if it stays split.** The sanity check is the important part —
+it is what my own attempt lacked, and mandating it is cheap.
+
+**Nothing has moved.** No tier, and the paper stays HELD.
+
+---
+
+## ⏳ SUPERSEDED 2026-09-02 — (A) WAS RUN. It produced nothing constructive. What now?
 
 **This supersedes the topic menu below, which is now stale in one important way: it presents (A) as
 an untried recommendation. You chose (A), I ran it, and every constructive claim I built inside it
