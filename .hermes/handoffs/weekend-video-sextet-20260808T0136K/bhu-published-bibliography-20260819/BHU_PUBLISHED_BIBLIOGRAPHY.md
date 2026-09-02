@@ -753,6 +753,7 @@ Testability: **CONSISTENCY-ONLY**.
 Record: harvest #31; early interior-equivalence result. Author filled 2026-08-23 from INSPIRE metadata (the record, not recall), resolving the earlier deliberate omission. Full text: paywalled, needs-access queue.
 
 **43. "Birth of baby universes from gravitational collapse in a modified-gravity scenario." JCAP 06 (2023) 028.**
+**Deep audit (2026-09-02, STEP 3 queue draw #23; blind double codex + claude-seat, both `AUDIT_HOLDS_CONSISTENCY_ONLY`; `bhu-acquisition-20260828/ENTRY43_DEEP_RECONCILIATION_20260902.md`):** one unstable boson-star collapse in Palatini f(R) = R + ξR² (ξ = 0.1, line 56); the Einstein-frame endpoint is an ordinary black hole plus cloud (line 9), and the inflating "baby universe" appears only in the matter frame through g_θθ = q_θθ/f_R with f_R → 0⁺ where the simulation is singular and unconverged — physical by the theory's definition, a conformal-factor effect at the numerical edge; genericity asserted from one run (line 95); throat inside the horizon, "distant external observers will not be able to tell" (lines 88–89); our universe a future-work question (line 104). **Tier UNCHANGED.** *(Author field: pin garbled; acknowledgments/arXiv point to Masó-Ferrando, Sanchis-Gual, Font & Olmo — verify from Crossref before freezing.)*
 DOI 10.1088/1475-7516/2023/06/028 — VERIFIED (Crossref: JCAP, v2023, 028, 2023-06). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 Testability: **CONSISTENCY-ONLY**
