@@ -29,9 +29,11 @@ after 2026-08-22 take the next free number rather than renumbering, so cross-ref
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
-by two seats**: **4 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51),
-8 QUALITATIVE-DIRECTIONAL**, 4 PROSPECT, 32 CONSISTENCY-ONLY, **3 THEORETICAL-OBSTRUCTION
-(entries 22, 5, 48 — 5 re-tiered at question 5, 48 tiered at question 8, both 2026-08-30)**,
+by two seats**: **5 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51;
+1 standing-pending — entry 1, re-tiered 2026-09-02 on Duho's "a for both"),
+8 QUALITATIVE-DIRECTIONAL**, 4 PROSPECT, 30 CONSISTENCY-ONLY, **4 THEORETICAL-OBSTRUCTION
+(entries 22, 5, 48, and 4 — 5 re-tiered at question 5, 48 tiered at question 8, both 2026-08-30;
+4 re-tiered 2026-09-02 on the same "a for both" ruling)**,
 0 UNREAD — **the corpus is now FULLY READ** (entries 42→CONSISTENCY-ONLY, 47→PROSPECT, acquired + read 2026-09-01 on Duho rulings 42a/47a) — sums to 51. *(2026-09-01 sweep: entry 27 promoted CONSISTENCY-ONLY → QUALITATIVE-DIRECTIONAL per Duho ruling B(a), matching entries 25/26 for the same Gaztañaga causal-horizon CMB cutoff; hand-adjusted from the 2026-08-29 script tally — directional 7→8, consistency 32→31, still sums to 51.)* *(Superseded
 2026-08-30 by the question-8 ruling and the day's reads: previously "31 CONSISTENCY-ONLY,
 2 THEORETICAL-OBSTRUCTION, 4 UNREAD" — entries 50 and 14 read into/confirmed in
@@ -148,8 +150,15 @@ corrected three triage-derived record claims in batches 1–5 and this floor cla
 DOI 10.1038/240298a0 — VERIFIED (Crossref: Nature, v240, p298-299, 1972-12).
 Claim: a closed uniform-density universe sits inside a black hole and may oscillate within it,
 provided its radius exceeds the Schwarzschild radius; it cannot expand without limit.
-Testability: **CONSISTENCY-ONLY** — radius condition and bounded expansion, no distinguishing
-observational statistic in the accessible abstract; the paywalled body remains [VERIFY].
+Testability: **CALIBRATED-FALSIFIER — standing PENDING ADJUDICATION** *(re-tiered from
+CONSISTENCY-ONLY 2026-09-02 on Duho's ruling, verbatim "a for both", after both sweep seats
+independently returned `CHALLENGE_CALIBRATED-FALSIFIER` on the full text; the body derives numeric
+bounds — Λ ∈ (−6.7, 1.0]×10⁻⁵⁷ cm⁻², ρ₀ ∈ (1.5, 2.3]×10⁻²⁹ g cm⁻³, R₀ ≥ 1.1×10²⁸ cm at
+H₀ = 75, q₀ = 1 "representative values" — "so these parameters can be estimated from the kinematics
+of the universe alone", p. 299, pinned text lines 431–453. The pre-2026-09-02 line read
+CONSISTENCY-ONLY "no distinguishing observational statistic in the accessible abstract", which was
+true of the abstract and superseded by the body.)* The LIVE/FIRED standing requires its own gated
+adjudication against pinned modern values — held for Duho after gating.
 Record: characterized in the Phase 1 packet §1.1.
 **READ (abstract-level) 2026-08-31 (overnight research) — CONSISTENCY-ONLY CONFIRMED, tier
 unchanged.** The full Nature 1972 body is paywalled and not freely obtainable (not on arXiv/INSPIRE;
@@ -203,9 +212,19 @@ target, **useful** as the cleanest pedagogical baseline for any strict interior-
 **4. H. Knutsen (2009). "The idea of the universe as a black hole revisited." Grav. Cosmol. 15, 273–277.**
 DOI 10.1134/S0202289309030128 — VERIFIED (Crossref: Gravitation and Cosmology, v15, p273-277, 2009-07).
 Claim: critical re-examination of the Pathria-style identification.
-Testability: **CONSISTENCY-ONLY**. Record: **new to us** (surfaced by this session's Crossref
-search, absent from packet and sweep). Audit-worthiness: **low-medium** — a published critique of
-target #1; cheap due-diligence read before any Pathria-line audit.
+Testability: **THEORETICAL-OBSTRUCTION** *(re-tiered from CONSISTENCY-ONLY 2026-09-02 on Duho's
+ruling, verbatim "a for both", after both sweep seats independently returned
+`CHALLENGE_THEORETICAL-OBSTRUCTION` on the full text; ownership-of-proof satisfied — Knutsen
+derives the necessary-and-sufficient smooth-matching conditions himself and applies them.)*
+**Domain, scoped per the entry-5 convention:** *for an FLRW perfect-fluid interior matched smoothly
+to the vacuum exterior at Pathria's boundary choice r_b = 1, the junction forces the fluid sphere
+to be static with its surface merged into the event horizon — "Thus this particular model cannot
+describe our expanding universe" (p. 277, pinned text lines 1063–1088). Shell-bearing junctions
+and other boundary choices are not excluded.* A matched pair with entry 5 (its sequel note), which
+holds the null-shell no-go for the same Pathria construction.
+Record: **new to us** (surfaced by this session's Crossref
+search, absent from packet and sweep). Audit-worthiness: **discharged** — the due-diligence read
+happened 2026-09-02 and produced the re-tier.
 **FULL TEXT ACQUIRED + PINNED 2026-09-02** (`knutsen_2009_gravcosmol15_273{.pdf,_clean.txt}`, sha256 `63c21258`). **Blind-double sweep: BOTH seats returned `CHALLENGE_THEORETICAL-OBSTRUCTION`** — Knutsen derives the necessary-and-sufficient smooth-matching conditions himself and, applying them to Pathria's boundary choice r_b = 1, proves "the fluid sphere is static… Thus this particular model cannot describe our expanding universe" (quote verified, pinned text lines 1063–1088; ownership-of-proof satisfied). Parallel in shape to entry 5's re-tier. **TIER UNCHANGED PENDING DUHO** — filed in OPEN_QUESTIONS_FOR_DUHO.md.
 
 **5. S. Khakshournia (2010). "A note on Pathria's model of the universe as a black hole." Grav. Cosmol. 16, 178–180.**

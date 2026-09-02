@@ -40,7 +40,15 @@ by your standing ruling, nothing outward.**
 
 ---
 
-## ⏳ YOUR CALL 2026-09-02 (15:20) — the five bought papers are swept: three confirmed, TWO tier challenges
+## ✅ RESOLVED 2026-09-02 — Duho ruled "a for both": Pathria → CALIBRATED-FALSIFIER (standing pending), Knutsen → THEORETICAL-OBSTRUCTION
+
+Both re-tiers applied to the bibliography with the ruling quoted, scoped domains, and pinned-quote
+receipts; tally now **5 calibrated / 8 directional / 4 prospect / 30 consistency / 4 obstruction
+= 51**. The committed follow-on — Pathria's LIVE/FIRED standing adjudication against pinned modern
+values — is dispatched next; its verdict packet returns here for Duho's stamp.
+*(Original decision packet below, kept for the record.)*
+
+## ⏳ SUPERSEDED (15:20) — the five bought papers are swept: three confirmed, TWO tier challenges
 
 You bought all five; they are pinned, identity-verified from their own bytes, and blind-double
 swept (codex + agy independent; Stuckey's image-only body got two multimodal readers — agy's
