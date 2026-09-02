@@ -1,0 +1,4 @@
+W_PROOF_OWNED
+borrowed_inputs: Penrose singularity theorem [7] (SOURCE lines 230–246, 507)
+The paper owns the no-go application. It calculates that fixed-r spheres past r=1/χ are anti-trapped (SOURCE lines 174–229), states the time-reversed Penrose hypotheses (SOURCE lines 230–246), translates null convergence into its “very weak” energy condition, and checks that condition for the false-vacuum region and ordinary matter (SOURCE lines 253–269). It then concludes that a sufficiently large spherical false-vacuum region in an asymptotically flat parent requires an initial singularity (SOURCE lines 270–280). Penrose’s theorem is borrowed, but the anti-trapped construction and hypothesis verification producing this scoped no-go are performed here.
+contested: no — both full-read gates confirmed proof ownership; the source itself limits the nonspherical case to a necessary condition and names quantum and white-hole escapes.

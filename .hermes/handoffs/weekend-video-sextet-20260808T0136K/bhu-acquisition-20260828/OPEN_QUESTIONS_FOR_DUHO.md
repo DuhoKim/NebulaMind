@@ -16,6 +16,8 @@ claim by citation; 25, 26, 27 are being read now and will carry the same questio
 **Extended 01:03 — entry 6 (Smolin 1992) carries the same token by two blind seats:** the "local maximum" step that
 gives its direction is, in Smolin's words, "sufficient to assume" (lines 220–227). Your reading (a)/(b) below applies to
 entry 6 as well; under (b) the directional bin would fall to 2 (54 and 56).
+**Extended 01:05 — entries 25, 26, 27 carry the same token (codex; same claim as 23, whose two blind seats agree).**
+Entry 54 (closed curvature) is DERIVED within its bounce model and is unaffected. Final count under (b): directional 8 → 2.
 
 **Why it is yours.** Your record defines the warrant axis for exactly this case ("a directional claim can fail to
 follow in the asserted direction") and says tiers describe the claim's shape, so the cell alone does not move a

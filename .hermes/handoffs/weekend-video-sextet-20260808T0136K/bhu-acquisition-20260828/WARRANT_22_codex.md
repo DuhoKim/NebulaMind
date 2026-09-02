@@ -1,0 +1,4 @@
+W_PROOF_OWNED
+borrowed_inputs: flat/open FRW completeness theorem (SOURCE lines 648–659, 887–901)
+Proposition 1 is stated and proved in this paper: the natural trapped slicing is Kantowski–Sachs, and isotropy forces only a special necessary metric form, not exact FRW (SOURCE lines 180–215). Proposition 2 is likewise owned: finite ADM asymptotics make E−F(R) tend to a negative value, excluding arbitrarily large closed daughters (SOURCE lines 740–760). The broader Theorem 1 does borrow the published flat/open completeness theorem for its k=0,−1 limb (SOURCE lines 648–659, 887–901), but that import does not transfer ownership of Propositions 1–2.
+contested: no — the gated receipt withdrew its hostile scope framing and confirms both propositions were checked in-source; the RQ-D split concerned application to entries 25/26, not proof ownership.

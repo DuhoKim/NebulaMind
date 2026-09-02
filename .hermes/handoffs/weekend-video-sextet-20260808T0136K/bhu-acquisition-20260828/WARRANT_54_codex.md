@@ -1,0 +1,4 @@
+W_DIRECTION_DERIVED
+borrowed_inputs: homogeneous finite spherical-cloud assumption and closed-overdensity setup (SOURCE lines 125–152); ground-state effective density used in the Friedmann equation (SOURCE lines 270–282)
+Within the stated bounce model, the sign follows. The Friedmann equation contains −k/a² (SOURCE lines 274–278), and setting H=0 yields a bounce only for k>0; the paper explicitly says positive curvature is critical and an infinite cloud has no bounce (SOURCE lines 280–288). Since Ωk≡−k/H0², this directly gives Ωk<0 (SOURCE lines 329–336). The magnitude in Eq. 27 is conditional on identifying the observed homogeneity scale with χ* (SOURCE lines 314–336), but the sign is not a free parameter choice once this finite-cloud bounce is required.
+contested: no — the re-tiered record identifies the same surviving sign; measurement disputes affect empirical support, not whether the model derives it.

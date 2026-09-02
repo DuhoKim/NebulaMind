@@ -1,0 +1,4 @@
+W_DIRECTION_ASSUMED
+borrowed_inputs: Ωm, ΩΛ, and H0 background normalization (SOURCE lines 210–224); observed CMB homogeneity scale ΘH = 66 ± 9° (SOURCE lines 302–303)
+The paper derives the finite cloud radius R(τ) (SOURCE lines 210–224) and projects its non-circular background scale to θ ≃ 2R/dCMB ≃ 60° (SOURCE lines 302–306). But it merely states that incoming fluctuations have no modes with λ>2R and infers anomalously low large-scale CMB temperature power (SOURCE line 295); no perturbation spectrum or boundary-condition derivation bridges the finite radius to that hard cutoff. The paper concedes that perturbations and bounce conditions remain to be estimated (SOURCE lines 333–339). The direction is therefore asserted even though the radius, angle, and Fourier convention are supplied.
+contested: yes — the packet-class token conflicts with the stamped tier premise; the reconciliation expressly changes “derives” to “restates” for the spectral cutoff.
