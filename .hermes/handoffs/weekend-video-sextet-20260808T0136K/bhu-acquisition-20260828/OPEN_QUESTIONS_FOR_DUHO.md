@@ -5,6 +5,17 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## RESOURCE CALL 2026-09-03 17:39 KST — K1 stage 2 cannot run on this machine as it stands (not a science packet)
+
+COMPAS (dev HEAD e728869, pinned by the codex seat) fails to build: Boost, GSL and HDF5 headers are absent (`/opt/homebrew/opt/boost`,
+`gsl`, `hdf5` all missing; first fatal: `boost/version.hpp` not found). Installing them is a machine-wide Homebrew action, which this
+lane does not do unasked. **Options:** (a) authorise `brew install boost gsl hdf5` on this machine (Blanc or Duho runs it, or says
+"install" and Tori runs exactly that command, nothing else); (b) run stage 2 on another machine that has them; (c) hold stage 2 at
+the pin sheets. Pin sheets continue meanwhile (codex landed; Claude seat running); the Kimi audit and the wrapper gate follow.
+Also for the gate: the cap-grid value 3.5 M☉ in codex's row 3 rests on a figure axis label (`1603.02698_clean.txt` L1684), not a
+sentence; 1.97 M☉ is sentence-pinned (L1658, L1846).
+
+---
 ## FOR DUHO'S EYE 2026-09-03 17:25 KST — K1 stage-2 preregistration filed (no decision needed; your "both a" of 17:17 ordered it)
 
 `K1S2_POPSYN_PREREG_20260903.md`: a binary-population-synthesis test of the neutron-star-cap derivative with COMPAS (public code,
