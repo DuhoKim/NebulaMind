@@ -5,27 +5,19 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import math
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from seal_gate.seal_gate import canonical_bytes, sha256_file
+from completeness_gate.completeness_gate import separation_arcsec
 
 TIER_A = ROOT.parent / "_successor_build_20260824/acquire/positions_selected_cut.csv"
 PARENT = ROOT.parent / "_successor_build_20260824/acquire/positions_selected.csv"
 PINS = {TIER_A: ("a20682c114508dbdd18ede6a56c61509ea9c16784aaca7eee61f76bf97cdd372", 49_211),
         PARENT: ("425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831", 65_060)}
 VOID = "VOID-BLIND-VIOLATION"
-
-
-def separation_arcsec(ra1, dec1, ra2, dec2):
-    r1, d1, r2, d2 = map(math.radians, (ra1, dec1, ra2, dec2))
-    dr = math.remainder(r2 - r1, 2.0 * math.pi)
-    sd, sr = math.sin((d2-d1)/2.0), math.sin(dr/2.0)
-    a = sd*sd + math.cos(d1)*math.cos(d2)*sr*sr
-    return math.degrees(2.0*math.asin(math.sqrt(min(1.0, max(0.0, a))))) * 3600.0
 
 
 def _protected(paths=PINS):

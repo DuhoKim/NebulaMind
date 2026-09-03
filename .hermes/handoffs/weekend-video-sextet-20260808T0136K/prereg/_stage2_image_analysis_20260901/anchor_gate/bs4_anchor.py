@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draft-only BS-4 synthetic anchor; contains no study-image renderer."""
+"""Draft-only BS-4 synthetic anchor through the study renderer."""
 from __future__ import annotations
 
 import argparse
@@ -10,11 +10,15 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import numpy as np
+from astropy.wcs import WCS
+
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from seal_gate.seal_gate import _seal_predecessor, canonical_bytes, sha256_bytes, sha256_file
 from anchor_gate.instrument_identity import (INSTRUMENT, PIN, capture_environment,
                                              validate_environment, verify_instrument)
+from study_renderer.renderer import CD, render_cutout
 
 CONFIG = ROOT / "miniprereg_pins/render_config.json"
 SPEC = ROOT / "miniprereg_pins/bs4_sign_anchor_spec.md"
@@ -26,17 +30,26 @@ class AbsoluteAnchorFailure(RuntimeError):
 
 
 def synthetic_wcs_reproject(*, source_jacobian=((1.0, 0.0), (0.0, 1.0))):
-    """Minimal synthetic fiducial transform, explicitly NOT the study renderer."""
+    """Run asymmetric labelled N/E fiducials through the actual renderer."""
     det = source_jacobian[0][0] * source_jacobian[1][1] - source_jacobian[0][1] * source_jacobian[1][0]
-    if det <= 0.0:
-        return WRONG_PARITY
-    # FITS/output: x grows left-to-right while east is decreasing x; north is +y.
-    fiducials = {"N": (64.5, 65.5), "E": (63.5, 64.5)}
-    assert fiducials["N"][1] > 64.5
-    assert fiducials["E"][0] < 64.5
-    assert det > 0.0
-    return {"fiducials": fiducials, "jacobian_parity": "PRESERVED",
-            "interpolation": "bilinear", "reprojections": 1}
+    w = WCS(naxis=2); w.wcs.ctype=["RA---TAN","DEC--TAN"]; w.wcs.cunit=["deg","deg"]
+    w.wcs.crval=[40.0,10.0]; w.wcs.crpix=[90.5,90.5]; w.wcs.cd=CD.copy()
+    if det <= 0: w.wcs.cd[0,0] *= -1
+    w.array_shape=(180,180); w.wcs.set()
+    image=np.zeros((180,180)); image[108,89]=10; image[89,70]=20
+    try:
+        raster=render_cutout([(image,np.zeros_like(image),np.ones_like(image),w)],(40.0,10.0))
+    except ValueError as exc:
+        if str(exc) == WRONG_PARITY: return WRONG_PARITY
+        raise
+    north=np.unravel_index(np.argmax(raster.array[:,58:69]),raster.array[:,58:69].shape)
+    east=np.unravel_index(np.argmax(raster.array[58:69]),raster.array[58:69].shape)
+    fiducials={"N":(float(north[1]+58),float(north[0])),
+               "E":(float(east[1]),float(east[0]+58))}
+    if not (fiducials["N"][1] > 63.5 and fiducials["E"][0] < 63.5):
+        raise AbsoluteAnchorFailure("ABSOLUTE-ANCHOR-FAIL: renderer fiducial orientation")
+    return {"fiducials":fiducials,"jacobian_parity":"PRESERVED",
+            "interpolation":"bilinear","reprojections":1,"renderer_digest":raster.digest}
 
 
 def validate_geometry() -> dict:
@@ -80,7 +93,7 @@ def run_anchor(*, journal: Path, runner=subprocess.run, timestamp: str | None = 
                     "A_LONGO_PUBLISHED_SIGNED": -0.0408,
                     "criterion": "injected -0.0408 is never REPRODUCED-LONGO"},
                 "instrument_digest": instrument_digest, "environment": env,
-                "renderer": "ABSENT; synthetic-WCS reference only",
+                "renderer": "study_renderer.renderer.render_cutout",
                 "renderer_config_digest": sha256_file(CONFIG), "complete_stdout": stdout,
                 "exit_status": proc.returncode, "output_digest": hashlib.sha256(stdout.encode()).hexdigest(),
                 "status": "PASS", "verdict": "PASS",

@@ -1,4 +1,4 @@
-# Study renderer draft V1
+# Study renderer V2
 
 Status: **DRAFT ONLY, UNPINNED, SYNTHETIC TESTS ONLY.** This directory does not authorize real-pixel access.
 
@@ -9,8 +9,8 @@ Status: **DRAFT ONLY, UNPINNED, SYNTHETIC TESTS ONLY.** This directory does not 
 - §§8.5–8.7: “north-up and east-left”; “Parity is strictly preserved”; wrong effective source-to-output parity yields literal `WRONG-PARITY-REFUSAL` and is never corrected.
 - §§8.8–8.9: “All required neighbouring bricks are stitched before reprojection” and “Exactly one deterministic bilinear reprojection maps the stitched inputs to the output WCS.”
 - V10 §8.10 (the prompt called this §8.12): “Resizing, further interpolation, rotation, transpose, PSF homogenization, padding, wrapping, reflection, intensity-conditioned source choice, and chirality-conditioned processing are prohibited.” None is implemented.
-- §8.12: every output pixel requires valid coverage; missing/non-finite supplied image coverage produces `DATA-INTEGRITY-FAIL`. Maskbits and inverse variance are outside this image-only function's input contract and remain a caller/seal-gate responsibility.
-- §8.13: prose and pinned configuration must agree. The draft exposes the frozen request fields, and any requested deviation yields `WRONG-GEOMETRY-REFUSAL` (the prompt-specified draft token; V10 does not name a geometry token).
+- §8.12: image, maskbits, and inverse-variance planes are stitched identically. Every output pixel requires finite coverage in all three; a missing plane or missing/non-finite value refuses the whole study with `DATA-INTEGRITY-FAIL`.
+- §8.13: initialization reads `miniprereg_pins/render_config.json` and compares every field with the §8 constants before geometry is used. Missing, malformed, extra, or disagreeing configuration refuses with literal `PINNED-CONFIG-MISMATCH`. A target-request deviation yields `WRONG-GEOMETRY-REFUSAL`.
 - §9.4 defines `chi(x) = (w(x) - w(mirror(x)))/2`; this renderer returns the one unmirrored raster from which the instrument must make its exact mirror. §9.7 requires identical reruns to reproduce binary64 `chi` bytes; the renderer itself is tested for byte-identical canonical binary64 raster output.
 - §§15.3–15.4 require the exclusion receipt and inclusive 1.0-arcsec protected guard before a pixel path is resolved or opened. This renderer cannot resolve or open paths and must only be called after that gate.
 - §16.3 requires every render to be entered in the chained seal journal. Journaling is deliberately a caller responsibility because this function is pure.
@@ -18,10 +18,10 @@ Status: **DRAFT ONLY, UNPINNED, SYNTHETIC TESTS ONLY.** This directory does not 
 
 ## Interface and limits
 
-`render_cutout(sources, target) -> Raster` accepts `(image array, astropy.wcs.WCS)` pairs and `(ra, dec)`. It never imports FITS support, touches disk, resolves a neighbour, handles a path, chooses a brick manifest, opens maskbits/inverse-variance products, mirrors an instrument input, invokes the instrument, or writes a journal. The caller owns all of those gates and records. Canonical raster bytes are little-endian float64 in C order; the returned digest is their SHA-256. Metadata contains every frozen constant, tile IDs, Jacobian sign, digest, and Astropy version.
+`render_cutout(sources, target) -> Raster` accepts `(image, maskbits, inverse_variance, astropy.wcs.WCS)` tuples and `(ra, dec)`. It never imports FITS support or touches acquisition files. Canonical image raster bytes are little-endian float64 in C order; the result also exposes the stitched maskbits and inverse-variance rasters.
+
+The current Tier-C acquisition holds **only 17,947 image-r files**. Required maskbits and inverse-variance companions are a separate acquisition (Hwao is raising this with the principal). Until all companions are supplied, the renderer refuses; it never invents, substitutes, or infers a plane.
 
 V10 §8.9 also says binary64 accumulation is “materialized once as float32,” whereas the drafting request explicitly requires canonical raster bytes to be float64. This unpinned draft follows the explicit requested float64 output and records that fact for referee resolution before pinning.
 
-## Future BS-4 step (b) integration
-
-After referee approval and pinning, `anchor_gate/bs4_anchor.py` step (b) can import `study_renderer.renderer.render_cutout`, pass its already-created asymmetric in-memory synthetic tile/WCS and target coordinate, assert the returned N/E fiducials and `source_to_output_jacobian_sign`, then feed `Raster.array` to the frozen instrument. A deliberately wrong-parity synthetic WCS must raise exactly `ValueError("WRONG-PARITY-REFUSAL")`. The gate must additionally seal this module's digest, its environment record (including Astropy), synthetic input/output digests, and PASS before any real image is opened.
+BS-4 step (b) imports this renderer and passes asymmetric synthetic N/E fiducials with all three synthetic planes through it. A deliberately wrong-parity WCS must refuse with `WRONG-PARITY-REFUSAL`.
