@@ -1,7 +1,7 @@
 # K2 pre-registration — does the closed-FRW interior join its exterior without a shell? A junction-classification theorem at the Pathria/Gaztañaga boundary (entries 1, 4, 5, 22, 56)
 
 **Tori, 2026-09-03 16:26 KST. Ordered by Duho ("a", relay via Blanc 16:24 KST) on the round-2 topic packet. Written and committed BEFORE any
-derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` before filing. Paper HOLD; nothing outward; tiers untouched.**
+derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` (agy, ACCESS PROVEN, `K2_PREREG_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, six repairs applied 16:34 KST). Paper HOLD; nothing outward; tiers untouched.**
 
 ## 0. Why this exists
 Three obstruction papers and one construction paper leave the same door open. Entry 4 (Knutsen 2009): smooth matching of an
@@ -19,9 +19,9 @@ borrowed input (`WARRANT_TABLE_20260903.md` row 56, `W_DIRECTION_ASSUMED`, ruled
 junctions. This study does, and either exhibits an expanding realization or proves none exists.
 
 ## 1. Objects, every symbol bound
-- **Interior:** FRW dust, ds² = −dτ² + a(τ)²[dχ² + S_k(χ)² dΩ²], k ∈ {+1, 0}; ρ(τ) = ρ₀ a⁻³ (entry 56 L141: "matter-dominated
+- **Interior:** FRW dust, ds² = −dτ² + a(τ)²[dχ² + S_k(χ)² dΩ²], k ∈ {+1, 0} (the metric form is a textbook object; its receipt is pinned at step 1); ρ(τ) = ρ₀ a⁻³ (entry 56 L141: "matter-dominated
   universe with ρ = ρ₀a⁻³"). Λ ≥ 0 allowed as a parameter (entry 5's range 0 ≤ Λ ≤ Λ_c, synthesis L117).
-- **Exterior:** Schwarzschild–de Sitter with the same Λ: F(R) = 1 − 2GM/R − ΛR²/3 (Λ=0 gives Schwarzschild, entry 56's case).
+- **Exterior:** Schwarzschild–de Sitter with the same Λ: F(R) = 1 − 2GM/R − ΛR²/3 (textbook form, receipt pinned at step 1; Λ=0 gives Schwarzschild, entry 56's case).
 - **Boundary Σ:** three candidate placements, all computed. (B1) comoving timelike surface χ = χ* = const (entry 56's top-hat
   edge; entry 22's "comoving no-shell" matching surface ψ_b). (B2) the maximum-expansion surface χ = π/2 of the k=+1 interior
   identified with the exterior horizon F(R)=0 — Pathria's identification, entry 5's null junction. (B3) a general timelike
@@ -55,10 +55,10 @@ be reproduced symbolically or reported as J_UNDETERMINED.
 
 ## 5. Controls (must pass before any class is filed)
 - **C1 positive control:** at B1 with k=+1, Λ=0, the computation must reproduce the textbook Oppenheimer–Snyder smooth
-  matching (M = (4π/3)ρa³S_k(χ*)³-type relation). Failure = the pipeline is wrong, stop.
+  matching (the dust-mass relation of the form M ∝ ρa³S_k(χ*)³, receipt pinned at step 1 from the textbook statement and, for entry 56, from its M_T definition around source L147–160). Failure = the pipeline is wrong, stop.
 - **C2 entry-5 control:** at B2 the null-junction jump must reproduce Khakshournia's [K_uu] and the pressure p = ρa/4
-  (independently re-derived 09-03 by the set-E seat: [K_uu] = −2πρa, `WARRANT_5_claude.md`).
-- **C3 entry-4 control:** the smooth timelike matching at Pathria's r_b = 1 must reproduce the static-sphere result.
+  (independently re-derived 09-03 by the set-E seat: [K_uu] = −2πρa, `WARRANT_5_claude.md`). Failure = the pipeline is wrong, stop; no class is filed.
+- **C3 entry-4 control:** the smooth timelike matching at Pathria's boundary r_b = 1 (Pathria's own coordinate value, receipt pinned at step 1 from entry 1's source) must reproduce the static-sphere result. Failure = the pipeline is wrong, stop; no class is filed.
 - **C4 deletion probe:** remove the energy-condition test and confirm the class of at least one cell changes (the control
   asserts an exact failure, per `reference_controls_assert_exact_failure_set`).
 
@@ -66,7 +66,7 @@ be reproduced symbolically or reported as J_UNDETERMINED.
 - Two seats compute the full table independently (codex and the Claude seat; computer algebra, each its own script committed
   with its result; results written only when complete). A split on any cell → third seat via `nm_referee_dispatch.sh`.
 - Tori verifies one equation per placement by hand or sympy before filing.
-- Cost (seat planning estimates, not corpus results): 3–8 seat-days; no data; no compute beyond a laptop.
+- Cost (seat planning estimates, not corpus results): three to eight seat-days (a planning estimate, not a corpus number); no data; no compute beyond a laptop.
 
 ## 7. What would make it INCONCLUSIVE
 J_UNDETERMINED in the headline cells; or C1–C3 failing after two independent attempts; or the Pathria mass relation quoted at
