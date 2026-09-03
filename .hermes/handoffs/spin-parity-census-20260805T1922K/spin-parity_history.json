@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "crossmatch workers within the documented limit"
+    "topic": "crossmatch: 2-worker override"
   },
   "humanFeedback": {
     "captured": true
@@ -810,6 +810,18 @@
       "feedbackText": "a",
       "changed": {
         "summary": "On Blanc's offer to add Data Lab query workers for the remaining ~1,800 crossmatch chunks: order was to add workers ONLY within NOIRLab Data Lab's DOCUMENTED per-user concurrency limit (read, not guessed). Hwao read the manual index, FAQ, TAP/SCS, Query Manager, Job Manager pages, the client README and the captured TAP capabilities: no per-user concurrency limit is documented anywhere. The pinned completeness tool is single-worker by referee design. Result: workers stay at 1 (documented basis absent); measured pace ~428 chunks/h \u2192 ETA ~21:40 KST, earlier than the 23:30 estimate. Duho may override by ordering a tool change + referee round."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "override for a second worker",
+      "changed": {
+        "summary": "Implement a 2-worker variant of the pinned completeness tool with the same guarantees (hash-verified checkpoint, one serialised writer, same chunking, truncation checks, per-chunk receipts); referee via nm_referee_dispatch.sh to PINNABLE; switch over resumably at a checkpoint (no chunk redone or skipped); back off to 1 worker on any 429/5xx/throttle. If the referee round would take longer than the hour it saves, stop. Report the new ETA. No pixel."
       }
     }
   ]
