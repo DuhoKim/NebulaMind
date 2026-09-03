@@ -618,3 +618,5 @@ digest `9f3aca28…`, verifier digest `6e70a8ef…`, successor schema `BS2A-V1` 
 `f0d9bcce…`. No catalogue row or image byte is evaluated.
 
 V135 → V136: the BS-2a DESIGN fill under amendment discipline — `PRINCIPAL-20260903-1B2B`, human direction #58, verbatim "1b 2b"; quality gate `dfbd63d1…`, evidence-schema digest `9f3aca28…`, verifier digest `6e70a8ef…`, receipt_strict sha `27e88520…`, schema `BS2A-V1`, candidate receipt sha `f0d9bcce…`; design identities only, no catalogue rows evaluated.
+
+R2 (per-entry schema digests, 2026-09-03 13:5x KST): `run/receipt_strict.py` now carries `schema_entry_digest` / `assert_entries_preserved`; entry digests BS2V `c5931c40…`, BS2A `e3c08ea6…`, BS3G `eb8589f5…` recorded in §7/§11; file sha `27e88520…` → the post-R2 sha is recorded in V136_BS2A_FILL_RECORD_20260903.md. R1: BS-2a blocks BS-2f only.

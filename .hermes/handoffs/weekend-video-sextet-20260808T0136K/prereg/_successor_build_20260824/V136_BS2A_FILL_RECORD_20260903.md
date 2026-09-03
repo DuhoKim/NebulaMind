@@ -72,3 +72,6 @@ TRACE_CHECK: PASS
 LINT_BLOCKING: 0
 ENTRY_DIGESTS: BS2V=c5931c40dd07ff0f BS2A=e3c08ea635db9456 BS3G=eb8589f5f70656b1
 DIGEST: 6b3ff1301546f6595582c0f5d5afe8e729f187e753fc1b63653af6eaf7b75377
+
+## Sidecar note (Hwao, 14:0x KST)
+The V135 → V136 entry in gates/FINDINGS_MAP.md was extended to cite R1/R2 (entry digests) — a finding surfaced by an invalid (no-proof) referee run; applied by the coordinator, disclosed here, re-refereed through nm_referee_dispatch.sh.
