@@ -200,3 +200,27 @@ the four `INTERP_VOTE_*.md` · `ENTRY39_RECONCILIATION_20260901.md` · `RQ_D_REC
 ## 11. Warrant column, blind-doubled (2026-09-03 14:10 KST)
 
 The corpus-wide warrant column (§0 of the record; `WARRANT_TABLE_20260903.md`) was blind-doubled on every text cell and third-seated on 7 factual splits. Net: 37 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 28 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 42 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 20 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 24 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`; 36 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 43 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 49 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 14 `W_CONSTRUCTION_ASSERTED`→`W_MIXED`; 22 `W_PROOF_OWNED`→`W_PROOF_CITED`; 26 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`. Reading for the synthesis: the calibrated rows keep two explicit (1, 44 per the third seat if so), one borrowed-with-challenge (31), one borrowed (7), one underived (51); the directional bin now derives its sign in 24, 54 (and 26 per its third seat) and assumes it in 6, 23, 25, 27 under Duho's (a) ruling; the obstructions split owned (5, 48) / cited (22 → packet) / contested (4). Nothing here moves a tier.
+
+## 12. K2 — the junction-classification theorem (2026-09-03 20:08 KST; `K2_RESULT_20260903.md`, check sheet, second route)
+A pressureless spherical FRW interior joins a Schwarzschild(–de Sitter) exterior without a shell if and only if the boundary is
+comoving; then it is the Oppenheimer–Snyder match, and closed daughters recollapse (Easson's Proposition 2 confirmed by an owned
+computation). Entry 56's finite top-hat is that case: its borrowed empty-exterior closure is derived. Pathria's horizon
+identification is realised smoothly by the comoving surface at maximum expansion (R_max = R_s derived), but a null shell on the
+horizon violates the dominant energy condition — the shell-bearing escape entries 4 and 5 left open is closed at that placement.
+Two blind seats, a third seat on two placement-definition splits, an independent Darmois/Misner–Sharp second route: every class
+and control agrees. Ruled (a) by Duho 17:17 KST: warrant fields on 4, 5, 22, 56 annotated; tiers, standings and the entry-22 domain
+untouched.
+
+## 13. K3 step 1 — the torsion-bounce spin closure is a convention (2026-09-03 20:08 KST; `K3S1_RESULT_20260903.md`, check sheet, second route)
+For randomly oriented, uncorrelated fermions the ensemble average of the squared spin density is linear in n. Neither printed
+closure follows: ¾ n² (entry 10 L113) is the coherent RMS convention; ⅛(ℏcn)² (entries 9, 11; entry 10 L121) needs a prescription
+the definitions never supply, and three seats each manufacture it differently. Under entry 10's own projection the two objects are
+one quantity, so that paper carries two values six times apart. Three seats, two methods, unanimous. The bounce keeps its sign; its
+scale rests on a chosen coefficient; every downstream bounce (39, 52, 53, 59) inherits the choice. Ruled (a) by Duho 19:33/19:37 KST:
+rows 9, 10, 11 annotated, inheritance noted; tiers untouched. Open, not ordered: whether an exchange correlation restores an n² term.
+
+## 14. K1 — closed at stage 1 (2026-09-03 20:08 KST)
+Stage 1 (semi-analytic): black-hole production rises monotonically with the primordial amplitude and falls with the neutron-star
+mass cap; unanimous, two routes, PBH channel empty. Stage 2 (population synthesis) was stopped by Duho at 19:06 KST ("too weak
+logic to be worth study") after 66 minutes, nothing finished; archived in place. K1 stands as an annotation on entries 6 and 31.
+The Tuesday 10:00 KST watch on entry 31's 2.5 M☉ bar stays armed.
