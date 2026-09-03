@@ -1,0 +1,2232 @@
+                                               The Excursion Set Theory of Halo Mass Functions, Halo
+                                                                     Clustering, and Halo Growth
+
+                                                                                 Andrew R. Zentner ∗
+                                                                     Kavli Institute for Cosmological Physics,
+                                                                   Department of Astronomy and Astrophysics,
+                                                                           & The Enrico Fermi Institute,
+
+
+
+
+arXiv:astro-ph/0611454v1 14 Nov 2006
+                                                                            The University of Chicago,
+                                                                                Chicago, IL, 60605 USA;
+                                                                                zentner@kicp.uchicago.edu
+
+                                                  I review the excursion set theory with particular attention toward applications to
+                                                cold dark matter halo formation and growth, halo abundance, and halo clustering.
+                                                After a brief introduction to notation and conventions, I begin by recounting the
+                                                heuristic argument leading to the mass function of bound objects given by Press
+                                                & Schechter. I then review the more formal derivation of the Press-Schechter halo
+                                                mass function that makes use of excursion sets of the density field. The excursion
+                                                set formalism is powerful and can be applied to numerous other problems. I review
+                                                the excursion set formalism for describing both halo clustering and bias and the
+                                                properties of void regions. As one of the most enduring legacies of the excursion
+                                                set approach and one of its most common applications, I spend considerable time
+                                                reviewing the excursion set theory of halo growth. This section of the review culmi-
+                                                nates with the description of two Monte Carlo methods for generating ensembles of
+                                                halo mass accretion histories. In the last section, I emphasize that the standard ex-
+                                                cursion set approach is the result of several simplifying assumptions. Dropping these
+                                                assumptions can lead to more faithful predictions and open excursion set theory to
+                                                new applications. One such assumption is that the height of the barriers that define
+                                                collapsed objects is a constant function of scale. I illustrate the implementation of
+                                                the excursion set approach for barriers of arbitrary shape. One such application is
+                                                the now well-known improvement of the excursion set mass function derived from
+
+                                       ∗
+                                           National Science Foundation Fellow
+                                                                                                2
+
+      the “moving” barrier for ellipsoidal collapse. I also emphasize that the statement
+      that halo accretion histories are independent of halo environment in the excursion
+      set approach is not a general prediction of the theory. It is a simplifying assumption.
+      I review the method for constructing correlated random walks of the density field in
+      the more general case. I construct a simple toy model to illustrate that excursion set
+      theory (with a constant barrier height) makes a simple and general prediction for the
+      relation between halo accretion histories and the large-scale environments of halos:
+      regions of high density preferentially contain late-forming halos and conversely for
+      regions of low density. I conclude with a brief discussion of the importance of this
+      prediction relative to recent numerical studies of the environmental dependence of
+      halo properties.
+
+
+
+                                    I.   INTRODUCTION
+
+
+  In the standard, hierarchical, cold dark matter (CDM) paradigm of cosmological struc-
+ture formation, galaxy formation begins with the gravitational collapse of overdense regions
+into bound, virialized halos of dark matter (DM). The average density of dark matter out-
+weighs that of baryonic matter by roughly six to one. Bound in the potential wells of dark
+matter halos, baryons proceed to cool, condense, and form galaxies. Understanding the
+fundamental properties and abundances of these dark matter halos is the first, necessary
+step in understanding the properties of galaxies.
+  In this manuscript, I review the excursion set (also referred to as “extended Press-
+Schechter”) approach to dark matter halo formation and halo clustering. I begin with
+some preliminaries that serve to define my notation and several common conventions in § II.
+I review the heuristic argument that Press & Schechter [1] used to derive their analytic
+mass function in § III. In this section I also draw attention to the most obvious weakness
+of the Press-Schechter argument, often referred to as the cloud-in-cloud problem. In § IV I
+review the theory of excursion sets of the density contrast field and the manner in which the
+excursion set theory solves the cloud-in-cloud problem. The standard excursion set theory
+then yields a halo mass function identical to the Press-Schechter proposal.
+  The excursion set approach is very powerful and yields a great deal of insight into nu-
+merous aspects of halo formation and halo clustering. Following the mass function, one of
+                                                                                             3
+
+the most immediate applications of the excursion set approach is to predict the clustering
+properties of dark matter halos relative to the dark matter. I review the issue of halo bias in
+the context of the excursion set theory in § V. The bias relation derived in § V was derived
+prior to widespread use of excursion set theory, but this section also partially serves as a
+warm-up for the more complex arguments that follow. In § VI, I summarize the excursion
+set theory of the void population. The content of § V and § VI contain some redundant
+information, but my intention is that repetition of the basic arguments in these sections will
+reinforce the logic and methods of the excursion set approach.
+   In § VII, I review excursion set predictions for halo conditional mass functions, halo
+accretion rates, and halo formation times. The culmination of this review is the predominant
+algorithm for generating Monte Carlo merger histories on a halo-by-halo basis using the
+excursion set theory. This algorithm, refined most recently by Somerville & Kolatt [2] and
+Cole et al. [3] to similar effect, is the subject of § VIII.
+   Recent advancement in both theoretical methods and observational data have emphasized
+the weaknesses of the simplest implementation of the excursion set model. Nevertheless, the
+basic idea of the excursion set model is extremely valuable because it provides a toolbox for
+making quick estimates for numerous halo and galaxy properties. In addition, and perhaps
+more importantly, the excursion set approach remains one of the principle frameworks for
+qualitative reasoning and understanding of the complex results of direct, cosmological, nu-
+merical simulations. The algorithm for generating merger trees is one of the most widely
+used aspects of excursion set theory and is likely to remain one of the primary legacies of
+excursion set theory. These excursion set halo merger trees form the basis of countless semi-
+analytic explorations of the physical processes involved in galaxy formation (examples are
+Refs. [3, 4, 5]). The excursion set halo merger trees are considerably less costly to produce
+than direct N-body simulation, so they continue to be used to make general points (there
+are many examples, but an elegant recent example is Ref. [6]) and to study the effects of
+varying cosmological parameters (e.g., Ref. [7]). Moreover, excursion set merger histories
+are also the basis of many models that aim to expand upon simulation results, either by
+extending results beyond the resolution of current simulations or building statistically-large
+halo samples in regimes where simulations have not, by modeling nonlinear dynamics in
+simplified ways (e.g., Refs. [7, 8, 9, 10, 11, 12, 13]).
+   The simplest implementation of the excursion set theory, which is the primary focus
+                                                                                             4
+
+of these lectures, is certainly not the only possible implementation of the excursion set
+approach. Excursion set theory can be modified to approximate numerous physical effects
+that are ignored in the derivations of the most basic set of equations. I address extensions of
+the excursion set models and proposed improvements in the final section of this review, § IX.
+This section highlights areas where excursion set theory can be expanded and points toward
+the principle references where these extensions have been developed. I focus primarily on
+generalized forms for the barrier shape and excursion sets of correlated random walks. An
+interesting aspect of this section is the calculation of a general excursion set prediction for
+the dependence of halo formation times on the large-scale environments of halos. I close with
+a mention of the PINOCCHIO algorithm, developed by P. Monaco and collaborators primarily
+in Refs. [14, 15, 16], which makes use of Lagrangian perturbation theory together with some
+of the ideas of the excursion set approach to produce, of many things, halo merger histories.
+   My primary aims are to present a relatively concise, pedagogical review of the basic logic
+and techniques of excursion set theory that can be used as a springboard to new studies and
+to collect the most important results of excursion set theory into a single manuscript, with
+a single notation. As such, the reference list contained in this manuscript is by no means
+an exhaustive review of the literature on analytic halo formation or even the excursion set
+approach. Many important contributions have been omitted in the interest of brevity and
+to limit the scope of the lectures. However, the references should be sufficient to develop the
+fundamental logic of the excursion set approach and the basic tools needed to extend this
+approach to new problems. As a minimal approach, the basic development of the excursion
+set approach can be followed through the series of papers by Bardeen et al. [17], Bond et
+al. [18], Lacey & Cole [19, 20], Sheth & Lemson [21], and Somerville & Kolatt [2]. The various
+manuscripts contained in the collection edited by Wax [22] are an extremely valuable resource
+for understanding stochastic processes and deriving many of the basic results of excursion
+set theory (including results not contained in this review). Of the articles reprinted in the
+Wax collection, those by Chandrasekhar [23], and Rice [24, 25] are probably of the most
+immediate interest.
+                                                                                                             5
+
+                           II.   NOTATION AND CONVENTIONS
+
+
+   In the following, I consider fluctuations in the density field ρ(~x) described by the density
+contrast δ(~x) ≡ [ρ(~x) − ρM ]/ρM , where ρM is the mean mass density in the universe and ~x
+is a comoving spatial coordinate. In the standard paradigm, the universe is endowed with
+primordial density fluctuations during an epoch of cosmological inflation and the primordial
+density contrast is a statistically homogeneous and isotropic Gaussian random field. This
+means that the joint probability distribution of the density contrast at a set of points in
+space is given by a multivariate Gaussian distribution. Homogeneity requires that the mean
+hδ(~x)i, of the distribution and the two-point function hδ(~x1 )δ(~x2 )i ≡ ξ(~x1 , ~x2 ) be invariant
+under translations. The two-point function is then a function only of the separation vector
+between two points, ξ(~x1 , ~x2 ) = ξ(~x1 − ~x2 ). Isotropy requires that ξ(~x) is invariant under
+rotations as well, so the two-point correlation function is only a function of the distance
+between two points, ξ(~x1 , ~x2 ) = ξ(|~x1 − ~x2 |).
+   The Fourier transform of the density contrast is given by the convention
+                                                  Z
+                                                                    ~
+                                        δ(~k) =       d3 x δ(~x)eik·~x                                     (1)
+
+with the inverse transform
+
+                                                1
+                                                      Z
+                                                                       ~
+                                   δ(~x) =                d3 k δ(~k)e−ik·~x .                              (2)
+                                              (2π)3
+
+Notice that the δ(~k) have dimensions of volume and that for a real-valued field δ(~x), the
+Fourier coefficients obey the relation δ(−~k) = δ ∗ (~k). We have implicitly assumed that there
+is some very large cut-off scale L ≡ V 1/3 that renders the integral                |δ(~x)|d3 x finite and that
+                                                                                R
+
+this scale is much larger than any other scale of interest so that it plays no meaningful role.
+Using these conventions, one can compute the two-point function ξ(~r) ≡ hδ(~x)δ(~x + ~r)i in
+terms of the Fourier coefficients, where the average is taken over all space. The two-point
+function is a function only of the amplitude of ~r due to isotropy, and the result is
+
+                                    1                             sin(kr)
+                                          Z
+                             ξ(r) = 2         k 3 V −1 |δ(k)|2            d ln k.                          (3)
+                                   2π                                kr
+
+The correlation function is the Fourier transform of the power spectrum
+
+                                         P (k) ≡ V −1 h|δ(k)|2 i,                                          (4)
+                                                                                                 6
+
+where the average is over an ensemble of universes with the same statistical properties. The
+power spectrum has dimensions of volume and so a quantity that lends itself more easily to
+direct interpretation is the dimensionless combination
+
+                                    ∆2 (k) ≡ k 3 P (k)/2π 2.                                   (5)
+
+The correlation function hδ 2 (~x)i is simply the mass variance. From Eq. (3), ∆2 (k) is the
+contribution to the mass variance from modes in a logarithmic interval in wavenumber, so
+that ∆2 (k) ∼ 1 indicates order unity fluctuations in density on scales of order ∼ k.
+   In the standard, cold dark matter (CDM) model, ∆2 (k) increases with wavenumber (at
+least until some exceedingly small scale determined by the physics of the production of the
+CDM in the early universe), but we observe the density field smoothed with some resolution.
+Therefore, a quantity of physical interest is the density field smoothed on a particular scale
+RW ,
+                                         Z
+                          δ(~x; RW ) ≡       d3 x′ W (|~x′ − ~x|; RW )δ(~x′ )                  (6)
+
+The function W (x; RW ) is the window function that weights the density field in a manner
+that is relevant for the particular application. According to the convention used in Eq. (6),
+the window function (sometimes called filter function) has units of inverse volume by di-
+mensional arguments. It is also useful to think of a window as having a particular window
+volume VW . The window volume can be obtained operationally by normalizing W (x) such
+that it has a maximum value of unity and is dimensionless. Call this new dimensionless
+window function W ′ (x). The volume is given by integrating to give VW =            d3 xW ′ (x). In
+                                                                                R
+
+this way, one thinks of the window weighting points in the space by different amounts. It
+should be clear that W (x) = W ′ (x)/VW . Roughly speaking, the smoothed field is the av-
+                                                             3
+erage of the density fluctuation in a region of volume VW ∼ RW . The Fourier transform of
+the smoothed field is
+                                 δ(~k; RW ) ≡ W (~k; RW )δ(~k),                                (7)
+
+where W (~k; RW ) is the Fourier transform of the window function.
+   The most natural choice of window function is probably a simple sphere in real space.
+The window function is then
+                                                    3
+                                                  4πR3W
+                                                          (x ≤ RW )
+                              W (x; RW ) =                            .                        (8)
+                                                  0       (x > RW )
+                                                                                           7
+
+In this case, the smoothed field is the average density in spheres of radius RW about point
+                                        3
+~x. The window volume is simply VW = 4πRW /3. However, this choice of window has the
+undesirable property that the sharp transition in configuration space leads to power on all
+scales in Fourier space. Therefore, it is often convenient to smooth the boundary in real
+space. As I discuss below, it is often convenient to introduce particular window functions
+to ensure that the smoothed field has particular properties. The three most commonly used
+window functions are the real-space tophat window of Eq. (8), with Fourier transform
+                                      3[sin(kRRW ) − kRW cos(kRW )]
+                       W (k; RW ) =                                 ,                     (9)
+                                                (kRW )3
+the Fourier-space tophat window, and the Gaussian window. The Fourier-space tophat is
+defined in Fourier space as
+                                                              −1
+                                                      1 (k ≤ RW  )
+                                 W (k; RW ) =                        ,                  (10)
+                                                              −1
+                                                      0 (k > RW  )
+and is
+                                                 −1       −1        −1
+                                     1 (sin(xRW     ) − xRW   cos(xRW  ))
+                    W (x; RW ) =     2 3                 −1 3                            (11)
+                                  2π RW               (xRW )
+in real space. A disadvantage of this window is that it does not have a well-defined volume.
+This concern creeps up repeatedly in what follows. The Gaussian window is
+                                                  exp(−x2 /2RW2
+                                                                )
+                                W (x; RW ) =            3/2 3
+                                                                                        (12)
+                                                    (2π) RW
+with a Fourier transform that also has the form of a Gaussian
+
+                                W (k; RW ) = exp(−k 2 /2RW
+                                                         −2
+                                                            ),                          (13)
+
+with a width that is the reciprocal of its width in real space. The volume of the Gaussian
+window is VW = (2π)3/2 RW
+                        3
+                          .
+  The density fluctuation field is assumed to be a Gaussian random variable so the smoothed
+density fluctuation field δ(~x; R) is then a Gaussian random variable as well because it rep-
+resents a sum of Gaussian random variables. The variance of δ(~x; R) can be computed in
+the same way as before [see Eq. (3)] and is
+                                                  Z
+                      σ 2 (R) = hδ 2 (~x; R)i =       d ln k ∆2 (k)|W (k; R)|2.         (14)
+
+Thus, the probability of attaining a value of δ(~x; R) between δ and δ + dδ is
+                                        1
+                        P (δ; R)dδ = q        exp[−δ 2 /2σ 2 (R)]dδ.                    (15)
+                                          2
+                                      2πσ (R)
+                                                                                              8
+
+
+
+
+FIG. 1:   Power spectra in the standard ΛCDM cosmology with ΩM = 1 − ΩΛ = 0.3, h = 0.7,
+σ8 = 0.93, and ΩB h2 = 0.022. The left panel shows the mass variance smoothed with a real space
+tophat window as a function of the smoothing mass or smoothing radius [Eq. (14)]. The right
+panel shows the rms density fluctuation per logarithmic interval of wavenumber as a function of
+wavenumber [Eq. (3)].
+
+
+
+It is common to refer to the smoothing scale as either a length, as above, or a mass given
+by the mean density multiplied by the volume of the window M = ρM VW . The left panel of
+Fig. 1 depicts a standard model power spectrum expressed as the variance of the smoothed
+density field, smoothed with a real-space tophat, and shows the smoothing scale in terms
+of both mass and length. The right panel of Fig. 1 shows the rms density fluctuation per
+logarithmic interval in wavenumber ∆(k). The power spectra were computed assuming
+ΩM = 1 − ΩΛ = 0.3, h = 0.7, σ8 = 0.93, ΩB h2 = 0.022, and a spectrum of primordial
+fluctuations with Pprim (k) ∝ k. I have used the transfer function of Eisenstein & Hu [26]
+to process the scale-invariant primordial spectrum into the post-recombination spectrum of
+density fluctuations out of which nonlinear structures form.
+
+
+                 III.   THE PRESS-SCHECHTER MASS FUNCTION
+
+
+   Press & Schechter [1] derived a relation for the mass spectrum of virialized objects from
+the hierarchical density field. In hierarchical models, there is structure on all scales and the
+                                                                                               9
+
+variance σ 2 (R) → ∞ as the smoothing scale R → 0. Press & Schechter essentially assumed
+that objects will collapse on some small scale once the smoothed density contrast on this
+scale exceeds some threshold value, but that the nonlinearities introduced by these virialized
+objects do not affect the collapse of overdense regions on much larger scales. The collapsed
+objects act only as resolution elements that trace the larger-scale fluctuations which may
+collapse at some later time. Strictly speaking, this is not correct; however, it is approximately
+true when primordial power spectra are sufficiently shallow that the additional large-scale
+power generated by nonlinearities is small compared to the primordial fluctuations on these
+scales (a study in one-dimension is Ref. [27]). Moreover, this assumption leads to a simple
+parsing of the ingredients in the formation of nonlinear structure. The first ingredient is a
+characterization of the statistical properties of the primordial density fluctuations. In the
+standard picture this is set during the inflationary epoch. The second ingredient is the
+evolution of overdensities according to linear perturbation theory. This is encapsulated in
+the growth function D(a) = δ(k, a)/δ(k, a = 1) which is specified by the evolution of the
+background cosmology (e.g., Refs. [19, 28, 29]). The last ingredient is the threshold for
+collapse into a virialized object and is determined by examining the nonlinear collapse of
+spherical overdensities.
+   Press & Schechter stated that the likelihood for collapse of objects of a specific size or
+mass (R ∝ M 1/3 ) could be computed by examining the density fluctuations on the desired
+scale. They continued by using a model for the collapse of a spherical tophat overdensity
+to argue that collapse on scale R should occur roughly when the smoothed density on that
+scale exceeds a critical value δc , of order unity, independent of R.
+   The implementation of the Press-Schechter prescription is simple. The mass within a
+region in which the smoothed density fluctuation (dictated by the linear theory) is the
+critical value δc , at some redshift z, corresponds to an object that has just virialized with
+mass M(R). The relationship between mass and smoothing scale is set by the volume of the
+window function. As an example, the relationship is M = 4πρM R3 /3 for a tophat window
+and M = (2π)3/2 ρM R3 for a Gaussian window. Further, any region that exceeds the critical
+density fluctuation threshold, will meet that threshold when smoothed on some larger scale
+R′ > R. Consequently, the cumulative probability for a region to have a smoothed density
+above threshold gives the fractional volume occupied by virialized objects larger than the
+                                                                                            10
+
+smoothing scale F (M). Integrating Eq. (15), this probability is
+                                                                   !
+                                                   1     ν
+                                    Z ∞
+                         F (M) =     P (δ; R)dδ = erfc √ ,                          (16)
+                                  δc               2      2
+where erfc(x) is the complementary error function, and ν ≡ δc /σ(M) is the height of the
+threshold in units of the standard deviation of the smoothed density distribution. In this
+model, collapse of mass M is defined so that it occurs when the smoothed density fluctuation
+is δc on the appropriate scale. Thus there is a typical scale that is collapsing at the present
+epoch, M⋆ , when the variance is σ(M⋆ ) = δc .
+   In the hierarchical power spectra that we consider, σ(R) becomes arbitrarily large as R
+becomes arbitrarily small. Thus, F (0) in Eq. (16) should give the fraction of all mass in
+virialized objects; however, erfc(0) = 1 so that Eq. (16) states that only half of the mass
+density of the universe is contained in virialized objects. Press & Schechter noted this as
+a problem associated with not counting underdense regions in the integral Eq. (16). These
+authors argued that underdense regions will collapse onto overdense regions and multiplied
+F (M) in Eq. (16) by a factor of two in order to account for all mass. Though the sense
+of this effect is certainly such that more mass will be contained in bound objects, that this
+should lead to precisely a factor of two increase in F (M) is far from convincing.
+   Proceeding with this extra factor of two, the number of virialized objects with masses
+between M and M + dM is
+                                 dn       ρM dF (M)
+                                     dM =           dM.                                   (17)
+                                dM        M dM
+In terms of the mass variance, this is
+                                   s
+                                                              δ2
+                                                                       !
+                     dn                2 ρM δc d ln σ
+                        dM =                          exp   − c2           dM
+                     dM                π M 2 σ d ln M        2σ
+                                   s
+                                                              ν2
+                                                                   !
+                                       2 ρM d ln ν
+                               =            ν       exp     −          dM.                (18)
+                                       π M 2 d ln M           2
+Without regard to the details of the shape of the power spectrum, σ(M) or ν(M), the mass
+function is close to a power law dn/dM ∝ M −2 for M ≪ M⋆ and is exponentially cut-off
+      > M⋆ .
+for M ∼
+
+
+          IV.    EXCURSION SET THEORY OF THE MASS FUNCTION
+
+
+   A weakness of the Press-Schechter approach is that it does not account for the fact that
+at a particular smoothing scale δ(~x; R) may be less than δc , yet it may be larger than δc
+                                                                                             11
+
+at some larger smoothing scale R′ > R. It seems natural that this larger volume should
+collapse to form a virialized object, overwhelming the more diffuse patches within it. Clearly,
+the sense of including this effect is to increase the fraction of mass in collapsed objects and
+mitigate the factor of two discrepancy in the Press-Schechter formulas. In the literature, the
+issue of regions below threshold on a particular scale, but above threshold on a larger scale
+is referred to as the “cloud-in-cloud” problem. The cloud-in-cloud problem is closely tied to
+the Press-Schechter factor of two as I discuss below.
+   To solve the cloud-in-cloud problem, it is necessary to compute the largest value of the
+smoothing scale for which the density threshold is exceeded. This was done in a formal way
+by Bond et al. [18] (see also Refs. [30, 31, 32]) and I follow their approach quite closely. The
+development of Bond et al. in turn follows closely the elegant review of stochastic processes
+by Chandrasekhar [23], and makes use of results from both Ref. [24] and Ref. [33].
+   In what follows, I consider the density contrast field evaluated at some early time far
+before any scales of interest have approached the nonlinear regime, but extrapolated to
+the present day using linear perturbation theory. In this way, the density contrast field
+does not need to obey the physical constraint δ ≥ −1 because this is merely the linear
+extrapolation of a density contrast of much smaller magnitude. In addition, all coordinates
+are Lagrangian coordinates defined at the same early time so that the position of each mass
+element is independent of time. The excursion set theory is, at its foundation, a set of
+rules for assigning mass elements to virialized objects of various sizes. Where needed, I
+will introduce the necessary conversions that map the initial Lagrangian sizes of overdense
+and underdense regions onto Eulerian coordinates, thereby accounting for the contraction
+or expansion of such regions respectively.
+   Consider again evaluating the field δ(~x; R) at various values of the smoothing scale R, at
+a single point ~x. For now, I will suppress the argument ~x and consider δ(R) as a function of
+smoothing scale at a single point in space. For very large R, σ(R) ≪ δc so the probability
+that the region lies above the boundary δc is vanishingly small. With decreasing R, the
+standard deviation becomes larger and δ(R) will eventually reach δc at the first up-crossing
+of the boundary. The problem is to compute the probability that the first up-crossing of
+the barrier at δc occurs on a scale R. For simplicity in what follows, let S ≡ σ 2 (R) and
+let the value of S serve to denote the smoothing scale by exploiting the fact that S is a
+monotonically decreasing function of R. I will then refer to the density contrast on that
+                                                                                              12
+
+scale as δ(S). Throughout this discussion, it is important to remember that increasing
+S corresponds to decreasing R. The problem is to compute the probability that the first
+up-crossing through the barrier occurs between a value S and S + dS.
+   Consider starting at a large smoothing scale, or small S = S1 , where δ(S1 ) ≡ δ1 < δc .
+For a given change in the filtering scale ∆S, there is some distribution for the probability of
+reaching δ2 after an increment ∆S = S2 − S1 > 0. In general, this probability distribution
+may depend not only on the size of the step ∆S, but the value of the density field on other
+scales. If the probability distribution for δ2 after an increment ∆S depends upon other points
+on the curve δ(S), solving for the probability distribution of δ at a given S is nontrivial. An
+important special case is when the smoothing window used to define δ(S) is a k-space tophat
+as in Eqs. (10)-(11). In that case, increasing the filter scale corresponds to adding a set of
+independent Fourier modes to the smoothed density. These modes have not played a role in
+determining δ(S) at other smoothing scales. In this special case, the transition probability
+for a change in density ∆δ associated with a change in filtering scale ∆S is Gaussian with
+zero mean and variance S2 − S1 = ∆S, independent of the starting point δ1 (S1 ).
+   Following Bond et al. [18], it is common to refer to a sequence of δ(Si ) given by many
+subsequent increases of the smoothing scale by increments ∆Si as a trajectory for δ(S). In
+the case of k-space tophat filtering of the density field, each trajectory of δ(S) executes a
+Brownian random walk. Three examples of such uncorrelated random walks are shown in
+Fig. 2. Notice that trajectories pierce the “barrier” at δc many times and drop below δc
+between subsequent up-crossings. The aim of the excursion set approach is to solve the
+cloud-in-cloud problem by determining the largest smoothing scale R or M, or equivalently
+the smallest value of the variance S, at which a trajectory penetrates the barrier at δc .
+   In the case of k-space tophat filtering, the probability of a transition from δ1 to δ2 =
+δ1 + ∆δ is
+                             Π(δ2 , S2 ) dδ2 = Ψ(∆δ; ∆S) d(∆δ),                              (19)
+
+where
+                                                           (∆δ)2
+                                                                   !
+                                        1
+                   Ψ(∆δ; ∆S) d(∆δ) = √      exp         −              d(∆δ)                 (20)
+                                       2π∆S               2(∆S)2
+is the Gaussian transition probability. Taking S1 = 0, S2 the smoothing scale of interest,
+and finding the probability of δ2 ≥ δc returns the Press-Schechter probability for being in a
+collapsed object. The fact that some regions will exceed δc for a smaller change in S and
+                                                                                               13
+
+
+
+
+FIG. 2: Three examples of random walks of δ(S) assuming each s step is independent as in the case
+of a sharp k-space window function. The axes are arbitrary. The horizontal dotted line represents
+some threshold value δc . Notice that trajectories may penetrate the “barrier” at δc many times.
+
+
+
+then fall below δc by ∆S has not yet been accounted for.
+   Consider now, relating the distribution of δ at one value of the smoothing scale Π(δ, S)
+to the distribution on a subsequent step Π(δ, S + ∆S) (smaller smoothing scale, larger S).
+This is
+                                       Z
+                     Π(δ, S + ∆S) =        d(∆δ) Ψ(∆δ; ∆S)Π(δ − ∆δ, S).                      (21)
+
+Taylor expanding Eq. (21) for small transitions, keeping terms up to (∆δ 2 ), and integrating
+each term yields
+                                    h(∆δ)2 i ∂ 2 Π h∆δi ∂Π
+                                                                   !
+                           ∂Π
+                              = lim               −        .                                 (22)
+                           ∂S  ∆S→0   2∆S ∂δ 2      ∆S ∂δ
+Using the fact that the transition probability is a Gaussian with h∆δi = 0 and h(∆δ)2 i = ∆S
+reveals
+                                           ∂Π   1 ∂2Π
+                                              =                                              (23)
+                                           ∂S   2 ∂δ 2
+as the relation governing the evolution of the probability distribution Π with smoothing
+                                                                                                 14
+
+scale. The probability distribution Π for trajectories δ(S) that never exceed δc prior to
+some specific value of S can be obtained by solving Eq. (23) with the appropriate boundary
+conditions. The first boundary condition is that Π(δ, S) is finite as δ → −∞. Imagining
+each trajectory as absorbed and removed from the sample of trajectories at the moment it
+first crosses the threshold at δc , then Π(δc , S) = 0 provides the second boundary condition.
+   Eq. (23) may have a familiar form as it is also an equation describing diffusion with no
+drift or a one-dimensional heat equation describing heat flow in a long, thin, semi-infinite
+bar. The boundary condition at δ = δc is analogous to fixing the temperature to zero at
+this end of the bar. Take δ(S0 ) = δ0 as an arbitrary starting point for the random walk
+trajectories so that the initial condition is Π(δ0 , S0 ) = δD (δ0 ) where δD (x) is the Dirac delta
+function. Eq. (23) can now be solved using familiar techniques. It is easiest to work in a
+shifted variable γ ≡ δc − δ so that the finite boundary is at γ = 0.
+   The first step is to Fourier transform Eq. (23) in the variable γ (with conjugate ω). Thus
+we define the Fourier transform of the probability distribution
+                                                 Z
+                                    Π̃(ω, S) =       dγ Π(γ, S)eiωγ .                          (24)
+
+This gives an equation for the transform
+                                              ∂ Π̃    ω2
+                                                   = − Π̃                                      (25)
+                                              ∂S      2
+with solution
+                                                     −ω 2
+                                                                       !
+                                 Π̃(ω, S) = c(ω) exp      S .                                  (26)
+                                                      2
+The boundary condition at γ = 0 (δ = δc ) guarantees that c(ω) is an odd function, so
+                                         Z ∞
+                                                                   2
+                             Π(δ, S) =         c(ω) sin(ωγ) e−ω S/2 dω.                        (27)
+                                          0
+
+Applying the initial condition to Eq. (27) gives
+                                                    ω2
+                                                                       !
+                                      2
+                                c(ω) = sin(ωγ0) exp    S0 ,                                    (28)
+                                      π             2
+where γ0 ≡ δ0 − δc . The final solution then follows by inverting the transform, so
+                                                                               !
+                           2                               −(S − S0 ) 2
+                               Z ∞
+                 Π(γ, S) =           sin(ωγ0 ) sin(ωγ) exp           ω             dω,         (29)
+                           π    0                              2
+from which
+                                           (∆δ)2                    [2(δc − δ0 ) − ∆δ]2
+                                "                     !                                   !#
+                         1
+            Π(δ, S) = √      exp         −                − exp   −                        ,   (30)
+                        2π∆S                2∆S                            2∆S
+                                                                                              15
+
+where ∆S = S − S0 and ∆δ = δ − δ0 . The solution to Eq. (23) in Eq. (30) depends on the
+initial condition only with regard to the height of the barrier at δc in relation to the starting
+position at δ0 . The first term in Eq. (30) is the Gaussian distribution that represents the
+points above threshold at S while the second term accounts for the trajectories that have
+been removed because they crossed above threshold at a filter scale S ′ < S but would have
+crossed back below the threshold by S. Chandrasekhar [23] gives an elegant solution to this
+“absorbing barrier” problem almost upon inspection, exploiting the fact that random walks
+that hit the barrier have equal probability of continuing upward after their first encounter
+with the barrier as they do of continuing downward. Upon making that realization, the
+solution above can be obtained using the method of images and subtracting the contribution
+from another source beginning at Π(δ, S = S0 ) = δD (δ−2δc ), a shift of δc above the threshold.
+The derivation given here is most useful because it contains the logic needed to generalize
+the problem to more complicated processes and barriers.
+   The fraction of trajectories that have crossed above the threshold at or prior to some
+scale S(M) is the complement of the Π distribution,
+                                                                        !
+                                     Z δc
+                                                         δc − δ0
+                        F (S) = 1 −    Π(δ, S) dδ = erfc √       .                          (31)
+                                    −∞                     2∆S
+Taking S0 = 0 and δ0 = 0 to indicate a starting value at very large smoothing scale, Eq. (31)
+is precisely the value given by Press & Schechter [1], but without having to introduce an
+arbitrary factor of two to achieve the correct normalization. The second term in Eq. (30) that
+accounts for trajectories that crossed threshold at some large scale and then traversed back
+back below threshold by S accounts for the probability missing from the Press-Schechter
+argument.
+   The differential probability for a first piercing of the threshold then follows by differenti-
+ation,
+                                                               !
+                                   dF                  ∂Π
+                                                Z δc
+                 f (S|δ0, S0 )dS ≡    dS =                dδ       dS
+                                   dS               −∞ ∂S
+                                                "      #δ
+                                              1 ∂Π c
+                                            =         dS
+                                              2 ∂δ −∞
+                                                             (δc − δ0 )2
+                                                                    "       #
+                                               δc − δ0
+                                            = √          exp             dS.                (32)
+                                                2π∆S 3/2        2∆S
+Eq. (32) is the fundamental relation as it gives the probability for first crossing a threshold
+given any starting point and any change in filtering scale ∆S. The function f (S|δ0, S0 )
+                                                                                            16
+
+is often referred to as the “first-crossing distribution.” In cases where the random walk
+starts from S0 = 0 with δ0 = 0 these arguments are often suppressed and the first-crossing
+distribution is written simply f (S). The fraction of mass in collapsed objects in a narrow
+range of masses is obtained by setting S0 = 0 and δ0 = 0 and rewriting Eq. (32) in terms of
+the mass that corresponds to the variance M(S),
+                                                                δ2
+                                                                     !
+                             dF    1   δc dS
+                                =√           exp              − c .                      (33)
+                             dM    2πS S dM                    2S
+The mass function follows by using Eq. (17) and substituting σ 2 = S results in
+                                  s
+                                                                     δ2
+                                                                         !
+                          dn          2 ρM δc d ln σ
+                             =                       exp           − c2 .                (34)
+                          dM          π M 2 σ d ln M                2σ
+Again, this is precisely the Press-Schechter mass function with no ad hoc factor of two.
+   Analytic mass spectra are often compared to simulation data without reference to specific
+power spectra or cosmological models by comparing the fraction of mass in collapsed objects
+per logarithmic interval in ν, νf (ν) ≡ dF/d ln ν. For the standard excursion set theory,
+                                              s
+                                                            ν2
+                                                              !
+                                                  2
+                                    f (ν) =         exp   −    .                         (35)
+                                                  π         2
+In Fig. 3, I compare the Press-Schechter/Excursion set predictions for the fraction of mass
+in collapsed objects with the results of a suite of cosmological numerical simulations. While
+excursion set theory may explain the gross features of the mass spectrum of dark matter
+halos, it fails in its detail. The Press-Schechter/Excursion set relations predict too many
+low-mass halos and too few high-mass halos. Given the simplicity of the excursion set model
+described above, this is not surprising and the level of agreement provides encouragement
+that the excursion set model is a useful tool for understanding the gross features of halo
+abundance, formation, and clustering. In particular, these gross features are set by the
+statistics of the initial density fluctuations.
+   One detail not discussed so far is the assignment of mass to a particular filter radius R
+or variance S. As I have already mentioned, the Press-Schechter relation follows directly
+by assuming a window function that is a tophat in Fourier space, but such a window does
+not have a well-defined volume to associate with it. The method of circumventing this that
+is implemented most often is to simply use the formulas derived from the sharp k-space
+filtering assumption, but assign mass according to a configuration space tophat filter so that
+M = 4πR3 /3ρM (though this is not the method used by Bond et al. in Ref. [18]).
+                                                                                             17
+
+
+
+
+FIG. 3: Collapsed mass fractions. The solid line represents the standard excursion set theory
+predictions. The dashed and dotted lines represent the improved fits of Sheth & Tormen [34]
+and Jenkins et al. [35] respectively. The points represent numerical data from a suite of N-body
+simulations reluctantly provided by J. L. Tinker.
+
+
+
+   In the context of excursion set theory, the k-space tophat window function serves only
+to simplify the solution for Π(δ, S) [Eq. (30)] and the first barrier up-crossing distribution
+[Eq. (32)]. In principle, other windows can be used but the mathematics become significantly
+more complicated. This is because the steps are no longer independent so it is necessary
+to compute the entire trajectory at once to account for the correlations between the steps.
+Ref. [18] demonstrates the general procedure which amounts to generating a large number
+of solutions to a Langevin equation of random motion (e.g., , see Ref. [23]) with a corre-
+lated stochastic force. Each solution yields a single trajectory of density at each value of
+the smoothing scale. The probability distributions can be computed from an ensemble of
+                                                                                              18
+
+trajectories. This procedure is potentially complicated and time consuming, and it has the
+drawback that it does not yield a closed-form solution for the Π(δ, S) or first up-crossing
+distributions. For these reasons, other filters are rarely discussed; however, it is important
+to keep in mind that the lack of correlations between different steps is not a prediction of
+excursion set theory. Contrarily, it is a simplifying assumption used in the most common
+implementation of excursion set theory.
+
+
+ V.   EXCURSION SET THEORY OF THE SPATIAL BIAS OF DARK MATTER
+                                             HALOS
+
+
+   It has long been appreciated that within the context of cosmological structure forma-
+tion theories, the clustering of dark matter halos differs from the overall clustering of mat-
+ter [34, 36, 37, 38, 39]. The excursion set formalism provides a neat framework with which
+to understand the relative clustering of halos. The argument is much the same as the
+peak-background split approach developed in Refs. [36, 37, 40], and was expressed in the
+framework of the excursion set model by Mo & White [38] as I outline below.
+   Consider the solution to the excursion set problem in Eq. (30). This gives the probability
+distribution of δ given that on a smoothing scale S0 , the smoothed density fluctuation is
+δ0 . Notice that the important quantity is the relative height of the density threshold δc − δ0
+so that in regions with δ0 > 0 on large scales, trajectories are more likely to penetrate the
+barrier at δc and conversely for δ0 < 0. This means that Eq. (31) and Eq. (32) allow for the
+calculation of the mass function in regions with specific large-scale density fluctuations.
+   The fraction of mass in collapsed halos of mass greater than M in a region that has a
+smoothed density fluctuation δ0 on scale S0 (corresponding to mass M0 and volume V0 ) is
+given by Eq. (31),                                            !
+                                                        δc − δ0
+                                  F (M|δ0 , S0 ) = erfc         .                         (36)
+                                                         2∆S
+Notice that as the density of the region increases, F increases because smaller upward
+excursions are needed to cross the threshold. When δ0 → δc , F → 1 because the entire
+region will then be interpreted as a collapsed halo of mass M0 . The fraction of mass in halos
+with mass in the range M to M + dM is
+
+                             dS      dF (M|δ0 , S0 )
+            f (M|δ0 , S0 )      dM ≡                 dM
+                             dM          dM
+                                                                                            19
+
+                                                          (δc − δ0 )2
+                                                                   "        #
+                                      1 δc − δ0 dS
+                                   = √              exp −             dM,                  (37)
+                                       2π ∆S 3/2 dM          2∆S
+so that regions with smoothed density δ0 on scale S0 contain, on average,
+                                               M0                dS
+                        N (M|δ0 , S0 )dM =        f (M|δ0 , S0 )    dM                     (38)
+                                               M                 dM
+halos in this mass range.
+   The quantity of interest is the relative over-abundance of halos in dense regions compared
+to the mean abundance of halos,
+                                 L           N (M|δ0 , S0 )
+                                δhalo =                     − 1,                           (39)
+                                           (dn(M)/dM)V0
+where dn(M)/dM is the mean number density of halos in a mass range of width dM about
+M from Eq. (34). The superscript L indicates that this is the overdensity in the initial
+Lagrangian space determined by the mass distribution at some very early time, ignoring the
+dynamical evolution of the overdense patch.
+   The relative overdensity of halos in large overdense and underdense patches is easy to
+compute. In sufficiently large regions, S0 ≪ S, δ0 ≪ δc . Expanding Eq. (39) to first order
+in the variables S0 /S and δ0 /δc gives a simple relation between halo abundance and dark
+matter density (see also Refs. [37, 40])
+                                       L        ν2 − 1
+                                      δhalo =          δ0 ,                                (40)
+                                                  δc
+where ν = δc /S 1/2 = δc /σ(M) as before. The overdensity in the initial Lagrangian space is
+proportional to the dark matter overdensity and is a function of halo mass through ν. The
+final ingredient needed to relate the abundance of halos to the matter density is a model
+for the dynamics that can map the initial Lagrangian volume to the final Eulerian space.
+Let V and δ represent the Eulerian space variables corresponding to the Lagrangian space
+variables V0 and δ0 . The final halo abundance is
+                                            N (M|δ0 , S0 )
+                                 δhalo =                   − 1.                            (41)
+                                           (dn(M)/dM)V
+   Mo & White [38] give an extensive discussion of the mapping from Lagrangian to Eule-
+rian coordinates and use a spherical collapse model to determine the appropriate mapping
+quantitatively. In the limit of a small overdensity δ0 ≪ 1, V ≃ V0 (1 + δ), δ ≃ δ0 , and
+                                                 ν2 − 1
+                                                              !
+                                   δhalo = 1 +          δ                                  (42)
+                                                   δc
+                                         ≡ bh δ.                                           (43)
+                                                                                                  20
+
+
+
+
+FIG. 4:   The large-scale bias of dark matter halos as a function of the scaled variable ν. The
+solid line gives the prediction of the standard Press-Schechter or excursion set theory in Eq. (42).
+The dashed line is a modified form for the bias that follows from a modified form for the barrier
+criterion given by Sheth & Tormen in Ref. [34]. The dotted line represents an empirical fit to
+N-body simulation results given by Seljak & Warren [39]. The points represent numerical data
+from a suite of N-body simulations kindly provided by J. L. Tinker.
+
+
+
+The halo overabundance is proportional to the matter overdensity and always has the same
+sense. This proportionality is commonly referred to has the halo bias bh = (1 + [ν 2 − 1]/δc ).
+Interestingly, Eq. (42) gives a mass scale at which halos are not biased with respect to
+the dark matter. At a halo mass equal to the typical collapse mass, M = M⋆ , ν = 1 or
+σ(M) = δc so that the halo overdensity is the same as the total matter overdensity, δhalo = δ.
+Larger halos will have larger values of ν = δc /σ(M) because σ(M) decreases with mass, so
+larger halos cluster considerably more strongly than the overall clustering of mass, while
+halos with M < M⋆ cluster more weakly than the overall mass distribution.
+   The large-scale halo bias relation of Eq. (42) is plotted as a function of scaled peak height
+ν, in Fig. 4. In that figure, I also plot numerical results for the relative clustering bias of halos
+                                                                                               21
+
+as well as improved fits for halo bias given by Sheth & Tormen [34] and Seljak & Warren [39].
+The fit of Sheth & Tormen in Ref. [34] can be motivated by excursion set theory with a
+modified form for the shape of the barrier as a function of smoothing scale (e.g., Refs. [41, 42],
+and see § IX). These simple prescriptions for halo bias form one of the cornerstones of the
+analytic halo model that is often used to quantify the clustering of both dark matter and
+galaxies rapidly without resorting to a full numerical treatment [43, 44, 45, 46, 47]. As
+with the mass function, the standard excursion set approach gives an understanding of the
+general features of the halo bias, but fails to reproduce the halo bias in detail.
+
+
+       VI.    AN EXCURSION SET MODEL FOR VOIDS IN THE GALAXY
+                                      DISTRIBUTION
+
+
+   The excursion set model relates the initial density field on particular scales to specific
+structures in the evolved density field. To compute the properties of halos, one considers
+overdensities in the initial smoothed density field but it seems natural that this logic can
+be extended to underdense regions, and in particular, to voids in the density distribution.
+This is a particularly interesting application of the excursion set theory because of the
+relatively simple dynamics of underdense patches. Whereas overdense patches collapse,
+underdense patches expand more rapidly than the universal expansion rate. Contrary to
+the complicated behavior of overdensities, general underdense patches that are not initially
+spherically-symmetric, tophat underdensities evolve toward spherically-symmetric tophat
+underdensities [48, 49, 50, 51]. This fact is encouraging. It suggests that a density threshold
+criterion based on a spherical, tophat model may be a more realistic model of void evolution
+than it is of the collapse of overdense patches.
+   Sheth & Van Weygaert [51] made precisely this realization and applied the excursion set
+model to predict the abundance and sizes of voids in the universe. Most of the details of
+the excursion set model of voids can be found in their paper. The logic is quite similar
+to that of the previous two sections. First, it is necessary to assign a barrier height to
+designate a region that should be identified with a void, δv < 0. (At this point, I reiterate
+that the overdensities that we consider are initial overdensities evaluated at some very early
+time, before any scales of interest have gone nonlinear, and extrapolated to z = 0 using
+the linear theory of evolution so that overdensities are not constrained to δ ≥ −1.) The
+                                                                                            22
+
+peculiar acceleration of a mass shell in a spherical underdense region is proportional to the
+integrated deficit in mass within the spherical region. A consequence of this is that inner
+shells accelerate outward faster than shells of mass on the outer edge of an underdense region.
+Mass shells start to accumulate in a narrow range of radii leading to a very high density
+ridge on the outer boundary of the underdense patch. Eventually, the inner shells overtake
+the outer shells at the moment of shell crossing. The relevant calculations are collected and
+reviewed in the appendices of Ref. [51].
+   In the now defunct standard cold dark matter model with ΩM = 1, shell crossing for a
+spherical tophat overdensity occurs at a linearly-extrapolated overdensity of δv = −2.81.
+This is analogous to the case of spherical tophat overdensity collapse, where collapse to a
+point occurs when the linearly-extrapolated overdensity is δc = 1.69. As with the spherical
+tophat overdensity, there is a weak dependence on cosmological parameters that I will ignore
+for the purposes of this discussion. Blumenthal et al. [52] argued that galaxy voids should
+be identified with regions that have just experienced shell crossing. Again, this is analogous
+to defining halos as regions that have just experienced complete collapse. In this case, the
+galaxies in the void walls would lie on the overdense ridges that form at shell crossing. The
+model of Sheth & Van Weygaert [51] adopts this identification of voids with regions that just
+experience shell crossing and identify voids with the largest regions for which the smoothed
+density achieves the threshold δv = −2.81.
+   In contrast to the case of halos, voids present an additional challenge to computing the
+first crossing distribution. The additional difficulty is that an underdense region may be
+contained in a still larger overdense region which may collapse around the underdensity,
+engulfing and eliminating the void. Therefore, it is sensible that there be a second criterion
+that the smoothed density not exceed some overdensity threshold δcv > 0, on some scale
+larger than the first crossing of δv . The appropriate height of the second barrier δcv is not
+obvious. It is clear that δcv ≤ δc because a void cannot reside within a virialized halo. Thus,
+the least restrictive choice that can be made is δcv = δc = 1.69. However, this does not
+account for the fact that some voids may be squeezed due to large-scale overdensities that
+have not yet collapsed and virialized and so it likely leads to an overestimate of the volume
+filling factor of voids in the universe. Sheth & Van Weygaert [51] also explore δcv = 1.06
+as this linearly-extrapolated overdensity corresponds to the moment of turnaround, or the
+transition from expansion to contraction, for a spherical overdensity. The drawback of this
+                                                                                                23
+
+choice is that it completely erases voids in regions that are only just turning around so that
+this choice likely leads to an underestimate of the filling factor of voids in the universe. This
+discussion suggests that the appropriate value of the “void-squashing” overdensity should
+be in the range 1.06 < δcv < 1.69.
+     The first step in modeling the void population with the excursion set theory should now
+be clear. It is necessary to solve for the first crossing distribution of the barrier δv subject to
+the additional restriction that the barrier at δcv is not achieved at some larger scale either.
+As in § IV, it is convenient to solve for the probability distribution of trajectories that do
+not impact either barrier Π(δ, S), and to derive the first-crossing distribution from Π(δ, S).
+As before, the distribution of δ at any value of S obeys
+                                           ∂Π   1 ∂2Π
+                                              =        .                                      (44)
+                                           ∂S   2 ∂δ 2
+In the case of voids, trajectories are removed from consideration when they impinge upon ei-
+ther of the two barriers at δcv or δv so that the boundary conditions are Π(δv , S) = Π(δcv , S) =
+0.
+     This system of equations is the one-dimensional heat equation describing heat flow in
+a long, thin bar of finite length held at fixed temperature at both ends. As such, it has
+a solution that is likely to be familiar. To begin with, unlike the case of the single-barrier
+problem in § IV, the solution to this boundary value problem can only be a superposition of a
+discrete set of sinusoidal modes, namely those modes that individually obey the homogeneous
+boundary conditions.
+     As before, it is convenient to define a new variable γ ≡ δ − δv . In that case, Eq. (44) still
+holds with δ replaced by γ and the boundary conditions are Π(γ = 0, S) = Π(γ = γc,v =
+δcv − dv, S) = 0. As before, trajectories start at δ = 0 at S = 0 so that the initial condition
+is Π(γ, S = 0) = δD (γ + δv ). The solution follows straightforwardly using separation of
+variables. Assuming that Π(γ, S) = G(γ)P (S), the functions G(γ) and P (S) obey
+                                     1 dP    1 d2 G
+                                          =         = −k 2 ,                                  (45)
+                                     P dS   2G dγ 2
+where k is some constant. Therefore P (S) ∝ exp(−k 2 S). The boundary conditions on G(γ)
+can only be satisfied if k > 0. Thus the solution is a superposition of sines and cosines. It
+is easy to show that the boundary conditions require that
+                                            ∞
+                                                              !
+                                            X        nπ
+                                   G(γ) =     cn sin      γ .                                 (46)
+                                          n=1        γc,v
+                                                                                                  24
+
+The initial condition can be used to determine the cn by using the orthogonality relation for
+             Rπ
+sinusoids,   0    sin(ny) sin(my)dy = (π/2)δnm , where δnm is a Kronecker delta. The result is
+that cn = 2 sin(nπ|δv |/γc,v )/π. Consequently, the solution to the boundary value problem is
+                                ∞
+                                        "                   !                               !#
+                          1    X                  nπ                    nπ
+             Π(δ, S) = v                    cos v       δ       − cos v       [2δv − δ]
+                       δc − δv n=1              δc − δv               δc − δv
+                                          n2 π 2
+                                                     !
+                            × exp    −              S .                                          (47)
+                                       2(δcv − δv )
+
+   In analogy with Eq. (31) and Eq. (32), trajectories are removed from the region between
+the two boundaries at a “rate” of
+                                                                δv
+                                                   1 ∂Π c
+                                      fv (S)dS = −         dS.                                   (48)
+                                                   2 ∂δ δv
+
+The lower limit of this divergence of trajectories indicates the trajectories that penetrate
+the lower boundary at δ = δv . These are the void regions that we aim to model, so the first
+crossing distribution is
+
+                                 1 ∂Π
+                    fv (S)dS =
+                                 2 ∂δ δv
+                                    nπD 2                              n2 π 2 D 2 S
+                                 ∞
+                                                                                   !
+                                 X
+                              =           sin(nπD) exp               −                dS,        (49)
+                                n=1  δv2                                   2      δv2
+
+where D ≡ |δv |/(δcv + |δv |) is the void-in-cloud parameter, following the nomenclature of
+Ref. [51]. The parameter D quantifies the relative importance of eliminating voids that lie
+within some larger overdense region in which the smoothed density contrast exceeds δcv .
+   From the first-crossing distribution of Eq. (49), it is straightforward to compute the
+“mass function” of voids, meaning the number of voids containing a specific amount of
+mass. As before, it is most convenient to represent this distribution in terms of a scaled
+variable νv ≡ |δv |/S 1/2 , so that the physical size distribution is determined by the size of
+the smoothing scale at a particular value of the variance S and the parameter D. Then
+νv fv (νv ) defined as the fraction of mass in voids per logarithmic interval d ln νv then follows
+by changing variables in Eq. (49) from S to νv as in § IV. Explicitly,
+
+                                         2nπD 2                          n2 π 2 D 2
+                                    ∞
+                                                                                   !
+                                    X
+                       νv fv (νv ) =            sin(nπD) exp           −            .            (50)
+                                     n=1   ν2                              2ν 2
+
+   This void mass spectrum is shown in the left panel of Fig. 5 for the choices of δv = −2.81
+and δcv = 1.06 advocated by Sheth & Van Weygaert [51]. Two additional mass spectra
+                                                                                                      25
+
+
+
+
+FIG. 5: Left: The mass distribution of voids predicted by the excursion set model of Sheth & Van
+Weygaert [51]. The mass distribution is given in scaled units. The horizontal axis is the absolute
+value of the void threshold in units of the σ(M ) for a particular mass scale νv = |δv |/S 1/2 . The
+vertical axis is the fraction of trajectories that first cross the threshold in a logarithmic interval of
+νv . Physically, this is the fraction of mass in voids that have a mass corresponding to a logarithmic
+interval in νv . The three lines show three choices of the overdensity threshold δcv . Right: The
+physical size distribution of voids. The three lines represent the number densities of voids of radius
+R for the same three choices of δcv as in the left panel.
+
+
+
+derived from different values of δcv are shown in Fig. 5 to illustrate the importance of the void-
+in-cloud parameter. The choice δcv → ∞ corresponds to ignoring completely the possibility
+for a larger-scale overdensity to overwhelm a smaller void within it. Decreasing δcv makes
+the probability for a larger overdensity to overwhelm a void within it higher and decreases
+the number of voids of all sizes. Two things are worthy of note. First, the number of large
+voids (high νv ) is independent of δcv . This is because it is very unlikely for a trajectory to
+cross both the δcv and the δv thresholds at small values of S. Second, regardless of the choice
+of δcv , the fraction of mass in voids is peaked around voids with νv ≈ 1 − 1.5. This places
+the typical void mass in the broad range Mvoid ∼ 1011 − 1013 h−1 M⊙ . Of course, as with
+the mass function, the number of voids of a particular size will be shifted toward smaller
+objects because a fixed fraction of mass can be partitioned into more small voids and fewer
+large voids.
+                                                                                             26
+
+   The void size spectrum in Eq. (50) gives the fraction of mass, or of volume in the initial
+Lagrangian space, in voids of a particular size. The size variable is the scaled variable νv .
+To convert this to a physical size spectrum where the sizes of objects are measured in units
+of length or volume requires relating the initial Lagrangian volume to an Eulerian volume.
+The simplest conversion follows from the fact that in the spherical tophat model, the tophat
+radius expands by a factor or ∼ 1.72 by the time shell crossing occurs. Finally, one also
+needs to assume a power spectrum to relate particular values of νv with volume in the initial
+Lagrangian coordinate system. As before, I will assume the spectrum in Fig. 1. The logic
+is then the same as that of the mass function. The number density of voids as a function
+of physical void radius is shown in the right panel of Fig. 5 and reflects the basic features
+of the voids model. The number density of voids is independent of δcv for large voids, and
+the number of small voids is suppressed because small, underdense regions are likely to be
+contained within larger overdense regions.
+   So far, I have ignored the primary shortfall of the void model. The weakness of the
+approach of Ref. [51] is that it defines a void as a region that is underdense with respect
+to total mass whereas observationally voids are identified as underdensities in the galaxy
+distribution, as noted in Ref. [51]. Furlanetto & Piran [53] have extended the Sheth & Van
+Weygaert model to identify voids as regions that are underdense in the galaxy distribution.
+To do this, these authors added to the excursion set theory a method for assigning galaxies
+to halos and thereby established a mapping between the galaxy number density in a region
+and a linearly-extrapolated overdensity. Methods for assigning galaxies to halos are beyond
+the scope of this article so I will not discuss the model of Ref. [53] any further except to say
+that it is a more practical approach to voids because it phrases predictions in terms of the
+observed galaxy overdensity.
+
+
+         VII.   HALO FORMATION IN THE EXCURSION SET THEORY
+
+
+   Excursion set theory is also a powerful formalism with which to study the formation
+history of halos. It is most natural to picture evolution occuring through the linear growth
+of the density field. In that way, the smoothed overdensity scales with time according to
+the linear growth factor D(a). Writing the smoothed density field as a function of both
+the smoothing scale S and the cosmological expansion factor a, this evolution is δ(S, a) =
+                                                                                                27
+
+D(a)δ(S, a = 1). As a matter of convention, D(a) is normalized so that D(a = 1) = 1.
+In the framework of excursion sets, predictions depend upon the density field in the ratio
+ν = δc /σ(M) and it is often easier to envision the density field as fixed at δ(S) ≡ δ(S, a = 1)
+and to consider the height of the critical density threshold as a function of time. In that way,
+collapse at a scale factor a′ 6= 1 corresponds to the a = 1 density fluctuation penetrating a
+barrier of height δc (a′ ) = δc /D(a′ ).
+   In their pioneering paper, Bond et al. [18] briefly discussed the utility of the excursion
+set approach for understanding the formation histories of halos. Subsequently, Lacey &
+Cole [19] studied this problem in great detail in a rather elegant paper and I largely follow
+their treatment in what follows. I will adopt the simplifying notation of Ref. [19] and refer
+to the barrier height for collapse at a specific time as
+
+                                           ω(a) ≡ δc /D(a).                                   (51)
+
+The variable ω indicates the time of the collapse through only the linear growth function
+D(a). In the “old standard” CDM model with ΩM = 1, the growth function is simply
+D(a) = a and the conversion between ω and a is trivial. However, in the currently-favored
+ΛCDM model, the growth function is given by an incomplete beta function integral [29] and
+the conversion is more complicated.
+   Many of the insights into halo formation can be gleaned by considering the two-barrier
+problem, just as with halo bias and void regions in the previous two sections. Again following
+the work of Lacey & Cole [19], I also adopt a simplifying notation for the conditional
+probabilities of barrier crossings. I illustrate this notation by re-writing the two-barrier
+probability distribution already given in Eq. (32) and Eq. (37) as
+
+                                                                  (∆ω)2
+                                                              "         #
+                                                 1 ∆ω
+                     f (S2 , ω2 |S1 , ω1 )dS2 = √           exp −       dS2 ,                 (52)
+                                                  2π ∆S 3/2        2∆S
+
+where ∆ω ≡ ω2 − ω1 is the difference between the two barrier heights (assumed to be
+arbitrary with ω2 > ω1 ), ∆S ≡ S2 − S1 . As always, some mass M1 and M2 are associated
+with the variances S1 and S2 respectively. The quantity f (S2 , ω2 |S1 , ω1 )dS2 is the conditional
+probability that a trajectory pierces the barrier ω2 in an interval of width dS2 about S2 on
+the condition that the trajectory first pierces ω1 at S1 . As a further shorthand, I take
+f (S2 , ω2 )dS2 to denote the probability starting from a very large smoothing scale S1 = 0,
+and ω1 = 0.
+                                                                                               28
+
+
+
+
+FIG. 6: The conditional mass function. All panels refer to the conditional mass functions of halos
+fixed at z = 0 looking back toward higher redshifts as labeled in each panel. Four halo masses of
+interest are shown.
+
+
+   In this section and those that follow, the interpretation of Eq. (52) is different from that
+in § IV and § V. In those sections, the initial condition for the random walk was fixed by
+the large scale environment on some larger filtering scale S1 ≪ S2 . Here, the two barriers
+represent the critical density for collapse at two different times so the change in barrier
+height ∆ω represents a shift in time.
+
+
+                            A.   The Conditional Mass Function
+
+
+   The most immediate quantity of interest is the conditional mass function. Given a halo of
+mass M1 at time t1 , one can compute the average manner in which this mass was partitioned
+among smaller halos at some earlier time t2 < t1 (ω2 > ω1 ). The conditional mass function
+                                                                                                             29
+
+is simply the average number of halos of mass M2 at time t2 that are incorporated into a
+mass M1 object at time t1 . This is precisely the two-barrier problem. A halo of mass M1
+has its mass partitioned, on average, among a spectrum of halos at time w2 given almost
+directly from Eq. (52) (e.g., see Refs. [2, 19]),
+
+                        dn(M2 |M1 )   M1                       dS2
+                                    =    f (S2 , ω2 |S1 , ω1 )     dM2 .                                    (53)
+                           dM2        M2                       dM2
+
+The function f (S2 , ω2 |S1 , ω1 ) gives the probability of the second barrier crossing at a par-
+ticular value of S2 , while the factor M1 /M2 converts this from a probability per unit mass
+of halo M1 into the number of halos of mass M2 .
+   Figure 6 shows conditional mass functions for standard CDM power spectra normalized
+such that M⋆ = 1013 h−1 M⊙ (σ8 ≃ 0.93) for four halo masses at four different lookback
+redshifts, z = 1/4, z = 1/2, z = 1, and z = 3 (all panels have final redshift at z = 0). The
+evolution toward increased fragmentation as the second epoch moves to higher redshifts
+is evident. Notice that more massive halos fragment into small sub-units more quickly.
+Also, notice that each conditional mass function goes toward an approximate power law as
+M2 /M1 ≪ 1. This can be understood directly from Eq. (6). Assume that the power spectrum
+is an approximate power law S(M) ≃ δc2 (M/M⋆ )−β in the mass range of interest. In the limit
+                                                                                              −(4−3β)/2
+of a large mass difference, ∆ω/∆S ≪ 1 and M2 /M1 ≪ 1 and dn/dM2 ∝ M2                                      . Near
+M⋆ , CDM-like power spectra vary slowly, with an effective power-law index near β ≈ 0.35
+                      −3/2
+giving dn/dM2 ∝ M2           , which is approximately the power law shown in Figure 6.
+
+
+                                   B.    Halo Accretion Rates
+
+
+   The excursion set theory also provides a framework for computing mass accretion rates
+as well. The two-barrier problem of § VII A can be manipulated to yield an average mass
+accretion rate. Consider the probability of transitioning forward in time, from M2 at barrier
+ω2 to M1 at ω1 . Bayes’ rule for combining probabilities gives the forward probability as [19]
+
+                                               f (S2 , ω2 |S1 , ω1 )f (S1 , ω1 )
+                  f (S1 , ω1 |S2 , ω2 )dS1 =                                     dS1                        (54)
+                                                         f (S2 , ω2 )
+                                                                     "                 #3/2
+                                            1 ω1 (ω2 − ω1 )       S2
+                                         = √                                                                (55)
+                                             2π    ω2        S1 (S2 − S1 )
+                                                                      !
+                                                     (ω1 S2 − ω2 S1 )
+                                           × exp −                      dS1 .                               (56)
+                                                    2S1 S2 (S2 − S1 )
+                                                                                                   30
+
+
+
+
+FIG. 7:   Halo accretion rates per logarithmic interval of mass change. This is based on a very
+similar plot in Ref. [19]. The plots show the accretion rates per unit mass change for halos of
+five different masses (shown in the left panel) at z = 0. The left panel shows the probability for
+a change ∆M as a function of ∆M [Eq. (58)], while the right panel shows the fractional mass
+accretion rate given by (∆M/M2 ) × d2 R/d ln ∆M d ln a.
+
+
+
+In language familiar to cosmology, f (S1 , ω1 |S2 , ω2 ) is the posterior probability, f (S1 , ω1 ) is
+the prior, and f (S2 , ω2 |S1 , ω1 ) is the likelihood.
+   The instantaneous probability per unit shift in barrier height follows by taking ∆ω =
+(ω2 − ω1 ) → 0 in Eq. (54), giving
+                                                      #3/2
+                      d2 R                                         ω 2 (S2 − S1 )
+                                       "                        "                #
+                              1        S2
+                            =√                               exp −                ,              (57)
+                     dω dS1    2π S1 (S2 − S1 )                         2S2 S1
+
+from which the probability per unit change in mass ∆M = M1 − M2 , per unit time (or
+d ln a = H(a)dt) is
+                                        s
+                        d2 R              2 ∆M ω/σ(M1 )
+                                 =
+                   d ln ∆Md ln a          π M1 (1 − S1 /S2 )3/2
+                                                ω 2 (S2 − S1 ) d ln ω d ln σ
+                                             "                #
+                                        × exp −                                .                 (58)
+                                                     2S1 S2     d ln a d ln M1
+
+The average rate of mass accretion per unit change in mass can be obtained by multiply-
+ing Eq. (58) by ∆M, while the average total mass accretion rate follows from multiplying
+Eq. (58) by ∆M and integrating over ln ∆M.
+                                                                                            31
+
+
+
+
+FIG. 8: Total halo mass accretion rates in units of halo mass and as a function of halo mass at
+four different redshifts.
+
+
+   The excursion set accretion rates of halos in the standard ΛCDM cosmology are sum-
+marized in Fig. 7 and Fig. 8. The left panel Fig. 7 shows the probability for a particular
+fractional mass change as a function of the fractional mass change. The rate of accretion
+by small mass increments diverges. However, the average rate of mass increase (in the right
+panel of Fig. 7) converges and is dominated by the less frequent, high-mass mergers. Notice
+in particular that low-mass halos increase their masses very quickly via mergers with halos
+larger then themselves while halos with M ∼ > M⋆ experience only infrequent mergers with
+
+halos larger than themselves.
+   The total mass accretion rate given by integrating Eq. (58) over ln ∆M is shown in Fig. 8
+for various redshifts as a function of halo masses. Fig. 8 shows explicitly that low-mass
+halos should be expected increase there mass many times over in a single Hubble time. The
+standard interpretation of the collection of results shown in Fig. 7 and Fig. 8 is that low-
+mass halos (M < M⋆ ) should be expected to increase their masses by mergers with halos
+larger than themselves, while high-mass halos (M > M⋆ ) typically absorb smaller halos and
+increase their masses relatively slowly.
+                                                                                               32
+
+                                 C.   Halo Formation Times
+
+
+   It is often useful to have a sense of a time by which a halo acquired most of its mass. For
+example, one may be modeling galaxies and may try to estimate stellar evolution histories
+within a particular halo. Several definitions of halo formation time exist. An intuitive
+definition is the time that a halo first acquires half of its final mass because once a progenitor
+of a halo has achieved this threshold it can uniquely be identified as the main progenitor
+of the final object. Consider the formation time given by this definition ωF or, in terms of
+expansion factor, aF .
+   It is not trivial to predict halo formation times from excursion set theory by considering
+the two-barrier problem as before. The reason for this difficulty is simple to understand.
+Consider the formation of a halo of mass M1 at time ω1 . The probability of crossing a
+higher threshold ω2 (corresponding to earlier time) at some value of the variance greater
+than S2 = S(M2 = M1 /2) > S1 gives only the probability per unit mass that the halo
+has some progenitor with mass M2 ≤ M1 /2 at time ω2 . It does not guarantee that this is
+the mass of the most massive of all of the subunits that merged to form the halo of mass
+M1 at ω1 . Lacey & Cole [19] circumvent this difficulty by giving an approximate counting
+argument for the formation time. I reproduce the argument of Ref. [19] in what follows.
+   First, the results of § VII B give the number of halos of mass M2 at time t2 that are
+incorporated into halos of mass M1 at t1 > t2 as
+                              d2 n     dn(M2 )
+                                     =         f (S1 , ω1 |S2 , ω2 ).                        (59)
+                             dM2 dS1    dM2
+So long as M2 > M1 /2, each trajectory must connect two unique halos because there cannot
+be two paths each of which contain more than half of the final halo mass. However, it is
+possible that a halo of mass M1 at t1 has no progenitor of mass greater than M1 /2 at time
+t2 . The counting argument accounts for this. The probability that a halo of mass M1 at t1
+has a progenitor in the mass range M1 ≥ M2 > M1 /2 at time t2 is then given by the ratio
+of halos that evolve to a halo of mass M1 relative to the total number of halos of mass M1 ,
+                             dP   [dn(M2 )/dM2 ]f (S1 , ω1 |S2 , ω2 )
+                                =                                     .                      (60)
+                            dM2    [dn(M1 )/dM1 ]||dS1 /dM1 |−1
+Using Bayes’ rule again and the definitions of the mass functions in terms of the first-crossing
+distributions gives                         !
+                              dP       M1                             dS2
+                                 =              f (S2 , ω2|S1 , ω1)       .                  (61)
+                             dM2       M2                             dM2
+                                                                                                      33
+
+
+
+                                                       3.5
+    1.6
+                                                         3
+    1.4
+    1.2                                                2.5
+
+       1                                                 2
+    0.8
+                                                       1.5
+    0.6
+                                                         1
+    0.4
+    0.2                                                0.5
+
+       0                                                 0
+           2        3        4       5        6          0.2         0.4       0.6        0.8    1
+
+
+
+FIG. 9: The probability distributions for formation times in the standard ΛCDM cosmology with
+a scale-invariant primordial power spectrum normalized to σ8 = 0.93, so that M⋆ = 1013 h−1 M⊙ .
+The left panel shows the distribution as a function of threshold height dP (ωF )/dωF while the right
+panel shows the probability distribution of formation scale factors dP (aF )/daF .
+
+
+
+The cumulative probability of a formation time prior to time t2 is then the integral
+                                                                   !
+                                                               M1
+                                             Z S2 =S(M1 /2)
+             P (tF < t2 ) = P (ωF > ω2 ) =                        f (S2′ , ω2 |S1 , ω1 )dS2′ ,       (62)
+                                              S1               M2
+
+and the differential probability can be obtained by differentiating Eq. (62) with respect to
+either ωF or tF .
+   Formation time distributions computed from Eq. (62) are shown in Fig. 9 for a variety
+of halo masses at z = 0 (a = 1, ωF = δc ≃ 1.69). The most obvious feature of formation
+times is that small halos form early and large halos form relatively late in accordance with
+our general expectation in hierarchical models of structure formation. Note also that in the
+simplest implementation of the excursion set formalism, in particular making use of k-space
+tophat filtering of the density field, the conditional probability f (S2 , ω2 |S1 , ω1 ) is a function
+only of the differences S2 − S1 and ω2 − ω1 . In this case, this means that the formation times
+in particular and, more generally, the entire formation histories of halos are independent
+of the larger-scale environments that halos reside in. In the next section, I discuss halo
+formation times in the context of halo merger trees.
+                                                                                              34
+
+                             VIII.   HALO MERGER TREES
+
+
+   The probability of first up-crossing at a second barrier given a particular starting point is
+given by the solution to the two-barrier problem in Eq. (52). This relation has been repeated
+several times throughout these notes in several forms because it is the fundamental relation
+on which most physical results are based. In the preceding sections, I have applied this
+formula to derive relations about various aspects of halo fragmentation and formation over
+time. So far, these quantities have been averages (as in § VII A and § VII B) or probability
+distributions (as in § VII C). However, as Ref. [19] describes, the interpretation of Eq. (52)
+as a probability for a transition from one barrier to another means that one should be able
+to draw specific fragmentation probabilities from this distribution repeatedly for a number
+of time intervals ∆ωi , and thereby reconstruct individual trajectories of halo mass versus
+cosmic expansion factor. This enables one to follow the fragmentation of halos on an object-
+by-object basis. This is the logic behind the algorithm for the generation of Monte Carlo
+merger trees described by (see also earlier methods in Refs. [54, 55, 56]).
+   The trajectories δ(S) have structure on arbitrarily small scales corresponding to mergers
+with very small halos. This is a restatement of the divergence of the mean number of
+transitions with small mass changes shown in the left panel of Fig. 7. Consequently, it is
+necessary to examine trajectories with a particular resolution in order to “smooth over”
+the mergers with numerous tiny halos. In practice, each application to the prediction of
+a specific physical quantity has a minimum mass scale of interest Mmin , so it is natural to
+set the resolution with which trajectories are computed according to this minimum scale.
+                                     √
+Consider Eq. (52) in the limit ∆ω/ ∆S ≪ 1. This gives a transition probability f =
+      √
+∆ω/( 2π∆S 3/2 ), that is directly proportional to the time interval ∆ω. Lacey & Cole [19]
+interpreted this as indicative of a probability that is due to a single, improbable merger event.
+                                                         √
+For this reason, Lacey & Cole refer to the limit ∆ω/ ∆S ≪ 1 as the “binary regime.” This
+can be used to motivate a particular choice of step-size ∆ω that sets the resolution of the
+trajectory.
+                                                           √
+   First, consider making the change of variable to u ≡ ∆ω/ ∆S in Eq. (52). This converts
+the probability distribution to a Gaussian in the variable u with a mean of zero and a unit
+variance. Of course, the probability distribution is one-sided in that it is subject to the
+constraint u ≥ 0. To resolve individual, binary mergers of a parent halo of mass M with a
+                                                                                             35
+
+merging halo at the threshold Mmin the step-size should obey
+                                       v
+                                       u dS(M)
+                                       u
+                                     <
+                                   ∆ω t        M               min ,                       (63)
+                                       ∼         dM
+so that these mergers are in the binary regime. Authors often parameterize this guideline
+                     q
+and set ∆ω = fstep |dS/dM|Mmin . The guideline in Eq. (63) makes a transition with
+∆M ≥ Mmin a rare event. The motivation behind this choice is that it is very unlikely that
+the transition could be due to two rare events, so that most mergers with objects of mass
+> Mmin are resolved as binary encounters. In particular, the probability for a transition
+with ∆M ≥ Mmin is
+                                                           √
+                                       2     fstep / 2
+                                                 Z
+                           P (> ∆M) = √                exp(−y 2 )dy
+                                        π 0
+                                                 √
+                                    = erf(fstep / π)                                       (64)
+                                           s
+                                               2
+                                       ≈         fstep ,
+                                               π
+where the last step assumes fstep ≪ 1. The choice of fstep is motivated by the need to resolve
+all mergers of objects of mass Mmin , driving fstep toward small values, and the desire to spend
+as little effort as possible computing the probabilities for transitions with ∆M < Mmin ,
+                                                                               < 0.3 in order
+driving fstep toward large values. As I discuss below Ref. [2] advocates fstep ∼
+to guarantee accuracy down to Mmin . Typical values are fstep ∼< 0.1.
+
+   With these preliminaries out of the way, the Lacey & Cole [19] algorithm for generating
+merger histories is as follows. First, determine the appropriate timestep using Eq. (63).
+Second, select a transition ∆S from the probability distribution of Eq. (52) and invert the
+S(M) relation to obtain both the change in mass ∆M and the new main progenitor mass
+M ′ = M − ∆M. One then repeats this procedure at the new values of ω and S(M ′ ) in order
+to determine the next fragmentation of the main progenitor. This process continues until
+the remaining mass is less than Mmin .
+   The trajectory for the main progenitor, defined as the most massive progenitor at each
+timestep according to this algorithm, may form the trunk of a “merger tree.” All of the
+merging halos of mass ∆M have prior fragmentation histories of their own. For each mass
+∆M above the threshold Mmin , one can generate an independent history for the infalling
+“branch” on the tree using the same algorithm.
+   The process of constructing a mass accretion history or merger tree in this way must be
+repeated numerous times in order to sample the variety of ways in which a halo of a fixed
+                                                                                             36
+
+mass at a fixed time might build up its mass. This is a Monte Carlo method for exploring the
+various mass accretion histories. It is conventional to refer to each individual tree generated
+in this way as a particular realization in an ensemble of merger histories.
+   The algorithm for generating Monte Carlo merger trees described above is convenient
+because of its simplicity. Unfortunately, while this algorithm conserves mass by construc-
+tion, it overpredicts the number of progenitor halos with masses M > Mmin at previous
+timesteps relative to the analytic distribution of Eq. (53). This point has been emphasized
+by Somerville & Kolatt [2] (see also Ref. [21]). In other words, the Monte Carlo procedure
+does not lead to a mean population of halos at high redshift that is consistent with the
+excursion set relations of the previous section. In the left panel of Figure 10, I reproduce
+Figure 2 of Ref. [2] in order to emphasize this point. The smooth lines in the left panel
+of this figure represent the analytic conditional mass functions described in § VII A and
+the histograms represent conditional mass functions from an ensemble of merger histories
+constructed according to the method of Lacey & Cole [19]. That the merger tree method
+of Lacey & Cole becomes more and more inconsistent with the analytic conditional mass
+function with increasing redshift is evident.
+   Somerville & Kolatt [2] suggested two very plausible sources for this discrepancy. The
+first is that after choosing the first mass ∆M from Eq. (52), the mass of the second body in
+the merger is forced to be M ′ = M − ∆M. This choice is made in order to conserve mass,
+but without regard to the probability of a transition to the mass M ′ . This drives an over-
+abundance of high-mass halos because all of the remaining mass is forced into a halo of mass
+M ′ . The second source stems from the fact that the simple algorithm above largely neglects
+accretion with transitions ∆M < Mmin when the probability for such a transition becomes
+infinitely large as ∆M → 0. While Ref. [2] does not present a rigorous demonstration of a
+self-consistent algorithm, they give a qualitatively well-motivated algorithm that reproduces
+analytic halo conditional mass functions at high redshift very well. This new algorithm is
+now the most commonly used method and I summarize it below. A successful algorithm that
+is, in practice, very similar to that of Ref. [2] is developed through the papers of Sheth [57],
+Sheth & Pitman [58], and Sheth & Lemson [21], though as far as I am aware, this approach
+also lacks rigorous support other than that it is exact for clumps in an uncorrelated density
+field. Cole et al. [3] provide another variation of the Lacey & Cole [19] merger tree algorithm
+that is similar in spirit and effect to the that of Ref. [2].
+                                                                                                  37
+
+
+
+
+FIG. 10:   These figures are reproduced from Ref. [2]. The left panels show the distribution of
+progenitor masses log dN/dM for a halo of initial mass Mi = 500 at four different redshifts. The
+histograms were computed using the binary merger tree method of Lacey & Cole in Ref. [19] and
+the smooth lines are the conditional mass functions of excursion set theory. The mass units are
+arbitrary. The discrepancy between the conditional mass functions and the Monte Carlo merger
+tree results is clear and becomes larger with increasing redshift. The right panels show the same
+physical quantities. In this case the smooth lines are the same conditional mass functions as before.
+The histograms show the results of the improved Monte Carlo merger tree algorithm proposed by
+Somerville & Kolatt [2]. The discrepancy between the Monte Carlo method and the analytic
+conditional mass functions is clearly reduced using the Somerville & Kolatt modification to the
+merger tree algorithm.
+
+
+
+   The Somerville & Kolatt [2] algorithm begins in the same manner as the original Lacey &
+Cole [19] procedure. First, choose a timestep corresponding to the desired mass resolution in
+accord with Eq. (63). At each timestep choose a transition ∆S from Eq. (52) and convert it
+to a mass change ∆M. The algorithm now deviates from that of Lacey & Cole because the
+Somerville & Kolatt algorithm allows for both multiple mergers and diffuse mass accretion.
+At this point, I note that the term “diffuse mass” is used simply to refer to accretion of
+objects with mass below the threshold Mmin . In the standard excursion set approach, there
+is no truly diffuse mass as all mass is bound into halos of some size.
+   The Somerville & Kolatt algorithm continues as follows. If ∆M < Mmin , remove it
+from further consideration and regard it as diffuse accretion. If ∆M ≥ Mmin treat it as a
+                                                                                             38
+
+progenitor halo that has merged. Next, update the remaining mass to Mrem = M − ∆M.
+Instead of requiring that the second member of the merger be a halo of mass M ′ = Mrem , the
+Somerville & Kolatt algorithm allows for an arbitrary number of progenitors, each of which
+is chosen from Eq. (52), as well as an arbitrary amount of accreted mass. The next step is
+as follows. If Mrem > Mmin , choose another transition and get the new mass change ∆M ′ . If
+∆M ′ > Mmin , treat it as a merger and if ∆M ′ < Mmin , treat it as accretion. Update Mrem
+by subtracting ∆M ′ . This procedure is then repeated until Mrem ≤ Mmin at which point
+the remaining mass is regarded as diffuse accretion. This produces a list of progenitors at
+a single timestep, though the list typically consists of two members and a small quantity
+of accreted mass. To fill out the tree, one applies this procedure with new timesteps to all
+the progenitors in the list and so on, recursively building a merger tree. The tree is of finite
+extent because each branch off of the tree terminates when all mass enters in units that are
+< Mmin , so that each unit is regarded as accreted material.
+   The right panel of Figure 10 is reproduced from Figure 6 of Ref. [2]. This panel shows
+the conditional mass functions of progenitors from an ensemble of merger trees generated
+using their algorithm compared to the analytic excursion set conditional mass functions. The
+suggestions of Somerville & Kolatt [2] have succeeded in drastically reducing the discrepancy
+between the analytic progenitor mass functions and the results of the Monte Carlo merger
+trees.
+   Examples of mass accretion histories for main progenitors (the most massive progenitor at
+each timestep) computed according to this merger tree prescription are shown in Fig. 11. The
+large vertical jumps correspond to very sudden increases in mass due to (perhaps multiple)
+major mergers. The variety of different paths to the same final mass is evident. Also clear
+in Fig. 11 is the fact that smaller halos acquire their masses relatively earlier than larger
+halos, a picture that is consistent with the results shown in Fig. 7. Formation times are also
+easy to compute directly from these merger histories. The distribution of formation times
+among Monte Carlo realizations is shown in Fig. 12. Also shown in Fig. 12 are the formation
+time distributions from § VII C, which appear to be in reasonable agreement (Note that the
+agreement here is better than that shown in the paper by Lacey & Cole [19] due to the use of
+the Somerville & Kolatt [2] algorithm for generating merger trees rather than a binary-split
+algorithm).
+   Merger trees also give a wealth of information about the manner in which the mass is
+                                                                                                  39
+
+
+
+
+FIG. 11: Ten examples of mass accretion histories as a function of cosmological scale factor for
+main progenitors. These histories were generated using the Monte Carlo merger history method
+based on excursion set theory as described in the text. The solid lines correspond to a large cluster
+halo with a mass of 1015 h−1 M⊙ at z = 0 (a = 1). The dashed lines correspond to a Milky
+Way-sized halo with mass M (a = 1) = 1012 h−1 M⊙ .
+
+
+
+acquired by the parent halos. Some properties of the distribution of all mergers are extremely
+simple. Consider the transition probability in the binary regime and in the regime ∆M ≪ M
+so that the merging object is much smaller than the main progenitor with which it is merging.
+                                                     √
+In this case, the transition probability is f ∼ [∆ω/( 2π|dS(M)/dM|)]∆M −3/2 . As such,
+the average mass fraction that is accreted in units in units of mass in a logarithmic interval
+                                           √
+ln(∆M) varies as dF/d ln(∆M) ∼ [∆ω/( 2π|dS/dM|1/2 )]∆M 1/2 for all timesteps. This
+requires only that the probability be in the binary regime and that the mass change be
+small. Integrating over all time, the full tree has this property as well with a deviation at
+∆M ∼ 0.1M necessitated by mass conservation. The total mass accreted in units of mass
+∆M per logarithmic interval d ln(∆M) integrated over the entire history of 1000 realizations
+of the merger history of an M⋆ halo is shown in Fig. 13. The scaling dF/d ln(∆M) ∝ ∆M 1/2
+                                                                                                40
+
+
+
+
+FIG. 12: Halo formation times computed from the Monte Carlo merger tree algorithm compared
+to the closed form distribution of formation times given in § VII C. The dashed lines correspond to
+halos of mass 1011 h−1 M⊙ , the solid lines correspond to halos of mass 1013 h−1 M⊙ = M⋆ , and the
+dash-dot lines correspond to halos of mass 1015 h−1 M⊙ . The thin, smooth lines are the analytic
+predictions while the thick lines are the results 1000 realizations of the Monte Carlo procedure.
+
+
+
+at ∆M ≪ M is evident. Integrating over ln(∆M) gives F = 1 because all mass is acquired
+in the form of halos of a particular mass in the excursion set model.
+   Before moving on to extensions of the simple excursion set approach it is worth drawing
+attention to a simple but profound weakness of the excursion set theory that is not often
+discussed in the literature, though one noteworthy exception is the lecture by White [59]. In
+this and the preceding sections, I described how the excursion set theory is used to predict
+the merger rates between distinct dark matter halos. However, these distinct halos are never
+clearly identified in the excursion set approach. As an example, consider some patch of the
+initial Lagrangian space. We can draw a sphere about each point in that patch that has a
+smoothed density that is above threshold at some scale and thereby assign to each point a
+halo mass. In general, each point will be assigned a mass that is different from its neighboring
+                                                                                              41
+
+
+
+
+FIG. 13: The total fraction of a host halo mass at a = 1 accreted in units of size ∆M/M per
+logarithmic interval d ln(∆M ), dF/d ln(∆M ). The result shown is from 1000 merger histories of a
+halo with mass 1013 h−1 M⊙ = M⋆ at a = 1.
+
+
+
+points. The result of this exercise is a continuous “halo mass field,” rather than the definite
+assignment of mass in certain patches to distinct halos of particular masses. This makes
+tests of excursion set theory on an object-by-object basis a poorly-defined exercise because
+it is unclear how to assign individual particles to halos in the initial Lagrangian space. In
+fact, such tests have been made with different choices for assigning mass elements to halos
+(compare Ref. [59] and Ref. [41]). This fundamental shortcoming of the excursion set theory
+may partially explain the difficulty of the theory in producing self-consistent merger trees
+and progenitor mass functions and its shortcomings compared to full numerical treatments.
+
+
+           IX.   BEYOND THE SIMPLE EXCURSION SET APPROACH
+
+
+   In the proceeding sections, I have reviewed the simplest implementation of the excursion
+set approach to halo formation. While this approach provides valuable insight into the
+                                                                                                42
+
+influence of the statistical properties of the density field on the distribution and formation
+of halos, in its detail it is known to have a number of shortcomings, a number of which we
+have encountered already, that render it a less than ideal tool for applications where precision
+is required (references [2, 20, 34, 35, 42, 59, 60, 61, 62, 63, 64, 65, 66] represent an incomplete
+sample of numerous studies that point out a variety issues). I will discuss briefly some of
+these shortcomings and some insights into the physical origin of these shortcomings in what
+follows. One point that is important to emphasize is that the excursion set approach is itself
+an approximation that neglects the details of nonlinear dynamics aside from the collapse
+threshold; however, the predictions discussed in the previous sections largely result from
+making several further assumptions that are motivated primarily by simplicity and may not
+be the basis of the most faithful implementation of excursion set theory.
+
+
+                 A.   Nontrivial Barrier Shapes and Ellipsoidal Collapse
+
+
+   One way in which the excursion set predictions are simplified is to assume that collapse
+and virialization of a halo occurs whenever the smoothed density exceeds a critical value
+δc , that is independent of any further details of the density field. Even some of the gross
+qualitative aspects of excursion set theory no longer hold when this simple form for the
+barrier is no longer required.
+   Following Sheth [67], it is instructive to begin by studying a simple toy example such as the
+linear barrier where the threshold increases with the variance B(S) = δc + βS (constructed
+so that it can be easily solved). In this case the barrier recedes from the line δ = 0 at a
+“rate” β. Solving for the first-crossing distribution of this barrier is equivalent to solving for
+the first-crossing distribution of a constant barrier where the transition probability causes
+trajectories to “drift” away from the barrier at a rate β. In this case, we can revisit the
+logic that led to Eq. (22) but note that the mean transition should be h∆δi = −β∆S so
+that Eq. (23) is replaced by
+                                      ∂Π   1 ∂2Π     ∂Π
+                                         =      2
+                                                  +β    .                                     (65)
+                                      ∂S   2 ∂δ      ∂δ
+The boundary conditions and the initial condition are the same as before. Note that in this
+case, the solution by using an image source of trajectories cannot be used because the image
+trajectories would not satisfy the same differential equation [Eq. (65)].
+   The solution to Eq. (65) can be greatly simplified by making the transformation Π =
+                                                                                            43
+
+U exp(β[γ − βS/2]) where γ ≡ δc − δ as in § IV. In that case U(S, γ) satisfies
+
+                                         ∂U   1 ∂2U
+                                            =        ,                                    (66)
+                                         ∂S   2 ∂γ 2
+
+which is the diffusion equation with no drift term, and the conditions
+
+                             U(S = 0, γ) = δD (γ − δc ) exp(−βγ)                          (67)
+
+and
+                                        U(S, γ = 0) = 0                                   (68)
+
+Following § IV, this gives the result
+
+                                                    δ2                  [2δc − δ]2
+                                                          !                          !#
+                      exp(−β[βS/2 + δ])
+                                           
+            Π(S, δ) =      √            exp       −           − exp   −               .   (69)
+                             2πS                    2S                      2S
+
+From Eq. (69), the fundamental relation for the probability for a mass element to be above
+threshold at a variance between S and S + dS is
+
+                                                                  [βS + δc ]2
+                                                                             !
+                                                δc
+                 flin (S|δ0 = 0, S0 = 0)dS = √         exp      −             .           (70)
+                                               2πS 3/2               2S
+
+From this solution to the simple linear barrier a mass function can be derived in the usual
+way.
+   It is useful to note a few things from this example. First, consider a mass function arising
+from Eq. (70). For S ≪ δc /β, the mass function will have an exponential cut-off for high-
+mass (low-S) objects as before. Additionally, for S ≫ δc /β the mass function will feature an
+exponential suppression of low-mass object as well [compared to f (S) ∼ S −3/2 for S >> δc2
+in the constant barrier case, Eq. (32)]. This is due to the fact that the barrier increases in
+                                                                       √
+height as S while the standard deviation of the walk increases only as S so that the barrier
+becomes harder and harder to pierce at high S. In contrast, the constant barrier will always
+                                                     √
+be crossed because the standard deviation of the walk S, always becomes much larger than
+the barrier height as S increases. This leads to a second interesting feature. Integrating
+Eq. (70) over all S gives the total fraction of mass in bound halos as F = exp(−2βδc ) < 1.
+The statement that all matter is bound into halos is not generally true in the excursion set
+approach, but is a result of specific barrier shapes.
+   In fact, nontrivial barriers may play an important practical role in understanding things
+like the mass function and bias of halos. A number of papers have, essentially, argued
+                                                                                                44
+
+that the spherical collapse model that leads to the constant barrier at δc is an inadequate
+description of the collapse of overdense patches and that the barrier shape can be more
+complex effectively to reflect both the more complicated collapse process and the relative
+differences between large and small overdense patches [41, 68, 69, 70, 71, 72] . Sheth &
+Tormen [34] noted that the GIF simulations obeyed a mass function where the fraction of
+mass in collapsed objects is modified from Eq. (35) to
+                                   s                      !
+                                   2a      1
+                       fST (ν) = A    1 + √ 2p ν exp(−aν 2 /2),                               (71)
+                                   π     ( aν)
+with a = 0.707, p = 0.3, and A = 0.322 in order to guarantee that all mass is bound into
+halos of some mass. This is the form shown in Fig. 3 and it clearly represents a major
+improvement over the simple excursion set mass function. Reference [34] also showed that
+this form translated into a much improved model for halo bias (using the same logic as § V)
+as shown in Fig. 4.
+   Subsequently, Sheth et al. [41] and Sheth & Tormen [42] discussed how the collapse
+fraction in Eq. (71) is very similar to the collapse fraction one would derive from of an
+excursion set model with a nontrivial barrier, the form of which is motivated by considering
+the ellipsoidal, rather than spherical, collapse of overdense patches. In general, integrating
+the details of ellipsoidal collapse into the excursion set formalism is quite complicated (some
+examples include Refs. [68, 72, 73]). Sheth et al. [41] greatly simplified this problem by
+considering the barrier that results form the mode of the distributions for ellipticity and
+prolateness of overdense patches (see Refs. [41, 42, 69] for details). In short, the simplification
+stems from assigning overdense patches only a single ellipsoidal shape rather than the full
+distribution of possible shapes that would be realized in the cosmological density contrast
+field. This yields a single barrier shape to describe ellipsoidal collapse rather than, at least
+effectively, considering a barrier with a shape that should depend upon the specific properties
+of each overdense patch. As it turns out, this approximation works fairly well. The resulting,
+simplified barrier is [41, 42]
+                                       δcell = δc (1 + βν −γ ),                               (72)
+
+where the parameters β ≈ 0.47 and γ ≈ 0.62 are determined by considering the evolution of
+an ellipsoidal density perturbation rather than a perfectly spherical density perturbation.
+   Notice that the ellipsoidal collapse barrier of Eq. (72) is higher for low-mass (low-ν)
+objects. The physical reasoning for this is that low-mass objects typically exhibit greater
+                                                                                              45
+
+ellipticity (e.g., Refs. [41, 69]) and are more prone to disruption by tidal interactions so that
+their densities must be higher in order to overcome this countervailing effect. Notice that
+one of the primary deficiencies of the constant-barrier excursion set mass function is that
+it predicts considerably too many low-mass halos (see Fig. 3). As the ellipsoidal barrier is
+higher for higher S (lower mass), one should expect a reduction in low-mass halos relative
+to the standard excursion set mass function and this is precisely what is shown in Fig. 3.
+   Finally, Sheth & Tormen [42] showed that the ellipsoidal model still failed to model accu-
+rately conditional mass functions at small lookback times and large mass ratios. Moreover,
+these authors also pointed out that the model did a poor job with predictions of the number
+densities of halos in very overdense regions. This failure leads to the next simplification of
+the excursion set approach which I will address in § IX C. However, before moving on, I will
+briefly note the methods used to solve the problem of a walk toward a generic barrier, as
+this problem seems to be increasingly interesting.
+
+
+                                    B.   General Barriers
+
+
+   It can sometimes be useful to consider more general barrier shapes. For example, Furlan-
+etto et al. [74] used a barrier with a more complicated shape to model the sizes of ionized
+regions during the epoch of reionization, while Sheth & Tormen [42] suggested that moving
+barriers could effectively encapsulate a wide variety of phenomena such as suppression of the
+collapse of small (low-mass) overdense patches in models where the dark matter is warm. In
+the latter case, the suppression is due to the non-negligible primordial velocity dispersions
+of the dark matter particles and the barrier shape could encode the importance of these
+velocities relative to the depths of the potentials. In this section, I describe two numerical
+methods to construct the first-crossing distribution for more general barrier shapes.
+   The most commonly used method to solve for the first-crossing distribution of a barrier
+of more general shape is direct Monte Carlo construction of the distribution. This method
+is straightforward. One only needs to compute a large number of δ(S) trajectories. To con-
+struct a trajectory, one computes values of δ(S) at a discrete set of values of S. Maintaining
+the assumption that the smoothing of the density fluctuation field is performed with a k-
+space tophat filter, each step is independent and is drawn from Eq. (20) for a step size ∆S.
+At this point, one only needs to keep track of the value of S at first crossing of the barrier.
+                                                                                                     46
+
+
+
+
+FIG. 14: Monte Carlo solution for the first-crossing distribution of a linear barrier with β = 1,
+B(S) = δc +S. The left panel shows a sample of five δ(S) trajectories that cross the linear threshold.
+The thin lines are the five trajectories and the thick line is the linear barrier. The histogram in the
+right panel shows the tabulated first-crossing distribution constructed from 105 trajectories. The
+thin line shows the analytic solution to the first-crossing distribution from Eq. (70). It is clear that
+the Monte Carlo procedure reproduces the analytic result in the case of the linear barrier.
+
+
+
+As with generating halo merger trees, the choice of step size ∆S is important because all
+trajectories will be resolved only to within ∆S. The step size must be small enough that
+a transition above the barrier is rare on any given step. This ensures that multiple barrier
+crossings are unlikely to be missed.
+   I give an explicit example of the Monte Carlo method for the linear barrier with B(S) =
+δc + S in Fig. 14. The left panel shows a sample of five trajectories that cross the linear
+threshold. Of course, most trajectories do not cross the threshold in the range of S that I
+show. I have selected five that do and so these trajectories are a biased subsample of the
+ensemble of all trajectories. The right panel shows the tabulated first-crossing distribution
+constructed from 105 trajectories. It is evident that the Monte Carlo method reproduces
+the analytic result of the previous section quite well.
+   Recently, Zhang and Hui [75] described a very useful and elegant method for solving the
+first-crossing problem for barriers of a very wide range of possible shapes. Zhang & Hui
+pointed out that the problem can be recast in the form of an integral equation that can be
+                                                                                                47
+
+solved by well-known methods.
+   The first step is to recognize that all trajectories either are included in Π(δ, S) or penetrate
+the barrier so that
+                                Z S                 Z B(S)
+                                         ′     ′
+                                      f (S )dS +              Π(δ, S)dδ = 1,                  (73)
+                                 0                   −∞
+
+where f (S) is the first-crossing distribution and B(S) is the scale-dependent barrier height.
+If there were no barrier, the distribution of Π(δ, S) would be given by Ψ(δ, S) from Eq. (20).
+Therefore, Π(δ, S) should be given by Ψ(δ, S) minus the trajectories that pierced the barrier
+at some S ′ < S and migrated downward to δ by a variance S. Thus
+                                              Z S
+                      Π(δ, S) = Ψ(δ, S) −           f (S ′ )Ψ(δ − B(S), S − S ′ )dS ′ .       (74)
+                                               0
+
+Taking the derivative of Eq. (73) with respect to S gives an integral relation for f (S) in
+terms of Π(δ, S) and the barrier shape. Substituting Π(δ, S) from Eq. (74) into this integral
+relation for f (S) gives
+                                                    Z S
+                               f (S) = G(S) +             f (S ′ )H(S, S ′ )dS ′ ,            (75)
+                                                     0
+
+where G(S) ≡ [B(S)/S − 2dB(S)/dS]Ψ(B(S), S), H(S, S ′) ≡ [2dB(S)/dS − (B(S) −
+B(S ′ ))/(S − S ′ )]Ψ(B(S) − B(S ′ ), S − S ′ ), and H(S, S ′ ) = 0 if S ′ > S.
+   Equation (75) is an integral equation for the first-crossing distribution of f (S). Equa-
+tion (75) has the variable S as a limit of integration, and the unknown function of interest
+f (S) both under and outside the integral. This is the form of a Volterra Equation of the sec-
+ond kind. This equation can be solved numerically using standard methods (e.g., Ref. [76]).
+The first step is to discretize the integral on an interval from 0 to S. The simplest approach
+is to choose a uniform step in S. Let n = 1, 2, ..., N, ∆S = S/N, Sn = n∆S, fn = f (Sn ),
+Gn = G(Sn ), and Hn m = H(Sn , Sm − ∆S/2). Then, the integral can be rewritten as
+                                                                      N
+                                                                  ∆S X
+              Z Sn
+                      f (S ′ )Ψ(δ − B(Sn ), Sn − S ′ )dS ′ ≃             Hnm [fm + fm−1 ],    (76)
+                0                                                  2 m=1
+so that                                 Pn−1
+                           Gn + ∆S/2(        m=1 Hnm [fm + fm−1 ] + H(n, n)fn−1 )
+                    fn =                                                                      (77)
+                                              1 − (∆S/2)H(n, n)
+with the exceptions
+
+                                f0 = G0    and
+                                     G1 + (∆S/2)H(2, 1)[f1 + f0 ]
+                                f1 =                              .
+                                         1 − (∆S/2)H(2, 2)
+                                                                                                 48
+
+
+
+
+FIG. 15: The first-crossing distribution for the quadratic barrier B(S) = δc +0.5S 2 . The histogram
+is the result of a Monte Carlo construction of the distribution while the smooth, solid line is the
+iterative solution to the Volterra equation [Eq. (75)] described by Zhang & Hui [75].
+
+
+
+The values fn can be constructed iteratively based on Eq. (77). Utilizing Eq. (77) as a
+solution for Eq. (75) is generally a more efficient method to obtain a precise estimate for
+f (S) than computing a large ensemble of trajectories.
+   As a simple example of this approach, I show the first-crossing distribution of the barrier
+B(S) = δc + 0.5S 2 in Figure 15. The histogram is the first-crossing distribution constructed
+from 105 Monte Carlo trajectories, while the smooth line is the iterative solution to Eq. (75)
+in Eq. (77). The two solutions are clearly in good agreement. Note also that the first-
+crossing distribution declines more rapidly at high S (small mass) than the first-crossing
+distribution for the linear barrier. This is a natural consequence of the fact that the barrier
+height grows more rapidly with respect to the variance than in the linear case so that the
+barrier is even more difficult to penetrate at high S.
+                                                                                                   49
+
+
+
+
+FIG. 16: Correlated random walks. The thin, solid lines show five examples of correlated random
+walks of δ(S) defined with a Gaussian filter in the left panel and a tophat filter in the right panel.
+These trajectories were constructed from five integrations of the Langevin equation [Eq. (78)] in
+each case. The thick line represents a threshold at δ = δc . The trajectories in this figure have been
+selected to pierce the barrier at S < 10 which is why they all tend to lie in the upper half plane.
+Notice that these trajectories vary smoothly, unlike the uncorrelated case.
+
+
+
+                               C.   Correlations Between Scales
+
+
+   As I described in § IV, the standard implementation of the excursion set theory makes
+use of a density contrast field filtered with a k-space tophat window function. This choice of
+a filter that is local in Fourier space requires that the mass that collapses onto a halo is not
+local in configuration space. In fact, the previous sentence understates the issue. In § IV, I
+noted that the use of the sharp k-space filter represents something of a problem because the
+sharp k-space window is difficult to associate with any particular mass because its volume
+diverges. However, once some method for assigning mass to a filter scale is decided upon,
+the use of the sharp k-space filter also has an important implication for the properties of
+halos. In the case of a sharp k-space window function, the transitions between different
+smoothed densities are independent Gaussian random variables as in Eq. (20). This implies
+that the formation histories of halos are completely unrelated to their local environments
+because in the excursion set formalism a halo of mass M has δ(S) = δc at S = S(M) while
+                                                                                              50
+
+all steps away from this value are independent of each other.
+   Though the effects are small, several studies have recently pointed out that the formation
+histories of halos in cosmological numerical simulations are correlated with their environ-
+ments [64, 77, 78, 79] as are internal properties of halos [78, 79, 80]. The implication of
+these studies is that correlations between scales cannot be neglected completely. Though
+the impact of these effects on observable quantities has not been thoroughly explored, the
+first observation of such an effect was recently presented by Berlind et al. [81].
+   Along other lines Sheth & Tormen [42], attempted to determine whether or not their
+conditional mass functions were in error because of an incomplete treatment of ellipsoidal
+collapse and concluded that a more detailed treatment of ellipsoidal collapse could not ex-
+plain the failures of their model to predict conditional mass functions and density-dependent
+mass functions. They reasoned that because the worst failures occurred in high-density re-
+gions and for conditional mass functions at small lookback times and large mass ratios, the
+deficiency may be due to the neglect of correlations between different scales. The reasoning
+is as follows. Consider the specific example of the conditional mass function. To compute
+the conditional mass function, two smoothing scales are necessary. One scale describes the
+parent object while the other scale describes the progenitor halo at some earlier time. At
+high mass ratios and small lookback times, the two smoothing scales are quite similar so one
+might expect correlations to be important. However, in the low-mass-ratio regime where
+the progenitors are much smaller than the parent halo, the two smoothing scales are very
+different so that it might not be surprising for correlations between these very different scales
+to be relatively less important.
+   Correlations between scales can be incorporated into the excursion set approach simply
+by modifying the window function. Any window function other than a sharp k-space window
+will result in walks with steps that are correlated to some degree. In the case of correlated
+walks, Eq. (21) no longer applies and so the results of § IV are not valid. For correlated
+walks, the f (S)dS distribution must be computed by integrating numerically a Langevin
+equation as described in the seminal work of Bond et al. in Ref. [18].
+   The Brownian motion of a particle can be treated by considering the acceleration of the
+particle as due to a fluctuating stochastic force F~ (t). The Langevin equation for the particle
+motion is d~v /dt = F~ (t), where ~v is the particle velocity (for example, return to the review
+of Chandrasekhar in Ref. [23]). In a similar way, the trajectory δ(S) experiences a series
+                                                                                                   51
+
+
+
+
+FIG. 17:   The first-crossing distribution of the smoothed density field defined with a Gaussian
+window function. The left panel shows the first-crossing distribution explicitly. First the smooth,
+upper line is the analytic distribution for the sharp k-space window function given in Eq. (32).
+The upper histogram shows the first-crossing distribution constructed by integrating the Langevin
+equation for this case and demonstrates that the two solutions are in good agreement. The lower
+histogram is the first-crossing distribution for the smoothed density field defined with a Gaussian
+window function. The right panel shows mass functions. The smooth line is the standard excur-
+sion set mass function. The lower histogram shows the mass function of halos using the Gaussian
+first-crossing distribution from the left panel and the S(M ) relationship for a Gaussian filter func-
+tion. The upper histogram shows the mass function constructed from the Gaussian first-crossing
+distribution of the left panel but using the S(M ) relation for a real-space tophat window function.
+The difference between the two histograms represents the effect of the different mass definitions
+with a fixed first-crossing distribution.
+
+
+
+of stochastic inputs from specific realizations of the different Fourier modes of the density
+field. The trajectory for the smoothed density field obeys
+
+                                    ∂δ(S)
+                                           = Q(ln k)W (k; RW ),                                  (78)
+                                    ∂ ln k
+
+where the variance S and the smoothing scale RW are related through Eq. (14) as usual.
+The “stochastic force” in this case is Q(ln k) which is a Gaussian random variable with zero
+                                                                                             52
+
+mean and a variance of
+                                            dS
+                                  hQ2 (ln k)i =   = ∆2 (k).                      (79)
+                                           d ln k
+A large number of trajectories can be built up numerically by summing a large number
+of realizations of the stochastic forces. The algorithm is to select Q(ln k) on a grid of
+wavenumbers, to apply the smoothing to each Q(ln k) on a grid of smoothing scales, and to
+sum the contributions of each step in wavenumber to construct each trajectory. As before,
+the steps in smoothing scale should be sufficiently small that crossing the barrier of interest
+on any particular interval is unlikely, so it is often most efficient to use a non-uniform grid
+in resolution scale (e.g., see Ref. [18]).
+   Figure 16 gives examples of trajectories with correlated steps computed by integrating
+numerically the Langevin equation of Eq. (78). The left panel shows trajectories generated
+using a Gaussian window function and the right panel shows trajectories generated using a
+tophat window function. The most obvious feature of these trajectories is that they do not
+exhibit the frenetic variations of the uncorrelated random walks shown in Fig. 2 and Fig. 14.
+On the contrary, because all of the steps in the trajectory are correlated to some degree, the
+trajectories are smooth functions of scale.
+   The first-crossing distribution for a set of trajectories with correlated steps can be con-
+structed numerically by generating a large number of trajectories like those in Figure 16.
+Figure 17 shows the first-crossing distribution for trajectories defined using a Gaussian win-
+dow function compared to the standard first-crossing distribution for sharp k-space filtering.
+In the range of S corresponding to halo masses of interest, the first crossing distribution of
+trajectories defined relative to a Gaussian window is lower than the standard, sharp k-space
+                                           > 25), the first-crossing distribution of the trajec-
+result. At large values of the variance (S ∼
+tories defined relative to a Gaussian filter overtakes the sharp k-space distribution (these
+features have been discussed in Ref. [18]). Recall that translating f (S) into a mass function
+requires knowledge of the relationship between the variance S and the mass scale M. There-
+fore, comparing f (S) for two different filtering functions does not reflect the differences in
+the mass function directly because the two different S(M) relations must be accounted for.
+In the case of the sharp k-space filter, the definition of mass is far from obvious because
+the filter has a divergent volume associated with it. Standard practice is to use the S(M)
+relation set by a real-space tophat window function. The right panel of Figure 17 shows the
+mass function for the Gaussian first-crossing distribution using both the Gaussian window
+                                                                                               53
+
+relation for S(M) and the real-space tophat relation for S(M) so that the effect of changing
+the S(M) relation at fixed f (S) on the mass function is evident.
+
+
+              D.    Halo Formation Times and Environment: An Example
+
+
+   The excursion set theory using filters other than the sharp k-space filter has been con-
+sidered only relatively rarely in the literature, but in light of recent results it is interesting
+to ask what excursion set theory might say about the relationship between halo properties,
+such as formation time, and halo environments. One can ask what predictions implementing
+a window that is localized in configuration space, rather than Fourier space, makes for the
+relation between, in particular, halo formation histories and large-scale halo environments.
+   Consider as a concrete example the dependence of halo formation time on environment at
+fixed halo mass. A simple and physically reasonable way to introduce correlations between
+the past formation histories of halos and the environments in which halos reside is to consider
+trajectories of δ(S) defined using a window function that is localized in configuration space.
+The logic for determining formation times is precisely the same as that in § VII C, but the
+probability distributions must be constructed numerically. I show the result of a simple
+toy example in Figure 18. The argument is fairly general, but for concreteness, take the
+specific example of the formation times of 1013 h−1 M⊙ halos with environment defined as the
+smoothed density field on scale of Renv = 10 h−1 Mpc, δenv ≡ δ(RW = Renv ). The calculation
+must be constructed numerically from a large ensemble of trajectories so it is necessary to
+take a bin of halo mass that has finite extent. For this exercise, I consider halos that make a
+first crossing of the barrier δc between 1.3 ≤ Si ≤ 1.4. This corresponds to a mass range of
+approximately 1.8∼  < M/[1013 h−1 M⊙ ]< 2.2. This toy model is based on 105 trajectories of
+                                       ∼
+δ(S) defined using Gaussian filtering so that the steps of the random walks are correlated.
+   The left panel of Figure 18 shows an explicit example of a conditional probability for
+crossing a second barrier of height ω = δc + ∆ω with ∆ω = 0.5 in an interval of width dS
+about S given a first crossing of the barrier at δc in the range 1.3 ≤ Si ≤ 1.4, as specified
+in the previous paragraph. Also shown in the left panel of Figure 18 is the conditional
+probability for the quartiles of trajectories with the highest and lowest values of large-scale
+density δenv . Notice that the conditional probability f (∆S, ∆ω|Si , ωi ) is shifted toward
+lower ∆S in regions of low density. Trajectories in low-density regions rise more rapidly
+                                                                                             54
+
+in the vicinity of the threshold. According to the logic of § VII C, the consequence of this
+is that trajectories in low-density regions generally will achieve higher values by the time
+the smoothing scale decreases to include half of the initial mass. As a direct result, these
+trajectories will generally correspond to halos with earlier formation times. I show this
+explicitly in the right panel of Figure 18. This panel shows the distribution of formation
+times computed from the same set of trajectories for all halos, as well as for the high and
+low quartiles of δenv .
+   Figure 18 shows clearly that introducing correlations between different scales into the
+excursion set formalism generally leads to halos in dense environments forming later and
+halos in diffuse environments forming earlier at fixed halo mass. The example of Figure 18
+described in the previous paragraphs is fairly specific; however, while the magnitude of this
+effect varies, the sense of this effect is general and holds for different filter shapes and for
+δenv defined on widely different scales. Interestingly, I have computed the environment-
+dependent formation time distribution for halos of numerous masses, and the sense of this
+shift is independent of the mass of halo under consideration.
+   The generality of this result implies that the excursion set theory with a density field
+smoothed by a filter that is localized in configuration space will lead to dense regions that
+preferentially host late-forming halos and vice versa for regions of low density. The result
+stems from the general fact that the conditional probability f (∆S, ∆ω|Si , ωi ) is shifted to-
+ward low ∆S in low density regions. There is a simple qualitative explanation for this
+behavior. All trajectories are required to pass through the point ωi at Si in order to be
+considered a halo of a particular mass at all. Consider beginning a walk at S = 0 and δ = 0.
+Trajectories that start so that the large-scale smoothed density is relatively low at some
+small value of the variance S must rise rapidly in order to cross ωi at Si . The steps in the
+walk or correlated, so that these trajectories typically continue to rise after crossing this
+threshold. The opposite is true in high-density regions. On average, trajectories that start
+at low large-scale densities, proceed to pierce subsequent thresholds earlier in the walk than
+counterpart trajectories with high large-scale densities. This general trend is illustrated in
+Figure 19 where I show both examples of trajectories in low- and high-density regions and
+a scatter plot of δenv against the rate of change of the trajectories about the crossing of δc
+at Si , dδ(Si )/dS.
+   The results of this toy model for the environmental dependence of halo formation indicate
+                                                                                             55
+
+that the natural expectation of excursion set theory should be that halos in dense environ-
+ments tend to form relatively later than average, while halos in diffuse environments tend
+to form relatively earlier than average. Excursion set theory with a constant barrier height
+predicts this relative trend independent of halo mass. The studies in Refs. [77, 78, 79, 80]
+indicate that low-mass halos (M ≪ M⋆ ) that form early should be found preferentially
+in high-density environments and conversely for late-forming halos. This is opposite the
+excursion set expectation described in the preceding paragraphs. On the contrary, the re-
+cent results of Wechsler et al. [78] and Wetzel et al. [79] indicate that in the high-mass
+regime (M ∼> M⋆ ), it is indeed the late-forming halos that are preferentially located in dense
+
+environments.
+   Wang et al. [82] have recently studied the origin of the link between formation time and
+environment using a cosmological numerical simulation. These authors found that low-mass
+halos that form early are preferentially in dense environments, in agreement with previous
+work. More interestingly, Wang et al. continued to show that the accretion of matter onto
+small halos in dense environments is cut off prematurely (relative to excursion set expec-
+tations) due to tidal interactions and heating of the ambient environment by significantly
+more massive neighbors. The low-mass halos are forced to be early formers because their
+late accretion is eliminated in a competition with massive neighbors. Wang et al. propose
+this as the origin of the environment-dependent formation times measured in previous nu-
+merical studies. Finally, Ref. [82] went on to show that this competition-limited growth is
+not important for high-mass halos.
+   It is interesting to conjecture that the prediction of the excursion set theory and the
+study by Wang et al. [82] can be combined into a global picture that explains environment-
+dependent formation times at all mass scales. In such a scenario, the statistics of overdense
+patches in the primordial density contrast field would favor a bias toward late halo formation
+in dense regions. In the high-mass regime, halo growth would not be limited by competition
+in any meaningful way, so this bias would persist in the sense seen by Ref. [78] and Ref. [79]
+for high-mass halos in numerical simulations. However, in the low-mass regime, competition
+would stifle halo growth, forcing small halos in dense environments to be early formers. This
+gives rise to the bias of small halos in dense regions to be preferentially early formers.
+   To my knowledge, the issues mentioned in this section have not been addressed in any
+adequate way at present. The model I have given here is an incomplete toy model intended
+                                                                                            56
+
+to illustrate the method for generalizing the excursion set predictions and to indicate the
+sense of the effect that excursion set theory predicts. A more detailed exploration of these
+points is an interesting undertaking, but is well beyond the scope of this review.
+
+
+                              E.   The PINOCCHIO Algorithm
+
+
+   In closing, I would like to point toward another tool for estimating halo mass functions and
+formation histories quickly and accurately. This is the publicly-available PINOCCHIO code
+developed by P. Monaco and collaborators [14, 15, 16], [85]. (A similar tool that can be
+used to generate mock catalogs of halos rapidly is PTHalos developed by Scoccimarro and
+Sheth [83, 84]) The great value of the PINOCCHIO code is that it is considerably less compu-
+tationally expensive than a cosmological N-body simulation but predicts halo properties and
+formation histories that are in better agreement with N-body results relative to the simple
+excursion set approach (for a recent example see Ref. [66]).
+   Briefly, the PINOCCHIO code uses an algorithm for identifying halos and halo properties
+such as mass, velocity, angular momentum, in particular realizations of the linear den-
+sity field. The PINOCCHIO code also contains a parameterized algorithm for building fila-
+mentary structures in the density field and for generating the merging histories of halos.
+PINOCCHIO creates a particle-based realization of the linear density field in a manner simi-
+lar to standard N-body simulations. PINOCCHIO then computes the approximate evolution
+of mass elements using a particular truncation of third order Lagrangian perturbation the-
+ory (for example, first order Lagrangian perturbation theory constitutes the well-known
+Zel’dovich Approximation used to initialize most N-body simulations). As PINOCCHIO is
+perturbative, the computation progresses at a fraction of the computational effort of an
+N-body simulation. PINOCCHIO groups mass elements together into halos using an orbit-
+crossing condition. When the orbits of two mass elements coincide, Lagrangian perturbation
+theory breaks down because the mapping from Eulerian position to Lagrangian position be-
+comes multi-valued and the density is infinite. At this point, the mass elements are grouped
+together into a halo (or perhaps a filament) in analogy with collapse to a point in the
+evolution of a spherical tophat overdensity.
+   The development of the algorithm and the PINOCCHIO code involves a great deal of detail
+and is well-beyond the scope of this review. However, this development is well-documented
+                                                                                            57
+
+and the references above provide a good starting point for understanding the calculation.
+
+Acknowledgments
+
+  I would like to thank Jeremy Tinker for making is numerical data available to me for
+this review. I thank James Bullock, Neal Dalal, Anatoly Klypin, Andrey Kravtsov, Savvas
+Koushiappas, Brant Robertson, Eduardo Rozo, Douglas Rudd, Frank van den Bosch, Risa
+Wechsler, and David Weinberg for useful discussions and/or comments on the manuscript.
+This review is based on notes for lectures given at the Sixth Summer School of the Helmholtz
+Institute for Supercomputational Physics on Supercomputational Cosmology. The Summer
+School is funded by the Ministry for Science, Research, and Culture Brandenburg. I would
+like to thank the organizer of the Summer School on Supercomputational Cosmology, Ana-
+toly Klypin, for inviting me to give these lectures. I thank Anatoly Klypin, Andrey Kravtsov
+and Francisco Prada for encouraging me to expand them to the current review. I thank the
+Astrophysical Institute Potsdam for hospitality during my stay. This work was funded by
+the Kavli Institute for Cosmological Physics at the University of Chicago, by the National
+Science Foundation under grant NSF PHY 0114422, and by the National Science Founda-
+tion through the Astronomy and Astrophysics Postdoctoral Fellowship Program under grant
+AST 0602122.
+
+
+
+
+ [1] W. H. Press and P. Schechter, Astrophys. J. 187, 425 (1974).
+ [2] R. S. Somerville and T. S. Kolatt, MNRAS 305, 1 (1999).
+ [3] S. Cole, C. G. Lacey, C. M. Baugh, and C. S. Frenk, MNRAS 319, 168 (2000).
+ [4] R. S. Somerville and J. R. Primack, MNRAS 310, 1087 (1999), astro-ph/9802268.
+ [5] G. Kauffmann and M. Haehnelt, MNRAS 311, 576 (2000), astro-ph/9906493.
+ [6] E. Neistein, F. C. van den Bosch, and A. Dekel, ArXiv Astrophysics e-prints (2006), astro-
+    ph/0605045.
+ [7] A. R. Zentner and J. S. Bullock, ApJ 598, 49 (2003).
+ [8] A. J. Benson, C. G. Lacey, C. S. Frenk, C. M. Baugh, and S. Cole, MNRAS 351, 1215 (2004),
+    astro-ph/0307298.
+ [9] S. M. Koushiappas, A. R. Zentner, and T. P. Walker, Phys. Rev. D 69, 043501 (2004),
+                                                                                             58
+
+    astro-ph/0309464.
+[10] A. R. Zentner, A. Berlind, J. S. Bullock, A. Kravtsov, and R. H. Wechsler, Astrophys. J. ,
+    624, 505 (2005).
+[11] J. Peñarrubia and A. J. Benson, MNRAS 364, 977 (2005), astro-ph/0412370.
+[12] J. E. Taylor and A. Babul, MNRAS 364, 515 (2005).
+[13] J. E. Taylor and A. Babul, MNRAS 364, 535 (2005), astro-ph/0410049.
+[14] P. Monaco, T. Theuns, and G. Taffoni, MNRAS 331, 587 (2002).
+[15] P. Monaco, T. Theuns, G. Taffoni, F. Governato, T. Quinn, and J. Stadel, MNRAS 564, 8
+    (2002).
+[16] G. Taffoni, P. Monaco, and T. Theuns, MNRAS 333, 623 (2002).
+[17] J. M. Bardeen, J. R. Bond, N. Kaiser, and A. S. Szalay, Astrophys. J. 304, 15 (1986).
+[18] J. R. Bond, S. Cole, G. Efstathiou, and N. Kaiser, Astrophys. J. 379, 440 (1991).
+[19] C. Lacey and S. Cole, MNRAS 262, 627 (1993).
+[20] C. Lacey and S. Cole, MNRAS 271, 676 (1994), astro-ph/9402069.
+[21] R. K. Sheth and G. Lemson, MNRAS 305, 946 (1999).
+[22] N. Wax, Selected Papers on Noise and Stochastic Processes (New York: Dover Publication,
+    1954, edited by Wax, Nelson, 1954).
+[23] S. Chandrasekhar, Rev. Mod. Phys. 15, 2 (1943).
+[24] S. O. Rice, Bell Systems Tech. J., Volume 23, p. 282-332 23, 282 (1944).
+[25] S. O. Rice, Bell Systems Tech. J., Volume 24, p. 46-156 24, 46 (1945).
+[26] D. J. Eisenstein and W. Hu, Astrophys. J. 511, 5 (1999), astro-ph/9710252.
+[27] B. G. Williams, A. F. Heavens, J. A. Peacock, and S. F. Shandarin, MNRAS 250, 458 (1991).
+[28] S. M. Carroll, W. H. Press, and E. L. Turner, ARAA 30, 499 (1992).
+[29] S. Bildhauer, T. Buchert, and M. Kasai, A & A 263, 23 (1992).
+[30] R. A. Epstein, MNRAS 205, 207 (1983).
+[31] J. A. Peacock and A. F. Heavens, MNRAS 243, 133 (1990).
+[32] R. J. Bower, MNRAS 248, 332 (1991).
+[33] R. J. Adler, The Geometry of Random Fields (The Geometry of Random Fields, Chichester:
+    Wiley, 1981, 1981).
+[34] R. K. Sheth and G. Tormen, MNRAS 308, 119 (1999).
+[35] A. Jenkins, C. S. Frenk, S. D. M. White, J. M. Colberg, S. Cole, A. E. Evrard, H. M. P.
+                                                                                            59
+
+    Couchman, and N. Yoshida, MNRAS 321, 372 (2001).
+[36] N. Kaiser, ApJL 284, L9 (1984).
+[37] G. Efstathiou, C. S. Frenk, S. D. M. White, and M. Davis, MNRAS 235, 715 (1988).
+[38] H. J. Mo and S. D. M. White, MNRAS 282, 347 (1996).
+[39] U. Seljak and M. S. Warren, MNRAS 355, 129 (2004), astro-ph/0403698.
+[40] S. Cole and N. Kaiser, MNRAS 237, 1127 (1989).
+[41] R. K. Sheth, H. J. Mo, and G. Tormen, MNRAS 323, 1 (2001).
+[42] R. K. Sheth and G. Tormen, MNRAS 329, 61 (2002).
+[43] R. J. Scherrer and E. Bertschinger, Astrophys. J. 381, 349 (1991).
+[44] U. Seljak, MNRAS 318, 203 (2000).
+[45] C.-P. Ma and J. N. Fry, Astrophys. J. 543, 503 (2000).
+[46] J. A. Peacock and R. E. Smith, MNRAS 318, 1144 (2000).
+[47] A. A. Berlind and D. H. Weinberg, Astrophys. J. 575, 587 (2002).
+[48] V. Icke, MNRAS 206, 1 (1984).
+[49] E. Bertschinger, ApJS 58, 1 (1985).
+[50] R. van de Weygaert and E. Van Kampen, MNRAS 263, 481 (1993).
+[51] R. K. Sheth and R. van de Weygaert, MNRAS 350, 517 (2004).
+[52] G. R. Blumenthal, L. Da Costa, D. S. Goldwirth, M. Lecar, and T. Piran, Astrophys. J. 388,
+    234 (1992).
+[53] S. Furlanetto and T. Piran, MNRAS, in press (2005), arXiv:astro-ph/0509148.
+[54] S. Cole and N. Kaiser, MNRAS 233, 637 (1988).
+[55] S. Cole, Astrophys. J. 367, 45 (1991).
+[56] G. Kauffmann, S. D. M. White, and B. Guiderdoni, MNRAS 264, 201 (1993).
+[57] R. K. Sheth, MNRAS 281, 1277 (1996).
+[58] R. K. Sheth and J. Pitman, MNRAS 289, 66 (1997).
+[59] S. D. M. White, in Cosmology and Large Scale Structure, edited by R. Schaeffer, J. Silk,
+    M. Spiro, and J. Zinn-Justin (1996), pp. 349–+.
+[60] J. M. Gelb and E. Bertschinger, Astrophys. J. 436, 467 (1994), astro-ph/9408028.
+[61] Y. P. Jing, ApJL 503, L9+ (1998), astro-ph/9805202.
+[62] G. Tormen, MNRAS 297, 648 (1998), astro-ph/9802290.
+[63] R. H. Wechsler, J. S. Bullock, J. R. Primack, A. V. Kravtsov, and A. Dekel, Astrophys. J.
+                                                                                             60
+
+    568, 52 (2002).
+[64] R. K. Sheth and G. Tormen, MNRAS 350, 1385 (2004).
+[65] A. J. Benson, M. Kamionkowski, and S. H. Hassani, MNRAS 357, 847 (2005), astro-
+    ph/0407136.
+[66] Y. Li, H. J. Mo, and F. C. van den Bosch, MNRASSubmitted, astro-ph/0510372 (2005),
+    astro-ph/0510372.
+[67] R. K. Sheth, MNRAS 300, 1057 (1998).
+[68] P. Monaco, Astrophys. J. 447, 23 (1995), astro-ph/9406029.
+[69] J. R. Bond and S. T. Myers, ApJS 103, 1 (1996).
+[70] P. Monaco, MNRAS 287, 753 (1997), astro-ph/9606027.
+[71] P. Monaco, MNRAS 290, 439 (1997), astro-ph/9606029.
+[72] E. Audit, R. Teyssier, and J.-M. Alimi, å 325, 540 (1997).
+[73] J. Lee and S. Shandarin, Astrophys. J. 500, 14 (1998).
+[74] S. Furlanetto, M. Zaldarriaga, and L. Hernquist, Astrophys. J. 613, 1 (2004).
+[75] J. Zhang and L. Hui, Astrophys. J. 641, 641 (2006), astro-ph/0508384.
+[76] G. B. Arfken and H. J. Weber, Materials and Manufacturing Processes (1995).
+[77] L. Gao, V. Springel, and S. D. M. White, MNRAS 363, L66 (2005).
+[78] R. H. Wechsler, A. R. Zentner, J. S. Bullock, A. V. Kravtsov, and B. Allgood, ApJ, In Press
+    (astro-ph/0512416) (2006).
+[79] A. R. Wetzel, J. D. Cohn, M. White, D. E. Holz, and M. S. Warren, ArXiv Astrophysics
+    e-prints (2006), astro-ph/0606699.
+[80] A. V. Maccio’, A. A. Dutton, F. C. van den Bosch, B. Moore, D. Potter, and J. Stadel,
+    MNRASSubmitted, astro-ph/0608157 (2006), astro-ph/0608157.
+[81] A. A. Berlind, E. Kazin, M. R. Blanton, S. Pueblas, R. Scoccimarro, and D. W. Hogg, ArXiv
+    Astrophysics e-prints (2006), astro-ph/0610524.
+[82] H. Y. Wang, H. J. Mo, and Y. P. Jing, MNRAS, Submitted (astro-ph/0608690) (2006).
+[83] R. . Scoccimarro and R. K. Sheth, MNRAS 329, 629 (2002).
+[84] R. Scoccimarro, MNRAS 299, 1097 (1998).
+[85] The PINOCCHIO code can be obtained from URL http://adlibitum.oats.inaf.it/monaco/Homepage/Pinocchio/
+                                                                                                 61
+
+
+
+
+FIG. 18: The dependence of halo formation times on halo environment in the excursion set theory.
+The figure shows results derived from trajectories of δ(S) defined using a Gaussian window function.
+The left panel shows the conditional probability for making a first crossing of a barrier of height
+ω = δc + ∆ω with ∆ω = 0.5, given that the first crossing of the barrier ωi = δc occurred in the
+interval 1.3 ≤ Si ≤ 1.4. This corresponds to a mass range 1.8 ≤ M/[1013 h−1 M⊙ ] ≤ 2.2. The solid
+histogram shows the full conditional probability distribution derived from 105 such trajectories.
+The dotted histogram shows the conditional probability derived from the quartile of trajectories
+that have the highest smoothed densities on a scale of Renv = 10 h−1 Mpc. For the purposes of this
+exercise, the smoothed density on a scale of Renv serves to define the environment. The dashed
+histogram shows the conditional probability from the quartile of trajectories with the smallest
+smoothed densities on a scale of Renv . The right panel shows the distributions of formation times
+(in terms of the variable ωF ) derived from these trajectories. Again, the solid histogram shows
+the mean distribution of formation times for all halos, the dotted histogram shows the distribution
+of formation times for the quartile of halos with the highest large-scale densities, and the dashed
+histogram shows the formation time distribution for the quartile of halos in the lowest density
+environments. Notice that at fixed halo mass, halos with low large-scale densities typically form
+earlier (at higher ωF ) than halos that reside in regions that are overdense on large scales.
+                                                                                                    62
+
+
+
+
+FIG. 19: Trajectories exhibiting low and high large-scale densities. The left panel shows twenty
+randomly-selected trajectories with values of δenv in the lowest quartile (solid lines) and δenv in
+the highest quartile (dashed lines). The horizontal, dotted line marks δ = δc indicating collapse at
+z = 0. All trajectories represent halos of nearly identical mass so they cross δc at nearly identical
+points. The arrow indicates the variance on the length scale Renv = 10 h−1 Mpc which is where
+the environment measure δenv is defined. Notice that trajectories with low large-scale densities
+tend to rise more rapidly after crossing the threshold at δc . The right panel shows a scatter plot
+of large-scale density contrast δenv and the rate of change of δ(S) at the first-crossing of δc at Si ,
+dδ(Si )/dS. The inverse correlation between large-scale density and local rate of increase is evident.
+
