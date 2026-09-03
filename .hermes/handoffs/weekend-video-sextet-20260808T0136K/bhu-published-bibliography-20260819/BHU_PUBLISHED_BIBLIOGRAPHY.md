@@ -547,6 +547,7 @@ Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED �
 Record: harvest #11; parentage construction beyond isotropy.
 
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
+**Version of record (2026-09-03 15:53 KST):** Phys. Lett. B 690, 73 (2010) + erratum PLB 727, 575 (2013), pinned from Duho's library download; codex check `bhu-acquisition-20260828/VOR_CHECK_51_59_codex.md` → `VOR_MATCH` for every number the lane cites. Erratum: erratum corrects (verbatim)
 **Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_UNDERIVED` — borrowed inputs: none Blind double 09-03: confirmed.
 DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010).
 **VERSION OF RECORD PINNED 2026-08-30** (fetched through Duho's connected Chrome; ScienceDirect
@@ -671,6 +672,7 @@ Testability: **CONSISTENCY-ONLY**
 Record: triage pick #7; a same-group companion analysis (Cubero & Popławski) — the 'independent line' triage claim was wrong and is corrected above.
 
 **59. S. Desai & N. J. Popławski (2016). "Non-parametric reconstruction of an inflaton potential from Einstein–Cartan–Sciama–Kibble gravity with particle production." Phys. Lett. B 755, 183–189.**
+**Version of record (2026-09-03 15:53 KST):** Phys. Lett. B 755, 183 (2016) pinned from Duho's library download; codex check `bhu-acquisition-20260828/VOR_CHECK_51_59_codex.md` → `VOR_MATCH` against the arXiv pin on everything CANDIDATE_SD2016 quotes. The "version of record to confirm" note is closed.
 **Warrant (2026-09-03, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_MIXED` — borrowed inputs: phenomenological particle-production law K = β(κ ε̃)² (SOURCE lines 116–130); Ellis–Madsen scalar-field reconstruction [43,44] (SOURCE lines 307–325); standard slow-roll perturbation formulas [45–47] (SOURCE lines 325–370) Blind double 09-03: confirmed.
 DOI 10.1016/j.physletb.2016.02.014 — VERIFIED (Crossref: PLB, v755, p183-189, 2016-04). **Added 2026-09-02 on Duho's
 ruling (a) to the packet of 18:45**, surfaced by the entry-52 deep audit (entry 52's and entry 53's "predicts the CMB

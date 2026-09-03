@@ -13,9 +13,9 @@ watch, or an acquisition target. No lane work is blocked on machine effort.
 3. **DESI curvature watch** (Hwao's lane; entry 54 and the 23–27 set predict CLOSED).
 
 ## Acquisition / verification targets (source-limited, not audit-limited)
-4. **Entries 18 and 56** — no clean text; cells `NO_TEXT`; remain acquisition targets.
-5. **Entry 59** (Desai & Popławski 2016) — version of record to confirm against the arXiv pin.
-6. **Entry 51** — Elsevier version of record still owed (arXiv pin audited).
+4. ~~Entries 18 and 56~~ — CLOSED 2026-09-03 15:53 KST: 56 text extracted from its pinned PDF; 18 pinned from Duho's library (1992 GRG VoR); both cells filed.
+5. ~~Entry 59~~ — CLOSED 2026-09-03 15:53 KST: VoR pinned, VOR_MATCH.
+6. ~~Entry 51~~ — CLOSED 2026-09-03 15:53 KST: VoR + 2013 erratum pinned, VOR_MATCH on the cited numbers.
 7. **Entry 43** — author field to verify from Crossref (Masó-Ferrando, Sanchis-Gual, Font & Olmo per acknowledgments).
 8. **Entry 3** (Stuckey 1994) — the clean text layer is empty; the audit used the PDF read visually; an OCR pass would
    give line receipts.
