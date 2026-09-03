@@ -41,7 +41,7 @@ Both were committed before any derivation and gated by a fresh agy seat through 
 Derivation starts with the step-1 pin sheets (every input receipted). Say "hold K2" or "hold K1" to stop either.
 
 ---
-## YOUR CALL 2026-09-03 16:18 KST — topic search, round 2: pick the study (four blind seats reconciled; full packet `TOPIC_SEARCH_ROUND2_RECONCILIATION_20260903.md`)
+## RESOLVED 2026-09-03 16:24 KST — Duho, relay via Blanc, verbatim "a" (K2 + K1 stage 1 in parallel, preregistered first; both preregs gated 16:3x, results filed 17:06/17:11). Was: YOUR CALL 2026-09-03 16:18 KST — topic search, round 2: pick the study (four blind seats reconciled; full packet `TOPIC_SEARCH_ROUND2_RECONCILIATION_20260903.md`)
 
 Round 1's (A) is done (amplitude provably free), (B) withdrawn, (C) carried over. Twelve new proposals fold into six
 clusters; two were put first by three seats each:
