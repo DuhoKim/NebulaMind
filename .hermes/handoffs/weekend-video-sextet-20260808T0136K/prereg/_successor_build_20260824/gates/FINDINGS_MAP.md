@@ -597,3 +597,13 @@ The calibration rehearsal moves into the P0 queue without the Sep-5
 wait.
 
 V133 → V134: the BS-1 early resolution — the principal's ruling applied in the disclosed superseding form the brief itself promised; no code changed, no new obligations.
+
+## V134 → V135 (2026-09-03 — BS-2v filled under amendment discipline)
+
+The principal's ruling (human direction #58, 2026-09-03 11:23 KST via Blanc,
+verbatim "1b 2b"; `PRINCIPAL-20260903-1B2B`) directs DESIGN slots to be filled
+one at a time, BS-2v first as V135 under amendment discipline. The BS-2v fill
+pins registry digest `315ef019…`, converter sha `001cd944…`, receipt_strict sha
+`f50d8c1d…`, and receipt sha `a1ad1790…`.
+
+V134 → V135: the BS-2v fill under amendment discipline — `PRINCIPAL-20260903-1B2B`, human direction #58, 2026-09-03 11:23 KST via Blanc, verbatim "1b 2b" (2(b): DESIGN slots one at a time, BS-2v first as V135 under amendment discipline); registry digest `315ef019…`, converter sha `001cd944…`, receipt_strict sha `f50d8c1d…`, receipt sha `a1ad1790…`.
