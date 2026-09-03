@@ -17,7 +17,10 @@ from typing import Iterable, Mapping, Sequence
 
 from completeness_gate import (Candidate, CandidateSource, GateError, GZRecord,
                                separation_arcsec, sha256_file)
-from tap_source import append_jsonl, read_checkpoint, sha256_bytes
+try:  # Package invocation: python -m completeness_gate.test_sweep_source
+    from .tap_source import append_jsonl, read_checkpoint, sha256_bytes
+except ImportError:  # Script invocation from within completeness_gate/
+    from tap_source import append_jsonl, read_checkpoint, sha256_bytes
 
 RADIUS_ARCSEC = 1.0
 IDENTITY_COLUMNS = ("RELEASE", "BRICKID", "OBJID", "BRICKNAME", "RA", "DEC")
@@ -108,27 +111,32 @@ def _decode(value: object) -> str:
     return str(value).rstrip("\x00 ")
 
 
-def _read_identity_rows(path: Path) -> Iterable[Candidate]:
-    if fitsio is not None:  # pragma: no cover - depends on optional dependency
-        data = fitsio.read(path, columns=list(IDENTITY_COLUMNS), ext=1)
-        names = {n.upper(): n for n in data.dtype.names or ()}
-        for row in data:
-            yield Candidate(int(row[names["RELEASE"]]), int(row[names["BRICKID"]]),
-                            int(row[names["OBJID"]]), float(row[names["RA"]]),
-                            float(row[names["DEC"]]), _decode(row[names["BRICKNAME"]]))
-        return
-    with fits.open(path, memmap=True, mode="readonly") as hdus:
-        data = hdus[1].data
-        names = {n.upper(): n for n in data.names}
-        missing = [n for n in IDENTITY_COLUMNS if n not in names]
-        if missing:
-            _fail(f"sweep {path.name} lacks identity/position columns: {','.join(missing)}")
-        # Access only the six named column arrays; the underlying FITS table is mmap-backed.
-        columns = {n: data.field(names[n]) for n in IDENTITY_COLUMNS}
-        for i in range(len(data)):
-            yield Candidate(int(columns["RELEASE"][i]), int(columns["BRICKID"][i]),
-                            int(columns["OBJID"][i]), float(columns["RA"][i]),
-                            float(columns["DEC"][i]), _decode(columns["BRICKNAME"][i]))
+def _read_identity_rows(path: Path, *, memmap: bool = True) -> Iterable[Candidate]:
+    try:
+        if fitsio is not None:  # pragma: no cover - depends on optional dependency
+            data = fitsio.read(path, columns=list(IDENTITY_COLUMNS), ext=1)
+            names = {n.upper(): n for n in data.dtype.names or ()}
+            for row in data:
+                yield Candidate(int(row[names["RELEASE"]]), int(row[names["BRICKID"]]),
+                                int(row[names["OBJID"]]), float(row[names["RA"]]),
+                                float(row[names["DEC"]]), _decode(row[names["BRICKNAME"]]))
+            return
+        with fits.open(path, memmap=memmap, mode="readonly") as hdus:
+            data = hdus[1].data
+            names = {n.upper(): n for n in data.names}
+            missing = [n for n in IDENTITY_COLUMNS if n not in names]
+            if missing:
+                _fail(f"sweep {path.name} lacks identity/position columns: {','.join(missing)}")
+            # Access only the six named column arrays; the underlying FITS table is mmap-backed.
+            columns = {n: data.field(names[n]) for n in IDENTITY_COLUMNS}
+            for i in range(len(data)):
+                yield Candidate(int(columns["RELEASE"][i]), int(columns["BRICKID"][i]),
+                                int(columns["OBJID"][i]), float(columns["RA"][i]),
+                                float(columns["DEC"][i]), _decode(columns["BRICKNAME"][i]))
+    except GateError:
+        raise
+    except Exception:
+        _fail(f"unreadable/corrupt FITS sweep: {path.name}")
 
 
 class SweepCandidateSource(CandidateSource):
