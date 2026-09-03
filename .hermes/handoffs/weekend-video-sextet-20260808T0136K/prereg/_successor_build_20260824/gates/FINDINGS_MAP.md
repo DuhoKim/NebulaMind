@@ -607,3 +607,14 @@ pins registry digest `315ef019…`, converter sha `001cd944…`, receipt_strict 
 `f50d8c1d…`, and receipt sha `a1ad1790…`.
 
 V134 → V135: the BS-2v fill under amendment discipline — `PRINCIPAL-20260903-1B2B`, human direction #58, 2026-09-03 11:23 KST via Blanc, verbatim "1b 2b" (2(b): DESIGN slots one at a time, BS-2v first as V135 under amendment discipline); registry digest `315ef019…`, converter sha `001cd944…`, receipt_strict sha `f50d8c1d…`, receipt sha `a1ad1790…`.
+
+## V135 → V136 (2026-09-03 — BS-2a filled under amendment discipline)
+
+The principal's ruling (`PRINCIPAL-20260903-1B2B`, human direction #58,
+verbatim "1b 2b") directs DESIGN slots to be filled one at a time; Hwao chose
+BS-2a next. The BS-2a fill pins quality gate `dfbd63d1…`, evidence-schema
+digest `9f3aca28…`, verifier digest `6e70a8ef…`, successor schema `BS2A-V1` in
+`run/receipt_strict.py` at `27e88520…`, and design-only candidate receipt
+`f0d9bcce…`. No catalogue row or image byte is evaluated.
+
+V135 → V136: the BS-2a DESIGN fill under amendment discipline — `PRINCIPAL-20260903-1B2B`, human direction #58, verbatim "1b 2b"; quality gate `dfbd63d1…`, evidence-schema digest `9f3aca28…`, verifier digest `6e70a8ef…`, receipt_strict sha `27e88520…`, schema `BS2A-V1`, candidate receipt sha `f0d9bcce…`; design identities only, no catalogue rows evaluated.

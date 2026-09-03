@@ -16,6 +16,13 @@ import hashlib
 import json
 
 SLOT_SCHEMA_SUCCESSOR = {
+    # V136 fills BS-2a as design identities only.  The later BS-2f execution
+    # receipt, not this envelope, carries the realised catalogue partition.
+    "BS-2a": (
+        "quality_gate_sha256", "flux_ivar_r_gt", "psfsize_r_lt",
+        "nobs_r_ge", "evidence_schema_digest", "verifier_digest",
+        "classification",
+    ),
     # Frozen V134 §7/§11 requires the BS-2v canonical authenticated receipt to
     # bind exactly these converter-produced fields.  Closure is recomputed by
     # gates/bs2v_void_converter.py rather than accepted as producer testimony.
@@ -68,7 +75,8 @@ def receipt_strict(slot, fields):
         raise ReceiptRefusal("RS04", repr(extra))
     body = {k: fields[k] for k in SLOT_SCHEMA_SUCCESSOR[slot]}
     body_sha = hashlib.sha256(_canonical(body)).hexdigest()
-    core = {"slot": slot, "schema": {"BS-2v": "BS2V-V1",
+    core = {"slot": slot, "schema": {"BS-2a": "BS2A-V1",
+                                      "BS-2v": "BS2V-V1",
                                       "BS-3g": "BS3G-V1"}[slot], "body": body,
             "body_sha256": body_sha}
     return {**core, "envelope_sha256": hashlib.sha256(_canonical(core)).hexdigest()}
@@ -99,6 +107,9 @@ def fixtures():
     passed += 1
     v = {k: (i + 1) for i, k in enumerate(SLOT_SCHEMA_SUCCESSOR["BS-2v"])}
     assert receipt_strict("BS-2v", v)["schema"] == "BS2V-V1"
+    passed += 1
+    a = {k: (i + 1) for i, k in enumerate(SLOT_SCHEMA_SUCCESSOR["BS-2a"])}
+    assert receipt_strict("BS-2a", a)["schema"] == "BS2A-V1"
     passed += 1
     return passed
 
