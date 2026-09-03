@@ -25,3 +25,5 @@ what closes it. Any future pane-typed ruling is filed here the same way until co
 **Confirmation (Blanc, chat channel, 2026-09-02 22:58 KST), Duho verbatim: "yes it was me."** All four pane-typed rulings of the day are now chat-confirmed.
 
 | 2026-09-03 ~01:10 KST | pane | "RELAY FROM DUHO: a — keep tier, carry the warrant flag" | packet 01:00 (warrant axis, entries 6, 23–27) | applied (reversible annotation; no tier moved) | CONFIRMED by Blanc relay 2026-09-03 10:52 KST (chat: "a, keep tier, carry the warrant flag") |
+
+| 2026-09-03 19:34 KST | pane | "as your rec" | K3 step-1 packet (options a/b/c; rec = a) | applied (reversible annotations on 9, 10, 11, 39, 52, 53, 59; no tier moved) | PENDING Blanc confirmation |

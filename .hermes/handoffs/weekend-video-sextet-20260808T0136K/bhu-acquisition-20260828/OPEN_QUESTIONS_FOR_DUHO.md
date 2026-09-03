@@ -5,7 +5,7 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## YOUR CALL 2026-09-03 19:32 KST — K3 step 1 result: the torsion-bounce spin closure is a convention, not a derived average (3 seats, 2 methods, unanimous)
+## RESOLVED 2026-09-03 19:34 KST — Duho "as your rec" = (a): rows 9, 10, 11 annotated, inheritance noted on 39, 52, 53, 59; tiers untouched; provenance pending Blanc. Was: YOUR CALL 2026-09-03 19:32 KST — K3 step 1 result: the torsion-bounce spin closure is a convention, not a derived average (3 seats, 2 methods, unanimous)
 
 **Result (`K3S1_RESULT_20260903.md`; check sheet `K3S1_CHECK_SHEET_20260903.md`):** for randomly oriented, uncorrelated fermions the
 average of the squared spin density is linear in n; neither printed closure (⅛(ℏcn)² in entries 9, 11, 10; ¾n² in entry 10) follows.
