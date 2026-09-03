@@ -250,6 +250,27 @@ class SealGateTests(unittest.TestCase):
         (self.bricks / "extra.fits.fz").write_bytes(b"extra")
         self.assert_refusal(self.run_fixture(), "extra_brick_file")
 
+    def test_receipted_known_extra_passes(self):
+        filename = f"legacysurvey-{self.names[0]}-invvar-r.fits.fz"
+        (self.bricks / filename).write_bytes(b"partial")
+        journal = self.root / "known-extras.jsonl"
+        journal.write_text(json.dumps({"url": f"synthetic://host/{filename}",
+                                       "verdict": "FETCH-FAILED"}) + "\n")
+        receipt = self.run_fixture(known_extras_journal=journal)
+        self.assertEqual("PASS", receipt["status"])
+        self.assertEqual(1, receipt["counts"]["known_extras_tolerated"])
+        self.assertEqual(1, receipt["counts"]["known_extras_journal_line_count"])
+        self.assertEqual(sha256_bytes(journal.read_bytes()),
+                         receipt["observed_digests"]["known_extras_journal_sha256"])
+
+    def test_unreceipted_extra_refuses_with_known_extras_journal(self):
+        known = f"legacysurvey-{self.names[0]}-invvar-r.fits.fz"
+        (self.bricks / known).write_bytes(b"partial")
+        (self.bricks / "unreceipted.fits.fz").write_bytes(b"extra")
+        journal = self.root / "known-extras.jsonl"
+        journal.write_text(json.dumps({"brick": self.names[0], "plane": "invvar-r"}) + "\n")
+        self.assert_refusal(self.run_fixture(known_extras_journal=journal), "extra_brick_file")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

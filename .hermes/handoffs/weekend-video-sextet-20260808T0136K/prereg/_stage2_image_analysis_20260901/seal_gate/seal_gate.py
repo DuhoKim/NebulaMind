@@ -12,6 +12,7 @@ import subprocess
 import sys
 import time
 import urllib.request
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
@@ -112,6 +113,35 @@ def _journal(path: Path) -> tuple[list[dict], bytes]:
     return records, raw
 
 
+def _known_extras(path: Path) -> tuple[set[str], bytes, int]:
+    raw = path.read_bytes()
+    records = []
+    for line in raw.splitlines():
+        try:
+            record = json.loads(line)
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            raise GateFailure("malformed_known_extras_journal") from exc
+        if not isinstance(record, dict):
+            raise GateFailure("malformed_known_extras_journal")
+        records.append(record)
+    filenames = set()
+    for record in records:
+        url = record.get("url")
+        if isinstance(url, str) and Path(urllib.parse.urlparse(url).path).name:
+            filename = Path(urllib.parse.urlparse(url).path).name
+            if not (filename.startswith("legacysurvey-") and
+                    filename.endswith("-invvar-r.fits.fz")):
+                raise GateFailure("malformed_known_extras_journal")
+            filenames.add(filename)
+            continue
+        brick, plane = record.get("brick"), record.get("plane")
+        if isinstance(brick, str) and brick and plane == "invvar-r":
+            filenames.add(f"legacysurvey-{brick}-{plane}.fits.fz")
+            continue
+        raise GateFailure("malformed_known_extras_journal")
+    return filenames, raw, len(records)
+
+
 def process_running() -> bool:
     proc = subprocess.run(["ps", "ax", "-o", "pid=,args="], capture_output=True, text=True, check=False)
     if proc.returncode != 0:
@@ -190,6 +220,7 @@ def _published_line(payload: bytes, wanted_filename: str) -> tuple[bytes, str]:
 
 def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, live_script: Path,
              pinned_copy: Path, seal_journal: Path, expected_manifest_count: int = 17947,
+             known_extras_journal: Path | None = None,
              expected_blob_id: str = EXPECTED_BLOB_ID,
              fetch: bool = False, fetcher: Callable[[str, float], bytes] | None = None,
              timeout: float = 30.0, delay: float = 0.0,
@@ -199,7 +230,8 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
     timestamp = timestamp or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     counts = {"manifest_count": 0, "plane_file_count": 0, "files_checked": 0, "mismatches": 0,
               "receipt_count": 0, "receipt_count_by_plane": {}, "published_checksum_disagreements": 0,
-              "published_checksum_refetch_complete": False}
+              "published_checksum_refetch_complete": False, "known_extras_tolerated": 0,
+              "known_extras_journal_line_count": 0}
     observed = {}
     expected = {"brick_file_sha256": "fresh NERSC published SHA-256",
                 "receipt_sha256_values": "fresh NERSC published SHA-256",
@@ -248,8 +280,16 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
         fetcher = fetcher or network_fetcher
         wanted_files = {filename for _, filenames in entries for filename in filenames.values()}
         actual_files = {p.name for p in bricks_dir.iterdir() if p.is_file()}
-        if actual_files - wanted_files:
-            counts["mismatches"] += len(actual_files - wanted_files)
+        known_extras = set()
+        if known_extras_journal is not None:
+            known_extras, known_raw, known_line_count = _known_extras(known_extras_journal)
+            observed["known_extras_journal_sha256"] = sha256_bytes(known_raw)
+            counts["known_extras_journal_line_count"] = known_line_count
+        tolerated = (actual_files - wanted_files) & known_extras
+        counts["known_extras_tolerated"] = len(tolerated)
+        unrecognized_extras = actual_files - wanted_files - known_extras
+        if unrecognized_extras:
+            counts["mismatches"] += len(unrecognized_extras)
             raise GateFailure("extra_brick_file")
         bound_lines = []
         for position, (brick, filenames) in enumerate(entries):
@@ -299,6 +339,7 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
         "operation": "tier-c-freeze-time-seal-gate",
         "paths": {"manifest": str(manifest), "journals": {k: str(v) for k, v in sorted(journals.items())},
                   "seal_journal": str(seal_journal), "bricks_dir": str(bricks_dir),
+                  "known_extras_journal": (str(known_extras_journal) if known_extras_journal else None),
                   "live_acquisition_script": str(live_script), "pinned_acquisition_copy": str(pinned_copy)},
         "expected_digests": expected,
         "observed_digests": observed,
@@ -326,6 +367,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--live-script", type=Path, required=True)
     parser.add_argument("--pinned-copy", type=Path, required=True)
     parser.add_argument("--seal-journal", type=Path, required=True)
+    parser.add_argument("--known-extras-journal", type=Path)
     parser.add_argument("--expected-manifest-count", type=int, default=17947)
     parser.add_argument("--expected-blob-id", default=EXPECTED_BLOB_ID)
     parser.add_argument("--timeout", type=float, default=30.0)
@@ -338,6 +380,7 @@ def main(argv: list[str] | None = None) -> int:
     receipt = run_gate(manifest=args.manifest, journals=journals, bricks_dir=args.bricks_dir,
                        live_script=args.live_script, pinned_copy=args.pinned_copy,
                        seal_journal=args.seal_journal,
+                       known_extras_journal=args.known_extras_journal,
                        expected_manifest_count=args.expected_manifest_count, fetch=args.fetch,
                        expected_blob_id=args.expected_blob_id,
                        timeout=args.timeout, delay=args.delay)
