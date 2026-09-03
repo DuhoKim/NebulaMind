@@ -1,0 +1,37 @@
+K2 THIRD SEAT — adjudicate two split cells of the junction-classification table. Two blind seats computed the full (placement × k × Λ) table; they agree on entry 56's cell (B1, k=0, Λ=0: J_SMOOTH_EXPANDING), on B2 at k=0 (J_NONE, vacuous) and on controls C1–C4. They split on:
+(S1) PATHRIA'S CELL (B2, k=+1, 0≤Λ≤Λ_c). Seat codex: J_SHELL_UNPHYSICAL — reading B2 as the null junction at the horizon at maximum expansion (entry 5's construction): pressure-only null shell, WEC passes, DEC fails. Seat claude: J_SMOOTH_EXPANDING on the comoving surface χ*=π/2 followed through time (smooth, M=C/2, exterior side T=const with F(R_b)=−ȧ², R_max=R_s derived, the expanding phase inside the white-hole region, recollapse; Prop. 2 confirmed), while also finding the null-horizon reading J_SHELL_UNPHYSICAL.
+(S2) B3, GENERAL NON-COMOVING TIMELIKE BOUNDARY (both k). Seat codex: J_UNDETERMINED (S_ab and the energy conditions depend on the free trajectory). Seat claude: a theorem — [K^θ_θ]=0 ⇔ M equals the Misner–Sharp dust mass, and Birkhoff constancy of M forces a no-shell boundary to be comoving, so every no-shell B3 realization is a B1 one (J_SMOOTH_EXPANDING); shelled B3 realizations have trajectory-dependent S_ab.
+YOUR TASK: read the frozen prereg (the target file), especially §1 (placement definitions B1/B2/B3), §2 (the per-cell question: (i) no shell, or (ii) a shell whose S_ab meets WEC and DEC) and §3 (classes). Then read K2_codex_RESULT.md, K2_claude_RESULT.md, and run both scripts (python3 K2_codex_junction.py; python3 K2_claude_junction.py — sympy is installed) to confirm each seat's printed claims. Decide, for S1 and S2, the class the PREREG WORDING assigns, and state separately what the physics adds (e.g., whether claude's comoving χ*=π/2 result belongs to B1 at that χ* and should be recorded as an extra row). If the seats agree on the facts and differ only on the placement boundary, say so explicitly and apply the prereg definition rather than taste. Report format after the ACCESS_SHA line: line 2 S1=<class> ; line 3 S2=<class> ; line 4 FACTS_AGREE=<yes|no> ; then ≤250 words with the equation(s) you checked and any printed value that did not hold. Change no file.
+
+=== PREREG §1–§3 (verbatim) ===
+## 1. Objects, every symbol bound
+- **Interior:** FRW dust, ds² = −dτ² + a(τ)²[dχ² + S_k(χ)² dΩ²], k ∈ {+1, 0} (the metric form is a textbook object; its receipt is pinned at step 1); ρ(τ) = ρ₀ a⁻³ (entry 56 L141: "matter-dominated
+  universe with ρ = ρ₀a⁻³"). Λ ≥ 0 allowed as a parameter (entry 5's range 0 ≤ Λ ≤ Λ_c, synthesis L117).
+- **Exterior:** Schwarzschild–de Sitter with the same Λ: F(R) = 1 − 2GM/R − ΛR²/3 (textbook form, receipt pinned at step 1; Λ=0 gives Schwarzschild, entry 56's case).
+- **Boundary Σ:** three candidate placements, all computed. (B1) comoving timelike surface χ = χ* = const (entry 56's top-hat
+  edge; entry 22's "comoving no-shell" matching surface ψ_b). (B2) the maximum-expansion surface χ = π/2 of the k=+1 interior
+  identified with the exterior horizon F(R)=0 — Pathria's identification, entry 5's null junction. (B3) a general timelike
+  surface χ = χ*(τ) (entry 56 L150–153 needs χ* a function of time to keep M_T constant).
+- **Junction formalism:** Israel (timelike/spacelike) and Barrabès–Israel (null), as entry 5 uses (source L49–55). Surface
+  stress-energy S_ab from the jump [K_ab]; "no shell" ⇔ [K_ab] = 0 with the induced metrics matching.
+- **Mass relation:** the Pathria dust-mass relation as stated in entry 1's source (to be quoted with a line receipt at step 1;
+  the prereg fixes only that the exterior M equals the interior dust mass inside Σ).
+
+## 2. The question, exactly
+For each placement B1–B3, k ∈ {+1, 0}, Λ ≥ 0: does an EXPANDING (ȧ > 0 on Σ) solution exist with (i) no shell, or (ii) a
+shell whose S_ab satisfies the weak and dominant energy conditions? Report the full classification, not a single case.
+
+## 3. Outcome classes — declared now
+- **J_SMOOTH_EXPANDING:** an expanding no-shell junction exists in some (placement, k, Λ) cell. If it is the comoving
+  Oppenheimer–Snyder-type matching at B1, say so explicitly and state whether it lies inside Easson's Prop. 2 domain (then it
+  recollapses and Prop. 2 is confirmed, not refuted).
+- **J_SHELL_EXPANDING:** expanding realizations exist only with a shell; report S_ab, its sign, and which energy conditions it
+  meets. A shell violating the dominant energy condition in every expanding cell is reported as J_SHELL_UNPHYSICAL.
+- **J_NONE:** no expanding realization in any cell, smooth or shelled with an energy-condition-respecting S_ab — a theorem
+  with stated hypotheses (this owns what entries 4, 5, 22 leave open).
+- **J_UNDETERMINED:** the classification depends on a shell equation of state the energy conditions do not fix → INCONCLUSIVE
+  (state the residual freedom exactly).
+Each cell of the (placement × k × Λ) table gets one class; the headline is the class of the cell entry 56 actually uses (B1,
+k=0, Λ=0) and of Pathria's cell (B2, k=+1, 0≤Λ≤Λ_c).
+
+## 4.
