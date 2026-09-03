@@ -1,0 +1,11 @@
+1. CHOICE: A. Accept the failure and keep BS-3g `DESIGN/UNFILLED`, with BS-6 blocked. Scientifically, BS-3g asked a worst-case invariance question over a prospectively fixed range and draw ensemble, not whether flips were frequent or whether the fitted mean gradient differed from zero. The allowed endpoint γ = −0.10 changes draw 94 from `INCONCLUSIVE` to `REPRODUCED-LONGO`; that counterexample falsifies invariance on the evaluated grid. Its rarity (1/5,049) and endpoint location characterize the fragility but cannot negate it. D is worthwhile only as a separately preregistered diagnosis for a successor.
+
+2. OBJECTION: A hostile referee’s strongest objection is that one stochastic flip at the extreme, about 2.09σ from zero, exposes an over-brittle categorical gate rather than scientifically important non-robustness. Answer: that may be exactly the design lesson, but it does not rescue this gate. The range, 99 draws, grid, production verdict, and worst-case reduction were fixed precisely to make such a boundary crossing count. Changing their loss function after locating the crossing would condition the acceptance rule on the adverse result. A prospective independent design may adopt a scientifically justified tolerance, but it cannot turn this receipt into `HELD`.
+
+3. DISALLOWED: B and C are post-hoc as cures for BS-3g; D is allowed only as non-curative follow-up. The controlling text says: “A flip found anywhere is DECISIVE”; “ONLY `invariance_outcome = HELD` CAN FILL THIS SLOT AND DISCHARGE THE BS-6 EDGE”; and “a verifier-valid `FAILED` receipt is a TRUE RECORD THAT BLOCKS.” It also precludes mapping-shopping: “if the worst case over draws also crosses a verdict boundary at a γ within the bound, that is EVIDENCE ABOUT THE DESIGN … It is not a cue to look for a fourth mapping.” Thus narrowing Γ/adding a tolerated-flip rule (B), or altering the statistic/production decision (C), cannot amend this result under V137-H. C additionally conflicts with the unchanged P0 freeze.
+
+4. ERRORS: NONE. I confirmed the receipt’s nested `body` fields, 99×51 = 5,049, Δγ = 0.004, |−0.10|/0.04790176316993866 = 2.0876, the `FAILED` token, and file SHA-256 `19ffcbab…`. The flip and calibration-margin values are replay diagnostics, not BS3G-V1 receipt fields; the packet labels them as diagnostics.
+
+SEAT: CODEX
+CHOICE: A
+CONFIDENCE: high
