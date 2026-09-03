@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "crossmatch: 2-worker override"
+    "topic": "BS-3g: headroom variant V137-H (a\u2080 0.95, \u0393 0.10)"
   },
   "humanFeedback": {
     "captured": true
@@ -822,6 +822,18 @@
       "feedbackText": "override for a second worker",
       "changed": {
         "summary": "Implement a 2-worker variant of the pinned completeness tool with the same guarantees (hash-verified checkpoint, one serialised writer, same chunking, truncation checks, per-chunk receipts); referee via nm_referee_dispatch.sh to PINNABLE; switch over resumably at a checkpoint (no chunk redone or skipped); back off to 1 worker on any 429/5xx/throttle. If the referee round would take longer than the hour it saves, stop. Report the new ETA. No pixel."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "as their recs",
+      "changed": {
+        "summary": "BS-3g headroom memo option (b) = Hwao's recommendation: V137-H \u2014 fixture calibration accuracy a\u2080 = 0.95 (a BS-3g design parameter supplied by the unpinned producer; the P0-signed fixture generator untouched), \u0393 = 0.10, \u0394\u03b3 = 0.004 at n_steps 50, nothing else; fresh 99\u00d751 sweep \u2192 verifier-valid receipt; dispatcher referee to SIGNABLE; then Duho's one sentence. The FAILED receipt on the 0.88 fixture stays on the record. Nothing signed/pinned touched; blind untouched."
       }
     }
   ]
