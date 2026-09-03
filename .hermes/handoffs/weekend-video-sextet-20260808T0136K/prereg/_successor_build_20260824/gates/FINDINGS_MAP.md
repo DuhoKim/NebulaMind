@@ -620,3 +620,16 @@ digest `9f3aca28…`, verifier digest `6e70a8ef…`, successor schema `BS2A-V1` 
 V135 → V136: the BS-2a DESIGN fill under amendment discipline — `PRINCIPAL-20260903-1B2B`, human direction #58, verbatim "1b 2b"; quality gate `dfbd63d1…`, evidence-schema digest `9f3aca28…`, verifier digest `6e70a8ef…`, receipt_strict sha `27e88520…`, schema `BS2A-V1`, candidate receipt sha `f0d9bcce…`; design identities only, no catalogue rows evaluated.
 
 R2 (per-entry schema digests, 2026-09-03 13:5x KST): `run/receipt_strict.py` now carries `schema_entry_digest` / `assert_entries_preserved`; entry digests BS2V `c5931c40…`, BS2A `e3c08ea6…`, BS3G `eb8589f5…` recorded in §7/§11; file sha `27e88520…` → the post-R2 sha is recorded in V136_BS2A_FILL_RECORD_20260903.md. R1: BS-2a blocks BS-2f only.
+
+## V136 → V137 (2026-09-03 — BS-3g range narrowed; fill pending)
+
+The principal ruled option (a) on `BS3G_RANGE_VS_FLOOR_DECISION_20260903.md`
+at 2026-09-03 16:52 KST via Blanc (human direction #66): re-ratify Γ at
+0.01, retain `n_steps = 50` and every other draw mechanic. The referee found
+`a_lb = 0.8534` at ±0.01 and `0.8468` at ±0.02 on the frozen fixtures. The
+verifier-valid receipt sha `a8277a19…` remains the true FAILED record that
+blocked under the historical ±0.25 endpoint; producer `618767cd…` and verifier
+`09b0acaa…` are pinned. V137 is FILL-PENDING-RECEIPT until a new verifier-valid
+receipt under Γ = 0.01 exists; only HELD fills BS-3g.
+
+V136 → V137: principal ruling (a), human direction #66, 2026-09-03 16:52 KST via Blanc — Γ = 0.01, n_steps = 50, derived Δγ = 0.0004; FAILED receipt `a8277a19…` recorded as blocking; tooling pins `618767cd…` / `09b0acaa…`; NEW receipt required, no fill claimed, no pixel.
