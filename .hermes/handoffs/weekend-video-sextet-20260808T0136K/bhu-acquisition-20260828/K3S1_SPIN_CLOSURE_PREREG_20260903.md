@@ -1,8 +1,7 @@
 # K3 step 1 pre-registration — one spin average or two? Deriving the unpolarized Dirac-spin closure behind the torsion-bounce chain (entries 9, 10, 11; propagates to 39, 52, 53, 59)
 
 **Tori, 2026-09-03 19:18 KST. Ordered by Duho (verbatim "k3", relay via Blanc 19:17 KST): K3 FIRST STEP ONLY; the full transfer function (n_s, r)
-is NOT ordered. Written and committed BEFORE any derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` (ACCESS_SHA proof
-or no verdict) before filing. Results ship with a one-page check sheet and an independent second route. Paper HOLD; nothing
+is NOT ordered. Written and committed BEFORE any derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` (agy, ACCESS PROVEN, `K3S1_PREREG_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, four wording repairs applied 2026-09-03 19:22 KST). Results ship with a one-page check sheet and an independent second route. Paper HOLD; nothing
 outward; tiers untouched; stamps are Duho's.**
 
 ## 0. Why this exists
@@ -53,19 +52,19 @@ context only.
 
 ## 5. Controls (must pass before any class is filed)
 - **C1 single particle:** the script must return s_i s^i = ¾ (units ℏ = 1) for one Dirac particle at rest with the stated
-  normalisation — the spin-½ Casimir s(s+1). Failure = the spinor machinery is wrong; stop; no class.
+  normalisation — the spin-½ Casimir s(s+1) — the expected value is a textbook constant, pinned at step 1 by a receipted derivation from the Pauli matrices in the seat's own script. Failure = the spinor machinery is wrong; stop; no class.
 - **C2 fully polarized limit:** replacing the orientation average by all spins along +z must return the polarized macroscopic
-  closure s_z = n/2 (ℏ = 1) and s_i s^i = n²/4 with n² scaling. Failure = stop; no class.
+  closure s_z = n/2 (ℏ = 1) and s_i s^i = n²/4 with n² scaling — both expected values pinned at step 1 by a receipted derivation (all spins along +z, each contributing the step-1 single-particle value). Failure = stop; no class.
 - **C3 units:** restoring ℏ and c must reproduce the (ℏcn)² form of entries 9 and 11 for the fluid object. Failure = stop.
 - **C4 deletion probe:** removing the orientation average (i.e., running C2's ensemble through the unpolarized pipeline) must change
-  the class of at least one object; the exact expected change is stated by the seat before running it.
+  the class of at least one object; the exact expected change is stated by the seat before running it. Failure = stop; no class.
 
 ## 6. Seat plan, blind double, cost
 - Route 1: codex and the Claude seat, blind, each its own sympy gamma-matrix script (`K3S1_<seat>_spin.py`) and result
   (`K3S1_<seat>_RESULT.md`, written only when complete). Third seat agy via `nm_referee_dispatch.sh` on any split. Kimi
   (`--provider moonshot`, agent.log checked for no fallback line) audits the pin/check sheet arithmetic.
 - Route 2 (Duho's "both" standard, dispatched after route 1 lands): a fresh seat, blind to route 1, by the DENSITY-MATRIX route —
-  the unpolarized single-particle state ρ = ½·1 in spin space, Tr(ρ Σ_i Σ_j) and the fluid sum — no explicit spinor components.
+  the unpolarized single-particle state ρ = ½·1 in spin space (the maximally mixed spin-½ state, pinned at step 1 by a receipted derivation: equal weights on two orthogonal spin states), Tr(ρ Σ_i Σ_j) and the fluid sum — no explicit spinor components.
 - Cost (planning estimate, not a corpus number): two to four seat-days; no data; no compute beyond a laptop.
 
 ## 7. What would make it INCONCLUSIVE

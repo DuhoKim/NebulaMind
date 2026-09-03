@@ -5,6 +5,16 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-03 19:22 KST — K3 step-1 preregistration filed (no decision needed; your "k3" of 19:17 ordered it)
+
+`K3S1_SPIN_CLOSURE_PREREG_20260903.md`: does ONE unpolarized Dirac-spin average give the spin-fluid closure s² = ⅛(ℏcn)² (entries 9, 11;
+entry 10 line 121) and/or the pseudovector average ⟨s²⟩ = ¾ n² (entry 10 line 113) — a factor of six apart, both used by entry 10 on
+one page? Classes: 1/8 derived; 3/4 derived; both consistent (different objects); CONFLICT (a proof they contradict); scaling fails
+(the n² law is a convention); prescription-dependent (inconclusive). Two blind seats by gamma-matrix algebra, then a fresh
+density-matrix second route and a one-page check sheet. Gate: sound with four wording repairs, applied. Two to four seat-days, no
+data. Say "hold K3" to stop it.
+
+---
 ## OPEN QUESTION (on record, NOT ordered) 2026-09-03 19:06:31 KST — which parameters does Smolin's selection argument actually act on?
 
 Stage 1 varied the primordial amplitude and the neutron-star mass cap. Duho's reading (19:03): the logic is too weak to study
