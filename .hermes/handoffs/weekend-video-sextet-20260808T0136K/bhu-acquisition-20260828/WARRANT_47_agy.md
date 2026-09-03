@@ -1,0 +1,5 @@
+ACCESS_SHA=860c319d2543dfc518ce71ed4f9f9124e621d79aae2a316ddeddda8251c71683
+TOKEN=W_ROUTE_CONNECTED
+SIDES_WITH=codex
+I verified all cited receipts from both Seat 1 and Seat 2 and found that they hold accurately against the provided text at the cited line numbers. The two seats agree on the facts: the paper explicitly outlines a qualitative causal route from the theory to the observable, as seen in lines 348–350 ("When black holes and wormholes evaporate, a large amount of entropy is generated, which consequently reduces the baryon number to entropy ratio"). Both seats acknowledge the text does not provide a quantitative yield or inequality. They differ only on the token boundary. Applying the definitional rule that an "amplitude-free" derived link is sufficient, Seat 1 correctly concludes that outlining this explicit physical mechanism constitutes a connected route. Seat 2 inappropriately demands a mathematical "factor" or "inequality", violating the rule that amplitude-free links count.
+contested: no — the seats agree on the facts and differ only on the token boundary; per the definitional rule, an explicit qualitative connection is sufficient.

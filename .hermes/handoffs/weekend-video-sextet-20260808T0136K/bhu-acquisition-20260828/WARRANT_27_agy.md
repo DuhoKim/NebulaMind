@@ -1,0 +1,5 @@
+ACCESS_SHA=c1e91c0a88a679f4e7ffd118506341efe1cc9c85868f918f9686f63c2031f453
+TOKEN=W_DIRECTION_ASSUMED
+SIDES_WITH=codex
+I verified all cited receipts from both seats, and found that all of them hold. Both seats correctly identify and agree on the central facts: the paper derives the finite cloud radius but lacks a perturbation spectrum derivation to mathematically link this geometry to a hard spectral cutoff. Instead, the paper asserts the cutoff form (L295: "the spectrum of incoming fluctuations have a cutoff"). The text explicitly acknowledges that further work is needed to "estimate the perturbations" (L333-339). Because the two seats agree on the facts (the absence of a derived spectrum) and differ only on the token boundary, I explicitly note this and apply the definitional rule. Since the hard spectral cutoff is an ansatz rather than a formally derived consequence of the model, the direction of the claim is a premise. Therefore, the W_DIRECTION_ASSUMED token applies.
+contested: yes — the seats agree on the facts and differ only on the token boundary; the spectral cutoff is an ansatz.

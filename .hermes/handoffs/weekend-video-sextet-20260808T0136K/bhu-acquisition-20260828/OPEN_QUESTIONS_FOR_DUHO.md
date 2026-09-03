@@ -5,6 +5,13 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-03 14:10 KST — entry 22 (Easson 2026, THEORETICAL-OBSTRUCTION): proof of the flat/open limb is CITED, not owned
+
+**Finding (blind double + third seat, all three agree on the facts):** the closed-daughter limb (Proposition 2) is proved in the paper; the flat/open limb rests on a cited Burwig–Easson theorem (source line 648 "For flat and open daughters, the obstruction is more general…"). Prereg §3: `W_PROOF_CITED` = the ownership-of-proof rule is not met → packet.
+**Options:** (a) keep THEORETICAL-OBSTRUCTION, narrow the stamped domain to the closed-daughter limb (the owned proof), carry `W_PROOF_CITED` as the flag on the wider claim [recommended — mirrors the entry-4 narrowing]; (b) keep tier and domain as stamped, flag only; (c) drop to CONSISTENCY-ONLY.
+Nothing changes until you rule; the warrant cell is filed either way.
+
+---
 
 ## ⏳ RESOLVED 2026-09-03 (01:00 packet) — Duho: "a — keep tier, carry the warrant flag" (pane relay, provenance row pending Blanc confirmation). Was: YOUR CALL — the warrant audit finds the 60° cutoff's DIRECTION is assumed, not derived (entries 23–27): does your "derived direction only" rule reach the warrant axis?
 

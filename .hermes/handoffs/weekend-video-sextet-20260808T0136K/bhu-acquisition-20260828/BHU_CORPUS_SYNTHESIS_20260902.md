@@ -196,3 +196,7 @@ Bibliography §0 (tally, standing table, tier scheme) · `PATHRIA_STANDING_RECON
 `PROGRAM_C_FLUX_RESULT_20260902.md`, `flux_monopole_check.py` · `INTERP_RULING_23_27_20260902.md` and
 the four `INTERP_VOTE_*.md` · `ENTRY39_RECONCILIATION_20260901.md` · `RQ_D_RECONCILIATION_20260831.md`
 (entry 22 vs 25/26) · `HARNESS_DEFECT_REGISTER.md` · `PROVENANCE_DIRECT_CHAT_20260902.md`.
+
+## 11. Warrant column, blind-doubled (2026-09-03 14:10 KST)
+
+The corpus-wide warrant column (§0 of the record; `WARRANT_TABLE_20260903.md`) was blind-doubled on every text cell and third-seated on 7 factual splits. Net: 37 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 28 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 42 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 20 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 24 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`; 36 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 43 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 49 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 14 `W_CONSTRUCTION_ASSERTED`→`W_MIXED`; 22 `W_PROOF_OWNED`→`W_PROOF_CITED`; 26 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`. Reading for the synthesis: the calibrated rows keep two explicit (1, 44 per the third seat if so), one borrowed-with-challenge (31), one borrowed (7), one underived (51); the directional bin now derives its sign in 24, 54 (and 26 per its third seat) and assumes it in 6, 23, 25, 27 under Duho's (a) ruling; the obstructions split owned (5, 48) / cited (22 → packet) / contested (4). Nothing here moves a tier.

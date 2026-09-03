@@ -1,0 +1,5 @@
+ACCESS_SHA=e4d5220d202350cba0b9300bdd97bf1b99c922f991535cd3222840dffaa1a095
+TOKEN=W_MIXED
+SIDES_WITH=claude
+I verified codex's receipts for the de Sitter ansatz (L233) and derivations (L270-342), though its line range for the Israel thin-shell method [9] (L270-294) is misplaced, as it is named at L170-171 and L304-305. I verified claude's receipts, confirming all quoted fragments exist, though a few citations were off by one line (e.g., "we can only guess..." is at L578-579, not L579-580; "inflationary models" is at L581, not L582). The two seats explicitly agree on the facts: the paper relies on an asserted ansatz for the black hole interior (L233: "We suppose (our second main hypothesis)") and its cosmological link (L578-579: "we can only guess about the fate"), while deriving the intermediate background (L320: "these conditions lead to the following relations"). Because the two seats agree on the facts and differ only on the token boundary, I apply the precedent's definitional rule: "derived background + asserted cosmological link" is W_MIXED by definition.
+contested: no — the two seats agree on the facts and differ only on the token boundary.
