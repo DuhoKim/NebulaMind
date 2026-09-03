@@ -1616,5 +1616,5 @@ Every later `receipt_strict.py` version MUST preserve every earlier successor-la
   recomputation exactly; certifies the artifact, not the process, per §6.3.
 - **`VOID` conversion — DISCHARGED 2026-09-03:** The BS-2v converter, successor-layer strict schema, authenticated receipt, independent registry comparison, uniqueness/count closure, and adversarial fixtures are delivered at the pins recorded above. This discharged pre-BS-6 build item changes no other dependency.
 
-SIGNATURE UTC: 
-DUHO SIGNATURE: 
+SIGNATURE UTC: 2026-09-03T13:20:00Z
+DUHO SIGNATURE: 700fd0d29d7f06b9e938b7e48bac729080cc9661bf00f08bbd24a2ad467fd190 at 2026-09-03T13:20:00Z (chat signature via Blanc relay; V136 preamble mechanism carried into V137-H)
