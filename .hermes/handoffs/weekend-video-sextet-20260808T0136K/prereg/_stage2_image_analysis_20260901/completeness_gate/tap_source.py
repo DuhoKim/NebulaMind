@@ -13,6 +13,7 @@ import os
 import random
 import re
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -215,21 +216,26 @@ class HttpClient:
                  rng: Callable[[], float] = random.random,
                  max_outage_minutes: float = 180,
                  capture_dir: Path | None = None, run_log: Path | None = None,
-                 monotonic: Callable[[], float] = time.monotonic):
+                 monotonic: Callable[[], float] = time.monotonic,
+                 on_retryable: Callable[[Mapping[str, object]], None] | None = None):
         self.sleep, self.rng = sleep, rng
         self.max_outage_seconds = max_outage_minutes * 60
         self.capture_dir = capture_dir
         self.run_log = run_log
         self.monotonic = monotonic
+        self.on_retryable = on_retryable
         self._capture_n = 0
+        self._capture_lock = threading.Lock()
 
     def _capture(self, *, method: str, url: str, params: Mapping[str, object] | None,
                  status: int, reason: str, version: object,
                  headers: Mapping[str, str], body: bytes, resolved_url: str) -> None:
         if self.capture_dir is None:
             return
-        self.capture_dir.mkdir(parents=True, exist_ok=True)
-        self._capture_n += 1
+        with self._capture_lock:
+            self.capture_dir.mkdir(parents=True, exist_ok=True)
+            self._capture_n += 1
+            capture_n = self._capture_n
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
         safe_params = {str(k): ("<binary upload omitted>" if str(k).upper() == "UPLOAD_BODY" else str(v))
                        for k, v in (params or {}).items()
@@ -245,7 +251,7 @@ class HttpClient:
                 "body_bytes_observed": len(body), "body_truncated_for_capture": len(body) > 4096,
             },
         }
-        path = self.capture_dir / f"{stamp}_{self._capture_n:04d}.json"
+        path = self.capture_dir / f"{stamp}_{capture_n:04d}.json"
         path.write_text(json.dumps(record, sort_keys=True, indent=2) + "\n", encoding="utf-8")
 
     def request(self, url: str, *, method: str = "GET", data: bytes | None = None,
@@ -272,6 +278,8 @@ class HttpClient:
                               body=raw, resolved_url=exc.geturl())
                 if exc.code != 429 and not 500 <= exc.code < 600:
                     return raw, dict(exc.headers), exc.geturl(), exc.code
+                if self.on_retryable is not None:
+                    self.on_retryable({"http_status": exc.code})
                 retry = exc.headers.get("Retry-After")
                 delay = None
                 if retry:
@@ -292,6 +300,8 @@ class HttpClient:
                 self.sleep(delay)
                 attempt += 1
             except (urllib.error.URLError, TimeoutError, OSError) as exc:
+                if self.on_retryable is not None:
+                    self.on_retryable({"error": type(exc).__name__})
                 delay = min(60.0, (2 ** attempt) + self.rng())
                 failure_started = self.monotonic() if failure_started is None else failure_started
                 elapsed = self.monotonic() - failure_started
@@ -443,11 +453,12 @@ def probe(base_url: str, output_dir: Path, client: HttpClient | None = None) -> 
 
 
 class TAPCandidateSource(CandidateSource):
-    """One-worker synchronous, no-upload TAP runner with immutable artifacts."""
+    """Synchronous, no-upload TAP runner with immutable artifacts."""
     def __init__(self, sync_url: str, relation: str, columns: Iterable[str],
                  artifacts: Path, *, client: HttpClient | None = None,
                  poll_seconds: float = POLL_SECONDS,
-                 create_interval: float = CREATE_INTERVAL_SECONDS):
+                 create_interval: float = CREATE_INTERVAL_SECONDS,
+                 before_request: Callable[[], None] | None = None):
         self.sync_url, self.relation = sync_url.rstrip("/"), relation
         self.columns = {c.lower() for c in columns}
         self.artifacts = artifacts
@@ -457,12 +468,14 @@ class TAPCandidateSource(CandidateSource):
         if self.client.run_log is None:
             self.client.run_log = artifacts / "run.log.jsonl"
         self.poll_seconds, self.create_interval = poll_seconds, create_interval
+        self.before_request = before_request
         self._last_creation = 0.0
         self._results: dict[int, list[Candidate]] = {}
 
     @property
     def provenance(self) -> Mapping[str, object]:
-        entries = self._checkpoint_entries()
+        # Checkpoint admission order may interleave; provenance is manifest order.
+        entries = sorted(self._checkpoint_entries(), key=lambda entry: entry["chunk_id"])
         return {"backend": "NOIRLab-Astro-Data-Lab-sync-TAP-q3c",
                 "release_identity": self.relation,
                 "enumeration": "complete-all-candidates",
@@ -520,6 +533,13 @@ class TAPCandidateSource(CandidateSource):
             require_uncapped(status, chunk_id)
             self._admit_rows(rows, records)
             return entry | {"resumed": True}
+        metadata = self.fetch_chunk(chunk_id, records)
+        append_jsonl(self.artifacts / "checkpoint.jsonl", metadata)
+        return metadata
+
+    def fetch_chunk(self, chunk_id: int, records: Sequence[GZRecord]) -> dict:
+        """Fetch and validate a chunk, leaving durable admission to one writer."""
+        self.artifacts.mkdir(parents=True, exist_ok=True)
         expected = list(range(records[0].input_index, records[0].input_index + len(records))) if records else []
         if [r.input_index for r in records] != expected:
             _fail("chunk input_index sequence is not contiguous")
@@ -528,9 +548,12 @@ class TAPCandidateSource(CandidateSource):
         attempt_dir.mkdir()
         query = make_sync_adql(records, self.relation, "ls_id" in self.columns)
         (attempt_dir / "query.adql").write_text(query + "\n", encoding="utf-8")
-        wait = self.create_interval - (time.monotonic() - self._last_creation)
-        if wait > 0:
-            self.client.sleep(wait)
+        if self.before_request is not None:
+            self.before_request()
+        else:
+            wait = self.create_interval - (time.monotonic() - self._last_creation)
+            if wait > 0:
+                self.client.sleep(wait)
         fields = {"REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "votable",
                   "QUERY": query, "MAXREC": "10000"}
         body = urllib.parse.urlencode(fields).encode()
@@ -556,7 +579,6 @@ class TAPCandidateSource(CandidateSource):
                     "wall_s": time.monotonic() - started,
                     "raw_result": f"{attempt}/result.vot", "raw_sha256": sha256_bytes(raw)}
         (attempt_dir / "metadata.json").write_text(json.dumps(metadata, sort_keys=True, indent=2) + "\n")
-        append_jsonl(self.artifacts / "checkpoint.jsonl", metadata)
         return metadata
 
     def candidates(self, record: GZRecord, radius_arcsec: float) -> Sequence[Candidate]:
