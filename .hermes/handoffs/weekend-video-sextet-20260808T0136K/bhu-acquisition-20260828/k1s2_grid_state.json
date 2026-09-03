@@ -7,18 +7,24 @@
    "done_marker": "_tmp_k1s2_codex/runs/DONE",
    "batches": 72,
    "concurrency": 10,
-   "launched": true
+   "launched": true,
+   "relaunched_kst": "2026-09-03 18:06 KST",
+   "jobs": "72 BSE + C3/C4 per its driver",
+   "note": "seed blocks patched, see K1S2_SEED_AMENDMENT_20260903.md"
   },
   "claude": {
    "runs_dir": "_tmp_k1s2_claude/runs",
    "done_marker": "_tmp_k1s2_claude/runs/DONE",
    "batches": 72,
    "concurrency": 10,
-   "launched": false
+   "launched": true,
+   "driver_pid": 16480,
+   "jobs": 117,
+   "launched_kst": "2026-09-03 17:59"
   }
  },
  "rate": "~6 CPU-h per 1e6 binaries (smoke test 214 CPU s per 1e4)",
- "expected_wall_h_per_seat": "~43 (72 batches / 10 concurrent x ~6 h)",
+ "expected_wall_h_per_seat": "~56 (Claude estimate: 117 jobs incl. SSE, 10 concurrent)",
  "abandonment": "a seat with no new HDF5 file for 8 h while its driver PID is alive is ABANDONED and reported; a dead driver PID without DONE is FAILED and reported",
  "next": "when DONE exists for a seat, dispatch that seat's RESULT step (K1S2_<seat>_RESULT.md via its post.py); reconcile when both; third seat via wrapper on a split"
 }
