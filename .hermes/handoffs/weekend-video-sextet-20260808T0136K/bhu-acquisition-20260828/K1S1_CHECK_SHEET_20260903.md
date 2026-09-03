@@ -30,10 +30,12 @@ result `K1S1_RESULT_20260903.md`. Sources under `bhu-reading-20260823/sources/`.
    ∂N_BH/∂M_NS,max = −5.38×10⁵ Mpc⁻³ M☉⁻¹ (delayed), −2.49×10⁵ (rapid). Signs identical at all 16 corners (A_s: +2.4×10⁴ … +7.7×10⁵;
    M_NS: −8.4×10³ … −1.65×10⁶). agy's independent model: same signs everywhere (magnitudes differ by its normalisation).
 8. Controls: C1 n and ρ within one order of magnitude of input 6 at the centre (the α₃ = 3.0 edge 1.0–1.7 dex low, normalisation only);
-   C2 trivially inside input 7; C3 deleting PBHs leaves the A_s sign +; C4 analytic vs finite-difference agree at all 18 points.
+   C2 trivially inside input 7; C3 deleting PBHs leaves the A_s sign +; C4 analytic vs finite-difference agree at all 18 evaluation points (16 corners of the 2⁴ box plus the centre run twice, once per Fryer engine).
 
 ## C. Final classes
 θ₁ = ln A_s: **K1_MONOTONE_UP** (premise refuted for this parameter). θ₂ = M_NS,max: **K1_MONOTONE_DOWN** (consistent, not a maximum).
+
+*(Kimi arithmetic re-check 17:30 KST: all steps recompute clean; the "18 points" count was spelled out above in answer to its one issue.)*
 
 ## D. Where a critic could disagree (named)
 1. **The production model** — Press–Schechter halos × constant star-formation efficiency × Kroupa IMF × Fryer single-star remnant fits.

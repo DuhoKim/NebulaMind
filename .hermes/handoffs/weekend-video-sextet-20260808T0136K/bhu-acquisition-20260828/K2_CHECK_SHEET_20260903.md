@@ -8,7 +8,7 @@ fails the dominant energy condition. Files: `K2_JUNCTION_PREREG_20260903.md` (fr
 ## A. Inputs (every one pinned)
 | # | input | value / form | pin |
 |---|---|---|---|
-| 1 | interior metric | ds² = −dτ² + a²[dχ²/(1−kχ²) + χ²dΩ²], k ∈ {+1, 0}; dust ρ ∝ a⁻³ | entry 22 `2606.25023_clean.txt` L316–320; entry 56 `gaztanaga_mass_mnras_clean.txt` L141 |
+| 1 | interior metric | ds² = −dτ² + a²[dχ² + S_k(χ)²dΩ²] with S_k = sin χ (k=+1) or χ (k=0) — the angular gauge used in every step below; the sources print the equivalent r-gauge a²[dr²/(1−kr²) + r²dΩ²] with r = S_k(χ); dust ρ ∝ a⁻³ | entry 22 `2606.25023_clean.txt` L316–320; entry 56 `gaztanaga_mass_mnras_clean.txt` L141 |
 | 2 | exterior metric | ds² = −F dT² + F⁻¹dR² + R²dΩ², F = 1 − 2GM/R − ΛR²/3 | entry 4 `knutsen_2009_gravcosmol15_273_clean.txt` L238–283 |
 | 3 | smooth (Darmois–Israel) condition | induced metric and extrinsic curvature K_ab continuous; a shell ⇔ [K_ab] ≠ 0 | entry 4 L603–642, L695–70x |
 | 4 | null junction (Barrabès–Israel) | transverse curvature K_ab = e^μ_a e^ν_b ∇_μ N_ν; jump ⇒ surface stress | entry 5 `khakshournia_2010_note_pathria_arxiv1412.0105_clean.txt` L49–55, L137–168 |
@@ -36,6 +36,8 @@ fails the dominant energy condition. Files: `K2_JUNCTION_PREREG_20260903.md` (fr
 
 ## C. Final classes
 Entry 56's cell (B1, k=0, Λ=0): **J_SMOOTH_EXPANDING**. Pathria's cell (B2, k=+1, 0≤Λ≤Λ_c): **J_SHELL_UNPHYSICAL**. No cell undetermined.
+
+*(Kimi arithmetic re-check 17:30 KST: all steps recompute clean; the gauge notation of input 1 was clarified above in answer to its one issue.)*
 
 ## D. Where a critic could disagree (named)
 1. **Dust.** Any interior pressure changes step 2 (Ṙ² + F ≠ C_k² in general); the theorem is for p = 0 only.
