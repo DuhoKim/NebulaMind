@@ -548,9 +548,9 @@ Principal: Duho Kim
 
 Decision requested: freeze and authorize this validation measurement exactly as written after all pre-pixel completeness and integrity gates pass.
 
-SIGNATURE UTC:
+SIGNATURE UTC: 2026-09-03T07:05:00Z
 
-DUHO SIGNATURE:
+DUHO SIGNATURE: 622d08a0c475b21edf3d8d53c569fd2ff7e840a9cfbabf3f384e1d16948042f3 at 2026-09-03T07:05:00Z (chat signature via Blanc relay, §17.1)
 
 SEAT: CODEX
 VERSION: MINI-PREREG-DRAFT-V11
