@@ -4,10 +4,13 @@ import threading
 import unittest
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from unittest.mock import patch
 
 from completeness_gate import GateError, GZRecord
+import tap_source
 from tap_source import (HttpClient, OutageBudgetExhausted, TAPCandidateSource,
-                        canonical_manifest, make_sync_adql, validate_manifest)
+                        append_jsonl, canonical_manifest, make_sync_adql,
+                        sha256_bytes, validate_manifest)
 
 
 def result_votable(status="OK", include_status=True, tag=0):
@@ -123,6 +126,45 @@ class FakeServerTest(unittest.TestCase):
             (Path(td) / entry["raw_result"]).write_bytes(b"corrupt")
             with self.assertRaisesRegex(GateError, "resume hash mismatch"):
                 self.source(td).run_chunk(0, [row])
+
+    def test_resumed_chunks_read_checkpoint_once_and_hash_each_raw_once(self):
+        count = 50
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            records = [GZRecord(i, i + 1, 10, 0, 10, 0) for i in range(count)]
+            for i in range(count):
+                raw = result_votable(tag=i)
+                attempt = root / f"chunk_{i:04d}"
+                attempt.mkdir(parents=True)
+                (attempt / "result.vot").write_bytes(raw)
+                append_jsonl(root / "checkpoint.jsonl", {
+                    "chunk_id": i, "raw_result": f"chunk_{i:04d}/result.vot",
+                    "raw_sha256": sha256_bytes(raw), "cap_signal": "QUERY_STATUS=OK (MAXREC=10000)",
+                })
+
+            legacy = self.source(td)
+            for i, record in enumerate(records):
+                legacy._entries = None
+                legacy.run_chunk(i, [record])
+            expected = legacy._results
+
+            resumed = self.source(td)
+            real_read = tap_source.read_checkpoint
+            real_sha = tap_source.sha256_file
+            calls = {"read": 0, "sha": 0}
+            def counted_read(*args, **kwargs):
+                calls["read"] += 1
+                return real_read(*args, **kwargs)
+            def counted_sha(*args, **kwargs):
+                calls["sha"] += 1
+                return real_sha(*args, **kwargs)
+            with patch("tap_source.read_checkpoint", side_effect=counted_read), \
+                    patch("tap_source.sha256_file", side_effect=counted_sha):
+                for i, record in enumerate(records):
+                    self.assertTrue(resumed.run_chunk(i, [record])["resumed"])
+
+            self.assertEqual(calls, {"read": 1, "sha": count})
+            self.assertEqual(resumed._results, expected)
 
     def test_torn_checkpoint_tail_is_discarded_and_exactly_one_chunk_reruns(self):
         with tempfile.TemporaryDirectory() as td:

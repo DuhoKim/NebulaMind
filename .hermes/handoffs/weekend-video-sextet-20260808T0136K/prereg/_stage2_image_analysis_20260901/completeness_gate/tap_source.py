@@ -471,6 +471,7 @@ class TAPCandidateSource(CandidateSource):
         self.before_request = before_request
         self._last_creation = 0.0
         self._results: dict[int, list[Candidate]] = {}
+        self._entries: list[dict] | None = None
 
     @property
     def provenance(self) -> Mapping[str, object]:
@@ -511,6 +512,8 @@ class TAPCandidateSource(CandidateSource):
                 self._results.setdefault(idx, []).append(candidate)
 
     def _checkpoint_entries(self) -> list[dict]:
+        if self._entries is not None:
+            return self._entries
         path = self.artifacts / "checkpoint.jsonl"
         entries = read_checkpoint(path, repair_tail=True,
                                   run_log=self.artifacts / "run.log.jsonl")
@@ -518,7 +521,8 @@ class TAPCandidateSource(CandidateSource):
             raw_path = self.artifacts / entry["raw_result"]
             if not raw_path.exists() or sha256_file(raw_path) != entry["raw_sha256"]:
                 _fail(f"resume hash mismatch for chunk {entry['chunk_id']}")
-        return entries
+        self._entries = entries
+        return self._entries
 
     def run_chunk(self, chunk_id: int, records: Sequence[GZRecord]) -> dict:
         self.artifacts.mkdir(parents=True, exist_ok=True)
@@ -535,6 +539,7 @@ class TAPCandidateSource(CandidateSource):
             return entry | {"resumed": True}
         metadata = self.fetch_chunk(chunk_id, records)
         append_jsonl(self.artifacts / "checkpoint.jsonl", metadata)
+        entries.append(metadata)
         return metadata
 
     def fetch_chunk(self, chunk_id: int, records: Sequence[GZRecord]) -> dict:
