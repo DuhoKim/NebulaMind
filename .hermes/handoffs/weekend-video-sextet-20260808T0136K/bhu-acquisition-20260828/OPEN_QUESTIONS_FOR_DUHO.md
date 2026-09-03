@@ -5,6 +5,15 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## NON-BLOCKING ACQUISITION LINE 2026-09-03 20:14 KST — the two 1980s sources behind the ⅛ spin closure (K3; no action unless you have library access)
+
+Open routes (ADS, INSPIRE, KEK scans, author pages) turned up no free copy of either (`ACQUISITION_1986_1983_codex.md`, every URL and
+status logged). Publisher pages: Gasperini 1986, Phys. Rev. Lett. 56, 2873 — APS, DOI 10.1103/PhysRevLett.56.2873; Nurgaliev &
+Ponomariev 1983, Phys. Lett. B 130, 378 — ScienceDirect pii 0370269383915265 (HTTP 403, "Remote access" institutional login; no price
+displayed). If you download them as before (HermesOps/scripts/), I pin them and test the word "convention" against their own
+derivation. Nothing is blocked on this.
+
+---
 ## RESOLVED 2026-09-03 19:34 KST — Duho "as your rec" = (a): rows 9, 10, 11 annotated, inheritance noted on 39, 52, 53, 59; tiers untouched; provenance pending Blanc. Was: YOUR CALL 2026-09-03 19:32 KST — K3 step 1 result: the torsion-bounce spin closure is a convention, not a derived average (3 seats, 2 methods, unanimous)
 
 **Result (`K3S1_RESULT_20260903.md`; check sheet `K3S1_CHECK_SHEET_20260903.md`):** for randomly oriented, uncorrelated fermions the
