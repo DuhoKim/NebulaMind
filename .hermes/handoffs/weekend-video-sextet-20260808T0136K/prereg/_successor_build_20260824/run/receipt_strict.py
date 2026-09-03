@@ -14,6 +14,7 @@ does not write one to a receipt store.
 """
 import hashlib
 import json
+from pathlib import Path
 
 SLOT_SCHEMA_SUCCESSOR = {
     # V136 fills BS-2a as design identities only.  The later BS-2f execution
@@ -40,11 +41,18 @@ SLOT_SCHEMA_SUCCESSOR = {
     )
 }
 
+SCHEMA_IDS = {
+    "BS-2a": "BS2A-V1",
+    "BS-2v": "BS2V-V1",
+    "BS-3g": "BS3G-V1",
+}
+
 CODES = {
     "RS01": "slot is outside the successor schema",
     "RS02": "receipt contains an empty payload",
     "RS03": "receipt field set is missing required fields",
     "RS04": "receipt field set contains extra fields",
+    "RS05": "pinned successor schema entry changed",
 }
 
 
@@ -57,6 +65,31 @@ class ReceiptRefusal(RuntimeError):
 def _canonical(obj):
     return json.dumps(obj, sort_keys=True, separators=(",", ":"),
                       ensure_ascii=False, allow_nan=False).encode("utf-8")
+
+
+def schema_entry_digest(slot):
+    """Digest one canonical successor schema entry, including field order."""
+    if slot not in SLOT_SCHEMA_SUCCESSOR:
+        raise ReceiptRefusal("RS01", repr(slot))
+    entry = {"slot": slot, "schema": SCHEMA_IDS[slot],
+             "fields": list(SLOT_SCHEMA_SUCCESSOR[slot])}
+    return hashlib.sha256(_canonical(entry)).hexdigest()
+
+
+def schema_entry_digests():
+    """Return per-entry digests for every successor-layer schema."""
+    return {slot: schema_entry_digest(slot) for slot in SLOT_SCHEMA_SUCCESSOR}
+
+
+def assert_entries_preserved(pinned):
+    """Refuse if any pinned successor-layer entry is absent or changed."""
+    for slot, digest in pinned.items():
+        if slot not in SLOT_SCHEMA_SUCCESSOR:
+            raise ReceiptRefusal("RS05", f"{slot!r} is absent")
+        actual = schema_entry_digest(slot)
+        if actual != digest:
+            raise ReceiptRefusal(
+                "RS05", f"{slot!r}: pinned {digest}, actual {actual}")
 
 
 def receipt_strict(slot, fields):
@@ -75,9 +108,7 @@ def receipt_strict(slot, fields):
         raise ReceiptRefusal("RS04", repr(extra))
     body = {k: fields[k] for k in SLOT_SCHEMA_SUCCESSOR[slot]}
     body_sha = hashlib.sha256(_canonical(body)).hexdigest()
-    core = {"slot": slot, "schema": {"BS-2a": "BS2A-V1",
-                                      "BS-2v": "BS2V-V1",
-                                      "BS-3g": "BS3G-V1"}[slot], "body": body,
+    core = {"slot": slot, "schema": SCHEMA_IDS[slot], "body": body,
             "body_sha256": body_sha}
     return {**core, "envelope_sha256": hashlib.sha256(_canonical(core)).hexdigest()}
 
@@ -105,11 +136,30 @@ def fixtures():
         passed += 1
     assert receipt_strict("BS-3g", f) == receipt_strict("BS-3g", dict(reversed(list(f.items()))))
     passed += 1
-    v = {k: (i + 1) for i, k in enumerate(SLOT_SCHEMA_SUCCESSOR["BS-2v"])}
-    assert receipt_strict("BS-2v", v)["schema"] == "BS2V-V1"
+    candidate_dir = Path(__file__).resolve().parent / "classp_candidates"
+    v_candidate = json.loads((candidate_dir / "BS-2v.json").read_text())
+    assert receipt_strict("BS-2v", v_candidate["body"]) == v_candidate
     passed += 1
-    a = {k: (i + 1) for i, k in enumerate(SLOT_SCHEMA_SUCCESSOR["BS-2a"])}
-    assert receipt_strict("BS-2a", a)["schema"] == "BS2A-V1"
+    a_candidate = json.loads((candidate_dir / "BS-2a.json").read_text())
+    assert receipt_strict("BS-2a", a_candidate["body"]) == a_candidate
+    passed += 1
+    pinned = schema_entry_digests()
+    noop_namespace = {"__name__": "receipt_strict_noop",
+                      "__file__": str(Path(__file__).resolve())}
+    source = Path(__file__).read_text() + "\n# no-op file edit\n"
+    exec(compile(source, __file__, "exec"), noop_namespace)
+    assert noop_namespace["schema_entry_digests"]() == pinned
+    passed += 1
+    original = SLOT_SCHEMA_SUCCESSOR["BS-2v"]
+    try:
+        SLOT_SCHEMA_SUCCESSOR["BS-2v"] = original + ("mutated_field",)
+        try:
+            assert_entries_preserved({"BS-2v": pinned["BS-2v"]})
+            raise AssertionError("mutated BS2V-V1 entry did not refuse")
+        except ReceiptRefusal as e:
+            assert e.code == "RS05" and "BS-2v" in str(e)
+    finally:
+        SLOT_SCHEMA_SUCCESSOR["BS-2v"] = original
     passed += 1
     return passed
 

@@ -1,6 +1,11 @@
 # V136 BS-2a fill record — 2026-09-03
 
-V136 copies amendment-signed V135 and changes only the preamble/amendment mechanism, the §7 BS-2a row, the §10 generated predecessor transition row, the §11 BS-2a inventory/build item, and the blank signature lines. The authorized successor-layer schema, design-only candidate receipt, and two non-P0 sidecars were also updated. No catalogue row was evaluated and no pixel was opened. V134, V135, v9, and every P0-manifest member remain byte-unchanged.
+V136 copies amendment-signed V135 and changes only the preamble/amendment mechanism, the §7 BS-2a row, the §10 generated predecessor transition row, the §11 BS-2a inventory/build item, and the blank signature lines, followed in place by the accepted V136 referee repairs recorded below. The authorized successor-layer schema, design-only candidate receipt, and two non-P0 sidecars were also updated. No catalogue row was evaluated and no pixel was opened. V134, V135, v9, and every P0-manifest member remain byte-unchanged.
+
+## Repairs R1–R2
+
+- R1: the §7 BS-2a `blocks` cell now names `BS-2f` only; the design-identity candidate evaluated no catalogue row and needs no cutouts.
+- R2: `run/receipt_strict.py` now publishes canonical per-entry digests and `assert_entries_preserved()`. Every later version must prove all earlier successor entries preserved against their recorded digests. Fixtures cover no-op file-edit stability, a named refusal after mutating the BS2V-V1 field list, and continued validation of both committed candidates.
 
 ## Pins recomputed from disk
 
@@ -11,12 +16,13 @@ V136 copies amendment-signed V135 and changes only the preamble/amendment mechan
 - acceptance design: `flux_ivar_r > 8.4000532`, `psfsize_r < 1.5699703`, `nobs_r >= 3`
 - evidence-schema digest: `9f3aca28f1e2eeabdcaf8a75f53e459ffb207fc761ed0fbe91b4e4f3153876c5` (canonical JSON of `SCHEMA_VERSION`, `EVIDENCE_FIELDS`, `RECEIPT_FIELDS`, `THRESHOLD_FIELDS`, `COUNT_FIELDS`)
 - verifier digest: `6e70a8ef6963a5295c744a768fa7b85c05b34430c12b4e2f0ea69ef5cc0405b9` (exact `verify_receipt` source)
-- `run/receipt_strict.py`: `27e88520ad982ea83330b8147c44dda842d1217f85c1fffb73ae147cc6630701`
+- `run/receipt_strict.py`: `c3cea71615c33ea57780872e47619b6763dad4b6aa2fb6787203dda9ec6d074c`
+- successor entry digests: `BS2V-V1` `c5931c40dd07ff0f51906d55ebbceda14c3840dea8950d66b8dd0948001071e3`; `BS2A-V1` `e3c08ea635db9456cccb562fa903a9e74f80ee75f760bf6be402f9f420bb137e`; `BS3G-V1` `eb8589f5f70656b16dc8ba16e7d78677a0ab0da7b92cb54eddd22fef14e20102`
 - schema: `BS2A-V1`; exact fields: `quality_gate_sha256`, `flux_ivar_r_gt`, `psfsize_r_lt`, `nobs_r_ge`, `evidence_schema_digest`, `verifier_digest`, `classification`
 - `run/classp_candidates/BS-2a.json`: `f0d9bcce2636196c3b4bdb00bb0efb67c5a9db7e6ed96750f59268b860611dae`; classification `DESIGN-IDENTITIES-ONLY`; recomputation through `receipt_strict("BS-2a", …)` PASS
 - `gates/FINDINGS_MAP.md`: `7a527fa82d3d1fc8104899ab9d32b0e4333b57acae2629e04399b45d8ff3c752`
 - `ref/STRING_FIELD_REGISTRY.md`: `2ab97997f59a914e4f7efbe0232c43a973b12a31c6264da3d1ae1f0d60fd416c`; generated label names V136
-- final V136 blank-signature-line digest: `9ffedf51c10f52c255795f8667b28461419141d8e94de0e975fc3502ea159432`
+- final repaired V136 blank-signature-line digest: `6b3ff1301546f6595582c0f5d5afe8e729f187e753fc1b63653af6eaf7b75377`
 
 `gates/FINDINGS_MAP.md` and `ref/STRING_FIELD_REGISTRY.md` are absent from `P0_PACKAGE_MANIFEST_20260831.txt`.
 
@@ -43,7 +49,7 @@ prereg counts — PREREG_SUCCESSOR_DRAFT_V136_20260903.md
   prose says filled: BS-2m  (not computed — a claim about receipts, not rows)
   prose already matches the table
 
-receipt_strict fixtures: 8/8 PASS
+receipt_strict fixtures: 10/10 PASS
 bs2a quality-gate self-test: 36 controls, 0 failure(s)
 ```
 
@@ -61,8 +67,8 @@ bs2a quality-gate self-test: 36 controls, 0 failure(s)
 ```
 
 SEAT: CODEX
-VERSION: SUCCESSOR-DRAFT-V136
-HUNKS: preamble; §7; §10; §11; signature lines
+VERSION: SUCCESSOR-DRAFT-V136-R
 TRACE_CHECK: PASS
 LINT_BLOCKING: 0
-DIGEST: 9ffedf51c10f52c255795f8667b28461419141d8e94de0e975fc3502ea159432
+ENTRY_DIGESTS: BS2V=c5931c40dd07ff0f BS2A=e3c08ea635db9456 BS3G=eb8589f5f70656b1
+DIGEST: 6b3ff1301546f6595582c0f5d5afe8e729f187e753fc1b63653af6eaf7b75377
