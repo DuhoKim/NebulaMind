@@ -1,0 +1,33 @@
+ENTRY-31 WATCH COMMITTEE — blind reading of arXiv:2609.02395 against the neutron-star mass bar (Duho delegation 2026-09-03 14:40 KST)
+
+You are one seat of a four-model committee. Read the pinned candidate text IN FULL: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/../bhu-reading-20260823/sources/2609.02395_clean.txt
+(sha256 61c9f95b21beaa8a3c650f55ec2ad83b46438df810081c33814f1ef5b7a0f6ca). Do not open any other file in this lane; do not search the web. Then return ONE band from the vocabulary
+CLEAR / HINT / RE_GATE / FIRE_CANDIDATE, applying the criteria below exactly as written.
+
+THE BAR (entry 31, Smolin 2004 section 4): a neutron star with a SECURE central mass >= 2.5 solar masses, secure meaning a
+resolved neutron-star identity (radio/optical pulsar timing or light-curve mass; NOT a gravitational-wave secondary of
+unresolved nature), is the paper's own "certain refutation". Ledger's best secure maximum: PSR J0740+6620, 2.08 +/- 0.07
+solar masses (Fonseca 2021).
+
+THE CRITERIA (verbatim from NS_MASS_WATCH_PREREG_20260902.md section 2):
+## 2. Fire / re-gate / clear criteria — declared now
+Let a candidate measurement have mass M ± σ (1σ, symmetric approximation; asymmetric errors use the
+lower error), from a source with a **resolved neutron-star identity** (radio/optical pulsar timing or
+light-curve mass; NOT a gravitational-wave secondary of unresolved nature).
+- **FIRE_CANDIDATE:** (M − 2.5)/σ ≥ 3, in a **peer-reviewed** publication (preprints raise a
+  RE_GATE, never a FIRE_CANDIDATE — the lane's published-papers-only rule). A FIRE_CANDIDATE is a
+  two-seat gate + packet to Duho; the standing changes only on his stamp.
+- **RE_GATE:** (M − 2.5)/σ ≥ 2 in any source, OR any peer-reviewed M > 2.5 central value at ≥ 1σ, OR a
+  GW secondary with a resolved NS identity at M > 2.5 — a human reads and a two-seat gate decides
+  whether the ledger changes.
+- **HINT (log only):** a new measurement with posterior P(M > 2.5) ≥ 5% that does not meet RE_GATE.
+- **CLEAR (no action, logged):** anything else, including tighter errors on known stars below the bar.
+- **Battery rule (existing, §4): a secure central mass ≥ 2.5 M☉ added to the ledger FAILS the
+  battery.** The bands above are for reading hits; the ledger is edited only after a two-seat gate.
+
+REPORT FORMAT (stdout / your file), nothing else:
+line 1: ACCESS_SHA=<sha256 of the pinned text, computed by you with shasum -a 256; if you cannot read the file print ACCESS_SHA=NO_ACCESS and stop>
+line 2: BAND=<CLEAR|HINT|RE_GATE|FIRE_CANDIDATE>
+line 3: MASS_USED=<the neutron-star mass value and error you applied, with the text line number, or NONE>
+then at most 150 words: what the paper measures, whether any neutron-star mass with an uncertainty is reported or
+derived, whether any object has P(M > 2.5) stated, and why the band follows. Last line: `confidence: high/medium/low — reason`.
