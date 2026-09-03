@@ -29,7 +29,7 @@ class AbsoluteAnchorFailure(RuntimeError):
     pass
 
 
-def synthetic_wcs_reproject(*, source_jacobian=((1.0, 0.0), (0.0, 1.0))):
+def synthetic_wcs_reproject(*, source_jacobian=((1.0, 0.0), (0.0, 1.0)), nexp_value=1):
     """Run asymmetric labelled N/E fiducials through the actual renderer."""
     det = source_jacobian[0][0] * source_jacobian[1][1] - source_jacobian[0][1] * source_jacobian[1][0]
     w = WCS(naxis=2); w.wcs.ctype=["RA---TAN","DEC--TAN"]; w.wcs.cunit=["deg","deg"]
@@ -37,8 +37,9 @@ def synthetic_wcs_reproject(*, source_jacobian=((1.0, 0.0), (0.0, 1.0))):
     if det <= 0: w.wcs.cd[0,0] *= -1
     w.array_shape=(180,180); w.wcs.set()
     image=np.zeros((180,180)); image[108,89]=10; image[89,70]=20
+    nexp=np.full(image.shape, nexp_value, dtype=np.int16)
     try:
-        raster=render_cutout([(image,np.zeros_like(image),np.ones_like(image),w)],(40.0,10.0))
+        raster=render_cutout([(image,np.zeros_like(image),nexp,w)],(40.0,10.0))
     except ValueError as exc:
         if str(exc) == WRONG_PARITY: return WRONG_PARITY
         raise

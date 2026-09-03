@@ -47,6 +47,10 @@ class AnchorGateTests(unittest.TestCase):
         self.assertEqual(result["jacobian_parity"], "PRESERVED")
         self.assertIn("renderer_digest", result)
 
+    def test_bs4_zero_nexp_refuses(self):
+        with self.assertRaisesRegex(ValueError, "^DATA-INTEGRITY-FAIL$"):
+            synthetic_wcs_reproject(nexp_value=0)
+
     def test_blind_guard_exactly_one_arcsec_refuses(self):
         pins=_fixture_pin(self.tmp())
         receipt=blind_guard.guard([{"ra":0.,"dec":1./3600.}],protected_paths=pins)

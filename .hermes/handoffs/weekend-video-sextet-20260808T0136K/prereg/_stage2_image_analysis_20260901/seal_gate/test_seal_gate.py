@@ -6,9 +6,14 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import seal_gate
-from seal_gate import (EXPECTED_BLOB_ID, ZERO_DIGEST, canonical_bytes, checksum_url,
-                       run_gate, sha256_bytes)
+try:
+    from seal_gate import seal_gate
+    from seal_gate.seal_gate import (EXPECTED_BLOB_ID, ZERO_DIGEST, canonical_bytes,
+                                     checksum_url, run_gate, sha256_bytes)
+except ImportError:  # Direct script execution resolves seal_gate.py as a module.
+    import seal_gate
+    from seal_gate import (EXPECTED_BLOB_ID, ZERO_DIGEST, canonical_bytes, checksum_url,
+                           run_gate, sha256_bytes)
 
 
 class SealGateTests(unittest.TestCase):

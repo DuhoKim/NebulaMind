@@ -1,11 +1,11 @@
-# Anchor gate V2
+# Anchor gate V3 (nexp plane)
 
 Status: **DRAFT ONLY, UNPINNED, SYNTHETIC FIXTURES ONLY.** Nothing here authorizes real-pixel access.
 
 ## Clause map
 
 - `instrument_identity.py`: §§2.13, 7.10, 9.1–9.3, and 16.3. It recomputes the frozen instrument SHA-256, creates and closed-field-validates the environment record, and forms a canonical chained seal event by importing `canonical_bytes`, `_seal_predecessor`, and digest helpers from `seal_gate/seal_gate.py`.
-- `bs4_anchor.py`: §§2.11–2.13, 8, and 10.1–10.3. Step (b) imports `render_cutout` from `study_renderer.renderer` and sends labelled N/E fiducials plus synthetic image, maskbits, and inverse-variance planes through the real rendering chain.
+- `bs4_anchor.py`: §§2.11–2.13, 8, and 10.1–10.3. Step (b) imports `render_cutout` from `study_renderer.renderer` and sends labelled N/E fiducials plus synthetic image, maskbits, and integer exposure-count (`nexp`) planes through the real rendering chain. Observed synthetic pixels use `nexp = 1`; zero exposure count is refused with `DATA-INTEGRITY-FAIL`.
 - `blind_guard.py`: §§2.5–2.6 and 15.3–15.5. Both protected catalogues are digest- and count-verified before comparisons. Identity and binary64 great-circle comparisons use the inclusive 1.0-arcsec boundary. The returned/printed receipt is formed before any downstream image path can be supplied; request path fields are forbidden.
 - `test_anchor_gate.py`: synthetic refusal, boundary, literal-token, and real-format temporary journal-chain fixtures.
 
