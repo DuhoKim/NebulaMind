@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "mini-prereg V11 principal signature"
+    "topic": "DR10 sweep files: measure, fetch (2 workers), local-crossmatch fallback"
   },
   "humanFeedback": {
     "captured": true
@@ -762,6 +762,18 @@
       "feedbackText": "mini-prereg V11 signed: 622d08a0c475b21edf3d8d53c569fd2ff7e840a9cfbabf3f384e1d16948042f3 at 2026-09-03T07:05:00Z",
       "changed": {
         "summary": "Mini-prereg V11 (coverage plane inverse-variance \u2192 exposure count; manifest v3; known-extras disclosure) FROZEN per \u00a717.5 by Duho's chat statement relayed by Blanc 15:57:27 KST; Hwao recomputed the digest = stated (MATCH); V10 freeze superseded. Companions switch now: invvar download stopped, partial archived (never deleted), nexp-r + maskbits fetched (4 workers), seal gate over 3 planes. Validation only; no pixel until every gate passes."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "prepare the sweeps",
+      "changed": {
+        "summary": "Background order (no change to V11 or the running crossmatch): (1) measure the DR10-south Tractor SWEEP files covering GZ1 \u2229 DR10-south and the flagship parent footprint (HEAD sizes) and file a cost note; (2) fetch them with receipt-journal discipline, 2 workers max; (3) draft the local-sweep crossmatch as the completeness gate's named fallback, pinned + refereed via nm_referee_dispatch.sh before use; (4) TAP crossmatch runs to its receipt tonight. If the subset exceeds ~200 GiB, stop after the cost note for Duho."
       }
     }
   ]
