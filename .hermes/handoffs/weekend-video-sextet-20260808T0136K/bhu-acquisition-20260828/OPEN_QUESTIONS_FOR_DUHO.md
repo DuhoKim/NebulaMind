@@ -5,6 +5,23 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-03 16:18 KST — topic search, round 2: pick the study (four blind seats reconciled; full packet `TOPIC_SEARCH_ROUND2_RECONCILIATION_20260903.md`)
+
+Round 1's (A) is done (amplitude provably free), (B) withdrawn, (C) carried over. Twelve new proposals fold into six
+clusters; two were put first by three seats each:
+- **K2 — the junction theorem.** Does the closed interior join its exterior without a shell? Entries 4, 5, 22, 56 all leave
+  the shell case open. Pure theory, 3–8 seat-days, a verdict either way (existence or no-go), closes four warrant cells
+  including the packet-class entry 22. Frontier 20/16.
+- **K1 — the sign test of the natural-selection premise.** Does black-hole production actually fall when the neutron-star
+  bar or the primordial amplitude moves? The premise under the one live calibrated falsifier (entry 31), disputed in
+  print since 1993 and "unanswered" per the record. Stage 1 semi-analytic ~5 seat-days; stage 2 population synthesis
+  ~20. Frontier 20, three seats rank it first; risk that the sign is unidentified.
+- Then: K3 torsion closure → bounce spectrum (round-1 (C), months); K4 causal-boundary transfer physics (waits on K2);
+  K5 LISA forecast; K6 ECKS floor audit (housekeeping).
+**Options:** (a) K2 and K1 stage 1 in parallel, both preregistered first [Tori's recommendation]; (b) K2 only;
+(c) K1 only; (d) another cluster by name. Nothing starts until you pick; preregistration is the first deliverable.
+
+---
 ## RESOLVED 2026-09-03 16:12 KST — Duho: "as Tori's rec" = option (a) (tier kept, W_DIRECTION_ASSUMED carried). Was: YOUR CALL 2026-09-03 15:44 KST — entry 56 (Gaztañaga 2023, MNRAS Lett.): warrant `W_DIRECTION_ASSUMED`, same series claim as 23–27 and 6
 
 **Finding (two blind seats agree):** the large-scale cut-off direction is taken as premise and citation; no perturbation
