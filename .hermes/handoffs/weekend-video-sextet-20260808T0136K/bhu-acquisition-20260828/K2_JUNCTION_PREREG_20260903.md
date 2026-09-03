@@ -55,7 +55,7 @@ be reproduced symbolically or reported as J_UNDETERMINED.
 
 ## 5. Controls (must pass before any class is filed)
 - **C1 positive control:** at B1 with k=+1, Λ=0, the computation must reproduce the textbook Oppenheimer–Snyder smooth
-  matching (the dust-mass relation of the form M ∝ ρa³S_k(χ*)³, receipt pinned at step 1 from the textbook statement and, for entry 56, from its M_T definition around source L147–160). Failure = the pipeline is wrong, stop.
+  matching (the dust-mass relation of the form M ∝ ρa³S_k(χ*)³, entry 56 states it at source L143, "M = 4/3 π χ³ ρ₀"; the textbook form is pinned at step 1). Failure = the pipeline is wrong, stop.
 - **C2 entry-5 control:** at B2 the null-junction jump must reproduce Khakshournia's [K_uu] and the pressure p = ρa/4
   (independently re-derived 09-03 by the set-E seat: [K_uu] = −2πρa, `WARRANT_5_claude.md`). Failure = the pipeline is wrong, stop; no class is filed.
 - **C3 entry-4 control:** the smooth timelike matching at Pathria's boundary r_b = 1 (Pathria's own coordinate value, receipt pinned at step 1 from entry 1's source) must reproduce the static-sphere result. Failure = the pipeline is wrong, stop; no class is filed.
