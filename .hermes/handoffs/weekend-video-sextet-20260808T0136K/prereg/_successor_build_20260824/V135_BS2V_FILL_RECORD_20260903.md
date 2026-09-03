@@ -152,3 +152,9 @@ VERSION: SUCCESSOR-DRAFT-V135-R
 TRACE_CHECK: PASS
 LINT_BLOCKING: 0
 DIGEST: c8f6fa4a70e82d065d86d51ae6456cec50ab4650974d1351bd49d3f59a4cdb8c
+
+## Repair R4 (Hwao, 2026-09-03 12:1x KST) — agy V135-REFEREE-V1 finding 1 (wording-only, BLOCKING)
+Preamble line 3: appended the two precedent constraints agy required, verbatim from its EXACT REPAIR:
+"A mismatch is not a signature. The repository holds no cryptographic proof of a chat statement."
+Applied by the coordinator (a quoted wording insertion, no design content), disclosed here; re-referee follows.
+Trace check: 0 problems. Lint: 0 blocking. New V135 digest (SIGNATURE UTC and DUHO SIGNATURE lines blank): `0a09ba938e42412860a55d70f12c640d1f56c4e2801486a8dc200f3017a84598`.
