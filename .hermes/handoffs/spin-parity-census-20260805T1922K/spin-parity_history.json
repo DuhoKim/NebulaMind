@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "V136 amendment signature (BS-2a)"
+    "topic": "Tier-C coverage plane: inverse-variance \u2192 exposure count (V11)"
   },
   "humanFeedback": {
     "captured": true
@@ -738,6 +738,18 @@
       "feedbackText": "V136 signed: 6b3ff1301546f6595582c0f5d5afe8e729f187e753fc1b63653af6eaf7b75377 at 2026-09-03T05:15:00Z",
       "changed": {
         "summary": "Successor prereg amendment V136 (BS-2a DESIGN slot FILLED: quality gate dfbd63d1, thresholds flux_ivar_r > 8.4000532 / psfsize_r < 1.5699703 / nobs_r >= 3, receipt schema BS2A-V1, candidate f0d9bcce; per-entry successor-schema digests + preservation guard) bound by Duho's chat signature relayed by Blanc 14:32:21 KST; Hwao recomputed the blank-lines digest = stated (MATCH); amendment record committed. Next DESIGN slot one at a time."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "b",
+      "changed": {
+        "summary": "INVVAR_NECESSITY_20260903.md option (b): V11 of the mini-prereg replaces inverse-variance with exposure-count (nexp-r > 0) coverage in \u00a77.7/\u00a78.12; Tier-C manifest v3 = image-r + maskbits + nexp-r with published-hash verification; renderer coverage plane \u2192 nexp-r; nothing else changes (\u00a717.6 discipline: disclosed diff, hostile referee via nm_referee_dispatch.sh to SIGNABLE, then Duho's sentence). Only after V11 is signed: stop the invvar download (partial stays, receipted), fetch nexp-r + maskbits (4 workers), re-run the seal gate over three planes. Until then the download keeps running. No pixel; flagship companions unchanged."
       }
     }
   ]
