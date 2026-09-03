@@ -4,6 +4,7 @@ import tempfile
 import unittest
 import struct
 from pathlib import Path
+from unittest import mock
 
 from astropy.io import fits
 
@@ -182,13 +183,19 @@ class SweepSourceTest(unittest.TestCase):
     def test_corrupt_truncated_fits_refuses_with_exact_reason(self):
         name = "broken.fits"
         self.write_sweep(name, [])
-        (self.sweeps / name).write_bytes(b"SIMPLE  = truncated")
         self.configure([(name, {"ra_min_deg": 0, "ra_max_deg": 5,
                                 "dec_min_deg": -5, "dec_max_deg": 5})])
-        with self.assertRaises(GateError) as caught:
-            self.source().run_chunk(0, [GZRecord(0, 1, 1, 0, .9, .1)])
+        with mock.patch.object(fits, "open",
+                               side_effect=OSError("Empty or corrupt FITS file")):
+            with self.assertRaises(GateError) as caught:
+                self.source().run_chunk(0, [GZRecord(0, 1, 1, 0, .9, .1)])
         self.assertEqual(str(caught.exception),
-                         "COMPLETENESS-FAIL: unreadable/corrupt FITS sweep: broken.fits")
+                         "COMPLETENESS-FAIL: SWEEP-FITS-UNREADABLE: "
+                         "OSError: Empty or corrupt FITS file")
+        self.assertEqual(caught.exception.payload,
+                         {"reason": "SWEEP-FITS-UNREADABLE",
+                          "exception_class": "OSError",
+                          "exception_text": "Empty or corrupt FITS file"})
 
     def test_manifest_listed_sweep_absent_on_disk_refuses(self):
         name = "gone.fits"

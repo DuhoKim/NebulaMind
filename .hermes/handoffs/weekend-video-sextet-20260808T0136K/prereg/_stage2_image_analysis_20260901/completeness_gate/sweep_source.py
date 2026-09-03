@@ -135,8 +135,16 @@ def _read_identity_rows(path: Path, *, memmap: bool = True) -> Iterable[Candidat
                                 float(columns["DEC"][i]), _decode(columns["BRICKNAME"][i]))
     except GateError:
         raise
-    except Exception:
-        _fail(f"unreadable/corrupt FITS sweep: {path.name}")
+    except Exception as exc:
+        exception_class = type(exc).__name__
+        exception_text = str(exc)
+        error = GateError(
+            f"COMPLETENESS-FAIL: SWEEP-FITS-UNREADABLE: "
+            f"{exception_class}: {exception_text}")
+        error.payload = {"reason": "SWEEP-FITS-UNREADABLE",
+                         "exception_class": exception_class,
+                         "exception_text": exception_text}
+        raise error from exc
 
 
 class SweepCandidateSource(CandidateSource):
