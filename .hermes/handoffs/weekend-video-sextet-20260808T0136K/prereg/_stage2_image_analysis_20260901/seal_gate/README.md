@@ -1,20 +1,22 @@
-# Tier-C seal gate — draft V3
+# Tier-C seal gate — draft V4
 
 This unpinned, run-side draft implements the freeze-time gate prescribed by
-Mini-prereg V10 §§7.9–7.11 and 16.3/16.7c. It is for referee review and must not
+Mini-prereg V11 §§7.9–7.11 and 16.3/16.7c. It is for referee review and must not
 be treated as frozen or executable authority until a later amendment-free
 freeze record pins it.
 
-`seal_gate.py` checks the acquisition-completion set, terminal receipt state,
+`seal_gate.py` checks the three-plane acquisition-completion set (image-r,
+maskbits, and nexp-r), terminal receipt state in each plane journal,
 OK-receipt hashes, absence of the ruled acquisition process, and binds the
 acquisition journal's whole-file SHA-256 and line count. It independently
-fetches the one allowed NERSC checksum filename for every manifest entry,
-binds the selected fetched lines in manifest order with exactly one LF each,
-rehashes each on-disk file, and cross-checks the final OK receipt. Network
+fetches the one allowed NERSC checksum filename for every manifest brick,
+binds all three selected fetched lines in manifest/plane order with exactly one
+LF each, rehashes every on-disk plane file, and cross-checks each final OK
+receipt. Network
 fetching is disabled unless `--fetch` is supplied; `run_gate()` accepts a
 fetcher callable so tests never use the network.
 
-The V3 journal parser accepts exactly the four receipt verdicts and shapes
+The V4 journal parser accepts exactly the four receipt verdicts and shapes
 written by the pinned acquisition script. `OK`, `OK-NO-PUBLISHED-SHA`, and
 `SHA-MISMATCH-QUARANTINED` require exactly the seven keys `brick`, `bytes`,
 `computed_sha256`, `published_sha256`, `url`, `utc`, and `verdict`;

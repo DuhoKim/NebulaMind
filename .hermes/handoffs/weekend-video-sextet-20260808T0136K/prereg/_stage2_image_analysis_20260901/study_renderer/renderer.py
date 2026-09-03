@@ -61,7 +61,7 @@ class RenderTarget:
 class Raster:
     array: np.ndarray
     maskbits: np.ndarray
-    inverse_variance: np.ndarray
+    nexp: np.ndarray
     wcs: WCS
     digest: str
     metadata: Mapping[str, Any]
@@ -177,6 +177,8 @@ def _sample_stitched(sources, world, plane_index):
                         break
             if value is None or not np.isfinite(value):
                 raise ValueError(DATA_INTEGRITY_FAIL)
+            if plane_index == 2 and value <= 0:
+                raise ValueError(DATA_INTEGRITY_FAIL)
             values.append(np.float64(value))
         v00, v10, v01, v11 = values
         result[point_index] = ((1-dx)*(1-dy)*v00 + dx*(1-dy)*v10 + (1-dx)*dy*v01 + dx*dy*v11)
@@ -184,7 +186,7 @@ def _sample_stitched(sources, world, plane_index):
 
 
 def render_cutout(sources: Sequence[tuple[np.ndarray, np.ndarray, np.ndarray, WCS]], target) -> Raster:
-    """Render ``(image, maskbits, inverse_variance, WCS)`` tiles."""
+    """Render ``(image, maskbits, nexp, WCS)`` tiles."""
     ra, dec, requested = _target_parts(target)
     if not sources:
         raise ValueError(DATA_INTEGRITY_FAIL)
@@ -192,9 +194,11 @@ def render_cutout(sources: Sequence[tuple[np.ndarray, np.ndarray, np.ndarray, WC
     for source in sources:
         if not isinstance(source, (tuple, list)) or len(source) != 4:
             raise ValueError(DATA_INTEGRITY_FAIL)
-        image, maskbits, invvar, wcs = source
-        planes = tuple(np.asarray(p) for p in (image, maskbits, invvar))
+        image, maskbits, nexp, wcs = source
+        planes = tuple(np.asarray(p) for p in (image, maskbits, nexp))
         if not isinstance(wcs, WCS) or any(p.ndim != 2 for p in planes) or len({p.shape for p in planes}) != 1:
+            raise ValueError(DATA_INTEGRITY_FAIL)
+        if not np.issubdtype(planes[2].dtype, np.integer):
             raise ValueError(DATA_INTEGRITY_FAIL)
         if any(not np.all(np.isfinite(p)) for p in planes):
             raise ValueError(DATA_INTEGRITY_FAIL)
@@ -205,6 +209,8 @@ def render_cutout(sources: Sequence[tuple[np.ndarray, np.ndarray, np.ndarray, WC
     yy, xx = np.indices((HEIGHT, WIDTH), dtype=np.float64)
     world = output_wcs.all_pix2world(np.column_stack((xx.ravel(), yy.ravel())), 0)
     outputs = [_sample_stitched(normalized, world, i).reshape(HEIGHT, WIDTH) for i in range(3)]
+    if np.any(outputs[2] <= 0):
+        raise ValueError(DATA_INTEGRITY_FAIL)
     for output in outputs:
         output.setflags(write=False)
     canonical = outputs[0].astype("<f8", copy=False).tobytes(order="C")

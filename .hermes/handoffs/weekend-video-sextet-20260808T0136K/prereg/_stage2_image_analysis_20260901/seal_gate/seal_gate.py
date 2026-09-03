@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draft V3 Tier-C freeze-time seal gate.  It never opens image pixels."""
+"""Draft V4 Tier-C three-plane freeze-time seal gate. It never opens pixels."""
 
 from __future__ import annotations
 
@@ -63,24 +63,22 @@ def network_fetcher(url: str, timeout: float) -> bytes:
         return response.read()
 
 
-def _manifest_entries(path: Path) -> list[tuple[str, str]]:
+PLANES = ("image-r", "maskbits", "nexp-r")
+
+
+def _manifest_entries(path: Path) -> list[tuple[str, dict[str, str]]]:
     raw = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(raw, list):
-        raise GateFailure("manifest_not_list")
+    if not isinstance(raw, dict) or raw.get("schema") != "TIERC-MANIFEST-3" or not isinstance(raw.get("bricks"), list):
+        raise GateFailure("manifest_not_v3")
     result = []
-    for item in raw:
-        if isinstance(item, str):
-            brick = item
-            filename = f"legacysurvey-{brick}-image-r.fits.fz"
-        elif isinstance(item, dict):
-            brick = item.get("brick") or item.get("brickname")
-            rel = item.get("relative_path") or item.get("path")
-            filename = Path(rel).name if isinstance(rel, str) else f"legacysurvey-{brick}-image-r.fits.fz"
-        else:
+    for item in raw["bricks"]:
+        if not isinstance(item, dict):
             raise GateFailure("malformed_manifest_record")
-        if not isinstance(brick, str) or not brick or not isinstance(filename, str):
+        brick, listed = item.get("brick"), item.get("planes")
+        expected = [f"legacysurvey-{brick}-{plane}.fits.fz" for plane in PLANES]
+        if not isinstance(brick, str) or not brick or listed != expected:
             raise GateFailure("malformed_manifest_record")
-        result.append((brick, filename))
+        result.append((brick, dict(zip(PLANES, listed))))
     bricks = [entry[0] for entry in result]
     if len(set(bricks)) != len(bricks):
         raise GateFailure("duplicate_manifest_brick")
@@ -190,7 +188,7 @@ def _published_line(payload: bytes, wanted_filename: str) -> tuple[bytes, str]:
     return hits[0]
 
 
-def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Path,
+def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, live_script: Path,
              pinned_copy: Path, seal_journal: Path, expected_manifest_count: int = 17947,
              expected_blob_id: str = EXPECTED_BLOB_ID,
              fetch: bool = False, fetcher: Callable[[str, float], bytes] | None = None,
@@ -199,8 +197,8 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
              git_runner: Callable[..., subprocess.CompletedProcess] = subprocess.run,
              timestamp: str | None = None) -> dict:
     timestamp = timestamp or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    counts = {"manifest_count": 0, "files_checked": 0, "mismatches": 0,
-              "receipt_count": 0, "published_checksum_disagreements": 0,
+    counts = {"manifest_count": 0, "plane_file_count": 0, "files_checked": 0, "mismatches": 0,
+              "receipt_count": 0, "receipt_count_by_plane": {}, "published_checksum_disagreements": 0,
               "published_checksum_refetch_complete": False}
     observed = {}
     expected = {"brick_file_sha256": "fresh NERSC published SHA-256",
@@ -218,26 +216,27 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
         counts["manifest_count"] = len(entries)
         if len(entries) != expected_manifest_count:
             raise GateFailure("manifest_count_mismatch")
-        records, journal_raw = _journal(journal)
-        counts["receipt_count"] = len(records)
-        observed["journal_head_sha256"] = sha256_bytes(journal_raw)
-        by_brick: dict[str, list[tuple[int, dict]]] = {}
-        for index, record in enumerate(records):
-            by_brick.setdefault(record.get("brick"), []).append((index, record))
-            if record["verdict"] == "OK" and record["computed_sha256"] != record["published_sha256"]:
-                raise GateFailure("ok_receipt_digest_mismatch")
-        for rows in by_brick.values():
-            ok_indices = [i for i, row in rows if row["verdict"] == "OK"]
-            if any(row["verdict"] != "OK" and not any(j > i for j in ok_indices) for i, row in rows):
-                raise GateFailure("non_ok_without_later_ok")
+        if set(journals) != set(PLANES):
+            raise GateFailure("three_plane_journals_required")
         manifest_bricks = {brick for brick, _ in entries}
-        ok_bricks = {brick for brick, rows in by_brick.items() if any(r["verdict"] == "OK" for _, r in rows)}
-        if ok_bricks != manifest_bricks:
-            raise GateFailure("acquisition_set_incomplete")
-        final_ok = {}
-        for brick in manifest_bricks:
-            rows = by_brick[brick]
-            final_ok[brick] = next(row for _, row in reversed(rows) if row["verdict"] == "OK")
+        final_ok: dict[str, dict[str, dict]] = {}
+        for plane in PLANES:
+            records, journal_raw = _journal(journals[plane])
+            counts["receipt_count"] += len(records)
+            counts["receipt_count_by_plane"][plane] = len(records)
+            observed[f"journal_head_sha256_{plane}"] = sha256_bytes(journal_raw)
+            by_brick: dict[str, list[tuple[int, dict]]] = {}
+            for index, record in enumerate(records):
+                by_brick.setdefault(record.get("brick"), []).append((index, record))
+            for rows in by_brick.values():
+                ok_indices = [i for i, row in rows if row["verdict"] == "OK"]
+                if any(row["verdict"] != "OK" and not any(j > i for j in ok_indices) for i, row in rows):
+                    raise GateFailure(f"non_ok_without_later_ok:{plane}")
+            ok_bricks = {brick for brick, rows in by_brick.items() if any(r["verdict"] == "OK" for _, r in rows)}
+            if ok_bricks != manifest_bricks:
+                raise GateFailure(f"acquisition_set_incomplete:{plane}")
+            final_ok[plane] = {brick: next(row for _, row in reversed(by_brick[brick]) if row["verdict"] == "OK")
+                               for brick in manifest_bricks}
         if process_checker():
             raise GateFailure("acquisition_process_running")
         acquisition_completion = True
@@ -247,45 +246,50 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
         if not fetch:
             raise GateFailure("published_checksum_refetch_not_requested")
         fetcher = fetcher or network_fetcher
-        wanted_files = {filename for _, filename in entries}
+        wanted_files = {filename for _, filenames in entries for filename in filenames.values()}
         actual_files = {p.name for p in bricks_dir.iterdir() if p.is_file()}
         if actual_files - wanted_files:
             counts["mismatches"] += len(actual_files - wanted_files)
             raise GateFailure("extra_brick_file")
         bound_lines = []
-        for position, (brick, filename) in enumerate(entries):
+        for position, (brick, filenames) in enumerate(entries):
             try:
                 payload = fetcher(checksum_url(brick), timeout)
-                line, published = _published_line(payload, filename)
             except Exception as exc:
                 if isinstance(exc, GateFailure):
                     raise
                 raise GateFailure(
                     f"published_checksum_fetch_failed: {type(exc).__name__}: {exc}"
                 ) from exc
-            bound_lines.append(line)
-            receipt = final_ok[brick]
-            if receipt["computed_sha256"] != published or receipt["published_sha256"] != published:
-                counts["published_checksum_disagreements"] += 1
-                raise GateFailure("fresh_published_receipt_disagreement")
-            disk_path = bricks_dir / filename
-            if not disk_path.is_file():
-                counts["mismatches"] += 1
-                raise GateFailure("missing_brick_file")
-            counts["files_checked"] += 1
-            if sha256_file(disk_path) != published:
-                counts["mismatches"] += 1
-                raise GateFailure("disk_hash_mismatch")
+            for plane in PLANES:
+                filename = filenames[plane]
+                line, published = _published_line(payload, filename)
+                bound_lines.append(line)
+                receipt = final_ok[plane][brick]
+                if receipt["computed_sha256"] != published or receipt["published_sha256"] != published:
+                    counts["published_checksum_disagreements"] += 1
+                    raise GateFailure(f"fresh_published_receipt_disagreement:{plane}")
+                disk_path = bricks_dir / filename
+                if not disk_path.is_file():
+                    counts["mismatches"] += 1
+                    raise GateFailure(f"missing_brick_file:{plane}")
+                if sha256_file(disk_path) != published:
+                    counts["mismatches"] += 1
+                    raise GateFailure(f"disk_hash_mismatch:{plane}")
             if delay and position + 1 < len(entries):
                 time.sleep(delay)
+        counts["files_checked"] = len(entries)
         observed["published_checksum_lines_sha256"] = sha256_bytes(b"".join(bound_lines))
+        counts["plane_file_count"] = len(entries) * len(PLANES)
         counts["published_checksum_refetch_complete"] = True
     except Exception as exc:
         status, verdict = "REFUSE", "DATA-INTEGRITY-FAIL"
         failure = (str(exc) or type(exc).__name__) if isinstance(exc, GateFailure) else \
             f"{type(exc).__name__}: {exc}"
     data_integrity_pass = bool(
-        status == "PASS" and counts["files_checked"] == counts["manifest_count"] == expected_manifest_count
+        status == "PASS" and counts["manifest_count"] == expected_manifest_count
+        and counts["files_checked"] == counts["manifest_count"]
+        and counts["plane_file_count"] == expected_manifest_count * len(PLANES)
         and counts["mismatches"] == 0 and counts["published_checksum_refetch_complete"]
         and counts["published_checksum_disagreements"] == 0 and git_custody.get("passed")
         and acquisition_completion
@@ -293,7 +297,7 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
     body = {
         "timestamp": timestamp,
         "operation": "tier-c-freeze-time-seal-gate",
-        "paths": {"manifest": str(manifest), "journal": str(journal),
+        "paths": {"manifest": str(manifest), "journals": {k: str(v) for k, v in sorted(journals.items())},
                   "seal_journal": str(seal_journal), "bricks_dir": str(bricks_dir),
                   "live_acquisition_script": str(live_script), "pinned_acquisition_copy": str(pinned_copy)},
         "expected_digests": expected,
@@ -315,7 +319,9 @@ def run_gate(*, manifest: Path, journal: Path, bricks_dir: Path, live_script: Pa
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, required=True)
-    parser.add_argument("--journal", type=Path, required=True)
+    parser.add_argument("--image-journal", type=Path, required=True)
+    parser.add_argument("--maskbits-journal", type=Path, required=True)
+    parser.add_argument("--nexp-journal", type=Path, required=True)
     parser.add_argument("--bricks-dir", type=Path, required=True)
     parser.add_argument("--live-script", type=Path, required=True)
     parser.add_argument("--pinned-copy", type=Path, required=True)
@@ -327,7 +333,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fetch", action="store_true", help="authorize fresh checksum-file network reads")
     parser.add_argument("--append", action="store_true", help="append the receipt to --seal-journal")
     args = parser.parse_args(argv)
-    receipt = run_gate(manifest=args.manifest, journal=args.journal, bricks_dir=args.bricks_dir,
+    journals = {"image-r": args.image_journal, "maskbits": args.maskbits_journal,
+                "nexp-r": args.nexp_journal}
+    receipt = run_gate(manifest=args.manifest, journals=journals, bricks_dir=args.bricks_dir,
                        live_script=args.live_script, pinned_copy=args.pinned_copy,
                        seal_journal=args.seal_journal,
                        expected_manifest_count=args.expected_manifest_count, fetch=args.fetch,

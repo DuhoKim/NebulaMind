@@ -18,20 +18,28 @@ class SealGateTests(unittest.TestCase):
         self.bricks = self.root / "bricks"
         self.bricks.mkdir()
         self.names = [f"00{i}p00{i}" for i in range(5)]
-        (self.root / "manifest.json").write_text(json.dumps(self.names))
+        manifest = {"schema": "TIERC-MANIFEST-3", "bricks": [
+            {"brick": brick, "planes": [f"legacysurvey-{brick}-{plane}.fits.fz"
+                                         for plane in seal_gate.PLANES]}
+            for brick in self.names]}
+        (self.root / "manifest.json").write_text(json.dumps(manifest))
         self.payloads = {}
-        rows = []
+        self.rows_by_plane = {plane: [] for plane in seal_gate.PLANES}
         for brick in self.names:
-            data = ("synthetic-" + brick).encode()
-            digest = hashlib.sha256(data).hexdigest()
-            filename = f"legacysurvey-{brick}-image-r.fits.fz"
-            (self.bricks / filename).write_bytes(data)
-            self.payloads[checksum_url(brick)] = f"{digest}  {filename}\r\n".encode()
-            rows.append({"brick": brick, "bytes": len(data), "computed_sha256": digest,
-                         "published_sha256": digest, "url": "synthetic://" + brick,
-                         "utc": "2026-09-02T00:00:00Z", "verdict": "OK"})
-        self.rows = rows
-        self._write_journal()
+            lines = []
+            for plane in seal_gate.PLANES:
+                data = f"synthetic-{brick}-{plane}".encode()
+                digest = hashlib.sha256(data).hexdigest()
+                filename = f"legacysurvey-{brick}-{plane}.fits.fz"
+                (self.bricks / filename).write_bytes(data)
+                lines.append(f"{digest}  {filename}\r\n")
+                self.rows_by_plane[plane].append(
+                    {"brick": brick, "bytes": len(data), "computed_sha256": digest,
+                     "published_sha256": digest, "url": f"synthetic://{brick}/{plane}",
+                     "utc": "2026-09-02T00:00:00Z", "verdict": "OK"})
+            self.payloads[checksum_url(brick)] = "".join(lines).encode()
+        self.rows = self.rows_by_plane["image-r"]
+        self._write_journals()
         self.live = self.root / "fetch_bricks.py"
         self.pin = self.root / "fetch_bricks_pinned.py"
         self.live.write_bytes(b"same-script\n")
@@ -41,8 +49,14 @@ class SealGateTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
+    def _write_journals(self):
+        for plane, rows in self.rows_by_plane.items():
+            (self.root / f"journal-{plane}.jsonl").write_text(
+                "".join(json.dumps(r) + "\n" for r in rows))
+
     def _write_journal(self):
-        (self.root / "journal.jsonl").write_text("".join(json.dumps(r) + "\n" for r in self.rows))
+        self.rows_by_plane["image-r"] = self.rows
+        self._write_journals()
 
     def failed_row(self, brick, verdict="FETCH-FAILED"):
         if verdict == "FETCH-FAILED":
@@ -64,7 +78,8 @@ class SealGateTests(unittest.TestCase):
         return subprocess.CompletedProcess(command, 0, stdout=b"", stderr=b"")
 
     def run_fixture(self, **changes):
-        args = dict(manifest=self.root / "manifest.json", journal=self.root / "journal.jsonl",
+        journals = {plane: self.root / f"journal-{plane}.jsonl" for plane in seal_gate.PLANES}
+        args = dict(manifest=self.root / "manifest.json", journals=journals,
                     bricks_dir=self.bricks, live_script=self.live, pinned_copy=self.pin,
                     seal_journal=self.seal_journal,
                     expected_manifest_count=5, fetch=True, fetcher=self.fetcher,
@@ -88,6 +103,9 @@ class SealGateTests(unittest.TestCase):
         digest = body.pop("receipt_digest")
         self.assertEqual(digest, sha256_bytes(canonical_bytes(body)))
         self.assertEqual(ZERO_DIGEST, receipt["predecessor_receipt_digest"])
+        self.assertEqual(5, receipt["counts"]["files_checked"])
+        self.assertEqual({"image-r": 5, "maskbits": 5, "nexp-r": 5},
+                         receipt["counts"]["receipt_count_by_plane"])
 
     def test_duplicate_ok_receipts_pass(self):
         self.rows.append(dict(self.rows[2]))
@@ -106,7 +124,7 @@ class SealGateTests(unittest.TestCase):
         )
 
     def test_malformed_journal_json(self):
-        (self.root / "journal.jsonl").write_text("{not-json}\n")
+        (self.root / "journal-image-r.jsonl").write_text("{not-json}\n")
         self.assert_refusal(self.run_fixture(), "malformed_journal")
 
     def test_fetch_omitted(self):
@@ -158,29 +176,29 @@ class SealGateTests(unittest.TestCase):
                          receipt["predecessor_receipt_digest"])
 
     def test_missing_file(self):
-        (self.bricks / f"legacysurvey-{self.names[2]}-image-r.fits.fz").unlink()
-        self.assert_refusal(self.run_fixture(), "missing_brick_file")
+        (self.bricks / f"legacysurvey-{self.names[2]}-nexp-r.fits.fz").unlink()
+        self.assert_refusal(self.run_fixture(), "missing_brick_file:nexp-r")
 
     def test_disk_hash_mismatch(self):
         (self.bricks / f"legacysurvey-{self.names[2]}-image-r.fits.fz").write_bytes(b"wrong")
-        self.assert_refusal(self.run_fixture(), "disk_hash_mismatch")
+        self.assert_refusal(self.run_fixture(), "disk_hash_mismatch:image-r")
 
     def test_fresh_published_disagrees_with_receipt(self):
         self.rows[2]["published_sha256"] = "f" * 64
         self.rows[2]["computed_sha256"] = "f" * 64
         self._write_journal()
-        self.assert_refusal(self.run_fixture(), "fresh_published_receipt_disagreement")
+        self.assert_refusal(self.run_fixture(), "fresh_published_receipt_disagreement:image-r")
 
     def test_incomplete_journal(self):
         self.rows.pop()
         self._write_journal()
-        self.assert_refusal(self.run_fixture(), "acquisition_set_incomplete")
+        self.assert_refusal(self.run_fixture(), "acquisition_set_incomplete:image-r")
 
     def test_fetch_failed_without_later_ok_refuses(self):
         self.rows = [row for row in self.rows if row["brick"] != self.names[1]]
         self.rows.append(self.failed_row(self.names[1]))
         self._write_journal()
-        self.assert_refusal(self.run_fixture(), "non_ok_without_later_ok")
+        self.assert_refusal(self.run_fixture(), "non_ok_without_later_ok:image-r")
 
     def test_fetch_failed_then_later_ok_passes(self):
         self.rows.insert(1, self.failed_row(self.names[1]))
@@ -192,7 +210,7 @@ class SealGateTests(unittest.TestCase):
         self.rows = [row for row in self.rows if row["brick"] != self.names[1]]
         self.rows.append(bad)
         self._write_journal()
-        self.assert_refusal(self.run_fixture(), "non_ok_without_later_ok")
+        self.assert_refusal(self.run_fixture(), "non_ok_without_later_ok:image-r")
 
     def test_sha_mismatch_quarantined_then_later_ok_passes(self):
         self.rows.insert(1, self.failed_row(self.names[1], "SHA-MISMATCH-QUARANTINED"))

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Acquire the authorized Tier-C invvar-r or maskbits companion plane.
+"""Acquire an authorized Tier-C nexp-r or maskbits companion plane.
 
 This is the companion-plane adaptation of the read-only pinned fetcher.  It
 downloads no image-r files and requires the selected plane's published hash.
@@ -24,7 +24,7 @@ QUARANTINE = HERE / "bricks_tier_c_quarantine"
 BASE = "https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/coadd"
 UA = {"User-Agent": "NebulaMind-spin-parity/1.0 (academic; contact duhokim81@gmail.com)"}
 SHA_RE = re.compile(r"([0-9a-f]{64})\s+(\S+)")
-PLANES = ("invvar-r", "maskbits")
+PLANES = ("nexp-r", "maskbits", "invvar-r")
 
 
 def utc():
@@ -86,6 +86,10 @@ def manifest_bricks(path):
 
 
 def run(args):
+    # invvar-r is no longer required by V11 and remains available only for an
+    # explicitly authorized legacy/reconciliation fetch.
+    if args.plane == "invvar-r" and not args.allow_invvar:
+        raise SystemExit("invvar-r requires explicit --allow-invvar")
     bricks = manifest_bricks(args.manifest)
     journal = args.journal or HERE / f"tier_c_fetch_receipts_{args.plane}.jsonl"
     args.dest.mkdir(exist_ok=True)
@@ -179,6 +183,8 @@ def run(args):
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--plane", required=True, choices=PLANES)
+    parser.add_argument("--allow-invvar", action="store_true",
+                        help="explicitly permit legacy invvar-r (not required by V11)")
     parser.add_argument("--limit", type=int, default=0,
                         help="stop after N newly downloaded bricks (0 = all)")
     parser.add_argument("--delay", type=float, default=0.5,

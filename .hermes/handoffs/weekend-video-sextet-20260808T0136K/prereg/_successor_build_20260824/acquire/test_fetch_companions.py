@@ -32,6 +32,7 @@ class CompanionFetcherTests(unittest.TestCase):
             "image-r": b"synthetic image",
             "invvar-r": b"synthetic inverse variance",
             "maskbits": b"synthetic mask bits",
+            "nexp-r": b"synthetic exposure counts",
         }
         self.write_server_files(self.payloads)
         handler = partial(QuietHandler, directory=str(self.web))
@@ -62,11 +63,11 @@ class CompanionFetcherTests(unittest.TestCase):
             f"legacysurvey_dr10_south_coadd_000_{self.BRICK}.sha256sum")
         checksum.write_text("".join(lines))
 
-    def args(self, plane="invvar-r"):
+    def args(self, plane="nexp-r", *, allow_invvar=False):
         manifest = self.root / "manifest.json"
         manifest.write_text(json.dumps([self.BRICK]))
         return type("Args", (), dict(
-            plane=plane, limit=0, delay=0, timeout=2, start=0, workers=1,
+            plane=plane, allow_invvar=allow_invvar, limit=0, delay=0, timeout=2, start=0, workers=1,
             manifest=manifest, dest=self.dest, journal=self.journal,
             quarantine=self.quarantine))()
 
@@ -82,7 +83,7 @@ class CompanionFetcherTests(unittest.TestCase):
         self.assertEqual(rec["computed_sha256"], rec["published_sha256"])
 
     def test_mismatch_quarantines_with_seven_key_shape(self):
-        bad_name = subject.plane_filename(self.BRICK, "invvar-r")
+        bad_name = subject.plane_filename(self.BRICK, "nexp-r")
         (self.web / "000" / self.BRICK / bad_name).write_bytes(b"corrupt")
         self.assertEqual(subject.run(self.args()), 1)
         rec = self.receipt()
@@ -101,8 +102,8 @@ class CompanionFetcherTests(unittest.TestCase):
 
     def test_resume_skips_verified_file(self):
         self.dest.mkdir()
-        name = subject.plane_filename(self.BRICK, "invvar-r")
-        (self.dest / name).write_bytes(self.payloads["invvar-r"])
+        name = subject.plane_filename(self.BRICK, "nexp-r")
+        (self.dest / name).write_bytes(self.payloads["nexp-r"])
         self.assertEqual(subject.run(self.args()), 0)
         self.assertFalse(self.journal.exists())
 
@@ -113,6 +114,11 @@ class CompanionFetcherTests(unittest.TestCase):
         rec = self.receipt()
         self.assertEqual(set(rec), {"brick", "error", "url", "utc", "verdict"})
         self.assertEqual(rec["verdict"], "FETCH-FAILED")
+
+    def test_invvar_requires_explicit_legacy_flag(self):
+        with self.assertRaisesRegex(SystemExit, "explicit --allow-invvar"):
+            subject.run(self.args("invvar-r"))
+        self.assertEqual(subject.run(self.args("invvar-r", allow_invvar=True)), 0)
 
 
 if __name__ == "__main__":

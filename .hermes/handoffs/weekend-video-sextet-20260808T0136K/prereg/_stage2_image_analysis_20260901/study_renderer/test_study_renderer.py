@@ -28,7 +28,7 @@ def sky_field(w, shape):
 
 
 def tile(image, w):
-    return image, np.zeros(image.shape), np.ones(image.shape), w
+    return image, np.zeros(image.shape), np.ones(image.shape,dtype=np.int16), w
 
 
 class EdgeFlipWCS(WCS):
@@ -65,7 +65,7 @@ class StudyRendererTests(unittest.TestCase):
         r=render_cutout([tile(left,lw),tile(right,rw)],(40.,10.))
         np.testing.assert_allclose(r.array,sky_field(r.wcs,r.array.shape),atol=2e-10,rtol=0)
         np.testing.assert_array_equal(r.maskbits,np.zeros((128,128)))
-        np.testing.assert_array_equal(r.inverse_variance,np.ones((128,128)))
+        np.testing.assert_array_equal(r.nexp,np.ones((128,128)))
 
     def test_determinism(self):
         w=make_wcs(); s=[tile(sky_field(w,(180,180)),w)]
@@ -97,10 +97,19 @@ class StudyRendererTests(unittest.TestCase):
     def test_inconsistent_pixel_scales(self):
         self.assert_data_fail([tile(np.ones((180,180)),make_wcs()),tile(np.ones((180,180)),make_wcs(scale=1.01))])
 
-    def test_missing_maskbits_or_invvar(self):
+    def test_missing_maskbits_or_nexp(self):
         w=make_wcs(); image=np.ones((180,180))
         self.assert_data_fail([(image,w)])
         self.assert_data_fail([(image,np.zeros_like(image),w)])
+
+    def test_zero_nexp_pixel_refuses(self):
+        w=make_wcs(); image=np.ones((180,180)); nexp=np.ones((180,180),dtype=np.int16)
+        nexp[90,90]=0
+        self.assert_data_fail([(image,np.zeros_like(image),nexp,w)])
+
+    def test_noninteger_nexp_refuses(self):
+        w=make_wcs(); image=np.ones((180,180))
+        self.assert_data_fail([(image,np.zeros_like(image),np.ones_like(image),w)])
 
     def test_exact_geometry_and_prohibitions(self):
         r=render_cutout([tile(np.ones((180,180)),make_wcs())],(40,10))
