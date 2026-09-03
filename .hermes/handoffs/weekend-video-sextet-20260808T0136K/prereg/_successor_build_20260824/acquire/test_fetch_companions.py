@@ -74,6 +74,39 @@ class CompanionFetcherTests(unittest.TestCase):
     def receipt(self):
         return json.loads(self.journal.read_text().splitlines()[-1])
 
+    def test_checksum_line_forms_parse_identically(self):
+        sha = "a" * 64
+        name = subject.plane_filename(self.BRICK, "maskbits")
+        self.assertEqual(subject.SHA_RE.findall(f"{sha}  {name}"),
+                         [(sha, name)])
+        self.assertEqual(subject.SHA_RE.findall(f"{sha} *{name}"),
+                         [(sha, name)])
+
+    def test_published_sha_accepts_text_and_binary_markers_once(self):
+        sha = hashlib.sha256(self.payloads["maskbits"]).hexdigest()
+        name = subject.plane_filename(self.BRICK, "maskbits")
+        checksum = self.web / "000" / self.BRICK / (
+            f"legacysurvey_dr10_south_coadd_000_{self.BRICK}.sha256sum")
+        for marker in ("  ", " *"):
+            with self.subTest(marker=marker):
+                checksum.write_text(f"{sha}{marker}{name}\n")
+                self.assertEqual(subject.published_sha(
+                    self.BRICK, "maskbits", 2), sha)
+
+    def test_malformed_checksum_lines_do_not_match(self):
+        sha = "a" * 64
+        name = subject.plane_filename(self.BRICK, "maskbits")
+        self.assertEqual(subject.SHA_RE.findall(f"{sha[:-1]}  {name}"), [])
+        self.assertEqual(subject.SHA_RE.findall(f"{sha}  {name} junk"), [])
+
+    def test_published_sha_raises_when_wanted_filename_is_absent(self):
+        self.write_server_files(self.payloads, checksum_planes=["image-r"])
+        name = subject.plane_filename(self.BRICK, "maskbits")
+        with self.assertRaisesRegex(
+                RuntimeError,
+                f"published checksum line count for {name}: 0"):
+            subject.published_sha(self.BRICK, "maskbits", 2)
+
     def test_ok_receipt_shape_exact(self):
         self.assertEqual(subject.run(self.args()), 0)
         rec = self.receipt()

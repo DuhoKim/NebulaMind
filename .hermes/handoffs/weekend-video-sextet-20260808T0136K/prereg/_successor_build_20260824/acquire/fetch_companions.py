@@ -23,7 +23,7 @@ DEST = HERE / "bricks_tier_c"
 QUARANTINE = HERE / "bricks_tier_c_quarantine"
 BASE = "https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/coadd"
 UA = {"User-Agent": "NebulaMind-spin-parity/1.0 (academic; contact duhokim81@gmail.com)"}
-SHA_RE = re.compile(r"([0-9a-f]{64})\s+(\S+)")
+SHA_RE = re.compile(r"^([0-9a-f]{64})[ \t]+(?:\*)?(\S+)[ \t]*$", re.MULTILINE)
 PLANES = ("nexp-r", "maskbits", "invvar-r")
 
 
