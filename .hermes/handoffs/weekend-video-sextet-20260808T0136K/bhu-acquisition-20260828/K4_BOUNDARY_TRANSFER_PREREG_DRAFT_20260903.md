@@ -1,6 +1,6 @@
 # DRAFT — NOT ORDERED — K4 pre-registration: a genuine causal boundary in the transfer physics, taking K2 as input (Tori, 2026-09-03 20:09 KST)
 
-**Status:** drafted on Blanc's continuation note (20:03 KST). No derivation, no seats beyond the referee gate. Becomes live only on
+**Status:** drafted on Blanc's continuation note (20:03 KST). No derivation, no seats beyond the referee gate. Gated as a draft 2026-09-03 20:20 KST (agy via `nm_referee_dispatch.sh`, ACCESS PROVEN, `K4_DRAFT_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, four repairs applied). Becomes live only on
 Duho's word; re-gated then.
 
 ## 0. Why this would exist
@@ -19,7 +19,7 @@ the comoving edge, change the large-angle CMB statistic away from the spectral-w
   (`PROGRAM_A_FREEDOM_MAP_20260902.md` L203; synthesis L96–97) — with the lane's percentile machinery.
 
 ## 2. The question, exactly
-With the boundary imposed on the PERTURBATIONS (not only the background), what is the predicted C_ℓ modification for ℓ ≤ 30 and
+With the boundary imposed on the PERTURBATIONS (not only the background), what is the predicted C_ℓ modification for ℓ ≤ ℓ_max (ℓ_max deferred to a receipted pin at step 1, from the freedom map's own S₁/₂ range) and
 the resulting Phase (b) percentile, at the recorded χ_§? Does it move the percentile above the best existing refinement (2.2–2.8 %,
 freedom map L212)?
 
@@ -34,16 +34,16 @@ freedom map L212)?
   INCONCLUSIVE; name the freedom.
 
 ## 4. What counts as a verdict either way
-A derived boundary condition on the perturbation modes, the resulting C_ℓ (ℓ ≤ 30) computed and pushed through the pre-registered
+A derived boundary condition on the perturbation modes, the resulting C_ℓ (ℓ ≤ ℓ_max, pinned at step 1) computed and pushed through the pre-registered
 estimator, one class filed; or a derived F1/F2 condition (K4_BOUNDARY_INERT) with the flux-result controls re-run.
 
 ## 5. Controls
 - **C1:** with the boundary removed (χ* → ∞) the pipeline must reproduce the freedom map's ΛCDM row (percentile 0.15–0.20 %,
-  synthesis L82–83). Failure = stop; no class.
+  synthesis L96–97). Failure = stop; no class.
 - **C2:** the background junction must reproduce K2's B1 cell (all jumps zero). Failure = stop.
 - **C3 deletion probe:** replacing the Darmois boundary condition by the freedom map's spectral window must reproduce that
   row's percentile; the exact row is named before running. Failure = stop.
-- **C4:** two seats' C_ℓ must agree to the estimator's Monte-Carlo error at every ℓ ≤ 30. Failure = third seat.
+- **C4:** two seats' C_ℓ must agree to the estimator's Monte-Carlo error at every ℓ ≤ ℓ_max (pinned at step 1). Failure = third seat.
 
 ## 6. Seat plan, blind double, cost
 Two blind seats (codex, Claude; perturbation theory by script plus the lane's Phase (b) pipeline), third seat via

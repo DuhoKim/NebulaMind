@@ -1,7 +1,7 @@
 # DRAFT — NOT ORDERED — K3 step 2 pre-registration: does an exchange correlation restore an n² spin-density term? (Tori, 2026-09-03 20:09 KST)
 
 **Status:** drafted on Blanc's continuation note (20:03 KST) so that a future "k3 step 2" starts from a gated text. No derivation,
-no seats beyond the referee gate. Becomes live only on Duho's word; then it is re-gated at that time.
+no seats beyond the referee gate. Gated as a draft 2026-09-03 20:20 KST (agy via `nm_referee_dispatch.sh`, ACCESS PROVEN, `K3S2_DRAFT_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, three repairs applied). Becomes live only on Duho's word; then it is re-gated at that time.
 
 ## 0. Why this would exist
 K3 step 1 (`K3S1_RESULT_20260903.md`) found the unpolarized average of the squared spin density linear in n at leading order
@@ -20,10 +20,10 @@ the axial-current squared, (ψ̄γ^kγ⁵ψ)(ψ̄γ_kγ⁵ψ)). The question is 
 
 ## 2. The question, exactly
 What is the exchange contribution to ⟨s_i s^i⟩ as a function of n, and does any part of it scale as n² at fixed volume (as the
-printed closures require), or as n^(5/3), n, or otherwise? Which, if any, of the printed coefficients (⅛, ¾) does it reproduce?
+printed closures require), or as n^(5/3), n, or otherwise? Which, if any, of the printed coefficients (⅛ from entry 10 L121, ¾ from entry 10 L113) does it reproduce?
 
 ## 3. Outcome classes — declared now
-- **EXCHANGE_N2_RESTORED:** an n² term appears with a derived coefficient; state whether it equals ⅛ or ¾ or neither.
+- **EXCHANGE_N2_RESTORED:** an n² term appears with a derived coefficient; state whether it equals ⅛ (entry 10 L121) or ¾ (entry 10 L113) or neither.
 - **EXCHANGE_OTHER_POWER:** the exchange term scales as a different power of n (e.g. n^(5/3) from p_F⁵); the printed n² law is not
   restored; report the power and coefficient.
 - **EXCHANGE_NEGLIGIBLE:** the exchange term is sub-leading to the step-1 n/V term at all densities the bounce papers use
@@ -35,7 +35,7 @@ A symbolic or numerically converged evaluation of the exchange integral with the
 
 ## 5. Controls
 - **C1:** the T → ∞ (uncorrelated) limit must return step 1's linear-in-n result. Failure = stop; no class.
-- **C2:** the fully polarized Fermi sea must return the polarized closure n²/4 at leading order. Failure = stop; no class.
+- **C2:** the fully polarized Fermi sea must return the polarized closure n²/4 at leading order (coefficient pinned at step 1 by the same receipted derivation as K3 step 1's C2). Failure = stop; no class.
 - **C3:** the exchange integral for a scalar density (no spin) must reproduce the textbook exchange hole normalisation (pinned
   at step 1 by derivation). Failure = stop; no class.
 - **C4 deletion probe:** removing antisymmetrisation must remove the exchange term entirely; the seat states this before running.
