@@ -70,3 +70,12 @@ traffic nil (bricks are local). Human half: 300–800 labels ≈ 5–15 person-h
 side-study finishes on its own by ~2026-09-04 with ~2 more seat rounds (render verdict + referee).
 
 **Next, if you say "go":** V135 = BS-2v (VOID converter) draft under §17.6 discipline; nothing else moves.
+
+---
+**Correction (Hwao, 11:5x KST, after re-reading the run/ record):** §3 above understates BS-2v. The
+candidate was REJECTED-UNBUILT-V1 on 09-01 15:51 KST, then REBUILT the same day by codex on the frozen
+text's mandated path (a successor-layer `receipt_strict` schema `BS2V-V1`, six authenticated fields) and
+verified **SOUND** by agy (AGY_BANK_VERIFY_20260901.md); `run/classp_candidates/BS-2v.json` exists and
+passes its gate. What BS-2v still lacks is exactly what §7 says a DESIGN slot needs: the **text revision**
+that pins the registry digest and the successor schema and marks the slot FILLED — that is V135. BS-2c's
+candidate receipt is still absent (its count-closure run was relaunched 09-01; no `BS-2c.json` yet).
