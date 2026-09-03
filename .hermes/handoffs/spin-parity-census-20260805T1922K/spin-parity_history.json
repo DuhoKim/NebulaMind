@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "BS-3g: option (a) + headroom question"
+    "topic": "crossmatch workers within the documented limit"
   },
   "humanFeedback": {
     "captured": true
@@ -798,6 +798,18 @@
       "feedbackText": "a, but ask Hwao whether a fixture with more headroom above the floor would let the control test a real-size tilt",
       "changed": {
         "summary": "BS3G_RANGE_VS_FLOOR_DECISION option (a): V137 narrows the BS-3g sweep range to the referee's admissible bound |\u03b3| \u2264 0.01, n_steps as ruled, else unchanged; hostile referee via dispatcher to SIGNABLE; HOLD at SIGNABLE until Duho reads BS3G_HEADROOM_MEMO_20260903.md answering whether a fixture with more headroom (e.g. a_hat 0.95) would let the control probe a tilt of the size the estimator resolves (\u03c3_\u03b3 ~0.057): what fixture, legitimacy under frozen text (successor-design vs V137 choice), what the control then tests, cost. Duho then chooses 0.01-as-is or the headroom variant."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "a",
+      "changed": {
+        "summary": "On Blanc's offer to add Data Lab query workers for the remaining ~1,800 crossmatch chunks: order was to add workers ONLY within NOIRLab Data Lab's DOCUMENTED per-user concurrency limit (read, not guessed). Hwao read the manual index, FAQ, TAP/SCS, Query Manager, Job Manager pages, the client README and the captured TAP capabilities: no per-user concurrency limit is documented anywhere. The pinned completeness tool is single-worker by referee design. Result: workers stay at 1 (documented basis absent); measured pace ~428 chunks/h \u2192 ETA ~21:40 KST, earlier than the 23:30 estimate. Duho may override by ordering a tool change + referee round."
       }
     }
   ]
