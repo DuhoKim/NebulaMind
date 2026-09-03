@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "Tier-C coverage plane: inverse-variance \u2192 exposure count (V11)"
+    "topic": "mini-prereg V11 principal signature"
   },
   "humanFeedback": {
     "captured": true
@@ -750,6 +750,18 @@
       "feedbackText": "b",
       "changed": {
         "summary": "INVVAR_NECESSITY_20260903.md option (b): V11 of the mini-prereg replaces inverse-variance with exposure-count (nexp-r > 0) coverage in \u00a77.7/\u00a78.12; Tier-C manifest v3 = image-r + maskbits + nexp-r with published-hash verification; renderer coverage plane \u2192 nexp-r; nothing else changes (\u00a717.6 discipline: disclosed diff, hostile referee via nm_referee_dispatch.sh to SIGNABLE, then Duho's sentence). Only after V11 is signed: stop the invvar download (partial stays, receipted), fetch nexp-r + maskbits (4 workers), re-run the seal gate over three planes. Until then the download keeps running. No pixel; flagship companions unchanged."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "mini-prereg V11 signed: 622d08a0c475b21edf3d8d53c569fd2ff7e840a9cfbabf3f384e1d16948042f3 at 2026-09-03T07:05:00Z",
+      "changed": {
+        "summary": "Mini-prereg V11 (coverage plane inverse-variance \u2192 exposure count; manifest v3; known-extras disclosure) FROZEN per \u00a717.5 by Duho's chat statement relayed by Blanc 15:57:27 KST; Hwao recomputed the digest = stated (MATCH); V10 freeze superseded. Companions switch now: invvar download stopped, partial archived (never deleted), nexp-r + maskbits fetched (4 workers), seal gate over 3 planes. Validation only; no pixel until every gate passes."
       }
     }
   ]
