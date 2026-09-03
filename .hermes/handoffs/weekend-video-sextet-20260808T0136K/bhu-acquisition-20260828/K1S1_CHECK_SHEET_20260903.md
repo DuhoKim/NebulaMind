@@ -37,6 +37,8 @@ result `K1S1_RESULT_20260903.md`. Sources under `bhu-reading-20260823/sources/`.
 
 *(Kimi arithmetic re-check 17:30 KST: all steps recompute clean; the "18 points" count was spelled out above in answer to its one issue.)*
 
+**Second route (17:30 KST):** direct numeric integration reproduces both classes at every box point; derivative magnitudes differ between routes by 13× (A_s) and 2× (M_NS) — normalisation-dependent, signs are not — `K1S1_ROUTE2_RECONCILIATION_20260903.md`.
+
 ## D. Where a critic could disagree (named)
 1. **The production model** — Press–Schechter halos × constant star-formation efficiency × Kroupa IMF × Fryer single-star remnant fits.
    No binary evolution, no metallicity–redshift history, present-day count only. Stage 2 (`K1S2_POPSYN_PREREG_20260903.md`) addresses

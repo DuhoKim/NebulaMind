@@ -39,6 +39,8 @@ Entry 56's cell (B1, k=0, Λ=0): **J_SMOOTH_EXPANDING**. Pathria's cell (B2, k=+
 
 *(Kimi arithmetic re-check 17:30 KST: all steps recompute clean; the gauge notation of input 1 was clarified above in answer to its one issue.)*
 
+**Second route (17:30 KST):** an independent Darmois/Misner–Sharp matching in LTB/PG slicing reproduces every class and control — `K2_ROUTE2_RECONCILIATION_20260903.md`.
+
 ## D. Where a critic could disagree (named)
 1. **Dust.** Any interior pressure changes step 2 (Ṙ² + F ≠ C_k² in general); the theorem is for p = 0 only.
 2. **What "B2" means.** Read as the comoving surface through maximum expansion it is smooth (step 6); read as a null junction ON
