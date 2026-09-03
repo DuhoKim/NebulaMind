@@ -5,6 +5,19 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-03 17:11 KST — K2 result: the junction theorem is proved; entry 56 needs no shell, Pathria's horizon shell is unphysical (2 blind seats + third seat)
+
+**Result (`K2_RESULT_20260903.md`):** a dust interior joins a Schwarzschild exterior without a shell if and only if the boundary
+is comoving (then it is the textbook Oppenheimer–Snyder match; closed ones recollapse, confirming Easson's Proposition 2).
+Entry 56's top-hat is exactly that: its borrowed closure is derived. Pathria's identification works smoothly as the comoving
+surface at maximum expansion, with R_max = R_s derived, but a null shell sitting on the horizon violates the dominant energy
+condition — the shell-bearing escape entries 4 and 5 left open is closed at that placement. All four controls pass in both
+seats; no cell is undetermined. Nothing moved.
+**Options for the record:** (a) annotate entries 4, 5, 22, 56 as proposed in §5 of the result (warrant fields only; tiers,
+standings and the entry-22 domain untouched) [recommended]; (b) annotate and ALSO reopen the entry-22 domain question (the
+closed-daughter limb is now supported by an owned computation); (c) hold the annotations.
+
+---
 ## YOUR CALL 2026-09-03 17:06 KST — K1 stage 1 result: the natural-selection premise fails for the primordial amplitude (2 blind seats, unanimous)
 
 **Result (`K1S1_RESULT_20260903.md`):** black-hole production RISES monotonically with the primordial amplitude through the
