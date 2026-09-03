@@ -95,7 +95,7 @@ falsifier).
 23–27 ASSUMED (packet 01:00 ruled (a) by Duho: tier kept, flag carried); prospects 21/47 ROUTE_CONNECTED, 9/16
 ROUTE_NAMED_ONLY; obstructions 5/22/48 PROOF_OWNED, 4 PROOF_CONTESTED (domain narrowed 09-02); consistency-only
 split between CONSTRUCTION_DERIVED, MIXED (derived background, asserted link to cosmology — the common case) and
-CONSTRUCTION_ASSERTED. 18: NO_TEXT (56 pinned and cell filed 2026-09-03 15:44 KST). Blind doubles on 31, 23, 38, 6; no tier or standing moved.
+CONSTRUCTION_ASSERTED. 18 and 56 pinned and cells filed 09-03 (18 against the 1992 VoR 2026-09-03 15:44 KST). Blind doubles on 31, 23, 38, 6; no tier or standing moved.
 
 **Blind double of the WARRANT column (2026-09-03 14:10 KST):** every text cell now has a second, blind seat (Claude) and the factual splits a third (agy, access-proven). Changes: 37 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 28 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 42 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 20 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 24 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`; 36 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 43 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 49 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 14 `W_CONSTRUCTION_ASSERTED`→`W_MIXED`; 22 `W_PROOF_OWNED`→`W_PROOF_CITED`; 26 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`. Histogram: W_BORROWED 2, W_CONSTRUCTION_ASSERTED 3, W_CONSTRUCTION_DERIVED 1, W_DIRECTION_ASSUMED 4, W_DIRECTION_DERIVED 3, W_EXPLICIT 2, W_MIXED 25, W_PROOF_CITED 1, W_PROOF_CONTESTED 1, W_PROOF_OWNED 2, W_ROUTE_CONNECTED 2, W_ROUTE_NAMED_ONLY 2, W_UNDERIVED 1. Record: `bhu-acquisition-20260828/WARRANT_DOUBLE_RECONCILIATION_20260903.md`. Tiers untouched.
 
@@ -823,6 +823,7 @@ Record: harvest #6; direct collapse-to-baby-universe construction in modified gr
 ## 5. Regular-black-hole interiors (Dymnikova line)
 
 **18. I. Dymnikova (1992). "Vacuum nonsingular black hole." Gen. Rel. Grav. 24, 235–242.**
+**Warrant (2026-09-03 15:52 KST, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_CONSTRUCTION_ASSERTED` (both blind seats, read against the 1992 GRG version of record `dymnikova_1992_grg24_235_vor_clean.txt`, pinned from Duho's library download 2026-09-03 15:52 KST) — borrowed inputs: assumed exponential stress-energy profile and de Sitter scale relation (SOURCE lines 118–127); Petrov-classification vacuum interpretation (SOURCE lines 73–85); standard mass formula (SOURCE lines 129–138). Original-vs-restatement: The 2002 restatement does not match: it derives the class from energy conditions and demotes (8) to "The simplest choice". NO_TEXT status withdrawn; tier untouched.
 **Easson map (RQ-D 2026-08-31, no tier change):** RESTRICTED by Prop 1 of Easson 2026 (entry 22) -- its trapped slicing cannot be identified with exact FRW; the published static regular-BH / de-Sitter-core solution stands (NOT killed). See `RQ_D_RECONCILIATION_20260831.md`.
 DOI 10.1007/BF00760226 — VERIFIED (Crossref: GRG, v24, p235-242, 1992-03).
 Claim: regular black hole with a de Sitter core — the vacuum-bubble interior mechanism.

@@ -8,6 +8,7 @@ _HERE=os.path.dirname(os.path.abspath(__file__)); W=os.path.abspath(os.path.join
 SRC=os.path.join(W,"bhu-reading-20260823","sources"); P6=os.path.join(W,"bhu-theory-phase6-curvature-20260827")
 FRAME=list(range(1,29))+[31]+[n for n in range(36,58) if n!=45]+[59]   # 2026-09-02 Duho "a for all three": 59 added, 45 moved to Appendix A
 MAP={
+    18: ("dymnikova_1992_grg24_235_vor_clean.txt", "dymnikova"),
     56: ("gaztanaga_mass_mnras_clean.txt", "observable universe"),1:("pathria_1972_universe_black_hole_nature240_298_clean.txt","pathria"),2:("good_1972_chinese_universes_phystoday25_15_clean.txt","chinese"),
 3:("stuckey_1994_observable_universe_black_hole_ajp62_788_clean.txt","stuckey"),4:("knutsen_2009_gravcosmol15_273_clean.txt","knutsen"),
 5:("khakshournia_2010_note_pathria_arxiv1412.0105_clean.txt","pathria"),6:("smolin_1992_clean.txt","smolin"),8:("0902.1994_clean.txt","pop"),
@@ -23,7 +24,7 @@ MAP={
 46:("1111.1017_clean.txt","quantization"),47:("sato_kodama_sasaki_maeda_1982_plb108_103_clean.txt","sato"),48:("farhi_guth_mitctp1400_clean.txt","guth"),
 49:("blau_guendelman_guth_1987_clean.txt","guth"),50:("farhi_guth_guven_ctp1690_clean.txt","guth"),51:("0910.1181_clean.txt","pop"),52:("1808.08327_clean.txt","bounce"),
 53:("1906.11824_clean.txt","bounce"),54:("2505.23877_clean.txt","bounce"),55:("2007.06664_clean.txt","sitter"),57:("smoller_temple_1997_clean.txt","smoller"),59:("desai_poplawski_2016_plb755_183_clean.txt","poplawski")}
-NO_TEXT={7:"brown-prl (outside sources; audited c5)",18:"Dymnikova 1992 GRG -- no clean text pinned"}  # 56 moved to MAP 2026-09-03 (text pinned)
+NO_TEXT={7:"brown-prl (outside sources; audited c5)"}  # 56 moved to MAP 2026-09-03 (text pinned)
 checks=[]
 def chk(n,p,d=""):
     if not isinstance(p,bool): raise TypeError("chk needs a computed predicate")
