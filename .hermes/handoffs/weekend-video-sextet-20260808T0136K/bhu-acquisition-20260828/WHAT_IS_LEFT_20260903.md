@@ -28,3 +28,19 @@ watch, or an acquisition target. No lane work is blocked on machine effort.
 - Warrant column: 49 text cells, blind-doubled, 7 third-seated, 11 tokens changed, histogram in the record's §0.
 - Rulings applied: (a) on the 23–27/6 warrant packet (01:10, chat-confirmed 10:52).
 - Depth queue: 31 draws complete (09-02); every tier held; entry 59 added; entry 45 → Appendix A-45; entry 4 narrowed.
+
+---
+## Evening update (2026-09-03 20:34 KST)
+**Done since 14:12:** topic search round 2 (Duho "a"); K2 junction theorem proved, check sheet, second route, annotations on 4, 5, 22,
+56 ruled (a); K1 stage 1 result, check sheet, second route, annotations on 6, 31 ruled (a); K1 stage 2 preregistered, launched,
+STOPPED by Duho 19:06 ("too weak logic"); K3 step 1 result (closure = convention; entry 10 factor-six conflict), check sheet, second
+route, Kimi re-check, annotations on 9, 10, 11 + inheritance on 39, 52, 53, 59 ruled (a); synthesis §12–14; fresh-seat re-read of the
+record (two overstatements repaired); DRAFT preregs for K3 step 2 and K4, gated, NOT ORDERED.
+
+**On Duho's desk:** nothing that needs a decision. One non-blocking acquisition line (Gasperini 1986; Nurgaliev & Ponomariev 1983,
+publisher pages only).
+
+**Standing:** Tuesday 10:00 KST neutron-star mass watch (next run 2026-09-08) + b68 tripwire; DESI curvature watch (Hwao's lane).
+**Unstarted, gated drafts ready:** K3 step 2 (exchange correlation), K4 (causal-boundary transfer physics). **Unstarted, no draft:**
+K5 (LISA forecast), K6 (ECKS floor audit — housekeeping).
+**Paper HOLD** stands; nothing outward; tiers untouched all day.
