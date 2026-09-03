@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "DR10 sweeps: fetch GZ1 subset, max workers"
+    "topic": "BS-3g: option (a) + headroom question"
   },
   "humanFeedback": {
     "captured": true
@@ -786,6 +786,18 @@
       "feedbackText": "(a) fetch the GZ1-footprint subset only, 405 GiB, but as many workers as possible to make it faster",
       "changed": {
         "summary": "Fetch the 352 DR10-south sweep files of the GZ1-footprint subset (manifest 0ac4296bf) with NERSC sha256 verification + receipt journal; start at 8 workers, back off on 429/5xx/truncation; never at the expense of the running nexp-r + maskbits fetch (4 workers, tonight's critical path). Report aggregate rate after 15 min + ETA. Draft the local-sweep crossmatch as the completeness gate's fallback, pinned + refereed via dispatcher before use. TAP crossmatch untouched. BS-3g ruling still pending."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "a, but ask Hwao whether a fixture with more headroom above the floor would let the control test a real-size tilt",
+      "changed": {
+        "summary": "BS3G_RANGE_VS_FLOOR_DECISION option (a): V137 narrows the BS-3g sweep range to the referee's admissible bound |\u03b3| \u2264 0.01, n_steps as ruled, else unchanged; hostile referee via dispatcher to SIGNABLE; HOLD at SIGNABLE until Duho reads BS3G_HEADROOM_MEMO_20260903.md answering whether a fixture with more headroom (e.g. a_hat 0.95) would let the control probe a tilt of the size the estimator resolves (\u03c3_\u03b3 ~0.057): what fixture, legitimacy under frozen text (successor-design vs V137 choice), what the control then tests, cost. Duho then chooses 0.01-as-is or the headroom variant."
       }
     }
   ]
