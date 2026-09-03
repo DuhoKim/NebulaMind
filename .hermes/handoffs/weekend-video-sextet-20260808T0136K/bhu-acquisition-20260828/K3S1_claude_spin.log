@@ -1,0 +1,100 @@
+
+======== 1. Pauli matrices and the spin-1/2 Casimir (pin for C1) ========
+[su2] [S_a,S_b] = i eps_abc S_c verified for all a,b
+[Casimir] S.S = [[3/4, 0], [0, 3/4]]  -> eigenvalue 3/4 = s(s+1) with s=1/2 -> 3/4
+
+======== 2. Dirac matrices (Dirac representation), Clifford checks, Sigma^k ========
+[Clifford] {g^mu,g^nu} = 2 eta^{mu nu}, g5^2 = 1, {g5,g^mu} = 0  verified
+[gamma5] [[0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 0, 0]]
+[Sigma] g0 g^k g5 = g5 g0 g^k = diag(sigma_k, sigma_k) =: Sigma^k  verified for k=1,2,3
+
+======== 3. Plane-wave spinor at rest, spin along n(theta,phi), normalised psibar g0 psi = 1 ========
+[Dirac_eq] (g^0 p_0 - m) psi = 0 at p=(m,0,0,0)  verified
+[norm] psibar g^0 psi = psi^dag psi = 1  (one particle per unit volume)
+[spin_expect] chi^dag S_k chi = [sin(theta)*cos(phi)/2, sin(phi)*sin(theta)/2, cos(theta)/2]  = n/2 -> True
+[eigen] chi is the +1/2 eigenvector of n.S  verified
+
+======== 4. Dirac pseudovector s^mu = 1/2 psibar g^mu g5 psi  (entry 10 eq. 4) ========
+[s^mu] [0, sin(theta)*cos(phi)/2, sin(phi)*sin(theta)/2, cos(theta)/2]
+[s^0] s^0 = 0 in the rest frame  (=> s_i u^i = 0, entry 10 L112)  verified
+[s_spatial] s^k = n_k/2  (spin density of one particle at unit density)  verified
+[P2_single] c-number square: s_i s^i = -1/4,  |s|^2 = 1/4
+[P1_single] operator square: <psi| S.S |psi> = 3/4
+[remark] 4-covariant operator square incl. mu=0: <(1/2 g0 g^mu g5)(1/2 g0 g_mu g5)> = -1/2  (NOT the object; printed for completeness)
+
+======== C1 single particle at rest: expect the Casimir 3/4 ========
+[C1_operator_square] 3/4
+[C1_cnumber_square] 1/4
+[C1] PASS
+   note: the prereg's 3/4 is the OPERATOR-ordered square (P1); the square of the bilinear itself (P2) is 1/4.
+   C1 therefore fixes the prescription P1 for the classification; P2 is carried alongside.
+
+======== 5. Unpolarized ensemble = uniform average over the sphere; maximally mixed state pin ========
+[<n_i>] [0, 0, 0]
+[<n_i n_j>] [[1/3, 0, 0], [0, 1/3, 0], [0, 0, 1/3]]
+[rho_avg] <|chi><chi|>_sphere = [[1/2, 0], [0, 1/2]] = 1/2 * identity
+[rho_mixed] 1/2(|up><up| + |dn><dn|) = [[1/2, 0], [0, 1/2]]  == sphere average: True
+[Tr(rho S_i S_j)] [[1/4, 0, 0], [0, 1/4, 0], [0, 0, 1/4]]  -> Tr(rho S.S) = 3/4
+
+======== 6. N uncorrelated particles in volume V: square of the SUM, both prescriptions ========
+[diag_P1] <S_a.S_a> = 3/4
+[diag_P2] |<S_a>|^2 = 1/4
+[cross] <S_a>.<S_b> = sin(theta)*sin(theta2)*cos(phi - phi2)/4 + cos(theta)*cos(theta2)/4 -> averaged over both orientations = 0
+[N=2_explicit] <S_tot.S_tot> = exp(-I*phi_1 + I*phi_2)*sin(theta_1)*sin(theta_2)/4 + exp(I*phi_1 - I*phi_2)*sin(theta_1)*sin(theta_2)/4 + cos(theta_1)*cos(theta_2)/2 + 3/2
+[N=2_avg] orientation average = 3/2  (= 2 * 3/4: True)
+[N=3_avg] orientation average = 9/4  (= 3 * 3/4: True)
+[unpol_P1] <(sum_a S_a)^2> = 3*N/4
+[unpol_P2] <(sum_a <S_a>)^2> = N/4
+[square_of_mean] |<sum_a S_a>|^2 = 0
+[density_P1] <s^2> for the density s = (1/V) sum_a S_a:  3*N/(4*V**2)  = (3/4) n/V with n=N/V -> True
+[scaling_P1] {'leading_power': 1, 'coeff_N2': 0, 'coeff_N1': 3/4}
+[scaling_P2] {'leading_power': 1, 'coeff_N2': 0, 'coeff_N1': 1/4}
+[convention_coherent_P1] (N * sqrt<S_a.S_a>)^2 = 3*N**2/4   <- coherent sum of per-particle RMS magnitude sqrt(3/4)
+[convention_coherent_P2] (N * |<S_a>|)^2      = N**2/4   <- coherent sum of per-particle expectation magnitude 1/2 (= polarized closure)
+[convention_half_coherent_P2] 1/2 * (N/2)^2 = N**2/8   <- polarized closure with the 1/2 of s^2=1/2 s_ij s^ij kept but the double-count factor 2 dropped
+
+======== 7. Spin-fluid tensor from the Dirac tensor s_ijk = -e_ijkl s^l ; s_ij := s_ijk u^k ; 1/2 s_ij s^ij ========
+[antisym] s_ijk totally antisymmetric  verified
+[s_ij] s_ij = s_ijk u^k = [[0, 0, 0, 0], [0, 0, -cos(theta)/2, sin(phi)*sin(theta)/2], [0, cos(theta)/2, 0, -sin(theta)*cos(phi)/2], [0, -sin(phi)*sin(theta)/2, sin(theta)*cos(phi)/2, 0]]
+[transverse] s_ij u^j = 0  verified (HHK condition holds for the projection)
+[HHK_form] s_ij u_k == Dirac s_ijk ? False  (Dirac tensor has s_0jk, s_i0k components the HHK form lacks: the identification is a projection, a prescription)
+[fluid_sq] 1/2 s_ij s^ij = 1/4
+[full_Dirac_sq] s_ijk s^ijk = 3/2 = 6|s|^2 ;  (1/6) s_ijk s^ijk = 1/4
+[IDENTITY] 1/2 s_ij s^ij - |s|^2 = 0 ;  1/2 s_ij s^ij + s_i s^i = 0
+   => 1/2 s_ij s^ij = |s|^2 = -s_i s^i  exactly, for every orientation: the two objects have the SAME square.
+      The identity is linear-algebraic in s^l, so it survives the sum over particles and both prescriptions;
+      the fluid object's ensemble averages are therefore those of section 6 verbatim.
+[fluid_N=2_P2] 1/2 s_ij s^ij of the summed pseudovector, averaged = 1/2  (= 2 * 1/4: True)
+
+======== C2 fully polarized limit: all spins along +z through the same pipeline ========
+[s_z] sum_a s_z = N/2  (expect N/2 = n/2)
+[P2] (sum_a <S_a>)^2 = N**2/4   scaling {'leading_power': 2, 'coeff_N2': 1/4, 'coeff_N1': 0}
+[P1] <(sum_a S_a)^2> = N**2/4 + N/2   scaling {'leading_power': 2, 'coeff_N2': 1/4, 'coeff_N1': 1/2}  = S_tot(S_tot+1) with S_tot=N/2 -> True
+[P1_explicit] N=2: 2 (formula 2),  N=3: 15/4 (formula 15/4)
+[C2] PASS
+   s_z = n/2 exactly; P2 gives n^2/4 exactly; P1 gives n^2/4 + n/2 (n^2 scaling, coefficient 1/4, Casimir of total spin N/2).
+
+======== C3 units: restore hbar and c for the fluid object ========
+[dim] kappa (hbar c n)^2 in J/m^3 with n = 1/m^3: 6.52088246426181e-94*joule/(pi*meter**3)
+   -> (hbar c n)^2 is the unique hbar,c dressing making kappa s^2 an energy density with s ~ n: s_ij(entry 9) = c * (angular-momentum density)
+[fluid_polarized] 1/2 s_ij s^ij = c**2*hbar**2*n**2/4  = (1/4)(hbar c n)^2
+[fluid_unpolarized_avg] <1/2 s_ij s^ij> = 3*c**2*hbar**2*n/(4*V)  = (3/4)(hbar c)^2 n/V
+[C3] PASS  — the (hbar c n)^2 form is reproduced (coefficient 1/4 for the coherent closure; the printed 1/8 is not what the pipeline returns — C3 tests the form, the coefficient is the question under test)
+
+======== Classifier (declared before C4), and C4 deletion probe ========
+   rule: leading power of N < 2 -> CLOSURE_SCALING_FAILS; power 2 and coeff == printed -> CLOSURE_xx_DERIVED;
+         power 2 and coeff != printed -> CLOSURE_CONFLICT (an n^2 closure with a coefficient the average contradicts).
+   C4 EXPECTED (stated before running): unpolarized pipeline files CLOSURE_SCALING_FAILS for BOTH objects;
+   deleting the orientation average (all +z) must move BOTH to CLOSURE_CONFLICT (power 2, coeff 1/4 != 1/8 and != 3/4).
+   Exact expected change set: {DIRAC: SCALING_FAILS->CONFLICT, FLUID: SCALING_FAILS->CONFLICT}; anything else = C4 FAIL.
+[C4_DIRAC] with average: ('CLOSURE_SCALING_FAILS', {'leading_power': 1, 'coeff_N2': 0, 'coeff_N1': 3/4})   |  average deleted: ('CLOSURE_CONFLICT', {'leading_power': 2, 'coeff_N2': 1/4, 'coeff_N1': 1/2})
+[C4_FLUID] with average: ('CLOSURE_SCALING_FAILS', {'leading_power': 1, 'coeff_N2': 0, 'coeff_N1': 3/4})   |  average deleted: ('CLOSURE_CONFLICT', {'leading_power': 2, 'coeff_N2': 1/4, 'coeff_N1': 1/2})
+[C4] PASS
+[P2_classes] DIRAC CLOSURE_SCALING_FAILS  FLUID CLOSURE_SCALING_FAILS  (class independent of P1/P2; only the n-coefficient 3/4 vs 1/4 depends on it)
+
+======== RESULT (filed only if C1-C4 all PASS) ========
+[controls] {'C1': True, 'C2': True, 'C3': True, 'C4': True}
+[OBJECT_DIRAC] <s_i s^i> = -3*N/(4*V**2) = -(3/4) n/V   [P1; P2: -(1/4) n/V]   class CLOSURE_SCALING_FAILS
+[OBJECT_FLUID] 1/2<s_ij s^ij> = +3*N/(4*V**2) = (3/4) n/V   [P1; P2: (1/4) n/V]   class CLOSURE_SCALING_FAILS
+[IDENTITY] 1/2 s_ij s^ij = -s_i s^i = |s|^2  (same object; so 1/8 n^2 and 3/4 n^2 cannot both hold — a factor-6 inconsistency at entry 10 L113/L121)
+[HEADLINE] CLOSURE_SCALING_FAILS

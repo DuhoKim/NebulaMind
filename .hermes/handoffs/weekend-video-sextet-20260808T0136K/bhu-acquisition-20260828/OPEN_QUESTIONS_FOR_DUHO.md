@@ -5,6 +5,18 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-03 19:32 KST — K3 step 1 result: the torsion-bounce spin closure is a convention, not a derived average (3 seats, 2 methods, unanimous)
+
+**Result (`K3S1_RESULT_20260903.md`; check sheet `K3S1_CHECK_SHEET_20260903.md`):** for randomly oriented, uncorrelated fermions the
+average of the squared spin density is linear in n; neither printed closure (⅛(ℏcn)² in entries 9, 11, 10; ¾n² in entry 10) follows.
+Both are conventions, and under entry 10's own projection they are two values of one quantity, six times apart. The bounce in the
+torsion chain keeps its sign; its scale rests on a chosen coefficient.
+**Options for the record:** (a) annotate rows 9, 10, 11 (closure = convention; row 10 internal factor-six conflict) and note the
+inheritance on 39, 52, 53, 59; tiers untouched [recommended]; (b) (a) plus order the natural next question — does an exchange
+correlation restore an n² term (a bounded second step); (c) hold the annotations. Acquisition (non-blocking): Gasperini 1986 PRL 56,
+2873; Nurgaliev & Ponomariev 1983 PLB 130, 378 — if you can download them, the "convention" word can be tested against their own derivation.
+
+---
 ## FOR DUHO'S EYE 2026-09-03 19:22 KST — K3 step-1 preregistration filed (no decision needed; your "k3" of 19:17 ordered it)
 
 `K3S1_SPIN_CLOSURE_PREREG_20260903.md`: does ONE unpolarized Dirac-spin average give the spin-fluid closure s² = ⅛(ℏcn)² (entries 9, 11;
