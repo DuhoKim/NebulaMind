@@ -1,0 +1,2281 @@
+                                                                                    Masses, Radii, and
+                                                                                    Equation of State of
+                                                                                    Neutron Stars
+
+
+
+
+arXiv:1603.02698v1 [astro-ph.HE] 8 Mar 2016
+                                                                                    Feryal Özel1 and Paulo Freire2
+                                                                                    1
+                                                                                      Department of Astronomy, University of Arizona, Tucson, AZ 85721, USA;
+                                                                                    email: fozel@email.arizona.edu
+                                                                                    2
+                                                                                      Max-Planck-Institut für Radioastronomie, Auf dem Hügel 69, D-53121, Bonn,
+                                                                                    Germany; email: pfreire@mpifr-bonn.mpg.de
+
+
+
+
+                                              Xxxx. Xxx. Xxx. Xxx. YYYY. 00:1–39    Keywords
+                                              This article’s doi:                   neutron stars, dense matter, pulsars, pulsar timing, X-ray sources
+                                              10.1146/((please add article doi))
+
+                                              Copyright c YYYY by Annual Reviews.   Abstract
+                                              All rights reserved
+                                                                                    We summarize our current knowledge of neutron star masses and radii.
+                                                                                    Recent instrumentation and computational advances have resulted in a
+                                                                                    rapid increase in the discovery rate and precise timing of radio pulsars
+                                                                                    in binaries in the last few years, leading to a large number of mass
+                                                                                    measurements. These discoveries show that the neutron star mass dis-
+                                                                                    tribution is much wider than previously thought, with 3 known pulsars
+                                                                                    now firmly in the 1.9−2.0 M⊙ mass range. For radii, large, high quality
+                                                                                    datasets from X-ray satellites as well as significant progress in theoreti-
+                                                                                    cal modeling led to considerable progress in the measurements, placing
+                                                                                    them in the 9.9 − 11.2 km range and shrinking their uncertainties due
+                                                                                    to a better understanding of the sources of systematic errors. The
+                                                                                    combination of the massive neutron star discoveries, the tighter radius
+                                                                                    measurements, and improved laboratory constraints of the properties
+                                                                                    of dense matter has already made a substantial impact on our under-
+                                                                                    standing of the composition and bulk properties of cold nuclear matter
+                                                                                    at densities higher than that of the atomic nucleus, a major unsolved
+                                                                                    problem in modern physics.
+
+
+
+                                                                                                                                                         1
+    1. INTRODUCTION
+    Our understanding of neutron stars has changed drastically since the Annual Reviews article of
+    Wheeler (1966), when not a single neutron star was known and the discussion consisted of an
+    entirely theoretical treatment of collapsed dense stars. The change has been most rapid in the last
+    decade, when the discovery and precise timing observations of pulsars has proceeded at an ever
+    accelerating rate, the new generation X-ray and γ-ray telescopes have provided high quality, large
+    datasets, and a large body of theoretical work on neutron star emission properties and spacetimes
+    have enabled significant recent developments in our ability to model these extreme objects and
+    interpret the observations in solid frameworks.
+        We now know precise masses for ∼ 35 neutron stars spanning the range from 1.17 to 2.0 M⊙
+    and can pin down the radii of more than a dozen to the 9.9−11.2 km range. The combination of the
+    heaviest known neutron star mass with the existing radius measurements already places significant
+    constraints on the cold dense matter equation of state up to densities that are 8 times the nuclear
+    density.
+        Certain characteristics of neutron stars have been known for a while. Shortly after the discovery
+    of pulsars (Hewish et al. 1968), it became apparent that they are the observational manifestation
+    of extremely compact stars made primarily of neutrons. It was also evident that, while the neutron
+    degeneracy pressure played a role in supporting these compact objects against gravitational collapse,
+    it was not sufficient to hold up a star beyond 0.7M⊙ (Oppenheimer & Volkoff 1939; Tolman 1939),
+    and that repulsive nuclear forces were necessary in shaping their structure (Harrison et al. 1965).
+    Earlier calculations of the interiors treated nucleons with approximate potentials and predicted
+    masses in the 0.5 − 3M⊙ range and radii between 7 and 20 km. Stars of such extreme compactness
+    have central densities that are 5-10 times the nuclear saturation density ρsat = 2.8 × 1014 g cm−3 .
+        While the nuclear models improved over the years, the major advances have come from astro-
+    physical observations and models because terrestrial experiments do not approach densities similar
+    to that of neutron star cores (see section 4.2). Theoretical work is guided by the well developed
+    effective field theory approaches and the rapidly developing QCD calculations but there remain very
+    large uncertainties in our understanding of the actual compositions of the cores. Open questions
+    include the composition of matter at high densities, such as the density at which matter needs to
+    be described by quarks and no longer by nucleons, as well as the presence of strangeness or boson
+    condensates in such matter; the isospin symmetry energy that defines the energy difference between
+    normal and neutron-rich matter and, ultimately, the ability to calculate matter in β-equilibrium
+    from first principles; and the role and reliability of calculations of n-body interactions. Despite
+    the large number of possibilities, each theoretical model, or its resulting equation of state, can be
+    mapped into a mass-radius relation by solving the general relativistic structure equations. This,
+    in turn, allows measurements of the neutron star masses and radii to place strong constraints on
+    the properties and interactions of cold, ultradense matter, as we will discuss in this review. These
+    same observations also provide excellent tests of general relativity in the strong-field regime, using
+    pulsars as well as neutron star surfaces as testbeds.
+        The recent series of investigations of neutron star masses and radii are motivated not only
+    by the aim of probing physics in new regimes, but also because of the forefront role neutron
+    stars play in many astrophysical phenomena. Neutron stars are associated with numerous explo-
+    sive, transient, and non-electromagnetic events, and neutron star properties play a role in shaping
+    each one of them. The primary sources of gravitational waves that are expected to be detected
+    with the gravitational wave detector Advanced LIGO are the neutron star-neutron star and neu-
+    tron star-black hole mergers. These systems are also thought to be the central engines of short
+    gamma-ray bursts (see Nakar 2007 for a review). The dynamics of the mergers, the gravita-
+    tional waveforms in late stages of coalescence, the lifetime of merger disks and the resulting black
+
+
+2   Feryal Özel and Paulo Freire
+hole formation timescales, as well as any accompanying bursts of neutrino, gamma-ray, and/or
+optical emission depends sensitively on the neutron-star mass, radius, and the equation of state
+(Baiotti, Giacomazzo & Rezzolla 2008; Metzger et al. 2010; Hotokezaka et al. 2011; Bauswein et al.
+2012; Lackey et al. 2012; Kumar & Zhang 2015).
+    From a stellar lifecycle and source population point of view, studies of neutron stars prove to
+be equally important. Different equations of state allow different maximum masses for neutron
+stars and, thus, determine the dividing line between neutron stars and black holes. This has a
+direct impact on the outcomes of supernova explosions and the nature of compact remnants, as
+well as on the numbers of neutron stars and black holes in the Galaxy. This, in turn, affects the
+number of observable compact object binaries, their properties, and possible merger/gravitational-
+wave event rates. In fact, the supernova mechanism itself is affected by the equation of state of
+ultradense matter. The hot dense matter EoS, an extension of the cold one probed by neutron
+stars, determines explosion conditions (e.g., Janka et al. 2007) and is crucial for understanding
+core collapse supernova explosions and the associated phenomena including mass loss, r-process
+nucleosynthesis, gravitational wave and neutrino emission.
+    The tremendous advance in the measurements of neutron star masses, radii, and the dense
+matter equation of state have come from a diverse array of techniques, applied to many different
+populations of neutron stars, and enabled by observations in all wavelengths from the radio to
+gamma rays. For example, while the precise mass measurements have largely resulted from radio
+observations of pulsars, the radius measurements have been almost exclusively been a result of
+X-ray observations of neutron stars in low-mass X-ray binaries. In this review, we will focus on the
+latest mass and radius measurements of neutron stars and their implications for the dense matter
+equation of state, as well as a number of questions that remain open.
+
+
+
+2. NEUTRON STAR MASS MEASUREMENTS
+The vast majority of the precise mass measurements of neutron stars have been performed using
+radio observations of rotation-powered pulsars. Currently more than 2500 pulsars are known in
+the Galaxy (Manchester et al. 2005), most of which are detectable as radio pulsars, but also some
+observed in X-rays and an increasingly large number detected in gamma rays1 (Abdo et al. 2013;
+Caraveo 2014).
+    About 90% of radio pulsars are isolated. Their masses cannot be measured, since all of the
+current methods rely on precise tracking of the orbital motions through the arrival times of the
+observed pulsations. The remaining 250 pulsars are located in binary systems (three of these are
+in multiple component systems). We will now focus exclusively on these.
+    Most of the pulsars in binaries are “recycled”: at some point during the evolution of their
+companion there was mass transfer from the companion to the neutron star. The mass transfer
+can, in principle, increase the pulsar mass significantly, but its clearest effect is the spin-up of the
+pulsar (to spin frequencies as high as 716 Hz, see Hessels et al. 2006) and – by mechanisms that are
+poorly understood – a sharp reduction in the pulsar’s magnetic field, to values smaller than 1011 G.
+This process produces a wide variety of binary pulsars (for a recent review see, e.g., Lorimer 2008).
+Those of greatest interest to us are the systems where both components are compact: the double
+neutron star systems (DNSs) and the millisecond pulsar - white dwarf (MSP-WD) systems.
+
+
+
+  1 https://confluence.slac.stanford.edu/display/GLAMCOG/Public+List+of+LAT-Detected+Gamma-
+
+Ray+Pulsars
+
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   3
+    2.1. Timing binary pulsars
+    The extraordinary long-term rotational stability of recycled pulsars and their fast rotation makes
+    them uniquely useful for timing. If a recycled pulsar is in a binary system (as it often happens),
+    then we can use this precise timing to measure its orbital motion with astounding precision.
+        In Newtonian gravity, the part of the orbital motion we can observe (generally along the line
+    of sight only) can be described by five Keplerian parameters: the binary period Pb , the orbital
+    eccentricity e, the projection of the pulsar’s semi-major axis aPSR onto the observer’s line of sight
+    xPSR = aPSR sin i/c (where i is the angle between the orbital angular momentum vector and the
+    line of sight and c is the speed of light), the time of periastron T0 and the longitude of periastron
+    ω.
+        For each new pulsar, these parameters are determined by fitting a radial velocity model to
+    the observed spin periods, which are Doppler shifted by the orbital motion of the pulsar. This is
+    similar to what can be done in spectroscopic systems. The unique feature of pulsars is that, by
+    determining the correct rotational phase count, one can directly range the pulsar relative to the
+    center of mass of the system. Measuring a pulse time of arrival with a precision of 1 µs translates
+    into a ranging accuracy of 300 m per measurement, which is much smaller than the astronomical
+    sizes of the orbits. This provides Keplerian parameters many orders of magnitude more precise than
+    those derived from Doppler shift measurements with the same data and is the reason why pulsars
+    are so useful for such a wide variety of purposes - including uniquely precise mass measurements.
+        The binary mass function is then determined from the Keplerian orbital parameters
+
+                                              (Mc sin i)3   4π 2 x3PSR
+                                         f=         2
+                                                          =            ,                                  (1)
+                                                MT          T⊙ Pb 2
+
+    where T⊙ ≡ GM⊙ /c3 = 4.925490947 µs is the mass of the Sun in time units2 , and MPSR , Mc and
+    MT = MPSR + Mc are the pulsar, companion and total binary masses, respectively, all expressed in
+    solar masses. This single equation has three unknowns (i, MPSR and Mc ); therefore, in the absence
+    of further information, the individual masses Mpsr and Mc cannot be determined despite the very
+    high precision in the determination of the Keplerian parameters.
+         If the projected semi-major axis of the companion’s orbit xc can be measured, either via timing,
+    if the companion is a pulsar, or via phase-resolved optical spectroscopy, if the companion is a white
+    dwarf or main-sequence star, one extra equation is obtained:
+                                                    Mpsr    xc
+                                               q≡        =      ,                                         (2)
+                                                    Mc     xpsr
+
+    which is valid, to first Post-Newtonian order, in all conservative theories of gravity. The number of
+    binary systems where we can measure q is small, but even for those systems, measuring f and q is
+    not enough to determine the masses. This can be addressed in a few systems since the spectrum
+    of a white dwarf companion allows, in some cases, a determination of its mass, MWD (see section
+    2.3.3).
+        Because of the small sizes of neutron stars and their neutron star or white dwarf companions
+    compared to their orbits, both components can be treated as point masses. In this case, the “classi-
+    cal” tidal and rotational effects that complicate the motion of other astrophysical objects and hide
+    the (generally smaller) relativistic effects are simply absent, i.e., such systems are clean gravitational
+    laboratories. In such a system, a pulsar with good timing precision will allow the detection and
+
+       2 The product GM , where G is Newton’s gravitational constant and M
+                          ⊙                                                      ⊙ is the solar mass is very
+    precisely known, despite the fact that neither G nor M⊙ are individually known to better than one part in
+    103 .
+
+
+4   Feryal Özel and Paulo Freire
+precise measurement of these small relativistic effects. These effects can be parameterized by “post-
+Keplerian” (PK) parameters, which, assuming that general relativity (GR) is the correct theory
+of gravity, and to leading post-Newtonian order, are related to three of the Keplerian parameters
+(Pb , x and e) and the system masses. For the five PK parameters that have been measured in the
+context of pulsar timing, these expressions are as follows (as in Stairs 2003 and references therein):
+
+   1. The rate of advance of periastron ω̇, typically measurable in eccentric orbits. This is analogous
+      to the anomalous perihelion advance in Mercury’s orbit:
+                                                       −5/3
+                                                   Pb                                 −1
+                                     ω̇ = 3                      (T⊙ MT )2/3 1 − e2         .                          (3)
+                                                   2π
+
+   2. The “Einstein delay”, γ. In GR, this is due in equal parts to the variations of the gravitational
+      redshift and of special relativistic time dilation in an eccentric orbit:
+                                                  1/3
+                                              Pb           2/3     −4/3
+                                   γ=e                    T⊙ MT           Mc (MPSR + 2Mc ) .                           (4)
+                                              2π
+
+   3. The orbital period decay Ṗb due to the loss of orbital energy of the system caused by the
+      emission of gravitational waves (this typically requires timing observations that span many
+      years),
+                                        −5/3                            
+                       192π        Pb                     73 2 37 4
+                                                                               × (1 − e2 )−7/2 MPSR Mc MT
+                                                                                                        −1/3
+             Ṗb = −                                1+       e +    e                                          .       (5)
+                         5        2πT⊙                    24     96
+
+   4. The range r and the shape s of Shapiro delay, which is a delay in the reception of the radio
+      pulses at the Earth that is due to the propagation of the radio signal in the curved space-time
+      near the companion star
+
+                                          r = T⊙ Mc ,                                                                  (6)
+                                                     −2/3
+                                                      Pb     −1/3 2/3
+                                   s = sin i = xPSR         T⊙ MT Mc−1 .                                               (7)
+                                                      2π
+
+      This effect is more easily detected in edge-on orbits.
+
+    We must here emphasize that, like the Keplerian parameters, these are parameters that appear
+in the equations that describe the motion and timing of binary pulsars, such as those presented in
+Damour & Deruelle (1985, 1986). They are measured by by timing a particular system and fitting
+the pulse arrival times. It is only when we adopt a specific theory of gravity that we can relate
+them to physical parameters of the components of the binary - in the case of GR, and to leading
+PN order, their masses only (eqs. 3 - 7). These constraints are displayed graphically in Fig. 1. Note
+that there is nothing unique about the particular parameterization of Damour & Deruelle (1985).
+As an example, instead of r and s, we can describe Shapiro delay with two less correlated PK
+parameters ς and h3 (Freire & Wex 2010).
+
+
+2.2. Double neutron star mass measurements
+The first system for which reliable mass measurements were made was PSR B1913+16, the first
+binary pulsar ever discovered (Hulse & Taylor 1975). The compact orbit of this double neutron star
+system (Pb = 0.32299 days) and its high orbital eccentricity (e = 0.6171334(5)) allowed a precise
+measurement of the PK parameter ω̇. Subsequently, Taylor, Fowler & McCulloch (1979) were able
+to measure two more PK parameters, γ and Ṗb . The individual masses were determined from Eqs. 3
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars                   5
+    Figure 1
+    Mass-mass diagram for the J0737−3039 system. The yellow areas are excluded by the mass functions of
+    both pulsars, PSRs J0737−3039A and B. The lines represent the regions allowed by eqs. 2 to 7 for the
+    measured PK parameters. All lines meet at a single point in the diagram, i.e., GR passes the tests posed
+    by these four distinct constraints. For our purposes, this plot is very important since it indicates that we
+    get consistent mass measurements using any pair of PK parameters. From Kramer et al. 2006.
+
+
+
+    and 4 and the observed orbital decay was then used as a successful test of GR. The GR prediction
+    for Ṗb caused by gravitational wave emission (Eq. 5) for the derived masses was consistent observed
+    rate (see Damour 2015 for a review).
+        A number of other double neutron systems (DNSs) have since been discovered. The eleven
+    systems for which mass constraints are known are listed in the top two groups in Table 1, together
+    with the latest references. These systems are relatively rare, about 5% of the currently known
+    population of binary pulsars. We list the total mass MT of each binary since, generally, that is
+    much better known than the individual masses of the components. This happens because the orbits
+    of all double neutron stars are eccentric, so that ω̇ (and MT ) can be determined with high precision.
+    In binaries where additional PK parameters are measured, we also list the individual NS masses
+    and specify the parameters that were measured to derive the masses (for all these systems, Eq. 1
+    can be used to determine the orbital inclination i). For one of these systems – J1906+0746 – it is
+    possible for the companion to be a massive WD instead. PSR B2127+11C is located in the globular
+    cluster M15 and is very likely the result of an exchange interaction (Prince et al. 1991; Lynch et al.
+    2012).
+        PSR B1913+16 is no longer unique in providing a stringent test of general relativity. The orbital
+    decay due to the emission of gravitational waves has been measured for five other DNS systems
+    (J0737−3039A/B, B1534+12, J1756−2251, J1906+0746 and B2127+11C), and, as we will discuss
+    below, a few millisecond pulsar-white dwarf systems as well.
+        We also include in Table 1 two radio pulsars that have precise mass measurements even though
+    they are not members of DNS systems. Their slow spins and higher magnetic fields indicate that
+    they have not been recycled, making them resemble DNSs rather than the millisecond pulsars with
+
+6   Feryal Özel and Paulo Freire
+Table 1     Masses of Double Neutron Star Systems and Non-recycled Pulsars
+
+   System                MT                 MPSR              Mc                     Mass            Ref.
+                         (M⊙ )              (M⊙ )             (M⊙ )                  const.
+                              Systems with well-measured component masses
+   J0453+1559            2.734(4)           1.559(5)          1.174(4)                ω̇, h3          1,2
+   J0737−3039            2.58708(16)        1.3381(7)         1.2489(7) y              ω̇, q           3
+   B1534+12              2.678463(8)        1.3330(4)         1.3455(4)                ω̇, γ           4
+   J1756−2251            2.56999(6)         1.341(7)          1.230(7)                 ω̇, γ           5
+   J1906+0746            2.6134(3)          1.291(11) y       1.322(11) ?              ω̇, γ           6
+   B1913+16              2.828378(7)        1.4398(2)         1.3886(2)                ω̇, γ           7
+   B2127+11C g           2.71279(13)        1.358(10)         1.354(10)                ω̇, γ           8
+                            Systems with total binary mass measurement only
+   J1518+4904            2.7183(7)          <1.768            >0.950                    ω̇            9
+   J1811−1736            2.57(10)           <1.64             >0.93                     ω̇            10
+   J1829+2456            2.59(2)            < 1.34            >1.26                     ω̇            11
+   J1930−1852            2.59(4)            < 1.32            >1.30                     ω̇            12
+                            Non-recycled pulsars with massive WD companions
+   J1141−6545            2.2892(3)          1.27(1) y         1.01(1)                  ω̇, γ        14,15
+   B2303+46              2.64(5)            1.24-1.44 y       1.4-1.2               ω̇, MWD         15,16
+
+Notes: The systems indicated with a “g” are located in globular clusters. A question mark indicates
+that the NS nature of the companion is not firmly established. The mass measurements for neutron
+stars detected as normal (non-recycled) radio pulsars are indicated with the letter “y”. References
+are to the latest mass measurements: 1. Deneva et al. (2013) 2. Martinez et al. (2015) 3. Kramer et al.
+(2006) 4. Fonseca, Stairs & Thorsett (2014) 5. Ferdman et al. (2014) 6. van Leeuwen et al. (2015) 7.
+Weisberg, Nice & Taylor (2010) 8. Jacoby et al. (2006) 9. Janssen et al. (2008) 10. Corongiu et al. (2007) 11.
+Champion et al. (2005) 12. Swiggum et al. (2015) 13. Bhat, Bailes & Verbiest (2008) 14. Antoniadis et al.
+(2011) 15. Thorsett & Chakrabarty (1999) 16. van Kerkwijk & Kulkarni (1999)
+
+
+
+white dwarf companions that we discuss in Section 2.3.
+
+
+2.2.1. The double pulsar. Among the DNS population, one system in particular stands out:
+J0737−3039. This system is a unique laboratory for gravitational physics because it combines
+an unusual number of desirable features: (i) With an orbital period of 2h 27m, it is by far the most
+compact DNS known. Combined with the moderate orbital eccentricity of the system, this implies
+that the PK parameters ω̇, γ and Ṗb are relatively large and will be easy to measure, promising
+one precise test of GR. (ii) The system has a very high orbital inclination, ∼ 89◦ . This allows for a
+very precise measurement of the two Shapiro delay parameters, r and s, thus providing two more
+independent tests of GR. (iii) The second neutron star in the system is also an active radio pulsar,
+which is detectable at least some of the time (Lyne et al. 2004). This makes it the only currently
+known double pulsar system and allows a precise measurement of the mass ratio, q, which “frees”
+one of the PK parameters from the role of mass determination and, therefore, allows one more test
+of GR.
+    The four tests in this system provided by eqs. 3 - 7 are remarkably stringent, but despite that,
+GR has passed all of them (Kramer et al. 2006). This can be seen in Fig. 1, where all the regions
+compatible with the known mass constraints are consistent with the same pair of masses. Such
+tests of gravity theories are not the topic of this review — we refer interested readers to Wex (2014)
+for a comprehensive discussion. Nevertheless, systems like J0737−3039 and Fig 1 are important for
+NS mass measurements because they demonstrate experimentally that any pair of mass constraints
+chosen from q and the PK parameters will generally yield consistent NS masses.
+
+                    www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars       7
+    Table 2    Masses of Millisecond Pulsars
+
+
+    System           MT              MPSR         Mc                Mass                           Ref.
+                     (M⊙ )           (M⊙ )        (M⊙ )            const.
+                                    MSPs with WD companions and low-eccentricity orbits
+    J0348+0432                       2.01(4)      0.172(3)        q, MWD                Antoniadis et al. (2013)
+    J0437−4715                       1.44(7)      0.224(7)           r, s                 Reardon et al. (2016)
+    J0621+1002       2.32(8)         1.53+0.10
+                                         −0.20    0.76+0.28
+                                                      −0.07          ω̇, s                   Kasian (2012)
+    J0751+1807                       1.72(7)      0.13(2)           s, Ṗb               Desvignes et al. (2016)
+    J1012+5307                       1.83(11)     0.16(2)         q, MWD                Antoniadis et al. (2016)
+    J1614−2230                       1.928(17)    0.500(6)           r, s                 Fonseca et al. (2016)
+    J1713+0747                       1.31(11)     0.286(12)          r, s                   Zhu et al. (2015)
+    J1738+0333                       1.47+0.07
+                                         −0.06    0.181+0.007
+                                                       −0.005     q, MWD                Antoniadis et al. (2012)
+    J1802−2124                       1.24(11)     0.78(4)            r, s                Ferdman et al. (2010)
+    J1807−2500B      2.57190(73)     1.3655(21)   1.2064(20)(?)     ω̇, h3                 Lynch et al. (2012)
+    B1855+09                         1.58+10
+                                         −13      0.267+0.010
+                                                       −0.014        r,  s                   Splaver (2004)
+    J1909−3744                       1.47(3)      0.2067(19)         r, s                 Reardon et al. (2016)
+    J2222−0137                       1.20(14)     1.05(6)            r, s                 Kaplan et al. (2014a)
+                                             MSPs with eccentric orbits and triples
+    J0337+1715                       1.4378(13)   0.19751(15)        i, q     Ransom et al. (2014); Kaplan et al. (2014b)
+                                                  0.4101(3)
+    J1903+0327       2.697(29)       1.667(21)    1.029(8)          ω̇, h3                 Freire et al. (2011)
+    J1946+3417       2.097(28)       1.832(28)    0.2659(30)        ω̇, h3                  Barr et al. (2016)
+    J2234+0611       1.668(6)        1.393(13)    0.276(9)          ω̇, h3               Stovall & et al. (2015)
+                                                  MSPs in globular clusters
+    J0024−7204H      1.61(4)         < 1.52       > 0.164             ω̇                   Freire et al. (2003)
+    J0514−4002A      2.453(14)       < 1.50       > 0.96              ω̇            Freire, Ransom & Gupta (2007)
+    B1516+02B        2.29(17)        < 2.52       > 0.13              ω̇                  Freire et al. (2008a)
+    J1748−2021B      2.92(20)        < 3.24       > 0.11              ω̇                  Freire et al. (2008b)
+    J1748−2446I      2.17(2)         < 1.96       > 0.24              ω̇                  Ransom et al. (2005)
+    J1748−2446J      2.20(4)         < 1.96       > 0.38              ω̇                  Ransom et al. (2005)
+    J1750−37A        1.97(15)        < 1.65       > 0.53              ω̇                  Freire et al. (2008b)
+    B1802−07         1.62(7)         < 1.7        > 0.23              ω̇            Thorsett & Chakrabarty (1999)
+    J1824−2452C      1.616(7)        < 1.35       > 0.26              ω̇                      Bégin (2006)
+    J1910-5958A                      1.3(2)       0.180(18)       q, MWD       Bassa et al. (2006); Cocozza et al. (2006)
+
+    Notes: J1807−2500B is located in the globular cluster NGC6544. A question mark indicates that the nature
+    of the companion is uncertain. The total mass is indicated only when it is known more precisely than the
+    masses of the components. References are to the latest mass measurements.
+
+
+
+    2.3. Millisecond pulsars
+    The term “millisecond pulsars” (MSPs) refers to pulsars with spin periods in the range 1.39 <
+    P < 20 ms and Ṗ < 10−19 . These systems have been heavily recycled (and circularized) by a
+    long-lived accretion phase in a low-mass X-ray binary (LMXB). The first MSP by this definition,
+    B1937+21, was discovered at the Arecibo telescope in 1982 (Backer et al. 1982). (At a 642 Hz spin
+    frequency, this was the fastest known MSP for the subsequent 24 years.) A very large number of
+    MSPs have been discovered since and, although ∼20% are isolated, most of the remaining objects
+    have white dwarf companions and very small orbital eccentricities.
+        The fast (and very stable) rotation of MSPs makes their timing significantly more precise
+    than for the pulsars in DNSs. However, their low orbital eccentricities pose a problem for mass
+
+8   Feryal Özel and Paulo Freire
+determination (and tests of GR), since, in these cases, the PK parameters ω̇ and especially γ cannot
+be measured accurately. Furthermore, most systems have orbital periods larger than 0.5 d, which
+makes a detection of the very small predicted Ṗb nearly impossible. These difficulties made the
+measurement of MSP masses a slow and difficult process. Four strategies have been followed over
+the last two decades, which have recently started producing a number of precise mass measurements.
+
+
+2.3.1. Pulsars in globular clusters. One way of getting around the issue of orbital circularity is to
+find MSPs in globular clusters (GCs). Because of the much higher stellar density, there are substan-
+tial gravitational interactions with nearby stars that, with time, can make an initially circular orbit
+acquire a substantial eccentricity. This allows the measurement of ω̇ and, if there are no classical
+contributions to this effect, the total mass of the system MT for quite a few systems (see Table 2).
+     The first binary mass precise enough to be useful was that of PSR J0024−7204H, a 3.21 ms
+pulsar in a 2.35-day, slightly eccentric (e = 0.070560(3)) orbit around a low-mass WD in the
+globular cluster 47 Tucanae, which yielded MT = 1.61 ± 0.04 M⊙ (Freire et al. 2003). No further
+PK parameters were measurable; nevertheless, one can infer from combining Eqs. 1 and 3 (and the
+mathematical fact sin i ≤ 1) that MPSR < 1.52 M⊙ . This was one of the earlier indications that
+the long recycling episodes that spin up MSPs do not necessarily make them very massive.
+     Most eccentric systems discovered since in GCs share the same characteristic: we can measure
+ω̇ but no other mass constraints. The reason is that the most eccentric systems tend to be the ones
+with wider orbits, which are easier to perturb by nearby stars. For these relatively wide orbits, it
+is very difficult to measure γ and Ṗb .
+     The two exceptions are two of the exchange encounter systems B2127+11C and J1807−2500B
+listed in Tables 1 and 2. Both are located in clusters with collapsed cores, where exchange encounters
+are more likely (Verbunt & Freire 2014). The orbital period of B2127+11C is 8.0 hr and its orbital
+eccentricity is 0.681386(16), which allows measurements of ω̇, γ and even Ṗb (Jacoby et al. 2006).
+The last system, J1807−2500B, is particularly important for this discussion: it is a true MSP with
+a spin period is 4.18 ms, but despite the long accretion episode, its current mass is only 1.3655(21)
+M⊙ . More than any other system, this MSP demonstrates that full recycling can be achieved
+without a large mass increment.
+     Nevertheless, as the number of MT measurements accumulated, it became apparent that some
+systems, such as PSRs J1748−2446I and J in Terzan 5 (Ransom et al. 2005), PSR J1748−2021B in
+NGC 6440 (Freire et al. 2008b) and PSR B1516+02B in M5 (Freire et al. 2008a) are quite massive
+but have very low mass functions. This is only likely to happen if the pulsars and not the companions
+in these systems are massive. Indeed, by 2008, there was already strong evidence that a fair fraction
+of MSPs must have masses close to 2 M⊙ (Freire et al. 2008a). This statistical results was confirmed
+by the later MSP mass measurements, described below.
+
+
+2.3.2. Shapiro delay measurements. For the vast majority of pulsar-WD systems, the only mea-
+surable PK parameters are those related to the Shapiro delay. However, the fastest-spinning MSPs
+tend to have very low-mass helium white dwarf companions, which reduces the amplitude of the
+Shapiro delay. Therefore, in order to measure the masses in these systems, both a very good timing
+precision and a high orbital inclination are required.
+    The first MSP-WD system where the Shapiro delay was clearly detected was PSR B1855+09
+(Ryba & Taylor 1991). However, until recently, the timing precision in this system was not enough
+for a precise determination of the pulsar mass. This changed in 2003 with the discovery of
+PSR J1909−3744, a heavily recycled MSP with P = 2.9 ms and a light helium white dwarf com-
+panion (Jacoby et al. 2003). This system combines very high timing accuracy with a very high
+orbital inclination, which allowed, in 2005, the first precise measurement of the mass of a MSP:
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   9
+     1.438 ± 0.024M⊙ (Jacoby et al. 2005).
+          Since then, the number of MSPs discovered has been increasing significantly (see section 5.1),
+     and for that reason the number of precise Shapiro delay mass measurements has been accumulating,
+     particularly for pulsars with more massive carbon-oxygen (CO) or oxygen-neon-magnesium (O-Ne-
+     Mg) white dwarf companions, such as PSR J1802−2124 (Ferdman et al. 2010), or more recently
+     PSR J2222−0137 (Kaplan et al. 2014a). The larger companion masses make the Shapiro delay
+     easier to measure; this is why a disproportionate number of MSPs with well-measured masses have
+     such massive companions. This does not apply as a rule to the MSPs themselves: the latter systems
+     highlight the fact that many NSs are born with masses as low as ∼ 1.2 M⊙ .
+          Of these MSPs with massive WD companions, the measurement that had by far the greatest
+     impact was PSR J1614−2230 (Demorest et al. 2010). The originally reported mass of the pulsar
+     was 1.97(4) M⊙ , exceptional and unexpected among the MSPs with massive WD companions. This
+     mass measurement had implications for the NS mass distribution as well as for the NS equation
+     of state (EOSs), which will be discussed in later sections. Note that this measurement has since
+     been slightly improved, which revised the mass to M = 1.928(7) M⊙ (Arzoumanian et al. 2015),
+     still consistent with the earlier value.
+
+
+
+
+     2.3.3. Spectroscopic mass measurements. For some of the MSPs, particularly those with short
+     orbital periods, the companion is optically bright. This has allowed reliable mass determinations
+     of both components by studying the Balmer lines produced by hydrogen in the white dwarf atmo-
+     sphere.
+         First, phase-resolved spectoscopy can measure how these lines shift with orbital phase, providing
+     a measurement of the projected orbital velocity of the white dwarf. Comparing this to the orbital
+     velocity of the pulsar measured in the timing (vPSR = 2πxPSR /Pb ) we can immediately determine
+     the mass ratio, q ≡ MPSR /MWD = vWD /vPSR .
+         Second, the width of the Balmer lines is related to the local gravitational acceleration, g =
+                2
+     GMWD /RWD      . Using model relations between MWD and RWD for white dwarfs (see, e.g., the
+     references in Antoniadis et al. 2012), both quantities can be determined from g. After this step
+     MPSR can be obtained trivially from qMWD .
+         The first such measurement was made for PSR J1012+5307 (Callanan, Garnavich & Koester
+     1998), later followed by the mass measurement for J1910−5958A, a MSP-WD system in NGC 6752
+     (Bassa et al. 2006; Cocozza et al. 2006). To date, the two most important such measurements
+     have been those of J1738+0333 (Antoniadis et al. 2012) and J0348+0432 (Lynch et al. 2013;
+                                                                                              +0.007
+     Antoniadis et al. 2013). For the former MPSR = 1.47+0.07   −0.06 M⊙ and MWD = 0.181−0.005 M⊙ ; this
+     measurement was important because the relatively short orbital period (8.5 hr) allowed a measure-
+     ment of Ṗb (Freire et al. 2012), which agrees with the GR prediction for these masses. Given the
+     asymmetry in the binding energy of this system, this measurement introduced the most stringent
+     constraints ever for several families of gravity theories (Freire et al. 2012), superseding the previous
+     test from the pulsar - WD system PSR J1141−6545 (Bhat, Bailes & Verbiest 2008).
+         For PSR J0348+0432, a pulsar with a WD companion with an orbital period of only 2hr
+     27m, Antoniadis et al. (2013) obtained MPSR = 2.01(4)M⊙ and MWD = 0.172(3)M⊙ . This
+     confirmed, using a different method, that neutron stars could reach masses of the order of 2 M⊙ .
+     Furthermore, the very short orbital period has allowed a measurement of Ṗb (Antoniadis et al.
+     2013), which again agrees with the GR prediction and has already placed significant constraints
+     on non-linear phenomena predicted by some alternative theories of gravity for these massive NSs,
+     such as spontaneous scalarization (Damour & Esposito-Farèse 1996).
+
+10   Feryal Özel and Paulo Freire
+2.3.4. Triples, disrupted triples, and other monsters. The theoretical expectation that the recy-
+cling pathway for fast MSPs result in highly circular orbits was corroborated by the fact that
+all fully recycled MSPs outside of globular clusters observed until 2008 had orbital eccentrici-
+ties between 10−7 and 10−3 (Manchester et al. 2005). In 2008, the situation changed with the
+discovery of PSR J1903+0327 (Champion et al. 2008). This fast-spinning MSP (P = 2.15 ms)
+is in binary system with a ∼ 1 M⊙ main-sequence star companion in a 95-day, eccentric orbit
+(e = 0.44). This system is thought to have originated from a hierarchical triple that became chaot-
+ically unstable, as suggested by observational data (Freire et al. 2011) and numerical simulations
+(Portegies Zwart et al. 2011). This finding suggested triple stellar systems containing MSPs might
+still be found in the Galaxy, which was later confirmed with the discovery of PSR J0337+1715, the
+first MSP in a stellar triple system with two white dwarf companions (Ransom et al. 2014). Note
+that the mass indicated in Table 2 for PSR J0337+1715 is based on these triple interactions.
+     Soon after the discovery of PSR J1903+0327, Bailes (2010) reported an “anomalous” orbital
+eccentricity of 0.027 for PSR J1618−3919, a 12-ms pulsar first reported in Edwards & Bailes (2001)
+that is in a 22-day orbit with a low-mass white dwarf companion. More recently, Deneva et al.
+(2013), Barr et al. (2013), Knispel et al. (2015), and Camilo et al. (2015) reported the discovery
+of four more unusual binary MSP systems with eccentric orbits: PSRs J2234+06, J1946+3417,
+J1950+2414, and J0955−6150. These four systems are fully recycled with spin periods between 2
+and 4.4 ms, orbital periods from 22 to 32 d and median companion masses Mc ≈ 0.25 M⊙ ; i.e.,
+apart from their large orbital eccentricities (0.07 < e < 0.14) all parameters are compatible with
+the canonical recycling formation channel leading to a MSP with a white dwarf companion. For a
+discussion on their unusual formation, see Knispel et al. (2015).
+     The reason why these systems are mentioned at length here is that for nearly all of them, precise
+mass measurements have been, or will soon be, made. For PSR J1903+0327, PSR J1946+3417,
+and J2234+0611 precise mass measurements have been obtained from the combination of ω̇ and
+the Shapiro delay parameter h3 ((Freire et al. 2011; Barr et al. 2016; Stovall & et al. 2015). Note
+that for PSR J1903+0327, the uncertainty quoted in Table 2 corresponds to 99.7% confidence level.
+The same will certainly be possible for PSR J1950+2414. For the triple system, even more precise
+masses for the MSP and two white dwarf companions could be obtained from the 3-body effects in
+the system (Ransom et al. 2014).
+     The masses in these systems are quite varied. While the MSP in the triple system J0337+1715
+and J2234+0611 have masses of 1.4378(13) M⊙ and 1.393(13) M⊙ , respectively, PSR J1946+3417 is
+in the massive neutron star group, with MPSR = 1.912(10) M⊙ (Barr et al. 2015, in preparation).
+PSR J1903+0327 sits in the middle, with MPSR = 1.667(21) M⊙ (99.7% C. L.)3
+
+
+2.4. Neutron Stars in X-ray Binaries
+Mass measurements have also been carried out for neutron stars with high and low stellar mass
+companions using the observations of these binaries in X-ray and optical wavelengths. We discuss
+the methods and results for these two classes below.
+
+2.4.1. Neutron Stars with High-Mass Companions. For mass measurements of neutron stars with
+high-mass companions, eclipsing X-ray pulsars, in which the companions block the X-rats from
+the pulsar for part of the orbit, form the primary targets. In these systems, X-ray observations
+of the pulsar yield the orbital period of the binary Pb , the eccentricity of the orbit e, longitude of
+
+
+   3 The error bars for this measurement are not Gaussian, therefore the 68% error bar is not 1/3 of this
+
+uncertainty. See the original reference for a discussion.
+
+
+                    www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   11
+     Table 3    Masses of Neutron Stars in High-Mass and Low-Mass X-ray Binaries
+
+                                 System                MNS     Error   References
+                                                       (M⊙ ) (M⊙ )
+                                     Neutron Stars in High-Mass X-ray Binaries
+                                 LMC X−4                1.57    0.11        1
+                                 Cen X−3                1.57    0.16        1
+                                 4U 1538−522            1.02    0.17        1
+                                 SMC X−1                1.21    0.12        1
+                                 SAX J1802.7−2017       1.57    0.25        1
+                                 XTE J1855−026          1.41    0.24        1
+                                 Vela X−1               2.12    0.16        1
+                                 EXO 1722−363           1.91    0.45        1
+                                 OAO 1657−415           1.74    0.30        1
+                                 Her X−1                1.07    0.36        1
+                                     Neutron Stars in Low-Mass X-ray Binaries
+                                                               +0.30
+                                 4U 1608−52             1.57   −0.29        2
+                                                               +0.25
+                                 4U 1724−207            1.81   −0.37        2
+                                                               +0.35
+                                 KS 1731−260            1.61   −0.37        2
+                                                               +0.21
+                                 EXO 1745−248           1.65   −0.31        2
+                                                               +0.25
+                                 SAX J1748.9−2021       1.81   −0.37        2
+                                                               +0.25
+                                 4U 1820−30             1.77   −0.28        2
+                                                               +0.22
+                                 Cyg X−2                1.90   −0.35        3
+
+     Notes. 1. See Falanga et al. (2015), Özel et al. (2012), Rawls et al. (2011), and references therein. We
+     exclude 4U 1700−377, for which there is no evidence that it is a neutron star. 2. See Özel et al. (2015) for
+     the latest constraints. 3. Orosz & Kuulkers (1999).
+
+
+     periastron ω0 , the semi-major axis of the neutron star’s orbit aX sin i, and the semi-duration of the
+     eclipse θe . In addition, optical observations of the companion star give its velocity amplitude Kopt ,
+     its projected rotational velocity vrot sin i, and the amplitude of ellipsoidal variations A. From these
+     observables, it is possible to solve for the fundamental parameters of the binary, which include the
+     mass of the neutron star MNS , the mass, radius and rotational angular velocity of the companion,
+     Mopt , Ropt , Ωopt , and the inclination angle of the binary i.
+         These measurements are typically less precise than those obtained from radio pulsar timing,
+     and several sources of systematic uncertainty in this technique have been discussed in Özel et al.
+     (2012) and Falanga et al. (2015). The ten neutron stars whose masses have been estimated in this
+     way are listed in Table 3.
+
+     2.4.2. Neutron Stars in Low-Mass X-ray Binaries. Spectral studies of thermonuclear X-ray bursts
+     from neutron stars provide simultaneous measurements of their masses and radii. These mass
+     constraints are less precise than those obtained from pulsar timing but still provide an estimate
+     of neutron star masses in a different population. The details of the methods will be discussed in
+     Section 3.1 and the mass measurements for the six sources in this category are listed in Table 3.
+     This table also includes the low-mass X-ray binary Cyg X−2, for which the mass of the neutron
+     star was inferred using optical observations of its companion.
+
+
+     2.5. Neutron Star Mass Distribution
+     We show in Figure 2 the combined neutron star mass measurements in all of the above categories.
+     It is already clear from this figure that current measurements show a broad range of neutron star
+
+12   Feryal Özel and Paulo Freire
+                        J0453+1559c
+                        J1756-2251c
+                        J0737-3039B
+                         J1906+0746
+                        J1906+0746c
+                          B1534+12
+                        J0737-3039A
+                         J1756-2251                                        Double
+                         B1534+12c                                      Neutron Stars
+                        B2127+11Cc
+                         B2127+11C
+                         B1913+16c
+                          B1913+16
+                         J0453+1559
+                        J1518+4904c
+                        J1811-1736c
+                         J1930-1852
+                        J1829+2456c
+                         J1829+2456
+                        J1930-1852c
+                         J1811-1736
+                         J1518+4904
+                          J1750-37A
+                         J2222-0137
+                           B1802-07
+                         J1802-2124
+                        J1910-5958A
+                         J1713+0747
+                        J1824-2452C
+                        J1807-2500B
+                        J0024-7204H
+                         J2234+0611
+                         J0337+1715
+                         J0437-4715                                         Recycled
+                        J0514-4002A
+                         J1909-3744                                         Pulsars
+                         J1738+0333
+                         J0621+1002
+                          B1855+09
+                         J1903+0327
+                         J0751+1807
+                        J1748-2446J
+                         J1012+5307
+                         J1946+3417
+                         J1748-2446I
+                         J1614-2230
+                         B1516+02B
+                         J0348+0432
+                        J1748-2021B
+                           Cyg X-2
+                         4U 1608-52
+                        KS 1731-260
+                       EXO 1745-248                                        Bursters
+                         4U 1820-30
+                      SAX J1748.9-2021
+                        4U 1724-207
+                          4U1538-52
+                            Her X-1
+                           SMC X-1
+                         J1141-6545
+                          B2303+46
+                       XTE J1855-026                                          Slow
+                           LMC X-4                                           Pulsars
+                      SAX J1802.7-2017
+                           Cen X-3
+                       OAO 1657-415
+                       EXO 1722-363
+                           Vela X-1
+
+
+                           0.0           0.5   1.0      1.5       2.0       2.5         3.0
+
+
+                                                     Mass (M )8
+
+Figure 2
+The most recent measurement of neutron star masses. Double neutron stars (magenta), recycled pulsars
+(gold), bursters (purple), and slow pulsars (cyan) are included.
+
+
+masses, from ≈ 1.1 − 2 M⊙ . The differences between the neutron star masses in different categories
+are also evident. To study and characterize the mass distributions of these different classes in more
+detail, it is possible to use Bayesian statistical techniques on the currently available measurements.
+In particular, the three different categories of sources, namely, the DNSs, the slow pulsars (i.e., the
+small spin period pulsars and neutron stars with high mass companions, which are likely to be near
+their birth masses) and the recycled pulsars (which include all MSPs and the accreting neutron
+stars with low-mass companions) can each be modeled with Gaussian functions with a mean of M0
+and a dispersion σ
+                                                              (MNS − M0 )2
+                                                                           
+                                                  1
+                            P (MNS ; M0 , σ) = √       exp −                  .                     (8)
+                                                 2πσ 2             2σ 2
+Several studies have employed Bayesian techniques to measure the most likely values of the mean
+and dispersion for these systems (Özel et al. 2012; Kiziltan et al. 2013). Fig. 3 shows the inferred
+mass distributions for these different categories of neutron stars. The most likely values of the
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   13
+                                       6
+
+
+
+                                       5                              Double
+                                                                 Neutron Stars
+
+                                       4
+
+
+
+
+                          doohilekiL
+                                       3
+
+
+
+                                       2                                    Recycled
+                                                                             PSRs
+                                             Slow PSRs
+                                       1
+
+
+
+                                       0
+                                           0.8   1.0     1.2   1.4    1.6      1.8     2.0
+
+
+                                                                 8
+                                                          Mass (M )
+
+
+     Figure 3
+     The inferred mass distributions for the different populations of neutron stars.
+
+
+
+     parameters for these distributions are: M0 = 1.33 M⊙ and σ = 0.09 M⊙ for the DNSs, M0 =
+     1.54 M⊙ and σ = 0.23 M⊙ for the recycled neutron stars, and M0 = 1.49 M⊙ and σ = 0.19 M⊙
+     for the slow pulsars. A recent study also raised the possibility of two peaks within the recycled
+     millisecond pulsar population, with the first peak at M = 1.388 M⊙ and a dispersion σ = 0.058 M⊙
+     and a second peak appearing at M = 1.814 M⊙ with a dispersion of σ = 0.152 M⊙ (Antoniadis et al.
+     2016).
+         Among these inferred distributions, the narrowness of the DNS distribution stands out.
+     While clearly not representative of neutron stars as a whole, as it was once thought
+     (Thorsett & Chakrabarty 1999), it probably points to a particular evolutionary mechanism that
+     keeps the masses of neutron stars in these systems in a narrow range. Recent discoveries, such as
+     the DNS J0453+1559 (Deneva et al. 2013), indicate that the range of masses in double neutron-star
+     systems may also be wider than previously believed: the recycled pulsar has a mass of 1.559(5)
+     M⊙ , the heaviest known in any DNS (Martinez et al. 2015), while the companion has a mass of
+     1.174(4) M⊙ , the smallest precisely measured mass for any NS (We infer that the companion is a
+     NS from the orbital eccentricity of the system, e = 0.11251837(5), which would not arise if it had
+     slowly evolved to a massive white dwarf star).
+
+
+     2.6. Maximum Mass of Neutron Stars
+     Finding the maximum mass of neutron stars is of particular interest in mass measurements because
+     of its direct implications for the neutron star equation of state and neutron star evolution. The
+     largest neutron star mass can rule out the equations of state that have maximum masses that fall
+     below this value. The current record holder on this front is J0348+0432 with a mass of 2.01±0.04M⊙
+     (Antoniadis et al. 2013).
+         There are also some studies of a particular class of millisecond pulsars called black
+     widows (and their cousins redbacks) that have suggested higher neutron star masses (e.g.,
+
+14   Feryal Özel and Paulo Freire
+van Kerkwijk, Breton & Kulkarni 2011). These millisecond pulsars irradiate and ablate their very
+low-mass companions. While the pulsar timing provides the Keplerian parameters for the orbit, all
+other information about the masses in these systems is obtained from the modeling of the optical
+lightcurves (to determine orbital inclination) and the spectroscopy (to measure the mass ratio) of
+the companion star. Unfortunately, there are many difficulties in obtaining accurate measurements
+from these ablated companions. Even when using a model of an irradiated companion, the short
+timescale variability, the unevenly heated surface, and the observed asymmetry in the lightcurves
+significantly hinder the orbital inclination measurements. Similarly, the difference between the
+center of light of the irradiated companion and its center of mass as well as the departure of the
+spectral features from assumptions of thermodynamic equilibrium introduce large uncertainties in
+the inferred mass ratios (Roberts et al. 2015). These results are tantalizing and hint at the pos-
+sibility of even more massive neutron stars than J0348+0432, but because of the systematics, we
+find that they are not yet as robust as the results from radio timing.
+
+
+3. RADIUS MEASUREMENTS
+Neutron star radius measurements have progressed significantly in the past decade and a number of
+different techniques have been employed. Nearly all of the methods that are currently used rely on
+the detection of thermal emission from the surface of the star either to measure its apparent angular
+size or to detect the effects of the neutron-star spacetime on this emission to extract the radius
+information. The approaches can broadly be divided into spectroscopic and timing measurements.
+In addition, there are proposed methods for determining neutron star radii which show promise
+for the future but will not be covered in this review, because there are currently limited data, or
+because they provide only broad limits:
+
+   1. Quasi-periodic     oscillations   observed      from    accreting     neutron     stars     (e.g.,
+      Miller, Lamb & Psaltis 1998)
+   2. Neutron star cooling (e.g., Page & Reddy 2006)
+   3. Pulsar glitches, which help constrain the relative thicknesses of neutron star crust vs. its core
+      (e.g., Link, Epstein & Lattimer 1999)
+   4. Asteroseismology (e.g., Watts et al. 2015)
+
+
+3.1. Spectroscopic measurements
+Much like measuring the radii of normal stars, spectroscopic measurements of neutron star radii
+rely on determining their angular sizes by measuring a thermal flux F , modeling the spectrum to
+determine the effective temperature Teff , and combining this with a distance measurement D to
+obtain observed (or apparent) radii
+                                                              1/2
+                                        Robs          Fbol
+                                             =                        ,                             (9)
+                                         D           σB Teff
+
+where σB is the Stefan-Boltzmann constant. Unlike stars, however, there are several complications
+that come into play in this process. First, owing to their extreme compactness, neutron stars
+gravitationally lense their own surface emission. This introduces mass-dependent corrections to the
+observed angular sizes (Pechenick, Ftaclas & Cohen 1983; Psaltis, Özel & DeDeo 2000), i.e., the
+physical radii are related to the observed radii via
+                                                      −1/2
+                                                  2GM
+                                     Robs =    1−            R.                                    (10)
+                                                   Rc2
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   15
+     (This equation holds as long as the radius is larger than the photon orbit 3GM/c2 . If it is smaller,
+                                                                          √
+     then the geometric radius observed at infinity would be equal to 27GM/c2 , independent of the
+     stellar radius.) The situation is even more complex in the case of neutron stars that spin moderately
+     fast, because their spacetime can no longer be described by a Schwarzschild metric and there are
+     further spin-dependent corrections to the observed angular sizes (Bauböck et al. 2015). Second,
+     the surface emission may be contaminated by non-thermal emission from an isolated neutron star’s
+     magnetosphere or by the disk surrounding an accreting one. Third, the magnetic field a neutron
+     star possesses can be strong enough to cause temperature non-uniformity on the surface, which
+     complicates the inference of the true stellar radius. Fourth, distances to neutron stars are, in
+     general, more difficult to measure than to normal stars.
+         Some of these challenges are overcome by detailed theoretical modeling of emission from neutron
+     stars in general relativity. Others are mitigated or eliminated by careful source selection (e.g.,
+     sources with low magnetic fields, with low accretion luminosities, or located in globular clusters
+     with known distances) and by combining multiple observational phenomena to break the inherent
+     degeneracies between neutron star mass and radius and to reduce the measurement uncertainties.
+     With these criteria as a guide, thermal emission from low-mass X-ray binaries in quiescence and
+     during X-ray bursts have been the focus of recent work on neutron star radii.
+
+
+     3.1.1. Quiescent Low-mass X-ray Binaries. The first group of sources on which radius measurement
+     efforts have focused on are the accreting neutron stars in low-mass X-ray binaries when they are in
+     quiescence (qLMXBs).
+         In quiescence, accretion ceases or continues at a very low level. This allows observations of
+     the thermal emission from the stellar surface, which is powered by the reradiation of the heat
+     stored in the deep crust during the accretion phases (Brown, Bildsten & Rutledge 1998). Because
+     of the very short (∼mins) settling time of heavier elements in the surface layers of neutron stars
+     (Brown, Bildsten & Chang 2002), the atmospheres of neutron stars in quiescence are expected to
+     be composed of hydrogen. (There are cases where the companion is hydrogen poor and a helium
+     atmosphere may be appropriate; see below). The observed spectra of qLMXBs are indeed quasi-
+     thermal, with a weak power-law component at high energies that is likely due to residual accretion.
+         A number of qLMXBs in globular clusters has been observed with Chandra and XMM-Newton.
+     Their luminosities in quiescence are of the order of 1032−33 erg s−1 , making them very faint objects.
+     In addition, the globular cluster environments entail crowded fields. Because of this, the high
+     angular resolution and low background of the modern X-ray instruments were crucial for obtaining
+     spectroscopic constraints of their apparent angular sizes (e.g., Rutledge et al. 2001; Heinke et al.
+     2006; Webb & Barret 2007).
+         To make quantitative measurements from the observed spectra, radiative equilibrium models of
+     neutron star atmospheres (Zavlin, Pavlov & Shibanov 1996; Heinke et al. 2006) have been devel-
+     oped for a variety of surface compositions, surface gravities and temperatures (for a recent review,
+     see Özel 2013). Owing to the low magnetic field strengths of neutron stars in low-mass X-ray
+     binaries (Psaltis & Chakrabarty 1999 and references therein), and the expectation of hydrogen at-
+     mospheres, unmagnetized hydrogen models have primarily been used in the spectral analyses to
+     obtain observed angular sizes.
+         To date, reliable radius constraints have been obtained for eight qLMXBs located in the globu-
+     lar clusters M13, M28, M30, ω Cen, NGC 6304, NGC 6397, and two in 47 Tuc (Heinke et al. 2006;
+     Webb & Barret 2007; Guillot, Rutledge & Brown 2011; Bogdanov et al. 2016). The observed (ap-
+     parent) angular sizes obtained for these sources have been combined with globular cluster distances
+     (Harris 1996; Guillot & Rutledge 2014; Heinke et al. 2014) to measure their apparent radii. Under
+     somewhat different assumptions, there have been several combined analyses of these measurements
+
+16   Feryal Özel and Paulo Freire
+             3.0                                                               3.0
+                   M13
+                                                                                            4U 1820-30
+                   M28                                                                      SAX J1748.9-2021
+
+             2.5   M30                      MPA1                               2.5          EXO 1745-248             MPA1
+                   NGC 6304                                                                 KS 1731-260
+                                        AP4                                                                     AP4
+                                                                                            4U 1724-207
+                   NGC 6397
+
+             2.0   ω Cen                                                       2.0
+                                                                                            4U 1608-52
+
+
+   )               47 Tuc X5                                        )
+
+
+
+
+  8M( ssaM                                                          8M( ssaM
+                   47 Tuc X7
+
+             1.5                                                               1.5
+
+
+
+                                                                                                                            GS1
+             1.0                                                               1.0
+
+                                                   MS1
+
+
+             0.5                                                               0.5
+
+                           SQM1                                                                   SQM1
+
+
+
+                                                                               0.0
+                         5             10          15                                0            5              10               15
+
+
+                                  Radius (km)                                                             Radius (km)
+Figure 4
+The combined constraints at the 68% confidence level over the neutron star mass and radius obtained from
+(Left) all neutron stars in low-mass X-ray binaries during quiescence (Right) all neutron stars with
+thermonuclear bursts. The light grey lines show mass-relations corresponding to a few representative
+equations of state (see Section 4.1 and Fig. 7 for detailed descriptions.)
+
+
+(Guillot et al. 2013; Guillot & Rutledge 2014; Lattimer & Steiner 2014; Özel et al. 2015). The most
+recent results are displayed as correlated contours on the neutron-star mass-radius diagram4 (see
+Fig. 4).
+    Several sources of systematic uncertainties that can affect the radius measurements have been
+studied, which we discuss in some detail below.
+
+Atmospheric Composition. The majority of qLMXBs for which optical spectra have been ob-
+tained show evidence for Hα emission (Heinke et al. 2014), indicating a hydrogen rich companion.
+Although none of these spectra have been obtained for globular cluster qLMXBs, assuming that
+sources in globular clusters have similar companions to those in the field led to the use of hydrogen
+atmospheres when modeling quiescent spectra. There is one source among the six that have been
+analyzed in detail, for which there is evidence to the contrary. There is only an upper limit on the
+Hα emission from the qLMXB in NGC 6397 using HST observations (Heinke et al. 2014). Because
+of this, this source has been modeled with a helium atmosphere and the corresponding results are
+displayed in Fig. 4.
+
+Non-thermal Component. Assuming different spectral indices in modeling the none-thermal
+spectral component also has a small effect on the inferred radii (Heinke et al. 2014). The low
+counts in the spectra do not allow an accurate measurement of this parameter; however, a range of
+values have been explored in fitting the data.
+
+Interstellar Extinction. Because of the low temperature of the surface emission from qLMXBs,
+the uncertainty in the interstellar extinction has a non-negligible effect on the spectral analyses. Dif-
+ferent amounts of interstellar extinction have been assumed in different studies (Guillot et al. 2013;
+Lattimer & Steiner 2014). A recent study explored different models for the interstellar extinction
+
+  4 The   full mass-radius likelihoods and               tabular   data         for      these   sources       can    be    found       at
+http://xtreme.as.arizona.edu/NeutronStars.
+
+
+                         www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars                             17
+     in the analysis of the qLMXBs in ω Cen and NGC 6397 and found statistically consistent results
+     with small differences in the central values but larger differences in the uncertainties (Heinke et al.
+     2014). The relevant uncertainties have been incorporated into the results shown in Fig. 4.
+
+     3.1.2. Thermonuclear Bursts. Neutron stars in low-mass X-ray binaries show a phenomenon called
+     thermonuclear (Type-I) X-ray bursts, in which the accreted material undergoes a helium flash that
+     consumes the fuel that is spread over the neutron star surface. The observed X-ray luminosity rises
+     rapidly, in a timescale of ≈ 1 s, which corresponds to the diffusion timescale from the burning layer
+     to the neutron star surface. The energy is then radiated away on a timescale of 15 − 50 s for the
+     majority bursts during the so-called cooling tails. In a subset of the cases, the luminosity reaches
+     the Eddington luminosity where the radiation forces match or exceed the gravitational forces and
+     lift the photosphere off of the neutron star surface. These photospheric radius expansion (PRE)
+     events have characteristic signatures where the photosphere is observed to reach several times the
+     neutron star radius and the temperature has a second rise (Lewin, van Paradijs & Taam 1993).
+          Several approaches have been developed and used to determine the neutron star radius by
+     making use of thermonuclear bursts. van Paradijs (1979) introduced using the apparent angular
+     size obtained during the cooling tails of the bursts as a way to obtain correlated M-R constraints.
+     Subsequently, Fujimoto & Taam (1986), Sztajno et al. (1987), Damen et al. (1990), and Özel (2006)
+     discussed different ways in which the degeneracy between the radius and the mass can be broken
+     through multiple spectroscopic measurements.
+          Özel & Psaltis (2009), Güver et al. (2010a), and a number of studies since have used a combi-
+     nation of the apparent angular sizes, the Eddington fluxes obtained from the PRE bursts, and the
+     source distances to measure the neutron star radius and mass. In particular, the apparent angular
+     sizes were measured from the flux and the temperature obtained from time-resolved spectroscopy,
+     while the Eddington limit is measured at the moment when the photosphere touches back down
+     onto the stellar surface. The Eddington flux is related to stellar parameters M and R and distance
+     D via                                                         1/2
+                                                  GM C         2GM
+                                        FEdd =             1 −           ,                            (11)
+                                                  kes D2        Rc2
+     where                           "                    ag              −ag /2 #−1
+                                                   kTc                2GM
+                     kes ≡ 0.2(1 + X) 1 +                          1−                      cm2 g−1     (12)
+                                                38.8 keV               Rc2
+     is the electron scattering opacity and the last term in the equation arises from temperature cor-
+     rections to electron scattering (Paczynski 1983; Suleimanov, Poutanen & Werner 2012). X is the
+     hydrogen mass fraction of the atmosphere,
+                                                              geff    
+                                      ag = 1.01 + 0.067     14
+                                                                         ,                        (13)
+                                                          10 cm s   −2
+
+
+     and the effective surface gravity is given by
+                                                               −1/2
+                                                  GM       2GM
+                                         geff =         1−            .                                (14)
+                                                  R2        Rc2
+
+     Because the dependence of the Eddington flux on the stellar mass and radius (Eq. 11) is different
+     from that of the apparent angular size (Eq. 10), combining these two spectroscopic measurements
+     breaks the degeneracies between the stellar parameters introduced by general relativistic effects.
+         Atmosphere models during bursts are used for the interpretation of spectra and the cor-
+     rect measurement of effective temperatures. A number of such models have been developed,
+     addressing the Comptonization of photons by the hot surface electrons with increasing levels
+
+18   Feryal Özel and Paulo Freire
+of sophistication, and have been calculated for a range of surface compositions and effective
+gravities (London, Taam & Howard 1986; Madej, Joss & Różańska 2004; Majczyna et al. 2005;
+Suleimanov, Poutanen & Werner 2012). The deviations from a blackbody at the effective tem-
+perature of the atmosphere are quantified by the so-called color correction factor fc = Tc /Teff ,
+which is then folded into these measurements.
+    Finally, the measured angular sizes are subject to additional general relativistic corrections
+due to moderately high spin frequencies observed in neutron stars with thermonuclear bursts.
+In particular, the effects of the quadrupole moment and the ellipticity of the neutron star on the
+neutron-star spacetime as well as the rotational broadening of the thermal spectra can be calculated
+in the Hartle-Thorne metric and lead to corrections in the inferred angular size of the order of ∼ 10%
+(Bauböck et al. 2015).
+    This approach has been applied to the neutron stars in the low-mass X-ray binaries
+EXO 1745−248 (Özel & Psaltis 2009), 4U 1820−30 (Güver et al. 2010a), 4U 1608−52 (Güver et al.
+2010b), KS 1731−260 (Özel, Gould & Güver 2012), SAX J1748.9−2021 (Güver & Özel 2013), and
+4U 1724−207 (Özel et al. 2015). Özel et al. (2015) performed an updated analysis using new statis-
+tical methods, the theoretical corrections discussed above, and uniformly incorporating systematic
+uncertainties into the measurements. The resulting 68% confidence contours over the mass and ra-
+dius for these six neutron stars are shown in Fig 4. When combined, these measurements indicate
+neutron star radii in the 9.8 − 11 km range, which is consistent with the results obtained from the
+analyses of qLMXBs.
+    Another approach that has been utilized for radius measurements is to determine the
+spectral evolution of the color correction factor in PRE bursts (see Majczyna & Madej 2005;
+Suleimanov, Poutanen & Werner 2011; Poutanen et al. 2014). Because the spectral distortions de-
+pend on the effective surface gravity geff and the emitted flux, the change in the color correction
+factor with luminosity as the burst cools down from an Eddington flux can provide a measure of
+the stellar mass and radius. The application of this method to 4U 1728−34 (Majczyna et al. 2005),
+4U 1724−207 (Suleimanov, Poutanen & Werner 2011) and 4U 1608−52 (Poutanen et al. 2014) led
+to radii measurements that range from being too small (in the case of 4U 1728−34) to being too
+large (4U 1608−52). As we will discuss later, these measurements are biased by the inherent
+limitations of the data. The data selection used in the latter studies will also be discussed below.
+    One final approach is to compare the observed properties of the bursts, such as their recurrence
+and decay times, and their peak fluxes, to the expectations from theoretical lightcurve models to
+infer a surface redshift for the neutron star. These constraints can then be combined with the
+spectral evolution during the burst cooling tails to obtain constraints on the neutron star radius.
+Unfortunately, the theoretical models in this case are not very predictive and fail to explain the
+lightcurves of nearly any of the nearly 50 sources extensively studied with RXTE (Heger et al.
+2007; Galloway et al. 2008). Therefore, the application of this method has been limited to the one
+source, GS 1826−24, where models can approximately match the lightcurve properties, and resulted
+in the limits R < 6.8 − 11.3 km for M < 1.2 − 1.7 M⊙ (Zamfir, Cumming & Galloway 2012), also
+consistent with the results obtained from qLMXBs and with PRE bursts (see Fig. 4).
+    As with the qLMXBs in globular clusters, several sources of systematic uncertainty exist in the
+spectroscopic measurements of thermonuclear bursts. Their effects on the radius measurements
+have been studied in recent years an will be discussed in some detail below.
+
+
+Distances. Two of the three techniques discussed above rely on a measurement of source dis-
+tances to obtain neutron star radii. For the sources that reside in globular clusters, the cluster
+distances are utilized. These are subject to the same uncertainties as those used for the qLMXB
+measurements. Other techniques have also been considered to measure distances to bursting neu-
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   19
+     tron stars (Kuulkers et al. 2003; Güver et al. 2010a; Özel, Gould & Güver 2012). In most cases,
+     these measurement techniques either yield reliable lower limits or source distances with relatively
+     large uncertainties, which dominate the resulting uncertainties in the radius measurements.
+
+
+     Detection of Outliers. As with all physical measurements, identification of outliers in datasets
+     that may contaminate the results is an important issue. Güver, Özel & Psaltis (2012) and
+     Güver, Psaltis & Özel (2012) developed a data-driven Bayesian Gaussian-mixture approach to iden-
+     tify the outliers in the spectroscopic burst data without any theoretical biases. The resulting se-
+     lected data were used in the radius measurements reported in Özel et al. (2015). In an alternative
+     approach, Poutanen et al. (2014) and Kajava et al. (2014) performed data selection by requiring
+     that the observations follow theoretical expectations. This approach resulted in a selection of
+     a different, and much smaller, subset of bursts and led to the measurement of a stellar radius
+     R > 12 km for 4U 1608−52. The consistency of the burst evolution with theoretical expectations
+     and the limitations of the latter method when applied to RXTE data are discussed in detail in
+     Özel, Psaltis & Güver (2015).
+
+
+     3.2. Radii via Pulse Profile Modeling
+     Neutron star radii can also be measured or constrained by analyzing the properties of periodic
+     brightness oscillations originating from temperature anisotropies on the surface of a spinning neu-
+     tron star. The amplitudes and the spectra of the oscillation waveforms depend on the neutron-star
+     spacetime, which determines the strength of the gravitational light bending the photons experi-
+     ence as they propagate to an observer at infinity (Pechenick, Ftaclas & Cohen 1983), as well as
+     on the temperature profile on the stellar surface and on the beaming of the emerging radiation.
+     Using theoretical models for the emerging radiation, the properties of the brightness oscillation can,
+     therefore, be used to probe the stellar spacetime and to measure its radius and mass.
+         The theoretical work on neutron-star spacetimes has enabled increasingly more precise cal-
+     culations of the effects of the gravitational lensing on the surface photons, which are used for
+     the analyses of the waveforms. Earlier approximations appropriate for non-spinning neutron stars
+     (Pechenick, Ftaclas & Cohen 1983) were supplemented by adding in the effects of Doppler shifts
+     and aberration (Miller & Lamb 1998; Muno, Özel & Chakrabarty 2002; Poutanen & Beloborodov
+     2006) or those of frame dragging (Braje, Romani & Rauch 2000) for slow spins up to 300 Hz. At
+     even faster spins, the oblateness of the neutron star and the quadrupole moment of its spacetime
+     on the photon trajectories have been accurately accounted for (Morsink et al. 2007; Psaltis & Özel
+     2014). For stars near break-up (> 1 kHz), fully numerical solutions of the spacetimes become
+     necessary (Cook, Shapiro & Teukolsky 1994; Stergioulas & Friedman 1995; Cadeau et al. 2007).
+         The waveforms depend also on the location and the size of the hotspots, the beaming pattern of
+     the radiation emitted from the stellar surface, and the line of sight of the observer with respect to the
+     rotation axis. Modeling the shapes and amplitudes of the waveforms, therefore, can yield constraints
+     on a combination of all of these parameters and result in measurements of these parameters with
+     correlated uncertainties. The challenge here is to reduce the number of unknowns and to eliminate
+     the correlated uncertainties between the parameters in order to obtain a measurement of the neutron
+     star radius. The size of the hotspot has a minor effect when it is sufficiently small (Bauböck et al.
+     2015)), so this parameter can be eliminated in some cases. The beaming of radiation can also be
+     calculated from atmosphere models.
+         Analysis of the oscillation waveforms have been performed to explore the properties of numerous
+     types of neutron stars. While this method yielded useful results on the surface emission properties of
+     slow pulsars (Page 1995) and magnetars (DeDeo, Psaltis & Narayan 2001; Özel 2001), constraints
+
+20   Feryal Özel and Paulo Freire
+                                           1.0
+
+                                                     Rot. Powered Pulsars
+                                                     Acc. Powered Pulsars
+                                                     Bursters
+                                           0.8
+
+
+
+
+                     noitcarF evitalumuC
+                                           0.6
+
+
+
+
+                                           0.4
+
+
+
+
+                                           0.2
+
+
+
+
+                                           0.0
+                                                 0       200                400   600
+
+
+                                                            Spin Frequency (Hz)
+
+
+Figure 5
+The cumulative distribution of spin frequencies of rotation-powered millisecond pulsars, accretion powered
+millisecond pulsars, and accreting neutron stars that show thermonuclear burst oscillations.
+
+
+on the neutron-star radius and spacetime come, in particular, from the analysis of oscillations from
+accretion-powered millisecond pulsars, millisecond rotation-powered pulsars, and thermonuclear X-
+ray bursters. These last three classes have distributions of spin frequencies that differ from one
+another, as shown in Fig. 5. Therefore, spin effects need to be incorporated to different levels
+when modeling each population. We discuss the radius measurements from each of these classes
+individually below.
+
+3.2.1. Rotation Powered Pulsars. Even though the emission from rotation-powered millisecond pul-
+sars (MSPs) is largely non-thermal and is dominated by their magnetospheres, a number of sources
+show a clearly detected thermal component in the soft X-rays (e.g., Grindlay et al. 2002; Zavlin
+2006, 2007; Bogdanov, Grindlay & Rybicki 2006). X-ray data from a number of MSPs, obtained
+with ROSAT, Chandra, and XMM-Newton, have been analyzed using hydrogen atmosphere models
+for the thermal emission from a polar cap (see, e.g., Zavlin & Pavlov 1998). In these models, pulse
+profiles are calculated based on the beaming of radiation predicted by the theoretical models (see
+Özel 2013 for details).
+    An analysis of PSR J0437−4715, assuming a mass of 1.4 M⊙ yielded bounds on the radius
+in the R = 6.8 − 13.8 km range (90% C.L.; Bogdanov, Rybicki & Grindlay 2007). A subsequent
+measurement of the pulsar mass at 1.76 M⊙ (Verbiest et al. 2008) increased the lower limit on the
+neutron star radius to R > 11.1 km (99.9% C.L.; see Fig. 6 and Bogdanov 2013), but this result is
+likely to be revised again in view of the most recent measurement of the pulsar mass (see Table 2).
+Similar analyses for pulsars J0030+0451 and J2124−3358 lead to lower limits on their radii of
+10.7 km (95% C.L.) and 7.8 km (68% C.L.), respectively, assuming a pulsar mass of 1.4 M⊙ .
+    There are a number of complexities that affect the interpretation of the pulsar waveform data
+from MSPs. First, the non-thermal magnetospheric emission is subtracted from the total ob-
+served emission in the X-rays to allow for a modeling of the thermal surface component from
+
+                    www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars    21
+                                       3.0
+                                                 J1808-3658 (L)
+                                                 J1808-3658 (P)
+                                                 J1807-294
+                                       2.5       J1814-338
+                                                 J0437-4715
+
+
+                                       2.0                          AP4
+
+
+
+
+                           ) M( ssaM
+                                                                          MPA1
+                            8
+                                       1.5
+                                                                            MS1
+                                                                  GS1
+
+
+
+                                       1.0
+
+
+                                       0.5
+                                                          SQM1
+
+
+
+
+                                       0.0
+                                             0        5           10             15
+
+                                                          Radius (km)
+
+
+     Figure 6
+     The radii constraints obtained from analysis of the waveforms from accretion-powered
+     (Poutanen & Gierliński 2003; Leahy, Morsink & Cadeau 2008; Leahy et al. 2009; Leahy, Morsink & Chou
+     2011) and rotation-powered millisecond pulsars (Bogdanov 2013). Two different analyses of the SAX
+     J1808.4-3658 data by Poutanen et al. (2003, denoted by P) and Leahy et al. (2008, denoted by L) are
+     included.
+
+
+
+     the polar caps. The thermal component itself is typically modeled with two separate regions
+     with different temperatures, each emitting with a hydrogen atmosphere spectrum (Zavlin 2006;
+     Bogdanov, Rybicki & Grindlay 2007). The pulse profiles have been modeled with two polar caps
+     but the waveforms have required a non-antipodal geometry and led to additional uncertainties from
+     introducing an additional offset parameter. The footprints of polar caps in the studies performed
+     to date have assumed circular caps but the effect of the shape of the polar cap on the waveforms
+     have not yet been explored (see, however, Bauböck et al. 2015 for the effect of the unknown shape
+     and size of the polar caps). Finally, the angles that specify the observer’s line-of-sight and the
+     colatitude of the polar caps with respect to the stellar spin axis have been assumed to be known
+     independently. The uncertainties introduced by the errors in these angles have not been factored
+     into the quoted radius constraints. Future work is needed to assess the effects of these assumptions
+     and to quantify the additional resulting uncertainties in the radius measurements.
+
+
+     3.2.2. Accretion Powered Pulsars. Thermal emission is observed in a number of accretion-powered
+     millisecond X-ray pulsars (AMSPs) in the soft X-rays. It originates from the base of the accretion
+     column, which is then Comptonized in that column (see section 3.3 of Poutanen & Gierlinski 2003).
+         A number of studies have modeled the emission from the X-ray emitting regions at the bases
+     of the accretion columns (Poutanen & Gierliński 2003; Lamb et al. 2009). The thermal photons
+     emitted from the surface are Compton scattered in the accretion column, affecting the observed
+     pulse amplitudes. Lamb et al. (2009) also explored the effect of the location of the X-ray emitting
+     regions and considered models where the base of the accretion column wobble around the spin
+     axes. These models help interpret the AMSP timing data but also explore uncertainties in the
+
+22   Feryal Özel and Paulo Freire
+mass-radius constraints obtained from fitting the waveforms.
+     This method has been applied to several accreting millisecond X-ray pulsars: SAX J1808.4−3658
+(Poutanen & Gierliński 2003; Leahy, Morsink & Cadeau 2008; Morsink & Leahy 2011), XTE
+J1807−294 (Leahy, Morsink & Chou 2011), and XTE J1814−338 (Leahy et al. 2009). Fig. 6 shows
+the inferred constraints on the mass and radius of the neutron stars in these studies, where the
+contours depict 99% confidence levels. The large uncertainties in the mass-radius measurements
+shown in this figure reflect the influence of the various geometric factors discussed above, which are
+difficult to constrain.
+
+3.2.3. Thermonuclear Burst Oscillations. Periodic flux oscillations with large amplitudes originat-
+ing from the surfaces of neutron stars have also been detected during thermonuclear X-ray bursts
+(Strohmayer et al. 1996). They originate from temperature non-uniformities on the stellar surface
+that occur during the nuclear burning (see Watts 2012 for a review). Modeling the pulse profiles
+of these burst oscillations are also good probes of the stellar gravity and leads to constraints on
+the neutron star compactness (Strohmayer, Zhang & Swank 1997; Miller, Lamb & Psaltis 1998).
+In particular, the amplitude of the oscillations, the deviations from a sinusoidal waveform,
+and their dependence on photon energy can be probes of the neutron star radius and mass
+(Weinberg, Miller & Lamb 2001; Muno, Özel & Chakrabarty 2002, 2003).
+    This     technique    was    applied   to   oscillations   observed    from    4U    1636−536
+(Nath, Strohmayer & Swank 2002) but led to no significant constraints on the neutron star
+radius or compactness. For the neutron star in XTE J1814−338, the analysis of the wave-
+forms of burst oscillations resulted in the limit on the neutron star compactness R/M > 4.2
+(Bhattacharyya et al. 2005). Future observations can make use of more properties of the ob-
+served waveforms, such as their energy dependence and the amplitudes of the higher harmonics
+(Psaltis, Özel & Chakrabarty 2014), and the prospects are more comprehensively discussed in
+Watts et al. (2015).
+
+
+
+4. The Neutron Star Equation of State
+In addition to characterizing neutron star populations as well as understanding their formation and
+evolution, one of the ultimate goals of mass-radius measurements is, of course, to constrain the
+ultradense matter equation of state (EoS). The microphysics, as described by the EoS, is connected
+to the macroscopic properties of the neutron star via the Tolman-Oppenheimer-Volkoff equations,
+which provide the direct relation that is necessary to use astrophysical observations to constrain
+nuclear physics at very high densities. In this section, we will describe this relation, a variety of
+theoretical approaches to as well as the low-energy experimental constraints on the EoS, and the
+current measurement of the EoS beyond nuclear saturation density from neutron star observations.
+
+
+4.1. Neutron Star Structure
+The structure of relativistic stars and their mass-radius relation are determined by integrating the
+relativistic structure equations, also known as the Tolman-Oppenheimer-Volkoff (TOV) equations
+(Oppenheimer & Volkoff 1939; Tolman 1934, 1939)
+
+                                  dp     G (p + ǫ)(m + 4πr 3 p/c2 )
+                                     = − 2
+                                  dr     c     r 2 [1 − 2Gm/(rc2 )]
+                                 dm          ǫ
+                                     = 4πr 2 2 ,                                                   (15)
+                                 dr         c
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   23
+     where p is the pressure, ǫ is the energy density, r is the radius, and m is the enclosed mass, from
+     the center r = 0 where p = pc and ǫ = ǫc to the surface at r = R, where p = 0 and the enclosed
+     mass is equal to the total mass m = M . (At moderate spin frequencies fNS <     ∼ 800 Hz, rotational
+     corrections appear at < few % level; see Cook, Shapiro & Teukolsky 1994; Stergioulas & Friedman
+     1995). To complete this set of equations, one needs to specify the pressure-energy density relation,
+     referred to as the equation of state, appropriate for neutron-star matter.
+         Before we proceed with a discussion of the cold, dense matter EoS, a few remarks on the relevant
+     quantities and units are in order. While the energy density ǫ enters the TOV equations, most nuclear
+     EoS calculations also use or refer to the baryon number density n (in units of fm−3 ≡ 1039 cm−3 ) or
+     to the mass density ρ (in units of g cm−3 ). The nuclear saturation density can then be equivalently
+     expressed as a mass density ≃ 2.8 × 1014 g cm−3 or a particle density ≃ 0.16 fm−3 . Similarly, the
+     pressure is typically expressed in units of MeV fm−3 ≡ 1.6 × 1033 dyne cm−2 .
+         In neutron star cores, matter is cold and ultradense, characterized by large chemical potentials
+     and a significant asymmetry in the numbers of neutrons and protons. Indeed, the condition of β
+     equilibrium, given by
+                                               
+                                           ∂ǫ/n
+                                                    = µe + µp − µn = 0                               (16)
+                                            ∂Ye n
+
+     points to proton fractions of x <
+                                     ∼ 10%, unlike normal nuclei which possess nearly equal numbers of
+     protons and neutrons (referred to as symmetric matter). In the equation above, ǫ/n is the energy
+     per baryon, µe , µp , and µn are the chemical potentials of the electrons, protons, and neutrons,
+     respectively, and Ye is the number of electrons per baryon. The densities in the cores can reach
+     ∼ 10ρsat . Given that neutrons geometrically overlap at ∼ 4ρsat , at these very high densities, matter
+     may not be composed of nucleons alone but may contain a rich variety of hadronic degrees of free-
+     dom. With increasing overlap between nucleons, transitions to non-nucleonic states of matter are
+     expected. For example, a gradual onset of quark degrees of freedom and quark constituents prop-
+     agating throughout the system become likely (e.g., Alford et al. 2005a; Kojo et al. 2015). In addi-
+     tion, Bose-Einstein condensates of mesons, such as pion (Akmal, Pandharipande & Ravenhall 1998;
+     Mukherjee 2009; Pandharipande, Pethick & Thorsson 1995) or kaon condensates (Kaplan & Nelson
+     1986; Brown et al. 1992; Glendenning & Schaffner-Bielich 1999) can enter at higher densities. It
+     is also possible for ultradense matter to contain strange quarks in forms other than kaons, as
+     weak interactions in the cold neutron-star cores can lead to states of matter with a high de-
+     gree of strangeness. Some of the possibilities considered to date include the presence of hy-
+     perons (Ambartsumyan & Saakyan 1960; Glendenning & Moszkowski 1991; Schulze et al. 1995),
+     hybrid stars containing free quarks (Collins & Perry 1975), or color superconducting phases
+     (Alford & Reddy 2003; Alford et al. 2005b). Moreover, self-bound stars consisting of strange
+     quark matter have also been proposed (Farhi & Jaffe 1984; Haensel, Zdunik & Schaefer 1986;
+     Alcock, Farhi & Olinto 1986). These models are based on the assumption that strange quark mat-
+     ter is the ultimate ground state of matter (Witten 1984) and they predict stellar radii that grow
+     with the stellar mass.
+         First principles QCD calculations are not yet able to describe the interactions of such a system
+     at several times the nuclear saturation density (but there is significant recent progress in describing
+     the quark matter EoS at even higher densities and extrapolating down to lower densities; see, e.g.,
+     the discussion and results in Kojo et al. 2015 and Kurkela et al. 2014). Because of that, a number
+     of different approaches have been followed in the calculations of the equation of state of neutron
+     star matter. A comprehensive overview of the methods and the details of the nuclear physics can
+     be found in Glendenning (2000), Lattimer & Prakash (2001), and Baldo & Burgio (2012). Here,
+     we provide a summary of the basic methods as well as a compilation of some representative model
+     equations of state.
+
+24   Feryal Özel and Paulo Freire
+    One common effective field theory motivated approach relies on expanding the nuclear Hamil-
+tonians into two-, three-,... n-body static potential terms, assuming that the forces between
+particles can be described via static few-body potentials. The two-body potential is deter-
+mined in the vicinity of ρsat for symmetric matter using nucleon-nucleon scattering data below
+350 MeV and the properties of light nuclei, and the contributions from the three-body potentials
+are added (Akmal, Pandharipande & Ravenhall 1998; Morales, Pandharipande & Ravenhall 2002;
+Hebeler et al. 2010; Gandolfi, Carlson & Reddy 2012). The resulting equations of state are par-
+ticularly sensitive to the three-nucleon interactions because of the near-cancellation between the
+kinetic term and the two-body term in these potentials. In addition, such expansions are not valid
+at ρ ≫ ρsat because the parameter measuring the relative importance of three and higher body
+forces is ∼ ρ/(2mπ )3 ∼ 0.35ρ/ρsat .
+    In these approaches, it is also common to make use of nuclear Hamiltonians that are experimen-
+tally constrained for symmetric matter around nuclear density and express the energy per baryon
+at higher density and at higher neutron fraction as a parametric expansion in terms of the ratio
+u ≡ ρ/ρsat and the neutron excess 1 − 2x:
+
+                   ǫ(u, x)        Ko           K′
+                           = −B +    (u − 1)2 + o (u − 1)3 + S2 (u)(1 − 2x)2                       (17)
+                     n            18           162
+In this expansion, B ≃ 16 MeV is the bulk binding energy of symmetric matter at nuclear saturation
+density and Ko and Ko′ are the nuclear incompressibility and skewness parameters and we only show
+terms up to quadratic order. It is also customary to call the quadratic term in neutron excess the
+“symmetry energy” and express it in terms of two parameters Sv , the symmetry energy at nuclear
+density
+                                            Sv = S2 (1),                                      (18)
+and L, which is related to the derivative of the symmetry energy with respect to density
+                                                     
+                                                  dS2
+                                        L = 3u            .                                        (19)
+                                                   du u=1
+
+Naturally, at high density and high neutron fraction, these approaches also enter a regime where
+the expansions are not valid.
+    Alternatives to this approach include one that is based on field-theoretical calcula-
+tions of constituents interacting via meson exchange (Müller & Serot 1996). A third ap-
+proach involves microscopic ab initio calculations based on the Brueckner- Hartree-Fock model
+(Baldo, Bombaci & Burgio 1997) or its relativistic counterpart, the Dirac-Brueckner-Hartree-Fock
+model (Müther, Prakash & Ainsworth 1987), or its modifications using unconventional Skyrme
+forces (Goriely, Chamel & Pearson 2010; see also Potekhin et al. 2013 for analytical representa-
+tions based on this equation of state).
+    Fig.7 (left panel) shows a large sample of currently proposed equations of state, spanning a
+density range between ∼ 0.1 − 8ρsat . The wide range of pressures P predicted under different
+assumptions are indicative of the wide open questions in physics in this regime. The acronyms and
+the references for the various equations of state can be found in Read et al. (2009). We also include
+in this figure (i) the recent equation of state labeled NJL (Kojo et al. 2015) based on a smooth
+interpolation in pressure vs. baryon chemical potential of a nucleonic equation of state (APR) at
+densities below ∼ ρsat with a quark matter equation of state at densities above ∼ 5 − 7ρsat , (ii) the
+BSK equation of state of Goriely, Chamel & Pearson (2010) and Potekhin et al. (2013), and (iii)
+the QMC equation of state of Rikovska Stone et al. (2007).
+    The mass-radius relations corresponding to the equations of state in Fig. 7 are shown in the right
+panel. The curves that do not reach the observed ∼ 2 M⊙ mass limit are denoted in light grey in
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   25
+                                     2
+                                                                                                                         3.0
+                                                                                                                                    kc                                         ALF1
+                                                     ALF1-4
+                                                                                                                                   se
+                                                                                                                                      lo
+                               100                   AP1-4                                                                               H
+                                                                                                                                                        ti
+                                                                                                                                                                               ALF2
+                                                                                                                                   al
+                                     8                                                                                                B                   b                    AP1-2
+                                                     WFF1-3                                                                                                rO
+                                     6
+                                                     SQM1-3                                                              2.5                           no
+                                                                                                                                                                               AP3
+
+                                                                                                                                                   to                          AP4
+                                     4               GS1-2
+                                                                                                                                                   h                           BSK19
+                                                                                                                                                  P
+                                                     BBB2
+                                                                                                                                              ed                               BSK20
+            )                                        BGN1H1                                                                                  is
+       3-                            2                                                                                                                                         BSK21
+                                                     BSK19-21                                                            2.0             nI
+
+
+
+
+            mf VeM( erusserP
+                                                                                                                                                                               ENG
+                                                     BPAL12                                                   )                                                                GNH3
+
+
+
+
+                                                                                                              8M( ssaM
+                                10                                                                                                                                             GS1
+                                     8
+                                                                                                                                                                               H4
+                                     6                                                                                   1.5                                                   MPA1
+                                                                                                                                                                               MS1
+                                     4
+                                                                                                ENG                                                                            MS1b
+                                                                                                FPS                                                                            NJL
+                                                                                                GNH
+                                     2
+                                                                                                                         1.0                                                   QMC
+                                                                                                H1-7                                                                           SLY
+
+                                                                                                MPA1                                                                           SQM1-3
+                                 1                                                                                                                                             PAL6
+                                                                                                MS1-2
+                                     8
+                                                                                                NJL                                                                            WWF1
+                                     6                                                                                   0.5
+                                                                                                                                                                               WWF2
+                                                                                                PAL6
+                                     4                                                                                                                                         WWF3
+                                                                                                QMC
+                                                                ρsat                            SLy
+
+                                     2                                                                                   0.0
+                                         5   6   7   8 9               2   3        4   5   6   7   8 9
+                                                                                                                               6         8             10       12   14   16    18
+                                                       0.1                                                1
+                                                                           -3
+                                                                Density (fm     )                                                                           Radius (km)
+
+
+     Figure 7
+     (Left) A large sample of proposed equations of state calculated under different physical assumptions and
+     using a range of computational approaches. See the text for the descriptions of the equations of state, the
+     acronyms, and the references. (Right) The mass-radius curves corresponding to the equations of state
+     shown in the left panel.
+
+
+     this figure. Also note that the astrophysically relevant parts of these curves lie above ∼ 1 M⊙ . An
+     important characteristic of many of these curves is that the radius remains nearly constant for the
+     astrophysically relevant range of masses. The notable exceptions are the self-bound strange stars
+     (e.g., SQM), where the radius increases with increasing mass, and stars with condensates (e.g., GS1-
+     2, GM, PS) where the radius decreases with mass past the point where the central density reaches
+     the critical one where the phase transition occurs. The mass-radius curves are also characterized
+     by a maximum mass beyond which there are no stable solutions. In general, equations of state
+     with relatively higher pressures at densities above ∼ 4 ρsat have higher maximum masses. The
+     presence of non-nucleonic phases, such as hyperons or condensates, reduces the pressure (referred
+     to as softening the equation of state) lead to smaller maximum masses.
+         In the remainder of this section, we will discuss how neutron star masses and radii can be used
+     to pin down the ultradense matter equation of state, the methodologies developed towards this
+     goal, and the current state of the measurements. However, we first briefly describe the constraints
+     on the nuclear EoS at nuclear density from low energy experiments.
+
+
+     4.2. Constraints on the EoS from Low Energy Experiments
+     For symmetric matter (i.e., nuclei containing roughly equal number of neutrons and protons) near
+     the nuclear saturation density, there is a range of experimental constraints. Most robustly, two-body
+     potentials can be inferred from nucleon-nucleon scattering data below 350 MeV and the properties
+     of light nuclei (Akmal, Pandharipande & Ravenhall 1998; Morales, Pandharipande & Ravenhall
+     2002).
+         The other significant constraints that arise from these experiments and are relevant for the
+     neutron-star equation of state are often expressed in terms of the symmetry energy parameters:
+     Sv and L (see eq’ns 18 and 19 in the previous section as well as the discussion in Lattimer 2012).
+     The experiments that yield the most accurate data and the least model-dependent results involve
+
+26   Feryal Özel and Paulo Freire
+Figure 8
+The experimental constraints on the symmetry energy parameters L and Sv from experiments performed
+near nuclear density. These include the neutron skin thickness of neutron-rich Sn isotopes (shown in blue),
+giant dipole resonances (red), the dipole polarizability of 208 P b (light yellow), heavy-ion collisions (green),
+as well as nuclear masses (dark yellow). The theoretical inferences from Gandolfi (2012, G) and Hebeler
+(2010, H), as well as an earlier astrophysical inference from Lattimer 2012 are also indicated on this figure
+as dark blue and hatched regions, respectively. Reproduced with permission from Lattimer 2012.
+
+
+fitting nuclear masses and charge radii (Klüpfel et al. 2009; Kortelainen et al. 2010). Nevertheless,
+the symmetry parameters that can be extracted from such data are highly correlated, as shown in
+Fig. 8.
+     Neutron-rich matter can also be probed by measuring the neutron skin thickness of heavy nuclei.
+Studies within both the mean-field theory and the liquid droplet model frameworks have shown that
+the neutron skin thickness, defined as the difference of their neutron and proton root-mean-squared
+radii
+                                      ∆rnp =< rn2 >1/2 − < rp2 >1/2                                         (20)
+
+is a sensitive function of Sv and L and, thus, serves as a good probe of the symmetry energy
+(Centelles et al. 2009; Chen et al. 2010; Roca-Maza et al. 2011). The neutron skin thickness was
+measured by a variety of experiments for ≈ 20 neutron-rich Sn isotopes with ∼ 30 − 50% uncer-
+tainties. Chen et al. (2010) used these measurements to place additional constraints on the sym-
+metry energy parameters (see Fig. 8). In addition, the neutron skin thickness has been determined
+by the PREX experiment for 208 P b using a technique called parity-violating electron scattering
+(Abrahamyan et al. 2012): because the weak-vector meson that mediates this interaction couples
+preferentially to neutrons, the approach allows a measurement of the neutron form factor, which
+can then be extrapolated to neutron skin thickness.
+    Another observable that places significant constraints on L come from the measurement of the
+dipole polarizability of 208 P b and the giant dipole resonances. The giant dipole resonance, measured
+from the response of the neutron-rich nuclei to an externally applied electric field, serves as a
+measure of the symmetry energy (Trippa, Colò & Vigezzi 2008; Tamii et al. 2011; Piekarewicz et al.
+
+                     www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars         27
+     2012). The resulting constraints on Sv and L are also shown in Fig. 8.
+         The most indirect experimental probe of the EoS of cold, neutron-rich, dense matter emerge from
+     low-energy heavy-ion collisions. There are large uncertainties in extrapolating from the properties of
+     hot dense matter generated in these collisions to zero temperature and to extreme neutron-richness
+     (Tsang et al. 2009). For completeness, Fig. 8 also includes these constraints.
+         While none of these experiments are as powerful and direct probes of the neutron star EoS
+     as the measurement of the macroscopic properties of neutron stars (as will be shown in the next
+     section), they serve as complementary tests of the properties of dense matter. At a minimum,
+     the pressure obtained from the two-nucleon interaction serves as a lower limit to the pressure of
+     neutron-star matter at ∼ 1 − 2 ρsat . This is because three-body interactions in pure neutron matter
+     are always repulsive. Considering the expansion of the interaction in terms of two- and three-body
+     potentials and using the contribution of the two-body potential (Argonne AV8 or AV18) yields a
+     lower bound of P = 7.56 MeV fm−3 at ρ = 1.85 ρsat (Özel et al. 2015). This constraint has been
+     used in conjuction with the neutron star radius measurements to determine the ultradense matter
+     EoS, as we will discuss in Section 4.4.
+
+
+
+     4.3. From Radius and Mass Measurements to the Neutron Star EoS
+     Given the Tolman-Oppenheimer-Volkoff equations, the EoS of neutron star matter determines the
+     macroscopic properties of the stars and, in particular, their masses and radii. In fact, the solutions
+     provide a unique map between the microscopic pressure-density relation (P (ρ) or P (ǫ)) and the
+     macroscopic mass-radius relation of stars (Lindblom 1992).
+         This unique mapping can, in principle be exploited to infer the EoS from astrophysical measure-
+     ments of their masses and radii. However, a formal inversion of this mapping requires a masurement
+     of the entire mass-radius curve, i.e., the measurement of radii for neutron stars that span the range
+     of stellar masses between ∼ 0.2 − 2M⊙ . This requirement severely limits the applicability of this
+     direct inversion because there is no astrophysical formation channel for neutron stars with masses
+     that are much smaller than the Chandrasekhar mass of the progenitor cores and neither are such
+     stars observed (see Section 2).
+         Despite this difficulty, the connection between the mass-radius relations and the EoS turn out
+     to have certain characteristics that make it possible to infer them from a more sparse sampling of
+     neutron star radii. In particular, the maximum mass is determined primarily by the behavior of
+     the equation of state at the highest densities (∼ 7 − 8 ρsat ; Özel & Psaltis 2009), while the radius
+     depends primarily on the pressure at ≈ 2 ρsat (Lattimer & Prakash 2001). The slope of the mass-
+     radius relation (i.e., whether R increases or decreases with M), in the mass range of astrophysical
+     interest, depends largely on the pressure at ∼ 4 ρsat (Özel & Psaltis 2009). The fact that only
+     a small number of densities determines the macroscopic properties of neutron stars means that
+     their various higher order moments cannot be completely independent from each other. Indeed, a
+     number of universal relations have been found between various higher-order moments of neutron
+     stars (Yagi & Yunes 2013; Bauböck et al. 2013; Yagi et al. 2014), the origins of which have not yet
+     been fully understood.
+         These properties make it possible to infer the pressure of ultradense matter at a few appro-
+     priately chosen densities above ρsat instead of mapping out the full functional form of the EoS
+     from astrophysical observations. The optimal densities for sampling and the parametric forms that
+     lead to the smallest uncertainties in the EoS determination were explored in detail by Read et al.
+     (2009) and Özel & Psaltis (2009). These studies showed that the pressures measured at 1.85 (P1 ),
+     3.7 (P2 ), and 7.4 ρsat (P3 ) and connected by piecewise polynomials can represent more than forty
+     proposed EoS included in those studies to within few percent uncertainty. These led to the real-
+
+28   Feryal Özel and Paulo Freire
+ization that the measurement of the masses and radii of even a small number of neutron stars can
+provide significant input to the microphysics calculations, which was used in the subsequent studies
+(Özel, Baym & Güver 2010; Steiner, Lattimer & Brown 2010; Guillot & Rutledge 2014).
+     The mass of the heaviest neutron star measured to date can provide additional direct constraints
+on the EoS. At a minimum, the EoS that have maximum masses that fall below the the most
+massive neutron star can be ruled out (Demorest et al. 2010; Özel et al. 2010; Antoniadis et al.
+2013). However, more stringent constraints are achieved by combining the floor on the maximum
+mass with radius measurements (Steiner, Lattimer & Brown 2010; Özel et al. 2015). Because the
+EoS that produce smaller radii generally tend to have smaller maximum masses, combining these
+measurements yield smaller allowed confidence regions in the EoS parameters.
+     Bayesian techniques have been developed (Steiner, Lattimer & Brown 2010, 2013; Özel et al.
+2015) to combine radius measurements, the maximum mass constraint, as well as the data ob-
+tained from the low-energy experiments discussed in the previous section. These techniques yield
+likelihoods over the EoS parameters P1 , P2 and P3 from the mass-radius likelihoods P (Mi , Ri )
+for i sources, while allowing a variety of priors and other measurements to be incorporated (see
+Özel et al. 2015 and references therein for details).
+     The priors over P1 , P2 , and P3 are then specified using numerous physical and observational
+constraints. First, for the EoS to be microscopically stable, it is necessary to require P3 ≥ P2 ≥
+P1 , and that P1 be greater than or equal to the pressure of matter at ρ0 = 1014 g cm−3 (see
+Özel & Psaltis 2009 for the particular specification using the SLy EoS). Second, for the EoS to be
+causal, the condition
+                                                  ∂P
+                                            c2s =      ≤ c2 ,                                    (21)
+                                                  ∂ǫ
+where, cs is the sound speed and ǫ is the energy density, can be imposed at all densities. Third,
+to incorporate the mass requirement, the maximum stable mass for each EoS corresponding to a
+P1 , P2 , P3 triplet needs to exceed 1.97M⊙ , consistent within 1σ with the heaviest neutron stars
+observed to date.
+     The results from the laboratory experiments can be folded in as a requirement on the pressure
+at the lowest density P1 or as constraints on the symmetry energy parameters L and Sv , which
+can be translated into constraints on Pi . As discussed in Section 4.2, the least model-dependent
+one of those requirements is a lower limit on P1 = 7.56 MeV fm−3 such that the EoS is consistent
+with the most robust laboratory experiments and low density calculations, i.e., with the APR EoS
+for pure neutron matter (Akmal, Pandharipande & Ravenhall 1998). Finally, priors that are flat
+in log P1 , log P2 , and log P3 or that are flat in P1 , P2 , and P3 can be chosen. The sensitivity
+of the Bayesian inference of the EoS parameters on these conditions and priors is discussed in
+Steiner, Lattimer & Brown (2013) and Özel et al. (2015).
+
+
+4.4. Current constraints on the cold neutron matter EoS
+In recent studies, the radius results summarized in Section 3 have been used in conjunction with the
+Bayesian parameter inference techniques to place strong constraints on the neutron star EoS. The
+radius data include the fourteen sources shown in Figure 4. (Note that these omit the analysis of
+4U 1724−207 by Suleimanov, Poutanen & Werner 2011 and 4U 1608−52 by Poutanen et al. 2014,
+for which the data selection and analysis do not yield self-consistent results.)
+     Figure 9 shows the posterior likelihoods over the pressures at the three fiducial densities, as
+well as the microscopic and experimental bounds on these pressures. The pressures at the fiducial
+densities of a large number of proposed EoS are also shown. The gray region labeled 2NI denotes
+the lower limit on P1 coming from the two-body interaction potential obtained at low densities. P1
+is also constrained from above by the the relatively small measured radii. Indeed, the values within
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   29
+                                                  3.5           Acausal
+
+                                  )
+                             3-                                                                   AP3
+                                                                                                    MPA1
+
+
+
+
+                                  mf VeM/3P(gol
+                                                                                          AP4
+
+
+                                                  3.0                                    SLy
+                                                                                                            MS1
+                                                                                                 NJL
+
+
+                                                                                   FPS
+                                                                                    PS  ALF4
+                                                                                  GS2 MS2
+
+
+                                                  2.5                           PAL6
+                                                                          GS1
+
+
+
+
+                                                                                                  Microscopically
+                                                  2.0                                             Unstable
+
+
+
+
+                                                        Microscopically
+                                                                                                            MS1
+                                                        Unstable
+
+                                  )               1.5                               PS
+                                                                                  GS2
+                             3-                                                          MS2
+
+
+
+
+                                  mf VeM/1P(gol
+                                                                          GS1                       MPA1
+                                                                                                ENG
+                                                                                PAL6      Sly     AP3
+
+                                                                                           ALF4
+                                                                                   FPS    AP4 NJL
+
+                                                  1.0
+
+
+
+                                                                                                                  lasuacA
+
+                                                                          2NI Limit
+                                                  0.5
+
+
+
+                                                    1.0            1.5             2.0                     2.5
+
+                                                                                                  -3
+                                                                   log(P2/MeV fm                       )
+
+
+     Figure 9
+     The highest likelihood regions in the pressure of neutron star matter at 1.85 ρns (P1 ), 3.7 ρns (P2 ), and
+     7.4 ρns (P3 ) obtained by a parametric inversion of all the neutron star radius measurements and requiring
+     that it is consistent with the maximum mass requirement and low-energy experiment data. To visualize
+     the structure of the three-dimensional posterior likelihood function, the contours outline the regions in
+     which the posterior likelihoods drop down to e−1/2 and e−1 of the highest value. The allowed regions of
+     the parameter space are consistent with the constraints from calculations based on low-energy scattering
+     experiments, are microscopically stable, and ensure that the EoS remains causal.
+
+
+     the highest posterior likelihood is lower than the pressure predicted by most proposed EoS at that
+     density.
+         The combination of P2 and P3 , on the other hand, is constrained by the maximum mass require-
+     ment: a lower value of P2 pushes P3 to be as high as possible within the causality limit, whereas
+     for moderate to high values of P2 , which already lead to M-R relations that allow high mass stars
+     and are consistent with the radius measurements, the allowed range of P3 extends to lower values.
+     The combination of P2 and P3 exclude to high confidence the stiff EoS such as MPA1 and MS1,
+     which produce radii that are too large (see also their inconsistency with P1 in the lower panel).
+     This combination also excludes EoS with condensates, such as GS1, with pressures that are too low
+
+30   Feryal Özel and Paulo Freire
+                            2
+                                                                                                                    3.0
+                                            ALF1-4
+                                                                                                                                se                                         ALF1
+                                                                                                                                   l
+                                            AP1-4                                                                             kc oH                                        ALF2
+                          100                                                                                                   al                ti
+                            8               WFF1-3                                                                                B                 b                      AP1-2
+                                                                                                                                                     rO
+                                            SQM1-3
+                            6                                                                                       2.5                       n
+                                                                                                                                                                           AP3
+
+                                            GS1-2                                                                                              o                           AP4
+                                                                                                                                                to
+                            4
+                                            BBB2                                                                                              h                            BSK19
+                                                                                                                                          P
+                                            BGN1H1                                                                                     e                                   BSK20
+       )                                                                                                                                dis
+                                                                                                                                                                           BSK21
+  3-                        2               BSK19-21
+                                                                                                                    2.0           nI
+                                                                                                                                                                           ENG
+
+
+
+
+       mf VeM( erusserP
+                                            BPAL12
+                                                                                                         )                                                                 GNH3
+                                            Astro+Exp
+
+
+
+
+                                                                                                         8M( ssaM
+                          10                                                                                                                                               GS1
+                            8                                                                                                                                              H4
+                            6                                                                                       1.5                                                    MPA1
+                                                                                                                                                                           MS1
+                            4
+                                                                                           ENG                                                                             MS1b
+                                                                                           FPS                                                                             NJL
+                                                                                                                                                                           QMC
+                            2                                                              GNH                      1.0
+                                                                                           H1-7                                                                            SLY
+
+                                                                                           MPA1                                                                            SQM1-3
+                            1                                                                                                                                              PAL6
+                                                                                           MS1-2
+                            8
+                                                                                                                                                                           WWF1
+                            6
+                                                                                           NJL                      0.5                                                    WWF2
+                                                                                           PAL6
+                            4                                                                                                                                              WWF3
+                                                                                           QMC
+                                                        ρsat                               SLy                                   Astro+Exp
+
+                            2                                                                                       0.0
+                                5   6   7   8 9                2   3           4   5   6   7   8 9
+                                                                                                                          6       8               10      12    14   16     18
+                                               0.1                                                   1
+                                                                      -3
+                                                        Density (fm        )                                                                           Radius (km)
+
+Figure 10
+The astrophysically inferred (left) EoS and (right) mass-radius relation corresponding to the most likely
+triplets of pressures that agree with all of the neutron star radius and low energy nucleon-nucleon
+scattering data and allow for a M > 1.97 M⊙ neutron star mass. The light blue bands show the range of
+pressures and the mass-radius relations that correspond to the region of the (P1 , P2 , P3 ) parameter space
+in which the likelihood is within e−1 of its highest value. Around 1.5 M⊙ , this inferred EoS predicts radii
+between 9.9 − 11.2 km.
+
+
+to be consistent with the maximum mass requirement.
+     Figure 9 shows that the combination of the radius measurements with the low density exper-
+imental data and the requirement of a ∼ 2 M⊙ maximum mass pins down the parameters of the
+EoS extremely well across a wide range of supranuclear densities and points to a preferred EoS
+that is somewhat softer than the nuclear EoS AP4 (a version of the APR EoS). To see this on
+the mass-radius diagram, we also show in Figure 10 the mass-radius relation corresponding to the
+most likely triplet of pressures as well as the range of mass-radius relations for the region of the
+(P1 , P2 , P3 ) parameter space with the highest likelihood. We limit the range of masses in this figure
+to ≤ 2.2 M⊙ because of the absence of any data to constrain the relation at higher masses. As
+expected from the above discussion, the preferred mass-radius relation lies to the left of most model
+predictions and is closest to AP4, especially at low masses, where the main uncertainty in AP4 is in
+the strength of the three-nucleon interactions. It also rises along a nearly constant radius in order
+to reach the ∼ 2 M ⊙ limit. Depending on the choice of the prior, the predicted radius for a 1.5 M⊙
+neutron star is between 9.9 and 11.2 km.
+
+
+5. Future Prospects
+5.1. The future of radio pulsar mass measurements: New surveys, new binary systems,
+     new measurements - and the SKA
+We can expect the number of mass measurements to increase at an accelerating rate over the next
+few years. The reason for this is that improvements in instrumentation, both in terms of new
+receivers and the equipment used to detect and process the radio signals, are revolutionizing the
+field of pulsar timing and searching.
+
+                                                  www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars                                           31
+     Figure 11
+     Number of MSPs (with P < 20 ms) known in the Galactic disk as a function of time. This figure does not
+     take into account the more than 100 MSPs known in globular clusters. The large number of discoveries in
+     recent years was enabled by improvements in the digital equipment being used in ground-based radio
+     surveys and the discovery of many pulsar-like gamma-ray point sources by the Fermi satellite, which led to
+     the discovery of many new radio MSPs. Data provided by Duncan Lorimer, see
+     http://astro.phys.wvu.edu/GalacticMSPs/GalacticMSPs.txt.
+
+
+
+
+         More sensitive receivers with larger bandwidths and the advent of broadband coherent dedis-
+     persion allow much more precise timing of the known binary pulsars. This leads to more precise
+     measurements of known PK parameters and the detection of new ones, greatly increasing the sample
+     of NS mass measurements and the number of GR tests in different systems. Furthermore, improved
+     receiver sensitivities and larger bandwidth, together with multi-beaming, increase the general sensi-
+     tivity to all sorts of pulsars, as in the case of the phenomenally successful Parkes multibeam (PMB)
+     surveys (Manchester et al. 2001). Since then, the newer generation of post-PMB surveys like the
+     new HTRU-South (Keith et al. 2010) and North surveys (Barr et al. 2013), the Green Bank drift
+     scan survey (Boyles et al. 2013; Lynch et al. 2013), the Green Bank North Celestial Cap survey
+     (Stovall et al. 2014), the Arecibo ALFA survey (Cordes et al. 2006; Lazarus 2013) and the Arecibo
+     327 MHz drift-scan survey (Deneva et al. 2013) has been making full use of much improved data
+     handling capabilities and processing power to obtain a large increase in spectral and time resolution
+     (at a cost of 100 times the data rate). This has paid off with a great increase in the sensitivity
+     to millisecond pulsars, particularly the distant ones, with a great leap in their discovery rate. The
+     number of discoveries per year is shown in Fig. 11; we see a 3-fold increase in the number of MSPs
+     since 2010. This will continue for the next few years, as many of the new surveys are still starting.
+     The rate of discovery will further accelerate as soon as Square Kilometer Array (SKA) comes online
+     (Kramer & Stappers 2015).
+         Not all these new MSPs were found in blind surveys. More than 100 were discovered in targeted
+
+32   Feryal Özel and Paulo Freire
+radio searches of globular clusters5 . This number is expected to increase to thousands with the SKA
+(Hessels et al. 2015). A new and very successful search strategy – with more than 60 new MSPs
+discovered at the time of writing – has been targeting unidentified pulsar-like gamma-ray sources
+discovered with the Fermi satellite (see, e.g., Ransom et al. 2011; Keith et al. 2011; Kerr et al.
+2012). Apart from the intrinsic interest in discovering new MSPs, the gamma-ray pulsars are
+important in the sense that they are biased in favor of very short-period MSPs, which is the
+opposite of the outcome in normal blind surveys. This contributes to a better understanding of the
+underlying MSP population.
+    The large increase in the number of binary pulsars implies a large increase in the number of NS
+mass measurements and tests of GR, because discoveries of more edge-on systems will inevitably
+result from a larger MSP sample, as well as discoveries of more triples, eccentric MSP systems, and
+DNSs. This trend is evident in Tables 1 and 2, where most of the reported results are relatively
+recent. Furthermore, the large sensitivity of planned radio telescopes such as the SKA will enable
+much improved timing precision of binary pulsars, new and old. This will further increase the
+number and precision of neutron star mass measurements and possibly allow a measurement of the
+upper mass limit for neutron stars.
+
+
+5.2. The Future of Radius Measurements
+The increase in the number of neutron star radius measurements and the continued reduction
+of the uncertainties will rely on a few factors. Distance uncertainties are currently one of the
+bottlenecks in the spectroscopic radius measurements. Therefore, one of the crucial improvements
+in this technique can come from obtaining distance measurements to many more neutron star X-ray
+binaries. The GAIA mission and radio parallax measurements may provide distances to the ones
+that are relatively nearby.
+    Radius measurements obtained by non-spectroscopic techniques, with potential biases and
+systematic uncertainties that are different than the spectroscopic ones will be another key fac-
+tor in verifying the current measurements. To this end, high signal-to-noise pulse profiles of
+rotation- and accretion-powered X-ray pulsars will provide a major step forward. Indeed, the
+technique of pulse profile modeling to measure the neutron star compactness and radii defines
+the key scientific objectives of several future X-ray missions, such as NASA’s upcoming NICER
+(Gendreau, Arzoumanian & Okajima 2012), ISRO’s Astrosat (Agrawal 2006) or the proposed
+LOFT (Feroci et al. 2012) missions.
+    Among these missions, NICER, a NASA Mission of Opportunity, is poised to be launched to
+the International Space Station in 2016. NICER will collect a large number of counts from a small
+number of rotation-powered pulsars that emit thermally from their polar caps. In combination with
+the refined theoretical models that have been developed to analyze these waveforms, these data will
+provide a new measurement of neutron star radii and equation of state.
+
+
+5.3. Other Future Probes of Neutron Star Structure
+The double pulsar will be the first system that will allow, in a few years, a measurement of the
+moment of inertia of a neutron star (Lyne et al. 2004). The moment of inertia, being a higher
+moment of the mass distribution of the neutron star, is a powerful probe of its internal structure
+and, hence, of its equation of state (Morrison et al. 2004; Lattimer & Schutz 2005).
+   There are also significant prospects for radius measurements from Advanced LIGO observations
+
+
+  5 See http://www.naic.edu/∼pfreire/GCpsr.html
+
+
+
+                  www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   33
+     of coalescing neutron star binaries. The characteristic frequencies of these waveforms can be used
+     to obtain information on the neutron star radius and deformability (see, e.g., Read et al. 2013),
+     which will shrink the current uncertainties in the radius measurements and further constrain the
+     dense matter equation of state.
+         Finally, the equation of state of neutron stars can be inferred by measuring the total luminosity
+     and the spectrum of neutrinos emitted during a core-collapse supernova explosion within our Galaxy.
+
+
+       FUTURE ISSUES
+       1. Continued measurements of neutron star masses will make the inferred neutron star mass
+          distributions more robust and help constrain the maximum neutron star mass by increasing
+          the size of the sample.
+       2. Comparing current radius measurements against those made with other techniques will
+          further reduce the uncertainties in the neutron star radii.
+       3. Multi-messenger probes such as gravitational waves, neutrinos, and moment-of-inertia mea-
+          surements will open new avenues into neutron star structure.
+       4. Advances in lattice QCD will provide a first-principles calculation of the composition and
+          interactions of the dense matter equation of state, which can be compared with the results
+          from neutron stars and laboratory experiments.
+       5. The hot dense matter equation of state that is relevant to supernovae and neutron star
+          mergers requires further study.
+
+
+
+
+     DISCLOSURE STATEMENT
+     The authors are not aware of any affiliations, memberships, funding, or financial holdings that
+     might be perceived as affecting the objectivity of this review.
+
+
+     ACKNOWLEDGMENTS
+     We thank John Antoniadis, Ben Lackey, Jim Lattimer, Michael Kramer, Duncan Lorimer, Dimitrios
+     Psaltis, Jocelyn Read, and Mallory Roberts for graciously providing materials for this review. We
+     thank Gordon Baym, Tolga Güver, Ramesh Narayan, and Dimitrios Psaltis for numerous useful
+     conversations and comments on the manuscript. F.Ö. gratefully acknowledges support from NSF
+     grant AST 1108753. P.C.C.F. gratefully acknowledges financial support by the European Research
+     Council for the ERC Starting grant BEACON under contract No. 279702.
+
+
+     LITERATURE CITED
+     Abdo AA, Ajello M, Allafort A, Baldini L, Ballet J, et al. 2013. ApJS 208:17
+     Abrahamyan S, Ahmed Z, Albataineh H, Aniol K, Armstrong DS, et al. 2012. Physical Review Letters
+       108:112502
+     Agrawal PC. 2006. Advances in Space Research 38:2989–2994
+     Akmal A, Pandharipande VR, Ravenhall DG. 1998. Phys. Rev. C 58:1804–1828
+     Alcock C, Farhi E, Olinto A. 1986. ApJ 310:261–272
+     Alford M, Braby M, Paris M, Reddy S. 2005a. ApJ 629:969–978
+     Alford M, Braby M, Paris M, Reddy S. 2005b. ApJ 629:969–978
+     Alford M, Reddy S. 2003. Phys. Rev. D 67:074024
+     Ambartsumyan VA, Saakyan GS. 1960. AZh 37:193
+
+
+34   Feryal Özel and Paulo Freire
+Antoniadis J, Bassa CG, Wex N, Kramer M, Napiwotzki R. 2011. MNRAS 412:580–584
+Antoniadis J, Freire PCC, Wex N, Tauris TM, Lynch RS, et al. 2013. Science 340:448
+Antoniadis J, Tauris T, Ozel F, Freire P, Kramer M. 2016. ApJ In preparation
+Antoniadis J, van Kerkwijk MH, Koester D, Freire PCC, Wex N, et al. 2012. MNRAS 423:3316–3327
+Arzoumanian Z, Brazier A, Burke-Spolaor S, Chamberlin S, Chatterjee S, et al. 2015. ApJ 813:65
+Backer DC, Kulkarni SR, Heiles C, Davis MM, Goss WM. 1982. Nature 300:615–618
+Bailes M. 2010. New A Rev. 54:80–86
+Baiotti L, Giacomazzo B, Rezzolla L. 2008. Phys. Rev. D 78:084033
+Baldo M, Bombaci I, Burgio GF. 1997. A&A 328:274–282
+Baldo M, Burgio GF. 2012. Reports on Progress in Physics 75:026301
+Barr ED, Champion DJ, Kramer M, Eatough RP, Freire PCC, et al. 2013. MNRAS 435:2234–2245
+Barr ED, Freire PCC, Kramer M, Champion D. 2016. MNRAS In preparation
+Bassa CG, van Kerkwijk MH, Koester D, Verbunt F. 2006. A&A 456:295–304
+Bauböck M, Berti E, Psaltis D, Özel F. 2013. ApJ 777:68
+Bauböck M, Özel F, Psaltis D, Morsink SM. 2015. ApJ 799:22
+Bauswein A, Janka HT, Hebeler K, Schwenk A. 2012. Phys. Rev. D 86:063001
+Bégin S. 2006. A Search for Fast Pulsars in Globular Clusters
+Bhat NDR, Bailes M, Verbiest JPW. 2008. Phys. Rev. D 77:124017
+Bhattacharyya S, Strohmayer TE, Miller MC, Markwardt CB. 2005. ApJ 619:483–491
+Bogdanov S. 2013. ApJ 762:96
+Bogdanov S, Grindlay JE, Rybicki GB. 2006. ApJ 648:L55–L58
+Bogdanov S, Heinke CO, Özel F, Güver T. 2016. ArXiv e-prints
+Bogdanov S, Rybicki GB, Grindlay JE. 2007. ApJ 670:668–676
+Boyles J, Lynch RS, Ransom SM, Stairs IH, Lorimer DR, et al. 2013. ApJ 763:80
+Braje TM, Romani RW, Rauch KP. 2000. ApJ 531:447–452
+Brown EF, Bildsten L, Chang P. 2002. ApJ 574:920–929
+Brown EF, Bildsten L, Rutledge RE. 1998. ApJ 504:L95–L98
+Brown GE, Kubodera K, Rho M, Thorsson V. 1992. Physics Letters B 291:355–362
+Cadeau C, Morsink SM, Leahy D, Campbell SS. 2007. ApJ 654:458–469
+Callanan PJ, Garnavich PM, Koester D. 1998. MNRAS 298:207–211
+Camilo F, Kerr M, Ray PS, Ransom SM, Sarkissian J, et al. 2015. ApJ 810:85
+Caraveo PA. 2014. ARA&A 52:211–250
+Centelles M, Roca-Maza X, Viñas X, Warda M. 2009. Physical Review Letters 102:122502
+Champion DJ, Lorimer DR, McLaughlin MA, Xilouris KM, Arzoumanian Z, et al. 2005. MNRAS 363:929–
+   936
+Champion DJ, Ransom SM, Lazarus P, Camilo F, Bassa C, et al. 2008. Science 320:1309–
+Chen LW, Ko CM, Li BA, Xu J. 2010. Phys. Rev. C 82:024321
+Cocozza G, Ferraro FR, Possenti A, D’Amico N. 2006. ApJ 641:L129–L132
+Collins JC, Perry MJ. 1975. Physical Review Letters 34:1353–1356
+Cook GB, Shapiro SL, Teukolsky SA. 1994. ApJ 424:823–845
+Cordes JM, Freire PCC, Lorimer DR, Camilo F, Champion DJ, et al. 2006. ApJ 637:446–455
+Corongiu A, Kramer M, Stappers BW, Lyne AG, Jessner A, et al. 2007. A&A 462:703–709
+Damen E, Magnier E, Lewin WHG, Tan J, Penninx W, van Paradijs J. 1990. A&A 237:103–109
+Damour T. 2015. Classical and Quantum Gravity 32:124009
+Damour T, Deruelle N. 1985. Ann. Inst. Henri Poincaré Phys. Théor., Vol. 43, No. 1, p. 107 - 132 43:107–
+   132
+Damour T, Deruelle N. 1986. Ann. Inst. Henri Poincaré Phys. Théor., Vol. 44, No. 3, p. 263 - 292 44:263–
+   292
+Damour T, Esposito-Farèse G. 1996. Phys. Rev. D 54:1474–1491
+DeDeo S, Psaltis D, Narayan R. 2001. ApJ 559:346–352
+Demorest PB, Pennucci T, Ransom SM, Roberts MSE, Hessels JWT. 2010. Nature 467:1081–1083
+Deneva JS, Stovall K, McLaughlin MA, Bates SD, Freire PCC, et al. 2013. ApJ 775:51
+
+
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars    35
+     Desvignes G, Caballero RN, Lentati L, Verbiest JPW, Champion DJ, et al. 2016. ArXiv e-prints
+     Edwards RT, Bailes M. 2001. ApJ 553:801–808
+     Falanga M, Bozzo E, Lutovinov A, Bonnet-Bidaud JM, Fetisova Y, Puls J. 2015. A&A 577:A130
+     Farhi E, Jaffe RL. 1984. Phys. Rev. D 30:2379–2390
+     Ferdman RD, Stairs IH, Kramer M, Janssen GH, Bassa CG, et al. 2014. MNRAS 443:2183–2196
+     Ferdman RD, Stairs IH, Kramer M, McLaughlin MA, Lorimer DR, et al. 2010. ApJ 711:764–771
+     Feroci M, Stella L, van der Klis M, Courvoisier TJL, Hernanz M, et al. 2012. Experimental Astronomy
+       34:415–444
+     Fonseca E, Pennucci TT, Ellis JA, Stairs IH, Nice DJ, et al. 2016. ArXiv e-prints
+     Fonseca E, Stairs IH, Thorsett SE. 2014. ApJ 787:82
+     Freire PC, Camilo F, Kramer M, Lorimer DR, Lyne AG, et al. 2003. MNRAS 340:1359–1374
+     Freire PCC, Bassa CG, Wex N, Stairs IH, Champion DJ, et al. 2011. MNRAS 412:2763–2780
+     Freire PCC, Ransom SM, Bégin S, Stairs IH, Hessels JWT, et al. 2008a. ApJ 675:670–682
+     Freire PCC, Ransom SM, Gupta Y. 2007. ApJ 662:1177–1182
+     Freire PCC, Wex N. 2010. MNRAS 409:199–212
+     Freire PCC, Wex N, Esposito-Farèse G, Verbiest JPW, Bailes M, et al. 2012. MNRAS 423:3328–3343
+     Freire PCC, Wolszczan A, van den Berg M, Hessels JWT. 2008b. ApJ 679:1433–1442
+     Fujimoto MY, Taam RE. 1986. ApJ 305:246–250
+     Galloway DK, Muno MP, Hartman JM, Psaltis D, Chakrabarty D. 2008. ApJS 179:360–422
+     Gandolfi S, Carlson J, Reddy S. 2012. Phys. Rev. C 85:032801
+     Gendreau KC, Arzoumanian Z, Okajima T. 2012. In Society of Photo-Optical Instrumentation Engineers
+       (SPIE) Conference Series, vol. 8443 of Society of Photo-Optical Instrumentation Engineers (SPIE) Con-
+       ference Series
+     Glendenning NK, ed. 2000. Compact stars : nuclear physics, particle physics, and general relativity
+     Glendenning NK, Moszkowski SA. 1991. Physical Review Letters 67:2414–1417
+     Glendenning NK, Schaffner-Bielich J. 1999. Phys. Rev. C 60:025803
+     Goriely S, Chamel N, Pearson JM. 2010. Phys. Rev. C 82:035804
+     Grindlay JE, Camilo F, Heinke CO, Edmonds PD, Cohn H, Lugger P. 2002. ApJ 581:470–484
+     Guillot S, Rutledge RE. 2014. ApJ 796:L3
+     Guillot S, Rutledge RE, Brown EF. 2011. ApJ 732:88
+     Guillot S, Servillat M, Webb NA, Rutledge RE. 2013. ApJ 772:7
+     Güver T, Özel F. 2013. ApJ 765:L1
+     Güver T, Özel F, Cabrera-Lavers A, Wroblewski P. 2010a. ApJ 712:964–973
+     Güver T, Özel F, Psaltis D. 2012. ApJ 747:77
+     Güver T, Psaltis D, Özel F. 2012. ApJ 747:76
+     Güver T, Wroblewski P, Camarota L, Özel F. 2010b. ApJ 719:1807–1812
+     Haensel P, Zdunik JL, Schaefer R. 1986. A&A 160:121–128
+     Harris WE. 1996. AJ 112:1487
+     Harrison BK, Thorne KS, Wakano M, Wheeler JA. 1965. Gravitation Theory and Gravitational Collapse
+     Hebeler K, Lattimer JM, Pethick CJ, Schwenk A. 2010. Physical Review Letters 105:161102
+     Heger A, Cumming A, Galloway DK, Woosley SE. 2007. ApJ 671:L141–L144
+     Heinke CO, Cohn HN, Lugger PM, Webb NA, Ho WCG, et al. 2014. MNRAS 444:443–456
+     Heinke CO, Rybicki GB, Narayan R, Grindlay JE. 2006. ApJ 644:1090–1103
+     Hessels J, Possenti A, Bailes M, Bassa C, Freire PCC, et al. 2015. Advancing Astrophysics with the Square
+       Kilometre Array (AASKA14) :47
+     Hessels JWT, Ransom SM, Stairs IH, Freire PCC, Kaspi VM, Camilo F. 2006. Science 311:1901–1904
+     Hewish A, Bell SJ, Pilkington JDH, Scott PF, Collins RA. 1968. Nature 217:709–713
+     Hotokezaka K, Kyutoku K, Okawa H, Shibata M, Kiuchi K. 2011. Phys. Rev. D 83:124008
+     Hulse RA, Taylor JH. 1975. ApJ 195:L51–L53
+     Jacoby BA, Bailes M, van Kerkwijk MH, Ord S, Hotan A, et al. 2003. ApJ 599:L99–L102
+     Jacoby BA, Cameron PB, Jenet FA, Anderson SB, Murty RN, Kulkarni SR. 2006. ApJ 644:L113–L116
+     Jacoby BA, Hotan A, Bailes M, Ord S, Kulkarni SR. 2005. ApJ 629:L113–L116
+
+
+
+36   Feryal Özel and Paulo Freire
+Janka HT, Langanke K, Marek A, Martı́nez-Pinedo G, Müller B. 2007. Phys. Rep. 442:38–74
+Janssen GH, Stappers BW, Kramer M, Nice DJ, Jessner A, et al. 2008. A&A 490:753–761
+Kajava JJE, Nättilä J, Latvala OM, Pursiainen M, Poutanen J, et al. 2014. MNRAS 445:4218–4234
+Kaplan DB, Nelson AE. 1986. Physics Letters B 175:57–63
+Kaplan DL, Boyles J, Dunlap BH, Tendulkar SP, Deller AT, et al. 2014a. ApJ 789:119
+Kaplan DL, van Kerkwijk MH, Koester D, Stairs IH, Ransom SM, et al. 2014b. ApJ 783:L23
+Kasian LE. 2012. Radio observations of two binary pulsars. Ph.D. thesis, The University of British Columbia
+Keith MJ, Jameson A, van Straten W, Bailes M, Johnston S, et al. 2010. MNRAS 409:619–627
+Keith MJ, Johnston S, Ray PS, Ferrara EC, Saz Parkinson PM, et al. 2011. MNRAS 414:1292–1300
+Kerr M, Camilo F, Johnson TJ, Ferrara EC, Guillemot L, et al. 2012. ApJ 748:L2
+Kiziltan B, Kottas A, De Yoreo M, Thorsett SE. 2013. ApJ 778:66
+Klüpfel P, Reinhard PG, Bürvenich TJ, Maruhn JA. 2009. Phys. Rev. C 79:034310
+Knispel B, Lyne AG, Stappers BW, Freire PCC, Lazarus P, et al. 2015. ApJ 806:140
+Kojo T, Powell PD, Song Y, Baym G. 2015. Phys. Rev. D 91:045003
+Kortelainen M, Lesinski T, Moré J, Nazarewicz W, Sarich J, et al. 2010. Phys. Rev. C 82:024313
+Kramer M, Stairs IH, Manchester RN, McLaughlin MA, Lyne AG, et al. 2006. Science 314:97–102
+Kramer M, Stappers B. 2015. Advancing Astrophysics with the Square Kilometre Array (AASKA14) :36
+Kumar P, Zhang B. 2015. Phys. Rep. 561:1–109
+Kurkela A, Fraga ES, Schaffner-Bielich J, Vuorinen A. 2014. ApJ 789:127
+Kuulkers E, den Hartog PR, in’t Zand JJM, Verbunt FWM, Harris WE, Cocchi M. 2003. A&A 399:663–680
+Lackey BD, Kyutoku K, Shibata M, Brady PR, Friedman JL. 2012. Phys. Rev. D 85:044061
+Lamb FK, Boutloukos S, Van Wassenhove S, Chamberlain RT, Lo KH, Miller MC. 2009. ApJ 705:L36–L39
+Lattimer JM. 2012. Annual Review of Nuclear and Particle Science 62:485–515
+Lattimer JM, Prakash M. 2001. ApJ 550:426–442
+Lattimer JM, Schutz BF. 2005. ApJ 629:979–984
+Lattimer JM, Steiner AW. 2014. ApJ 784:123
+Lazarus P. 2013. In IAU Symposium, ed. J van Leeuwen, vol. 291 of IAU Symposium
+Leahy DA, Morsink SM, Cadeau C. 2008. ApJ 672:1119–1126
+Leahy DA, Morsink SM, Chou Y. 2011. ApJ 742:17
+Leahy DA, Morsink SM, Chung YY, Chou Y. 2009. ApJ 691:1235–1242
+Lewin WHG, van Paradijs J, Taam RE. 1993. Space Sci. Rev. 62:223–389
+Lindblom L. 1992. ApJ 398:569–573
+Link B, Epstein RI, Lattimer JM. 1999. Physical Review Letters 83:3362–3365
+London RA, Taam RE, Howard WM. 1986. ApJ 306:170–182
+Lorimer DR. 2008. Living Reviews in Relativity 11:8
+Lynch RS, Boyles J, Ransom SM, Stairs IH, Lorimer DR, et al. 2013. ApJ 763:81
+Lynch tRS, Freire PCC, Ransom SM, Jacoby BA. 2012. ApJ 745:109
+Lyne AG, Burgay M, Kramer M, Possenti A, Manchester RN, et al. 2004. Science 303:1153–1157
+Madej J, Joss PC, Różańska A. 2004. ApJ 602:904–912
+Majczyna A, Madej J. 2005. Acta Astron. 55:349–366
+Majczyna A, Madej J, Joss PC, Różańska A. 2005. A&A 430:643–654
+Manchester RN, Hobbs GB, Teoh A, Hobbs M. 2005. AJ 129:1993–2006
+Manchester RN, Lyne AG, Camilo F, Bell JF, Kaspi VM, et al. 2001. MNRAS 328:17–35
+Martinez JG, Stovall K, Freire PCC, Deneva JS, Jenet FA, et al. 2015. ApJ In press
+Metzger BD, Martı́nez-Pinedo G, Darbha S, Quataert E, Arcones A, et al. 2010. MNRAS 406:2650–2662
+Miller MC, Lamb FK. 1998. ApJ 499:L37–L40
+Miller MC, Lamb FK, Psaltis D. 1998. ApJ 508:791–830
+Morales J, Pandharipande VR, Ravenhall DG. 2002. Phys. Rev. C 66:054308
+Morrison IA, Baumgarte TW, Shapiro SL, Pandharipande VR. 2004. ApJ 617:L135–L138
+Morsink SM, Leahy DA. 2011. ApJ 726:56
+Morsink SM, Leahy DA, Cadeau C, Braga J. 2007. ApJ 663:1244–1251
+Mukherjee A. 2009. Phys. Rev. C 79:045811
+
+
+
+                    www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars    37
+     Müller H, Serot BD. 1996. Nuclear Physics A 606:508–537
+     Muno MP, Özel F, Chakrabarty D. 2002. ApJ 581:550–561
+     Muno MP, Özel F, Chakrabarty D. 2003. ApJ 595:1066–1076
+     Müther H, Prakash M, Ainsworth TL. 1987. Physics Letters B 199:469–474
+     Nakar E. 2007. Phys. Rep. 442:166–236
+     Nath NR, Strohmayer TE, Swank JH. 2002. ApJ 564:353–360
+     Oppenheimer JR, Volkoff GM. 1939. Physical Review 55:374–381
+     Orosz JA, Kuulkers E. 1999. MNRAS 305:132–142
+     Özel F. 2001. ApJ 563:276–288
+     Özel F. 2006. Nature 441:1115–1117
+     Özel F. 2013. Reports on Progress in Physics 76:016901
+     Özel F, Baym G, Güver T. 2010. Phys. Rev. D 82:101301
+     Özel F, Gould A, Güver T. 2012. ApJ 748:5
+     Özel F, Psaltis D. 2009. Phys. Rev. D 80:103003
+     Özel F, Psaltis D, Güver T. 2015. ArXiv e-prints
+     Özel F, Psaltis D, Güver T, Baym G, Heinke C, Guillot S. 2015. ArXiv e-prints
+     Özel F, Psaltis D, Narayan R, Santos Villarreal A. 2012. ApJ 757:55
+     Özel F, Psaltis D, Ransom S, Demorest P, Alford M. 2010. ApJ 724:L199–L202
+     Paczynski B. 1983. ApJ 267:315–321
+     Page D. 1995. ApJ 442:273–285
+     Page D, Reddy S. 2006. Annual Review of Nuclear and Particle Science 56:327–374
+     Pandharipande VR, Pethick CJ, Thorsson V. 1995. Physical Review Letters 75:4567–4570
+     Pechenick KR, Ftaclas C, Cohen JM. 1983. ApJ 274:846–857
+     Piekarewicz J, Agrawal BK, Colò G, Nazarewicz W, Paar N, et al. 2012. Phys. Rev. C 85:041302
+     Portegies Zwart S, van den Heuvel EPJ, van Leeuwen J, Nelemans G. 2011. ApJ 734:55
+     Potekhin AY, Fantina AF, Chamel N, Pearson JM, Goriely S. 2013. A&A 560:A48
+     Poutanen J, Beloborodov AM. 2006. MNRAS 373:836–844
+     Poutanen J, Gierliński M. 2003. MNRAS 343:1301–1311
+     Poutanen J, Nättilä J, Kajava JJE, Latvala OM, Galloway DK, et al. 2014. MNRAS 442:3777–3790
+     Prince TA, Anderson SB, Kulkarni SR, Wolszczan A. 1991. ApJ 374:L41–L44
+     Psaltis D, Chakrabarty D. 1999. ApJ 521:332–340
+     Psaltis D, Özel F. 2014. ApJ 792:87
+     Psaltis D, Özel F, Chakrabarty D. 2014. ApJ 787:136
+     Psaltis D, Özel F, DeDeo S. 2000. ApJ 544:390–396
+     Ransom SM, Hessels JWT, Stairs IH, Freire PCC, Camilo F, et al. 2005. Science 307:892–896
+     Ransom SM, Ray PS, Camilo F, Roberts MSE, Çelik Ö, et al. 2011. ApJ 727:L16
+     Ransom SM, Stairs IH, Archibald AM, Hessels JWT, Kaplan DL, et al. 2014. Nature 505:520–524
+     Rawls ML, Orosz JA, McClintock JE, Torres MAP, Bailyn CD, Buxton MM. 2011. ApJ 730:25
+     Read JS, Baiotti L, Creighton JDE, Friedman JL, Giacomazzo B, et al. 2013. Phys. Rev. D 88:044042
+     Read JS, Markakis C, Shibata M, Uryū K, Creighton JDE, Friedman JL. 2009. Phys. Rev. D 79:124033
+     Reardon DJ, Hobbs G, Coles W, Levin Y, Keith MJ, et al. 2016. MNRAS 455:1751–1769
+     Rikovska Stone J, Guichon PAM, Matevosyan HH, Thomas AW. 2007. Nuclear Physics A 792:341–369
+     Roberts MSE, McLaughlin MA, Gentile PA, Ray PS, Ransom SM, Hessels JWT. 2015. ArXiv e-prints
+     Roca-Maza X, Centelles M, Viñas X, Warda M. 2011. Physical Review Letters 106:252501
+     Rutledge RE, Bildsten L, Brown EF, Pavlov GG, Zavlin VE. 2001. ApJ 551:921–928
+     Ryba MF, Taylor JH. 1991. ApJ 371:739–748
+     Schulze HJ, Lejeune A, Cugnon J, Baldo M, Lombardo U. 1995. Physics Letters B 355:21–26
+     Splaver EM. 2004. Long-term timing of millisecond pulsars. Ph.D. thesis, PRINCETON UNIVERSITY
+     Stairs IH. 2003. Living Reviews in Relativity 6:5
+     Steiner AW, Lattimer JM, Brown EF. 2010. ApJ 722:33–54
+     Steiner AW, Lattimer JM, Brown EF. 2013. ApJ 765:L5
+     Stergioulas N, Friedman JL. 1995. ApJ 444:306–311
+
+
+
+38   Feryal Özel and Paulo Freire
+Stovall K, et al. 2015. ApJ In preparation
+Stovall K, Lynch RS, Ransom SM, Archibald AM, Banaszak S, et al. 2014. ApJ 791:67
+Strohmayer TE, Zhang W, Swank JH. 1997. ApJ 487:L77–L80
+Strohmayer TE, Zhang W, Swank JH, Smale A, Titarchuk L, et al. 1996. ApJ 469:L9
+Suleimanov V, Poutanen J, Werner K. 2011. A&A 527:A139
+Suleimanov V, Poutanen J, Werner K. 2012. A&A 545:A120
+Swiggum JK, Rosen R, McLaughlin MA, Lorimer DR, Heatherly S, et al. 2015. ApJ 805:156
+Sztajno M, Fujimoto MY, van Paradijs J, Vacca WD, Lewin WHG, et al. 1987. MNRAS 226:39–55
+Tamii A, Poltoratska I, von Neumann-Cosel P, Fujita Y, Adachi T, et al. 2011. Physical Review Letters
+  107:062502
+Taylor JH, Fowler LA, McCulloch PM. 1979. Nature 277:437–440
+Thorsett SE, Chakrabarty D. 1999. ApJ 512:288–299
+Tolman RC. 1934. Relativity, Thermodynamics, and Cosmology
+Tolman RC. 1939. Physical Review 55:364–373
+Trippa L, Colò G, Vigezzi E. 2008. Phys. Rev. C 77:061304
+Tsang MB, Zhang Y, Danielewicz P, Famiano M, Li Z, et al. 2009. Physical Review Letters 102:122701
+van Kerkwijk MH, Breton RP, Kulkarni SR. 2011. ApJ 728:95
+van Kerkwijk MH, Kulkarni SR. 1999. ApJ 516:L25–L28
+van Leeuwen J, Kasian L, Stairs IH, Lorimer DR, Camilo F, et al. 2015. ApJ 798:118
+van Paradijs J. 1979. ApJ 234:609–611
+Verbiest JPW, Bailes M, van Straten W, Hobbs GB, Edwards RT, et al. 2008. ApJ 679:675–680
+Verbunt F, Freire PCC. 2014. A&A 561:A11
+Watts A, Andersson N, Chakrabarty D, Feroci M, Hebeler K, et al. 2015. RMP Submitted
+Watts AL. 2012. ARA&A 50:609–640
+Webb NA, Barret D. 2007. ApJ 671:727–733
+Weinberg N, Miller MC, Lamb DQ. 2001. ApJ 546:1098–1106
+Weisberg JM, Nice DJ, Taylor JH. 2010. ApJ 722:1030–1034
+Wex N. 2014. ArXiv e-prints
+Wheeler JA. 1966. ARA&A 4:393
+Witten E. 1984. Phys. Rev. D 30:272–285
+Yagi K, Stein LC, Pappas G, Yunes N, Apostolatos TA. 2014. Phys. Rev. D 90:063010
+Yagi K, Yunes N. 2013. Phys. Rev. D 88:023009
+Zamfir M, Cumming A, Galloway DK. 2012. ApJ 749:69
+Zavlin VE. 2006. ApJ 638:951–962
+Zavlin VE. 2007. Ap&SS 308:297–307
+Zavlin VE, Pavlov GG, Shibanov YA. 1996. A&A 315:141–152
+Zhu WW, Stairs IH, Demorest PB, Nice DJ, Ellis JA, et al. 2015. ApJ 809:41
+
+
+
+
+                   www.annualreviews.org • Masses, Radii, and Equation of State of Neutron Stars   39
+
