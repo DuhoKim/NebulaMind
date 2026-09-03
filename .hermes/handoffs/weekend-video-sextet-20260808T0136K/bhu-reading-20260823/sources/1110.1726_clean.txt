@@ -1,0 +1,2397 @@
+Compact Remnant Mass Function: Dependence on the Explosion Mechanism and Metallicity
+Chris L. Fryer,Krzysztof Belczynski, Grzegorz Wiktorowicz, Michal Dominik,Vicky Kalogera, Daniel E. Holz Alternate Affiliation: CCS Division, Los Alamos National Laboratory, Los Alamos, NM 87545 Alternate Affiliation: Department of Physics, The University of Arizona, Tucson, AZ 85721 Alternate Affiliation: Department of Physics and Astronomy, The University of New Mexico, Albuquerque, NM 87131 Alternate Affiliation: Astronomical Observatory, University of Warsaw, Al. Ujazdowskie 4, 00-478 Warsaw, Poland Alternate Affiliation: Astronomical Observatory, University of Warsaw, Al. Ujazdowskie 4, 00-478 Warsaw, Poland Alternate Affiliation: Astronomical Observatory, University of Warsaw, Al. Ujazdowskie 4, 00-478 Warsaw, Poland Alternate Affiliation: Center for Gravitational Wave Astronomy, University of Texas at Brownsville, TX 78520, USA Alternate Affiliation: Center for Interdisciplinary Exploration and Research in Astrophysics (CIERA) & Dept. of Physics and Astronomy, Northwestern University, 2145 Sheridan Rd., Evanston, IL 60208 Alternate Affiliation: Theory Division, Los Alamos National Laboratory, Los Alamos, NM 87545 Alternate Affiliation: Enrico Fermi Institute, Department of Physics, and Kavli Institute for Cosmological Physics, University of Chciago, Chicago, IL 60637
+Abstract
+The mass distribution of neutron stars and stellar-mass black holes provides vital clues into the nature of stellar core collapse and the physical engine responsible for supernova explosions. Using recent advances in our understanding of supernova engines, we derive mass distributions of stellar compact remnants. We provide analytical prescriptions for compact object masses for major population synthesis codes. In an accompanying paper, Belczynski et al., we demonstrate that these qualitatively new results for compact objects can explain the observed gap in the remnant mass distribution between
+
+∼
+2
+−
+5
+\sim 2-5
+ M⊙ and that they place strong constraints on the nature of the supernova engine. Here, we show that advanced gravitational radiation detectors (like LIGO/VIRGO or the Einstein Telescope) will be able to further test the supernova explosion engine models once double black hole inspirals are detected.
+Keywords: 
+Supernovae: General, Stars: Neutron, black hole physics
+I Introduction
+Neutron stars (NSs) and black holes (BHs) are among the most exotic objects produced in nature. They are formed in the core collapse of massive stars and, in many cases, their formation is associated with powerful astrophysical transients such as supernovae and gamma-ray bursts. By studying the masses of these objects we can better understand their formation process and associated explosions. In addition, accurate measurements of masses of NSs and BHs provide essential input to our understanding of a wide range of astrophysical phenomena produced by these objects, from gravitational waves formed in compact object mergers to X-ray bursts.
+Observations of binaries containing NSs and BHs (e.g. X-ray binaries, X-ray bursts, and binary pulsars) place constraints on their mass distribution. Estimates of the NS mass distribution have benefited from observations of close pulsar binary systems where extremely accurate masses can be obtained through pulsar timing. Originally, analyses of these binaries suggested a very narrow mass distribution around 1.35 M⊙ (e.g. Thorsett & Chakrabarty 1999). More recently, as available data have increased and become more refined, it has become clear that the mass distribution is at least bimodal, and likely has a wide spread ranging from low masses up to the maximum NS mass limit (Kaper et al. 2006; Freire 2008; Nice et al. 2008; van der Meer et al. 2007; Schwab et al. 2010; Kiziltan et al. 2011). The observation of a
+
+∼
+2.0
+\sim 2.0
+ M⊙ NS (Demorest et al. 2010) is an indication of the width of the distribution.
+Black-hole mass measurements rely on a complex combination of challenging observations of X-ray binaries (in quiescence, if they are transient) and of modeling of photometric and spectroscopic data. The uncertainties associated with these measurements are more significant than in the case of NSs. Early analysis  (Bailyn et al. 1998) argued that the measurements are consistent with a relatively narrow mass distribution (Bailyn et al. 1998) around 7 M⊙. Recent analyses (Ozel et al. 2010; Farr et al. 2011) have used the expanded current samples of black-hole measurements in both Roche-lobe-overflow and wind-driven X-ray binaries and proposed distributions to fit the observations (without quantitative consideration of selection effects). The statistically favored models have mass distributions that extend to high masses (
+
+∼
+15
+\sim 15
+–
+20
+
+M
+⊙
+20\,M_{\odot}
+), depending on whether the wind-fed systems with more massive BHs (which are more uncertain) are included. Both studies conclude that there is clear evidence for a low-mass gap in the distribution, with no remnants found in between the maximum NS mass (
+
+∼
+2
+
+M
+⊙
+\sim 2\,\mbox{M}_{\odot}
+) and 4–5
+M
+⊙
+\,\mbox{M}_{\odot}
+. Specifically,  (Farr et al. 2011) report that the minimum BH mass lies in the range 4.3–4.5
+M
+⊙
+\,{\rm M}_{\odot}
+at 90% confidence level.
+By combining information from stellar evolution and core-collapse calculations, theoretical investigations allow us to calculate the mass of compact remnants at formation. Timmes et al.(1996) based their estimates on the iron core masses predicted from their stellar evolution models. These masses had a bimodal distribution, causing them to predict a bimodal distribution of remnant masses. Although they mention that fallback would be expected to broaden the distribution, many observational analyses arguing for narrow distributions were nonetheless affected by their reported bimodality. Two of the assumptions in Timmes et al.(1996) lead to biases in their theoretical mass estimates of compact remnants. First, the sharp change in iron core masses is not as pronounced in more modern stellar models (e.g. Young et al. 2005). Second, the final remnant mass is determined by the entropy profile (and hence density/temperature profiles) in the core. Although the entropy in the core is roughly correlated with the iron core mass, there does not exist a one-to-one correspondence. Using the iron core mass to estimate remnant masses can lead to erroneous results.
+Fryer & Kalogera (2001) estimated remnant masses using collapse calculations to guide the relation between initial stellar mass and final remnant mass. These estimates predicted a broader range of NS and BH masses: for NSs, we found a strong, dominant peak at 1.3–1.4
+M
+⊙
+\,{\rm M}_{\odot}
+, with a significant tail out to the maximum neutron-star mass. This prediction has subsequently been borne out for NSs. For BHs they found an extended, continuous exponential distribution without a mass gap. The mass gap could be introduced only if a discontinuity exists in the relationship between the supernova explosion energy and progenitor mass. The bulk of the analysis by Fryer & Kalogera (2001) focused on BHs from stars without mass loss. Especially at higher metallicities, the final BH mass distribution depends sensitively on the mass loss from stellar winds (Fryer & Kalogera 2001; Belczynski et al. 2010a). In this paper we take advantage of new results in both stellar evolution and stellar explosions to produce more detailed estimates of compact remnant distributions.
+To construct remnant mass distributions, we consider a wide range of explosion mechanisms based on our current understanding of supernova and gamma-ray burst explosions. For an initial explosion we adopt the convection-enhanced neutrino-driven paradigm, studying the range of results within this mechanism. Specifically, we study two extremes: fast-convection explosions where explosions only occur if they happen in the first 250 ms after bounce, and delayed-convection explosions which can occur over a much longer timescale (e.g., explosions dominated by the standing accretion shock instability, or SASI). In both cases, by assuming the energy input is limited to the convective region, this model places limits on the supernova explosion energy of up to a few times
+10
+51
+10^{51}
+ erg.
+On top of this basic mechanism, we discuss two post-explosion engines: magnetar or similar neutron-star driven outbursts and collapsar black hole engines. For example, a variant of the basic engine assumes that additional energy is released (e.g., from energy stored in the oscillating or rotating proto-NSs) after the launch of the convection-enhanced explosion. This variant will have minimal fallback, and can produce explosions well beyond the few times
+10
+51
+10^{51}
+ erg limit for our basic model. Finally, we expect that some BH forming systems will develop jets, producing long-duration GRBs and ejecting stellar material, limiting the final mass of the BH. In what follows, we present compact mass distributions from our basic engines plus a number of post-explosion variants.
+In this paper we present a review of the basics of the supernova engine (section II), followed by a derivation and discussion of the energies produced by these engines (section II.1). We derive remnant masses for single stars as a function of progenitor mass, ranging from the lowest mass, electron capture supernovae, to massive stars (section III). With this remnant mass relation, we derive remnant mass distributions for single stars (section III). Since the observed mass distribution is only observed in binary systems (binary pulsars and X-ray binaries), we also derive fits to our mass derivation calculations appropriate for binary calculations (section IV). We conclude by comparing our different models of remnant mass distributions with observations.
+II Supernova Engines
+To understand the remnant mass distribution we must first understand the physical scenarios behind their formation. And to understand the formation of remnants from stellar collapse, we must understand the explosions from stellar collapse.
+Most current studies of core-collapse supernovae have focused on a neutrino-driven engine enhanced by convection above the proto-neutron star surface (Herant et al. 1994; Fryer & Warren 2004; Buras et al. 2006; Burrows et al. 2006; Fryer & Young 2007; Scheck et al. 2008; Bruenn et al. 2009). It was this type of physical engine that served as the basis for the mass distributions used already by Fryer & Kalogera 2001. However, this basic supernova engine has been refined in the past decade, and it is important to incorporate these refinements into our remnant mass distribution.
+The remnant formation process can be split into 3 phases: stellar collapse and bounce, convective engine, and post-explosion fallback. The collapse occurs when the stellar core begins to compress under its own weight. The compression ultimately leads to electron capture (which removes the degeneracy pressure support of the core) and dissociation of the core elements into alpha particles (which removes the thermal support). These processes accelerate the compression which then accelerates the rate of electron capture and iron dissociation, leading to a runaway collapse with velocities comparable to the speed of light. The collapse halts when the core reaches nuclear densities and nuclear forces (along with neutron degeneracy pressure) dramatically increase the pressure. This abrupt halt causes a bounce shock to move out of the core, starting at
+
+∼
+0.9
+±
+0.2
+\sim 0.9\pm 0.2
+ M⊙11 1 Note that unless specifically stated otherwise, all masses given here are baryonic masses. The gravitational mass is
+∼
+\sim
+10-20% lower. The shock moves out until neutrino losses (and dissociation of material hit by the shock) sap its energy reservoir, causing it to stall (at roughly
+1.1
+±
+0.2
+1.1\pm 0.2
+ M⊙). If the shock can be quickly revived (likely for stars below 11 M⊙), then remnant masses would be close to
+1.1
+±
+0.2
+1.1\pm 0.2
+ M⊙.
+For stars with initial masses above 11 M⊙, a number of instabilities can develop in the region between the proto-NS where the shock is launched and the position where it stalls: e.g., the Rayleigh-Taylor and the standing accretion shock instability (SASI). These instabilities can convert the energy leaking out of the proto-NS in the form of neutrinos to kinetic energy pushing the convective region outward. A supernova explosion occurs if the energy in this convective region can overcome the ram pressure of the infalling stellar material. This is what we mean by a “convection-enhanced, neutrino-driven supernova explosion”. In this paper, our basic model assumes that the energy in the supernova explosion is the energy stored in this convective region.
+The time when the energy in the convective region overcomes the ram pressure determines the amount of material accreted onto the proto-neutron star during the convective phase. The total energy in the convective region when this occurs determines the amount of energy in the explosion, and ultimately the amount of post-shock-launch fallback. As the material moves outward, it pushes onto the material above it and causes that material to accelerate. The work done by this shocked material slows it down, and some of the material is decelerated below the local escape velocity. This material will then fall back onto the proto-NS, adding to the remnant mass. In general, the majority of this fallback occurs within the first 20 s after the explosion (Zhang et al. 2008, Fryer 2009). The mass amount (and to some extent the timing) of this fallback depends on the explosion energy and the structure of the star. It is this fallback that is the dominant cause for the broad range of NS and BH masses. Determining the amount of fallback requires understanding the explosion itself.
+II.1 Explosion Mechanisms and Supernova Energies
+To determine the energy of our convection-enhanced, neutrino-driven engines, we assume that the explosion energy is equal to the energy stored in the convective region at the time of collapse. Fryer (2006) has already estimated this energy and we review this derivation here. Colgate et al. (1993) found that they could approximate the convective region as a roughly constant entropy atmosphere bounded by the proto-NS and the shock region of the infalling stellar envelope. The structure of this atmosphere is then well defined, with the pressure given by:
+
+P
+⁡
+(
+r
+)
+=
+[
+0.25
+
+M
+NS
+
+G
+
+(
+S
+rad
+/
+S
+0
+)
+−
+1
+
+(
+1
+/
+r
+−
+1
+/
+r
+shock
+)
++
+P
+shock
+1
+/
+4
+]
+4
+
+erg
+
+cm
+−
+3
+P(r)=[0.25M_{\rm NS}G(S_{\rm rad}/S_{0})^{-1}(1/r-1/r_{\rm shock})+P^{1/4}_{\rm shock}]^{4}{\rm erg\,cm^{-3}}
+
+(1)
+where
+M
+NS
+M_{\rm NS}
+is the proto-NS mass,
+G
+G
+is the gravitational constant,
+S
+rad
+S_{\rm rad}
+is the entropy in Boltzmann’s constant per nucleon,
+S
+0
+=
+1.5
+×
+10
+−
+11
+
+k
+B
+
+per
+
+nucleon
+S_{0}=1.5\times 10^{-11}{\rm k_{B}\,per\,nucleon}
+, and
+r
+shock
+r_{\rm shock}
+and
+P
+shock
+P_{\rm shock}
+are the radius and pressure of the accretion shock forming the outer bound of the convective region.
+P
+shock
+P_{\rm shock}
+is set to the ram pressure of the infalling material. If we assume the infalling star is accreting at the free-fall rate, mass continuity gives (Fryer 2006):
+
+P
+shock
+
+(
+r
+)
+=
+1
+/
+2
+
+ρ
+shock
+
+v
+free
+−
+fall
+=
+(
+2
+
+G
+
+M
+NS
+)
+0.5
+
+M
+˙
+acc
+/
+(
+8
+
+π
+
+r
+shock
+2.5
+)
+P_{\rm shock}(r)=1/2\rho_{\rm shock}v_{\rm free-fall}=(2GM_{\rm NS})^{0.5}\dot{M}_{\rm acc}/(8\pi r^{2.5}_{\rm shock})
+
+(2)
+where the free-fall velocity
+v
+free
+−
+fall
+v_{\rm free-fall}
+is determined by the proto-NS mass and the accretion rate
+M
+˙
+acc
+\dot{M}_{\rm acc}
+is determined by the structure of the progenitor star assuming a pressure-less collapse (which is a good approximation for the infall). For a radiation-dominated gas, the internal energy density is
+3
+×
+P
+⁡
+(
+r
+)
+3\times P(r)
+(Fryer 2006):
+
+u
+convection
+
+(
+r
+)
+\displaystyle u_{\rm convection}(r)
+=
+\displaystyle=
+3
+[
+4.7
+×
+10
+8
+M
+NS
+M
+⊙
+10
+
+k
+B
+
+nucleon
+−
+1
+S
+rad
+(
+10
+6
+
+cm
+r
+−
+10
+6
+
+cm
+r
+shock
+)
++
+\displaystyle 3\left[4.7\times 10^{8}\frac{M_{\rm NS}}{M_{\odot}}\frac{10k_{\rm B}{\rm nucleon}^{-1}}{S_{\rm rad}}\left(\frac{10^{6}{\rm cm}}{r}-\frac{10^{6}{\rm cm}}{r_{\rm shock}}\right)+\right.
+
+(3)
+
+
+
+1.2
+×
+10
+6
+(
+M
+NS
+M
+⊙
+M
+˙
+acc
+M
+⊙
+
+s
+−
+1
+)
+1
+/
+4
+(
+2
+×
+10
+7
+
+cm
+r
+shock
+)
+5
+/
+8
+]
+4
+erg
+cm
+−
+3
+.
+\displaystyle\left.1.2\times 10^{6}\left(\frac{M_{\rm NS}}{M_{\odot}}\frac{\dot{M}_{\rm acc}}{M_{\odot}\rm{s}^{-1}}\right)^{1/4}\left(\frac{2\times 10^{7}{\rm cm}}{r_{\rm shock}}\right)^{5/8}\right]^{4}{\rm erg\,cm^{-3}}.
+
+Integrating over the entire atmosphere, we can derive the maximum energy stored in the convective region. If the energy in the convective region is above this maximum value, the pressure in the atmosphere will be larger than the infall pressure, causing the shock radius to expand. By the time the shock expands to 1000 km, the expansion is really an explosion. After the explosion is launched, the atmosphere is too thin to absorb much neutrino energy. Neutrinos leaking from the core can no longer add much energy to the now exploding atmosphere. The energy of the explosion from the neutrino-driven mechanism is then limited to roughly the energy when the explosion is launched.
+For a typical atmospheric entropy of
+10
+
+k
+B
+
+nucleon
+−
+1
+10\,k_{\rm B}\,{\rm nucleon}^{-1}
+and shock radius of 1000 km, energies above
+5
+×
+10
+50
+5\times 10^{50}
+ erg only occur for accretion rates above 1 
+M
+⊙
+
+s
+−
+1
+M_{\odot}{\rm s^{-1}}
+. See Fryer (2006) for a study of the dependence of the explosion energies on the atmosphere parameters. The energy that can be stored in the convective region decreases as the accretion rate decreases. The accretion rate of the infalling stellar material decreases with time, causing the total available explosion energy to decrease with time (Fig. 1). If the delay in the explosion is long, the explosion will be weak.
+This model assumes the explosion energy is stored in the convective region and provides a natural explanation for why the observed explosion energy for most supernovae are found in the range
+
+∼
+0.5
+\sim 0.5
+–
+2
+×
+10
+51
+
+erg
+2\times 10^{51}\,{\rm erg}
+even though the potential energy released in stellar collapse is
+
+∼
+10
+53
+\sim 10^{53}
+ erg. The peak energy stored in the convective region is roughly a few times
+10
+51
+10^{51}
+ erg, and this engine cannot produce a stronger explosion. If the explosion occurs less than 250 ms after bounce, the energy is above
+10
+51
+10^{51}
+ erg for most progenitors. Most observed supernovae have explosion energies within these limits. Magnetohydrodynamic engines produce a much broader range of supernova engines and are thus not the likely engines behind “standard” core-collapse supernovae.
+Our basic models consider only the convection-enhanced neutrino-driven supernova engine, since this is able to account for the majority of supernovae. Within this basic set, we still vary the length of the delay time prior to the explosion. One model allows for considerable contribution from the SASI engine, a current focus of many supernova groups (Blondin et al. 2003, Burrows et al. 2007, Bruenn et al. 2009, Scheck et al. 2008, Marek & Janka 2009). The SASI has a growth time that is typically over an order of magnitude longer than the Rayleigh-Taylor instabilities, and hence is unable to drive an explosion at early times. For our standard model, we allow an explosion only after the accretion rate drops below 1 
+M
+⊙
+
+s
+−
+1
+M_{\odot}{\rm\,s^{-1}}
+. In this formalism, stars below about
+15
+
+M
+⊙
+15\,M_{\odot}
+produce explosions enhanced by convection dominated by the Rayleigh-Taylor instability, whereas above this mass the explosions are enhanced by convection dominated by large-scale modes characterized by the SASI. For many progenitors, the latter occurs at later times. If the proto-NS exceeds 3 
+M
+⊙
+M_{\odot}
+, we assume the star collapses promptly to a BH (a.k.a. the “direct” BH formation scenario from Fryer & Kalogera 2001).
+Our alternate convection-enhanced supernova engine model focuses on strong convective models developing rapidly and driving an explosion within the first 250 ms (e.g., Herant et al 1994, Fryer & Warren 2002). In this engine, we assume an explosion occurs when the accretion rate drops below 3 
+M
+⊙
+
+s
+−
+1
+M_{\odot}{\rm s^{-1}}
+. If the proto-NS exceeds 3 
+M
+⊙
+M_{\odot}
+or the delay time exceeds 250 ms, we assume the star collapses to a BH.
+Figure 2 shows the supernova explosion energies for these two models as a function of progenitor mass using the Woosley et al.(2002) progenitors at solar and zero metallicity. The delayed explosions tend to be weaker than our rapid explosion model, producing many more explosions with energies below
+10
+51
+10^{51}
+ erg. The explosion energies depend upon the prescriptions for mass loss (or, more accurately, the coefficients used in the mass loss prescription) and convection, and we discuss the differences in these models in section III.5. Above
+30
+30
+–
+35
+
+M
+⊙
+35\,M_{\odot}
+, the mass loss plays the deciding role in determining the remnant mass, as we discuss this in detail in section III.3.
+After the initial launch of the convection-enhanced explosion, the region above the proto-NS is evacuated. At this point, the energy deposited by neutrinos in this region is drastically reduced. As we discuss below (section II.1), this places a limit on the explosion energy from the neutrino driven supernova engine
+There exist other mechanisms to extract the enormous energy reserved in the collapsed stellar core. For example, if the stellar core is rotating rapidly, strong magnetic fields may develop. As the proto-NS contracts, an enormous amount of energy can be stored in the rotation, driving a second outburst from the NS. This energy source has been invoked to explain a variety of energetic supernova explosions (e.g. Maeda et al. 2007, Kasen & Bildsten 2010). Although quantitative calculations of rotation powered explosions do not exist, we can place an upper limit based on the predicted spin-energy in the NS (
+
+∼
+3
+×
+10
+52
+\sim 3\times 10^{52}
+  erg for a millisecond NS). If such an explosion occurs, the fallback onto the proto-NS will be minimal. In our third (“Magnetar”) model for remnant distributions, we assume this additional explosive engine occurs in all systems.
+We note that fallback can also cause a secondary outburst as the material accretes onto the protoNS (Fryer et al. 2006). This is less explosive than a magnetar and, to show the extremes, we focus only on the magnetar explosion.
+The collapsar engine behind hypernovae posits that a rapidly spinning star collapses down to a BH. The jet produced by the accretion disk that forms around the BH “drills” through the stellar envelope and ultimately ejects the star, preventing further accretion (MacFadyen & Woosley 1999). In our final scenario (Collapsar), we include the mass loss from this powerful engine.
+There exist many permutations of our basic convection engines combined with post-explosion engines (e.g. collapsar, magnetar). However, it is anticipated that just a small fraction of systems are affected by the post-explosion engines. To encapsulate the effect of the post-explosion models on the final mass distributions, we assume (an unreasonably high) 100% efficiency in these engines, and study only the four cases described shown in Table 1.
+Table 1: Core Collapse Engines
+Supernova
+No Additional
+Collapsar
+Fallback
+Magnetar
+Engine
+Explosion
+Engine
+Outburst
+Engine
+Rapid
+Rapid
+Rapid w/
+
+
+
+
+Collapsar
+
+
+Delayed
+Delayed
+
+
+Delayed w/
+
+Delayed
+
+
+Magnetar
+III Remnant Masses from Single-Star Collapse
+We are interested in determining the masses of the compact remnants (NS and BH). Doing this requires a combined understanding of stellar structure, the supernova engine, and the propagation of the explosion through the star (along with the fallback material). These are all very active areas of research, and in this section we use the current understanding of these physical processes to derive remnant mass distributions. The physics determining the remnant masses can be divided into three zero-age main sequence (ZAMS) progenitor mass ranges: stars below 11 M⊙, stars between 11 and
+∼
+\sim
+30 M⊙, and star more massive than
+∼
+\sim
+30
+−
+⁣
+−
+--
+35  M⊙. For the low mass stars, the primary uncertainty in the remnant mass arises from uncertainties in stellar convection. For the intermediate masses, our understanding, or lack thereof, of the supernova explosion mechanism dominates the uncertainties. For the massive stars the primary uncertainty is in the prescription for mass loss (for details, see section III.5). To derive remnant masses we are forced to make a range of assumptions (described in detail below). We note that understanding the nature of these uncertainties is a critical component in using observational masses to constrain theory.
+III.1 Stars Below
+∼
+\sim
+11 M⊙
+For ZAMS progenitor stars below
+∼
+\sim
+11 M⊙, the fate of collapse is the same for all of our explosion models. The fallback in the supernova explosion from these progenitors is negligible. As such, the uncertainties in the shock propagation are minimal. In addition, as we shall see below, the uncertainties in the explosion mechanism only alter the final remnant mass by, at most, 0.1 M⊙. The primary uncertainty in the remnant mass distribution from these stars arises from determining the number of these objects which, in turn, is caused by uncertainties in stellar evolution. In particular, stellar evolution models do not accurately constrain the transition mass between white dwarf and NS formation (i.e., the lower mass limit for NS formation).
+The exact value of the lower limit (
+M
+NS
+lower
+M_{\rm NS}^{\rm lower}
+) for core-collapse has been a matter of debate for many decades (see Iben & Renzini 1983 for a review). The metallicity dependence for this limit is even more controversial. Heger et al. (2003) argued that the metallicity dependence was negligible, and that the lower limit was roughly at 9 M⊙ for all metallicities. Poelarends et al. (2008) have studied this matter in more detail, and have a range of solutions for the metallicity dependence.22 2 At the dividing line between ONe white dwarf formation and iron core-collapse supernovae lies a class of “electron-capture” supernovae in a narrow mass range (
+∼
+\sim
+0.2
+−
+⁣
+−
+--
+0.3 M⊙—see Poelerands et al. 2008). Electron-capture supernovae occur in ONe cores when electron capture triggers a core-collapse prior to neon ignition. The electron capture supernova and remnant are similar to those in the low-mass iron core-collapse supernova produced by progenitors below 11 M⊙. As such, for the purpose of our remnant calculation we will lump this class of supernova with all other supernovae below 11 M⊙. Their “preferred” model predicts that
+M
+NS
+lower
+M_{\rm NS}^{\rm lower}
+drops from 9 M⊙ at solar metallicity down to below 6.3 M⊙ at
+Z
+metal
+=
+10
+−
+3
+
+Z
+⊙
+Z_{\rm metal}=10^{-3}Z_{\odot}
+. We use the following fit to their solution:
+
+M
+NS
+lower
+\displaystyle M_{\rm NS}^{\rm lower}
+=
+\displaystyle=
+9.0
++
+0.9
+
+log
+10
+
+(
+Z
+metal
+/
+Z
+⊙
+)
+
+M
+⊙
+
+if
+
+log
+10
+
+(
+Z
+metal
+/
+Z
+⊙
+)
+>
+−
+3
+\displaystyle 9.0+0.9{\rm log_{10}}(Z_{\rm metal}/Z_{\odot})M_{\odot}\;{\rm if}\,{\rm log_{10}}(Z_{\rm metal}/Z_{\odot})>-3
+
+(4)
+
+
+
+6.3
+
+M
+⊙
+
+otherwise
+.
+\displaystyle 6.3M_{\odot}\;{\rm otherwise}.
+
+The fraction of NS/BH remnants (assuming a Salpeter initial mass function) produced by stars below 11 M⊙, as a function of metallicity, is shown in Figure 3. However, we note that Poelerands et al. (2008) found that this result was highly sensitive to their prescriptions for mass loss and dredge up. In some of their models, the variation with respect to metallicity less than 1 M⊙ in contrast to the 2.7 M⊙ assumed in this model.
+Understanding stellar evolution will allow us to determine how many NSs are formed from stars with initial masses below 11 M⊙. However, the mass of the remnant that is formed in the collapse of these stars is determined by the supernova engine. For these low mass stars (both electron capture/ONe supernovae and iron collapse supernovae) the envelope of the star is fairly tenuous (and relatively easily ejected), and the collapsing core is close to the Chandrasekhar limit:
+
+∼
+1.38
+\sim 1.38
+ M⊙ for OMgNe stars. The remnant mass is the Chandrasekhar mass minus any ejecta mass. Simulations of the collapse of these objects have found that electron capture supernovae can eject from 0.01–0.2 M⊙ of stellar material (see Fryer et al. 1999 for a review, or more recent work by Kitaura et al. 2006, Dessart et al. 2007). The favored model by Fryer et al. (1999) predicted an ejecta mass of roughly 0.1 M⊙, leading to a baryonic mass of the collapsed NS of
+∼
+\sim
+1.28 M⊙. The recent results by Kitaura et al. (2006) suggest that the ejecta is closer to 0.02 M⊙, predicting a final remnant mass of
+∼
+\sim
+1.36 M⊙. Low-mass iron core-collapses are likely to be similar in mass. Although we adopt the former as our default mass distribution, we discuss both in our mass distribution calculations. We expect the remnant mass to be relatively flat for all stars below 11 M⊙.
+III.2 Stars between
+
+∼
+11
+\sim 11
+ M⊙ and
+
+∼
+30
+\sim 30
+ M⊙
+The remnant masses of stars more massive than
+∼
+\sim
+11 M⊙ are primarily determined by the amount of material that falls back onto the proto-NS after the launch of the explosion. As the ejecta pushes out against the surrounding stellar envelope it loses energy, and some of this material falls back onto the compact remnant. The previous piston-driven explosions both delayed and underestimated this fallback for a given supernova explosion (Young & Fryer 2007). Energy-driven explosions more accurately mimic the likely convection-enhanced explosion mechanism, and lead to a solution where most of this fallback occurs in the first 10–20 s (see Fryer 2009 for a review). For a given energy drive, the amount of fallback can be calculated fairly accurately.
+The amount of fallback depends upon the energy in the explosion. As mentioned before, here we study four types of engines, producing a wide range of fallback yields. For the initial explosion energies we use either the delayed or rapid explosions discussed in section II.1. Figure 4 shows the remnant masses for these two engines using the Woosley et al. (2002) progenitors. The broad range of energies in the delayed explosion produces a continuous range in remnant masses, while the rapid explosion mechanism leads to a sharp transition between neutron stars and more massive black holes.
+For rapidly-spinning progenitors, the initial fallback can be altered by a post-explosion engine. In the case of BH formation, the rapidly spinning systems will drive further outflow via the collapsar engine. This engine ultimately disrupts the entire star, typically limiting the black hole mass (MacFadyen & Woosley 1999) to a maximum of 5 M⊙. Figure 4 shows a mass distribution of the rapid-explosion initial model coupled to a collapsar engine.
+Alternatively, a rapidly-spinning magnetar model can also halt fallback in all progenitors that initially form a NS. Here we assume that this magneto-hydrodynamic engine prevents further fallback. As an example, Figure 4 shows a mass distribution of the delayed-explosion initial model coupled to a rapidly-spinning magnetar engine.
+Below
+∼
+\sim
+25–30 
+M
+⊙
+M_{\odot}
+, the results are fairly insensitive to the metallicity. Figure 5 shows our delayed model results for a range of metallicities, with our best fit to the remnant masses for these metallicities:
+
+M
+remnant
+,
+delay
+=
+1.1
++
+0.2
+
+e
+(
+M
+star
+−
+11.0
+)
+/
+4
+.
+−
+(
+2.0
++
+Z
+metal
+)
+
+e
+0.4
+
+(
+M
+star
+−
+26.0
+)
+,
+M_{\rm remnant,delay}=1.1+0.2e^{(M_{\rm star}-11.0)/4.}-(2.0+Z_{\rm metal})e^{0.4(M_{\rm star}-26.0)},
+
+(5)
+where
+M
+star
+M_{\rm star}
+is the initial mass of the star and
+Z
+metal
+Z_{\rm metal}
+is the metallicity with respect to solar. The corresponding fit for our rapid explosion is (Fig. 6):
+
+M
+remnant
+,
+rapid
+\displaystyle M_{\rm remnant,rapid}
+=
+\displaystyle=
+1.1
++
+0.2
+e
+(
+M
+star
+−
+11.0
+)
+/
+7.5
++
+10.0
+(
+1.0
++
+Z
+metal
+)
+e
+−
+(
+M
+
+star
+−
+23.5
+)
+
+2
+/
+(
+1.0
++
+Z
+
+metal
+)
+
+2
+\displaystyle 1.1+0.2e^{(M_{\rm star}-11.0)/7.5}+10.0(1.0+Z_{\rm metal})e^{-(M_{\rm star}-23.5)^{2}/(1.0+Z_{\rm metal})^{2}}
+
+(6)
+
+
+
+if
+
+M
+star
+<
+22
+
+M
+⊙
+\displaystyle\;\;\;\;{\rm if}\,M_{\rm star}<22M_{\odot}
+
+
+
+=
+\displaystyle=
+M
+remnant
+,
+delay
+−
+1.85
++
+0.25
+Z
+metal
++
+10.0
+(
+1.0
++
+Z
+metal
+)
+e
+−
+(
+M
+
+star
+−
+23.5
+)
+
+2
+/
+(
+1.0
++
+Z
+
+metal
+)
+
+2
+\displaystyle M_{\rm remnant,delay}-1.85+0.25Z_{\rm metal}+10.0(1.0+Z_{\rm metal})e^{-(M_{\rm star}-23.5)^{2}/(1.0+Z_{\rm metal})^{2}}
+
+
+
+
+otherwise
+.
+\displaystyle\;\;\;\;{\rm otherwise}.
+
+III.3 Stars above
+∼
+\sim
+30 M⊙
+Above 30 
+M
+⊙
+M_{\odot}
+, the treatment of mass-loss from winds and the wind metallicity-dependence become the dominant uncertainty, and differences between the different explosion models fade. Figure 4 shows results for the Woosley et al. (2002) models at both solar and zero metallicity. These models use the Nieuwenhuijzen & Jager (1990) mass loss prescription (
+M
+˙
+∝
+L
+1.42
+
+M
+0.16
+
+R
+0.81
+\dot{M}\propto L^{1.42}M^{0.16}R^{0.81}
+, where
+L
+L
+is the luminosity,
+M
+M
+is the stellar mass, and
+R
+R
+is the stellar radius) that is used by many stellar evolution calculations. A metallicity dependence (
+M
+˙
+∝
+Z
+metal
+0.5
+\dot{M}\propto Z_{\rm metal}^{0.5}
+) from Kudritzki (1989) is added to this prescription, a common approach in stellar evolution codes (for stars not in the Wolf-Rayet phase). The primary differences among stellar models is the proportionality constant in front of these quantities. This difference translates into a difference in the effective metallicity used by different stellar theorists: i.e. the Woosley et al. (2002) models at 1/3 solar are very similar to the solar metallicity Limongi & Chieffi (2006) models. For stars less than 50 M⊙, the remnant mass is fairly well fit by:
+
+M
+remnant
+,
+delay
+=
+min
+⁡
+(
+33.35
++
+(
+4.75
++
+1.25
+
+Z
+metal
+)
+
+(
+M
+star
+−
+34
+)
+,
+M
+star
+−
+Z
+metal
+1
+/
+2
+
+(
+1.3
+
+M
+star
+−
+18.35
+)
+)
+,
+M_{\rm remnant,delay}={\rm min}(33.35+(4.75+1.25Z_{\rm metal})(M_{\rm star}-34),M_{\rm star}-Z_{\rm metal}^{1/2}(1.3M_{\rm star}-18.35)),
+
+(7)
+where
+M
+star
+M_{\rm star}
+is the zero-age main sequence mass of the star in solar masses. For our rapid explosions, the remnant is essentially identical:
+
+M
+remnant
+,
+rapid
+=
+M
+remnant
+,
+delay
+−
+1.85
++
+Z
+metal
+
+(
+75
+−
+M
+star
+)
+/
+20
+.
+M_{\rm remnant,rapid}=M_{\rm remnant,delay}-1.85+Z_{\rm metal}(75-M_{\rm star})/20.
+
+(8)
+At solar metallicity, the fate of stars more massive than 50 M⊙ depends sensitively on the prescription for mass loss. Stellar theorists run very few models at these high masses, and their results vary widely. Fitting the Woosley et al. (2002) and Heger et al.(2003) results at solar metallicities, we get identical results for both our delayed and rapid explosions:
+
+M
+remnant
+\displaystyle M_{\rm remnant}
+=
+\displaystyle=
+1.8
++
+0.04
+×
+(
+90
+−
+M
+star
+)
+
+if
+
+M
+star
+<
+90
+
+M
+⊙
+\displaystyle 1.8+0.04\times(90-M_{\rm star})\;{\rm if}\,M_{\rm star}<90M_{\odot}
+
+(9)
+
+
+
+1.8
++
+log
+10
+
+(
+M
+star
+−
+89
+)
+
+otherwise
+.
+\displaystyle 1.8+{\rm log_{10}}(M_{\rm star}-89)\;{\rm otherwise}.
+
+For lower metallicity stars, a reasonable fit is the maximum between equation 7 and equation 9. These equations do not include the effect of pulsational instabilities. Heger et al. 2003 argued that below a metallicity of
+
+∼
+10
+−
+3
+\sim 10^{-3}
+–
+10
+−
+4
+10^{-4}
+solar, pulsations eject mass for progenitors lying in the mass range 100–140 M⊙. At this same metallicity, stars with masses lying between 140–260 M⊙ are disrupted entirely in a pair-instability supernova, leaving behind no compact remnant whatsoever. It may be that pair-instability outbursts occur at even higher metallicity. We do not include these pair-instability explosions in this analysis.
+These mass distributions do not include any additional explosions produced by magnetars or collapsars. Magnetar outbursts following a supernova explosion will prevent fallback, turning some of our BH remnants into NSs. Collapsars will limit the amount of BH accretion, turning massive BH systems into low-mass systems.
+III.4 Putting it together for Single Stars
+Our mass distribution, combining our analysis of stars above and below 11 M⊙ (described by equations 1–4), is shown in figures 3, 5, and 6. Note that the primary effect of metallicity on the NS mass distribution is to alter the number of low-mass NSs. This reflects the changing lower limit for neutron star formation. BH mass distributions, arising from more massive stars with stronger winds, have a more dramatic dependence on metallicity. These masses are baryonic masses; the gravitational masses are likely to be
+
+∼
+10
+%
+\sim 10\%
+lower (e.g. Strobel & Weigel 2001).
+With our initial/remnant mass relation, and assuming a value for the initial mass function (IMF), we can now derive mass distributions for both NSs and BHs as a function of metallicity. These mass distributions for a Salpeter (
+α
+=
+2.35
+\alpha=2.35
+) IMF are shown in figure 7. At lower metallicities, the number of low mass NSs increases. This is because the lower limit for stellar collapse and NS formation decreases with decreasing metallicity. The maximum BH mass increases with decreasing metallicity, as mass-loss becomes weaker, leading to more massive stars, and hence more massive remnants.
+Using the metallicity distribution as a function of redshift (Young & Fryer 2008), we can determine mass distributions of NSs and BHs as a function of redshift (Fig.  8). The corresponding distributions versus redshift and versus metallicity for our rapid explosion models are shown in figures 9 and 10. The rapid explosion produces very few compact remnants in the gap region: for the solar metallicity models of Woosley et al. (2002),
+≲
+\lesssim
+18% of all remnants above 2 M⊙ lie in the 2–5 M⊙ gap region. At 0.1 solar metallicity, this fraction decreases to less than 1.5%. The Limongi & Chieffi (2006) models, with their lower mass-loss, predict this small fraction of remnants at solar metallicity. The BH mass distribution peaks at roughly 7–8 M⊙. On the other hand, the delayed explosion model produces far more remnants in the gap region: 33% at solar metallicity, and 17% at 0.1 solar metallicity. If the observed gap represents the true compact object formation mass distribution, the rapid explosion engine is a better match to the observed gap in remnant masses between 2–5 
+M
+⊙
+M_{\odot}
+ (Bailyn et al. 1998; Ozel et al. 2010). To directly compare with these observations, we must focus on X-ray binary systems (see Belcyzinski et al. 2011).
+III.5 Sources of Uncertainty
+For remnant masses below 11 M⊙, we have two sources of error. First, uncertainties in modeling mass-loss and convection (dredge-up) can alter the lower limit for NS formation. We have assumed that at zero metallicity this lower limit drops to 6.3 M⊙, but a limit of 8 M⊙ also fits within the errors of the calculations (Poelerands et al. 2008). Second, differences in the results of core-collapse models lead to an error in the mass of the NSs, allowing a range from 1.28–1.36 M⊙. Observations placing constraints on the lowest neutron star mass could reduce this error.
+For remnant masses produced by stars above 11 M⊙, the uncertainties are significantly larger. Our models are based on the assumption that the standard convective engine is the correct engine for most supernovae. We assume the maximum efficiency for ejecting stellar material (i.e. the entire explosion energy is used to unbind the outer layers of the star). This assumption naturally leads to an underestimate of the final remnant mass. However, we also assume that the proto-neutron star lacks an energy reservoir, despite the fact that there are many mechanisms by which it could inject energy and affect the fallback. For example, proto-NS winds could generate additional energy in the explosion, thereby reducing fallback and decreasing the remnant mass. Even more important, Fryer et al. (1996, 2006) and Fryer (2008) found that fallback material will drive outflows, self-limiting the total amount of fallback. As we discussed, other magnetic fields can also drive outflows, preventing fallback (e.g. Maeda et al. 2007, Kasen & Bildsten 2010). All of these effects would drive our final remnant mass lower, and ignoring them overestimates the remnant mass.
+In addition, the mass distribution is sensitive both to the prescription used for mass loss in the stellar evolution codes and the stability of the stellar evolution codes. Figure 11 compares the results from three different sets of stellar models using three different stellar evolution codes: Woosley et al. (2002) solar metallicity (solid line), Limongi and Chieffi (2006) solar metallicity (dotted), and the binary models of Young et al. (2008) at solar metallicity (open squares).
+Different stellar models utilize different prescriptions for mass loss, accounting for the huge differences between the Limongi & Chieffi (2006) and Woosley et al. (2002) results above 30 
+M
+⊙
+M_{\odot}
+. Much of this difference is just a scaling factor: the primary difference in the mass-loss prescription is the coefficient in front of the metallicity-dependent term. For example, the Limongi & Chieffi (2006) solar metallicity models are very similar to the Woosley et al. (2002) models at
+1
+/
+3
+1/3
+solar metallicity. To determine the remnant mass distribution of the Limongi & Cheiffi (2006) models, we would use our remnant mass prescriptions (e.g. equations 7, 8) at
+1
+/
+3
+1/3
+solar metallicity.
+The jagged nature of our calculated mass estimate comes from instabilities in the mixing within the stellar evolution code. Because of this, the core masses are not a smooth function of progenitor mass. The high remnant mass at
+23
+
+M
+⊙
+23\,M_{\odot}
+in our rapid explosion models in Fig. 6 is a demonstration of how important this mixing can be. It is possible that better convection models will reduce the non-smooth dependence of core mass on progenitor mass (see Young et al. 2005), but this remains to be established.
+We have also neglected the effects of binaries in the discussion above. Because fallback occurs prior to the shock hitting the hydrogen envelope, and because the hydrogen envelope has very little binding energy, the primary effect of binaries on the mass distribution will be to reduce the maximum mass of the remnant to that of the helium core mass. Fryer & Kalogera (2001) have studied this effect, and find that it is negligible in the case of NSs. However, the broader remnant mass distribution is sensitive to binary effects, and we study these next (section IV).
+IV Prescriptions for Compact Object Formation in Binaries
+In this section we describe three approaches to computing the mass of a compact object based on different core collapse/supernova simulations. Each method can be easily employed in analytic or population synthesis approaches, provided that the mass of a star and its CO core mass are known at the time of supernova explosion. The prescriptions provide a mass of a remnant compact object without distinguishing between the type (NS or BH). However, in our standard approach we adopt a maximum NS mass of
+M
+NS
+,
+max
+=
+2.5
+
+M
+⊙
+M_{\rm NS,max}=2.5\,{\rm M}_{\odot}
+; the lack of observations of compact remnants with masses between
+
+∼
+2
+\sim 2
+–
+3.5
+
+M
+⊙
+3.5\,{\rm M}_{\odot}
+and theoretical uncertainties make it difficult to determine an exact neutron star mass. To present typical initial-remnant mass relations we use the Hurley et al. (2000) formulae as implemented in the StarTrack population synthesis code (Belczynski et al. 2002, 2008), with updated wind mass loss rates (Belczynski et al. 2010), to obtain the properties of a star at the time of supernova explosion. In addition, we allow for the formation of NSs via electron-capture supernovae (ECS) (see below).
+IV.1 StarTrack
+Here we present a brief description of the computation of compact object masses in the StarTrack population synthesis code (for the full description see Belczynski et al. 2008, 2010).
+We determine the mass of a NS/BH remnant using information on the final CO mass
+M
+CO
+M_{\rm CO}
+combined with the knowledge of the pre-supernova mass of the star
+M
+M
+. For a given initial ZAMS mass, the final CO core mass is obtained from the original Hurley et al. (2000) formula, while we use the models of Timmes, Woosley, & Weaver (1996)m with the addition of Si shell mass, to estimate final FeNi core mass (which we here refer to as proto-compact object mass). The proto compact object mass is obtained from: 
+
+{
+M
+proto
+=
+
+1.50
+
+M
+⊙
+M
+CO
+<
+4.82
+
+M
+⊙
+M
+proto
+=
+
+2.11
+
+M
+⊙
+4.82
+≤
+M
+CO
+<
+6.31
+
+M
+⊙
+M
+proto
+=
+
+0.69
+
+M
+CO
+−
+2.26
+
+M
+⊙
+6.31
+≤
+M
+CO
+<
+6.75
+
+M
+⊙
+M
+proto
+=
+
+0.37
+
+M
+CO
+−
+0.07
+
+M
+⊙
+M
+CO
+≥
+6.75
+
+M
+⊙
+.
+
+\left\{\begin{array}[]{rll}M_{\rm proto}=&1.50\,{\rm M}_{\odot}&M_{\rm CO}<4.82\,{\rm M}_{\odot}\\ M_{\rm proto}=&2.11\,{\rm M}_{\odot}&4.82\leq M_{\rm CO}<6.31\,{\rm M}_{\odot}\\ M_{\rm proto}=&0.69M_{\rm CO}-2.26\,{\rm M}_{\odot}&6.31\leq M_{\rm CO}<6.75\,{\rm M}_{\odot}\\ M_{\rm proto}=&0.37M_{\rm CO}-0.07\,{\rm M}_{\odot}&M_{\rm CO}\geq 6.75\,{\rm M}_{\odot}.\end{array}\right.
+
+(10)
+The fallback of material after the launch of the explosions adds mass to the remnant. To calculate the amount of fallback,
+M
+fb
+M_{\rm fb}
+, for a given core mass,
+M
+CO
+M_{\rm CO}
+, we employ:
+
+{
+M
+fb
+=
+
+0
+
+M
+⊙
+M
+CO
+<
+5.0
+
+M
+⊙
+f
+fb
+=
+
+0.378
+
+M
+CO
+−
+1.889
+
+M
+⊙
+5.0
+≤
+M
+CO
+<
+7.6
+
+M
+⊙
+f
+fb
+=
+
+1.0
+M
+CO
+≥
+7.6
+
+M
+⊙
+
+\left\{\begin{array}[]{rll}M_{\rm fb}=&0\,{\rm M}_{\odot}&M_{\rm CO}<5.0\,{\rm M}_{\odot}\\ f_{\rm fb}=&0.378M_{\rm CO}-1.889\,{\rm M}_{\odot}&5.0\leq M_{\rm CO}<7.6\,{\rm M}_{\odot}\\ f_{\rm fb}=&1.0&M_{\rm CO}\geq 7.6\,{\rm M}_{\odot}\end{array}\right.
+
+(11)
+with
+M
+fb
+=
+f
+fb
+
+(
+M
+−
+M
+proto
+)
+M_{\rm fb}=f_{\rm fb}(M-M_{\rm proto})
+in the mass range for which the fractional fall back
+f
+fb
+f_{\rm fb}
+is given33 3 The formula for the fall back presented here is somewhat different than in Belczynski et al. (2008), however it results in very similar fallback values. The ranges for partial fall back (
+0
+<
+f
+fb
+<
+1
+0<f_{\rm fb}<1
+) and direct BH formation (
+f
+fb
+=
+1
+f_{\rm fb}=1
+) are estimated from core collapse models of Fryer, Woosley, & Hartmann (1999) and the analysis of Fryer & Kalogera (2001).
+The final remnant (baryonic) mass is calculated from
+
+M
+rem
+,
+bar
+=
+M
+proto
++
+M
+fb
+,
+M_{\rm rem,bar}=M_{\rm proto}+M_{\rm fb},
+
+(12)
+and we convert baryonic to gravitational mass (
+M
+rem
+M_{\rm rem}
+) using:
+
+M
+rem
+,
+bar
+−
+M
+rem
+=
+0.075
+
+M
+rem
+2
+M_{\rm rem,bar}-M_{\rm rem}=0.075\ M_{\rm rem}^{2}
+
+(13)
+for NSs (Lattimer & Yahil 1989; see also Timmes et al. 1996), while for BHs we simply approximate the gravitational mass with
+
+M
+rem
+=
+0.9
+
+M
+rem
+,
+bar
+.
+M_{\rm rem}=0.9\ M_{\rm rem,bar}.
+
+(14)
+IV.2 Rapid Supernova Mechanism
+To calculate the final mass of a compact object we need to know the mass of a star,
+M
+M
+, and its CO core mass,
+M
+CO
+M_{\rm CO}
+, at the time of core collapse/SN explosion. For the rapid explosion mechanism, the explosion either occurs quickly or not at all. We set the proto-compact object mass
+
+M
+proto
+=
+1.0
+
+M
+⊙
+,
+M_{\rm proto}=1.0\,{\rm M}_{\odot},
+
+(15)
+independent of exploding star mass according to hydrodynamical simulations of SN explosions (Woosley et al. 2002). Depending on the amount of mass above the proto-compact object (
+M
+−
+M
+proto
+M-M_{\rm proto}
+) and the strength of the explosion, potential fall back may increase the mass of the compact object. We calculate the amount of fall back,
+M
+fb
+M_{\rm fb}
+, for a given core mass,
+M
+CO
+M_{\rm CO}
+: 
+
+{
+M
+fb
+=
+
+0.2
+
+M
+⊙
+M
+CO
+<
+2.5
+
+M
+⊙
+M
+fb
+=
+
+0.286
+
+M
+CO
+−
+0.514
+
+M
+⊙
+2.5
+≤
+M
+CO
+<
+6.0
+
+M
+⊙
+f
+fb
+=
+
+1.0
+6.0
+≤
+M
+CO
+<
+7.0
+
+M
+⊙
+f
+fb
+=
+
+a
+1
+
+M
+CO
++
+b
+1
+7.0
+≤
+M
+CO
+<
+11.0
+
+M
+⊙
+f
+fb
+=
+
+1.0
+M
+CO
+≥
+11.0
+
+M
+⊙
+
+\left\{\begin{array}[]{rll}M_{\rm fb}=&0.2\,{\rm M}_{\odot}&M_{\rm CO}<2.5\,{\rm M}_{\odot}\\ M_{\rm fb}=&0.286M_{\rm CO}-0.514\,{\rm M}_{\odot}&2.5\leq M_{\rm CO}<6.0\,{\rm M}_{\odot}\\ f_{\rm fb}=&1.0&6.0\leq M_{\rm CO}<7.0\,{\rm M}_{\odot}\\ f_{\rm fb}=&a_{1}M_{\rm CO}+b_{1}&7.0\leq M_{\rm CO}<11.0\,{\rm M}_{\odot}\\ f_{\rm fb}=&1.0&M_{\rm CO}\geq 11.0\,{\rm M}_{\odot}\end{array}\right.
+
+(16)
+with
+a
+1
+=
+0.25
+−
+1.275
+M
+−
+M
+proto
+a_{1}=0.25-{1.275\over M-M_{\rm proto}}
+,
+b
+1
+=
+−
+11
+
+a
+1
++
+1
+b_{1}=-11a_{1}+1
+and
+M
+fb
+=
+f
+fb
+
+(
+M
+−
+M
+proto
+)
+M_{\rm fb}=f_{\rm fb}(M-M_{\rm proto})
+in the mass range for which
+f
+fb
+f_{\rm fb}
+is given.
+The final baryonic mass of the remnant is then
+
+M
+rem
+,
+bar
+=
+M
+proto
++
+M
+fb
+M_{\rm rem,bar}=M_{\rm proto}+M_{\rm fb}
+
+(17)
+and the gravitational mass of the remnant is obtained from eqs. 13 and 14.
+IV.3 Delayed Supernova Mechanism
+The calculation of the final mass of a compact object for the delayed mechanism is similar to the rapid SN case detailed above. The formulae are based on the delayed SN (SASI) calculations discussed in earlier sections. First we calculate the proto-compact object mass
+
+{
+M
+proto
+=
+
+1.2
+
+M
+⊙
+M
+CO
+<
+3.5
+
+M
+⊙
+M
+proto
+=
+
+1.3
+
+M
+⊙
+3.5
+≤
+M
+CO
+<
+6.0
+
+M
+⊙
+M
+proto
+=
+
+1.4
+
+M
+⊙
+6.0
+≤
+M
+CO
+<
+11.0
+
+M
+⊙
+M
+proto
+=
+
+1.6
+
+M
+⊙
+M
+CO
+≥
+11.0
+
+M
+⊙
+
+\left\{\begin{array}[]{rll}M_{\rm proto}=&1.2\,{\rm M}_{\odot}&M_{\rm CO}<3.5\,{\rm M}_{\odot}\\ M_{\rm proto}=&1.3\,{\rm M}_{\odot}&3.5\leq M_{\rm CO}<6.0\,{\rm M}_{\odot}\\ M_{\rm proto}=&1.4\,{\rm M}_{\odot}&6.0\leq M_{\rm CO}<11.0\,{\rm M}_{\odot}\\ M_{\rm proto}=&1.6\,{\rm M}_{\odot}&M_{\rm CO}\geq 11.0\,{\rm M}_{\odot}\end{array}\right.
+
+(18)
+This assumes that the delay increases for more massive cores, causing more material to accrete onto the proto-neutron star during the explosion.
+The amount of fall back is given by: 
+
+{
+M
+fb
+=
+
+0.2
+
+M
+⊙
+M
+CO
+<
+2.5
+
+M
+⊙
+M
+fb
+=
+
+0.5
+
+M
+CO
+−
+1.05
+
+M
+⊙
+2.5
+≤
+M
+CO
+<
+3.5
+
+M
+⊙
+f
+fb
+=
+
+a
+2
+
+M
+CO
++
+b
+2
+3.5
+≤
+M
+CO
+<
+11.0
+
+M
+⊙
+f
+fb
+=
+
+1.0
+M
+CO
+≥
+11.0
+
+M
+⊙
+
+\left\{\begin{array}[]{rll}M_{\rm fb}=&0.2\,{\rm M}_{\odot}&M_{\rm CO}<2.5\,{\rm M}_{\odot}\\ M_{\rm fb}=&0.5M_{\rm CO}-1.05\,{\rm M}_{\odot}&2.5\leq M_{\rm CO}<3.5\,{\rm M}_{\odot}\\ f_{\rm fb}=&a_{2}M_{\rm CO}+b_{2}&3.5\leq M_{\rm CO}<11.0\,{\rm M}_{\odot}\\ f_{\rm fb}=&1.0&M_{\rm CO}\geq 11.0\,{\rm M}_{\odot}\end{array}\right.
+
+(19)
+with
+a
+2
+=
+0.133
+−
+0.093
+M
+−
+M
+proto
+a_{2}=0.133-{0.093\over M-M_{\rm proto}}
+,
+b
+2
+=
+−
+11
+
+a
+2
++
+1
+b_{2}=-11a_{2}+1
+and
+M
+fb
+=
+f
+fb
+
+(
+M
+−
+M
+proto
+)
+M_{\rm fb}=f_{\rm fb}(M-M_{\rm proto})
+in the mass range for which
+f
+fb
+f_{\rm fb}
+is given.
+The final baryonic mass of the remnant is then
+
+M
+rem
+,
+bar
+=
+M
+proto
++
+M
+fb
+,
+M_{\rm rem,bar}=M_{\rm proto}+M_{\rm fb},
+
+(20)
+and the gravitational mass of the remnant is obtained from eqs. 13 and  14.
+IV.4 Electron Capture Supernovae
+In our calculations for the masses of compact objects, as detailed above, we allow for NS formation through electron-capture supernovae (ECS, e.g., Podsiadlowski et al. 2004), following the approach in Belczynski et al. (2008). From Hurley et al. (2000) we use the He core mass at the AGB base to set the limit for the formation of various CO cores. If the He core mass is smaller than
+M
+cbur1
+M_{\rm cbur1}
+the star forms a degenerate CO core, and ends up forming a CO WD. If the core is more massive than
+M
+cbur2
+=
+2.25
+
+M
+⊙
+M_{\rm cbur2}=2.25\,{\rm M}_{\odot}
+the star forms a non-degenerate CO core with subsequent burning of elements until the formation of a FeNi core which ultimately collapses to a NS or BH. Stars with cores between
+M
+cbur1
+M_{\rm cbur1}
+and
+M
+cbur2
+M_{\rm cbur2}
+may form partially degenerate CO cores. If such a core reaches a critical mass (
+M
+c
+
+o
+,
+c
+
+r
+
+i
+
+t
+=
+1.08
+
+M
+⊙
+M_{co,crit}=1.08\,{\rm M}_{\odot}
+, Hurley et al. 2000), it ignites CO off-center and non-explosively burns CO into ONe, forming a degenerate ONe core. If in subsequent evolution the ONe core increases its mass to
+M
+ecs
+=
+1.38
+
+M
+⊙
+M_{\rm ecs}=1.38\,{\rm M}_{\odot}
+the core collapses due to electron capture on Mg, and forms a NS. We refer to these as ECS NS, to distinguish them from NS from regular iron core collapse. The ECS NSs are assumed to have unique masses of
+M
+rem
+,
+bar
+=
+M
+ecs
+M_{\rm rem,bar}=M_{\rm ecs}
+. If the ONe core mass remains below
+M
+ecs
+M_{\rm ecs}
+the star forms a ONe WD.
+Hurley et al. (2000) suggested
+M
+cbur1
+=
+1.66
+
+M
+⊙
+M_{\rm cbur1}=1.66\,{\rm M}_{\odot}
+corresponding to
+M
+zams
+=
+6.5
+
+M
+⊙
+M_{\rm zams}=6.5\,{\rm M}_{\odot}
+for
+Z
+=
+0.02
+Z=0.02
+. Later calculations with an updated evolutionary code (Eldridge & Tout 2004a,b) indicated that ECS may occur for higher initial masses (
+M
+zams
+≳
+7.5
+
+M
+⊙
+M_{\rm zams}\gtrsim 7.5\,{\rm M}_{\odot}
+). For our standard model we adopt
+M
+cbur1
+=
+1.83
+
+M
+⊙
+M_{\rm cbur1}=1.83\,{\rm M}_{\odot}
+(
+M
+zams
+=
+7.0
+
+M
+⊙
+M_{\rm zams}=7.0\,{\rm M}_{\odot}
+), and this results in ECS NS formation above
+M
+zams
+=
+7.6
+
+M
+⊙
+M_{\rm zams}=7.6\,{\rm M}_{\odot}
+(for masses
+M
+zams
+=
+7.0
+−
+7.6
+
+M
+⊙
+M_{\rm zams}=7.0-7.6\,{\rm M}_{\odot}
+the ONe core does not reach
+M
+ecs
+M_{\rm ecs}
+and a ONe WD is formed). It is noted that binary evolution through Roche-Lobe Overflow may either decrease the initial mass of the ZAMS star required to form the core of mass
+M
+cbur1
+M_{\rm cbur1}
+(due to rejuvenation) or increase it (due to mass loss). Therefore, binary evolution effectively leads to wider initial progenitor masses for ECS NS formation. Metallicity and wind mass loss may also influence the ECS NS formation range.
+IV.5 Natal Kicks
+At the time of birth NSs and BHs receive a natal kick due to asymmetries in the SN explosions. We use the distribution inferred from observed velocities of radio pulsars by Hobbs et al. (2005): a single Maxwellian with
+σ
+=
+265
+\sigma=265
+km sec-1.
+Compact objects formed without fall back receive full kicks drawn from the above distribution. This is the case for most NSs, with the exception of ECS NSs, for which we adopt either no natal kicks (standard model) or full kicks (to explore a range of parameters). The same approach is applied to NSs formed via accretion induced collapse of WD to NS in an accreting binary system.
+Additionally, compact objects formed with small amounts of fall back (
+M
+fb
+<
+M
+fb
+,
+small
+M_{\rm fb}<M_{\rm fb,small}
+) receive full kicks (this includes some low mass BHs). In our standard approach we adopt
+M
+fb
+,
+small
+=
+0.0
+
+M
+⊙
+M_{\rm fb,small}=0.0\,{\rm M}_{\odot}
+for the StarTrack scheme,
+M
+fb
+,
+small
+=
+0.2
+
+M
+⊙
+M_{\rm fb,small}=0.2\,{\rm M}_{\odot}
+for the rapid and delayed SNe. However, to fully explore parameter space we also consider full kicks with a broad fall back mass range (as high as
+M
+fb
+,
+small
+∼
+1
+
+M
+⊙
+M_{\rm fb,small}\sim 1\,{\rm M}_{\odot}
+).
+For compact objects formed with noticeable fall back (
+M
+fb
+≥
+M
+fb
+,
+small
+M_{\rm fb}\geq M_{\rm fb,small}
+), kicks are lowered proportional to the amount of fall back:
+
+V
+kick
+=
+(
+1
+−
+f
+fb
+)
+
+V
+x
+2
++
+V
+y
+2
++
+V
+z
+2
+,
+V_{\rm kick}=(1-f_{\rm fb})\sqrt{V_{\rm x}^{2}+V_{\rm y}^{2}+V_{\rm z}^{2}},
+
+(21)
+where
+V
+x
+,
+V
+y
+,
+V
+z
+V_{\rm x},V_{\rm y},V_{\rm z}
+are the three velocity components drawn from Hobbs et al. (2005) distribution, and
+f
+fb
+f_{\rm fb}
+is the fraction (from 0 to 1) of the stellar envelope that falls back.
+For the most massive BHs, which are formed silently (without a SN explosion) via direct collapse (
+f
+fb
+=
+1
+f_{\rm fb}=1
+) of a massive star, we assume that no natal kicks are imparted. In this formalism, the kick is solely a function of the fall back fraction (
+f
+fb
+f_{\rm fb}
+), and not of the mass of the compact remnant.
+IV.6 Prescription Results
+The mass distributions from our prescriptions for remnant masses at solar metallicity are shown in Figure 12. The dashed line shows the results from a standard StarTrack calculation (e.g. Belczynski et al. 2010), the solid line shows the results from our delayed engine, and the dot-dashed line shows the results for the rapid engine. The rapid explosion will produce many more BHs of
+
+∼
+8
+
+M
+⊙
+\sim 8\,M_{\odot}
+than the delayed explosion. For intermediate mass stars that produce BHs (
+M
+zams
+≈
+40
+M_{\rm zams}\approx 40
+–
+80
+
+M
+⊙
+80\,{\rm M}_{\odot}
+) the StarTrack BHs are more massive than BHs predicted in more recent simulations (for both delayed and rapid models).
+Most interesting are the differences between these models in producing compact remnants below
+5
+
+M
+⊙
+5\,M_{\odot}
+. The rapid explosion mechanism produces a range of compact remnant masses up to
+2
+
+M
+⊙
+2\,M_{\odot}
+, but makes very few remnants of mass in the range
+
+∼
+2
+\sim 2
+–
+5
+
+M
+⊙
+5\,M_{\odot}
+. The StarTrack models partially fill this gap, while the delayed explosion models conribute a significant population of remnants in the gap. These trends persist at lower metallicities (Fig. 13).
+This striking gap in compact object mass (
+
+∼
+2
+\sim 2
+–
+5
+
+M
+⊙
+5\,M_{\odot}
+) results from the sensitivity of the rapid models to the structure of the core. In the Woosley et al. (2002) and Woosley & Heger (2007) models, enhanced burning in the late evolutionary stages leads to sharply different internal structures of stars with mass
+M
+zams
+≈
+20
+M_{\rm zams}\approx 20
+–
+25
+
+M
+⊙
+25\,{\rm M}_{\odot}
+. The internal structure in turn affects the supernova explosion and dramatically changes the mass of the remnant formed in the collapse. The changes are such that in this mass range we get an abrupt transition of compact object mass from
+2
+
+M
+⊙
+2\,{\rm M}_{\odot}
+to much higher mass, with no compact objects in between (see Figs. 12 and  13) . This result agrees with studies of O’Connor & Ott (2011), who find that the bounce compactness changes dramatically for these stars, altering their fate. The ultimate fate of these stars is sensitive to the late-stage burning, and if the burning changes with newer stellar evolution codes, the remnant mass distribution will change commensurately.
+V Conclusions and Observational Comparisons
+We find that different supernova engines produce very different remnant mass distributions. We now review the observational constraints, and make comparisons with our predictions.
+V.1 X-ray Binary Remnant Mass Distribution
+One of the strongest observational constraints is the gap in BH mass between 2–5 M⊙ Farr et al. 2011; Ozel et al. 2010. However, these studies do not include systems which do fall in the gap, such as 4U1700-37(Clark et al. 2002) with a measured mass of
+2.44
+±
+0.27
+2.44\pm 0.27
+ M⊙. We expect some remnants to fall in the gap, but have difficulty estimating the number. Our model predictions range from
+∼
+\sim
+15% for our rapid collapse to
+∼
+\sim
+40% for our delayed model in the 2–4 M⊙ mass range (section 4.4). The high space velocity of 4U1700-37 points out another difficulty in using X-ray binary mass observations to constrain the remnant mass of supernovae: BH and NS kicks.
+Many of the proposed NS kick mechanisms will also impart kicks onto BHs at formation. To impart a kick on the compact remnant from stellar collapse, momentum conservation requires asymmetries. Most compact remnant kick mechanisms either argue for asymmetries in the baryonic ejecta from the supernova or in the neutrino emission. Here we review the implications for compact remnant kicks for our two explosion models utilizing these two kick mechanisms.
+For ejecta driven-kicks, no kick is imparted on BHs formed without supernova explosions (since there is then no ejecta). Low-mass BHs, on the other hand, are formed when the supernova explosion is delayed and the explosion is weak. If the convection in the supernova engine develops low-mode instabilities, the resulting explosion can be asymmetric (Herant et al. 1992; Buras et al. 2003; Blondin et al. 2003). The SASI engine is characterized by low-mode convection and several groups have argued that these large asymmetries will drive strong kicks (Buras et al. 2003; Blondin et al. 2003; Scheck et al. 2006; Wongwathanarat et al. 2010); see Fryer & Young (2007) for a different interpretation of the low-mode convenction. If the low mode convection in the SASI engine produces strong kicks, the explosions with the longest delays will have the largest ejecta asymmetries and, hence, the strongest kick momenta. But these delayed supernova engines also produce the weakest supernova explosions, forming massive NSs and low-mass BHs. We thus expect massive NSs and low-mass BHs to have the highest momentum “kick” of any compact remnant.
+For the rapid explosion model most BHs are formed without a supernova explosion, and only the small fraction of low-mass black holes will receive kicks. This is to be contrasted with the delayed model, where a much larger fraction of BHs are formed from fall back, and these low-mass BHs will have large kicks.
+Likewise, for most asymmetric neutrino kick mechanisms, the longer the delay in the supernova engine, the stronger the momentum asymmetry (Socrates et al. 2006; Kusenko 2004; Fryer & Kusenko 2006). Again, massive NSs and low mass BHs receive the largest kicks of any of our compact remnants under our delayed explosion model.
+Strong kicks unbind binary systems. If strong kicks occur in high-mass NSs and low-mass BHs, these systems are more likely to be disrupted in the massive star collapse. This bias will make it difficult to use remnant mass distributions derived from X-ray binary systems without detailed population synthesis models.
+V.2 Implications for Supernovae
+Although our focus has been on estimating the compact remnant mass distribution, our models also make predictions for the distribution of explosion energies for core-collapse supernovae. The explosion energy distributions for our two convection-enhanced engines at both solar and zero metallicity are shown in figure 14. We have assumed that core-collapse supernovae from low-mass stars and electron capture supernovae all produce the same low-energy,
+0.55
+×
+10
+51
+0.55\times 10^{51}
+ erg explosion. Since the minimum mass decreases with metallicity, these supernovae dominate the explosions at low-metallicity, even with the relatively shallow Salpeter IMF (
+α
+=
+2.35
+\alpha=2.35
+).
+From figure 14 we note that, except for the low mass supernovae such as electron capture supernovae, our rapid explosion model produces only strong explosions (above
+10
+51
+10^{51}
+ erg). The delayed model produces a broader range of explosion energies, with peak energies below that of the rapid explosion model. Even at solar metallicity less than 50% of the explosions from the delayed engine have energies in excess of
+10
+51
+10^{51}
+ erg. In principal the distribution of supernova explosion energies, if sufficiently accurate, could distinguish between our two engines. For example, a low-energy explosion from a massive star is almost certainly arising from a delayed explosion. Similarly, any explosion above
+1.5
+×
+10
+51
+1.5\times 10^{51}
+ erg produced by a slowly rotating star is likely to result from a rapid explosion.
+It is likely that a combination of both the delayed and rapid explosion engines will be required to explain supernovae, and future observations may determine the relative fraction.
+V.3 Implications for Gravitational Waves
+Gravitational waves are expected to provide new constraints on the formation of compact remnants. We use the StarTrack population synthesis code, incorporating the binary prescriptions discussed above, to calculate delayed (e.g. SASI) and rapid models for the initial–remnant mass relation. Additionally, we employ two models of common envelope evolution. In the first (model A) we employ the standard energy balance (Webbink 1984) to calculate the outcome of common envelope evolution with a Hertzsprung gap donor. In the second model (B) we assume that, when a Hertzsprung gap star fills its Roche lobe and starts the common envelope phase, it merges with its companion and ends its binary evolution. The same energy balance is used to compute the common envelope for any type of donor in both models. Since many BH-BH progenitors experience common envelope evolution with a Hertzsprung gap donor, the birth and merger rates of BH-BH binaries are greatly reduced in model B (for details and the physical motivation see Belczynski et al. 2007). We consider two metallicities
+Z
+⊙
+=
+0.02
+Z_{\odot}=0.02
+and
+0.1
+
+Z
+⊙
+=
+0.002
+0.1Z_{\odot}=0.002
+(approximately covering the range of metallicity observed in local Universe). We focus on binary stars that form double BH systems (BH-BH) at the end of their evolution.
+We predict the distribution of chirp masses for the two supernova engine models (see Fig.15 and 16), and find a striking difference. For the delayed model the chirp masses start from
+M
+chirp
+≈
+2.4
+
+(
+2.5
+)
+
+M
+⊙
+M_{\rm chirp}\approx 2.4(2.5)M_{\odot}
+, whereas for the rapid model the lowest chirp masses are
+
+≈
+4.9
+
+(
+5.4
+)
+
+M
+⊙
+\approx 4.9(5.4)M_{\odot}
+for models A(B). These very different chirp mass distributions are the result of the differing initial-remnant mass relations presented in Figures 12 and 13. In the delayed model BHs start forming from
+M
+BH
+=
+2.5
+
+M
+⊙
+M_{\rm BH}=2.5\,{\rm M}_{\odot}
+, and their mass continuously increases as the initial mass of the progenitors increases. The chirp mass distribution starts at a low value,
+M
+chirp
+≈
+2.4
+
+M
+⊙
+M_{\rm chirp}\approx 2.4M_{\odot}
+(the chirp mass of two
+2.5
+
+M
+⊙
+2.5\,{\rm M}_{\odot}
+black holes is
+2.2
+
+M
+⊙
+2.2\,{\rm M}_{\odot}
+). In contrast, in the rapid supernova engine model, there are no BHs with mass below
+5
+
+M
+⊙
+5\,{\rm M}_{\odot}
+, and therefore the chirp mass distribution starts at
+M
+chirp
+≈
+5
+
+M
+⊙
+M_{\rm chirp}\approx 5\,{\rm M}_{\odot}
+. The origin of this remnant gap is described and referenced in Sec. IV.6.
+In Table 2 we present Galactic merger rates for our models for BH-BH binaries. Rates are calculated for a Milky Way type galaxy (10 Gyr of continuous star formation at a rate of
+3.5
+
+M
+⊙
+
+yr
+−
+1
+3.5{\rm~M}_{\odot}{\rm~yr}^{-1}
+), as described in Belczynski et al. (2007). The change of rates with metallicity, and between our two models for common envelope evolution, are fully discussed in Belczynski et al. (2010b). Here we note that both supernova models produce comparable numbers of close BH-BH binaries, hence the similar merger rates in Table 2. Therefore, observations of BH-BH binaries will illuminate the underlying supernova engine only if the physical properties of the mergers can be extracted from the gravitational waves. If the gap in the mass distribution from X-ray binaries is confirmed by gravitational wave observations of merging binaries, this gap will rule out delayed supernova mechanisms for most systems.
+This project was funded in part under the auspices of the U.S. Dept. of Energy, and supported by its contract W-7405-ENG-36 to Los Alamos National Laboratory, and by a NASA grant SWIF03-0047. K.B., M.D. and G.W. acknowledge support from MSHE grant N N203 404939. V.K. acknowledges support from NSF grant AST-0908930 from this project. K.B., V.K., D.H. acknowledge partial support from the Aspen Center for Physics where part of this work was developed.
+References
+	•	Bailyn et al. (1998) Bailyn, C.D., Jain, R.K., Coppi, P., & Orosz, J.A. 1998, ApJ, 499, 367
+	•	Belczynski et al. (2002) Belczynski, K., Kalogera, V., & Bulik, T. 2002, ApJ, 572, 407
+	•	Belczynski et al. (2007) Belczynski, K., Taam, R., Kalogera, V., Rasio, F., Bulik, T. 2007, ApJ, 662, 504
+	•	Belczynski et al. (2008) Belczynski, K., et al. 2008, ApJS, 174, 223
+	•	Belczynski et al. (2010a) Belczynski, K. Bulik, T., Fryer, C.L., Ruiter, A., Valsecchi, F., Vink, J.S., Hurley, J.R. 2010a, ApJ, 714, 1217
+	•	Belczynski et al. (2010b) Belczynski, K., Dominik, M., K. Bulik, T., O’Shaughnessy, R., Fryer, C., Holz, D. 2010b, ApJ, 715, L138
+	•	Belczynski et al. (2011) Belczynski, K., Wiktorowicz, G., Fryer, C.L., Holz, D.E., Kalogera, V., submitted
+	•	Blondin et al. (2003) Blondin, J.M., Mezzacappa, A., & DeMarino, C. 2003, ApJ, 584, 971
+	•	Bruenn et al. (2009) Bruenn, S.W., Mezzacappa, A., Hix, W.R., Blondin, J.M., Marronetti, P., Messer, O.E.B., Dirk, C.J., Yoshida, S., 2009, AIP Conference Proceedings, 180, 012018, 1, astro-ph/1002.4914
+	•	Buras et al. (2003) Buras, R., Rampp, M., Janka, H.-T., & Kifonidis, K. 2003, Phys. Rev. Lett., 90, 1101
+	•	Buras et al. (2006) Buras, R., Rampp, M., Janka, H.-Th., & Kifonidis, K. 2006, A&A, 447, 1049
+	•	Burrows et al. (2006) Burrows, A., Livne, E., Dessart, L., Ott, C.D., & Murphy, J. 2006, ApJ, 640, 878
+	•	Clark et al. (2002) Clark, J.S., Goodwin, S.P., Crowther, P.A., Kaper, L., Fairbairn, M., Langer, N., Brocksopp, C., 2002, A&A, 392, 909
+	•	Demorest et al. (2010) Demorest, P.B., Penucci, T., Ransom, S.M., Roberts, M.S.E., Hessles, J.W.T., 2010, Nature, 467, 1081
+	•	Dessart et al. (2007) Dessart, L., Burrows, A., Livne, E., Ott, C.D., 2007, ApJ, 669, 585
+	•	Eldridge & Tout (2004a) Eldridge, J., & Tout, C. 2004a, MNRAS, 348, 201
+	•	Eldridge & Tout (2004b) Eldridge, J., & Tout, C. 2004b, MNRAS, 353, 87
+	•	Farr et al. (2011) Farr, W.M., Sravan, N., Cantrell, A., Kreidberg, L., Bailyn, C.D., Mandel, I., Kalogera, V. 2010, astro-ph/1011.1495
+	•	Freire (2008) Freire, P.C.C. 2008, AIPC, 983, 459
+	•	Fryer et al. (1996) Fryer, C.L., Benz, W., Herant, M. 1996, ApJ, 460, 801
+	•	Fryer et al. (1999b) Fryer, C., Woosley, S., & Hartmann, D. 1999, ApJ, 526, 152
+	•	Fryer et al. (1999) Fryer, C.L., Benz, W., Herant, M., Colgate, S.A. 1999, ApJ, 516, 892
+	•	Fryer & Kalogera (2001) Fryer, C.L. & Kalogera, V. 2001, ApJ, 554, 548
+	•	Fryer & Warren (2004) Fryer, C.L. & Warren, M.S. 2004, ApJ, 601, 391
+	•	Fryer & Kusenko (2006) Fryer, C.L., & Kusenko, A. 2006, ApJ, 163, 335
+	•	Fryer et al. (2006) Fryer, C.L., Herwig, F., Hungerford, A., Timmes, F.X. 2006, ApJ, 646, L131
+	•	Fryer (2006b) Fryer, C.L. 2006, NewAR, 50, 492
+	•	Fryer & Young (2007) Fryer, C.L., & Young, P.A. 2007, ApJ, 659, 1438
+	•	Fryer (2009) Fryer, C.L. 2009, ApJ, 699, 409
+	•	Heger et al. (2003) Heger, A., Fryer, C.L., Woosley, S.E., Langer, N., Hartmann, D.H. 2003, ApJ, 591, 288
+	•	Herant et al. (1992) Herant, M., Benz, W., & Colgate, S.A. 1992, ApJ, 395, 642
+	•	Herant et al. (1994) Herant, M., Benz, W., Hix, W.R., Fryer, C.L., and Colgate, S.A., ApJ, 435, 339
+	•	Hobbs et al. (2005) Hobbs, G., Lorimer, D.R., Lyne, A.G., & Kramer, M. 2005, MNRAS, 360, 974
+	•	Hurley et al (2000) Hurley, J. R., Pols, O. R., & Tout, C. A. 2000, MNRAS, 315, 543
+	•	Iben & Renzini (1983) Iben, I. & Renzini, A. 1983, ARA&A, 21, 271
+	•	Kaper et al. (2006) Kaper, L., van der Meer, A., van Kerwijk, M., van den Heuvel, E. 2006, The Messnger, 126, 27
+	•	Kasen & Bildsten (2010) Kasen, D., & Bildsten, L. 2010, ApJ, 717, 245
+	•	Kitaura et al. (2006) Kitaura, F.S., Janka, H.-Th., Hillebrandt, W. 2006, A&A, 450, 345
+	•	Kiziltan et al. (2011) Kiziltan, B., Kottas, A., Thorsett, S.E., astro-ph/1911.4291
+	•	Kudritzki et al. (1989) Kudritzki, R.P., Pauldrach, A., Puls, J., & Abbott, D.C. 1989, A&A, 219, 205
+	•	Kusenko (2004) Kusenko, A. 2004, Int. J. Mod. Phys. D., 13, 2065
+	•	Lattimer & Yahil (1989) Lattimer, J.M., & Yahil, A. 1989, ApJ, 340, 426
+	•	Limongi & Chieffi (2006) Limongi, M., & Chieffi, A. 2006, ApJ, 647, L483
+	•	MacFadyen & Woosley (1999) MacFadyen, A.I. & Woosley, S.E. 1999, ApJ, 524, 262
+	•	Maeda et al. (2007) Maeda, K., Tanaka, M., Nomoto, K., Tominaga, N., Kawabata, K., Mazzali, P.A., Umeda, H., Suzuki, T., Hattori, T. 2007, ApJ, 666, 1069
+	•	Marek & Janka (2009) Marek, A., Janka, H.-Th. 2009, ApJ, 694, 664
+	•	Nice et al. (2008) Nice, D.J., Stairs, I.H., Kasian, L.E. 2007, AIPC, 873, 453
+	•	O’Connor & Ott (2011) O’Connor, E., Ott, C. D., 2011, ApJ, 730, 70
+	•	Ozel et al. (2010) Ozel, F., Psaltis, D., Narayn, R., McClintock, J.E. 2010, submitted to ApJ, astro-ph  1006.2834
+	•	Podsiadlowski et al. (2004) Podsiadlowski, P., Langer, N., Poelarends, A.J.T., Rappaport, S., Heger, A., & Pfahl, E.D. 2004, ApJ, 612, 1044
+	•	Scheck et al. (2006) Scheck, L., Kifonidis, K., Janka, H.-T., & Müller, E. 2006, A&A, 457, 963
+	•	Scheck et al. (2008) Scheck, L., Janka, H.-T., Foglizzo, T., & Kifonidis, K. 2008, A&A, 477, 931
+	•	Schwab et al. (2010) Schwab, J., Podsiadlowski, Ph., & Rappaport, S. 2010, ApJ, 719, 722
+	•	Socrates et al. (2006) Socrates, A., Blaes, O., Hungerford, A., & Fryer, C.L. 2005, ApJ, 632, 531
+	•	Strobel & Weigel (2001) Strobel, K., & Weigel, M. K. 2001, ApJ, 367, 587
+	•	Timmes et al. (1996) Timmes, F.X., Woosley, S.E., & Weaver, T.A. 1996, ApJ, 457, 834
+	•	van der Meer et al. (2007) van der Meer, A., Kaper, L., van Kerkwijk, M.H., Heemsker, M.H.M., van den Heuvel, E.P.J. 2007, A&A, 473, 523
+	•	Webbink (1984) Webbink, R. 1984, ApJ, 277, 355
+	•	Wongwathanarat et al. (2010) Wongwathanarat, A., Janka, H.-T., Müller, E. 2010, astro-ph/1010.0167
+	•	Woosley et al. (2002) Woosley, S.E., Heger, A., Weaver, T.A., 2002, Rev. Mod. Phys., 74, 1015
+	•	Woosley & Heger (2007) Woosley, S.E. & Heger, A., 2007, Phys. Rep., 442, 269
+	•	Young et al. (2005) Young, P.A., Meakin, C., Arnett, D. & Fryer, C. L., 2005, ApJ, 692, 101
+	•	Young & Fryer (2007) Young, P.A., & Fryer, C. L., 2007, ApJ, 659, 1438
+	•	Young et al. (2008) Young, P.A., et al., in preparation
+	•	Zhang et al. (2008) Zhang, W., Woosley, S.E., & Heger, A. 2008, ApJ, 679, 639
+
+Table 2: Galactic BH-BH Merger Rates [Myr-1]aaRates are given for model A(B).
+
+DELAYED
+RAPID
+Z
+⊙
+Z_{\odot}
+5.2 (0.02)
+5.0 (0.01)
+0.1
+
+Z
+⊙
+0.1\ Z_{\odot}
+72.4 (4.0)
+87.4 (7.7)
+
+
+Figure 1: Energy stored in the convection region as a function of time after bounce. For the convection-enhanced neutrino mechanism, this energy is the available energy to power a supernova explosion. With a peak near
+
+∼
+3
+−
+4
+×
+10
+51
+
+erg
+\sim 3-4\times 10^{51}\,{\rm erg}
+, this energy provides a natural explanation for why “typical” supernova have energies of roughly
+10
+51
+10^{51}
+ erg even though the total potential energy released is closer to
+10
+53
+10^{53}
+ erg. Note, however, that it is difficult to make a strong explosion after a long delay.
+
+Figure 2: Predicted explosion energy as a function of progenitor mass for two engine models and two progenitor metallicities: solar metallicty progenitor with delayed explosion (solid), solar metallicity progenitor with rapid explosion (dotted), zero metallicity with delayed explosion (dashed), zero metallicity with rapid explosion (dot-dashed). The rapid explosions are more energetic when they succeed, but are more likely to fail completely.
+
+Figure 3: Fraction of compact remnants produced by stars below 11 M⊙ as a function of metallicity. Below
+∼
+\sim
+0.1 solar metallicity, most compact remnants are produced by these stars. They will dominate the neutron star population.
+
+
+Figure 4: Remnant mass versus initial stellar mass for 4 different explosion models: delayed explosion alone (solid), rapid explosion alone (dotted), delayed explosion with magnetar (dashed), rapid explosion with collapsar for direct BHs (dot-dashed). The delayed explosion produces more intermediate mass NSs and low mass BHs. The collapsar model limits the number of massive BHs and likely happens in only a small fraction of BH forming systems. The magnetar model limits the number of BHs and is also likely to be rare.
+
+
+Figure 5: Remnant mass versus initial stellar mass in our delayed model for 3 different stellar model suites from Woosley et al. (2002): solar metallicity (dot-dashed),
+10
+−
+4
+10^{-4}
+solar (dashed), and zero metallicity (dotted). The solid curve shows our fit to this data (equations: 5, 7, 9). Note that below 30 M⊙, metallicity has very little effect on the remnant mass. Above 30 M⊙, the metallicity dependence of winds alters the final remnant mass. For these high masses, the explosion energy is very weak, and a considerable amount of the hydrogen and helium envelope falls back onto the compact remnant. The left panel is at solar metallicity, the right panel is at zero metallicty.
+
+
+Figure 6: Remnant mass versus initial stellar mass in our rapid model for 3 different stellar model suites from Woosley et al. (2002): solar metallicity (dot-dashed),
+10
+−
+4
+10^{-4}
+solar (dashed), and zero metallicity (dotted). The solid curve shows our fit to this data (equations: 5, 7, 9). Note that below 30 M⊙, metallicity only plays a role in the BHs formed from progenitors with masses near 23 M⊙. In the Woosley et al. (2002) progenitor models, the mass of these stars peak at solar metallicity. More massive stars have strong winds that decrease the star mass and lower the core density. Above 25-30 
+M
+⊙
+M_{\odot}
+, the remnant mass is very similar to that of our delayed model. At high metallicities, the rapid explosions produce slightly less massive remnants across a wide range of initial progenitor mass because the stronger explosions have less fall back. But at low metallicities, the remnant masses produced for both the delayed and rapid explosion engines are identical.
+
+
+Figure 7: Distribution of NS and BH remnant masses from our delayed explosion model for a range of metallicities. Metallicity determines the maxmimum BH mass with a sharp peak at the maximum mass at collapse.
+
+
+Figure 8: Distribution of NS and BH remnant masses from our delayed explosion model as a function of redshift. The lower metallicities at higher redshifts lead to more mass BH remnants.
+
+
+Figure 9: Distribution of NS and BH remnant masses from our rapid explosion model for a range of metallicities. Metallicity determines the maxmimum BH mass with a sharp peak at the maximum mass at collapse.
+
+
+Figure 10: Distribution of NS and BH remnant masses from our rapid explosion model as a function of redshift. The lower metallicities at higher redshifts lead to more mass BH remnants.
+
+
+Figure 11: Remnant mass versus ZAMS mass for 3 different suites of calculations: Woosley et al. (2002) solar metallicity (solid line), Limongi and Chieffi (2006) solar metallicity (dotted), and the binary models of Young et al. (2008) at solar metallicity (open squares). Note that the effects of binaries below 25 M⊙ does not change the remnant mass whatsoever.
+
+
+Figure 12: Final compact object masses for the 3 presented calculation schemes for binary population synthesis in the function of initial mass for single star evolution (with solar metallicity and standard winds). Top panel shows the full mass range, while bottom panel shows the mass range important for NS formation. The adopted transition mass from NS to BH is also indicated (
+M
+NS
+,
+max
+=
+2.5
+
+M
+⊙
+M_{\rm NS,max}=2.5\,{\rm M}_{\odot}
+).
+
+
+Figure 13: Metallicity dependence of final compact object masses for single star evolution using our 3 calculation schemes for binary population synthesis.
+
+
+Figure 14: Fraction of supernovae per 1050 erg energy bin. We have assumed low mass supernovae all produce the same,
+0.55
+×
+10
+51
+0.55\times 10^{51}
+ erg, explosion, but it is likely that these stars produce a broader range of explosion energies. Because the minimum mass for low-mass supernovae decreases at low metallicities, the fraction of supernovae produced by electron capture increases at high redshift. The rapid explosion engine produces more energetic explosions. Except for the low energy explosions from low-mass supernovae, this rapid explosion engine produces only explosions in excess of
+10
+51
+10^{51}
+ erg. The delayed explosion produces a broad range of explosion energies with less than 50% above
+10
+51
+10^{51}
+ erg even at solar metallicity.
+
+
+Figure 15: Close BH-BH (
+T
+d
+
+e
+
+l
+
+a
+
+y
+=
+t
+evol
++
+t
+merger
+<
+10
+T_{delay}=t_{\rm evol}+t_{\rm merger}<10
+Gyr) chirp mass distribution for the delayed (solid) and rapid (dot-dashed) supernova explosion models. The original StarTrack model closely resembles the delayed model. Here we use model A for our common envelope evolution.
+
+
+Figure 16: The same as on Figure 15 but for model B of common envelope evolution. The drastically reduced number of BH-BH binaries is due to very frequent common envelope mergers in this model (e.g., Belczynski et al. 2007).
+◄  Feeling
+lucky? Conversion
+report Report
+an issue View original
+on arXiv►
+Copyright Privacy Policy
+Generated by LaTeXML oxide

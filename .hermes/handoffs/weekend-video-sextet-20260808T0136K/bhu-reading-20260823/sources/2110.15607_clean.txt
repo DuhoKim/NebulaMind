@@ -1,0 +1,926 @@
+                                                 Draft version November 1, 2021
+                                                 Typeset using LATEX default style in AASTeX63
+
+
+
+
+                                                                              The Black Hole Mass Function Across Cosmic Times
+                                                                                   I. Stellar Black Holes and Light Seed Distribution
+                                                               1                 1, 2, 3, 4
+                                                Alex Sicilia, Andrea Lapi,   Lumen Boco,1, 2 Mario Spera,1, 2, 3 Ugo N. Di Carlo,5, 6 Michela Mapelli,5, 6, 7
+                                                         Francesco Shankar, David M. Alexander,9 Alessandro Bressan,1, 2 and Luigi Danese1, 2
+                                                                           8
+
+                                                                                               1 SISSA, Via Bonomea 265, 34136 Trieste, Italy
+                                                                   2 IFPU - Institute for fundamental physics of the Universe, Via Beirut 2, 34014 Trieste, Italy
+                                                                                   3 INFN-Sezione di Trieste, via Valerio 2, 34127 Trieste, Italy
+
+
+
+
+arXiv:2110.15607v1 [astro-ph.GA] 29 Oct 2021
+                                                                                              4 IRA-INAF, Via Gobetti 101, 40129 Bologna, Italy
+                                                    5 Physics and Astronomy Department Galileo Galilei, University of Padova, Vicolo dell’Osservatorio 3, 35122 Padova, Italy
+                                                                                 6 INFN-Sezione di Padova, Via Marzolo 8, 35131 Padova, Italy
+                                                                                  7 INAF-OAPD, Vicolo dell’Osservatorio 5, 35122 Padova, Italy
+                                                                   8 Department of Physics and Astronomy, University of Southampton, Highfield SO17 1BJ, UK
+                                                                        9 Department of Physics, Durham University, South Road, Durham, DH1 3LE, UK
+
+
+
+                                                                                                               ABSTRACT
+                                                          This is the first paper in a series aimed at modeling the black hole (BH) mass function, from the
+                                                       stellar to the intermediate to the (super)massive regime. In the present work we focus on stellar
+                                                       BHs and provide an ab-initio computation of their mass function across cosmic times; we mainly
+                                                       consider the standard, and likely dominant production channel of stellar-mass BHs constituted by
+                                                       isolated single/binary star evolution. Specifically, we exploit the state-of-the-art stellar and binary
+                                                       evolutionary code SEVN, and couple its outputs with redshift-dependent galaxy statistics and empirical
+                                                       scaling relations involving galaxy metallicity, star-formation rate and stellar mass. The resulting relic
+                                                       mass function dN/dV d log m• as a function of the BH mass m• features a rather flat shape up to
+                                                       m• ≈ 50 M and then a log-normal decline for larger masses, while its overall normalization at a
+                                                       given mass increases with decreasing redshift. We highlight the contribution to the local mass function
+                                                       from isolated stars evolving into BHs and from binary stellar systems ending up in single or binary
+                                                       BHs. We also include the distortion on the mass function induced by binary BH mergers, finding
+                                                       that it has a minor effect at the high-mass end. We estimate a local stellar BH relic mass density of
+                                                       ρ• ≈ 5 × 107 M Mpc−3 , which exceeds by more than two orders of magnitude that in supermassive
+                                                       BHs; this translates into an energy density parameter Ω• ≈ 4 × 10−4 , implying that the total mass in
+                                                       stellar BHs amounts to . 1% of the local baryonic matter. We show how our mass function for merging
+                                                       BH binaries compares with the recent estimates from gravitational wave observations by LIGO/Virgo,
+                                                       and discuss the possible implications for dynamical formation of BH binaries in dense environments
+                                                       like star clusters. We address the impact of adopting different binary stellar evolution codes (SEVN
+                                                       and COSMIC) on the mass function, and find the main differences to occur at the high mass end, in
+                                                       connection with the numerical treatment of stellar binary evolution effects. We highlight that our
+                                                       results can provide a firm theoretical basis for a physically-motivated light seed distribution at high
+                                                       redshift, to be implemented in semi-analytic and numerical models of BH formation and evolution.
+                                                       Finally, we stress that the present work can constitute a starting point to investigate the origin of
+                                                       heavy seeds and the growth of (super)massive BHs in high-redshift star-forming galaxies, that we will
+                                                       pursue in forthcoming papers.
+
+                                                       Keywords: Stellar mass black holes (1611) - Galaxy formation (595) - Stellar evolution (1599)
+
+
+                                                                                                          1. INTRODUCTION
+                                                 The formation and evolution of black holes (BHs) in the Universe is one of the major issue to be addressed by
+                                               the modern research in astrophysics and cosmology. In the mass range m• ∼ 5 − 150 M , BHs are originated from
+                                               the final, often dramatic stages in the evolution of massive stars (possibly hosted in binary systems). These compact
+2                                                  A. Sicilia et al.
+
+remnants can produce luminous X-ray binaries (e.g., Mapelli et al. 2010; Farr et al. 2011; Inoue et al. 2016), can
+constitute powerful sources of gravitational waves for ground-based detectors like the current LIGO/Virgo facility
+(e.g., Belczynski et al. 2010; Dominik et al. 2015; Spera et al. 2017, 2019; Boco et al. 2019; Abbott et al. 2021a,b),
+can possibly energize short gamma-ray bursts and associated kilonovas (e.g., Abbott et al. 2020, 2021c; Ackley et
+al. 2020; Gompertz et al. 2020), can inject strong energy inputs in the primeval Universe (e.g., Mirabel et al. 2011;
+Justham & Schawinski 2012; Artale et al. 2015; Madau & Fragos 2017; Lehmer et al. 2021), and can provide light
+seeds for the subsequent growth of more massive BHs (e.g., Madau et al. 2014; Volonteri et al. 2015; Lupi et al.
+2016; Pacucci et al. 2017; Boco et al. 2020; Das et al. 2021). At the other end, in the range M• ∼ 106 − 1010 M ,
+supermassive BHs grow mainly by gaseous accretion, that energize the spectacular broadband emission of AGNs. Such
+an activity can have a profound impact on galaxy evolution (e.g., Alexander & Hickox 2012; Lapi et al. 2014, 2018),
+as testified by the strict relationships between the relic BH masses and the physical properties of the hosts (e.g.,
+Kormendy & Ho 2013; Shankar et al. 2016, 2020; Zhu et al. 2021). The intermediate mass range m• ∼ 103 − 106 M
+is the most uncertain. So far, only tentative evidence of these systems has been identified (see Paynter et al. 2021).
+However, the chase is open in view of their astrophysical relevance. Most noticeably, they can provide heavy seeds for
+quick (super)massive BHs growth (e.g., Mayer & Bonoli 2019; Boco et al. 2020), as it seems required by the puzzling
+observations of an increasing numbers of giant monsters M• & 109 M when the age of the Universe was shorter than
+. 0.8 Gyr (e.g., Mortlock et al. 2011; Venemans et al. 2017; Banados et al. 2018). Moreover, such intermediate-mass
+BHs will constitute important targets for space-based gravitational wave detectors like LISA and DECIGO (see eLISA
+Consortium 2013; Kawamura et al. 2021; also Boco et al. 2021a; Barausse & Lapi 2021).
+   One of the most fundamental quantity for demographic studies of the BH population is constituted by the relic mass
+function, namely the number density of BHs per comoving volume and unit BH mass, as a function of redshift. In
+the supermassive regime, where most of the BH mass is accumulated through gas accretion, this is usually determined
+from the AGN luminosity function via Soltan (1982)-type or continuity equation arguments (e.g., Small & Blandford
+1992; Salucci 1999; Yu & Lu 2004; Merloni & Heinz 2008; Kelly & Merloni 2012; Aversa et al. 2015; Shankar et al.
+2004, 2009, 2013, 2020), or from galaxy statistics and scaling relation among galactic and BH properties (e.g., Vika
+et al. 2009; Li et al. 2011; Mutlu-Pakdil et al. 2016). At the other end, the stellar BH mass function is largely
+unknown, and the most promising messenger to constrain it is constituted by the gravitational wave emission from
+coalescing binary BH systems (e.g., Kovetz et al. 2017; Perna et al. 2019; Tang et al. 2020; Ding et al. 2020); a
+first determination of the primary mass distribution for merging binary BHs has been established by the LIGO/Virgo
+collaboration (see Abbott et al. 2021a), although it depends somewhat on some assumptions (see Baxter et al. 2021).
+Therefore a theoretical grasp on the stellar BH mass function at different redshifts is of crucial importance.
+   In the present work, we provide an ab-initio computation of the stellar BH relic mass function across cosmic times,
+by coupling the state-of-the-art stellar and binary evolutionary code SEVN to redshift-dependent galaxy statistics and
+empirical scaling relations involving metallicity, star-formation rate and stellar mass. Note that here we mainly consider
+the standard, and likely dominant production channel of stellar-mass BHs constituted by isolated single/binary star
+evolution, and defer to a future paper the treatment of other formation mechanisms like dynamical effects in dense
+star clusters (e.g., Miller & Hamilton 2002; Alexander & Natarajan 2014; Antonini et al. 2019), AGN disks (e.g.,
+McKernan et al. 2012; Yang et al. 2019), hierarchical triples (e.g., Kimpson et al. 2016; Fragione et al. 2019) that are
+thought to produce corrections in the high-mass tail of the mass function, toward the intermediate-mass BH regime.
+   The plan of the paper is straightforward. In Sect. 2 we introduce the theoretical background underlying our
+computation of the stellar BH relic mass function; specifically, we highlight the role of quantities related to galaxy
+formation (Sect. 2.1) and to stellar evolution (Sect. 2.2), and show how to include the effects of binary BH mergers
+(Sect. 2.3). In Sect. 3 we present our results concerning the stellar BH cosmic birthrate, the redshift-dependent stellar
+BH relic mass function and relic mass density; we also compare the primary mass distribution for merging BH binaries
+with the recent estimates from gravitational wave observations by LIGO/Virgo. In Sect. 4 we critically discuss how
+our results depend on the adopted binary stellar evolution code. Moreover, we estimate the effects of binary BH
+formation in dense environments like (young) star clusters. We also highlight the relevance of our computations in
+providing a light seed distributions for BH growth at high redshift. Finally, in Sect. 5 we summarize our findings and
+outlook future developments.
+   Throughout this work, we adopt the standard flat ΛCDM cosmology (Planck Collaboration 2020) with rounded
+parameter values: matter density ΩM = 0.3, dark energy density ΩΛ = 0.7, baryon density Ωb = 0.05, Hubble
+                                                          Stellar BHMF                                                        3
+
+constant H0 = 100 h km s−1 Mpc−1 with h = 0.7. A Kroupa (2001) initial mass function (IMF) in the star mass range
+m? ∼ 0.1 − 150 M and a value Z ≈ 0.015 for the solar metallicity are adopted (see Caffau et al. 2011).
+
+                                           2. THEORETICAL BACKGROUND
+  We aim at deriving the stellar BH relic mass function, i.e., the number density of stellar BHs per unit comoving
+volume V and remnant mass m• accumulated down to redshift z
+                                                              Z ∞
+                                    dN•                                     dtz0  dṄ•
+                                             (m• | > z) =            dz 0      0
+                                                                                           (m• |z 0 ) ,                      (1)
+                                 dV d log m•                    z           dz dV d log m•
+
+and the related stellar BH relic mass density
+
+                                                                            dN•
+                                                    Z
+                                         ρ• (z) =        d log m• m•                 (m• |z) .                               (2)
+                                                                         dV d log m•
+
+In the above Eq. (1) the quantity tz is the cosmic time corresponding to redshift z and dṄ• /dV d log m• is the stellar
+BH cosmic birthrate, i.e. the production rate of BH of given mass per unit comoving volume. In turn, the latter can
+be expressed as
+                            dṄ•                             dN•                dṀSFR
+                                              Z
+                                    (m• |z) = d log Z                  (m• |Z)            (Z|z)                      (3)
+                        dV d log m•                     dMSFR d log m•         dV d log Z
+where Z is the metallicity and MSFR is the star formed mass. The first and second factors in the integrand are usually
+referred to as the stellar and the galactic term, respectively (see Chruslinska & Nelemens 2019; Boco et al. 2021b);
+we will now describe each of them in some detail, starting with the latter. The main steps toward the computation of
+the stellar BH relic mass function are sketched in Fig. 1.
+
+                                                        2.1. The galactic term
+  The galactic term in Eq. (3) represents the cosmic SFR density per unit cosmic volume and metallicity; in other
+words, it constitutes the classic ‘Madau’ plot (see Madau & Dickinson 2014 and reference therein) sliced in metallicity
+bins, and as such is mainly related to galaxy formation and evolution. It may be estimated in various ways, starting
+from different galaxy statistics and empirical scaling laws. We compute it as
+
+             dṀSFR                                 dN                                  dp                 dp
+                                 Z                                   Z
+                       (Z|z) =       d log ψ ψ              (ψ, z)       d log M?            (M? |ψ, z)         (Z|M? , ψ)   (4)
+            dV d log Z                           dV d log ψ                         d log M?            d log Z
+where ψ is the SFR and M? the stellar mass of a galaxy. Three ingredients enter into the above expression. The
+first is constituted by the redshift-dependent SFR functions dN/dV d log ψ, expressing the number of galaxies per
+unit cosmological volume and SFR bin. For these we adopt the determination by Boco et al. (2021, their Fig. 1; for
+an analytic Schechter fit see Eq. 2 and Table 1 in Mancuso et al. 2016a) derived from an educated combination of
+the dust-corrected UV (e.g., Oesch et al. 2018; Bouwens et al. 2020), IR (e.g., Gruppioni et al. 2020; Zavala et al.
+2021), and radio (e.g. Novak 2017; Ocran 2020) luminosity functions, appropriately converted in SFR (see Kennicutt
+& Evans 2012).
+   The second ingredient is the probability distribution of stellar mass at given SFR and redshift:
+                                       
+                                       M?                                          ) M? < M?,MS (ψ, z)
+                                       
+                                       
+                     dp                            (
+                          (M? |ψ, z) ∝                 [log M? − log M?,MS (ψ, z)]2                             (5)
+                 d log M?
+                                       M?,MS exp −                                   M? ≥ M?,MS (ψ, z)
+                                       
+                                                                   2
+                                                                 2 σlog M?
+
+where M?,MS (ψ, z) is the observed redshift-dependent galaxy main sequence with log-normal scatter σlog M? ≈ 0.2 dex
+(we adopt the determination by Speagle et al 2014; for an anlytic fit, see their Eq. 28). The main sequence is a
+relationship between SFR and stellar mass followed by the majority of star-forming galaxies, apart from some outliers
+located above the average SFR at given stellar mass (see Daddi et al. 2007; Sargent et al. 2012; Rodighiero et al.
+2011, 2015; Speagle et al. 2014; Whitaker et al. 2014; Schreiber et al. 2015; Caputi et al. 2017; Bisigello et al. 2018;
+Boogaard et al. 2018). The expression in Eq. (5) holds for an approximately constant SFR history, which is indicated
+4                                                   A. Sicilia et al.
+
+both by in-situ galaxy formation scenarios (see Mancuso et al. 2016b; Pantoni et al. 2019; Lapi et al. 2020) and by
+observations of ETG progenitors (that have on overage slowly rising star formation history with typical duration of
+. 1 Gyr; see Papovich et al. 2011; Smit et al. 2012; Moustakas et al. 2013; Steinhardt et al. 2014; Cassará et al.
+2016; Citro et al. 2016) and late-type galaxies (that have on the average slowly declining star formation history over
+long timescale of several Gyrs; e.g., see Chiappini et al. 1997; Courteau et al. 2014; Pezzulli & Fraternali 2016; Grisoni
+et al. 2017). In this vein, off-main sequence objects can be simply viewed as galaxies caught in an early evolutionary
+stage, that are still accumulating their stellar mass (which grows almost linearly with time for a constant SFR), and
+are thus found to be preferentially located above the main sequence or, better, to the left of it. As time goes by and
+the stellar mass increases, the galaxy moves toward the average main sequence relationship, around which it will spend
+most of its lifetime before being quenched due to gas exhaustion or feedback processes.
+  The third ingredient is the probability distribution of metallicity at given stellar mass and SFR
+                                                          (                                )
+                                    dp                        [log Z − log ZFMR (M? , ψ)]2
+                                         (Z|M? , ψ) ∝ exp −                 2                                          (6)
+                                 d log Z                                 2 σlog Z
+
+
+that is assumed to be log-normal with mean log ZFMR (M? , ψ) and scatter σlog Z ≈ 0.15 dex provided by the observed
+fundamental metallicity relation (we adopt the determination by Mannucci et al. 2011; for an analytic fit, see their Eq.
+2). This is a relationship among metallicity, stellar mass and SFR of a galaxy which is found to be closely independent
+of redshift at least out to z . 4 (see Mannucci et al. 2010, 2011; Hunt et al. 2016; Curti et al. 2020; Sanders et
+al. 2021). In the aforementioned in-situ galaxy formation scenarios (see Pantoni et al. 2019; Lapi et al. 2020; Boco
+et al. 2021b), the fundamental metallicity relation naturally stems from: an early, rapid increase of the metallicity
+with galactic age, which for a roughly constant star formation history just amounts to the ratio M? /ψ; a late-time
+saturation of the metallicity to a mass-dependent value which is determined by the balance among metal dilution,
+astration, removal by feedback, and partial restitution by stellar evolution processes and galactic fountains (if present).
+  In Fig. 2 we illustrate the galactic term given by Eq. (4). Specifically, we have color-coded the cosmic SFR density
+dṀSFR /dV d log Z per unit comoving volume as a function of redshift z and metallicity log Z. Most of the cosmic star
+formation occurs around redshift z ∼ 2 − 3 at rather high metallicity, close to solar values. The metallicity at which
+most star formation takes place decreases with redshift, but very mildly out to z ∼ 4 − 5. However, we note that at
+any redshift there is a long, pronounced tail of star formation occurring at low metallicities, down to 0.01 Z . We
+discuss possible variations of the prescriptions entering the galactic term in Sect. 4.1.
+
+                                                  2.2. The stellar term
+  The stellar term in Eq. (3) represents the number of BHs formed per unit of star formed mass and remnant mass; as
+such, it is related to the evolution of isolated or binary stars, and must be evaluated via detailed simulations of stellar
+astrophysics. The stellar term can be split in various contributions
+
+          dN•                     dN?→•                   dN??→•                  X      dN??→••
+                     (m• |Z) =                (m• |Z) +                (m• |Z) +                        (m• |Z)        (7)
+      dMSFR d log m•           dMSFR d log m•           dMSFR d log m•           i=1,2
+                                                                                       dMSFR d log m•,i
+
+the first comes from the evolution of isolated, massive stars that evolve into BHs at the end of their life (hereafter
+referred to as ‘single stellar evolution’); the second comes from stars that are originally in binary systems but end
+up as an isolated BH because one of the companion has been ejected or destroyed or cannibalized (hereafter ‘failed
+BH binaries’); the third comes from stars in binary systems that evolve into a binary BH with primary mass m•,1
+and secondary mass m•,2 (hereafter ‘binaries’). All these terms are strongly dependent on metallicity Z, since this
+quantity affects the efficiency of the various processes involved in stellar and binary evolution, like mass loss rates,
+mass transfers, core-collapse physics, etc. Note that other crucial ingredients implicitly entering the above terms are
+the IMF φ(m? ), i.e. the distribution of star masses m? per unit mass formed in stars, and the binary fraction f?? , i.e.
+the mass fraction of stars originally born in binary systems; both are rather uncertain quantities. As a reference we
+adopt a universal (i.e., equal for every galaxies at any cosmic time) Kroupa (2001) IMF and a binary mass fraction
+f?? ≈ 0.5 constant with the star mass m? . We discuss the impact of these choices on our results in Sect. 4.1.
+  To compute the stellar term, we exploit the outcomes of the SEVN stellar and binary evolution code, that provides
+directly each of the above contributions (see Spera et al. 2019 for details). However, to add some more grasp on the
+                                                    Stellar BHMF                                                             5
+
+physics involved, we can provide a handy approximation for the first term referring to isolated stars; this writes as
+                            dN?→•                                         dp?→•
+                                                            Z
+                                        (m• |Z) = (1 − f?? ) dm? φ(m? )           (m• |m? , Z)                       (8)
+                         dMSFR d log m•                                  d log m•
+where f?? is the binary fraction, φ(m? ) is the IMF, and
+                                                        (                                )
+                              dp?→•                        [log m• − log m?→• (m? , Z)]2
+                                      (m• |m? , Z) ∝ exp −              2                                                  (9)
+                             d log m•                                2 σlog m•
+
+is an approximately log-normal distribution centered around the metallicity-dependent relationship m?→• (m? , Z) be-
+tween the remnant mass and the initial zero-age main sequence star mass, with dispersion σlog m• ≈ 0.15 dex (see
+Spera et al. 2017; Boco et al. 2019). Unfortunately, for the other contributions of the stellar term related to binary
+evolution, an analogous analytic approximation is not viable, so one must trust the outputs of the SEVN code. We
+discuss the impact of adopting different prescriptions and codes for the computation of the stellar term in Sect. 4.1.
+   In Fig. 3 we illustrate the stellar term of Eq. (7), split in its various contributions. Specifically, we have color-
+coded the distributions dN• /dMSFR d log m• per unit star mass formed MSFR and BH remnant mass m• . The top
+left panel refers to isolated stars evolving in BHs. It is seen that a roughly constant number of remnants with
+masses m• ∼ 5 − 30 M is produced per logarithmic BH mass bin at any metallicity. Then there is a peak around
+m• ∼ 30 − 60 M , with the larger values applying to metal-poorer conditions, where stellar winds are not powerful
+enough to substantially erode the stellar envelope before the final collapse. Finally, the distribution rapidly falls off for
+larger m• & 50 − 60 M even at low metallicity1 , due to the presence of pair-instability and pulsational pair-instability
+supernovae (see Woosley et al. 2002; Belczynski et al. 2016; Woosley 2017; Spera et al. 2017).
+   The top right panel refers to binary stellar systems failing to form a compact binary, and evolving instead into isolated
+BHs; this may happen because one of the progenitor star has been ejected far away or destroyed or cannibalized during
+binary stellar evolution. The distribution of failed BH binaries differs substantially from single stellar evolution, being
+skewed toward more massive BHs, and with an appreciable number of remnants of mass m• ∼ 50 − 160 M produced
+especially at low metallicities. Such massive BH remnants are mainly formed when two (non-degenerate) companion
+stars merge during a common envelope phase, possibly leaving then a big BH remnant. Finally, note that at high
+metallicity a non-negligible fraction of BHs in this channel has formed after the low-mass companion star had been
+ejected far away or destroyed by stellar winds and/or supernova explosions (see Spera et al. 2019 for details). The
+bottom left panel refers to binary stellar systems evolving into binary BHs; note that the distribution of primary
+and secondary BHs in the final configuration have been summed over. Although the overall number of binary BHs
+is substantially lower than the single BHs originated from the other two channels, most of them has a very similar
+mass spectrum; these remnants have formed from binary stars that underwent minor mass transfer episodes. However,
+at low metallicity stellar winds are reduced and hence the mass exchanged or lost during binary evolution may be
+significantly larger, implying a more extended tail toward masses m• . 100 M with respect to single stellar evolution.
+Finally, the bottom right panel illustrates the sum of all the previous formation channels.
+
+                                                 2.3. Binary BH mergers
+  Tight BH binaries may be able to progressively lose their energy via gravitational wave emission and to merge in a
+single, more massive BH. The cosmic merging rate of binary BHs can be computed as
+       dṄ••→•                             dN??→••→•               dp          dṀSFR
+                           Z   Z
+                  (m• |z) = dtd d log Z                   (m• |Z)     (td |Z)            (Z|zt−td )  i = 1, 2   (10)
+    dV d log m•,i                        dMSFR d log m•,i         dtd         dV d log Z
+where zt is the redshift corresponding to a cosmic time t, and td is the time delay between the formation of the
+progenitor binary and the merger of the compact binary. The integrand in the expression above is the product of three
+terms. The rightmost one is the galactic term that must be computed at a time t − td . The middle one represents the
+probability distribution of delay times, possibly dependent on metallicity. The leftmost one is the stellar term that
+represents the number of binary stellar systems first evolving in a compact binary and then being able to merge within
+
+  1 Note that adopting an IMF with an upper star mass limit m    ∼ 150 M   avoids dealing with the formation of high-mass remnants
+                                                             ?
+   m• & 100 M   by direct collapse.
+6                                                            A. Sicilia et al.
+
+the Hubble time, per unit of formed star mass and compact remnant mass (primary m•,1 and secondary m•,2 ); this is
+a fraction of the third term on the right hand side of Eq. (7). The merger rate is then given by convolution of such a
+specific stellar term with the galactic term, weighted by the time delay distribution.
+  As a consequence of binary BH mergers, the stellar BH relic mass function may be somewhat distorted, since a
+number of low mass BHs are shifted to larger masses. This amounts to apply a merging correction to the original
+cosmic birthrate dṄ /dV dm• , that can be computed as follows2
+
+                                                                                         dṄ••→•
+                                                    Z m•                                          (m• − m•,1 |z)
+    dṄ•,mergcorr            dṄ•            1                     dṄ••→•              dV dm•,2
+                  (m• |z) =        (m• |z) +                dm•,1          (m•,1 |z)                                 +
+      dV dm•                dV dm•           2        m• /2       dV dm•,1           R m•,1        dṄ••→•
+                                                                                      0
+                                                                                            dm•,2          (m•,2 |z)
+                                                                                                  dV dm•,2
+                                                                                                                                        (11)
+                                                                       dṄ••→•
+                                Z m• /2                                        (m• − m•,2 |z)
+                            1                    dṄ••→•              dV dm•,1                       X dṄ••→•
+                          +               dm•,2          (m•,2 |z)                                −                (m• |z) ;
+                            2    0              dV dm•,2           R∞           dṄ••→•             i=1,2
+                                                                                                          dV dm•,i
+                                                                    m•,2
+                                                                         dm•,1          (m•,1 |z)
+                                                                               dV dm•,1
+in the positive terms on the right hand side, the normalizations of the rates have been chosen so as to ensure mass
+conservation and self-consistency of the integrated merger rates.
+  We caveat that additional distorsions of the relic BH mass function may be induced by dynamical effects and/or
+hierarchical mergers in dense environments (see Sect. 4.2 for a preliminary discussion), by mass growth due to accretion
+in X-ray binaries or in AGN disks, etc.; these processes are expected to be relevant especially at the high mass end,
+toward the intermediate-mass BH regime.
+
+                                                               3. RESULTS
+  In Fig. 4 we illustrate the stellar BH cosmic birthrate of Eq. (3) as a function of redshift z and remnant mass m• .
+Specifically, we have color-coded the birthrate dṄ• /dV d log m• per unit comoving volume V and BH mass m• . At
+z ∼ 1 − 4 most of the BHs are formed with a rather flat distribution in log m• for m• ∼ 5 − 50 M , though there is
+a non-negligible tail up to m• . 160 M due to stellar mergers (see previous section for details). Moving toward high
+redshift z & 4 the mass distribution becomes skewed toward masses m• ∼ 30 − 50 M since these are preferentially
+produced in the low metallicity environments, while the tail for m• & 50 M tends to be reduced because of the
+decrease in the number density of star-forming galaxies with appreciable SFR.
+  In Fig. 5 we illustrate the stellar BH relic mass function dN• /dV d log m• of Eq. (1) as a function of the remnant
+mass m• for different redshifts z ∼ 0 − 10. At given redshift, the mass function features a roughly constant behavior
+for m• ∼ 5 − 50 M , followed by a quite steep decline for m• & 50 M . Noticeably, there are bumps at around
+m• ∼ 20 M , m• ∼ 30 − 50 M and m• ∼ 120 M , that are more pronounced at high redshift (where metallicity is
+smaller) and progressively washed out toward the local Universe. Such features reflect regions of higher BH numbers
+that are evident in the stellar term of Fig. 3 (in the form of almost vertical darker strips). Specifically, the first two
+originate from the detailed shape of the metallicity-dependent BH mass spectrum from single stellar evolution, while
+the third one mainly depends on binary evolution effects.
+  The mass function increases for decreasing redshift, quite rapidly down to z ∼ 2 − 3 and then more mildly toward
+z ∼ 0. Smoothing out minor features, the mass function can be analytically rendered in the range m• ∼ 5 − 160 M
+via a Schechter+Gaussian shape (Saunders et al. 1990)
+                                             1−α
+                                                                      1
+                                       
+                        dN               m•                                                     2    2
+                                 ≃N                e−m• /M• + NG p         e−(log m• −log M•,G ) /2 σG ;              (12)
+                    dV d log m•          M•                          2πσG2
+
+
+the Schechter function has normalization N , low-mass power-law index α and characteristic mass M• , while the
+Gaussian (log-normal) has normalization NG , mean M•,G and dispersion σG . The optimal values of these parameters
+
+    2 For the sake of simplicity in Eq. (11) we are neglecting the small amount of mass lost as gravitational waves during the coalescence, since
+
+     we checked that for the purpose of this computation it is practically irrelevant.
+                                                    Stellar BHMF                                                          7
+
+have been determined via a Levenberg-Marquardt least-squares fit to the numerical mass function for m• ∼ 5−160 M ;
+the results for representative redshifts in the range z ∼ 0 − 10 are reported in Table 1.
+   In Fig. 6 we highlight the contribution of the different stellar evolution channels to the stellar BH relic mass function
+at z ∼ 0 and at z ∼ 10. In the range m• ∼ 5 − 50 M the single stellar evolution and the failed BH binaries channels
+are very similar and dominates over BH binaries. For m• & 50 M the single stellar evolution contribution sharply
+dies (due to the mass gap from pair-instability SNe, see Sect. 2.2) and the binary BH channel abruptly decreases
+(due to mass loss in common envelope phase, see Sect. 2.2), while the contribution from failed BH binaries dominates
+largely. Such a behavior in the relative contributions is basically independent of redshift.
+   In Fig. 7 we illustrate the stellar BH relic mass density ρ• (z) of Eq. (2) as a function of redshift z. The mass density
+increases quite steeply toward smaller redshifts, changing from values . 105 M Mpc−3 at z ∼ 10 to 107 M Mpc−3
+around z ∼ 2 − 3 and then saturating for lower redshiftsR up toR5 × 107 M Mpc−3 at z ∼ 0. The evolution with redshift
+                                                            z
+plainly follows that of the mass density ρ? = (1 − R) 0 dz 0 d log ψ ψ (dN/dV d log ψ) in stars within galaxies, that
+has been computed by integrating the SFR functions and taking into account the recycling fraction R ≈ 0.45; this
+corresponds to a local energy density Ω? ≈ 5 × 10−3 , consistent with classic estimates (e.g., Fukugita & Peebles 2004).
+On the gross average, we find a ratio of the mass densities ρ• /ρ? ≈ 10%; we have checked that this mainly reflects
+the fraction of stars in the Kroupa IMF with mass m? & 20 M originating BH remnants, appropriately lowered by
+mass loss in stellar winds and by binary evolution effects. The local density in stellar mass BHs is substantially larger
+than that in supermassive BHs with masses M• ∼ 106 − 1010 M , which amounts to ∼ 1 − 2 × 105 M Mpc−3 (see
+Shankar et al 2020; see also Kormendy & Ho 2013; Aversa et al. 2015), implying that most of the BH mass in the
+local Universe is of stellar origin. The ratio of the local mass densities in supermassive to stellar mass BHs is around
+∼ 2 × 10−3 . Finally, we estimate a local BH energy density Ω• ≈ 4 × 10−4 , corresponding to a BH-to-baryon ratio
+Ω• /Ωb . 10−2 , i.e. the total mass in stellar BHs amounts to . 1% of the local baryonic matter.
+   For the sake of completeness, in Fig. 7 we illustrate the contributions to the BH mass density from different mass
+ranges: m• . 20 M , m• ∼ 20 − 50 M and m• & 50 M . As expected from the shape of the mass function, most of
+the mass density is contributed by BHs with mass in the interval m• ∼ 20 − 50 M . We also note that the mass density
+of BHs with masses m• . 20 M tends to decline more steeply than the total one toward high-redshift, because the
+production of such small mass BHs is disfavored in the lower-metallicity environment of high-z galaxies; the opposite
+holds for the mass density of BHs with larger masses m• & 50 M .
+   In Fig. 8 we evaluate the impact of binary BH mergers on the relic mass function. In the top left panel we have
+                                P
+color-coded the stellar term i=1,2 dN??→••→• /dMSFR d log m•,i representing the number of binary stellar systems
+that first evolve in a BH binary and then are able to merge within the Hubble time, as function of metallicity Z and
+BH mass m• . The remnants contributing to this term are actually a sub-sample of those in the binary stellar term of
+Fig. 3 (bottom left panel). It is evident that the number of merging binary BHs is a small fraction of the total, while
+its distribution lacks the high-mass tail. This is because to form a tight compact binary, the progenitor stars must
+have undergone a substantial phase of common envelope, and an ensuing mass loss/envelope ejection (if not, the two
+progenitors merge prematurely and a single BH remnant is left). The end-product is a binary which can be sufficiently
+tight to merge within an Hubble time, but typically made of BHs that cannot be more massive than m• . 40 − 50 M
+(see Giacobbo & Mapelli 2018; Spera et al. 2019).                           P
+   In the top right panel we have color-coded the cosmic merging rate i=1,2 dṄ••→• /dV d log m•,i constituting the
+destruction term in Eq. (10), as a function of BH mass m• and redshift z. It is seen that most binary BH mergers
+occur for redshift z ∼ 1 − 5 in the mass ranges m• ∼ 15 − 40 M and m• ∼ 5 − 8 M . In the bottom panel, we show
+the stellar BH relic mass function at z ∼ 0 with and without the correction for binary BH mergers; the solid lines is the
+total mass function, while the dashed lines are the contribution from BH binaries. As expected the main changes are
+at the high-mass end, where an appreciable number of BHs in binaries is shifted toward larger masses by the merging
+process; however, the net effect on the total mass function is minor.
+   The contribution to the stellar BH mass function from merging binary BHs can be probed via gravitational wave
+observations. Recently, the LIGO/Virgo collaborations (Abbott et al. 2021a; see also Baxter et al. 2021) has estimated
+the primary mass distribution for BH binaries that coalesce around z ≈ 0; given the quite small cosmological volume
+probed by the current gravitational wave detectors, this approximately corresponds to the merger rate integrated in
+a narrow redshift interval ∆z . 0.5. The expectation from this work is illustrated as a red solid line in Fig. 9, and
+compared with the estimates by Abbott et al. (2021a; blue shaded area) for a powerlaw+peak model and by Baxter
+et al. (2021; orange shaded area) for their astrophysically-motivated model (for both determinations the 68% and
+8                                                   A. Sicilia et al.
+
+95% credible intervals are represented with dark and light shades). Our result is in remarkable agreement with these
+estimates up to 40 M . However, the observed primary mass distribution declines gently for m• & 40 M out to
+m• ∼ 80 − 100 M while our model dies off, since stellar evolution effects hinder the presence of very massive BHs
+in coalescing binaries. This occurs mainly for two reasons (see also Sect. 3): the mass gap m• ∼ 50 − 120 M for
+the production of BH due to pair-instability and pulsational pair-instability supernovae; (ii) the substantial mass loss
+during the common-envelope phase needed to produce a hardened compact binary that can merge within reasonable
+timescales. We also stress that such a sharp decline is not dependent on the specific galactic prescriptions nor scatter
+in the adopted relations, but it is instead common to any approach including the production and possible merging of
+only isolated BH binaries. A viable solution is explored in the next Section.
+                                                    4. DISCUSSION
+  In this Section we discuss three interesting issues that could potentially affect our results: the impact of the adopted
+modeling prescriptions; the dynamical formation channel of BH binaries in dense environment such as star clusters;
+the implication of our work in the formation of light (super)massive BH seeds at high redshift.
+                                         4.1. Impact of modeling prescriptions
+   We warn the reader that the stellar BH relic mass function derived in the present work is somewhat dependent on
+the prescriptions entering the galactic and the stellar terms discussed in Sect. 2.1 and 2.2. It is beyond the scope
+of this paper to address the issue in detail by exploring the variety of modeling recipes, numerical approaches, and
+associated parameter space present in the literature. However, to provide the reader with a grasp of the related impact
+on our main results, we discuss the main source of uncertainties and show their impact on the local BH mass function.
+   As to the galactic term, the main source of uncertainty is constituted by the adopted main sequence and fundamental
+metallicity relationships. To estimate the related degree of uncertainty, we recomputed the galactic term by using in
+turn the main sequence relation by Boogaard et al. (2018) in place of our reference by Speagle et al. (2014), and the
+fundamental metallicity relation by Hunt et al. (2016) in place of our reference by Mannucci et al. (2011). The results
+are illustrated in Fig. 10, and it is seen that the related changes on the stellar BH relic mass function are minor.
+   As to the stellar term, the main source of uncertainty is constituted by the numerical treatment in the SEVN code of
+stellar winds, of pair-instability and pulsational pair-instability supernovae, of supernova explosions and natal kicks, of
+mass transfers and common-envelope phase in binary systems; all these physical processes can have profound impact
+on the formation and evolution of isolated or binary stellar BHs (see reviews by Postnov & Yungelson 2006; Ivanova
+et al. 2013; Mapelli 2020 and references therein). To estimate the related degree of uncertainty, we recomputed the
+stellar term for binaries/failed binaries and the associated relic BH mass function by running a different binary stellar
+evolution code. We rely on COSMIC (Breivik et al. 2020) since it constitutes a state-of-the-art, community-developed
+software with extensive online documentation on the Github repository (see https://cosmic-popsynth.github.io/), that
+upgrades the classic and widespread code BSE (Hurley et al. 2002). As for the parameters regulating mass transfer,
+common envelope, tidal evolution, SN explosion and compact-object birth kicks, we keep the same choices adopted for
+SEVN, which are described in Spera et al. (2019). The results are presented in Fig. 11. The top left and middle panels
+compare the (total) stellar term from the two codes. It is apparent that the main difference involves the distribution
+of remnants with mass m• & 50 − 60 M that are associated to compact binaries and especially to failed BH binaries
+(i.e., binary stars have coalesced before evolving into two distinct binary BHs; see also Sect. 2.2). Specifically, COSMIC
+tends to produce less failed BH binaries than SEVN; this is related to the treatment of the common envelope stage,
+which is indeed one of the most uncertain processes in the evolution of binary stars. The bottom panel illustrates the
+effects on the relic stellar BH mass function at z ∼ 0. All in all, the differences are minor out to m• ∼ 60 M . At
+larger masses, the mass function built from the COSMIC stellar term decreases rapidly, to imply paucity of remnants
+with masses m• & 100 M ; contrariwise, the mass function built from the SEVN stellar term is decreasing mildly and
+actually features a bump around m• ∼ 150 M , before a cutoff. Anyway, we stress that the major differences occur in
+a range where the mass function dN/dm• is already decreasing much faster than m−1       • .
+   Among the many parameters entering binary evolution codes, a major role is played by the common envelope
+parameter αCE , that quantifies the energy available to unbind the envelope (see Ivanova et al. 2013). As in Spera et
+al. (2019), we have set αCE = 5 throughout this paper and in the above comparison between SEVN and COSMIC. To
+have a grasp on the impact of such a choice, we have also run COSMIC with αCE = 1, and show in Fig. 11 the resulting
+stellar term (top right panel) and BH mass function at z = 0 (bottom panel, dashed lines). The impact of αCE is
+rather limited, and mainly affects the high-mass tail of the distribution which is dominated by binary stellar evolution.
+                                                     Stellar BHMF                                                            9
+
+  Another crucial parameter entering the stellar term is the binary mass fraction f?? , for which we have assumed a
+constant value 0.5. However, this is a rather uncertain quantity, that may well depend on the star mass m? , on the
+properties of the host galaxy and/or of the local environment, and even on redshift. In fact, observational constraints
+(e.g., Raghavan et al. 2010; Sana et al. 2012; Li et al. 2013; Sota et al. 2014; Dunstall et al. 2015; Luo et al. 2021)
+suggest values in the range f?? ≈ 0.3 − 0.7, with a possible increase toward more massive stars. To bracket the effects
+of different binary fractions on the stellar term and on the relic BH mass function, in Fig. 12 we compare the results
+for our reference f?? = 0.5 to the extreme cases f?? = 0 and f?? = 1. Plainly adopting f?? = 0 (i.e., no stars born in
+binaries) cuts the tail of the stellar term and of the BH mass function for m• & 50 − 60 M , that are mostly produced
+by binary stellar evolution effects; meanwhile, for smaller masses the mass function is increased by the relatively more
+numerous single stars. Contrariwise, the other extreme case f?? = 1 (all stars born in binaries), tend to enhance the
+high-mass tail of the mass function and reduce somewhat the number density of BHs with masses m• . 50 − 60 M .
+All in all, it is seen that the differences on the mass function are minor, and especially so for f?? & 0.5.
+  A final caveat about the IMF is in order. Throughout the paper we have self-consistently adopted as a reference the
+Kroupa (2001) IMF, mainly because it constitutes a standard both in the galaxy formation and the stellar evolution
+communities (together with the Chabrier 2003 IMF, which anyway would yield almost indistinguishable results) and
+because we had prompt availability of stellar evolution simulations based on that. Other classic choices like the Salpeter
+(1955), the Kennicutt (1983) and the Scalo (1986) IMF differ somewhat for the relative amount of star formation
+occurring below and above 1 M ; such a difference is exacerbated in bottom-heavy IMFs like the one proposed to
+apply in massive ellipticals (e.g., van Dokkum & Conroy 2010) or top-heavy IMFs like the one proposed to apply in
+the early Universe (e.g., Larson 1998) or in starburst galaxies (e.g., Lacey et al. 2010). It is important to stress that
+the IMF enters non-trivially both in the galactic and in the stellar term. In the galactic term, an IMF is needed to
+convert the observed galaxy luminosity functions into a statistics based on an intrinsic physical quantity such as the
+SFR or the stellar mass; moreover, the determination itself of SFR, stellar masses (hence of the main sequence of
+star-forming galaxies), star formation history and metallicity via broadband SED fitting rely on the assumption of a
+specific IMF. Typically, at given SFR more top-heavy IMFs are proportionally richer in massive short-lived stars, and
+tend to yield a larger restframe UV luminosity/ionizing power, a faster chemical enrichment, and a smaller stellar mass
+locked in long-lived stars. In the stellar term, the IMF is plainly an essential ingredient in determining the relative
+proportion of compact remnants of different masses (cf. Eq. 8). More top-heavy IMFs tend to produce more massive
+stars per unit SFR, thus in principle more massive BH remnants (and a smaller relative amount of neutron stars),
+though this is not so straightforward due to mass loss and mass transfers during binary evolution. From the above
+considerations one could be led to speculate that precision determinations of the BH mass function in an extended
+mass range would constitute a probe for the IMF; however, this plan, at least presently, struggles against the many and
+large uncertainties associated with the treatment of binary evolution effects, and against the unexplored degeneracies
+with the bunch of poorly constrained parameters of galaxy and stellar evolution.
+
+                                                  4.2. Dynamical channel
+   In Fig. 9 we highlighted a possible mismatch at m• & 40 M between the primary mass distribution for merging
+BH binaries from isolated binary evolution and the estimates from gravitational wave observations. A viable solution
+could be that such large primary masses are produced in binary systems formed within the dense environment of young
+stellar clusters, open clusters, globular clusters, or nuclear star clusters (e.g., Di Carlo et al. 2019, 2020; Rodriguez
+et al. 2015, 2021; Antonini & Rasio 2016; Kumamoto et al. 2019; Arca-Sedda et al. 2020; Banerjee 2021; Mapelli
+et al. 2021; Natarajan 2021). The central density of a star cluster can be so high that the orbits of binary stars are
+continuously perturbed by dynamical encounters with other members. Massive BHs m• & 40 M in the pair instability
+mass gap can then be originated by hardening of BH binaries via dynamical exchanges in three-body encounters, and
+via the merging of massive progenitor stars; in addition, runaway collisions (i.e., a fast sequence of mergers; e.g.,
+Portegies Zwart et al. 2004; Giersz et al. 2015; Mapelli 2016) in the densest cores of clusters with low metallicity can
+even produce intermediate mass BHs with m• & some 102 M .
+   To have a grasp on these effects, we proceed as follows. First, we construct the stellar term of Eq. (7) from the
+simulations by Di Carlo et al. (2020), that include dynamical effects in young star clusters. With respect to isolated
+conditions, an appreciable number of merging binaries with a primary mass m• & 40 M is originated via dynamical
+exchanges, especially at low metallicities. More in detail, BHs with mass m• ∼ 40 − 65 M can be formed (even in the
+field) from the evolution of single stars or stars in loose binaries that retain a fraction of their envelope up to their final
+10                                                  A. Sicilia et al.
+
+collapse. BHs with mass m• & 65 M can be originated via collisions of massive stars (eased in star clusters because
+dynamical encounters can induce fast merging before mass transfer episodes peel-off the primary star). If produced in
+the field, BHs from both these channels will remain isolated or locked in loose binaries unable to merge; contrariwise,
+in a star cluster they can acquire a new companion via dynamical exchanges and merge by dynamical hardening and
+gravitational wave emission. Note that, in contrast, repeated mergers of BHs are suppressed in young star clusters,
+because of their low escape velocity.
+  Second, we assume that a fraction ffield of the star formation occurs in the field and the complementary fraction
+1 − ffield occurs in young star clusters (actually most of the stars are formed in young star clusters, but only a fraction
+of these may be subject to dynamical effects before exiting from the cluster or before the star cluster itself dissolves).
+Observations (see Goddard et al. 2010; Johnson et al. 2016; Chandar et al. 2017; Adamo et al. 2020) and cluster
+formation models (Kruijssen 2012; Pfeffer et al. 2018; Elmegreen 2018; El-Badry et al. 2019; Grudic et al. 2021)
+indicate that such a fraction is highly uncertain and possibly dependent on properties like the SFR spatial density and
+redshift; in this exploratory computation, we let the fraction ffield vary from 0.2 to 1 (which corresponds to isolated
+binaries only), and we split the galactic term of Eq. (4) accordingly. Finally, we combine the stellar and galactic term
+so derived to compute the merger rate of Eq. (10) and the expected primary mass distribution.
+  The outcome is illustrated in the top panel of Fig. 13 for different values of ffield in the range 0.2 to 1. As expected,
+increasing the fraction of SFR in star clusters (i.e., decreasing ffield ) produces a progressively more extended tail
+toward high primary masses, to the point that values ffield . 0.8 actually can reconcile the theoretical prediction with
+the observational estimates. For completeness, in the bottom panel of Fig. 13 we show how the dynamical evolution
+channel affects the relic BH mass function at z ∼ 0. The marked difference with respect to the model with only isolated
+binaries is the absence of the drop at around m• ∼ 60 M and of the abrupt cutoff for m• ∼ 150 M . Instead, the
+mass function declines smoothly for m• & 60 M . The analytical fits in terms of Eq. (12) for the field+cluster mass
+function with ffield = 0.6 at representative redshifts are reported in Table 1.
+  Two caveats are in order here. First, in the simulations by Di Carlo et al. (2019, 2020) the treatment of stellar
+mergers is based on simplified assumptions: no mass-loss and chemical mixing during the merger; instantaneous
+recovery of hydrostatic equilibrium after the merger; rejuvenation of the merger product according to the simple Hurley
+et al. (2002) prescriptions. Plainly, these details of the process are quite uncertain, and dedicated hydrodynamical
+simulations are required to have a better understanding of the final outcome. Second, in estimating the impact of
+the dynamical formation channel we have considered only young star clusters for the sake of simplicity (and because
+the prompt availability of in-house dynamical simulations, that are extremely time-demanding to run from scratch).
+Globular clusters and nuclear star clusters could also be effective environments to build up massive binary BHs,
+since hierarchical mergers are more efficient in very rich and compact stellar systems (e.g., Miller & Hamilton 2002;
+Antonini et al. 2019; Mapelli et al. 2021). Hence, including models for globular and nuclear star clusters could allow
+to reproduce the observed primary BH mass function with an even larger value of ffield .
+
+                                             4.3. BH seeds at high redshift
+   We stress that the stellar BH mass function at high redshift z & 6 derived in the present paper actually provides
+a light BH seed distribution in primordial galaxies, as originated by stellar and binary evolution processes. This is
+complementary to the seed distributions expected from other classic formation channels. The most relevant are basically
+three (see review by Volonteri 2010 and references therein): BHs formed by Pop III stars in metal-free environments
+like high-redshift minihalos at z & 20 (e.g., Madau & Rees 2001); runaway stellar collisions in metal-poor nuclear star
+clusters (e.g., Devecchi et al. 2012); direct collapse scenarios (e.g., Lodato & Natarajan 2006).
+   The light seed distributions from these models (extracted from Fig. 4 of Volonteri 2010) are compared in Fig. 14
+with the mass function at z ∼ 6 − 10 from stellar BHs presented in this work. Given the appreciable contribution of the
+latter for masses m• . 150 M at redshift z . 10, it will be extremely relevant to include it in numerical simulations,
+semi-analytic and semi-empirical models of BH formation and evolution at high redshift.
+
+                                                     5. SUMMARY
+  In this work we have provided an ab-initio computation of the relic stellar black hole (BH) mass function across
+cosmic times. To this purpose, we have exploited the state-of-the-art stellar and binary evolutionary code SEVN, and
+have coupled its outputs with redshift-dependent galaxy statistics and empirical scaling relations involving galaxy
+metallicity, star-formation rate and stellar mass. Our main findings are summarized below.
+                                                   Stellar BHMF                                                         11
+
+   • The relic mass function dN/dV d log m• as a function of the BH mass m• features a rather flat shape up to
+     m• ≈ 50 M and then a log-normal decline for larger masses, while its normalization increases with decreasing
+     redshift, quite rapidly down to z ∼ 2 − 3 and then more mildly toward z ∼ 0, see Fig. 5 and Table 1. The local
+     stellar BH mass function could be eventually probed via microlensing observations (see Paczynski 1986; for a
+     review, Mao 2012).
+   • The local relic BH mass function for m• . 50 M is comparably contributed from isolated stars evolving into BH
+     and from binary stellar systems ending up in single BH (failed BH binaries), while binary BHs are subdominant;
+     for higher masses m• & 50 M the single stellar evolution and binary BH channels abruptly decrease, while the
+     failed BH binaries dominates largely. See Fig. 6.
+   • The local stellar BH relic mass density amounts to ρ• ≈ 5 × 107 M Mpc−3 , exceeding by more than two orders
+     of magnitude that in supermassive BHs; this translates into an energy density parameter Ω• ≈ 5×10−4 , implying
+     that the total mass in stellar BHs amounts to . 1% of the local baryonic matter. See Fig. 7.
+   • The stellar BH relic mass function can be distorted by binary BH mergers, that can redistribute remnants from
+     the low to the high mass range. However, such a reshaping is found to have a minor effect on the mass function
+     at the high-mass end. See Fig. 8.
+   • The distribution of primary masses for merging BH binaries is found to be in remarkable agreement with the
+     recent estimates from gravitational wave observations by LIGO/Virgo out to m• . 40 M . For larger masses,
+     the observed distribution declines gently while the theoretical one dies off due to a twofold reason: the mass
+     gap from pair-instability and pulsational pair-instability supernovae; and the substantial mass loss during the
+     common envelope phase needed to produce a tight BH binary that can merge within the Hubble time. We have
+     proposed as a viable solution to consider the dynamical formation of merging BH binaries in dense environment
+     like (young) star clusters. See Figs. 9-13 and Table 1.
+   • We have discussed the impact on the mass function of adopting different physical prescriptions entering the
+     galactic and the stellar term. As for the galactic term, minor differences arise when changing the adopted main
+     sequence of star-forming galaxies and the fundamental metallicity relationship. As for the stellar term, the main
+     differences concern the high mass end of the mass function, and are due to the numerical treatment of binary
+     stellar evolution effects, which are still considerably uncertain even from a theoretical point of view. See Figs.
+     11 and 10.
+   • The BH mass function derived here can provide a firm theoretical basis for a physically-motivated light seed
+     distribution at high redshift; as expected, for masses m• . 150 M and redshifts z . 10 it overcomes complemen-
+     tary light seed formation channels, like Pop-III stars, stellar mergers in nuclear star clusters and direct collapse
+     scenarios that are aimed to produce larger mass seeds. It will be worth implementing the light seed distribution
+     from the present work in semi-analytic and numerical models of (super)massive BH formation and evolution, as
+     it can be quite relevant for predictions concerning future gravitational wave observations via Einstein Telescope
+     and LISA. See Fig. 14.
+  In a future perspective, it would be interesting to exploit the galactic and stellar evolution prescriptions adopted here
+to populate a N −body simulation via subhalo clustering abundance matching technique (e.g., Ronconi et al. 2020)
+in order to derive a mock catalog encapsulating the three-dimensional spatial distribution of stellar-mass BHs and of
+their galactic hosts. Finally, we stress that our work can constitute a starting point to investigate the origin of heavy
+seeds and the growth of (super)massive BHs in high-redshift star-forming galaxies, that we will pursue in forthcoming
+papers.
+
+
+                                                ACKNOWLEDGMENTS
+  We thank the referee for a competent and constructive report. We acknowledge C. Baccigalupi and M. Massardi
+for interesting discussions and critical reading. This work has been supported by the EU H2020-MSCA-ITN-2019
+Project 860744 “BiD4BESt: Big Data applications for black hole Evolution STudies.” AL acknowledges funding from
+the PRIN MIUR 2017 prot. 20173ML3WW, “Opening the ALMA window on the cosmic evolution of gas, stars and
+supermassive black holes”. UNDC and MM acknowledge financial support from the European Research Council for
+the ERC Consolidator grant DEMOBLACK, under contract no. 770017.
+12                                                            A. Sicilia et al.
+
+                                                               REFERENCES
+Abbott, R., Abbott, T.D., Abraham, S., et al. 2021a, ApJL, 913,         El-Badry, K., Quataert, E., Weisz, D.R., Choksi, N., & Boylan-
+   L7                                                                      Kolchin, M. 2019, MNRAS, 482, 4528
+Abbott, R., Abbott, T.D., Abraham, S., et al. 2021b, PRX, 11,           eLisa Consortium 2013, white paper (arXiv:1305.5720)
+   021053                                                               Elmegreen, B.G. 2018, ApJ, 869, 119
+Abbott, R., Abbott, T.D., Abraham, S., et al. 2021c, ApJL, 915,         Farr, W.M., Sravan, N., Cantrell, A., et al. 2011, ApJ, 741, 103
+   L5                                                                   Fragione, G., Leigh, N.W.C., Perna, R. 2019, MNRAS, 488, 2825
+Abbott, R., Abbott, T.D., Abraham, S., et al. 2020, ApJ, 896, L44       Fukugita, M., & Peebles, P.J.E. 2004, ApJ, 616, 643
+Ackley, K., Amati, L., Barbieri, C., et al. 2020, A&A, 643, A113        Giacobbo, N., & Mapelli, M. 2018, MNRAS, 480, 2011
+Adamo, A., Zeidler, P., Kruijssen, J.M.D., et al. 2020, Sp. Sc. Rev.,   Giersz, M., Leigh, N., Hypki, A., Lutzgendorf, N., & Askar, A.
+   216, 69                                                                 2015, MNRAS, 454, 3150
+Alexander, D.M., & Hickox, R.C. 2012, NewAR, 56, 93                     Goddard, Q.E., Bastian, N., & Kennicutt, R.C. 2010, MNRAS,
+Alexander, T., & Natarajan, P. 2014, Science, 345, 1330                    405, 857
+Antonini, F., Gieles, M., & Gualandris, A. 2019, MNRAS, 486,            Gompertz, B.P., Levan, A.J., Tanvir, N.,R. 2020, ApJ, 895, 58
+   5008                                                                 Grisoni, V., Spitoni, E., Matteucci, F., et al. 2017, MNRAS, 472,
+Antonini, F., & Rasio, F. A. 2016, ApJ, 831, 187,                          3637
+Arca Sedda, M., Mapelli, M., Spera, M., Benacquista, M., &              Grudic, M.Y., Kruijssen, J.M.D., Faucher-Giguere, C.-A., et al.
+   Giacobbo, N. 2020, ApJ, 894, 133                                        2021, MNRAS, 506, 3239
+Artale, M.C., Tissera, P.B., & Pellizza, L.J. 2015, MNRAS, 448,         Gruppioni, C., Bethermin, M., Loiacono, F., et al. 2020, A&A,
+   3071                                                                    643, A8
+Aversa, R., Lapi, A., De Zotti, G., Shankar, F., & Danese, L. 2015,     Hunt, L., Dayal, P., Magrini, L., & Ferrara, A. 2016, MNRAS,
+   ApJ, 810, 74                                                            463, 2002
+Banados, E., Carilli, C., Walter, F., et al. 2018, ApJL, 861, L14       Hurley, J. R., Tout, C. A., & Pols, O. R. 2002, MNRAS, 329, 897
+Banerjee, S. 2021, MNRAS, 500, 3002                                     Inoue, Y., Tanaka, Y.T., & Isobe, N. 2016, MNRAS, 461, 4329
+Barausse, E., & Lapi, A. 2021, Massive Black Hole Mergers, in           Ivanova, N., Justham, S., Chen, X., et al. 2013, A&ARv, 21, 59
+   Handbook of Gravitational Wave Astronomy, eds. C. Bambi,             Justham, S., & Schawinski, K. 2012, MNRAS, 423, 1641
+   S. Katsanevas and K. Kokkotas (Singapore: Springer)                  Kawamura, S., Ando, M., Seto, N., et al. 2021, PTEP, 2021eA105
+Baxter, E.J., Croon, D., McDermott, S.D., & Sakstein, J. 2021,          Kelly, B. C., & Merloni, A. 2012, AdAst, 2012, 7
+   ApJL, 916, L16                                                       Kennicutt, R.C., & Evans, N.J. 2012, ARA&A, 50, 531
+Belczynski, K., Heger, A., Gladysz, W., et al. 2016, A&A, 594,          Kennicut R. C. Jr, 1983, ApJ, 272, 54
+   A97                                                                  Kimpson, T.O., Spera, M., Mapelli, M., Ziosi, B.M. 2016,
+Belczynski, K., Benacquista, M.,& Bulik, T. 2010, ApJ, 725, 816            MNRAS, 463
+Bisigello, L., Caputi, K. I., Grogin, N., & Koekemoer, A. 2018,         Kormendy, J., & Ho, L.C. 2013, ARA&A, 51, 511
+   A&A, 609, A82                                                        Kovetz, E.D., Cholis, I., Breysse, P.C., & Kamionkowski, M. 2017,
+Boco, L., Lapi, A., Chruslinska, M., et al. 2021b, ApJ, 907, 110           PRD, 95, 103010
+Boco, L., Lapi, A., Sicilia, A.M., et al. 2021a, JCAP, 10, 035          Kroupa P. 2001, MNRAS, 322, 231
+Boco, L., Lapi, & Danese, L. 2020, ApJ, 891, 94                         Kruijssen, J.M.D. 2012, MNRAS, 426, 3008
+Boco, L., Lapi, A., Goswami, S., et al. 2019, ApJ, 881, 157             Kumamoto, J., Fujii, M. S., & Tanikawa, A. 2019, MNRAS, 486,
+Boogaard, L.A., Brinchmann, J., Bouche, N., et al. 2018, A&A,              3942
+   619, A27                                                             Johnson, L.C., Seth, A.C., Dalcanton, J.J., et al. 2016, 827, 33
+Bouwens, R. J., Oesch, P. A., Stefanon, M., et al. 2021, AJ, 162,       Lacey, C. G., Baugh, C. M., Frenk, C. S., et al. 2010, MNRAS,
+   47                                                                      405, 2
+Breivik, K., Coughlin, S., Zevin, M., et al. 2020, ApJ, 898, 71         Lapi, A., Pantoni, L., Boco, L., & Danese, L. 2020, ApJ, 897, 81
+Caffau, E., Ludwig, H. G., Steffen, M., Freytag, B., & Bonifacio,       Lapi, A., Pantoni, L., Zanisi, L., et al. 2018, ApJ, 857, 22
+   P. 2011, SoPh, 268, 255                                              Lapi, A., Raimundo, S., Aversa, R., et al. 2014, ApJ, 782, 69
+Caputi, K. I., Deshmukh, S., Ashby, M. L. N., et al. 2017, ApJ,         Larson, R.B. 1998, MNRAS, 301, 569
+   849, 45                                                              Lehmer, B.D., Eufrasio, R.T., Basu-Zych, A., et al. 2021, ApJ,
+Cassará, L. P., Maccagni, D., Garilli, B., et al. 2016, A&A, 593,         907, 17
+   A9                                                                   Li, C., de Grijs, R., & Deng, L. 2013, MNRAS, 436, 1497
+Chandar, R., Fall, S.M., Whitmore, B.C., & Mulia, A.J. 2017,            Li, Y.-R., Ho, L. C., & Wang, J.-M. 2011, ApJ, 742, 33
+   ApJ, 849, 128                                                        Lodato, G., & Natarajan, P. 2006, MNRAS, 371, 1813
+Chabrier, G. 2003, ApJL, 586, L133                                      Luo, F., Zhao, Y.-H., Li, J., Guo, Y.-J., & Liu, C. 2021
+Chiappini, C., Matteucci, F., & Gratton, R. 1997, ApJ, 477, 765            (arXiv:2108.11120)
+Chruslinska, M., & Nelemans, G. 2019, MNRAS, 488, 5300                  Lupi, A., Haardt, F., Dotti, M., et al. 2016, MNRAS, 456, 299
+Citro, A., Pozzetti, L., Moresco, M., & Cimatti, A. 2016, A&A,          Madau, P., & Dickinson, M. 2014, ARA&A, 52, 415
+   592, A19                                                             Madau, P., Haardt, F., & Dotti, M. 2014, ApJ, 784, L38
+Courteau, S., Cappellari, M., de Jong, R. S., et al. 2014, RvMP,        Madau, P., & Fragos, T. 2017, ApJ, 840, 39
+   86, 47                                                               Madau P., & Rees, M.J. 2001, ApJL, 551, L27
+Curti, M., Mannucci, F., Cresci, G., & Maiolino, R. 2020, MNRAS,        Mancuso, C., Lapi, A., Shi, J., et al. 2016a, ApJ, 823, 128
+   491, 944                                                             Mancuso, C., Lapi, A., Shi, J., et al. 2016b, ApJ, 833, 152
+Daddi, E., Alexander, D. M., Dickinson, M., et al. 2007, ApJ, 670,      Mannucci, F., Cresci, G., Maiolino, R., Marconi, A., & Gnerucci,
+   173                                                                     A. 2010, MNRAS, 408, 2115
+Das, A., Schleicher, D.R.G., Leigh, N.W.C., & Boekholt, T.C.N.          Mannucci, F., Salvaterra, R., & Campisi, M. A. 2011, MNRAS,
+   2021, MNRAS, 503, 1051                                                  414, 1263
+Devecchi, B., Volonteri, M., Rossi, E.M., Colpi, M., & Portegies        Mao, S. 2012, RAA, 12, 947
+   Zwart, S. 2012, MNRAS, 421, 1465                                     Mayer, L., & Bonoli, S. 2019, RPPh, 82, 6901
+Di Carlo, Ugo N., Mapelli, Michela, Giacobbo, N., et al. 2020,          Mapelli, M., Santoliquido, F., Bouffanais, Y., et al. 2021, MNRAS,
+   MNRAS, 498, 495                                                         505, 339
+Di Carlo, U.N., Giacobbo, N, Mapelli, M., et al. 2019, MNRAS,           Mapelli, M. 2020, Fr. Astron. Sp. Sci., 7, 38
+   487, 2947                                                            Mapelli, M. 2016, MNRAS, 459, 3432
+Ding, X., Liao, K., Biesiada, M., & Zhu, Z.-H. 2020, ApJ, 891, 76       Mapelli, M., Ripamonti, E., Zampieri, L., Colpi, M., & Bressan,
+Dominik, M., Berti, E., O’Shaughnessy, R., et al. 2015, ApJ,               A. 2010, MNRAS, 408, 234
+   806,263                                                              McKernan, B., Ford, K.E.S., Lyra, W., & Perets, H.B. 2012,
+Dunstall, P. R., Dufton, P. L., Sana, H., et al. 2015, A&A, 580,           MNRAS, 425, 460
+   A93                                                                  Merloni, A., & Heinz, S. 2008, MNRAS, 388, 1011
+                                                           Stellar BHMF                                                                 13
+
+Miller, M.C., & Hamilton, D.P. 2002, ApJ, 576, 894                    Sanders, R. L., Shapley, A. E., Jones, T., et al. 2021, ApJ, 914, 19
+Mirabel, I.F., Dijkstra, M., Laurent, P., Loeb, A., & Pritchard, J.   Sargent, M. T., Bthermin, M., Daddi, E., & Elbaz, D. 2012, ApJL,
+   R. 2011, A&A, 528, A149                                               747, L31
+Mortlock, D. J., Warren, S. J., Venemans, B. P., et al. 2011,         Shankar, F., Allevato, V., Bernardi, M., et al. 2020, NatAs, 4, 282
+   Nature, 474, 616                                                   Shankar, F., Bernardi, M., Sheth, R.K., et al. 2016, MNRAS, 460,
+Moustakas, J., Coil, A. L., Aird, J., et al. 2013, ApJ, 767, 50          3119
+Mutlu-Pakdil, B., Seigar, M.S., & Davis, B.L. 2016, ApJ, 830,117      Shankar, F., Weinberg, D.H., & Miralda-Escude, J. 2013, MNRAS,
+Natarajan, P. 2021, MNRAS, 501, 1413                                     428, 421
+Novak, M., Smolcic, V., Delhaize, J., et al. 2017, A&A, 602, 5        Shankar, F., Weinberg, D. H., & Miralda-Escude, J. 2009, ApJ,
+Ocran, E. F., Taylor, A. R., Vaccari, M., et al. 2021, MNRAS,            690, 20
+   500, 4685                                                          Shankar, F., Salucci, P., Granato, G. L., de Zotti, G., & Danese,
+Oesch, P. A., Bouwens, R. J., Illingworth, G. D., Labbé, I., &          L. 2004, MNRAS, 354, 1020
+   Stefanon, M. 2018, ApJ, 855, 105                                   Scalo J. M., 1986, Fundamentals Cosmic Phys., 11, 1
+Paczynski, B. 1986, ApJ, 304, 1
+                                                                      Schreiber, C., Pannella, M., Elbaz, D., et al. 2015, A&A, 575, 74
+Pacucci, F., Natarajan, P., Volonteri, M., Cappelluti, N., & Urry,
+                                                                      Small, T. A., & Blandford, R. D. 1992, MNRAS, 259, 725
+   C.M. 2017, ApJ, 850, L42
+Pantoni, L., Lapi, A., Massardi, M., Goswami, S., & Danese, L.        Smit, R., Bouwens, R. J., Franx, M., et al. 2012, ApJ, 756, 14
+   2019, ApJ, 880, 129                                                Soltan, A. 1982, MNRAS, 200, 115
+Papovich, C., Finkelstein, S. L., Ferguson, H. C., Lotz, J. M., &     Sota, A., Maız Apellaniz, J., Morrell, N. I., et al. 2014, ApJS, 211,
+   Giavalisco, M. 2011, MNRAS, 412, 1123                                 10
+Paynter, J., Webster, R., & Thrane, E. 2021, Nature Astron., 5,       Speagle, J. S., Steinhardt, C. L., Capak, P. L., & Silverman, J.
+   560                                                                   2014, ApJS, 214, 15
+Perna, R., Wang, Y.-H., Farr, W.M., Leigh, N., & Cantiello, M.        Spera, M., Mapelli, M., Giacobbo, N., et al. 2019, MNRAS, 485,
+   2019, ApJL, 878, L1                                                   889
+Pezzulli, G., & Fraternali, F. 2016, MNRAS, 455, 2308                 Spera, M., & Mapelli, M. 2017, MNRAS, 470, 4739
+Pfeffer, J., Kruijssen, J.M.D., Crain, R.A., & Bastian, N. 2018,      Spera, M., Mapelli, M., & Bressan, A. 2015, MNRAS, 451, 4086
+   MNRAS, 475, 4309                                                   Steinhardt, C. L., Speagle, J. S., & Capak, P. 2014, ApJL, 791,
+Planck Collaboration, Aghanim, N., Akrami, Y., et al. 2020, A&A,         L25
+   641, A6                                                            Tang, S.-P., Wang, H., Wang, Y.-Z., et al. 2020, ApJ, 892, 56
+Portegies Zwart, S.F., Baumgardt, H., Hut, P., Makino, J.,            van Dokkum, P., & Conroy, C., 2010, Nature, 468, 940
+   McMillan, S.L.W. 2004, Nature, 428, 724
+                                                                      Venemans, B. P., Walter, F., Decarli, R., et al. 2017, ApJ, 845,
+Postnov, K.A., & Yungelson, L.R. 2006, Liv. Rev. Rel., 9, 6
+                                                                        154
+Raghavan, D., McAlister, H. A., Henry, T. J., et al. 2010, ApJS,
+   190, 1                                                             Vika, M., Driver, S. P., Graham, A. W., & Liske, J. 2009, MNRAS,
+Rodighiero, G., Brusa, M, Daddi, E., et al. 2015, ApJL, 800, L10        400, 1451
+Rodighiero, G., Daddi, E., Baronchelli, I., et al. 2011, ApJL, 739,   Volonteri, M., Silk, J., & Dubus, G. 2015, ApJ, 804, 148
+   L40                                                                Volonteri, M. 2010, A&ARv, 18, 279
+Rodriguez, C.L., Kremer, K., Chatterjee, S., et al. 2021, RNAAS,      Whitaker, K. E., Franx, M., Leja, J., et al. 2014, ApJ, 795, 104
+   5, 19                                                              Woosley, S. E., Heger, A., & Weaver, T. A. 2002, RvMP, 74, 1015
+Rodriguez, C.L., Morscher, M., Pattabiraman, B., et al. 2015,         Woosley, S. E. 2017, ApJ, 836, 244
+   PhRvL, 115e1101                                                    Yang, Y., Bartos, I., Gayathri, V., et al. 2019, Phys. Rev. Lett.,
+Salpeter, E. E. 1955, ApJ, 121, 161                                     123, 181101
+Salucci, P., Szuszkiewicz, E., Monaco, P., & Danese, L. 1999,         Yu, Q., & Lu, Y. 2004, ApJ, 602, 603
+   MNRAS, 307, 637                                                    Zavala, J. A., Casey, C. M., Manning, S. M., et al. 2021, ApJ, 909,
+Sana, H., de Mink, S. E., de Koter, A., et al. 2012, Science, 337,      165
+   444                                                                Zhu, P., Ho, L.C., & Gao, H. 2021, ApJ, 907, 6
+14                                                     A. Sicilia et al.
+
+
+
+
+Figure 1. Schematics showing the main steps to compute the stellar BH relic mass function (Eq. 1). This is obtained by
+integration over redshift of the BH cosmic birthrate (Eq. 3), which is in turn determined via the convolution of the galactic and
+the stellar terms. The galactic term (Eq. 4) is computed by convolving the galaxy statistics (based on the SFR function) with
+the metallicity distribution of a galaxy at given SFR and stellar mass (assumed as a log-normal shape around the fundamental
+metallicity relation; see Eq. 6) and with the stellar mass distribution of a galaxy at given SFR and redshift (built from the
+redshift-dependent main sequence of star-forming galaxies; see Eq. 5). The stellar term (Eq. 7) is computed from the stellar and
+binary evolutionary code SEVN by summing up, for a given IMF, the probabilities per unit star-formed mass that: (i) a single
+star evolves into a BH remnant (single stellar evolution); (ii) a binary stellar system evolves into a single BH remnant or two
+BHs no longer bounded (failed binaries); (iii) a binary stellar system evolves into a binary BH (binaries), that may eventually
+coealesce into a single BH via emission of gravitational waves.
+                                                      Stellar BHMF                                                             15
+
+
+
+
+Figure 2. The galactic term dṀ? /dV d log Z of Eq. (4) expressing the amount of SFR (color-coded) per unit comoving volume
+as a function of redshift z (on x-axis) and of metallicity Z (on y-axis). The black horizontal line highlights the solar value Z .
+16                                                      A. Sicilia et al.
+
+
+
+
+Figure 3. The stellar term dN• /dMSFR d log m• of Eq. (7) expressing the number of BHs per unit star-formed mass (color-
+coded) as a function of BH mass m• (on x-axis) and of metallicity Z (on y-axis). Different panels refer to: isolated stars evolving
+into single BH (top left); binary stars failing to form a compact binary and instead originating a single BH (top right); binary
+stars evolving in binary BHs (bottom left); summation of these contributions (bottom right).
+                                                   Stellar BHMF                                                          17
+
+
+
+
+Figure 4. The stellar BH cosmic birthrate dṄ /dV d log m• (color-coded) as a function of redshift z (on x-axis) and BH mass
+m• (on y-axis).
+18                                                 A. Sicilia et al.
+
+
+
+
+Figure 5. The stellar BH relic mass function dN/dV d log m• as a function of the BH mass m• at different redshifts z ∼ 0
+(cyan), z ∼ 1 (orange), z ∼ 2 (green), z ∼ 4 (red), z ∼ 6 (violet), z ∼ 8 (brown) and z ∼ 10 (pink).
+                                                      Stellar BHMF                                                            19
+
+
+
+
+Figure 6. The stellar BH relic mass function dN/dV d log m• as a function of the BH mass m• at redshift z ∼ 0 (blue) and
+z ∼ 10 (green), with highlighted the contribution to the total (solid lines) by single BHs formed from isolated stars (dot-dashed
+lines), failed BH binaries (dashed lines), and BH binaries (dotted lines).
+20                                                      A. Sicilia et al.
+
+
+
+
+Figure 7. The relic density ρ• in stellar mass BHs as a function of redshift z (solid blue line); contribution from different
+BH mass ranges are also displayed: m• /M . 20 (dotted), 20 . m• /M . 50 (dashed) and m• /M & 50 (dot-dashed). For
+reference, the stellar mass density in galaxies is also illustrated (orange line). Moreover, the observational estimate of the mass
+density in supermassive BHs with M• ∼ 106 − 1010 M at z ∼ 0 is shown (Shankar et al. 2020; red shaded area in the bottom
+left corner).
+                                                     Stellar BHMF                                                           21
+
+
+
+
+Figure
+P         8.    Impact of binary BH mergers on the stellar BH relic mass function.               Top left panel: stellar term
+  i=1,2 dN??→••→• /dMSFR d log m•,i representing the number of binary stellar systems that first evolve in a BH binary and then
+are able to merge
+               P within the Hubble time (color-coded), as function of metallicity Z and BH mass m• . Top right panel: cosmic
+merging rate     i=1,2 dṄ••→• /dV d log m•,i (color-coded; see Eq. 10) as a function of BH mass m• and redshift z. Bottom
+panel: stellar BH relic mass function dN• /dV d log m• as a function of BH mass m• at redshift z ∼ 0, without (red lines) and
+with (green line) correction for binary BH merging effects; solid lines refer to the total mass function and dashed line to the
+contribution from binary BHs.
+22                                                     A. Sicilia et al.
+
+
+
+
+Figure 9. The BH mass function of merging BH binaries as a function of primary BH mass at z ≈ 0. The outcome of this
+work is illustrated by the red solid line. Estimates from the analysis of gravitational wave observations by Abbott et al. (2021a)
+and Baxter et al. (2021) are reported as blue and orange shaded areas, respectively (for both determinations the 68% and 95%
+credible intervals are represented with dark and light shades).
+                                                     Stellar BHMF                                                           23
+
+
+
+
+Figure 10. Impact on the BH mass function of different prescriptions for the galactic term (see Sect. 4.1). Top panels: the
+galactic term of Eq. (4) when assuming our reference Speagle (2014) main-sequence and Mannucci et al. (2011) fundamental
+metallicity relation (left), when changing the fundamental metallicity relation to that by Hunt et al. (2016; middle), and when
+changing the main sequence relation to that by Boogaard et al. (2018; right). Bottom panel: the relic stellar BH mass function
+at redshift z ∼ 0 for the three cases just described above.
+24                                                     A. Sicilia et al.
+
+
+
+
+Figure 11. Impact on the BH mass function of different codes and prescriptions for the computation of the stellar term (see
+Sect. 4.1). Top panels: the (total) stellar term of Eq. (7) from the SEVN (left) and the COSMIC (middle) binary stellar evolution
+codes assuming a common envelope parameter αCE = 5 (see Sect. 4.1); results with COSMIC (right) for αCE = 1 are also shown.
+Bottom panel: the relic stellar BH mass function at redshift z ∼ 0 from the SEVN (solid blue line) and the COSMIC (dotted blue
+line) with αCE = 5, and from COSMIC (dashed blue line) with αCE = 1; the contribution from binaries is also highlighted (green
+lines).
+                                                      Stellar BHMF                                                              25
+
+
+
+
+Figure 12. Impact of the binary fraction f?? on our results (see Sect. 4.1). Top panels: the (total) stellar term of Eq. (7) for
+f?? = 0 (left; no stars born in binaries), 0.5 (middle; our fiducial case) and 1 (right; all stars born in binaries). Bottom panel:
+the relic stellar BH mass function at redshift z ∼ 0 for f?? = 0 (dotted line), 0.5 (solid) and 1 (dashed).
+26                                                      A. Sicilia et al.
+
+
+
+
+Figure 13. Top panel: impact of the dynamical formation channel on the BH primary mass distribution of merging BH binaries
+z ≈ 0, computed from the simulations for young open star clusters by Di Carlo et al. (2020, see Section 4.2 for details). Lines
+refers to different fraction of star formation occurring in the field ffield ≈ 1 (solid; only isolated binaries), 0.8 (dashed), 0.6
+(dot-dashed), 0.4 (dot-dot-dashed) and 0.2 (dotted). Estimates from the analysis of gravitational wave observations by Abbott
+et al. (2021a) and Baxter et al. (2021) are reported as blue and orange shaded areas, respectively (for both determination the
+68% and 95% credible intervals are represented with dark and light shades). Bottom panel: impact of the dynamical formation
+channel on the relic BH mass function at z ∼ 0. Dotted lines refer to the contribution from star clusters and solid lines to
+the total (field+star clusters) BH mass function. Color-code refers to different fraction of star formation occurring in the field
+ffield ≈ 1 (red), 0.8 (blue), 0.6 (green), 0.4 (purple) and 0.2 (yellow).
+                                                    Stellar BHMF                                                          27
+
+
+
+
+Figure 14. The light seed distribution at redshift z ∼ 10 (solid), 8 (dot-dashed), 6 (dashed) and 0 (dotted) from the stellar
+BH mass function of this work is compared with that expected from pop-III remnants (orange line), runaway stellar collisions
+in nuclear star clusters (green line), and direct collapse scenarios (blue line); see discussion in Sect. 4.3.
+     28                                                             A. Sicilia et al.
+
+                                         Table 1. Fits to stellar BH relic mass function via Eq. (12).
+
+                                Field, ffield = 1                                               Field+Cluster, ffield = 0.6
+
+
+ z         log N       log M•     α        log NG          log M•,G    σG      log N        log M•     α      log NG          log M•,G    σG
+              −3                                  −3                               −3                                −3
+          [Mpc     ]   [M ]                [Mpc        ]    [M ]              [Mpc      ]   [M ]              [Mpc        ]    [M ]
+ 0         5.623       0.607    -3.781      2.413           2.021     0.052     6.078       0.704    -2.717    3.496           1.808     0.1846
+ 1         5.429       0.609    -3.859      2.309           2.023     0.051     5.887       0.709    -2.785    3.304           1.843      0.173
+ 2         5.107       0.612    -3.914      2.064           2.024     0.051     5.592       0.713    -2.823    3.008           1.866      0.165
+ 4         4.344       0.634    -3.902      1.419           2.037     0.049     4.796       0.747    -2.782    2.101           1.952      0.132
+ 6         3.614       0.659    -3.866      0.806           2.054     0.045     4.112       0.785    -2.718    1.359           2.012      0.107
+ 8         2.894       0.676    -3.868      0.197           2.066     0.043     3.457       0.816    -2.660    0.685           2.046      0.091
+ 10        2.305       0.680    -3.884      -0.344          2.072     0.042     2.897       0.831    -2.623    0.113           2.059     0.0841
+Note—Fits valid in the range m• ∼ 5 − 160 M . Typical relative uncertainties on the parameters are . 10%, and typical values of
+ the reduced χ2r . 1 are found. The results for ffield = 0.6 are based on the simulations by Di Carlo et al. (2019, 2020) for young
+ open star clusters.
+
