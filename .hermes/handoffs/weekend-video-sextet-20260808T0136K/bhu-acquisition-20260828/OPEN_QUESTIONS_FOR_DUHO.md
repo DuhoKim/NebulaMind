@@ -5,6 +5,17 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-03 17:06 KST — K1 stage 1 result: the natural-selection premise fails for the primordial amplitude (2 blind seats, unanimous)
+
+**Result (`K1S1_RESULT_20260903.md`):** black-hole production RISES monotonically with the primordial amplitude through the
+Planck value (K1_MONOTONE_UP) and FALLS with the neutron-star mass cap across 2.5 M☉ (K1_MONOTONE_DOWN); no nuisance flips
+either sign; the primordial-black-hole channel is empty at the Planck amplitude, so Rothman & Ellis's requirement is answered
+without needing it. Modest but real: it computes the 1993 objection. Nothing moved.
+**Options for the record:** (a) annotate entries 6 and 31 with the stage-1 finding in the warrant column and the record's
+prose; tiers and standings untouched; stage 2 (population synthesis, ~20 seat-days) preregistered next [recommended];
+(b) annotate and STOP K1 here (stage 2 not worth the cost given the structural sign); (c) hold the annotation until stage 2.
+
+---
 ## FOR DUHO'S EYE 2026-09-03 16:36 KST — K2 and K1 stage-1 preregistrations filed (no decision needed; your "a" of 16:24 authorized the start)
 
 - `K2_JUNCTION_PREREG_20260903.md` — the junction-classification theorem (entries 1, 4, 5, 22, 56). Gate: PREREG_SOUND_WITH_REPAIRS,
