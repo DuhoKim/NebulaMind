@@ -95,7 +95,7 @@ falsifier).
 23–27 ASSUMED (packet 01:00 ruled (a) by Duho: tier kept, flag carried); prospects 21/47 ROUTE_CONNECTED, 9/16
 ROUTE_NAMED_ONLY; obstructions 5/22/48 PROOF_OWNED, 4 PROOF_CONTESTED (domain narrowed 09-02); consistency-only
 split between CONSTRUCTION_DERIVED, MIXED (derived background, asserted link to cosmology — the common case) and
-CONSTRUCTION_ASSERTED. 18 and 56: NO_TEXT. Blind doubles on 31, 23, 38, 6; no tier or standing moved.
+CONSTRUCTION_ASSERTED. 18: NO_TEXT (56 pinned and cell filed 2026-09-03 15:44 KST). Blind doubles on 31, 23, 38, 6; no tier or standing moved.
 
 **Blind double of the WARRANT column (2026-09-03 14:10 KST):** every text cell now has a second, blind seat (Claude) and the factual splits a third (agy, access-proven). Changes: 37 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 28 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 42 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 20 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 24 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`; 36 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 43 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 49 `W_CONSTRUCTION_DERIVED`→`W_MIXED`; 14 `W_CONSTRUCTION_ASSERTED`→`W_MIXED`; 22 `W_PROOF_OWNED`→`W_PROOF_CITED`; 26 `W_DIRECTION_ASSUMED`→`W_DIRECTION_DERIVED`. Histogram: W_BORROWED 2, W_CONSTRUCTION_ASSERTED 3, W_CONSTRUCTION_DERIVED 1, W_DIRECTION_ASSUMED 4, W_DIRECTION_DERIVED 3, W_EXPLICIT 2, W_MIXED 25, W_PROOF_CITED 1, W_PROOF_CONTESTED 1, W_PROOF_OWNED 2, W_ROUTE_CONNECTED 2, W_ROUTE_NAMED_ONLY 2, W_UNDERIVED 1. Record: `bhu-acquisition-20260828/WARRANT_DOUBLE_RECONCILIATION_20260903.md`. Tiers untouched.
 
@@ -1013,6 +1013,7 @@ Claim: the collapse-to-bounce route into the BHU picture. Testability: **QUALITA
 Record: new to us. Audit-worthiness: **medium**.
 
 **56. "The mass of our observable Universe." MNRAS Lett. 521, L59–L63 (2023).**
+**Warrant (2026-09-03 15:44 KST, corpus-wide warrant audit; `bhu-acquisition-20260828/WARRANT_TABLE_20260903.md`):** `W_DIRECTION_ASSUMED` (both blind seats: the cut-off direction is a premise/citation, no perturbation derivation; the letter declines the non-flat case at source lines 138–141) — borrowed inputs: finite top-hat and empty-exterior boundary closure (SOURCE lines 147–160); GHY boundary evaluation from Gaztañaga (2022c) (SOURCE lines 206–218); reported CMB cut-off measurements from Fosalba & Gaztañaga (2021) and Gaztañaga & Camacho-Quevedo (2022) (SOURCE lines 268–271). Text pinned today from the already-pinned MNRAS PDF (`gaztanaga_mass_mnras_clean.txt`); NO_TEXT status withdrawn. Tier untouched; packet asks whether ruling (a) of 01:10 extends to this entry.
 DOI 10.1093/mnrasl/slad015 — VERIFIED (Crossref: MNRAS Lett, v521, pL59-L63, 2023). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori), from the published MNRAS PDF. Finite-mass universe inside its own r_S; Λ = 3/r_S² as a boundary effect; M_T ≈ 6×10²² M☉. States its smoking gun — a cut-off in the largest-scale perturbations — with cited CMB measurements.

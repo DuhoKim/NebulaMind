@@ -5,6 +5,15 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-03 15:44 KST — entry 56 (Gaztañaga 2023, MNRAS Lett.): warrant `W_DIRECTION_ASSUMED`, same series claim as 23–27 and 6
+
+**Finding (two blind seats agree):** the large-scale cut-off direction is taken as premise and citation; no perturbation
+derivation; the letter explicitly declines the non-flat case (lines 138–141). Text was pinned today from the MNRAS PDF
+that had been in the tree since 08-23 (an extraction gap, not an acquisition gap).
+**Options:** (a) extend your 01:10 ruling — keep QUALITATIVE-DIRECTIONAL, carry the flag [recommended; identical fact
+pattern to 23–27]; (b) drop to CONSISTENCY-ONLY. Nothing changes until you rule; the cell is filed either way.
+
+---
 ## RESOLVED 2026-09-03 14:34 KST — Duho: "22a, me" (option (a) applied: domain narrowed to the closed-daughter limb, tier kept, W_PROOF_CITED carried). Was: YOUR CALL 2026-09-03 14:10 KST — entry 22 (Easson 2026, THEORETICAL-OBSTRUCTION): proof of the flat/open limb is CITED, not owned
 
 **Finding (blind double + third seat, all three agree on the facts):** the closed-daughter limb (Proposition 2) is proved in the paper; the flat/open limb rests on a cited Burwig–Easson theorem (source line 648 "For flat and open daughters, the obstruction is more general…"). Prereg §3: `W_PROOF_CITED` = the ownership-of-proof rule is not met → packet.
