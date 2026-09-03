@@ -9,3 +9,14 @@
   receipted linear relation, not a quoted numeral. No other row changes. The master sheet in `K1S1_PIN_GATE_codex.md`
   stands for rows 1 and 3–7 (with the Fryer line numbers as repaired there; `1110.1726_clean.txt` sha256 8f49418708594992…
   is now the frozen extraction).
+
+**Clerical amendment (Tori, 17:03 KST, answering the Kimi pin audit `K1S1_PIN_AUDIT_kimi.md`):** full hashes —
+`astro-ph_0611454_clean.txt` sha256 c14f95336af9ad140997abb925002c66a2cdcbff71bc993553def72e26b922c3; `1110.1726_clean.txt` (frozen extraction) sha256 8f49418708594992cc8f9da284fb8f5fb5b2ce074c3b1932fa8b1fa58b1340f2. Row 6 units: the
+Sicilia 2022 mass-function fits log N are per Mpc³ per dex of black-hole mass; the relic density is in M☉ Mpc⁻³. Kimi's
+issue 2 (the row-2 receipt is a derivation) restates the first gate's objection; the codex re-gate (`K1S1_PIN_GATE2_codex.md`,
+PIN_GATE=PASS) accepted the quoted-linearity receipts; the dissent is recorded here, not adjudicated by Tori. Issue 3
+(metallicity corners without pinned values) is answered below once the Fryer text is checked.
+**Issue 3 answered — row 4 metallicity corners pinned:** Fryer et al. 2012 evaluate their prescriptions "at solar and zero
+metallicity" (`1110.1726_clean.txt` L436–437) and state solar as Z = 0.02 (L1786); the remnant fits are "fairly insensitive
+to the metallicity" (L638). Nuisance range for phase 2: Z ∈ [0, Z☉] with Z☉ = 0.02; a seat sampling 0.01 Z☉ and 1.00 Z☉ as
+corners is inside this range.
