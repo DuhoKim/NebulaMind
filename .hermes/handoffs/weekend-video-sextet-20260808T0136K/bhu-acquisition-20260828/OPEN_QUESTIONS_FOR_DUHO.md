@@ -5,7 +5,7 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## YOUR CALL 2026-09-03 15:44 KST — entry 56 (Gaztañaga 2023, MNRAS Lett.): warrant `W_DIRECTION_ASSUMED`, same series claim as 23–27 and 6
+## RESOLVED 2026-09-03 16:12 KST — Duho: "as Tori's rec" = option (a) (tier kept, W_DIRECTION_ASSUMED carried). Was: YOUR CALL 2026-09-03 15:44 KST — entry 56 (Gaztañaga 2023, MNRAS Lett.): warrant `W_DIRECTION_ASSUMED`, same series claim as 23–27 and 6
 
 **Finding (two blind seats agree):** the large-scale cut-off direction is taken as premise and citation; no perturbation
 derivation; the letter explicitly declines the non-flat case (lines 138–141). Text was pinned today from the MNRAS PDF
