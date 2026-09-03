@@ -16,13 +16,15 @@
 1. Single particle at rest: ⟨S_i S^i⟩ = ¾ (C1, all seats); ⟨S_i⟩ = 0 for ρ = ½·1 (Tr(ρσ_i) = 0).
 2. Macroscopic pseudovector density for N particles in V: s_i = (1/V) Σ_A S_i^(A). Its square averaged: (1/V²)[Σ_A ⟨S^(A)·S^(A)⟩ + Σ_{A≠B} ⟨S^(A)⟩·⟨S^(B)⟩] = (1/V²)[N·¾ + 0] = ¾·n/V. **Linear in n.** (Claude verified by explicit 4×4 and 8×8 product states at N = 2, 3.) Square of the mean: 0.
 3. Spin-fluid object: with s_ij = s_ijk u^k and s_ijk = −e_ijkl s^l, ½ s_ij s^ij = |s⃗|² identically (Claude; s_ijk s^ijk = 6|s⃗|²). So its unpolarized average is the same ¾·n/V. **Linear in n.**
-4. Polarized limit (C2): all spins +z: s_z = n/2, s_i s^i = n²/4 — genuine n² scaling from a nonzero mean.
-5. Conventions that manufacture n²: ¾ n² = n²⟨S²⟩ (coherent RMS); ¼ n² = the polarized closure; ⅛ n² = ½·(n/2)²·2 half-fluids (agy) = ¼n²/2 (Claude) = the ε/√6 normalisation (codex) — three different routes, none fixed by inputs 1–2.
+4. Polarized limit (C2): all spins +z: ⟨s_z⟩ = n/2, so ⟨s⟩² = n²/4; the mean of the square is ⟨s²⟩ = n²/4 + n/(2V) (operator ordering; the Claude seat prints N²/4 + N/2 = S_tot(S_tot+1)). The LEADING term is n²: genuine n² scaling from a nonzero mean, with the same n/V-type sub-leading piece that is the whole signal in the unpolarized case.
+5. Conventions that manufacture n²: ¾ n² = n²⟨S²⟩ (coherent RMS); ¼ n² = the polarized closure; ⅛ n² = 2 · (n/2)²/4 = n²/8, two fully polarized non-interfering half-fluids of density n/2 each (agy) = ¼n²/2, the polarized closure with the antisymmetric double-count factor dropped (Claude) = the ε/√6 normalisation (codex) — three different routes, none fixed by inputs 1–2.
 6. Deletion probe (C4): removing the orientation average returns step 4 for both objects, as each seat predicted before running.
 7. Units (C3): restoring ℏ, c gives (ℏc)²·¾·n/V for the average and (ℏcn)²/4 for the polarized closure; the printed (ℏcn)²/8 form is reproduced only under the step-5 prescriptions.
 
 ## C. Final classes
 Headline CLOSURE_SCALING_FAILS; both objects CLOSURE_SCALING_FAILS; corollary for entry 10's pair: CLOSURE_CONFLICT (same quantity, ¾ vs ⅛).
+
+*(Kimi arithmetic re-check 19:35 KST, `K3S1_CHECK_ARITH_kimi.md`: steps 1, 2, 3, 7 recompute clean; two clerical defects — the polarized-limit line quoted ⟨s⟩² for ⟨s²⟩, and the half-fluid arithmetic was mis-transcribed — corrected above; neither touches the classes.)*
 
 ## D. Where a critic could disagree (named)
 1. **Correlations.** The ensemble is uncorrelated at leading order. A Fermi-statistics exchange term in the four-fermion operator could reintroduce an n²-like piece; excluded by the prereg, named as the next question.
