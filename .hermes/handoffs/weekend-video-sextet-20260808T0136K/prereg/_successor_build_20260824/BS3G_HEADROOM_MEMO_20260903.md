@@ -49,3 +49,11 @@ fresh sweep (~10 min, then the PINNABLE verifier), one dispatcher referee, your 
 (ii) V137-H: fixture accuracy 0.95, Γ = 0.10: a real-size tilt test. Recommended.
 (iii) both: sign (i) now, add (ii) as V138 later. Costs a second signature for no scientific gain.
 V137 stays HELD at SIGNABLE until you choose; (ii) is a re-draft of the same amendment, not a new chain.
+
+## Provenance precision (added after reading the experiment record)
+The frozen fixture is built by `ref/gain_counterfactual_path.py::_fixture(n=240, seed=7)`, a P0-SIGNED file
+(sha 92cbbdf8…) that stays byte-untouched under every option. The headroom variant does not edit it: the
+unpinned BS-3g producer supplies the calibration accuracy a₀ used by the mapping a(c) = a₀ + γ(c − c̄) (the
+experiment copy applied exactly that shift, sha 708da93d…). V137-H would state a₀ = 0.95 as a BS-3g design
+parameter with its derivation, and the PINNABLE verifier recomputes the matrix from it. Experiment runtime:
+56.5 min for the five fixtures (the 0.95 sweep alone took 16.6 min).
