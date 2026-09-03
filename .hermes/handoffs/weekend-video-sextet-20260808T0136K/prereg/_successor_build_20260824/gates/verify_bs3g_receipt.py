@@ -67,12 +67,15 @@ def rules():
     g = (BASE / "GAMMA_RATIFICATION_20260830.md").read_text()
     m = (BASE / "OPEN_QUESTION_GAIN_SIGN_MAPPING.md").read_text()
     c = (BASE / "MAPPING_CONFIRMATION_RULING_20260831.md").read_text()
-    v = (BASE / "PREREG_SUCCESSOR_DRAFT_V136_20260903.md").read_text()
+    v = (BASE / "PREREG_SUCCESSOR_DRAFT_V137_20260903.md").read_text()
     nd = int(unique(r"`n_draws` \| \*\*(\d+)\*\*", d, "n_draws"))
     seed = int(unique(r"`draw_master_seed` \| \*\*(\d+)\*\*", d, "seed"))
     gen = unique(r"`draw_generator_id` \| \*\*`([^`]+)`\*\*", d, "generator")
     ns = int(unique(r"`n_steps` \| \*\*(\d+)\*\*", d, "n_steps"))
-    gamma = Decimal(unique(r"That number is now ratified: \*\*Γ = ([0-9.]+)\*\*", g, "Gamma"))
+    # V137-H supersedes only the endpoint for this design fill.  Parse the values
+    # from the text being verified, so a receipt cannot choose its own grid.
+    gamma = Decimal(unique(r"V137-H-GAMMA-BOUND: `([0-9.]+)`", v, "V137-H Gamma"))
+    a0 = Decimal(unique(r"V137-H-A0: `([0-9.]+)`", v, "V137-H a0"))
     npv = int(unique(r"PRODUCTION permutation contract — `n_perm = ([0-9,]+)`", v, "n_perm").replace(",", ""))
     required = (("COMMON RANDOM", d), ("ZERO-BASED", d), ("option A", m),
                 ("WORST CASE OVER DRAWS", m), ('option (b), "real gate"',
@@ -87,7 +90,21 @@ def rules():
     j0 = ns // 2
     if ns % 2 or decstr(grid[j0]) != "0":
         raise VerificationRefusal("non-canonical baseline")
-    return nd, seed, gen, ns, gamma, step, grid, j0, npv
+    return nd, seed, gen, ns, gamma, step, grid, j0, npv, a0
+
+
+def shifted_calibration(frozen, a0):
+    target = float(a0)
+    if not np.isfinite(target) or not 0.0 < target <= 1.0:
+        raise VerificationRefusal("V137-H a0 is outside (0, 1]")
+    shift = target - float(frozen["a_hat"])
+    out = dict(frozen)
+    for key in ("a_hat", "a_lb"):
+        out[key] = float(frozen[key]) + shift
+    for key in ("a_b", "a_lb_b"):
+        out[key] = np.asarray(frozen[key], dtype=np.float64).copy() + shift
+    out["cov_a"] = np.asarray(frozen["cov_a"], dtype=np.float64).copy()
+    return out
 
 
 def mask_digest(mask):
@@ -107,7 +124,7 @@ def cal_digest(cal):
 
 
 def recompute(progress=False):
-    nd, seed, gen, ns, gamma, step, grid, j0, n_perm = rules()
+    nd, seed, gen, ns, gamma, step, grid, j0, n_perm, a0 = rules()
     for field, (path, expected) in PINS.items():
         if sha(path) != expected:
             raise VerificationRefusal(f"{field} pinned bytes moved")
@@ -124,7 +141,7 @@ def recompute(progress=False):
         mask, _ = gcp._fixture()
         if type(mask) is not v9.FixtureMask:
             raise VerificationRefusal("mask is not exact loaded FixtureMask type")
-        cal = gcp._CAL
+        cal = shifted_calibration(gcp._CAL, a0)
         ep = PINS["estimator_sha256"][0]
         ens = {"__name__": "gain_gradient_estimator_independent", "__file__": str(ep)}
         exec(compile(ep.read_bytes(), str(ep), "exec", dont_inherit=True, optimize=0), ens)

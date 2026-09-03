@@ -58,7 +58,7 @@ def _one(pattern: str, text: str, label: str) -> str:
     return hits[0]
 
 
-def ruled_values():
+def ruled_values(gamma_bound=None):
     d = DRAW_RULE.read_text()
     g = GAMMA_RULE.read_text()
     m = MAP_RULE.read_text()
@@ -69,7 +69,10 @@ def ruled_values():
     seed = int(_one(r"`draw_master_seed` \| \*\*(\d+)\*\*", d, "draw_master_seed"))
     generator = _one(r"`draw_generator_id` \| \*\*`([^`]+)`\*\*", d, "draw_generator_id")
     n_steps = int(_one(r"`n_steps` \| \*\*(\d+)\*\*", d, "n_steps"))
-    gamma = Decimal(_one(r"That number is now ratified: \*\*Γ = ([0-9.]+)\*\*", g, "Gamma"))
+    old_gamma = Decimal(_one(r"That number is now ratified: \*\*Γ = ([0-9.]+)\*\*", g, "Gamma"))
+    gamma = old_gamma if gamma_bound is None else Decimal(str(gamma_bound))
+    if not gamma.is_finite() or gamma <= 0:
+        raise BS3GRefusal("gamma-bound must be a finite positive decimal")
     n_perm = int(_one(r"PRODUCTION permutation contract — `n_perm = ([0-9,]+)`", v, "n_perm").replace(",", ""))
     if "COMMON RANDOM" not in d or "ZERO-BASED" not in d:
         raise BS3GRefusal("ruling value absent: CRN or zero-based addressing")
@@ -138,8 +141,23 @@ def _cal_digest(cal) -> str:
     return hashlib.sha256(canonical({"scope": "FROZEN-FIXTURE", "calibration": record})).hexdigest()
 
 
-def compute_fields(progress=False, diagnostics=None):
-    rv = ruled_values()
+def _shifted_calibration(frozen, a0=None):
+    """Apply the disclosed BS-3g accuracy-location design shift only."""
+    target = float(frozen["a_hat"]) if a0 is None else float(a0)
+    if not np.isfinite(target) or not 0.0 < target <= 1.0:
+        raise BS3GRefusal("a0 must be finite and in (0, 1]")
+    shift = target - float(frozen["a_hat"])
+    out = dict(frozen)
+    for key in ("a_hat", "a_lb"):
+        out[key] = float(frozen[key]) + shift
+    for key in ("a_b", "a_lb_b"):
+        out[key] = np.asarray(frozen[key], dtype=np.float64).copy() + shift
+    out["cov_a"] = np.asarray(frozen["cov_a"], dtype=np.float64).copy()
+    return out
+
+
+def compute_fields(progress=False, diagnostics=None, a0=None, gamma_bound=None):
+    rv = ruled_values(gamma_bound)
     for name, (path, want) in PINNED.items():
         if _sha(path) != want:
             raise BS3GRefusal(f"pinned {name} digest mismatch")
@@ -149,7 +167,7 @@ def compute_fields(progress=False, diagnostics=None):
         mask, _ = gcp._fixture()
         if type(mask) is not v9.FixtureMask:
             raise BS3GRefusal("fixture mask is not type-exact")
-        cal = gcp._CAL
+        cal = _shifted_calibration(gcp._CAL, a0)
         # The pinned estimator is loaded from its verified buffer and really executed.
         ep = PINNED["estimator"][0]
         ens = {"__name__": "gain_gradient_estimator", "__file__": str(ep)}
@@ -254,8 +272,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", type=Path)
     ap.add_argument("--progress", action="store_true")
+    ap.add_argument("--a0", type=Decimal, help="BS-3g design accuracy (default: fixture a_hat)")
+    ap.add_argument("--gamma-bound", type=Decimal, default=Decimal("0.25"),
+                    help="symmetric grid endpoint (default: 0.25)")
     a = ap.parse_args()
-    envelope = receipt_strict("BS-3g", compute_fields(a.progress))
+    envelope = receipt_strict("BS-3g", compute_fields(a.progress, a0=a.a0,
+                                                       gamma_bound=a.gamma_bound))
     payload = json.dumps(envelope, sort_keys=True, indent=2, ensure_ascii=False,
                          allow_nan=False) + "\n"
     if a.output:

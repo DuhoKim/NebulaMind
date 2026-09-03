@@ -216,3 +216,59 @@ VERSION: BS3G-BUILD-V2
 TESTS: 55/55
 RECEIPT: a8277a193caffa826 DETERMINISTIC: yes
 INVARIANCE_OUTCOME: FAILED INCONCLUSIVE_CELLS: 4752/5049 MIN_A_LB: 0.6949581589958159
+
+## Round 3 — V137-H headroom variant
+
+Duho selected `BS3G_HEADROOM_MEMO_20260903.md` option (ii) via Blanc at
+19:37 KST, verbatim "as their recs" (direction #69), following ruling (a) at
+16:52 KST (direction #66). This run changes exactly two unpinned-producer
+inputs: BS-3g DESIGN accuracy a₀ = 0.95 and Γ = 0.10. At the retained
+`n_steps = 50`, Δγ is derived as 0.004. Seed 20260830, 99 draws, CRN, mapping A
+worst case, option (b), and all signed/pinned bytes are unchanged.
+
+The producer applies the same accuracy-location shift documented by
+`gates/bs3g_headroom_experiment/HEADROOM_RESULTS_20260903.md`: +0.07 to
+`a_hat`, `a_b`, `a_lb`, and `a_lb_b`, preserving the lower-bound margins,
+covariance and synthetic-sky geometry. The P0-signed
+`ref/gain_counterfactual_path.py::_fixture` remains byte-identical at
+`92cbbdf89bd2a494c9cfb9f19fb12a46cf59a16731246cea2e74c56d2454a9b7`.
+The BS3G-V1 entry remains twenty fields and its digest remains
+`eb8589f5f70656b16dc8ba16e7d78677a0ab0da7b92cb54eddd22fef14e20102`;
+a₀ is therefore recorded here and in V137-H, not added to the receipt.
+
+The retained real-floor record is
+`run/classp_candidates/BS-3g.FAILED-0p88-20260903.json`, sha256
+`a8277a193caffa826ac3a1c2884545f0112b64e7cd3f6a6556dcc996041e49ba`.
+It was renamed, not deleted.
+
+V137-H matrix diagnostics: 99 × 51 = 5,049 cells; 0 inconclusive cells; one decision-changing cell at draw 94, γ = −0.10 (`REPRODUCED-LONGO` versus baseline `INCONCLUSIVE`);
+minimum `a_lb_b = 0.8639832635983262`; `gamma_hat =
+-1.3752885039820904e-18`; `sigma_gamma = 0.04790176316993866`;
+`invariance_outcome = FAILED`. The control tests decision invariance to a
+sensitivity tilt up to about 2σ_γ on a synthetic sky of accuracy 0.95; the
+real instrument's floor headroom is what the retained FAILED receipt documents.
+
+V2 tooling pins:
+
+```text
+48b2cc6607b91b1e746c2ee7cb21c9b624fb247be5aee3922fb3572351848e82  gates/bs3g_producer.py
+ca6e2ea35b38bebb020b053839477306cbce97a7791de4ad76d9f524afe21454  gates/verify_bs3g_receipt.py
+19ffcbab574a8663e248b4d837be9734e48843e8c9ab8ea59489ef2558cf5818  run/classp_candidates/BS-3g.json
+```
+
+Fresh producer run 1 SHA-256:
+`19ffcbab574a8663e248b4d837be9734e48843e8c9ab8ea59489ef2558cf5818`.
+Fresh producer run 2 SHA-256:
+`19ffcbab574a8663e248b4d837be9734e48843e8c9ab8ea59489ef2558cf5818`.
+`cmp` returned zero: the receipts are byte-identical.
+
+Independent final validation:
+
+```text
+BS-3g receipt verifier: 20/20 fields PASS; outcome FAILED
+BS-3g V137-H parameter tests: 12/12 PASS
+receipt_strict fixtures: 10/10 PASS
+```
+
+Verifier PASS authenticates the FAILED receipt; it does not convert the
+scientific outcome into HELD. Accordingly BS-3g remains UNFILLED.

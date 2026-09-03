@@ -621,15 +621,17 @@ V135 → V136: the BS-2a DESIGN fill under amendment discipline — `PRINCIPAL-2
 
 R2 (per-entry schema digests, 2026-09-03 13:5x KST): `run/receipt_strict.py` now carries `schema_entry_digest` / `assert_entries_preserved`; entry digests BS2V `c5931c40…`, BS2A `e3c08ea6…`, BS3G `eb8589f5…` recorded in §7/§11; file sha `27e88520…` → the post-R2 sha is recorded in V136_BS2A_FILL_RECORD_20260903.md. R1: BS-2a blocks BS-2f only.
 
-## V136 → V137 (2026-09-03 — BS-3g range narrowed; fill pending)
+## V136 → V137 (2026-09-03 — BS-3g V137-H headroom fill)
 
-The principal ruled option (a) on `BS3G_RANGE_VS_FLOOR_DECISION_20260903.md`
-at 2026-09-03 16:52 KST via Blanc (human direction #66): re-ratify Γ at
-0.01, retain `n_steps = 50` and every other draw mechanic. The referee found
-`a_lb = 0.8534` at ±0.01 and `0.8468` at ±0.02 on the frozen fixtures. The
-verifier-valid receipt sha `a8277a19…` remains the true FAILED record that
-blocked under the historical ±0.25 endpoint; producer `618767cd…` and verifier
-`09b0acaa…` are pinned. V137 is FILL-PENDING-RECEIPT until a new verifier-valid
-receipt under Γ = 0.01 exists; only HELD fills BS-3g.
+The principal ruled option (a) at 2026-09-03 16:52 KST via Blanc (human
+direction #66), then re-ratified the headroom recommendation verbatim as
+"as their recs" at 19:37 KST (direction #69): option (ii), and nothing else.
+V137-H sets BS-3g DESIGN accuracy a₀ = 0.95 and Γ = 0.10, retains `n_steps =
+50`, seed 20260830, 99 draws, CRN, mapping A worst case and option (b), and
+derives Δγ = 0.004. The headroom experiment measured edge 0.12. Receipt
+`a8277a19…` remains the true FAILED 0.88 record. The fresh receipt has zero
+calibration-inconclusive cells but is itself FAILED because draw 94 changes
+decision at γ = −0.10; the synthetic DESIGN control remains unfilled. No pixel
+or network was used.
 
-V136 → V137: principal ruling (a), human direction #66, 2026-09-03 16:52 KST via Blanc — Γ = 0.01, n_steps = 50, derived Δγ = 0.0004; FAILED receipt `a8277a19…` recorded as blocking; tooling pins `618767cd…` / `09b0acaa…`; NEW receipt required, no fill claimed, no pixel.
+V136 → V137: Duho ruling (a), direction #66, and "as their recs", direction #69 — V137-H option (ii): BS-3g DESIGN a₀ = 0.95, Γ = 0.10, n_steps = 50, Δγ = 0.004; retained FAILED 0.88 receipt `a8277a19…`; fresh deterministic FAILED receipt `19ffcbab…` (0/5049 inconclusive, draw-94 decision flip), V2 tooling pins, slot unfilled; no pixel, network, or signed/pinned edit.
