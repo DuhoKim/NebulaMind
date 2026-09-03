@@ -57,3 +57,16 @@ associations, 33.896302 s. The following dry-finalise refused the 8,930-chunk /
 
 This work does not modify acquisition state, bricks, journals, pins, seals,
 preregistration V1–V9, referee reports, or Git state.
+
+## Fallback route (local sweeps) — UNPINNED until refereed; not used for tonight's receipt
+
+`sweep_source.py` is a draft local DR10-south sweep implementation of the
+already named local-Tractor fallback. It reads only Tractor identity and
+position columns, verifies every needed file against
+`sweeps/sweep_manifest_v1.json` and an OK entry in
+`sweeps/sweep_fetch_receipts.jsonl`, and records the consulted file/hash set in
+each chunk artifact. It uses the existing source contract, checkpoint helpers,
+and gate finalizer; it does not alter or replace the running TAP crossmatch.
+
+No real sweep has been opened and this route must not be used until its pins
+and referee approval have been obtained through `nm_referee_dispatch.sh`.
