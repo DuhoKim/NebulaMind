@@ -5,7 +5,15 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## RESOURCE CALL 2026-09-03 17:39 KST — K1 stage 2 cannot run on this machine as it stands (not a science packet)
+## OPEN QUESTION (on record, NOT ordered) 2026-09-03 19:06:31 KST — which parameters does Smolin's selection argument actually act on?
+
+Stage 1 varied the primordial amplitude and the neutron-star mass cap. Duho's reading (19:03): the logic is too weak to study
+further. The unresolved question behind it: cosmological natural selection (entries 6, 31) claims a local maximum of black-hole
+production over "the parameters", but neither paper fixes the parameter set; a test is only as strong as that choice. No action
+unless Duho orders it.
+
+---
+## CLOSED (Duho "install" 17:45; libraries in; stage 2 later STOPPED 19:0x) — was: RESOURCE CALL 2026-09-03 17:39 KST — K1 stage 2 cannot run on this machine as it stands (not a science packet)
 
 COMPAS (dev HEAD e728869, pinned by the codex seat) fails to build: Boost, GSL and HDF5 headers are absent (`/opt/homebrew/opt/boost`,
 `gsl`, `hdf5` all missing; first fatal: `boost/version.hpp` not found). Installing them is a machine-wide Homebrew action, which this
@@ -16,7 +24,7 @@ Also for the gate: the cap-grid value 3.5 M☉ in codex's row 3 rests on a figur
 sentence; 1.97 M☉ is sentence-pinned (L1658, L1846).
 
 ---
-## FOR DUHO'S EYE 2026-09-03 17:25 KST — K1 stage-2 preregistration filed (no decision needed; your "both a" of 17:17 ordered it)
+## CLOSED 19:0x KST — K1 stage 2 STOPPED by Duho ("a"; "too weak logic to be worth study"); see K1S2_STOPPED_20260903.md. Was: FOR DUHO'S EYE 2026-09-03 17:25 KST — K1 stage-2 preregistration filed (no decision needed; your "both a" of 17:17 ordered it)
 
 `K1S2_POPSYN_PREREG_20260903.md`: a binary-population-synthesis test of the neutron-star-cap derivative with COMPAS (public code,
 commit hash pinned at step 1), controls against the GWTC-3 merger-rate interval and the Özel & Freire pulsar-mass catalogue,

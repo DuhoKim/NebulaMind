@@ -26,5 +26,12 @@
  "rate": "~6 CPU-h per 1e6 binaries (smoke test 214 CPU s per 1e4)",
  "expected_wall_h_per_seat": "~56 (Claude estimate: 117 jobs incl. SSE, 10 concurrent)",
  "abandonment": "a seat with no new HDF5 file for 8 h while its driver PID is alive is ABANDONED and reported; a dead driver PID without DONE is FAILED and reported",
- "next": "when DONE exists for a seat, dispatch that seat's RESULT step (K1S2_<seat>_RESULT.md via its post.py); reconcile when both; third seat via wrapper on a split"
+ "next": "when DONE exists for a seat, dispatch that seat's RESULT step (K1S2_<seat>_RESULT.md via its post.py); reconcile when both; third seat via wrapper on a split",
+ "status": "STOPPED",
+ "stopped_kst": "2026-09-03 19:06:31 KST",
+ "stop_reason": "Duho ruling \"a\" (19:05 KST): \"so k1 seems to have too weak logic to be worth study\"",
+ "completed_at_stop": {
+  "codex": "0/72 batches finished, 10 in flight with data",
+  "claude": "0/117 jobs finished, 10 in flight buffered"
+ }
 }
