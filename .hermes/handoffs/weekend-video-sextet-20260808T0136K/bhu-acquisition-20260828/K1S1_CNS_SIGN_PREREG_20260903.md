@@ -1,7 +1,6 @@
 # K1 stage-1 pre-registration — does black-hole production fall when the neutron-star bar or the primordial amplitude moves? A semi-analytic sign test of the cosmological-natural-selection premise (entries 6, 7, 31)
 
-**Tori, 2026-09-03 16:26 KST. Ordered by Duho ("a", relay via Blanc 16:24 KST). Written and committed BEFORE any derivation. Gated by a fresh
-seat via `nm_referee_dispatch.sh` before filing. Paper HOLD; nothing outward; tier/standing stamps remain Duho's.**
+**Tori, 2026-09-03 16:26 KST. Ordered by Duho ("a", relay via Blanc 16:24 KST). Written and committed BEFORE any derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` (agy, ACCESS PROVEN, `K1S1_PREREG_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, four repairs applied 2026-09-03 16:36 KST; the saddle/minimum gap became the class K1_STATIONARY_NOT_MAX). Paper HOLD; nothing outward; tier/standing stamps remain Duho's.**
 
 ## 0. Why this exists
 Cosmological natural selection (entry 6, Smolin 1992; entry 31, Smolin 2004) asserts that our universe sits at "a local maximum
@@ -19,7 +18,7 @@ computes the sign of ∂N_BH/∂θ for any parameter θ. Stage 1 computes it sem
   here, not quoted).
 - **θ₂ = M_NS,max**, the maximum neutron-star mass; the study varies it across Smolin's 2.5 M☉ bar (synthesis L60).
 - **N_BH(θ) = N_st(θ) + N_PBH(θ)** per comoving volume at the present epoch.
-  - N_st: halo-collapse abundance (Press–Schechter with σ(M) ∝ A_s^{1/2} at fixed transfer function) × a star-formation
+  - N_st: halo-collapse abundance (Press–Schechter; the variance scales with the amplitude as in standard linear theory, exponent pinned with a receipt at step 1; fixed transfer function) × a star-formation
     efficiency × the initial-mass-function fraction of stars whose remnant exceeds M_NS,max. The IMF and the remnant-mass
     relation are NUISANCE inputs with named published ranges (pinned at step 1 with receipts), not single values.
   - N_PBH: threshold-collapse abundance β(A_s) from the primordial spectrum at the PBH scale, with the collapse threshold
@@ -38,6 +37,7 @@ ranges? Is either a local maximum?
 - **K1_MONOTONE_UP:** N_BH increases with A_s (or is non-decreasing across the 2.5 M☉ bar) across the whole nuisance range —
   the premise is refuted for that parameter, and the falsifier under entry 31 loses its motivation (a finding for the
   record; the tier/standing stamp stays Duho's).
+- **K1_STATIONARY_NOT_MAX:** a partial crosses zero at the observed value but the curvature is positive or indefinite (a local minimum or saddle) across the nuisance range — the premise is refuted for that parameter exactly as under K1_MONOTONE_UP (the premise asserts a maximum, Smolin 1992 L233).
 - **K1_MONOTONE_DOWN:** N_BH decreases with the parameter at the observed value — consistent with, but not a maximum; report.
 - **K1_UNIDENTIFIED:** the sign flips within the nuisance range → INCONCLUSIVE; name the nuisance responsible and the range
   that would fix it (this is the risk all three proposing seats flagged).
@@ -52,7 +52,7 @@ nuisance box, the sign agreeing across the box (K1_MAX / UP / DOWN) or not (K1_U
 - **C2:** the PBH abundance at the observed A_s must respect the published abundance constraints at the chosen mass scale
   (named and pinned at step 1); a model that violates them is discarded, not tuned.
 - **C3 deletion probe:** with PBHs removed, confirm the sign of ∂N_BH/∂ ln A_s changes or not, and report it — this isolates
-  Rothman & Ellis's requirement.
+  Rothman & Ellis's requirement. Failure = the stellar-only sign cannot be computed or disagrees between the two derivative methods of C4; then no class is filed.
 - **C4:** the derivative is computed two ways (analytic and finite-difference) and must agree in sign.
 
 ## 6. Seat plan, blind double, cost
@@ -60,7 +60,7 @@ nuisance box, the sign agreeing across the box (K1_MAX / UP / DOWN) or not (K1_U
   sheet; results written only when complete). Codex gates the pin sheets (every number receipted) before either seat computes.
   A split on the class → third seat via `nm_referee_dispatch.sh`; Kimi (`--provider moonshot`, log checked, no fallback
   line) is the fourth seat on the pin-sheet audit only.
-- Cost (seat planning estimate): ~5 seat-days; public Planck values already pinned; laptop compute.
+- Cost (seat planning estimate, not a corpus number): about five seat-days; public Planck values already pinned; laptop compute.
 
 ## 7. What would make it INCONCLUSIVE
 K1_UNIDENTIFIED; or C1/C2 failing after two model attempts; or the PBH channel depending on a small-scale spectrum shape the

@@ -5,6 +5,18 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-03 16:36 KST — K2 and K1 stage-1 preregistrations filed (no decision needed; your "a" of 16:24 authorized the start)
+
+- `K2_JUNCTION_PREREG_20260903.md` — the junction-classification theorem (entries 1, 4, 5, 22, 56). Gate: PREREG_SOUND_WITH_REPAIRS,
+  six repairs applied (exact failure sets on the controls; textbook coefficients deferred to step-1 pins; the mass relation
+  cited to entry 56's own line 143). Outcome classes J_SMOOTH_EXPANDING / J_SHELL_EXPANDING / J_NONE / J_UNDETERMINED.
+- `K1S1_CNS_SIGN_PREREG_20260903.md` — the sign test of the natural-selection premise (entries 6, 7, 31). Gate:
+  PREREG_SOUND_WITH_REPAIRS, four repairs applied (a saddle/minimum outcome was uncovered and is now its own class
+  K1_STATIONARY_NOT_MAX). Classes K1_MAX / K1_MONOTONE_UP / K1_STATIONARY_NOT_MAX / K1_MONOTONE_DOWN / K1_UNIDENTIFIED.
+Both were committed before any derivation and gated by a fresh agy seat through `nm_referee_dispatch.sh` (ACCESS PROVEN).
+Derivation starts with the step-1 pin sheets (every input receipted). Say "hold K2" or "hold K1" to stop either.
+
+---
 ## YOUR CALL 2026-09-03 16:18 KST — topic search, round 2: pick the study (four blind seats reconciled; full packet `TOPIC_SEARCH_ROUND2_RECONCILIATION_20260903.md`)
 
 Round 1's (A) is done (amplitude provably free), (B) withdrawn, (C) carried over. Twelve new proposals fold into six
