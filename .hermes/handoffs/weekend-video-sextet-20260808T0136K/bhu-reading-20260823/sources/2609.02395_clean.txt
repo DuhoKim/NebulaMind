@@ -1,0 +1,736 @@
+                                  Astronomy & Astrophysics manuscript no. main                                                                                 ©ESO 2026
+                                  September 3, 2026
+
+
+
+
+                           Searching for optical pulsations from spider millisecond pulsars
+                                          with the fast photometer SiFAP2
+                                      C. Malacaria1,⋆ , A. Papitto1 , F. Ambrosino1 , C. Ballocco1, 2 , R. La Placa1 , G. Illiano13, 14, 11 , A. Miraval
+                                     Zanon3 , L. Stella1 , M. Turchetta4 , J. D. Turner1 , C. Blanchard5 , I. Cognard5 , L. Guillemot5, 6 , M. Burgay7 ,
+                                       P. d’Avanzo, A. Burtovoi8, 9 , A. Sanna10 , S. Campana11 , M. Cecconi12 , A. Ghedina12 , A. Possenti7 , and
+                                                                                     D. Torres13, 14, 15
+
+                                                1
+                                                  INAF Osservatorio Astronomico di Roma, via di Frascati 33, I–00078, Monteporzio Catone, Roma, Italy
+
+
+
+
+arXiv:2609.02395v1 [astro-ph.HE] 2 Sep 2026
+                                                2
+                                                  Dipartimento di Fisica, Sapienza Università di Roma, Piazzale Aldo Moro 5, I-00185 Rome, Italy
+                                                3
+                                                  ASI - Agenzia Spaziale Italiana, Via del Politecnico snc, I-00133 Rome, Italy
+                                                4
+                                                  Department of Physics, Norwegian University of Science and Technology, NO-7491 Trondheim, Norway
+                                                5
+                                                  LPC2E, OSUC, Univ Orleans, CNRS, CNES, Observatoire de Paris, F-45071 Orleans, France
+                                                6
+                                                  Observatoire Radioastronomique de Nançay, Observatoire de Paris, Université PSL, Université d’Orléans, CNRS,
+                                                  18330 Nançay, France
+                                                7
+                                                  INAF - Osservatorio Astronomico di Cagliari, Via della Scienza 5, I-09047 Selargius (CA), Italy
+                                                8
+                                                  University of Florence - Physics and Astronomy Department, Via Sansone 1, I-50019, Sesto Fiorentino (FI), Italy
+                                                9
+                                                  INAF - Turin Astrophysical Observatory, Via Osservatorio 20, I-10025 Pino Torinese (TO), Italy
+                                               10
+                                                  Dipartimento di Fisica, Università degli Studi di Cagliari, SP Monserrato-Sestu km 0.7, I-09042 Monserrato, Italy
+                                               11
+                                                  INAF - Osservatorio Astronomico di Brera, Via Bianchi 46, I-23807, Merate (LC), Italy
+                                               12
+                                                  Fundación Galileo Galilei - INAF, Rambla Josè Ana Fernández Pèrez, 7, E–38712 Breña Baja, TF - Spain
+                                               13
+                                                  Institute of Space Sciences (ICE, CSIC), Campus UAB, Carrer de Can Magrans s/n, 08193 Barcelona, Spain
+                                               14
+                                                  Institut d’Estudis Espacials de Catalunya (IEEC), 08034 Barcelona, Spain
+                                               15
+                                                  Institució Catalana de Recerca i Estudis Avançats (ICREA), 08010 Barcelona, Spain
+
+                                               September 3, 2026
+
+                                                                                                     ABSTRACT
+
+                                               Context. Optical pulsations from millisecond pulsars (MSPs) have recently been discovered from a transitional MSP and
+                                               an accreting MSP. Evidence for optical pulsations has also been found for a rotation-powered redback MSP. Observations
+                                               suggest that optical pulsed emission is produced by different mechanisms depending on whether an accretion disk is
+                                               present in the system or not.
+                                               Aims. We explore a sample of rotation-powered MSPs in close binaries (Porb < 1 day, redbacks and black widows),
+                                               searching for optical periodic signals with the SiFAP2 photometer mounted on the Telescopio Nazionale Galileo (TNG).
+                                               Methods. We perform pulsation searches using the epoch folding method with the most updated (radio or gamma-ray)
+                                               orbital solution for each system, employing already published solutions or recent observations with Nançay, the Giant
+                                               Metrewave Radio Telescope, the Parkes Observatory, and Fermi-LAT.
+                                               Results. We update or confirm radio and gamma-ray ephemerides for five of the presented systems. No optical pulsa-
+                                               tions were detected with a significance exceeding a 3σ confidence level in any of our searches, despite often achieving
+                                               sensitivities on the verge of the instrument’s limit. This places correspondingly stringent upper limits on the systems’
+                                               optical pulsed magnitude and conversion efficiency. Our upper limits are consistent with the pulsed optical luminosity of
+                                               optical pulsations from the redback PSR J2339-0533. Compared to accreting and transitional MSPs, redback and black
+                                               widow systems show much lower efficiency in converting their spin down power into pulsed optical emission, supporting
+                                               the recently advanced idea that the accretion disk around the neutron star plays a role in accelerating the particles
+                                               responsible for producing bright optical pulsed emission.
+                                               Key words. stars: neutron – pulsars: individual: PSR J1048+2339, PSR J1653-0158, PSR J1723-2837, PSR 1816+4510,
+                                               PSR J1959+2048, PSR J2055+1545, PSR J2129-0429, PSR J2215+5135
+
+
+                           1. Introduction                                                                  onto the NS. During this phase, the source appears as an
+                                                                                                            X-ray emitter, and the accretion process is accompanied by
+                           Millisecond pulsars (MSPs) are neutron stars (NSs) rotat-                        the transfer of angular momentum, which spins the NS up
+                           ing with a spin frequency exceeding 100 Hz. A fraction of                        to rotational frequencies that are characteristic of the MSPs
+                           the MSP population exists in tight binary systems (orbital                       (Alpar et al. 1982; Bhattacharya & van den Heuvel 1991).
+                           periods Porb ∼ hours) with low-mass (≲ 1M⊙ ) companion                           When the accretion phase is over, the bulk of their emission
+                           stars. These systems are formed via a recycling phase dur-                       comes from rotation-powered mechanisms, mainly occur-
+                           ing which matter expelled by the companion star is accreted                      ring at radio or γ-ray frequencies (Backer et al. 1982; Abdo
+                                        ⋆
+                                              e-mail: christian.malacaria@inaf.it                           et al. 2009). As the rotation-powered pulsar wind emitted
+
+                                                                                                                                                Article number, page 1 of 10
+                                             A&A proofs: manuscript no. main
+
+by the NS in such close binaries is able to eject matter off    Table 1. Log of SiFAP2 observations used in this work.
+its companion’s surface, these pulsars are called “spiders”.
+These are divided into subclasses according to the com-              Source               Obs. Start Time     Exposure
+panion star’s mass. Redbacks (RBs) are defined as binary                                       [MJD]            [ks]
+systems hosting a donor star of M ∼ 0.2 − 0.4 M⊙ , while
+black widows (BWs) host companions with M < 0.1 M⊙ .                                        58515.19481           6.3
+A small subset of spiders has been observed switching be-                                   58880.16773           8.9
+tween the accretion disk and rotation-powered pulsar states                                 60053.06180           5.5
+on timescales of weeks to months and has therefore been              PSR J1048+2339         60055.01996           7.1
+dubbed transitional MSPs (tMSPs) as a result of their                                       60056.87847          21.6
+switching between X-ray- and radio-dominated emissions                                      60057.88958          20.4
+(Archibald et al. 2009; Papitto et al. 2013).                                               60624.17888           6.2
+    Recently, optical pulsations at the NS spin frequency
+were discovered in a variety of binary systems hosting               PSR J1653-0158         59436.89409          10.9
+MSPs. First, optical pulsations have been detected from
+the tMSP PSR J1023+0038 (Ambrosino et al. 2017, see                                         58692.90870           7.2
+also Papitto et al. 2019; Illiano et al. 2023), and then in-         PSR J1723-2837         58693.92016           2.7
+dependently confirmed (Zampieri et al. 2019; Karpov et al.                                  59433.89791          10.8
+2019). PSR J1023+0038 has also been discovered to show
+pulsations in the UV band (Miraval Zanon et al. 2022; Jao-                                  59756.17187           2.6
+dand et al. 2021). Then, optical and UV pulsations were                                     59756.90972           6.6
+                                                                     PSR J1816+4510
+observed from the accreting MSP SAX J1808.4-3658 (Am-                                       59757.90763           6.2
+brosino et al. 2021; Ballocco et al. 2026). Even more re-                                   60836.05208           5.2
+cently, evidence for optical pulsations has been proposed
+for the RB PSR J2339–0533 (Papitto et al. 2025). In this                                    59435.93576          16.2
+regard, the Silicon Fast optical Photometer (SiFAP2, Ghe-                                   60475.04027          13.8
+                                                                     PSR J1959+2048
+dina et al. 2018) was key to enabling the discovery of these                                60496.01180          16.0
+new detections.                                                                             60496.97951          18.8
+    In this work, we search for optical pulsations from
+a sample of eight MSPs observed with SiFAP2 between                                         60968.81250          20.7
+2018 and 2025. The sample consists of six RBs (PSR                                          60969.82534          16.3
+                                                                     PSR J2055+1545
+J1048+2339, PSR J1723-2837, PSR J1816+4510, PSR                                             60970.82152          19.1
+J2129-0429, PSR J2215+5135, and PSR J2055+1545) and                                         60971.82604          19.5
+two BWs (PSR J1653-0158 and PSR J1959+2048). We use
+our findings to constrain the efficiency of the conversion of                               58318.13544           3.3
+their spin-down power into optical pulsed emission, which                                   58318.18405           2.7
+is key to understanding the mechanism producing optical                                     58692.10939           4.2
+                                                                     PSR J2129-0429
+pulsations in rotation-powered MSPs as compared to other                                    58693.01148          12.6
+MSP systems such as accreting and transitional MSPs.                                        58694.11148           9.6
+                                                                                            59437.89768          14.2
+
+2. Observations                                                                             59906.81111          14.4
+                                                                     PSR J2215+5135
+                                                                                            60178.19965           2.6
+We performed our observations with the improved version
+of the Silicon Fast Astronomical Photometer and Polarime-
+ter, SiFAP2 (Meddi et al. 2012; Ambrosino et al. 2014; Ghe-
+dina et al. 2018). SiFAP2 is a non-imaging fast photometer      technique, which consists of tilting the source detector ∼ 20
+mounted at the 3.6-m Telescopio Nazionale Galileo (TNG,         arcsec away from the source to an empty region a few times
+Barbieri et al. 1994). It consists of two detectors covering    for ∼ 100 s at a time.
+a field of view of 7 × 7 arcsec2 centered on the source and         In most cases, individual sources have been observed
+reference star (or background sky) positions, respectively.     several times at different epochs. This guaranties an even
+SiFAP2 records the times of arrival of individual photons       coverage of the binary orbit, increasing the exposure and
+with an 8 ns resolution. Instrumental calibration was per-      maximizing the chance of pulsation detection. A log of the
+formed by on-site observations in white light of a series of    SiFAP2 observations analyzed in this work is reported in
+K0V-K5V stars observed at small zenith distances and com-       Table 1. Averaging over the wide range of observational
+pared with V-mag catalogued values1 . Observations were         conditions, we assume a conservative airmass value of 1.60
+carried out in white light configuration (no filters applied)   (see Sect. 3), based on the monthly variability. A typical
+and with a bandpass of 320-900 nm peaked in the B-band          mean value for seeing at the TNG location is 0.8 arcsec and,
+at ∼ 450 nm.                                                    in any case, always less than 1 arcsec during our observing
+    Background count rates for individual observations were     runs. As a consequence, our instrumental sensitivity suffers
+estimated in at least one of two ways. One way is by simul-     from an atmospheric flux attenuation that deteriorates the
+taneous observations of an empty region of the sky about        limiting sensitivity of about 0.75 mag. More details on how
+4 arcsec from the source. The other way is via the nodding      this effect influences our results are given below in Sect. 3.
+                                                                    SiFAP2 observations were scheduled based on the
+1
+    https://www.tng.iac.es/instruments/sifap2/.                 source’s observability, optical luminosity and variability,
+Article number, page 2 of 10
+                                 Malacaria et al.: Optical pulsations from millisecond pulsars
+
+distance, and spin-down power, opting for those targets          typically show variability over the considered time spans
+that improve the chances of detecting optical pulsations.        and are therefore treated as constant in our search (Rosen-
+Here we report only on spider MSPs SiFAP2 observations           thal et al. 2025). The importance of the TASC uncertainty
+that have collected enough exposure by mid October 2025.         over other orbital parameters can also be appreciated by
+When available, for our analysis, we use the distance val-       inspecting the derivatives of the phase model for a circular
+ues obtained from the Gaia Data Release 3 (DR3, Bailer-          orbit (see, e.g., Leaci & Prix 2015). Additional details on
+Jones et al. 2021). Otherwise, we use the distances de-          the analysis chain are furnished in Ambrosino et al. (2017,
+rived from the dispersion measure of the radio counterpart       2021); Papitto et al. (2025). The latter, especially, high-
+against the Yao et al. (2017, YMW16 hereafter) or Cordes         lights the potential for pulsation detections from our class
+& Lazio (2002, NE2001 hereafter) models of Galactic elec-        of targets under realistic observing conditions.
+tron density. We also refer to the Spider Catalog (Koljonen
+& Linares 2025) for more details on the sources analyzed in
+this work.                                                       3.2. Spin periodicity search
+                                                                 Upon consideration of Sect 3, we established our TASC
+                                                                 search grid based on simulations by Caliandro et al. (2012).
+3. Timing analysis                                               They find that in order to maintain the ability to de-
+3.1. Arrival times corrections                                   tect pulsations, the search step on TASC , dTASC , is of the
+                                                                 order of 1 s. This is shown by their Eq. 68, assuming an
+In order to search for pulsed signals during our SiFAP2          ϵ2 factor of 80% and their normalization fitting function
+observations, we first corrected all photon arrival times to     S(e, W ) = U0 = 0.41 (given the spiders’ nearly-perfect cir-
+the Solar System barycenter frame of reference using the         cular orbits, where the eccentricity is e = 0 and the lon-
+DE405 ephemeris. We then considered the most updated             gitude of periastron W is conventionally set to 0◦ ). The
+orbital ephemeris for each source to correct the times of ar-    ϵ2 factor represents the power fraction that can be secured
+rival for the pulsar binary motion and improve sensitivity       depending on how precisely the orbit is known. Here we
+to coherent pulsating signals. For PSR J2215+5135, J2129-        notice that the framework established by Caliandro et al.
+0429, J1048+2339, and J1653-0158, we obtained the initial        (2012) computes the dTASC search step assuming a sinu-
+ephemerides from the publicly available third pulsars cat-       soidal signal. For non-sinusoidal profiles, uncertainties on
+alog (3PC) Fermi-LAT solutions (Smith et al. 2023). The          orbital parameters result into a faster decoherence of the
+ephemerides used for the timing analysis are reported in         pulse shape. To account for this effect and ensure the re-
+Table 2, while additional details on the search parameters       covery of enough signal power during the epoch folding pro-
+and the system’s properties are listed in Table 3 and Sect. 4.   cess in the absence of a formal quantitative adaptation for
+In two cases (PSR J1653-0158 and PSR J1816+4510), the            complex profiles, we conservatively reduce the search step
+available solution was stable enough to be propagated to         to dTASC /2.
+our SiFAP2 observing times without producing an uncer-               The periodicity search was performed using the epoch
+tainty on any of the relevant timing parameters that was         folding method (Leahy et al. 1983). Prior to the TASC
+larger than our search sensitivity. However, other sources       search, we verified that the spin period value was known
+from our sample showed strong orbital timing noise, as           with an uncertainty smaller than ∆ PF /(2m), where
+is often the case for spider MSPs (see, e.g., Ridolfi et al.     ∆ PF = Ps2 /Tobs is the Fourier period resolution, m = 32 is
+2016, and references therein). This is possibly due to the       the number of pulse phase bins (chosen to sample the nar-
+cyclic modulation of the orbital period due to gravitational     row peaks in optical, radio, and γ-ray pulse profiles from
+quadrupole moment exchange between the binary compo-             rotation-powered pulsars, see also Papitto et al. 2025), Ps
+nents (Pletsch & Clark 2015; De Falco et al. 2025). Our          is the spin period, and Tobs is the observational exposure.
+SiFAP2 exposures are too short to be sensitive to orbital        Accordingly, no additional trials are required for the peri-
+period modulations (on the order of ∆Porb /Porb ∼ 10−7 ,         odicity search.
+see, e.g., Pletsch & Clark 2015; Clark et al. 2021). However,        Our search returned a set of χ2 values for each value
+when left unmodeled, such modulations cause the pulsar’s         of TASC used to correct the observed time series. The χ2
+time of passage at the ascending node of the orbit (TASC ) to    values thus obtained were then divided by a factor r = 1.15
+deviate from a pure propagation of the initial ephemeris ob-     to take into account the impact of correlated noise affecting
+tained by employing a constant orbital period value. Due         SiFAP2 detectors (Papitto et al. 2025; La Placa et al. 2026).
+to such variations, a given ephemeris is typically consid-       We set the detection threshold as the χ2det value that had
+ered valid only for a specific time period. Within the valid-    a very small probability (p < 2.7 × 10−3 , corresponding to
+ity period of the orbital solution, typical variations in the    a 3σ confidence level) of being attained or exceeded if the
+TASC value around the average solution are on the order          time series contained only counting noise, after taking into
+of ∆TASC ∼ 10 s or larger (see also, e.g., Rosenthal et al.      account the total number of trials made and assuming that
+2025). If that is the case, to correct the arrival times we      the noise powers are described by a χ2 distribution with a
+cannot consider the TASC parameter as known, and our             number of degrees of freedom equal to m − 1.
+periodicity search must also take into account a search for          Our analysis did not yield any signal exceeding the de-
+the possible variations of the TASC parameter. Beyond the        fined threshold. In Table 3, we provide the maximum (peak)
+range of the ephemeris validity, we assumed that varia-          statistics for each search, along with the number of trials.
+tions of the TASC parameter would be of the same order as        To evaluate upper limits at the 95% confidence level on
+∆TASC (that is, tens of seconds on average, although the         the signal strength, we used Eq. (19) of Vaughan et al.
+actual value differs for each source). The other orbital pa-     (1994, derived from Groth 1975) to take into account that
+rameters (the orbital period, Porb , and the projected semi-     the distribution of total power in the presence of both sig-
+major axis of the pulsar orbit, a sin i/c), however, do not      nal and noise is different from a χ2m−1 distribution. This
+                                                                                                  Article number, page 3 of 10
+                                                 A&A proofs: manuscript no. main
+
+Table 2. Orbital solutions for the set of pulsars analyzed in this work.
+
+       Parameter                                              J1723                     J2215                    J1816
+
+       RA, α (J2000)                                    17:23:23.1856(8)         22:15:32.6869(2)         18:16:35.9340(5)
+       Dec., δ (J2000)                                   -28:37:57.17(11)        51:35:36.4355(3)          45:10:33.866(6)
+       Reference epoch (MJD)                              55667.106584              57205.8750                  59756
+       Spin frequency, f (Hz)                           538.870683489(3)        383.19759400788(5)       313.17493429584(3)
+       Spin-down rate, f˙ (10−15 Hz s−1 )                     2.2(1)                 4.1416(6)                4.2252(2)
+       Orbital frequency, f (10−5 Hz)                     1.88062884(2)             6.709535(2)           3.2070609919(7)
+       Project. semimajor axis, a sin i/c (lt-s)           1.225822(9)              0.468131(6)              0.595380(9)
+       Eccentricity, e (10−6 )                                   –                       –                       8(2)
+       Argument of periastron, w (◦ )                            –                       –                      97(14)
+       Epoch of ascending node, TASC (MJD)               58694.518053(6)          56383.67277(2)           60835.883780(2)
+       Ephemeris origin                                     GMRT∗,6                Fermi-LAT5               Green Bank1
+                                                              J2129                     J1048                    J1959
+
+       RA, α (J2000)                                     21:29:45.05(8)          10:48:43.4183(8)           19:59:36.748(2)
+       Dec., δ (J2000)                                   -04:29:06.81(8)         +23:39:53.404(2)          +20:48:14.564(4)
+       Reference epoch (MJD)                                  55750                    56700                     56000
+       Spin frequency, f (Hz)                           131.31034864(8)         214.35478534113(2)        622.1220164758(2)
+       Spin-down rate, f˙ (10−15 Hz s−1 )                   5.652(9)                  1.382(2)                 6.5113(6)
+       Orbital frequency, f (10−5 Hz)                   1.822810115(6)          4.620035550962(5)          3.02989829702(1)
+       Project. semimajor axis, a sin i/c (lt s)           1.85219(2)               0.836120(3)              0.0892247(4)
+       Eccentricity, e (10−5 )                                  –                         –                      4.9(6)
+       Argument of periastron, ω (◦ )                           –                        –                      122(7)
+       Epoch of ascending node, TASC (MJD)              55702.111161(7)          56637.598174(2)          58135.6012543(3)
+       Ephemeris origin                                GBT2 /Fermi-LAT5            Fermi-LAT5                  Nançay3,6
+                                                              J2055                     J1653
+
+       RA, α (J2000)                                    20:55:47.83348(4)        16:53:38.0525(1)
+       Dec., δ (J2000)                                  +15:45:21.1988(6)         -01:58:36.903(5)
+       Reference epoch (MJD)                                   61088               57520.922447
+       Spin frequency, f (Hz)                            463.17144340(2)        508.21219449806(1)
+       Spin-down rate, f˙ (10−15 Hz s−1 )                    2.399(3)                0.6203(2)
+       Orbital frequency, f (10−5 Hz)                     5.76612182(4)             22.281505(2)
+       Project. semimajor axis, a sin i/c                   0.59969(2)              0.010704(8)
+       Eccentricity, e (10−5 )                                   –                        –
+       Argument of periastron, w (◦ )                            –                        –
+       Epoch of ascending node, TASC (MJD)              61098.0125490(5)         56513.479159(6)
+       Ephemeris origin                                 Arecibo4 /Parkes6          Fermi-LAT5,6
+
+Notes. References: ∗ Ridolfi, A. priv. comm., 1 Fiore et al. (2023), 2 Bangale et al. (2024), 3 Blanchard et al. (2025), 4 Lewis et al.
+(2023a), 5 all the others: Smith et al. (2023), 6 updated in this work.
+
+
+is because the total power observed in a frequency bin              SiFAP2 calibration curve2 , we translated the upper limits
+is the square of the sum of the signal and noise powers.            on the net pulsed rate AU
+                                                                                            net × (rtot −rbkg ) into visual magni-
+                                                                                              L
+
+Since these are complex numbers, the value of the sig-              tudes mV . Next, we applied a magnitude correction to the
+nal power that has a small probability of being exceeded            obtained value to account for interstellar absorption and at-
+given the observed power (i.e., the upper limit) can be             mospheric extinction. The first is estimated using HI maps
+up to twice the detection threshold power (see Fig. 1 in            (HI4PI Collaboration et al. 2016) to obtain the neutral hy-
+Vaughan et al. 1994 for a geometrical argument). The up-            drogen NH value in the direction of each source, and then
+per limits on the signal power so obtained were translated          we convert the obtained NH to an extinction value in the V
+into upper limits on the sinusoidal    pulse amplitude by us-       band, following Güver & Özel (2009). The second depends
+ing the relation AU L = 2χ2U L /Nγ (Leahy 1987), where              on the airmass at the telescope location. On average, this
+                            p
+Nγ is the total number of photons recorded in the con-              is 1.60, which corresponds to a visual extinction of 0.26(1)
+sidered time series. To establish a reliable upper limit on         mag. We report the mV values in Table 3 as upper limits
+the source pulsed amplitude, we then corrected the ampli-           on the pulsed signal. Moreover, in order to compare the
+tude AU L for the background contribution to Nγ to obtain           obtained magnitude values with previous works (see, e.g.,
+AU  L     UL
+             (1−rbkg /rtot )−1 , where rtot and rbkg are the to-    Ambrosino et al. 2017), once the mV upper limits are re-
+  net = A
+tal and background count rates, respectively. Following the          2
+                                                                         https://www.tng.iac.es/instruments/sifap2/.
+
+Article number, page 4 of 10
+                                   Malacaria et al.: Optical pulsations from millisecond pulsars
+
+                                                                    We first propagated the value of the TASC and its uncer-
+                                                                    tainty to the SiFAP2 observing times, assuming a constant
+                                                                    orbital period (i.e., neglecting the orbital period derivatives
+                                                                    present in the 3PC solution). We then estimated, within the
+                                                                    Fermi-LAT solution validity period, the range of variabil-
+                                                                    ity of the orbital period compared to a constant value. This
+                                                                    value was then added in quadrature to the propagated un-
+                                                                    certainty. Finally, we considered a multiplying factor of 6
+                                                                    to account for a 3σ span on each side of the propagated
+                                                                    TASC value.
+
+Fig. 1. SiFAP2 light curve from J1723 as observed in 2021. The
+resulting light curve has been rebinned with 5 s bins, background   4.2. PSR J1653-0158
+subtracted (estimated via the nodding technique), and corrected
+for dark noise. Y-axis units are in 103 c/s, while the top X-axis   PSR J1653-0158 (J1653 hereafter) is a BW system with
+shows the orbital phase according to the solution in Table 2 –      a 1.9-ms pulsar and a 1.2-hr orbital period (Nieder et al.
+the bottom X-axis shows the time passed from the observation        2020). The binary orbit is among the most compact sys-
+start (MJD ∼ 59434). The top x-axis shows the orbital phase         tems of its type. J1653 is detected by Fermi-LAT and has a
+with respect to the time of ascending node. See Turchetta et al.    solution in the 3PC catalog, whose behavior is remarkably
+(2023) for a comparison of different optical light curves from
+                                                                    stable. In fact, the Fermi-LAT solution does not require an
+redback systems.
+                                                                    orbital period derivative. Although the published 3PC so-
+                                                                    lution is limited to a time range that does not include our
+trieved, we converted them into luminosity in the B band,           SiFAP2 observation times, the source orbit solution based
+assuming the emitted source spectrum is flat (see below)            on Fermi-LAT data remains stable and can also be adopted
+and the distance values reported in Sect. 4.                        at later times (that is, at least up to MJD 60362, M. Kerr
+    The magnitude values reported in Table 3 are solely sta-        priv. comm.). Following Nieder et al. (2020), we employ a
+tistical. Systematic uncertainties due to distance, extinc-         distance of 0.84(4) kpc, consistent with Gaia DR3 (Koljo-
+tion, and instrumental calibration are not included. We,            nen & Linares 2023). Also, we adopt a spin-down power
+however, estimate values for each of the contributing ef-           value of 1.2 × 1034 erg/s (Romani et al. 2014).
+fects. Following the SiFAP2 calibration curve3 , we estimate
+an instrumental calibration systematic uncertainty of about
+1.5% in the resulting apparent magnitude. Distance uncer-           4.3. PSR J1723-2837
+tainties contribute to the systematic uncertainty on the re-
+                                                                    PSR J1723-2837 (J1723 hereafter) is an RB system showing
+sulting magnitude, depending on the source, up to about
+                                                                    radio eclipses (Crawford et al. 2013). There is no significant
+1.5%. Systematic uncertainties on the extinction values are
+                                                                    γ-ray detection for this source, and a Fermi-LAT solution
+typically considered to affect the recovered magnitude at
+                                                                    for it is not publicly available. The NS spin period is 1.86 ms
+the 0.1% level (Fitzpatrick 1999). Finally, we estimate sys-
+                                                                    (Faulkner et al. 2004) and the orbital period is about 15 hr.
+tematic uncertainties deriving from the flat spectrum as-
+                                                                    Its Gaia DR3 distance is 0.9 kpc (Koljonen & Linares 2023),
+sumption, depending on the companion’s stellar type. Fol-
+                                                                    while its spin-down power is 4.6 × 1034 erg s−1 (Crawford
+lowing Strader et al. (2019), we assumed a stellar surface
+                                                                    et al. 2013). It was recently observed with the IXPE obser-
+temperature of 5600 K. Blackbody emission from such a
+                                                                    vatory as part of an extended observational campaign, al-
+star would therefore peak in the visible band. In this case,
+                                                                    though no significant X-ray polarization has been detected
+fluxes in the B- and V-band would only differ by about 3%,
+                                                                    (Negro et al. 2026; Sullivan et al. 2026). The most recent
+and their magnitude difference would be as high as about
+                                                                    timing solution for this source was published by Crawford
+1.5%. In total, we estimate that systematic uncertainties
+                                                                    et al. (2013). However, this solution does not cover our 2019
+may alter our results in the luminosity B-band by up to a
+                                                                    and 2022 SiFAP2 observations of the source. For this rea-
+factor of three, and our findings still hold.
+                                                                    son, Giant Metrewave Radio Telescope (GMRT) observa-
+                                                                    tions were performed (Ridolfi et al., priv. comm.) to obtain
+4. The SiFAP2 sample of MSPs                                        a radio timing solution that covers our SiFAP2 2019 obser-
+                                                                    vations (see Tables 2, 3). We therefore employed that solu-
+4.1. PSR J1048+2339                                                 tion to search for pulsations in our 2019 observations. Since
+PSR J1048+2339 (J1048 hereafter) is an RB system with a             a single radio observation does not allow for a reliable fitting
+4.7-ms pulsar and an orbital period of about 6 hr (Cromar-          of the times of arrival, the radio data were simply folded
+tie et al. 2016). It has a spin-down power of 1.2×1034 erg s−1      with the Crawford et al. (2013) solution, changing TASC in
+and is located at a distance of 1.7 kpc (Deneva et al. 2016).       small steps until the highest S/N ratio was reached. This
+J1048 is detected by Fermi-LAT and is listed in the 3PC             method does not provide uncertainties on the fitted pa-
+catalog with an orbital solution (Deneva et al. 2021). This         rameters, for which we used those reported in Crawford
+solution includes several orbital period derivatives that are       et al. (2013) instead. Moreover, we propagated the TASC
+used to model the stochastic TASC variability over the va-          obtained through the GMRT observations to the day of
+lidity range. However, the period of validity does not cover        our 2021 SiFAP2 observation (not covered by radio obser-
+our SiFAP2 observation. As an estimate of the number of             vations), assuming an uncertainty similar to the variability
+trials for a search over the TASC , we proceeded as follows.        of the orbital phase displayed during the validity interval of
+                                                                    the solution by Crawford et al. (2013). This corresponds to
+3
+    https://www.tng.iac.es/instruments/sifap2/                      a conservative range of 50 s around the propagated TASC .
+                                                                                                       Article number, page 5 of 10
+                                                 A&A proofs: manuscript no. main
+
+                                                                     4.5. PSR J1959+2048
+                                                                     PSR J1959+2048 (also dubbed PSR B1957+20, J1959 here-
+                                                                     after) is a BW system with a spin period of 1.6 ms and
+                                                                     an orbital period of 9.2 hours (Fruchter et al. 1988). For
+                                                                     this source, the spin-down luminosity value we adopt is
+                                                                     1.6 × 1035 erg/s (Koljonen & Linares 2025), while we adopt
+                                                                     a distance value of 1.73 kpc (Yao et al. 2017). We employed
+                                                                     the ephemeris obtained by the Nançay telescope around
+                                                                     our SiFAP2 observing times (see Blanchard et al. 2025).
+                                                                     These were fitted with the ELL1 model (Lange et al. 2001)
+                                                                     that utilizes the Laplace-Lagrange parameters while also
+                                                                     accounting for the possible small eccentricity of the orbit.
+                                                                     Given the large uncertainties derived from the propagation
+                                                                     of the TASC to the epochs of SiFAP2 observations in 2024,
+                                                                     a large number of trials are necessary for the periodicity
+                                                                     search (see Table 3). These span a 3σ interval around the
+                                                                     central value.
+Fig. 2. PSR J1816 pulse profiles as observed by SiFAP2 (top
+panel) and Fermi-LAT (bottom panel). The reference epoch time
+for both profiles is MJD 59756. SiFAP2 count rates are not back-     4.6. PSR J2055+1545
+ground corrected. Although the search for pulsation does not
+return a significant signal (see Sect. 4.4 and Table 3) the two      PSR J2055+1545 (J2055 hereafter) is an RB system, dis-
+profiles appear similar. Different binning between the profiles is   covered by Lewis et al. (2023a) in the Arecibo 327 MHz
+due to the different available statistics.                           Drift-Scan Pulsar Survey. It is the most recently discov-
+                                                                     ered source among those analyzed in this work. Although
+                                                                     a coincident Fermi-LAT counterpart was detected for this
+                                                                     source, no γ-ray pulsations were found. J2055 consists of
+A light curve of the J1723 SiFAP2 observation is shown in
+                                                                     a NS with a 2.2 ms spin period in a circular 4.8 hr orbit
+Fig. 1.
+                                                                     (Lewis et al. 2023a). Following Koljonen & Linares (2025)
+                                                                     we adopt the YMW16 distance of 3.7 kpc, while the adopted
+                                                                     spin-down power is 4.0 × 1034 erg/s Lewis et al. (2023a).
+4.4. PSR J1816+4510
+                                                                     The system shows radio eclipses as observed by the Arecibo
+                                                                     survey Lewis et al. (2023a). For this source, we obtained
+PSR J1816+4510 (J1816 hereafter) is an RB system with a              radio observations with the Murriyang radio telescope in
+3.2-ms pulsar and an 8.7-hr long orbital period (Ray et al.          Parkes (NSW, Australia) at the request of Green Time un-
+2012; Kaplan et al. 2012). It was also observed and charac-          der project PX090. The Ultra Wideband Low receiver (704-
+terized by the Green Bank Northern Celestial Cap Pulsar              4032 MHz; Hobbs et al. 2020) was used in search mode,
+Survey (Stovall et al. 2014). The system was also recently           with 1-MHz wide channels coherently de-dispersed at the
+observed with the Five-hundred-meter Aperture Spherical              pulsar’s dispersion measure. Three epochs were scheduled
+radio Telescope (FAST) to study its radio eclipse behavior           on February 7, 26, and March 30, 2026, at times when the
+(Shang et al. 2024). The adopted source distance is 4.36             source was predicted to be outside the radio eclipse. Each
+kpc (Yao et al. 2017; Shang et al. 2024), and the spin-down          observation was folded starting from the ephemeris from
+luminosity is 5 × 1034 erg/s (Fiore et al. 2023). Similar to         Lewis et al. 2023b, with a range of T0 covering ± 0.01 in or-
+J1653, J1816 has a publicly available Fermi-LAT 3PC tim-             bital phase, using the software spider-twister5 , based on
+ing solution that is remarkably steady and can be extended           PRESTO (Ransom 2011). For each observation, the highest
+up to at least MJD 60884 (D. Smith, M. Kerr, priv. comm.).           signal-to-noise folded data and the related T0 were used as
+Thanks to this, we employed PRESTO4 (Ransom 2011) to fit             starting points for the subsequent timing analysis. The best
+Fermi-LAT data, obtaining a precise timing solution that             local set of ephemeris was obtained with TEMPO2 (Hobbs
+covers our SiFAP2 observations, thus performing single trial         et al. 2006) fitting for the orbital parameters. Results are
+searches for pulsations using the best-fit TASC that is near-        shown in Table 2.
+est to our SiFAP2 observations. Our periodicity search from
+J1816 returns a 2.1σ confidence level signal which, although
+not significant, is of relevance among those obtained in this        4.7. PSR J2129-0429
+work. We therefore produce a SiFAP2 pulse profile of the
+2022 observations (see Fig 2). We compare this to the un-            PSR J2129-0429 (J2129 hereafter) is an RB system with
+weighted Fermi-LAT profile above 0.1 GeV obtained with               a 7.6 ms spin period and a 14.4 hr orbital period around
+a radius of interest of 0.8◦ . Although γ-ray profiles can dif-      a relatively bright (mR ∼ 16.6 mag) optical counterpart
+fer from the profiles obtained in different energy bands (see,       (Hessels et al. 2011). The source was already identified
+e.g., Abdo et al. 2010), the similarity of the shapes, the sep-      as a γ-ray source with Fermi-LAT since the first catalog
+aration of the peaks, and the approximate phase alignment            (Abdo et al. 2010). The spin-down power is 3.9 × 1034 erg/s
+is intriguing.                                                       (Roberts et al. 2015; Al Noori et al. 2018). A distance value
+                                                                     of 1.9+0.3
+                                                                           −0.2 kpc is assumed from Gaia DR3. Relatively up-
+
+                                                                     5
+                                                                       https://alex88ridolfi.altervista.org/pagine/pulsar_
+4
+    https://github.com/scottransom/presto.                           software_SPIDER_TWISTER.html
+
+Article number, page 6 of 10
+                                  Malacaria et al.: Optical pulsations from millisecond pulsars
+
+Table 3. Parameters used for the periodicity search with SiFAP2 on sources analyzed in this work and main search results.
+
+ Source          TASC                     Pspin             Search range∗     Search step     Peak statistics‡    Trials    m†V
+                 [MJD]                    [ms]                [seconds]        [seconds]       χ2     χ2 /r                [mag]
+
+            58514.98873(19)        4.665162940467(4)               71              2.5        50.6      44.0       57
+            58879.99514(24)        4.665162941415(5)               78              2.5        52.4      45.6       63
+ J1048
+            60052.92583(35)        4.665162944462(8)              105              2.5        51.2      44.5       83       25.7
+            60624.10950(42)        4.665162945946(9)              119              2.5        53.6      46.6       95
+
+ J1653     59436.8781454(7)       1.96768202539829(4)              66              17         43.3      37.6        5       25.7
+
+            58694.518053(6)       1.85573279571521(1)              –               1.6        33.6      29.2       1        23.3
+ J1723
+            59433.65715(2)         1.855732798898(1)               50              1.6        60.5      52.6       63
+
+            59756.090483(1)        3.1931035676546(3)              –               3.4        33.7      46.1        1       25.6
+ J1816
+            60836.052083(2)        3.1931035676544(3)              –               3.4        24.5      21.3        1
+
+            59435.81609(65)        1.6074017260663(1)             60               12         54.6      47.5        5       24.7
+ J1959       60475.03(12)          1.6074017275759(2)            2592              12         66.3      57.6      5185
+             60496.04(13)          1.6074017276064(2)            2808              12         72.6      63.1      5617
+
+ J2055     60968.745358(64)      2.159027751340898(1)              16              1.3        54.8      47.6       27       26.5
+
+             58317.97895(8)         7.61393754314(1)               9               4.5        42.4      36.9       5
+ J2129       58692.12809(9)         7.61393755373(2)               9               4.5        53.3      46.3       5        26.0
+             59437.8854(1)          7.61393757485(4)              148              4.5        52.6      45.7       67
+
+             59906.6715(4)         2.609619733909(1)               6               1.7        67.4      58.6        5       24.6
+ J2215
+             60178.1894(4)         2.609619734571(2)               6               1.7        59.5      51.7        5
+
+
+Notes. ∗ Range of search around the TASC ± indicated values (not listed for single trial searches). ‡ χ2 values corresponding to
+the peak of the periodicity search and those corrected for the detector’s correlated noise. Values used for the conversion into
+magnitude upper limits (not shown here) also account for the χ2noise and the interaction between signal and noise powers (see Sect.
+3.2). † Visual V-band magnitude reported only for the corresponding (trials corrected) highest statistics.
+
+
+dated radio orbital ephemerides obtained with the Green           polating function to model the orbital phase variations over
+Bank Telescope (GBT) by Bangale et al. (2024) were em-            time. Using these, the TASC oscillates over a ±6 s range
+ployed to propagate the TASC value to the periods of our          with respect to the TASC value obtained from the initial
+SiFAP2 observations, as the validity range of their solution      constant orbital period ephemeris (see, e.g., Clark et al.
+covers our SiFAP2 observations at least in part. Moreover,        2021). Similar to J1048, we thus add this value in quadra-
+the solution from Bangale et al. (2024) coincides with that       ture to the propagated uncertainty to obtain a more con-
+published by Fermi 3PC regarding the spin frequency and           servative search range around the central TASC value.
+its derivative. Beyond the validity range, we extrapolate
+the radio timing solution to the epoch of the SiFAP2 ob-
+servations and then expand our search to cover the variabil-      5. Discussion
+ity span of the Fermi-LAT timing solution (that is, 150 s
+around the TASC value obtained by propagation, assuming           Optical pulsations have already been detected in a few sys-
+a constant orbital period).                                       tems that were previously identified as radio pulsators, in-
+                                                                  cluding five young isolated neutron stars (INSs, Cocke et al.
+                                                                  1969; Mignani 2011), as well as in MSPs (whether accreting,
+4.8. PSR J2215+5135                                               transitional, or RB, see Ambrosino et al. 2017, 2021; Pa-
+PSR J2215+5135 (J2215 hereafter) is a RB system with a            pitto et al. 2025). The common interpretation of the optical
+spin period of 2.6 ms and an orbital period of 4.1 hr (Hes-       emission from INSs is that it is incoherent synchrotron ra-
+sels et al. 2011; Bangale et al. 2024). The distance value we     diation produced by relativistic electron-positron pairs ac-
+adopt for this source is 3.33 kpc (Sullivan & Romani 2024),       celerated in the NS magnetosphere (Pacini & Salvati 1983;
+while the spin-down power is 5.3 × 1034 erg/s (Breton et al.      Shearer & Golden 2001; Mignani 2011). Its efficiency can be
+2013). To calculate the TASC value around our SiFAP2 ob-          defined as the conversion efficiency of spin-down luminos-
+servations, similarly to J1048 (see Sect. 4.1), we propagated     ity into optical luminosity in a certain band (e.g., B-band)
+the public Fermi-LAT orbital solution, assuming a constant        η = Lopt /Ėsd . For systems such as the Crab, it is on the
+orbital period. The solution, however, includes a series of       order of 10−5 , while for other INSs it is even lower, on the
+ORBIFUNC parameters representing a time-domain inter-             order of 10−8 − 10−7 (see Fig. 3). On the other hand, the
+                                                                                                     Article number, page 7 of 10
+                                                A&A proofs: manuscript no. main
+
+
+
+
+Fig. 3. Optical pulse efficiency versus spin down power for a sample of sources. The optical pulse efficiency is defined as the ratio
+of the pulsed luminosity in the B band (λef f = 433 nm, Wef f = 90 nm) to the spin down power. The sample of MSPs analyzed
+in this work is shown by light green downwards arrows, representing the 95% confidence level upper limits on the optical pulse
+efficiency. See Papitto et al. (2025) and references therein for a comparison with previously detected optical pulsars indicated in
+the legend, marked with data points (we corrected the data point for PSR J0540-6919 following the spin-down power reported
+by Ferdman et al. 2015, and the data point for SAX J1808.4-3658 following an updated de-reddening correction for Las Cumbres
+Observatory B-band magnitude with respect to Ambrosino et al. 2021). The inset shows a zoom-in on the sample, and labels only
+sources analyzed in this work.
+
+
+optical pulse efficiency for transitional and accreting MSPs       ferent detector, namely ARCONS (Strader et al. 2013, see
+is on the order of 10−5 − 10−4 , with an optical pulsed am-        Fig. 3). Moreover, they are in agreement with the results
+plitude of the order of 1% or less.                                for the RB system PSR J2339-0533, where a 3.5σ pulsa-
+     In Fig. 3, we report the results of our optical obser-        tion detection was found with a pulsed optical luminosity
+vational campaign over the sample of MSPs described in             of mB = 27.0 mag (Papitto et al. 2025, and Fig. 3). Our
+Sect. 4. Results are reported in terms of the conversion           results support the hypothesis that the optical pulse effi-
+efficiency of the spin-down power into pulsed optical lu-          ciency in spiders is ≲ 10−5 , i.e., up to a couple of orders
+minosity. As we do not find any signals above the detec-           of magnitude lower than that observed for other types of
+tion threshold, we were only able to establish upper lim-          MSPs in binary systems, namely transient and accreting
+its on the optical pulse efficiency of the analyzed systems.       (see PSR J1023+0038 and SAX J1808.4-3568 in Fig. 3).
+We nonetheless highlight these as the most stringent con-          This is in agreement with recent models (Papitto et al.
+straints on this type of signal from the considered sources.       2019; Veledina et al. 2019) that highlight the role played
+We also note that the upper limits we obtained on the              by an accretion disk producing bright optical pulsations as
+efficiency values are of the same order as those for PSR           synchrotron emission at the intrabinary shock, where the
+J0337+1715, a MSP (2.7 ms spin period) in a triple hier-           pulsar wind interacts with the disk (Richard-Romei et al.
+archical system with two white dwarfs observed with a dif-         2026). The upper limits obtained in the present work indi-
+
+Article number, page 8 of 10
+                                 Malacaria et al.: Optical pulsations from millisecond pulsars
+
+cate that if optical pulsations are present in spider MSPs,          Our results on the optical pulse efficiency are also sum-
+they are generally fainter than in the currently known ac-      marized in Fig. 3. They show that an improvement by a
+creting and transitional MSP cases. This is consistent with,    factor of two in pulsed-flux sensitivity would lower the ef-
+but does not unambiguously prove, a role for the accre-         ficiency limits by about 50%, which is sufficient to test
+tion flow or disk in enhancing optical pulsed emission. On      whether optical pulse efficiency values similar to those mea-
+the other hand, similar to INSs, spider systems have no ac-     sured for PSR J2339-0533 are typical of spider MSPs. How-
+cretion flow influencing the magnetosphere, and the mech-       ever, sensitivity alone may not secure detection, as it can
+anism producing optical pulsations is expected to be the        be affected by geometric, ephemeris, and intermittency lim-
+same (Papitto et al. 2025, and references therein). In fact,    itations.
+as discussed by Papitto et al. (2025), despite a gap in spin-   Acknowledgements. This work was supported by INAF (Research
+down power of four orders of magnitude between isolated         Large Grant FANS and GO Grant PULSE-X, PI: Papitto; “Chasing
+pulsars such as the Crab and its twin in the Large Mag-         the optical counterpart in FRBs and Magnetars with SiFAP2@TNG
+ellanic Cloud, PSR J0540-6919, and the RB system PSR            and SiFAP-SoFT@Cassini”, PI: Ambrosino), the Italian Ministry of
+                                                                University and Research (PRIN MUR 2020, Grant 2020BRP57Z,
+J2339-0533, their optical pulsed efficiency η is similar. On    GEMS, PI: Astone), and Fondazione Cariplo/Cassa Depositi e Prestiti
+the other hand, our non-detection of pulsations in spider       (Grant 2023-2560, PI: Papitto). GI is supported by a Juan de la
+systems could, in principle, be due to other factors be-        Cierva fellowship (JDC2024-053550-I). We also thank Ö. F. Çoban, D.
+sides the intrinsically low efficiency η. Among these, we       Smith and M. Kerr for useful discussions. Murriyang, CSIRO’s Parkes
+mention instrument sensitivity, the geometry of the system      radio telescope, is part of the Australia Telescope National Facil-
+                                                                ity (https://ror.org/05qajvd42) which is funded by the Australian
+(which might be such that the beam of optical emission          Government for operation as a National Facility managed by CSIRO.
+does not cross our line of sight), and the uncertainty in the   We acknowledge the Wiradjuri people as the Traditional Owners of
+ephemeris. Moreover, we notice that pulsations from spider      the Observatory site. The Nançay Radio Observatory is operated by
+systems are often transient in the radio band due to scin-      the Paris Observatory, associated with the French Centre National de
+                                                                la Recherche Scientifique (CNRS) and Université d’Orléans. It is par-
+tillation and absorption by plasma ejected by the pulsar        tially supported by the Region Centre Val de Loire in France. DFT has
+wind, which enshrouds the system, thus making an intrin-        been supported by PID2024-155316NB-I00 funded by MICIU /AEI
+sically weak signal even harder to detect (Miraval Zanon        /10.13039/501100011033 / FEDER, UE and CSIC PIE 202350E189.
+et al. 2021; Ridolfi et al. 2016; Thongmeearkom et al. 2024).
+The non-detection of optical pulsations in our sample can
+therefore also be due to their transient nature. Finally, we
+mention that the beaming in different energy bands can also     References
+play a role in their detectability. Remarkable cases in this    Abdo, A. A., Ackermann, M., Ajello, M., et al. 2009, Science, 325, 848
+regard are the Fermi-LAT γ-ray pulsars PSR J1035-6720           —. 2010, ApJS, 188, 405
+                                                                Al Noori, H., Roberts, M. S. E., Torres, R. A., et al. 2018, ApJ, 861,
+and PSR J1744-7619. In fact, faint radio pulsations were          89
+detected for the former only after the discovery of their γ-    Alpar, M. A., Cheng, A. F., Ruderman, M. A., & Shaham, J. 1982,
+ray pulsations, while no radio pulsations have been detected      Nature, 300, 728
+so far for the latter (Clark et al. 2021).                      Ambrosino, F., Meddi, F., Rossi, C., et al. 2014, in Society of Photo-
+                                                                  Optical Instrumentation Engineers (SPIE) Conference Series, Vol.
+                                                                  9147, Ground-based and Airborne Instrumentation for Astronomy
+6. Conclusions                                                    V, ed. S. K. Ramsay, I. S. McLean, & H. Takami, 91478R
+                                                                Ambrosino, F., Papitto, A., Stella, L., et al. 2017, Nature Astronomy,
+We analyzed a sample of eight spider MSPs observed with           1, 854
+SiFAP2 in search of optical pulsed signals. We summarize        Ambrosino, F., Miraval Zanon, A., Papitto, A., et al. 2021, Nature
+                                                                  Astronomy, 5, 552
+our main findings as follows:                                   Archibald, A. M., Stairs, I. H., Ransom, S. M., et al. 2009, Science,
+1. We find no significant pulsations in the optical band          324, 1411
+                                                                Backer, D. C., Kulkarni, S. R., Heiles, C., Davis, M. M., & Goss,
+   from the analyzed sample of sources. We have obtained          W. M. 1982, Nature, 300, 615
+   stringent (95% confidence level) upper limits on the op-     Bailer-Jones, C. A. L., Rybizki, J., Fouesneau, M., Demleitner, M., &
+   tical pulsed efficiency. These are compatible with the         Andrae, R. 2021, AJ, 161, 147
+   efficiency value obtained for PSR J2339-0533, the only       Ballocco, C., Papitto, A., Miraval Zanon, A., et al. 2026, A&A, 707,
+                                                                  A42
+   other RB system for which evidence of optical pulsations     Bangale, P., Bhattacharyya, B., Camilo, F., et al. 2024, ApJ, 966, 161
+   has been reported with an efficiency η = 3.3 × 10−6 .        Barbieri, C., Bhatia, R. K., Bonoli, C., et al. 1994, in Society of Photo-
+2. Our upper limits are a factor of 50-100 below the optical      Optical Instrumentation Engineers (SPIE) Conference Series, Vol.
+   pulse efficiency measured for the transitional and accret-     2199, Advanced Technology Optical Telescopes V, ed. L. M. Stepp,
+   ing MSP systems PSR J1023+0038 and SAX J1808.4-                10
+   3658, respectively. These findings support the hypothe-      Bhattacharya, D., & van den Heuvel, E. P. J. 1991, Phys. Rep., 203,
+                                                                  1
+   sis that an accretion disk around the NS increases the       Blanchard, C., Guillemot, L., Voisin, G., Cognard, I., & Theureau, G.
+   efficiency of producing optical pulsations, while the op-      2025, A&A, 698, A239
+   tical pulse efficiency of spider systems possibly has the    Breton, R. P., van Kerkwijk, M. H., Roberts, M. S. E., et al. 2013,
+   same origin as the optical pulsation from isolated radio       ApJ, 769, 108
+                                                                Caliandro, G. A., Torres, D. F., & Rea, N. 2012, MNRAS, 427, 2251
+   pulsars.                                                     Clark, C. J., Nieder, L., Voisin, G., et al. 2021, MNRAS, 502, 915
+3. Orbital timing solutions for three systems, namely           Cocke, W. J., Disney, M. J., & Taylor, D. J. 1969, Nature, 221, 525
+   J1723, J1959, and J2055 have been updated using re-          Cordes, J. M., & Lazio, T. J. W. 2002, arXiv e-prints, astro
+   cent radio observations. Moreover, for two other sys-        Crawford, F., Lyne, A. G., Stairs, I. H., et al. 2013, ApJ, 776, 20
+   tems, namely J1653 and J1816, we verified that their         Cromartie, H. T., Camilo, F., Kerr, M., et al. 2016, ApJ, 819, 34
+                                                                De Falco, V., Carleo, A., Ridolfi, A., & Corongiu, A. 2025, A&A, 696,
+   known orbits derived from Fermi-LAT γ-ray data are re-         A49
+   markably stable and still hold as of the time of writing.    Deneva, J. S., Ray, P. S., Camilo, F., et al. 2016, ApJ, 823, 105
+   Here we report their most recent orbital parameters.         —. 2021, ApJ, 909, 6
+
+                                                                                                        Article number, page 9 of 10
+                                                      A&A proofs: manuscript no. main
+
+Faulkner, A. J., Stairs, I. H., Kramer, M., et al. 2004, MNRAS, 355,
+    147
+Ferdman, R. D., Archibald, R. F., & Kaspi, V. M. 2015, ApJ, 812, 95
+Fiore, W., Levin, L., McLaughlin, M. A., et al. 2023, ApJ, 956, 40
+Fitzpatrick, E. L. 1999, PASP, 111, 63
+Fruchter, A. S., Stinebring, D. R., & Taylor, J. H. 1988, Nature, 333,
+    237
+Ghedina, A., Leone, F., Ambrosino, F., et al. 2018, in Society of Photo-
+    Optical Instrumentation Engineers (SPIE) Conference Series, Vol.
+    10702, Ground-based and Airborne Instrumentation for Astronomy
+    VII, ed. C. J. Evans, L. Simard, & H. Takami, 107025Q
+Groth, E. J. 1975, ApJS, 29, 285
+Güver, T., & Özel, F. 2009, MNRAS, 400, 2050
+Hessels, J. W. T., Roberts, M. S. E., McLaughlin, M. A., et al. 2011,
+    in American Institute of Physics Conference Series, Vol. 1357, Ra-
+    dio Pulsars: An Astrophysical Key to Unlock the Secrets of the
+    Universe, ed. M. Burgay, N. D’Amico, P. Esposito, A. Pellizzoni,
+    & A. Possenti (AIP), 40
+HI4PI Collaboration, Ben Bekhti, N., Flöer, L., et al. 2016, A&A, 594,
+    A116
+Hobbs, G., Manchester, R. N., Dunning, A., et al. 2020, PASA, 37,
+    e012
+Hobbs, G. B., Edwards, R. T., & Manchester, R. N. 2006, MNRAS,
+    369, 655
+Illiano, G., Papitto, A., Ambrosino, F., et al. 2023, A&A, 669, A26
+Jaodand, A. D., Hernández Santisteban, J. V., Archibald, A. M., et al.
+    2021, arXiv e-prints, arXiv:2102.13145
+Kaplan, D. L., Stovall, K., Ransom, S. M., et al. 2012, ApJ, 753, 174
+Karpov, S., Beskin, G., Plokhotnichenko, V., Shibanov, Y., & Zyuzin,
+    D. 2019, Astronomische Nachrichten, 340, 607
+Koljonen, K. I. I., & Linares, M. 2023, MNRAS, 525, 3963
+—. 2025, arXiv e-prints, arXiv:2505.11691
+La Placa, R., Papitto, A., Illiano, G., et al. 2026, A&A, 707, A245
+Lange, C., Camilo, F., Wex, N., et al. 2001, MNRAS, 326, 274
+Leaci, P., & Prix, R. 2015, Phys. Rev. D, 91, 102003
+Leahy, D. A. 1987, A&A, 180, 275
+Leahy, D. A., Darbro, W., Elsner, R. F., et al. 1983, ApJ, 266, 160
+Lewis, E. F., Olszanski, T. E. E., Deneva, J. S., et al. 2023a, ApJ,
+    956, 132
+—. 2023b, ApJ, 956, 132
+Meddi, F., Ambrosino, F., Nesci, R., et al. 2012, PASP, 124, 448
+Mignani, R. P. 2011, Advances in Space Research, 47, 1281
+Miraval Zanon, A., D’Avanzo, P., Ridolfi, A., et al. 2021, A&A, 649,
+    A120
+Miraval Zanon, A., Ambrosino, F., Coti Zelati, F., et al. 2022, A&A,
+    660, A63
+Negro, M., Zhang, H., Di Lalla, N., et al. 2026, ApJ, 999, 207
+Nieder, L., Clark, C. J., Kandel, D., et al. 2020, ApJ, 902, L46
+Pacini, F., & Salvati, M. 1983, ApJ, 274, 369
+Papitto, A., Ferrigno, C., Bozzo, E., et al. 2013, Nature, 501, 517
+Papitto, A., Ambrosino, F., Stella, L., et al. 2019, ApJ, 882, 104
+Papitto, A., Ambrosino, F., Burgay, M., et al. 2025, A&A, 702, L21
+Pletsch, H. J., & Clark, C. J. 2015, ApJ, 807, 18
+Ransom, S. 2011, PRESTO: PulsaR Exploration and Search
+    TOolkit, Astrophysics Source Code Library, record ascl:1107.017,
+    ascl:1107.017
+Ray, P. S., Abdo, A. A., Parent, D., et al. 2012, arXiv e-prints,
+    arXiv:1205.3089
+Richard-Romei, V., Cerutti, B., Papitto, A., & La Placa, R. 2026,
+    arXiv e-prints, arXiv:2606.25114
+Ridolfi, A., Freire, P. C. C., Torne, P., et al. 2016, MNRAS, 462, 2918
+Roberts, M. S. E., McLaughlin, M. A., Gentile, P. A., et al. 2015,
+    arXiv e-prints, arXiv:1502.07208
+Romani, R. W., Filippenko, A. V., & Cenko, S. B. 2014, ApJ, 793,
+    L20
+Rosenthal, A. C., Ransom, S. M., Corcoran, K. A., et al. 2025, ApJ,
+    982, 170
+Shang, L., Yu, Y., Dang, S., et al. 2024, ApJ, 969, 62
+Shearer, A., & Golden, A. 2001, ApJ, 547, 967
+Smith, D. A., Abdollahi, S., Ajello, M., et al. 2023, ApJ, 958, 191
+Stovall, K., Lynch, R. S., Ransom, S. M., et al. 2014, ApJ, 791, 67
+Strader, J., Swihart, S., Chomiuk, L., et al. 2019, ApJ, 872, 42
+Strader, M. J., Johnson, M. D., Mazin, B. A., et al. 2013, ApJ, 779,
+    L12
+Sullivan, A. G., Dinsmore, J. T., & Romani, R. W. 2026, ApJ, 999,
+    128
+Sullivan, A. G., & Romani, R. W. 2024, ApJ, 974, 315
+Thongmeearkom, T., Clark, C. J., Breton, R. P., et al. 2024, MNRAS,
+    530, 4676
+Turchetta, M., Linares, M., Koljonen, K., & Sen, B. 2023, MNRAS,
+    525, 2565
+Vaughan, B. A., van der Klis, M., Wood, K. S., et al. 1994, ApJ, 435,
+    362
+Veledina, A., Nättilä, J., & Beloborodov, A. M. 2019, ApJ, 884, 144
+Yao, J. M., Manchester, R. N., & Wang, N. 2017, ApJ, 835, 29
+Zampieri, L., Burtovoi, A., Fiori, M., et al. 2019, MNRAS, 485, L109
+
+
+Article number, page 10 of 10
+

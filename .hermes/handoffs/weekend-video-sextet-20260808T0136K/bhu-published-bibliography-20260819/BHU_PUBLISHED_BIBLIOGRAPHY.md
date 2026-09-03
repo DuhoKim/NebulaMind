@@ -918,6 +918,15 @@ by using Israel junction conditions — is **FALSE and withdrawn**. Easson cites
 own conditions "Darmois–Israel **no-shell** conditions", and `2505.23877` states "No additional
 surface term or exotic matter layer is required." Verified against both sources directly.)*
 
+**DOMAIN NARROWED 2026-09-03 14:34 KST — Duho, relay via Blanc 14:33 KST, verbatim "22a, me".** Ruling (a) on the 14:10 packet: the
+stamped domain is now the **closed-daughter limb only** — comoving no-shell closed-FRW daughters of static,
+asymptotically flat, finite-ADM parents, where the obstruction (Proposition 2) is proved in the paper (source lines
+740–779). The **flat/open limb** is struck from the stamped domain: its obstruction rests on the cited Burwig–Easson
+theorem (source line 648 "For flat and open daughters, the obstruction is more general…"), so it is carried as the
+wider claim under the warrant flag `W_PROOF_CITED`, not as a no-go this record owns. Tier THEORETICAL-OBSTRUCTION
+kept. Old domain wording above left in place as dead text. Record: `WARRANT_DOUBLE_RECONCILIATION_20260903.md`
+(third seat agy, ACCESS PROVEN, sides with the Claude seat; all three seats agree on the facts).
+
 **PUBLICATION CAVEAT DISCHARGED 2026-08-29.** The "flagged for Miru's spot-check" above never
 happened — Miru is a retired seat. Resolved instead at the A7 gate: **Phys. Rev. D 114, 044077,
 published 24 August 2026** (received 25 June, accepted 31 July), DOI `10.1103/qs86-npwk`, verified
