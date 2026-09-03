@@ -1610,5 +1610,5 @@ Next: both referee seats on this text, the corrected code, and the real-geometry
   recomputation exactly; certifies the artifact, not the process, per §6.3.
 - **`VOID` conversion — DISCHARGED 2026-09-03:** The BS-2v converter, successor-layer strict schema, authenticated receipt, independent registry comparison, uniqueness/count closure, and adversarial fixtures are delivered at the pins recorded above. This discharged pre-BS-6 build item changes no other dependency.
 
-SIGNATURE UTC:
-DUHO SIGNATURE:
+SIGNATURE UTC: 2026-09-03T04:30:00Z
+DUHO SIGNATURE: 0a09ba938e42412860a55d70f12c640d1f56c4e2801486a8dc200f3017a84598 at 2026-09-03T04:30:00Z (chat signature via Blanc relay; V135 preamble mechanism)
