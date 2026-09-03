@@ -23,7 +23,7 @@ MAP={
 46:("1111.1017_clean.txt","quantization"),47:("sato_kodama_sasaki_maeda_1982_plb108_103_clean.txt","sato"),48:("farhi_guth_mitctp1400_clean.txt","guth"),
 49:("blau_guendelman_guth_1987_clean.txt","guth"),50:("farhi_guth_guven_ctp1690_clean.txt","guth"),51:("0910.1181_clean.txt","pop"),52:("1808.08327_clean.txt","bounce"),
 53:("1906.11824_clean.txt","bounce"),54:("2505.23877_clean.txt","bounce"),55:("2007.06664_clean.txt","sitter"),57:("smoller_temple_1997_clean.txt","smoller"),59:("desai_poplawski_2016_plb755_183_clean.txt","poplawski")}
-NO_TEXT={7:"brown-prl (outside sources; audited c5)",18:"Dymnikova 1992 GRG -- no clean text pinned",:"Gaztanaga 2023 MNRAS Lett -- PDF only, no clean text"}  # 56 moved to MAP 2026-09-03 (text pinned)
+NO_TEXT={7:"brown-prl (outside sources; audited c5)",18:"Dymnikova 1992 GRG -- no clean text pinned"}  # 56 moved to MAP 2026-09-03 (text pinned)
 checks=[]
 def chk(n,p,d=""):
     if not isinstance(p,bool): raise TypeError("chk needs a computed predicate")
