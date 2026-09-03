@@ -1,0 +1,115 @@
+K2 junction classification -- Claude seat.  sympy 1.14.0
+
+== exterior SdS extrinsic curvature (surface (T(s),R(s)), n_mu = (-Rdot, Tdot, 0, 0)) ==
+  K^theta_theta+ = Tdot*(-Lambda*R_b**3 - 6*M + 3*R_b)/(3*R_b**2)
+  K^s_s+ (Tddot eliminated by the first-fundamental-form constraint) = (9*R_b**2*Rdot**2*(Lambda*R_b**3*Tdot**2*(Lambda*R_b**3 + 6*M - 3*R_b)**3 - 3*M*Tdot**2*(Lambda*R_b**3 + 6*M - 3*R_b)**3 - 9*R_b**3*Rddot*(Lambda*R_b**3 + 6*M - 3*R_b)**2 + 9*R_b**2*Rdot**2*(Lambda**2*R_b**6 + 3*Lambda*M*R_b**3 - 3*Lambda*R_b**4 - 18*M**2 + 9*M*R_b) + 2*Tdot**2*(-Lambda*R_b**3 + 3*M)*(Lambda*R_b**3 + 6*M - 3*R_b)**3) + Tdot**2*(Lambda*R_b**3 + 6*M - 3*R_b)**3*(9*R_b**3*Rddot*(Lambda*R_b**3 + 6*M - 3*R_b) + 9*R_b**2*Rdot**2*(-Lambda*R_b**3 + 3*M) + Tdot**2*(Lambda*R_b**3 - 3*M)*(Lambda*R_b**3 + 6*M - 3*R_b)**2))/(9*R_b**3*Tdot*(Lambda*R_b**3 + 6*M - 3*R_b)**4)
+  check  K^s_s+ * (F Tdot) - (Rddot + F'/2) on the constraint surface = 0
+  beta_+ := F Tdot,  beta_+^2 = F + Rdot^2  [constraint]
+
+== interior FRW k=1, surface chi = X(t) (general B3; B1 is Xdot=0) ==
+  K^theta_theta- = (Xdot*a*adot + 1/tan(X))/(a*sqrt(-Xdot**2*a**2 + 1))
+  K^s_s-         = (Xddot*a - Xdot**3*a**2*adot + 2*Xdot*adot)/(-Xdot**2*a**2 + 1)**(3/2)
+  beta_- = n.dR  = (Xdot*a*adot*sin(X) + cos(X))/sqrt(-Xdot**2*a**2 + 1)
+  u.n (dust 4-velocity dotted with the unit normal) = -Xdot*a/sqrt(-Xdot**2*a**2 + 1)
+
+== interior FRW k=0, surface chi = X(t) (general B3; B1 is Xdot=0) ==
+  K^theta_theta- = (X*Xdot*a*adot + 1)/(X*a*sqrt(-Xdot**2*a**2 + 1))
+  K^s_s-         = (Xddot*a - Xdot**3*a**2*adot + 2*Xdot*adot)/(-Xdot**2*a**2 + 1)**(3/2)
+  beta_- = n.dR  = (X*Xdot*a*adot + 1)/sqrt(-Xdot**2*a**2 + 1)
+  u.n (dust 4-velocity dotted with the unit normal) = -Xdot*a/sqrt(-Xdot**2*a**2 + 1)
+
+########## CONTROLS ##########
+C1: B1,k=+1,Lam=0: [K^theta_theta]=0  <=>  F+Rdot^2 = beta_-^2 = cos^2(chi*)  <=>  M = [4*pi*rho0*sin(X)**3/3]
+C1: with M=M_OS:  Rddot + F'(R_b)/2 = 0   (so [K^s_s]=0 too; beta_+ = F Tdot = cos chi* > 0 for chi*<pi/2)
+C1: F + Rdot^2 with M=M_OS, Lam=0 = cos(X)**2 = cos^2 chi*  -> PASS
+C1 (k=0 check, entry 56 L143): M = [4*pi*X**3*rho0/3]
+C1 (Lambda general, k=1): beta_+^2 - beta_-^2 = 0 ;  Rddot + F'/2 = 0
+C1 (Lambda general, k=0): beta_+^2 - beta_-^2 = 0 ;  Rddot + F'/2 = 0
+C1 PASS
+
+C2: Barrabes-Israel null junction, Khakshournia prescription (eqs 1-12; M = (4pi/3) rho r^3|Sigma pointwise, L91; chi=pi/2, L161)
+  K_uu|+ = -Derivative(f(r), r)/2   (paper eq 16: -f_,r/2)
+  K_thth|+ = r   (paper eq 15: r)
+  K_thth|- (general chi) = a*sin(chi)   (paper eq 13: a sin chi)
+  K_uu|- at chi=pi/2 (Friedmann k=+1 inserted) = (Lambda*a**3 + 2*pi*rho0)/(3*a**2)
+  K_uu|- - (-f_,r/2) at chi=pi/2 = 2*pi*rho0/a**2   (paper eq 14: +2 pi rho a)
+  [K_uu] = K_uu|+ - K_uu|- = -2*pi*rho0/a**2   (target -2 pi rho a; WARRANT_5_claude)
+  null-shell pressure p = -(1/8pi)[K_uu] = rho0/(4*a**2)   (target rho a/4 = rho0/(4*a**2))
+  null-shell energy density mu = -(1/8pi) sigma^AB [K_AB] = 0
+  Lambda-dependence of [K_uu]: 0
+C2 PASS  (note: with M frozen along Sigma instead of the pointwise prescription, u is singular at chi=pi/2: f=0=dr/dchi there; the paper's prescription is what is reproduced)
+
+C3: B1 k=+1 at r_b = sin chi* = 1 (chi* = pi/2):
+  beta_- = cos(chi*) -> 0  so [K^theta_theta]=0 requires beta_+ = F Tdot = 0 => F(R_b) + Rdot^2 = 0
+  F(R_b) + Rdot^2 = 2*(-3*M + 4*pi*rho0)/(3*a) = 0  <=>  M = [4*pi*rho0/3]  (Pathria eq 14 / Knutsen eq 8: (4pi/3) rho a^3 = C/2)
+  then F(R_b) = 1 - 2M/a - Lam a^2/3 = (a*(-Lambda*a**2 + 3) - 8*pi*rho0)/(3*a) = -adot^2  (Friedmann k=+1)
+  Knutsen hypothesis (24), L652-689: T timelike on Sigma <=> F(R_b) > 0.  With F(R_b) = -adot^2 <= 0 the only solution is adot = 0, F(R_b) = 0:
+  => R_b = a = R_s, the sphere is static and sits on its horizon = Knutsen eq (44), L1072-1088.  C3 PASS
+  (without hypothesis (24): the same matching is smooth for every adot, with the boundary inside the horizon, F(R_b) = -adot^2 < 0, on the T=const surface Tdot=0;
+   both K_ab vanish identically there: interior chi=pi/2 and exterior T=const are totally geodesic.)
+  exterior K_ss at Tdot=Tddot=0 (direct, no division by beta): 0 ; K_thth = 0
+
+########## SURFACE STRESS-ENERGY (Israel), symbolic, per placement ##########
+
+B1, k=1, general exterior mass M (M = M_OS + m_shell):
+  beta_-^2 = cos(X)**2 ;  beta_+^2 = F + Rdot^2 = (-2*M/sin(X) - a*sin(X)**2 + a + 8*pi*rho0*sin(X)**2/3)/a
+  [K^theta_theta] = (-sqrt(a)*cos(X) + sqrt(-18*M/sin(X) - 9*a*sin(X)**2 + 9*a + 24*pi*rho0*sin(X)**2)/3)/(a**(3/2)*sin(X))
+  [K^s_s]         = sqrt(3)*(M/sin(X)**2 - 4*pi*rho0*sin(X)/3)/(a**(3/2)*sqrt(-6*M/sin(X) - 3*a*sin(X)**2 + 3*a + 8*pi*rho0*sin(X)**2))
+  sigma = -[beta]/(4 pi R) = (sqrt(a)*cos(X)/4 - sqrt(-18*M/sin(X) - 9*a*sin(X)**2 + 9*a + 24*pi*rho0*sin(X)**2)/12)/(pi*a**(3/2)*sin(X))
+  p     = (-sqrt(3)*M/8 - sqrt(a)*sqrt(-6*M/sin(X) - 3*a*sin(X)**2 + 3*a + 8*pi*rho0*sin(X)**2)*sin(X)*cos(X)/8 - sqrt(3)*a*sin(X)**3/8 + sqrt(3)*a*sin(X)/8 + sqrt(3)*pi*rho0*sin(X)**3/6)/(pi*a**(3/2)*sqrt(-6*M/sin(X) - 3*a*sin(X)**2 + 3*a + 8*pi*rho0*sin(X)**2)*sin(X)**2)
+  beta_+^2 - beta_-^2 = -2*m_shell/(a*sin(X))  => sigma > 0 iff m_shell > 0; no real embedding if m_shell > R beta_-^2/2
+  energy conditions: WEC = {sigma>=0, sigma+p>=0}; DEC = {sigma>=|p|}; smooth (M=M_OS): sigma=p=0, all satisfied.
+
+B1, k=0, general exterior mass M (M = M_OS + m_shell):
+  beta_-^2 = 1 ;  beta_+^2 = F + Rdot^2 = (-2*M + 8*pi*X**3*rho0/3 + X*a)/(X*a)
+  [K^theta_theta] = (-sqrt(a) + sqrt(-18*M/X + 24*pi*X**2*rho0 + 9*a)/3)/(X*a**(3/2))
+  [K^s_s]         = sqrt(3)*(M - 4*pi*X**3*rho0/3)/(X**2*a**(3/2)*sqrt((-6*M + 8*pi*X**3*rho0 + 3*X*a)/X))
+  sigma = -[beta]/(4 pi R) = (sqrt(a)/4 - sqrt(-18*M/X + 24*pi*X**2*rho0 + 9*a)/12)/(pi*X*a**(3/2))
+  p     = (-sqrt(3)*M/8 + sqrt(3)*pi*X**3*rho0/6 - X*sqrt(a)*sqrt(-6*M/X + 8*pi*X**2*rho0 + 3*a)/8 + sqrt(3)*X*a/8)/(pi*X**2*a**(3/2)*sqrt(-6*M/X + 8*pi*X**2*rho0 + 3*a))
+  beta_+^2 - beta_-^2 = -2*m_shell/(X*a)  => sigma > 0 iff m_shell > 0; no real embedding if m_shell > R beta_-^2/2
+  energy conditions: WEC = {sigma>=0, sigma+p>=0}; DEC = {sigma>=|p|}; smooth (M=M_OS): sigma=p=0, all satisfied.
+
+B3, general timelike surface chi = X(t) (theorem: no-shell => comoving):
+  k=1: F + Rdot^2 - beta_-^2 = -(Lambda*a**3*sin(X)**3 + 6*M - 3*a*adot**2*sin(X)**3 - 3*a*sin(X)**3)/(3*a*sin(X))
+       [K^theta_theta]=0  <=>  M = 4*pi*rho0*sin(X)**3/3  (the Misner-Sharp dust mass inside X(t); Xdot drops out identically)
+       M constant (Birkhoff, Knutsen L284-289) and rho0 != 0  =>  S_k(X(t)) constant  =>  Xdot = 0: the no-shell boundary is comoving (B1).
+       u.n = -Xdot*a/sqrt(-Xdot**2*a**2 + 1)  (non-zero iff Xdot != 0: dust crosses a non-comoving surface; the shell then carries the flux)
+  k=0: F + Rdot^2 - beta_-^2 = -(Lambda*X**3*a**3 + 6*M - 3*X**3*a*adot**2)/(3*X*a)
+       [K^theta_theta]=0  <=>  M = 4*pi*X**3*rho0/3  (the Misner-Sharp dust mass inside X(t); Xdot drops out identically)
+       M constant (Birkhoff, Knutsen L284-289) and rho0 != 0  =>  S_k(X(t)) constant  =>  Xdot = 0: the no-shell boundary is comoving (B1).
+       u.n = -Xdot*a/sqrt(-Xdot**2*a**2 + 1)  (non-zero iff Xdot != 0: dust crosses a non-comoving surface; the shell then carries the flux)
+
+B2, null reading (entry 5): S^ab = p g_*^ab with mu = 0, j = 0, p = rho0/(4*a**2)
+  WEC (mu>=0 and p>=0): True ;  DEC (mu>=0 and p==0): False ;  NEC: True
+B2, timelike reading (Pathria's surface chi=pi/2 = Knutsen r_b=1): smooth for M = C/2 = (4pi/3) rho a^3, all 0<=Lambda<=Lambda_c;
+  F(R_b) = -adot^2: boundary at the bifurcation sphere at max expansion (R_max = R_s, Pathria eq 18-19), inside the white-hole region while expanding, inside the black hole while contracting.
+  Lambda_c (double root of F = 1 - C/R - Lambda R^2/3, C = 2M): [{Lambda: 4/(9*C**2), R_b: 3*C/2}]  -> Lambda_c = 4/(9 C^2) = 1/(9 M^2), R_max(Lambda_c) = 3C/2 (Pathria L233-234: R_max from C to 3C/2)
+  second reading of the mass relation (proper dust mass of the half 3-sphere, M = pi^2 rho a^3): F + Rdot^2 at chi*=pi/2 = 2*pi*rho0*(4 - 3*pi)/(3*a) = -11.3616283926059 < 0  => no real embedding at all (no junction, smooth or shelled)
+
+C4 deletion probe: cells whose class changes when the energy-condition test is removed: [('B2-null', 1, '0<Lam<=Lam_c'), ('B2-null', 1, 'Lam=0')]
+    expected exact set: [('B2-null', 1, '0<Lam<=Lam_c'), ('B2-null', 1, 'Lam=0')]
+    ('B2-null', 1, '0<Lam<=Lam_c') : J_SHELL_UNPHYSICAL -> J_SHELL_EXPANDING
+    ('B2-null', 1, 'Lam=0') : J_SHELL_UNPHYSICAL -> J_SHELL_EXPANDING
+C4 PASS
+
+########## CLASSIFICATION TABLE ##########
+  B1       k=1  Lam=0          : J_SMOOTH_EXPANDING
+  B1       k=1  0<Lam<=Lam_c   : J_SMOOTH_EXPANDING
+  B1       k=0  Lam=0          : J_SMOOTH_EXPANDING
+  B1       k=0  0<Lam<=Lam_c   : J_SMOOTH_EXPANDING
+  B2       k=1  Lam=0          : J_SMOOTH_EXPANDING
+  B2       k=1  0<Lam<=Lam_c   : J_SMOOTH_EXPANDING
+  B2       k=0  Lam=0          : J_NONE
+  B2       k=0  0<Lam<=Lam_c   : J_NONE
+  B3       k=1  Lam=0          : J_SMOOTH_EXPANDING
+  B3       k=1  0<Lam<=Lam_c   : J_SMOOTH_EXPANDING
+  B3       k=0  Lam=0          : J_SMOOTH_EXPANDING
+  B3       k=0  0<Lam<=Lam_c   : J_SMOOTH_EXPANDING
+  B2-null  k=1  Lam=0          : J_SHELL_UNPHYSICAL
+  B2-null  k=1  0<Lam<=Lam_c   : J_SHELL_UNPHYSICAL
+  B2-null  k=0  Lam=0          : J_NONE
+  B2-null  k=0  0<Lam<=Lam_c   : J_NONE
+
+HEADLINE entry 56 cell (B1, k=0, Lam=0): J_SMOOTH_EXPANDING
+HEADLINE Pathria cell (B2, k=+1, 0<=Lam<=Lam_c): J_SMOOTH_EXPANDING  [timelike chi=pi/2 reading]; entry-5 null-horizon reading: J_SHELL_UNPHYSICAL
+ALL CONTROLS PASSED: C1 C2 C3 C4
