@@ -1,11 +1,15 @@
 import csv
 import gzip
+import math
+import random
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
 from completeness_gate import (
     Candidate, GateError, GZRecord, InMemoryCandidateSource, Position,
+    PARENT_ARCSEC, TIER_A_ARCSEC, PositionIndex, _within_linear,
     parse_dec, parse_ra, read_gz_tables, run_gate, separation_arcsec,
 )
 
@@ -87,6 +91,64 @@ class MatchTests(unittest.TestCase):
         c = cand(50)
         with self.assertRaisesRegex(GateError, r"^COMPLETENESS-FAIL: backend returned duplicate DR10 candidate for GZ1 OBJID 1$"):
             gate([gz(0, 1)], [c, c])
+
+
+class PositionIndexTests(unittest.TestCase):
+    @staticmethod
+    def synthetic():
+        rng = random.Random(20260903)
+        positions = [Position(str(i), rng.random() * 360.0,
+                              math.degrees(math.asin(rng.uniform(-1.0, 1.0))))
+                     for i in range(20_000)]
+        positions.extend((Position("wrap-west", math.nextafter(360.0, 0.0), 0.0),
+                          Position("wrap-east", 0.0, 0.0),
+                          Position("north", 123.0, 89.99),
+                          Position("south", 321.0, -89.99)))
+        records = [gz(i, i, rng.random() * 360.0,
+                      math.degrees(math.asin(rng.uniform(-1.0, 1.0))))
+                   for i in range(256)]
+        records.extend((gz(len(records), 900001, 0.0, 0.0),
+                        gz(len(records) + 1, 900002, 123.0, 89.99),
+                        gz(len(records) + 2, 900003, 321.0, -89.99)))
+        return positions, records
+
+    def test_indexed_equals_linear_on_20000_positions(self):
+        positions, records = self.synthetic()
+        index = PositionIndex(positions)
+        for radius in (TIER_A_ARCSEC, PARENT_ARCSEC):
+            self.assertEqual(radius, 1.0)
+            for record in records:
+                self.assertEqual(index.within(record, radius),
+                                 _within_linear(record, positions, radius))
+
+    def test_exact_one_arcsec_and_adjacent_binary64_values(self):
+        exact = 1.0 / 3600.0
+        inside = math.nextafter(exact, 0.0)
+        outside = math.nextafter(exact, math.inf)
+        positions = [Position("exact", 10.0, exact),
+                     Position("inside", 20.0, inside),
+                     Position("outside", 30.0, outside)]
+        index = PositionIndex(positions)
+        records = [gz(0, 1, 10.0, 0.0), gz(1, 2, 20.0, 0.0), gz(2, 3, 30.0, 0.0)]
+        self.assertEqual(separation_arcsec(10.0, 0.0, 10.0, exact), 1.0)
+        self.assertLess(separation_arcsec(20.0, 0.0, 20.0, inside), 1.0)
+        self.assertGreater(separation_arcsec(30.0, 0.0, 30.0, outside), 1.0)
+        for radius in (TIER_A_ARCSEC, PARENT_ARCSEC):
+            got = [index.within(record, radius) for record in records]
+            expected = [_within_linear(record, positions, radius) for record in records]
+            self.assertEqual(got, expected)
+            self.assertEqual(got, [True, True, False])
+
+    def test_timing_100k_records(self):
+        positions, seed_records = self.synthetic()
+        index = PositionIndex(positions)
+        records = (seed_records * ((100_000 + len(seed_records) - 1) // len(seed_records)))[:100_000]
+        started = time.perf_counter()
+        for record in records:
+            index.within(record, TIER_A_ARCSEC)
+        elapsed = time.perf_counter() - started
+        print(f"TIMING_100K: {elapsed:.3f} seconds")
+        self.assertLess(elapsed, 120.0)
 
 
 class TierAndLabelTests(unittest.TestCase):

@@ -15,6 +15,10 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
+import numpy as np
+import scipy
+from scipy.spatial import cKDTree
+
 MATCH_ARCSEC = 1.0
 PARENT_ARCSEC = 1.0
 TIER_A_ARCSEC = 1.0
@@ -224,8 +228,44 @@ class AstroDataLabCandidateSource(CandidateSource):
         _fail("COMPLETENESS-FAIL", "real catalogue backend is a non-executable stub")
 
 
-def _within(record: GZRecord, positions: Sequence[Position], radius: float) -> bool:
+def _within_linear(record: GZRecord, positions: Sequence[Position], radius: float) -> bool:
+    """Reference implementation of the inclusive binary64 predicate."""
     return any(separation_arcsec(record.ra, record.dec, p.ra, p.dec) <= radius for p in positions)
+
+
+class PositionIndex:
+    """Conservative unit-vector index; final admission uses separation_arcsec."""
+
+    method = f"scipy.spatial.cKDTree unit vectors (SciPy {scipy.__version__})"
+
+    def __init__(self, positions: Sequence[Position]):
+        self.positions = positions
+        angles = np.radians(np.asarray([(p.ra, p.dec) for p in positions], dtype=np.float64))
+        if len(angles):
+            ra, dec = angles[:, 0], angles[:, 1]
+            cos_dec = np.cos(dec)
+            vectors = np.column_stack((cos_dec * np.cos(ra), cos_dec * np.sin(ra), np.sin(dec)))
+        else:
+            vectors = np.empty((0, 3), dtype=np.float64)
+        self._tree = cKDTree(vectors)
+
+    def within(self, record: GZRecord, radius: float) -> bool:
+        ra, dec = math.radians(record.ra), math.radians(record.dec)
+        cos_dec = math.cos(dec)
+        vector = (cos_dec * math.cos(ra), cos_dec * math.sin(ra), math.sin(dec))
+        # Unit vectors handle RA wrap and poles directly.  The 1e-7 arcsec
+        # super-radius dwarfs binary64 coordinate/chord rounding; candidates
+        # are still admitted only by the unchanged exact predicate below.
+        super_radius = radius + 1.0e-7
+        chord = 2.0 * math.sin(math.radians(super_radius / 3600.0) / 2.0)
+        neighbours = self._tree.query_ball_point(vector, chord)
+        return any(separation_arcsec(record.ra, record.dec,
+                                     self.positions[i].ra, self.positions[i].dec) <= radius
+                   for i in neighbours)
+
+
+def _within(record: GZRecord, positions: PositionIndex, radius: float) -> bool:
+    return positions.within(record, radius)
 
 
 def _label(record: GZRecord) -> str | None:
@@ -281,13 +321,15 @@ def run_gate(records: Sequence[GZRecord], tier_a: Sequence[Position], parent: Se
     counts = {k: 0 for k in ("tier_a", "tier_b", "no_dr10", "one_dr10", "multiple_dr10",
                               "collision", "below_threshold", "tier_c_eligible")}
     unique_owner: dict[tuple[int, int, int], list[int]] = {}
+    tier_a_index = PositionIndex(tier_a)
+    parent_index = PositionIndex(parent)
     for r in records:
-        if _within(r, tier_a, TIER_A_ARCSEC):
+        if _within(r, tier_a_index, TIER_A_ARCSEC):
             dispositions[r.objid] = "TIER-A-EXCLUDED"
             counts["tier_a"] += 1
             candidate_map[r.objid] = tuple()
             continue
-        if _within(r, parent, PARENT_ARCSEC):
+        if _within(r, parent_index, PARENT_ARCSEC):
             dispositions[r.objid] = "TIER-B-EXCLUDED"
             counts["tier_b"] += 1
             candidate_map[r.objid] = tuple()
@@ -357,7 +399,7 @@ def run_gate(records: Sequence[GZRecord], tier_a: Sequence[Position], parent: Se
         "catalogue_backend": prov, "query_export_artifacts": prov.get("query_artifacts", []),
         "software_environment": {
             "python": sys.version, "platform": platform.platform(),
-            "software_sha256": software_digest,
+            "software_sha256": software_digest, "spatial_index": PositionIndex.method,
         },
         "match_radius_arcsec": MATCH_ARCSEC,
         "candidate_enumeration": "complete-all-candidates-inclusive",
