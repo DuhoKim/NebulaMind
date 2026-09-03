@@ -5,6 +5,16 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-03 17:25 KST — K1 stage-2 preregistration filed (no decision needed; your "both a" of 17:17 ordered it)
+
+`K1S2_POPSYN_PREREG_20260903.md`: a binary-population-synthesis test of the neutron-star-cap derivative with COMPAS (public code,
+commit hash pinned at step 1), controls against the GWTC-3 merger-rate interval and the Özel & Freire pulsar-mass catalogue,
+classes K1S2_MONOTONE_DOWN / MAX / MONOTONE_UP / STATIONARY_NOT_MAX / SIGN_INVERTS / UNIDENTIFIED, about twenty seat-days.
+Gate: PREREG_SOUND_WITH_REPAIRS, one wording repair applied. Committed before any derivation. Say "hold K1s2" to stop it;
+otherwise the step-1 pin sheets (COMPAS commit, cap grid, star-formation history) start after the check sheets and second
+routes you ordered at 17:22 are filed.
+
+---
 ## RESOLVED 2026-09-03 17:18 KST — Duho "as Tori's rec, both a" = (a): warrant fields annotated on 4, 5, 22, 56; tiers, standings, entry-22 domain untouched. Was: YOUR CALL 2026-09-03 17:11 KST — K2 result: the junction theorem is proved; entry 56 needs no shell, Pathria's horizon shell is unphysical (2 blind seats + third seat)
 
 **Result (`K2_RESULT_20260903.md`):** a dust interior joins a Schwarzschild exterior without a shell if and only if the boundary

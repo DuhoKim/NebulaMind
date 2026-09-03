@@ -1,7 +1,7 @@
 # K1 stage-2 pre-registration — does black-hole production fall when the neutron-star mass cap moves? A binary-population-synthesis test of the cosmological-natural-selection premise (entries 6, 7, 31)
 
 **Tori, 2026-09-03 17:20 KST. Ordered by Duho (verbatim "as Tori's rec, both a", relay via Blanc 17:17 KST) on the K1 stage-1 packet. Written
-and committed BEFORE any derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` before filing. Paper HOLD; nothing
+and committed BEFORE any derivation. Gated by a fresh seat via `nm_referee_dispatch.sh` (agy, ACCESS PROVEN, `K1S2_PREREG_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, one wording repair on C4 applied 2026-09-03 17:25 KST). Paper HOLD; nothing
 outward; tier/standing stamps remain Duho's.**
 
 ## 0. Why this exists
@@ -58,7 +58,7 @@ derivative's sign is the same at every box point beyond its Monte-Carlo error, e
   sign is recovered as stage 1's; report whether binary physics changes it. Failure = the single-star sign cannot be
   computed; then no class is filed.
 - **C4 (Monte-Carlo control):** doubling the number of binaries at the centre point must not change the derivative's sign;
-  failure = increase N until it does, or file INCONCLUSIVE.
+  failure = increase N until the sign stabilises, or file INCONCLUSIVE.
 
 ## 6. Seat plan, blind double, cost
 - Two seats run the grid independently from this prereg (codex and the Claude seat; each installs the pinned COMPAS commit in
