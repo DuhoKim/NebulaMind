@@ -46,3 +46,12 @@ Recommendation: (a), with the exact bound taken from the referee's report, not f
 The producer/verifier/receipt are under hostile referee through nm_referee_dispatch.sh (verdict pending);
 V137 is NOT drafted until that referee returns and you rule. No pixel opened. Pinned/signed files unchanged
 (P0 manifest 30/30).
+
+## Referee update (15:18 KST, ACCESS PROVEN — AGY_BS3G_BUILD_REFEREE_20260903.md)
+Tooling: **PINNABLE**. Receipt: **VALID-FAILED-RECORD**, 55/55 tests. The referee recomputed the evidence by
+hand from the fixture's own accuracy (a_hat = 0.88) and spread: at γ = ±0.01 the lowest bin bound is 0.8534
+/ 0.8535 (holds, above 0.85); at γ = ±0.02 it is 0.8468 (fails). So on these fixtures the admissible sweep
+range is exactly **|γ| ≤ 0.01 — 3 of the 51 ruled columns** — a property of the fixture's accuracy sitting
+0.03 above the floor, not a bug. Option (a) with Γ = 0.01 and n_steps = 50 would sweep Δγ = 0.0004; whether
+that still tests what §1 wants the control to test (a sky-gradient in sensitivity of the size the estimator
+can resolve, σ_γ = 0.057 in this receipt) is the scientific question your ruling decides.
