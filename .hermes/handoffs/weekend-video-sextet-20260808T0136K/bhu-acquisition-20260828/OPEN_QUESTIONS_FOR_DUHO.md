@@ -5,7 +5,7 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## YOUR CALL 2026-09-03 17:11 KST — K2 result: the junction theorem is proved; entry 56 needs no shell, Pathria's horizon shell is unphysical (2 blind seats + third seat)
+## RESOLVED 2026-09-03 17:18 KST — Duho "as Tori's rec, both a" = (a): warrant fields annotated on 4, 5, 22, 56; tiers, standings, entry-22 domain untouched. Was: YOUR CALL 2026-09-03 17:11 KST — K2 result: the junction theorem is proved; entry 56 needs no shell, Pathria's horizon shell is unphysical (2 blind seats + third seat)
 
 **Result (`K2_RESULT_20260903.md`):** a dust interior joins a Schwarzschild exterior without a shell if and only if the boundary
 is comoving (then it is the textbook Oppenheimer–Snyder match; closed ones recollapse, confirming Easson's Proposition 2).
@@ -18,7 +18,7 @@ standings and the entry-22 domain untouched) [recommended]; (b) annotate and ALS
 closed-daughter limb is now supported by an owned computation); (c) hold the annotations.
 
 ---
-## YOUR CALL 2026-09-03 17:06 KST — K1 stage 1 result: the natural-selection premise fails for the primordial amplitude (2 blind seats, unanimous)
+## RESOLVED 2026-09-03 17:18 KST — Duho "as Tori's rec, both a" = (a): entries 6 and 31 annotated; stage 2 preregistration next. Was: YOUR CALL 2026-09-03 17:06 KST — K1 stage 1 result: the natural-selection premise fails for the primordial amplitude (2 blind seats, unanimous)
 
 **Result (`K1S1_RESULT_20260903.md`):** black-hole production RISES monotonically with the primordial amplitude through the
 Planck value (K1_MONOTONE_UP) and FALLS with the neutron-star mass cap across 2.5 M☉ (K1_MONOTONE_DOWN); no nuisance flips
