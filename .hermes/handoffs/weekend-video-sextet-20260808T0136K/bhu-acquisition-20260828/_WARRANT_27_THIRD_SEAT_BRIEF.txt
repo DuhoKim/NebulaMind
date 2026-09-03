@@ -1,0 +1,26 @@
+THIRD-SEAT ADJUDICATION — warrant cell, bibliography entry 27 (QUALITATIVE-DIRECTIONAL). Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+You are the THIRD seat on a blind-double split. Two seats read the pinned source independently and returned different
+warrant tokens. Your job: read the pinned SOURCE in full (the target file whose SHA you printed), check EVERY line receipt
+each seat cites (sed -n <line>p), and return ONE token with your own receipts. Warrant question for this tier: does the SIGN/DIRECTION of the claim FOLLOW from the paper's own model? Tokens: W_DIRECTION_DERIVED (follows with stated assumptions) / W_DIRECTION_CONDITIONAL (only for a free-parameter choice) / W_DIRECTION_ASSUMED (the sign is a premise, an ansatz, or taken by citation).
+Do not change any file. Write NOTHING but your report to stdout. Report format, after the ACCESS_SHA line:
+line 2: TOKEN=<one token from the list above>
+line 3: SIDES_WITH=<codex|claude|neither>
+then: a justification of at most 200 words quoting the source with line numbers, stating which of the two seats' cited
+receipts you verified and which (if any) did not hold; last line: `contested: yes/no — reason`.
+Mandatory sanity checks: (1) the token must belong to this tier's list; (2) every line you quote must contain the fragment;
+(3) if the two seats agree on the FACTS and differ only on the token boundary, say so explicitly and apply the definitional
+rule stated in the question rather than your taste.
+
+=== SEAT 1 (codex) — file WARRANT_27_codex.md ===
+W_DIRECTION_ASSUMED
+borrowed_inputs: Ωm, ΩΛ, and H0 background normalization (SOURCE lines 210–224); observed CMB homogeneity scale ΘH = 66 ± 9° (SOURCE lines 302–303)
+The paper derives the finite cloud radius R(τ) (SOURCE lines 210–224) and projects its non-circular background scale to θ ≃ 2R/dCMB ≃ 60° (SOURCE lines 302–306). But it merely states that incoming fluctuations have no modes with λ>2R and infers anomalously low large-scale CMB temperature power (SOURCE line 295); no perturbation spectrum or boundary-condition derivation bridges the finite radius to that hard cutoff. The paper concedes that perturbations and bounce conditions remain to be estimated (SOURCE lines 333–339). The direction is therefore asserted even though the radius, angle, and Fourier convention are supplied.
+contested: yes — the packet-class token conflicts with the stamped tier premise; the reconciliation expressly changes “derives” to “restates” for the spectral cutoff.
+
+=== SEAT 2 (claude) — file WARRANT_27_claude.md ===
+W_DIRECTION_DERIVED
+borrowed_inputs: ΩΛ≃0.7, H0≃70 km/s/Mpc fixing rS (L192); Ωm=0.3, H0=67 and the measured homogeneity-index cut-off "66±9" degrees, Camacho-Quevedo & Gaztañaga 2021 (L303, comparison datum); causal-horizon map "Fosalba and Gaztañaga 2021" (L305); scale invariance "Zel’Dovich 1970; Harrison 1970; Peebles and Yu 1970" (L260); nuclear saturation density (L162)
+R is derived: "R=[rH²rS]^{1/3}" (Eq. 11, L210–214) from Eq. (1), recovered by the Appendix A junction (L671). The sign follows from the stated geometry: matter only inside R, "a region with matter outside the Hubble horizon" (L226) frozen, so "Contrary to Inflation, the super horizon spectrum of perturbations in the BHU has a cut-off given by R" (L253) and "the spectrum of incoming fluctuations have a cutoff for scales larger than λ>2R (k<π/R) … This results in an anomalous lack of the largest structures in the CMB sky" (L295); "θ≃2R/dCMB≃60deg" (L306). The direction is an inference, not an input, but the k<π/R form is asserted (no P(k), no boundary condition; ENTRY27 reconciliation: "restates"); 66±9° is compared, not forecast.
+contested: yes — same prose step as entry 26; ENTRY27_RECONCILIATION calls the cut-off "asserted", so a seat may file W_DIRECTION_ASSUMED on that wording.
+
+=== END ===

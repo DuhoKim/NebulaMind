@@ -1,0 +1,26 @@
+THIRD-SEAT ADJUDICATION — warrant cell, bibliography entry 14 (CONSISTENCY-ONLY). Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+You are the THIRD seat on a blind-double split. Two seats read the pinned source independently and returned different
+warrant tokens. Your job: read the pinned SOURCE in full (the target file whose SHA you printed), check EVERY line receipt
+each seat cites (sed -n <line>p), and return ONE token with your own receipts. Warrant question for this tier: is the consistency shown by equations or asserted at the load-bearing step? Tokens: W_CONSTRUCTION_DERIVED / W_CONSTRUCTION_ASSERTED (ansatz or citation at the load-bearing step; the construction itself is the asserted item) / W_MIXED (a derived background, an asserted link to cosmology). Precedent (entry 38, 2026-09-03): when the facts are agreed and only the boundary differs, "derived background + asserted cosmological link" is W_MIXED by definition.
+Do not change any file. Write NOTHING but your report to stdout. Report format, after the ACCESS_SHA line:
+line 2: TOKEN=<one token from the list above>
+line 3: SIDES_WITH=<codex|claude|neither>
+then: a justification of at most 200 words quoting the source with line numbers, stating which of the two seats' cited
+receipts you verified and which (if any) did not hold; last line: `contested: yes/no — reason`.
+Mandatory sanity checks: (1) the token must belong to this tier's list; (2) every line you quote must contain the fragment;
+(3) if the two seats agree on the FACTS and differ only on the token boundary, say so explicitly and apply the definitional
+rule stated in the question rather than your taste.
+
+=== SEAT 1 (codex) — file WARRANT_14_codex.md ===
+W_CONSTRUCTION_ASSERTED
+borrowed_inputs: limiting-curvature hypothesis (SOURCE lines 199–225); de Sitter limiting form imposed as “our second main hypothesis” (SOURCE lines 231–249); Israel thin-shell method [9] (SOURCE lines 270–294)
+The paper derives junction conditions and global geometries once its high-curvature prescription is supplied, including Schwarzschild/de Sitter matching and collapse-to-Friedmann regions (SOURCE lines 270–342, 397–471). Yet the load-bearing singularity replacement is an ansatz: the modified field equations contain an unknown tensor, and the Ricci tensor is simply supposed to approach de Sitter form (SOURCE lines 224–249). The record likewise identifies this as an expressly guessed unknown theory. Because the interior-universe consistency depends on that assumed replacement, the construction’s warrant is asserted despite substantial downstream algebra.
+contested: no — the full-read receipt and record agree that this is a conditional constructive model under the limiting-curvature hypothesis (b46_entry14_fullread.py, INVENTORY/Sec. 2; bibliography entry 14).
+
+=== SEAT 2 (claude) — file WARRANT_14_claude.md ===
+W_MIXED
+borrowed_inputs: Israel thin-shell formalism [9] (L170–171: 'we use the "massive shell" thin formalism' "first elaborated by Israel [9]."); vacuum-like limiting-curvature closure, an ansatz (L233: "We suppose (our second main hypothesis) that the tensor"); Vaidya metric [12] (L493: "we will use the Vaidya metric [12}"); inflationary-model decay properties [14],[15] (L582: "in the usual infl.ationary models [14]. [15].")
+Derived background: the Sec. 2 shell stresses (L320: "these conditions lead to the following relations"), the sign result (L349–352: "for a = 24 we have S/ < 0" … "are not fulfilled here."), the Sec. 3 dust gluing and Sec. 4 forbidden σ ranges are computed. Asserted link to cosmology: the daughter rests on guesses — L579–580: "we can only guess about the fate of the" "de Sitter world in the black hole interior."; L580: "it is natural to suppose" "(and we shall do so)"; L602: "Let us suppose that it also" — the decay hypersurface chosen so (5.1)–(5.2) match (L614), hedged (L634: "possibilities look rather questionable."), the escape from [7] asserted (L642: "may be violated.").
+contested: no — b46 full read and both gates confirmed CONSISTENCY-ONLY; no seat dissent on the asserted step
+
+=== END ===

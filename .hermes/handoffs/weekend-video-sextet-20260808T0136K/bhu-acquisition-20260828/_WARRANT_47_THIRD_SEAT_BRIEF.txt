@@ -1,0 +1,26 @@
+THIRD-SEAT ADJUDICATION — warrant cell, bibliography entry 47 (PROSPECT). Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+You are the THIRD seat on a blind-double split. Two seats read the pinned source independently and returned different
+warrant tokens. Your job: read the pinned SOURCE in full (the target file whose SHA you printed), check EVERY line receipt
+each seat cites (sed -n <line>p), and return ONE token with your own receipts. Warrant question for this tier: does the paper DERIVE a link from the theory to the named instrument/observable (amplitude-free is fine), or only NAME it? Tokens: W_ROUTE_CONNECTED / W_ROUTE_NAMED_ONLY.
+Do not change any file. Write NOTHING but your report to stdout. Report format, after the ACCESS_SHA line:
+line 2: TOKEN=<one token from the list above>
+line 3: SIDES_WITH=<codex|claude|neither>
+then: a justification of at most 200 words quoting the source with line numbers, stating which of the two seats' cited
+receipts you verified and which (if any) did not hold; last line: `contested: yes/no — reason`.
+Mandatory sanity checks: (1) the token must belong to this tier's list; (2) every line you quote must contain the fragment;
+(3) if the two seats agree on the FACTS and differ only on the token boundary, say so explicitly and apply the definitional
+rule stated in the question rather than your taste.
+
+=== SEAT 1 (codex) — file WARRANT_47_codex.md ===
+W_ROUTE_CONNECTED
+borrowed_inputs: spherical simultaneous-nucleation model and light-speed walls (SOURCE lines 67–69, 93–100); Birkhoff theorem (SOURCE lines 99–111); constant quantum nucleation rate (SOURCE lines 163–170); flat-space percolation threshold and typical-domain estimate (SOURCE lines 187–201, 218–226); 60-expansion-time homogeneity condition (SOURCE lines 207–214); assumption that all false-vacuum domains become wormholes (SOURCE lines 331–335)
+Evaporation is connected to the named baryon-to-entropy observable: generated entropy lowers the ratio and may conflict with observations (SOURCE lines 347–353). That amplitude-free route is explicit, although no entropy yield, dilution factor, observed threshold, or parameter bound is derived; the proposed repair is merely a new baryogenesis mechanism (SOURCE lines 353–355). The separate child-universe count follows algebraically only after assuming every trapped domain becomes a wormhole (SOURCE lines 326–338), while general wormhole formation is expressly unproved (SOURCE lines 145–160).
+contested: no — both deep-audit seats agreed that the paper supplies a concrete observable route but no quantitative prediction.
+
+=== SEAT 2 (claude) — file WARRANT_47_claude.md ===
+W_ROUTE_NAMED_ONLY
+borrowed_inputs: e-fold floor "phase transition era must be greater than 60 I in order" (sato:208, refs [1-3]); percolation threshold "certain value u c (~0.3) [ 13]" (:190); ρ_v=(10¹⁵ GeV)⁴ and ν=1/60 (:287); expansion ratio "since the universe expands 1028" (:289)
+Internal quantities are derived — child radius "L <~ (lO/p) 1/3 exp(v -1) l" (:285), "For Pv = ( 1015 GeV) 4 and v = 1/60, L is about 10 cm." (:287), the count "For v = 1/60, eq. (19) yields an extremely huge num-" (:337), conditional on "the false vacuum domains become wormholes" (:332), itself "though it is not exactly proved yet" (:155). Observables are named only: "present radius of a child universe is larger than H6-1" (:293) is a consistency check; the baryon-entropy route is prose — "the evaporation may dilute the baryon excess too" "much to agree with observations" (:352-353) — no factor, no inequality, disowned at :354. No amplitude-free derived link.
+contested: no — the n_B/s passage is qualitative and self-disowned; no derived link can be extracted from it.
+
+=== END ===

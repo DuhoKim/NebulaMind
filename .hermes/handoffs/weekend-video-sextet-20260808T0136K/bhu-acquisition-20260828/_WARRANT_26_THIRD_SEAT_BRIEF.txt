@@ -1,0 +1,26 @@
+THIRD-SEAT ADJUDICATION — warrant cell, bibliography entry 26 (QUALITATIVE-DIRECTIONAL). Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+You are the THIRD seat on a blind-double split. Two seats read the pinned source independently and returned different
+warrant tokens. Your job: read the pinned SOURCE in full (the target file whose SHA you printed), check EVERY line receipt
+each seat cites (sed -n <line>p), and return ONE token with your own receipts. Warrant question for this tier: does the SIGN/DIRECTION of the claim FOLLOW from the paper's own model? Tokens: W_DIRECTION_DERIVED (follows with stated assumptions) / W_DIRECTION_CONDITIONAL (only for a free-parameter choice) / W_DIRECTION_ASSUMED (the sign is a premise, an ansatz, or taken by citation).
+Do not change any file. Write NOTHING but your report to stdout. Report format, after the ACCESS_SHA line:
+line 2: TOKEN=<one token from the list above>
+line 3: SIDES_WITH=<codex|claude|neither>
+then: a justification of at most 200 words quoting the source with line numbers, stating which of the two seats' cited
+receipts you verified and which (if any) did not hold; last line: `contested: yes/no — reason`.
+Mandatory sanity checks: (1) the token must belong to this tier's list; (2) every line you quote must contain the fragment;
+(3) if the two seats agree on the FACTS and differ only on the token boundary, say so explicitly and apply the definitional
+rule stated in the question rather than your taste.
+
+=== SEAT 1 (codex) — file WARRANT_26_codex.md ===
+W_DIRECTION_ASSUMED
+borrowed_inputs: finite-cloud BHU background from Part I (SOURCE lines 75–79); gravitational-instability results [32–34] (SOURCE lines 987–1010); measured cutoff/anomaly literature [12,35,39–43] (SOURCE lines 1010, 1513–1516)
+Given Part I’s finite cloud, Part II says a cutoff is “expected” because R is finite (SOURCE line 1010) and later restates a cutoff given by R while citing measurements (SOURCE lines 1513–1516). It does not derive the suppression direction from perturbation equations or boundary conditions: the bounce is called speculative and further work is needed (SOURCE lines 1011–1020), including estimating perturbations (SOURCE line 1510). Thus neither the cutoff sign nor a ~60° projection is independently derived here; the relevant finite-scale construction is inherited, and observational support is by citation.
+contested: yes — this packet-class token contradicts the stamped QUALITATIVE-DIRECTIONAL premise; the phase-(b) ruling retained the tier while finding the papers do not supply a perturbation prescription.
+
+=== SEAT 2 (claude) — file WARRANT_26_claude.md ===
+W_DIRECTION_DERIVED
+borrowed_inputs: ΩΛ≃0.75, Ωm≃0.25 fixing rS and rH (L755–771); nuclear saturation density ρNS, "results from the Pauli exclusion principle" (L449–466, [13]); "Press–Schechter formalism [15]" (L1093); scale-invariant spectrum of "Harrison [32], Zel’dovich [33] and Peebles [34]" (L917); the measured cut-off "[12,39,40,41]" (L1516) and anomalies "[35]" (L1010), used as confirmation not input
+The sign is inferred from the model's own finite radius R=[rH²rS]^{1/3} (Eq. 4, L298–322, from Eq. 3): "Perturbations can be generated during the collapse and exit the horizon before the Big Bounce" (L914); "Because R is always finite, we expect a cut-off in the spectrum of perturbations. This is at odds with the simplest prediction of Inflation" (L1010); "a cut-off in the spectrum of fluctuations given by R in Equation (4)" (L1516). The direction (suppression above R, not enhancement) is not an input; it follows given one stated assumption, fluctuations arise only inside the cloud, but in prose ("we expect"), with no perturbation equation or amplitude ("Further work is needed", L1510).
+contested: yes — the step from finite R to a spectral cut-off is one sentence of prose, and the standing objection (finite support/causal disconnection ≠ zero correlation) lets a seat file W_DIRECTION_ASSUMED.
+
+=== END ===

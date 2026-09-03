@@ -1,0 +1,26 @@
+THIRD-SEAT ADJUDICATION — warrant cell, bibliography entry 50 (CONSISTENCY-ONLY). Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+You are the THIRD seat on a blind-double split. Two seats read the pinned source independently and returned different
+warrant tokens. Your job: read the pinned SOURCE in full (the target file whose SHA you printed), check EVERY line receipt
+each seat cites (sed -n <line>p), and return ONE token with your own receipts. Warrant question for this tier: is the consistency shown by equations or asserted at the load-bearing step? Tokens: W_CONSTRUCTION_DERIVED / W_CONSTRUCTION_ASSERTED (ansatz or citation at the load-bearing step; the construction itself is the asserted item) / W_MIXED (a derived background, an asserted link to cosmology). Precedent (entry 38, 2026-09-03): when the facts are agreed and only the boundary differs, "derived background + asserted cosmological link" is W_MIXED by definition.
+Do not change any file. Write NOTHING but your report to stdout. Report format, after the ACCESS_SHA line:
+line 2: TOKEN=<one token from the list above>
+line 3: SIDES_WITH=<codex|claude|neither>
+then: a justification of at most 200 words quoting the source with line numbers, stating which of the two seats' cited
+receipts you verified and which (if any) did not hold; last line: `contested: yes/no — reason`.
+Mandatory sanity checks: (1) the token must belong to this tier's list; (2) every line you quote must contain the fragment;
+(3) if the two seats agree on the FACTS and differ only on the token boundary, say so explicitly and apply the definitional
+rule stated in the question rather than your taste.
+
+=== SEAT 1 (codex) — file WARRANT_50_codex.md ===
+W_MIXED
+borrowed_inputs: classical false-vacuum bubble trajectories and entry-48 singularity result reviewed with citations (SOURCE lines 190–208); semiclassical WKB/action formalism (SOURCE lines 205–219, 748–752)
+The paper derives the thin-wall classical action and evaluates a subtracted Euclidean action, but its load-bearing interpolation is not a manifold. The authors introduce a pseudomanifold and explicitly conjecture that its action approximates the tunneling probability (SOURCE lines 61–69, 1690–1693, 2039–2046). They later state that the tunneling action rests on conjecture rather than derivation (SOURCE lines 2447–2452), while the canonical route is noninvertible and fails (SOURCE lines 2553–2563). Thus substantial conditional mechanics is derived, but the link that turns it into a universe-creation amplitude is asserted.
+contested: no — both full-read gates agreed that the constructive result is conjectural at this load-bearing step and remains CONSISTENCY-ONLY.
+
+=== SEAT 2 (claude) — file WARRANT_50_claude.md ===
+W_CONSTRUCTION_ASSERTED
+borrowed_inputs: classical thin-wall bubble trajectories from refs [2]-[7] ("here we will only state the results. without derivations", L255); Penrose theorem ref [10] and its application in ref [9] (L161-164, L575-576); leading-WKB / stationary-phase assumption for the functional integral (L1709-1717)
+Classical background is derived or rederived: "the Penrose theorem applies to an expanding type (a) solution if and only if M >Ms" (L179-180); the anti-trapped surface "would not exist if the trajectory on the Kruskal diagram crossed to the right of the origin" (L663-664); action (3.40), Euclidean trajectory (5.13) and IE (5.30)/(5.34) are worked. The load-bearing step, the tunneling amplitude, is an ansatz: they "have not found a genuine four-dimensional Euclidean manifold that interpolates" (L2033), adopt the pseudomanifold prescription (1)-(4) (L2050-2079), "pursue the conjecture that the semiclassical method is valid" (L2041), and state the "calculation of the tunneling action is therefore based on a conjecture rather than a derivation" (L2449). The universe-creation conclusion (L2722-2723) rests on that conjecture.
+contested: yes — W_MIXED is a defensible alternative reading (extensive derived classical background, conjectural quantum step); I file ASSERTED because the paper's own construction, not its cosmological link, is the conjectured step.
+
+=== END ===
