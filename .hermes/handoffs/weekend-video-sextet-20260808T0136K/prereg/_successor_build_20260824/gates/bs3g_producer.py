@@ -32,11 +32,21 @@ PINNED = {
     "estimator": (REF / "gain_gradient_estimator.py", "e227029713396a920f76d33eed2383339dd0e566e1cdbb6818092ec4403727fd"),
     "verifier": (BASE / "gates" / "verify_mu_gamma.py", "e33d9275d80787437429af7aa5989f3b886a8d1a477eddd55459e2270e046d04"),
 }
-TOKENS = {"REPRODUCED-LONGO", "REJECTED-AT-LONGO-AMPLITUDE", "INCONCLUSIVE"}
+NUMERIC_TOKENS = {"REPRODUCED-LONGO", "REJECTED-AT-LONGO-AMPLITUDE", "INCONCLUSIVE"}
 
 
 class BS3GRefusal(RuntimeError):
     pass
+
+
+def _path_outcome(exc, v9):
+    """Convert only §5's typed pre-statistic halts; every other path error refuses."""
+    cause = exc.__cause__ or exc.__context__
+    if exc.code == "P07" and isinstance(cause, v9.InconclusiveByCalibration):
+        return "INCONCLUSIVE-BY-CALIBRATION"
+    if exc.code == "P07" and isinstance(cause, v9.InconclusiveByPower):
+        return "INCONCLUSIVE-BY-POWER"
+    raise exc
 
 
 def _one(pattern: str, text: str, label: str) -> str:
@@ -128,7 +138,7 @@ def _cal_digest(cal) -> str:
     return hashlib.sha256(canonical({"scope": "FROZEN-FIXTURE", "calibration": record})).hexdigest()
 
 
-def compute_fields(progress=False):
+def compute_fields(progress=False, diagnostics=None):
     rv = ruled_values()
     for name, (path, want) in PINNED.items():
         if _sha(path) != want:
@@ -160,21 +170,33 @@ def compute_fields(progress=False):
         harness._JOURNAL.active = True
         matrix = []
         cache = {}
+        inconclusive_cells = []
+        min_a_lb_b = float("inf")
         for i in range(rv["n_draws"]):
             mp = mapping.make_mapping(i)
             row = []
             for gd in rv["grid"]:
                 gamma = float(gd)
                 s_prime, cal_prime = mp(gamma, mask, cal)
+                if isinstance(cal_prime, dict) and "a_lb_b" in cal_prime:
+                    min_a_lb_b = min(min_a_lb_b, float(np.min(cal_prime["a_lb_b"])))
                 key = (s_prime.tobytes(), canonical({k: (np.asarray(v).tolist()
                        if isinstance(v, np.ndarray) else v) for k, v in cal_prime.items()}))
                 if key not in cache:
-                    out = gcp.evaluate_at(gamma, mask, cal, mp, stage=v9.STAGE_C,
-                                          prefix=11, trial=3, n_perm=rv["n_perm"])
-                    if out["verdict"] not in TOKENS:
-                        raise BS3GRefusal(f"non-production verdict token: {out['verdict']!r}")
-                    cache[key] = out["verdict"]
-                row.append(cache[key])
+                    try:
+                        out = gcp.evaluate_at(gamma, mask, cal, mp, stage=v9.STAGE_C,
+                                              prefix=11, trial=3, n_perm=rv["n_perm"])
+                    except gcp.PathRefusal as e:
+                        cache[key] = _path_outcome(e, v9)
+                    else:
+                        if out["verdict"] not in NUMERIC_TOKENS:
+                            raise BS3GRefusal(
+                                f"non-production numeric verdict token: {out['verdict']!r}")
+                        cache[key] = out["verdict"]
+                token = cache[key]
+                row.append(token)
+                if token.startswith("INCONCLUSIVE-BY-"):
+                    inconclusive_cells.append((i, len(row) - 1, canonical_decimal(gd), token))
             matrix.append(row)
             if progress:
                 print(f"draw {i + 1}/{rv['n_draws']}", file=sys.stderr, flush=True)
@@ -193,6 +215,14 @@ def compute_fields(progress=False):
         verdict_bytes = "\n".join(x for row in matrix for x in row).encode()
         baselines = [row[rv["j0"]] for row in matrix]
         held = all(x == row[rv["j0"]] for row in matrix for x in row)
+        if diagnostics is not None:
+            diagnostics.update({
+                "inconclusive_cells": inconclusive_cells,
+                "inconclusive_count": len(inconclusive_cells),
+                "total_cells": len(matrix) * len(manifest),
+                "first_inconclusive": inconclusive_cells[0] if inconclusive_cells else None,
+                "min_a_lb_b": min_a_lb_b,
+            })
         fields = {
             "mask_sha256": _fixture_digest(mask), "calibration_sha256": _cal_digest(cal),
             "perturbation_manifest_sha256": hashlib.sha256("\n".join(manifest).encode()).hexdigest(),

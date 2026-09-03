@@ -115,3 +115,104 @@ VERSION: BS3G-BUILD-V1
 TESTS: 7/7
 RECEIPT: NONE DETERMINISTIC: no
 VERDICT_FIELD: UNAVAILABLE (P07; NO RECEIPT)
+
+## Round 2 — adjudicated P07 cell handling
+
+AGY's committed adjudication `84ed219bf` selects reading (i): a typed pre-statistic
+inconclusive halt is one recordable matrix-cell outcome.  The implementation change is confined
+to the unpinned producer and independent verifier.  Neither
+`ref/gain_counterfactual_path.py` nor any other P0-signed byte was edited; the path remains
+`92cbbdf89bd2a494c9cfb9f19fb12a46cf59a16731246cea2e74c56d2454a9b7`, exactly the digest in
+`P0_PACKAGE_MANIFEST_20260831.txt`.
+
+The producer and verifier now inspect the preserved exception context of a P07 `PathRefusal`.
+P07 wrapping the type-exact `successor_ref_v9.InconclusiveByCalibration` records the exact token
+`INCONCLUSIVE-BY-CALIBRATION` and continues.  The analogous type-exact P07 branch for
+`InconclusiveByPower` records `INCONCLUSIVE-BY-POWER`; the present pinned `adjudicate_path()` can
+raise calibration, not power, so that counterpart was not exercised.  Returned numeric-helper
+tokens retain their three-token validation, but matrix cells are no longer restricted to those
+three tokens.
+
+The refusal codes actually present in `ref/gain_counterfactual_path.py` are P01 (no mapping), P02
+(wrong sign-vector length), P03 (non-binary signs), P04 (non-finite signs), P05 (degenerate signs),
+P06 (invalid gain grid), P07 (invalid/refused calibration), P08 (permutation record raised), and
+P09 (decision helper raised).  Only the two type-exact P07 subcases above are cell outcomes.  Every
+other P07 cause and every P01–P06/P08–P09 code remains a refusal and emits no receipt.  This follows
+§5's partition: “A pinned, sealed or already-verified object ... is `VOID`”; “A quantity the run
+computed from admissible inputs ... is `INCONCLUSIVE-BY-NUMERICAL-FAILURE` — or the more specific
+inconclusive code that names it.”  Here the mapping-computed calibration reaches the more-specific
+calibration code; malformed caller/path inputs remain outside that outcome conversion.
+
+The strict BS3G-V1 schema has no fields for an inconclusive-cell count or first coordinate.  No
+fields were added: its entry digest remains
+`eb8589f5f70656b16dc8ba16e7d78677a0ab0da7b92cb54eddd22fef14e20102`.  Those diagnostics are
+therefore recorded only here.
+
+### Matrix result and design evidence
+
+- Shape: 99 draws × 51 perturbations = 5,049 cells, row-major.
+- `INCONCLUSIVE-BY-CALIBRATION`: 4,752/5,049 cells (99 cells in each of 48 columns).
+- Admissible columns: j=24, 25, 26, respectively γ=−0.01, 0, +0.01.  Every other γ column is
+  calibration-inconclusive; there are no power-inconclusive cells.
+- First row-major inconclusive coordinate: (i, j) = (0, 0), γ=−0.25.
+- Moving outward from baseline j0=25, the first breaches are j=23 at γ=−0.02 and j=27 at γ=+0.02.
+- Minimum `a_lb_b`: `0.6949581589958159`, first attained at (i, j)=(0, 0), γ=−0.25.
+- Baseline token: `INCONCLUSIVE`.  Because the extreme cells differ from their draw's j0 cell,
+  the §11 all-cells-equal reduction is `invariance_outcome = FAILED`.
+
+This is the design contradiction for the principal: the ratified ±0.25 range leaves only three
+central grid columns above the fixed 0.85 calibration floor on the frozen fixture.
+
+### Final bytes and receipts
+
+| artifact | sha256 |
+|---|---|
+| `gates/bs3g_producer.py` | `618767cd41e5283bdf736e30249ce2f0bdb180b4f0257e58e690bea58d3a18e6` |
+| `gates/verify_bs3g_receipt.py` | `09b0acaadca1d95c756ad974ed48de28a4a1bbbf5f5fb765e7d7f042ea87dd64` |
+| `gates/replay_harness.py` | `b6a0592bf881ca9b8b65d1fd6e716e2e845dd47c0f5c763799a40dec9966e4ac` |
+| `ref/gain_counterfactual_path.py` (P0-signed, untouched) | `92cbbdf89bd2a494c9cfb9f19fb12a46cf59a16731246cea2e74c56d2454a9b7` |
+| `ref/gain_mapping_a.py` | `8bc693ffae7009e0967a0b433b9bc7787494da8742457ad381443d4b210b4aa1` |
+| `ref/gain_gradient_estimator.py` | `e227029713396a920f76d33eed2383339dd0e566e1cdbb6818092ec4403727fd` |
+| `ref/gain_gradient_kernel.py` | `10dd6f62074f30a3d98ff3838c98463eb2574e99012b6db00d8454b1f25978ab` |
+| `gates/verify_mu_gamma.py` | `e33d9275d80787437429af7aa5989f3b886a8d1a477eddd55459e2270e046d04` |
+| `run/receipt_strict.py` | `c3cea71615c33ea57780872e47619b6763dad4b6aa2fb6787203dda9ec6d074c` |
+| `run/classp_candidates/BS-3g.json` | `a8277a193caffa826ac3a1c2884545f0112b64e7cd3f6a6556dcc996041e49ba` |
+
+Fresh final-byte producer run 1:
+`a8277a193caffa826ac3a1c2884545f0112b64e7cd3f6a6556dcc996041e49ba`.
+Fresh final-byte producer run 2:
+`a8277a193caffa826ac3a1c2884545f0112b64e7cd3f6a6556dcc996041e49ba`.
+`cmp` passed, so the receipts are byte-identical.  The strict receipt carries body digest
+`067a2fe56978f44478ecfc34ddca64b99682dc357e807800b6247c438355d52a` and envelope digest
+`8c78236ba698c454004354c7df4c643b1031ff336135a4814ed167619e3bc0c3`.
+
+Final validation output:
+
+```text
+BS-3g receipt verifier: 20/20 fields PASS; outcome FAILED
+receipt_strict fixtures: 10/10 PASS
+replay harness fixtures: 7/7 green
+gain-gradient estimator self-test: 0 failure(s); 9 of 9 codes exercised
+gain_mapping_a self-test: 9/9 green
+```
+
+The receipt-strict fixture run includes `assert_entries_preserved()` and confirms the unchanged
+BS3G-V1 entry digest.  Aggregate reported checks are 55/55 (20 receipt fields, 10 strict fixtures,
+7 harness fixtures, 9 estimator refusal codes, and 9 mapping fixtures).
+
+### V137 carry-forward
+
+V137 must carry reading (i) into §5/§11 explicitly: typed pre-statistic inconclusive tokens are
+valid sweep-cell tokens; one token is digested per cell; HELD still requires equality with each
+draw's own j0 cell; and all non-outcome `PathRefusal` branches still emit no receipt.  It must carry
+the emitted FAILED candidate and its digest, the two unpinned gate hashes, the unchanged
+counterfactual-path/P0 pin, the 4,752/5,049 diagnostic and first-breach coordinates, and route the
+±0.25-versus-0.85 contradiction to the principal.  It must also update the BS-3g status, relevant
+candidate/pin tables, generated counts, registry provenance, findings map, and fill/amendment/
+signing records without changing the twenty-field BS3G-V1 schema.
+
+SEAT: CODEX
+VERSION: BS3G-BUILD-V2
+TESTS: 55/55
+RECEIPT: a8277a193caffa826 DETERMINISTIC: yes
+INVARIANCE_OUTCOME: FAILED INCONCLUSIVE_CELLS: 4752/5049 MIN_A_LB: 0.6949581589958159

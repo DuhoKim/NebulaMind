@@ -24,11 +24,21 @@ PINS = {
     "estimator_sha256": (REF / "gain_gradient_estimator.py", "e227029713396a920f76d33eed2383339dd0e566e1cdbb6818092ec4403727fd"),
     "verifier_sha256": (BASE / "gates" / "verify_mu_gamma.py", "e33d9275d80787437429af7aa5989f3b886a8d1a477eddd55459e2270e046d04"),
 }
-CELL_TOKENS = {"REPRODUCED-LONGO", "REJECTED-AT-LONGO-AMPLITUDE", "INCONCLUSIVE"}
+NUMERIC_TOKENS = {"REPRODUCED-LONGO", "REJECTED-AT-LONGO-AMPLITUDE", "INCONCLUSIVE"}
 
 
 class VerificationRefusal(RuntimeError):
     pass
+
+
+def path_outcome(exc, v9):
+    """Independently convert only §5's typed pre-statistic halt exceptions."""
+    cause = exc.__cause__ or exc.__context__
+    if exc.code == "P07" and isinstance(cause, v9.InconclusiveByCalibration):
+        return "INCONCLUSIVE-BY-CALIBRATION"
+    if exc.code == "P07" and isinstance(cause, v9.InconclusiveByPower):
+        return "INCONCLUSIVE-BY-POWER"
+    raise exc
 
 
 def sha(path):
@@ -138,11 +148,16 @@ def recompute(progress=False):
                 key = (sp.tobytes(), canon({k: np.asarray(v).tolist()
                        if isinstance(v, np.ndarray) else v for k, v in cp.items()}))
                 if key not in memo:
-                    result = gcp.evaluate_at(gf, mask, cal, mapper, stage=v9.STAGE_C,
-                                             prefix=11, trial=3, n_perm=n_perm)
-                    if result["verdict"] not in CELL_TOKENS:
-                        raise VerificationRefusal("cell outside closed verdict vocabulary")
-                    memo[key] = result["verdict"]
+                    try:
+                        result = gcp.evaluate_at(gf, mask, cal, mapper, stage=v9.STAGE_C,
+                                                 prefix=11, trial=3, n_perm=n_perm)
+                    except gcp.PathRefusal as e:
+                        memo[key] = path_outcome(e, v9)
+                    else:
+                        if result["verdict"] not in NUMERIC_TOKENS:
+                            raise VerificationRefusal(
+                                "numeric decision helper returned an unknown token")
+                        memo[key] = result["verdict"]
                 row.append(memo[key])
             matrix.append(row)
             if progress:
