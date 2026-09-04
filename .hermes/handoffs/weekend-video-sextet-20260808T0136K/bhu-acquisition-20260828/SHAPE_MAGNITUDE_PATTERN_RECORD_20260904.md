@@ -1,6 +1,7 @@
 # The shape/magnitude pattern — the running record, with what would break it
 
-**Tori, 2026-09-04 20:56 KST.** Blanc's coordination note: *"A pattern with no stated breaker is not a finding."*
+**Tori, 2026-09-04 20:56 KST. VERSION 2 — see §Amendments; breaker condition 3's polarity is corrected.**
+Blanc's coordination note: *"A pattern with no stated breaker is not a finding."*
 Correct, and the earlier synthesis section did not state one. This file is the single place the instances live, with
 their sources, and it now carries the falsification condition.
 
@@ -45,7 +46,10 @@ five** of the following, and a seat must show each:
    coefficient introduced as "the simplest form", "we assume", "we choose", or "following [ref]" without that
    reference itself deriving it — the R3A test, run to the end of the citation chain.
 3. **No free normalisation survives** the derivation: replacing every parameter by a free symbol and demanding the
-   printed number back must fail without any parameter being chosen — the C4 free-symbol probe.
+   printed number back **must SUCCEED with no parameter chosen**. **If the number can be recovered only once a
+   parameter is chosen, a free normalisation survives and this condition FAILS** — the C4 free-symbol probe.
+   *(Corrected in V2; see §Amendments. The V1 text demanded that recovery **fail**, which is the presence of a free
+   normalisation — the condition passed exactly when the defect it excludes was present.)*
 4. **No fixity is assumed** where the falsifiability depends on it — the R3B test. If the prediction is rigid only
    because a quantity is held constant by choice, the constancy must itself be derived.
 5. **A measurement could falsify it**: the number is not shared with ΛCDM or with any standard model that would make
@@ -64,5 +68,31 @@ fix a mass scale. Neither is ordered; both are drafted or draftable.
 
 This record is an **observation about the corpus**, not a tier or standing claim, and it moves nothing. Six instances,
 two adjacent cases held out, one stated breaker. Paper HOLD.
+
+## Amendments
+
+**V1 → V2, 2026-09-04, ORDERED by Duho: "fix condition 3 and re-check the six instances".**
+
+| version | sha256 | change |
+|---|---|---|
+| V1 | `fff1f1a8426fd4bf55c1478f407306c5f02bd2f676e4861194b04a133f156c96` | original; six instances, five breaker conditions |
+| V2 | *this version* | **breaker condition 3's polarity corrected**; no instance, source, receipt or other condition altered |
+
+**What was wrong.** V1's condition 3 required that recovering the printed number, with every parameter replaced by a
+free symbol, **"must fail without any parameter being chosen."** That outcome *is* the presence of a free
+normalisation — the thing the condition's own heading says must not survive. **A construction satisfied V1's
+condition 3 exactly when it had the defect the condition exists to exclude.**
+
+**How it was found.** Not by inspection here. codex found it while gating `R3D_DYMNIKOVA_FLOOR_PREREG` V4, which
+copies these five conditions verbatim under this record's hash — the copy was faithful, the source was wrong. Pinning
+the conditions by hash is what made the defect visible to a referee who had never seen this file before.
+
+**Which way the error pointed.** Toward **preserving the pattern**: a genuine counterexample that fixes a magnitude
+from its own geometry would have **failed** V1's condition 3 and been rejected as a breaker. That is the direction
+this lane has been warned about, and it is why the correction is recorded rather than quietly applied.
+
+**What did NOT change.** The six instances, their receipts, the two held-out adjacent cases, and conditions 1, 2, 4
+and 5 are byte-identical to V1. **The re-check of all six instances against the corrected condition is filed
+separately in `BREAKER_C3_RECHECK_20260904.md`; its result is that no instance's status changes.**
 
 SHAPE_MAGNITUDE_PATTERN_RECORD_COMPLETE

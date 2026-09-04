@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 4 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 5 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -152,7 +152,7 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   a control whose code is not named in the document it governs cannot be checked against it.)*
 - **C6 — breaker test.** Applies **only if `DYM_FLOOR_DERIVED` is reached**; otherwise `NOT_RUN`, never a
   pass. The five conditions are **copied verbatim below** from `SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md`,
-  sha256 `fff1f1a8426fd4bf55c1478f407306c5f02bd2f676e4861194b04a133f156c96`, so that evaluation does not depend on an
+  **V2**, sha256 `5232201acfdca850c7e8a4d345aad145a3d91fdb750fdbb9a77fb43fec8d4647`, so that evaluation does not depend on an
   unpinned lane-authored text that may drift between seats. **Evaluation against any condition text not pinned here
   fails C6.**
 
@@ -162,7 +162,8 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   >    coefficient introduced as "the simplest form", "we assume", "we choose", or "following [ref]" without that
   >    reference itself deriving it — the R3A test, run to the end of the citation chain.
   > 3. **No free normalisation survives** the derivation: replacing every parameter by a free symbol and demanding
-  >    the printed number back must fail without any parameter being chosen — the C4 free-symbol probe.
+  >    the printed number back **must SUCCEED with no parameter chosen**. **If the number can be recovered only once
+  >    a parameter is chosen, a free normalisation survives and this condition FAILS** — the C4 free-symbol probe.
   > 4. **No fixity is assumed** where the falsifiability depends on it — the R3B test. If the prediction is rigid
   >    only because a quantity is held constant by choice, the constancy must itself be derived.
   > 5. **A measurement could falsify it**: the number is not shared with ΛCDM or with any standard model that would
@@ -174,7 +175,7 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   |---|---|---|---|---|
   | 1 | the derived floor is an observable magnitude | classify the derived quantity's dimension | dimension is mass (kg or M☉), not dimensionless and not a shape/scale/ratio | the printed dimensional analysis |
   | 2 | every constant traces | build the citation chain for each constant to its origin | every constant terminates in a source equation or in the §2b constant list; any `we assume/choose/simplest form` terminus fails | the full provenance table, one row per constant |
-  | 3 | no free normalisation survives | replace **every** parameter by a free symbol and attempt to recover the printed number | recovery **fails** with no parameter chosen | the printed free-symbol run and its failure |
+  | 3 | no free normalisation survives | replace every non-§2b parameter by an algebraically independent free symbol and attempt to recover the printed number | **the printed number IS recovered with no non-§2b parameter chosen** | the printed free-symbol run and its outcome |
   | 4 | no fixity is assumed | list each quantity held constant and locate its derivation | each is derived, not chosen | the fixity table with source line per row |
   | 5 | a measurement could falsify it | the comparator table below, executed in full | **no** comparator matches within tolerance | the completed comparison table |
 
@@ -226,7 +227,7 @@ fileable class. codex found **no defect** in the re-run guard (§6) or the fairn
 unchanged. **Also fixed: the completion token sat before §9, so the document ran past its own terminator** — the same
 defect found in R3C2's version history the same evening.
 
-**V4, this version. Both seats gated `872d4978…41080a`; neither read a moving file.** `R3D_GATE_V3_codex…` returned
+**V4. Both seats gated `872d4978…41080a`; neither read a moving file.** `R3D_GATE_V3_codex…` returned
 `PREREG_UNSOUND`, `R3D_GATE_V3_kimi…` `PREREG_SOUND_WITH_REPAIRS` — **a split in label, not in content**: the two
 agreed on class overlaps, on C1 and C4 being passable by assertion, on the census being an assertion, on C6's
 conditions being unstated, and on the stall gaps.
@@ -279,4 +280,16 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
 - **Unreached limbs**: controls recorded `NOT_RUN`, never as passes. **This exact underscore spelling applies to
   every unreached control throughout this document.**
 
-R3D_PREREG_V4_READY_FOR_REGATE
+**V5, this version. ORDERED by Duho: "fix condition 3 and re-check the six instances".** The pattern record is
+amended to V2 (`5232201a…c8d4647`), so V4's pin `fff1f1a8…` went stale the moment the source was corrected. C6's
+verbatim block, its pinned hash, and its condition-3 decision rule are updated to match — **the decision rule was
+carrying the same inversion**, since it was transcribed faithfully from a defective source. `BREAKER_C3_RECHECK_20260904.md`
+records the six-instance re-check: no instance's status changes.
+
+**Nothing else is repaired.** codex's and kimi's V4 findings both stand: `admissible completion` is never defined;
+two comparator sources sit outside the frozen manifest and one is falsely labelled as inside it, so condition 5
+files `DYM_SOURCE_BLOCKED` on every path; the keyword census is blind exactly where physics relations live, because
+a relation written only in symbols contains none of the eleven terms; conditions 2 and 4 still reach outside this
+document. **R3D remains `PREREG_UNSOUND` and is NOT run.**
+
+R3D_PREREG_V5_PIN_UPDATED_STILL_UNSOUND
