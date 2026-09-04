@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 13 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 14 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -126,18 +126,24 @@ and two obedient seats could file differently on identical physics.)*
 
 **How the five scientific classes partition the cases — a decision procedure, not five descriptions.**
 An **admissible reading** is either the **completion-free derivation** (the printed relations with nothing added)
-or **the printed relations plus exactly one admissible completion**. Each admissible reading either **yields a
-positive floor** — a strictly positive greatest lower bound of the allowed mass set, attained or not — or
-**permits masses approaching zero**, meaning no positive lower bound follows from it.
+or **the printed relations plus exactly one admissible completion**. Each **consistent** admissible reading either **yields a
+positive floor** — a strictly positive greatest lower bound of its **non-empty** allowed mass set, attained or not
+— or **permits masses approaching zero**, meaning no positive lower bound follows from it. **An admissible reading
+whose printed relations are mutually inconsistent has an EMPTY allowed mass set: it is neither of those, and it
+goes in a third set `I`.** *(The dichotomy previously admitted no third case, so an inconsistent reading — a paper
+whose printed relations contradict each other, which is not hypothetical in this corpus — belonged to neither `P`
+nor `Z` and fell out of the partition entirely.)*
 
-Let **P** be the admissible readings that yield a positive floor, and **Z** those that permit zero. Then:
+Let **`P`** be the admissible readings that yield a positive floor, **`Z`** those that permit zero, and **`I`**
+those that are inconsistent — empty allowed mass set. **Every admissible reading lies in exactly one of `P`, `Z`,
+`I`.** Then:
 
 | condition | class |
 |---|---|
 | no printed relation binds size to mass or bounds the mass at all | **3** `DYM_NO_SIZE_MASS_RELATION` |
-| **P is empty** — every admissible reading permits zero, including the case of mutually inconsistent relations | **4** `DYM_NO_POSITIVE_FLOOR` |
-| **P is non-empty** and the readings **disagree** — either P contains two different floors, or **Z is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
-| **P non-empty, all of P agree on one floor, Z empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
+| **`P` is empty** and **`Z` or `I` is non-empty** — no consistent admissible reading yields a positive floor | **4** `DYM_NO_POSITIVE_FLOOR` |
+| **`P` is non-empty** and the readings **disagree** — `P` holds two different floors, or **`Z` is non-empty**, or **`I` is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
+| **`P` non-empty, all of `P` agree on one floor, `Z` AND `I` both empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
 
 **Note on the state that has no class of its own.** A floor that exists **only under completions, with every
 completion agreeing**, was formerly class 5, `DYM_FLOOR_COMPLETION_DEPENDENT`. **That state still occurs and still
@@ -197,7 +203,11 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   makes impossible, so a sound document could never freeze — a defect in the control itself, found by a gate.)* **A class or condition for which no such input can be exhibited is UNREACHABLE, and this
   preregistration does not freeze until it is.** The exhibition table is the artefact.
   **The exhibitions are authored by a seat and only verified by Tori** — deciding what counts as reachable is where
-  an author's prior would enter, so the author does not decide it. `C0_REACHABILITY=PASS`.
+  an author's prior would enter, so the author does not decide it. **This control emits
+  `C0_REACHABILITY=PASS|FAIL|NOT_RUN` from the exhibition actually run against this version; the token is a result
+  to be recorded, not a claim this document makes about itself.** *(It previously ended with a bare
+  `C0_REACHABILITY=PASS`, which reads as the document certifying its own pass — and did so while §8 recorded a
+  failing exhibition. A control cannot certify itself in its own text.)*
 
   *(Added V9 by Duho's order. This control exists because three consecutive repairs left condition 5 unable to
   return PASS on any path, each time in a different way, and no other control here could see it: every other
@@ -821,4 +831,52 @@ corpus.
 
 **C0 must be re-run on V13: retiring a class changes the partition. R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V13_READY_FOR_REEXHIBITION
+## 8f. V14 — the empty-set case, and a deliberate check on whether condition 1 is the old mechanism
+
+**codex gated V13 `61adc801…` `PREREG_UNSOUND`** (seat exited, `ACCESS PROVEN`, hash verified by me). It found
+**circularity, the re-run guard and fairness SOUND**, and one real coverage defect.
+
+**The defect: an inconsistent reading has an EMPTY allowed mass set.** §4's dichotomy said every admissible
+reading either yields a positive floor or permits masses approaching zero. **An inconsistent reading does
+neither** — with no allowed masses there is no greatest lower bound to be positive, and nothing approaches zero
+either. It fell out of the partition entirely. **And class 4's gloss claimed to cover "the case of mutually
+inconsistent relations" while its condition did not route it** — the gloss and the rule disagreed.
+
+**This is not hypothetical for this corpus.** A paper whose printed relations contradict each other is exactly the
+kind of thing a reproduction-minded audit turns up, and §4 elsewhere already anticipated it in the fairness wording
+for inconsistency. The dichotomy simply had no box for it.
+
+**Repaired** by restricting the dichotomy to **consistent** readings and adding a third set **`I`**: every
+admissible reading now lies in exactly one of `P`, `Z`, `I`. Class 4 fires when `P` is empty and `Z` or `I` is
+non-empty; class 2 when `P` is non-empty and the readings disagree — including when `I` is non-empty; class 1
+requires `Z` **and** `I` both empty. The partition is total and exclusive again.
+
+### Is condition 1's unfailability the diagnosed mechanism recurring? — checked deliberately, as asked
+
+codex notes that **C6 condition 1 cannot fail on any valid positive-floor path**, only on a malformed filing.
+
+**Same SHAPE, opposite DIRECTION, and already disclosed. My judgement: it is not the diagnosed mechanism.**
+
+- **Shape — yes, it is the same family.** A declared outcome that no valid case reaches is exactly what the retired
+  `DYM_FLOOR_COMPLETION_DEPENDENT` was. Declared-versus-actual mismatch is this design's recurring weakness and it
+  is worth naming rather than absorbing.
+- **Direction — no, it runs the other way.** The diagnosed mechanism blocked the falsifier's PASS, so a
+  counterexample to this lane's pattern could never be certified: errors landing on the side that **protects the
+  pattern**. A condition that cannot fail makes the breaker **easier** to pass, so a counterexample becomes
+  **easier** to certify. It weakens the test **against** the lane's own interest, not for it.
+- **Status — already labelled, not hidden.** §5a marks condition 1 **`ENTAILED`**, states the entailment (every
+  positive-floor class requires a mass, so a correctly filed floor passes a dimensional test), and counts **4 of 5**
+  conditions as substantively failable rather than claiming five. C0's clause carries the `ENTAILED` route
+  explicitly. **A disclosed entailment is a property; an undisclosed one would be the defect.**
+
+**Flagged rather than absorbed, per Blanc:** this is the **second declared-versus-actual mismatch since the
+redesign** — the retired class was the first. **Both were found by C0, neither by a design gate**, which is the
+argument for keeping the reachability control on every preregistration this lane writes.
+
+**Also repaired:** C0's clause ended with a bare `C0_REACHABILITY=PASS`, which reads as the document certifying its
+own pass — and it did so while §8 recorded a *failing* exhibition. **A control cannot certify itself in its own
+text**; it now names the token it emits from the exhibition actually run.
+
+**C0 must be re-run on V14: the partition changed. R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V14_READY_FOR_REEXHIBITION
