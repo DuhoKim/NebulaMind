@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 18 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 19 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -149,7 +149,7 @@ those that are inconsistent — empty allowed mass set. **Every admissible readi
 
 | condition | class |
 |---|---|
-| **LIMB A EXIT.** No printed relation binds size to mass or bounds the mass at all, so limb B is never entered | **3** `DYM_NO_SIZE_MASS_RELATION` |
+| **LIMB A EXIT.** After the frozen census of §2, **a relation binding size to mass, or bounding the mass, was unreproduced from the stated inputs**, so limb B is never entered | **3** `DYM_NO_SIZE_MASS_RELATION` |
 | **LIMB B ONLY — at least one relation IS printed.** `P` is empty and `Z` or `I` is non-empty: **a positive floor was unreproduced from the stated inputs** | **4** `DYM_NO_POSITIVE_FLOOR` |
 | **`P` is non-empty** and the readings **disagree** — `P` holds two different floors, or **`Z` is non-empty**, or **`I` is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
 | **`P` non-empty, all of `P` agree on one floor, `Z` AND `I` both empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
@@ -269,7 +269,17 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 - **C3 — deletion probe, K6's corrected form:** delete the **source-pinned field equations**; if a unique floor
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
-  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
+  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, invoked as
+  `python3 r3d_c3_deletion_probe.py <relations.json>`** — the JSON carries `target`, `symbols`, the §2b `constants`
+  list, and one record per relation with `id`, `origin` (`SOURCE_PINNED` or `INJECTED`) and `expr`. It prints the
+  retained ids, the deleted ids, the injected relations, and the solve result with and without the pinned
+  equations, exiting **0 on PASS, 1 on FAIL, 2 on NOT_RUN**. **A floor is DETERMINATE when its free symbols all lie
+  in §2b**; the probe files FAIL — circular — when a determinate floor still follows from the injected relation
+  alone. *(Supplied rather than promised, with a passing positive control — injected `M = 3·sqrt(ħc/G)` alone fixes
+  the floor, FAIL, exit 1 — and negative control — injected `r₀ = 2GM/c²` alone leaves `M` free in `r₀`, PASS,
+  exit 0. The probe's first version failed its own positive control by demanding zero free symbols, which scored a
+  determinate Planck-scale floor as indeterminate and would have left it blind to circularity; the control caught
+  that before the script was cited here.)*
 - **C4 — GR benchmark.** For every relation used, the seat **prints the stated-limit algebra** showing equality with
   the Schwarzschild form in the exterior limit, **and prints the premise list** for that algebra showing that no
   interior premise entered. The printed algebra and premise list are the artefact; a claimed pass without them
@@ -536,7 +546,8 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
   not be executed and the run could stall before its own second timeout.)*
 - **Seat split**: if the two blind seats return **different terminal classes of any kind** — scientific,
   `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS` — **or the same scientific class with different `C6_BREAKER_TEST`
-  outcomes** *(reachable because conditions 2 and 4 are bounded by each seat's own C2 artefact and no rule forces
+  outcomes, or with different reported floor formulas or values (classes 1 and 2), or different reported families
+  (class 4)** *(reachable because conditions 2 and 4 are bounded by each seat's own C2 artefact and no rule forces
   the two ledgers to agree — so two control-clean seats could file one class while one certifies a counterexample
   and the other does not)* — **the third seat adjudicates exactly that split from the printed
   artefacts**, **re-executing any blocked read once before ruling**; its class is filed **only if it agrees with one
@@ -1096,4 +1107,49 @@ fairness sound; codex found this row; **the row is codex's catch and it is right
 
 **C0 must be re-run on V18. R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V18_READY_FOR_REEXHIBITION
+## 8k. V18 was a TWO-SEAT CLEAR — the reconciliation, and why V19 does not inherit it
+
+**V18 (`74f8e0c3…`) passed a two-seat design gate: codex `PREREG_SOUND` — all seven sections sound, no
+replacement, no caveat — and kimi `PREREG_SOUND_WITH_REPAIRS`. Both hashes verified after each seat exited, and
+C0 passed on V18 independently.** After eighteen versions, that is the first clean gate.
+
+### WHAT THE GATE CERTIFIES, AND WHAT IT DOES NOT
+
+**It certifies the DESIGN.** It does not start the study. **R3D does not run without Duho's word — no limb, no
+seat, no derivation, no census.** A clear changes nothing about that.
+
+### Where the seats agree
+
+Outcome classes, controls, circularity, the re-run guard and the stall analysis: **sound in both**. Both counted
+the falsifier the same way — **`C6_BREAKER_TEST=FAIL` reachable in 4 of the 6 declared classes** — and kimi
+**executed** the comparator arithmetic, confirming `m_P = 2.1764343421e-8` now lies inside the widened degenerate
+row `[2.176433e-8, 2.176435e-8]`, the Hawking bounds round outward as claimed, and all three comparator overlaps
+behave as printed.
+
+### kimi's repairs, each with its disposition — because a `SOUND_WITH_REPAIRS` whose repairs are neither applied nor answered is not a clear
+
+| # | repair | disposition |
+|---|---|---|
+| F4 | the count is 4 of 6, not 2 | **Already applied at V18** — this was the shared V17 defect; kimi's number confirms the repair rather than asking for one. No change. |
+| F6 | class 3's row asserts *"No printed relation binds size to mass or bounds the mass at all"* — a nonexistence claim in an operative clause | **APPLIED.** Now *"a relation … was unreproduced from the stated inputs"*. **This is the identical form V18 repaired in class 4's row and missed in class 3's, in the same version** — the scar family's seventh appearance, and mine. |
+| F7 | the split rule does not convene when two seats file the **same** class with the **same** C6 outcome but **different reported floors or families** | **APPLIED.** Reachable precisely because the document states no rule forcing the two C2 ledgers to agree — so the filed class could be unambiguous while the study's central quantity was not. |
+
+**No repair is answered-and-declined; both stand and both are applied.**
+
+### Also in V19, and it is not a repair
+
+**The C3 deletion probe is wired in.** `r3d_c3_deletion_probe.py` is now named in C3 with its exact invocation,
+input schema, printed artefacts and exit codes. It was written and control-tested hours ago and has been carried as
+outstanding work since; **a control that names a script nobody has run is the failure mode this lane already paid
+for.** Its positive control fails as circular (exit 1) and its negative control passes (exit 0) — **and its first
+version failed its own positive control**, which is recorded in C3 because a probe blind to circularity would have
+been worse than none.
+
+### V19 does not inherit V18's clear
+
+**A repaired document is a new document.** The clear belongs to `74f8e0c3…`. V19 must earn its own: **C0 re-run,
+then a fresh two-seat gate.** Nothing here carries forward silently.
+
+**R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V19_READY_FOR_REEXHIBITION
