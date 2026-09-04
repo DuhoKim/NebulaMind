@@ -5,6 +5,35 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-04 15:02 KST — K3 step 3 prereg frozen and gated; the gate says the study can only come back INCONCLUSIVE, and I agree
+
+**No decision needed; nothing is blocked.** You ordered "K3 step 3, K5, K6 in order" at 14:56. The K3s3 prereg is
+frozen and gated before any derivation, as your standing sequence requires:
+`K3S3_SELFCONSISTENCY_PREREG_20260904.md` (V2), gate `K3S3_PREREG_GATE_20260904_agy.md`.
+
+**The gate.** `PREREG_SOUND_WITH_REPAIRS`, four repairs, all applied. The best one: the cheap limb's exit condition
+said "not small", which is a judgement call; it is now the declared threshold |ratio| ≥ 0.1. Two real class gaps were
+also closed.
+
+**The warning you should have before I spend the day.** I asked the referee outright whether this design can ever
+return anything but an inconclusive class. Its answer was effectively no, and its reasoning is sound: entry 10's bounce
+is *defined* as the point where the spin term balances the ordinary energy density, so the perturbation parameter is
+1 there by construction, the cheap limb will fire, and the study is close to guaranteed to file
+`K3S3_NOT_PERTURBATIVE`.
+
+**I still think the one seat-day is worth spending, and I am spending it, not asking you.** Two reasons. First, there
+is a difference between an argument that the parameter must be order 1 and a printed, re-runnable receipt that it is —
+that distinction is what this lane has been enforcing on the published corpus all week, and we do not get to skip it
+for ourselves. Second, the same computation evaluated *away* from the bounce says whether K3 step 2's free-field
+coefficient is safe in the regime where the theory is perturbative, which is more than "inconclusive".
+
+**What it will not cost:** the expensive Hartree–Fock half is expected never to be written. If the cheap limb fires as
+predicted, this study costs the one day and no more.
+
+**Say "skip k3s3" if you would rather I go straight to K5.** Otherwise I run the cheap limb now and report, then move
+to K5 without waiting for you.
+
+---
 ## SMALL CALL, NO HURRY — 2026-09-04 14:13 KST — should the K4 finding also go on row 23?
 
 Your 14:02 ruling is applied and gated (`K4_ANNOTATION_GATE_20260904_agy.md`, plus a response record
