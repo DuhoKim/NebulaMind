@@ -478,3 +478,35 @@ branch rather than refute the model, and w = −1 never discriminated from ΛCDM
 seat listed every path it opened. Limb B never ran. No tier, token, standing or stamp moved. Paper HOLD.
 
 **On Duho's desk:** an annotation proposal for entries 59 and 56. Watch armed for 09-08.
+
+---
+## Round 3 continued: R3A and R3B filed; R3C and R3D NOT RUN and on Duho's desk (2026-09-04 21:27 KST)
+
+**Filed today:** R3A `BETA_FREE`, R3B `RIGIDITY_ABSENT` — both with results, check sheets and critic notes, both
+blind-doubled, R3B's limb B never reached so no DESI data was touched.
+
+**R3C and R3D were ordered ("run r3c and r3d", 21:02) and have NOT been run.** Both preregistrations failed their
+gates and I stopped rather than patch further. **This is the one open item and it needs Duho's word.**
+
+- **Four gate rounds, two engines.** agy returned `UNSOUND` on R3C three times; on Duho's order I re-gated with
+  **codex**, blind to every `*GATE*` file, dispatched through `nm_referee_dispatch.sh` via a shim so the wrapper's
+  access-proof and quarantine logic were preserved. **codex returned `UNSOUND` on both**, with hashes I recomputed
+  myself (R3C `c5e94620…`, R3D `1ecb7ac7…`, both matching).
+- **The referee question is answered against my own interest:** a wider re-examination of agy-gated work is **not**
+  indicated on this evidence, because an independent engine reached the same bottom line. Blanc's presentation
+  findings stand — agy quoted repaired sentences as un-repaired and flipped R3D on unchanged text — but those are
+  defects in justification, not verdict. **No previously passed gate has been re-opened and none will be by me.**
+- **The `ACCESS_SHA` anomaly was mine.** `ece4c6d9…` was R3C's V2 state; the wrapper hashes at dispatch and I edited
+  a "frozen" document between rounds. R3C now carries a version table (§10) so its history is legible.
+  `R3C_GATE_ANOMALY_EVIDENCE_20260904.md` records it, and notes that **the tooling change Blanc proposed is already
+  implemented** — the wrapper computes `expect` from the target and quarantines on mismatch.
+- **My recommendation:** R3C needs **redesigning, not repairing** — a census testing a pattern its own author wrote
+  needs an exclusion criterion from outside the author (classes fixed before the pattern existed, or a seat that has
+  never read the pattern record). R3D is perhaps one round from sound but inherits R3C's breaker test.
+  Full argument in `R3CD_GATE_RECONCILIATION_20260904.md`.
+
+**On Duho's desk:** (a) accept that neither runs until R3C is redesigned; (b) order them run anyway on the current
+texts; (c) order the redesign. Nothing else in the lane is blocked on this.
+
+**Also still open, unrelated:** the annotation proposals for entries 59 and 56 from R3A/R3B. Watches armed (NS mass
+watch next 2026-09-08; b68 3/3 PASS). Paper HOLD; nothing outward.
