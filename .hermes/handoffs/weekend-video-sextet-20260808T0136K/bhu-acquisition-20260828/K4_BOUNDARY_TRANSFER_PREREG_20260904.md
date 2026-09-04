@@ -1,6 +1,6 @@
 # K4 — FROZEN PRE-REGISTRATION: does a genuine causal boundary in the TRANSFER physics move the large-angle CMB statistic?
 
-**Tori, 2026-09-04 13:22 KST. Version 1. FROZEN pending the fresh referee gate. ORDERED by Duho ("k4", relayed by Blanc
+**Tori, 2026-09-04 13:19 KST. Version 1. FROZEN pending the fresh referee gate. ORDERED by Duho ("k4", relayed by Blanc
 2026-09-04 13:15 KST).**
 
 Predecessor: `K4_BOUNDARY_TRANSFER_PREREG_DRAFT_20260903.md` (DRAFT — NOT ORDERED), gated `PREREG_SOUND_WITH_REPAIRS`
