@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 10 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 11 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -100,7 +100,10 @@ to have mechanised held only for prose — precisely not for the relations this 
 
 **The shape/magnitude pattern record and every prior lane conclusion are forbidden as evidence
 for inclusion, exclusion or outcome selection**; the pattern enters this study at exactly one point — C6's breaker
-evaluation — and only after `DYM_FLOOR_DERIVED` has been reached on other grounds. C2 passes only if this census is printed in
+evaluation — and only after a **positive-floor class** has been reached on other grounds
+(`DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED` or `DYM_FLOOR_COMPLETION_DEPENDENT`).
+*(This sentence still described the single-class gating that V10 removed — a repair scar. The whole
+document was swept for others; §8b's account of the prior state is history and stays as written.)* C2 passes only if this census is printed in
 full. *(Without it a seat could report a relation absent, omit the contrary row, and let the lane's own pattern become
 indirect support for its own confirmation: C3 tests an injected relation only after the seat has already selected the
 source-pinned equations, so it cannot see a relation excluded before that selection.)*
@@ -166,7 +169,9 @@ and two obedient seats could file differently on identical physics.)*
    printed, before the pattern record is left unamended. *(Previously this class asserted the conclusion itself.)* *(This state was reachable and fitted
    no class: not 1, a completion was required; not 2, the floors are not unequal; not 3, a relation exists; not 4,
    nothing permits zero. A terminal scientific result with nowhere to file is the stall the design claims to close.)*
-6. **DYM_SOURCE_BLOCKED** — a pinned source the branch needs cannot be read. The study **waits**; this is not a
+6. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
+   frozen manifest of §2a, or a required source-dependent proposition is `UNRESOLVED`, or a required bounded
+   procedure remains undecidable after its specified fallback.** The study **waits**; this is not a
    scientific verdict and must never be reported as one. **This class exists because the gate found §7's
    "reports BLOCKED if not" had no class behind it, so the run would have stalled.**
 7. **R3D_NO_CLASS** — **only after ruling out `DYM_SOURCE_BLOCKED`:** if **no** evidence is unread or unresolved
@@ -180,10 +185,13 @@ and two obedient seats could file differently on identical physics.)*
 
 ## 5. Controls, each with an exact named code
 
-- **C0 — reachability, run BEFORE the freeze.** For **every declared outcome class of §4**, and for **every C6
-  breaker condition whose failure would refute this lane's own expectation**, **exhibit a concrete input that
-  produces it**: a specific numeric value or stated configuration, and the path it takes through this document to
-  that verdict. **A class or condition for which no such input can be exhibited is UNREACHABLE, and this
+- **C0 — reachability, run BEFORE the freeze.** For **every declared outcome class of §4**, **exhibit a concrete
+  input that produces it**: a specific numeric value or stated configuration, and the path it takes through this
+  document to that verdict. For **every C6 breaker condition**, **exhibit valid inputs producing PASS and FAIL** —
+  **except that a condition logically ENTAILED by the entry criteria of every class on which C6 runs is marked
+  `ENTAILED` instead: prove the entailment, and exhibit a malformed filing that the condition rejects.**
+  *(Without the `ENTAILED` route, C0 demanded a reachable substantive failure for a condition that valid membership
+  makes impossible, so a sound document could never freeze — a defect in the control itself, found by a gate.)* **A class or condition for which no such input can be exhibited is UNREACHABLE, and this
   preregistration does not freeze until it is.** The exhibition table is the artefact.
   **The exhibitions are authored by a seat and only verified by Tori** — deciding what counts as reachable is where
   an author's prior would enter, so the author does not decide it. `C0_REACHABILITY=PASS`.
@@ -225,9 +233,9 @@ and two obedient seats could file differently on identical physics.)*
   Unreached C5/C5b are recorded `NOT_RUN`, never `PASS`. *(Both codes were previously implicit in "as R3A/R3B";
   a control whose code is not named in the document it governs cannot be checked against it.)*
 - **C6 — breaker test.** **Applies on EVERY outcome that yields a positive floor — `DYM_FLOOR_DERIVED`,
-  `DYM_FLOOR_UNDERDETERMINED` and `DYM_FLOOR_COMPLETION_DEPENDENT`** — and is `NOT_RUN`, never a pass, only where
-  no positive floor is produced at all (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`,
-  `DYM_SOURCE_BLOCKED`, `R3D_NO_CLASS`).
+  `DYM_FLOOR_UNDERDETERMINED` and `DYM_FLOOR_COMPLETION_DEPENDENT`** — and is `NOT_RUN`, never a pass, **only where C6 was never
+  engaged** — `DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`, or a `DYM_SOURCE_BLOCKED` / `R3D_NO_CLASS`
+  filed **before any C6 evaluation**.
 
   **The conditions are evaluated on the quantity the seat actually FILED as its floor, not on an idealised one.**
   If a seat files a quantity that is not a mass, condition 1 **fails** — that is the check, and it is why condition
@@ -315,9 +323,12 @@ and two obedient seats could file differently on identical physics.)*
   **C6's three outcomes, stated in full so the pass is not left implicit:**
   **`C6_BREAKER_TEST=PASS`** — the table is complete and **every one of conditions 1–5 satisfies its own stated
   decision rule**. **`C6_BREAKER_TEST=FAIL`** — the table is incomplete or missing, **or** any condition fails its
-  decision rule; **name the condition and print its artefact**. **`C6_BREAKER_TEST=NOT_RUN`** — no positive floor was
-  produced at all, i.e. the filed class is `DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`,
-  `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS`. **If condition 3 is `UNDECIDED`, record
+  decision rule; **name the condition and print its artefact**. **`C6_BREAKER_TEST=NOT_RUN`** — **C6 was never engaged**: no
+  positive-floor class was entered (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`), or
+  `DYM_SOURCE_BLOCKED` / `R3D_NO_CLASS` was filed **before any C6 evaluation**. *(A run that entered C6 and hit
+  condition 3's `UNDECIDED` produced a positive floor and DID engage C6, so it records `FAIL`, not `NOT_RUN`,
+  even though its filed class is `DYM_SOURCE_BLOCKED`. Two clauses previously assigned opposite codes to that one
+  path.)* **If condition 3 is `UNDECIDED`, record
   `C6_BREAKER_TEST=FAIL`** with the failed primary and fallback artefacts, then file `DYM_SOURCE_BLOCKED` — so
   PASS, FAIL and NOT_RUN are exhaustive and mutually exclusive, and "does not pass" is never a fourth state.
   *(Recall that a condition failing its decision rule is a **substantive result**: under §4 class 1
@@ -341,6 +352,29 @@ and two obedient seats could file differently on identical physics.)*
   and a seat that did not read them hit "an unread comparator source files `DYM_SOURCE_BLOCKED`". Both paths
   blocked, so the decisive test was pre-disabled a second time in a new form. The fix is not another requirement:
   every value above is computed from §2b here, so there is nothing left to read.)*
+
+### 5a. On how many paths can the falsifier fail — stated here, not left to a gate report
+
+**`C6_BREAKER_TEST=FAIL` is reachable on 3 of the 7 declared outcome classes:** `DYM_FLOOR_DERIVED`,
+`DYM_FLOOR_UNDERDETERMINED`, `DYM_FLOOR_COMPLETION_DEPENDENT` — **every class that yields a positive floor.**
+
+**It is `NOT_RUN` on the other 4, and that is correct rather than a gap:** `DYM_NO_SIZE_MASS_RELATION` and
+`DYM_NO_POSITIVE_FLOOR` produce **no number to test**, so there is no candidate counterexample to evaluate; while
+`DYM_SOURCE_BLOCKED` and `R3D_NO_CLASS` are **non-scientific terminal states** in which the study waits rather than
+concludes. **A breaker test run where there is nothing to test would report on nothing.**
+
+**Per condition, 4 of the 5 can fail substantively** — conditions 2, 3, 4 and 5 each have a concrete failing input.
+**Condition 1 is different, and is labelled honestly rather than counted:** it is **`ENTAILED`** for any correctly
+filed floor, since every positive-floor class requires a mass and a correctly filed floor therefore passes a
+dimensional test. It is **retained as a filing-integrity check, not claimed as a reachable substantive failure**,
+and fails only on a **malformed filing** — a seat entering a dimensionless ratio as its floor — which §5 catches
+because the conditions are evaluated on the quantity actually filed.
+
+*(This number is written here because it is the answer to the question that produced
+`R3D_FALSIFIER_DISABLING_DIAGNOSIS_20260904.md`, and it should be checkable in the text rather than only in a gate
+report. The two V10 seats split on condition 1 alone — one counted 4 of 5, the other 5 of 5 — and the split was
+over whether a malformed filing counts as a reachable path. Both readings are recorded above rather than one being
+chosen silently.)*
 
 ## 6. Non-circularity and fairness
 
@@ -424,11 +458,21 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
   *(The fallback was previously called "named" while naming nothing, so a timeout reached an instruction that could
   not be executed and the run could stall before its own second timeout.)*
 - **Seat split**: if the two blind seats return **different terminal classes of any kind** — scientific,
-  `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS` — **the third seat adjudicates exactly that split from the printed
+  `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS` — **or the same scientific class with different `C6_BREAKER_TEST`
+  outcomes** *(reachable because conditions 2 and 4 are bounded by each seat's own C2 artefact and no rule forces
+  the two ledgers to agree — so two control-clean seats could file one class while one certifies a counterexample
+  and the other does not)* — **the third seat adjudicates exactly that split from the printed
   artefacts**, **re-executing any blocked read once before ruling**; its class is filed **only if it agrees with one
   of the two**. If all three differ, or the third seat cannot decide, file `DYM_SOURCE_BLOCKED`. **Every terminal
   path files exactly one declared class.** *(The rule previously engaged only on "different scientific classes", so
   one seat scientific and one blocked was a terminal disagreement that convened nobody and filed nothing.)*
+- **Control status vocabulary — every control emits exactly one of its three exact tokens**, never a bare PASS:
+  `C0_REACHABILITY=PASS|FAIL|NOT_RUN`, `C1_SOURCE_IDENTITY=PASS|FAIL|NOT_RUN`,
+  `C2_COMPLETION_LEDGER=PASS|FAIL|NOT_RUN`, `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN`,
+  `C4_GR_BENCHMARK=PASS|FAIL|NOT_RUN`, `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`,
+  `C5B_PATH_LIST=PASS|FAIL|NOT_RUN`, `C6_BREAKER_TEST=PASS|FAIL|NOT_RUN`. **`NOT_RUN` is permitted only where this
+  document explicitly makes that control unreached.** *(Most controls previously printed only a PASS token. A
+  control that can only say PASS is not a control — this lane's own principle, applied to itself.)*
 - **Unreached limbs**: controls recorded `NOT_RUN`, never as passes. **This exact underscore spelling applies to
   every unreached control throughout this document.**
 
@@ -642,4 +686,45 @@ now maps to `C6_BREAKER_TEST=FAIL`, so C6's three codes are exhaustive and "does
 
 **R3D is NOT frozen and NOT run.** C0 must return `PASS` from a fresh seat exhibition before either.
 
-R3D_PREREG_V10_READY_FOR_REEXHIBITION
+## 8c. V11 — REPAIR NOTE B: the two design-gate lists
+
+**ORDERED by Duho: "fix both lists and re-gate."** V10 (`a441c7c9…`) was gated by two engines, both hash-verified
+and both read only after their seats exited: **codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`.**
+
+**Where they AGREE — including on the thing that mattered.** Both counted the paths independently and both got
+**C6 FAIL reachable on 3 of the 7 classes**. Neither found the breaker unable to fail. **The defect that recurred
+four times in four forms is gone**, and it was confirmed by two seats that were not told to look for it. Both found
+the **re-run guard** and **fairness** sound; codex additionally found **circularity** sound.
+
+**Where they DISAGREE — one point, recorded rather than settled by me.** codex: condition 1 *"cannot fail on any
+valid path"*, since a dimensionless quantity is not a member of any positive-floor class, so **4 of 5** conditions
+can fail. kimi: condition 1 **can** fail because §5 evaluates *the quantity actually filed*, so a mis-filed ratio is
+caught — **5 of 5**. Both are defensible and the split is over whether a malformed filing counts as a reachable
+path. **V11 adopts codex's label and kimi's behaviour**: condition 1 is marked `ENTAILED`, with the entailment
+stated, and it still fails on a malformed filing. §5a records both readings.
+
+**codex's list, applied:** `DYM_SOURCE_BLOCKED` widened from unreadability alone to cover a manifest digest
+mismatch, an `UNRESOLVED` proposition and an undecidable-after-fallback procedure — the terminal classes were not
+exhaustive. Every control now carries **`PASS|FAIL|NOT_RUN`**; most printed only a PASS token, and **a control that
+can only say PASS is not a control** — this lane's own principle, applied to itself. C0 gains the `ENTAILED` route,
+because as written it demanded a reachable substantive failure for a condition that valid membership makes
+impossible, so a sound document could never freeze — **a defect in the control I wrote, found by a gate.**
+
+**kimi's list, applied:** R1, the §2c sentence still describing the old single-class gating — **a repair scar**. The
+whole document was swept rather than the quoted line fixed; that was the only live scar, and §8b's account of the
+prior state is history and stays. R2, `NOT_RUN` was defined so that a condition-3 `UNDECIDED` run — which produced
+a floor and *did* engage C6 — was assigned both `FAIL` and `NOT_RUN` by different clauses; `NOT_RUN` now means
+**C6 was never engaged**. R3, the seat-split rule was blind to two seats filing the **same** class with **opposite**
+`C6_BREAKER_TEST` outcomes, reachable because conditions 2 and 4 are bounded by each seat's own C2 artefact with no
+rule forcing the ledgers to agree — one seat could certify a counterexample while the other did not, with nothing
+convened.
+
+**And the path count now lives in the document (§5a), not only in a gate report** — it is the answer to the
+question that produced the diagnosis, and it should be checkable in the text.
+
+**C0 must be re-run:** these repairs touch outcome-class membership and control reachability, and **a passed
+exhibition is about the version it was run on.** V10's `PASS` does not carry to V11.
+
+**R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V11_READY_FOR_REEXHIBITION_AND_REGATE
