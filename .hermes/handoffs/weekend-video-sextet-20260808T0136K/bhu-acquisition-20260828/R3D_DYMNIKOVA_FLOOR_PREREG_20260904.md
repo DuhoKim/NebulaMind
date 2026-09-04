@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 19 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 20 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -270,7 +270,7 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
   fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, invoked as
-  `python3 r3d_c3_deletion_probe.py <relations.json>`** — the JSON carries `target`, `symbols`, the §2b `constants`
+  `python3 r3d_c3_deletion_probe.py relations.json`** — the JSON file `relations.json` carries `target`, `symbols`, the §2b `constants`
   list, and one record per relation with `id`, `origin` (`SOURCE_PINNED` or `INJECTED`) and `expr`. It prints the
   retained ids, the deleted ids, the injected relations, and the solve result with and without the pinned
   equations, exiting **0 on PASS, 1 on FAIL, 2 on NOT_RUN**. **A floor is DETERMINATE when its free symbols all lie
@@ -445,10 +445,13 @@ instruction that a third failure in this direction stops the repair loop.
 **That overstatement is exactly the fault this study exists to detect in other people's papers**, committed here,
 which is why both numbers are printed rather than the flattering one.
 
-**It is `NOT_RUN` on the other 4, and that is correct rather than a gap:** `DYM_NO_SIZE_MASS_RELATION` and
-`DYM_NO_POSITIVE_FLOOR` produce **no number to test**, so there is no candidate counterexample to evaluate; while
-`DYM_SOURCE_BLOCKED` and `R3D_NO_CLASS` are **non-scientific terminal states** in which the study waits rather than
-concludes. **A breaker test run where there is nothing to test would report on nothing.**
+**It is `NOT_RUN` on `DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR`, and that is correct rather than a
+gap:** those classes produce **no number to test**, so there is no candidate counterexample to evaluate — **a
+breaker test run where there is nothing to test would report on nothing.** *(This sentence previously said
+`NOT_RUN` on "the other 4" and named `DYM_SOURCE_BLOCKED` and `R3D_NO_CLASS` among them — contradicting the
+paragraph three above it, which correctly says an ENGAGED C6 can travel INTO those two classes and record `FAIL`
+there. The V18 repair corrected the count where the count was stated and left the consequence sentence saying the
+old thing.)*
 
 **Per condition, 4 of the 5 can fail substantively** — conditions 2, 3, 4 and 5 each have a concrete failing input.
 **Condition 1 is different, and is labelled honestly rather than counted:** it is **`ENTAILED`** for any correctly
@@ -528,8 +531,13 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
 - **Access proof** (Duho's 2026-09-04 20:48 rule): any seat auditing a pinned source prints
   `ACCESS_SHA=<full 64 hex of that file>` as its first line. **No proof, no verdict** — the report is quarantined,
   exactly as `nm_referee_dispatch.sh` does.
-- **Path list**: every seat prints every path it opened; this lane's own reading tree
-  (`../bhu-reading-20260823/sources/`) is **in scope**, another lane's files are not. That distinction is stated
+- **Path list**: every seat prints every path it opened. **IN SCOPE:** this lane's own reading tree
+  (`../bhu-reading-20260823/sources/`); **this preregistration**; **the committed script
+  `r3d_c3_deletion_probe.py` and the JSON input the seat writes for it**; and **the seat's own working directory
+  and artefacts**. **OUT OF SCOPE:** another lane's files, and any path not named above. *(The rule previously
+  named only the reading tree as in-scope, while the design itself requires a seat to open this document, the probe
+  and its input — so every mandated read would have been marked `OUT_OF_SCOPE` and failed C5b. A control that fails
+  on the paths its own design requires is not a scope rule.)* That distinction is stated
   because getting it wrong once already produced a spurious `UNDETERMINED` (R3B §5).
 - **Stall guard**: every symbolic operation under a 120-second cap. On timeout print `SYMBOLIC_TIMEOUT` and execute
   **the fallback row below** under a second 120-second cap. If the row is absent, times out, or does not decide its
@@ -1152,4 +1160,34 @@ then a fresh two-seat gate.** Nothing here carries forward silently.
 
 **R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V19_READY_FOR_REEXHIBITION
+## 8l. V20 — both V19 seats SOUND_WITH_REPAIRS; three defects, two of them from V19's own repairs
+
+**codex `PREREG_SOUND_WITH_REPAIRS`, kimi `PREREG_SOUND_WITH_REPAIRS`, both on `28a97c1a…`, both hash-verified
+after exit. No `UNSOUND` from either engine.**
+
+**Both found sound, independently:** outcome classes, circularity, the re-run guard and fairness. Both counted the
+falsifier identically — **FAIL reachable in 4 of 6 terminal classes** — and both traced every condition's PASS and
+FAIL to concrete inputs, agreeing that **condition 1 is `ENTAILED`** with no valid substantive FAIL, exactly as the
+document discloses. kimi verified the Planck-row closure numerically and states the V16 escape is closed.
+
+### The three repairs, each applied
+
+| # | seat | defect | disposition |
+|---|---|---|---|
+| 1 | codex | C3's printed invocation `python3 … <relations.json>` — **the angle brackets are shell syntax**, so a seat running it literally redirects stdin and passes no filename | **APPLIED.** Now `python3 r3d_c3_deletion_probe.py relations.json`. |
+| 2 | kimi | **C5b's scope rule fails the paths the design itself mandates** — it named only the reading tree as in-scope, so opening this document, the probe, or the probe's input would each be `OUT_OF_SCOPE` and fail the control | **APPLIED.** In-scope now names the reading tree, this document, the script and its JSON input, and the seat's own working artefacts. |
+| 3 | kimi | **§5a contradicted itself** — it says an engaged C6 can travel into `DYM_SOURCE_BLOCKED` and `R3D_NO_CLASS` and record `FAIL`, then three paragraphs later says C6 is `NOT_RUN` on "the other 4", naming those same two | **APPLIED.** |
+
+**Two of the three are V19's own repairs biting back, and both are mine.** Defect 1 arrived *with* the C3 wiring —
+I cited a command in placeholder notation inside a document that tells seats to execute it literally. Defect 3 is
+the **eighth appearance of the scar family**: V18 corrected the count where the count was stated and left the
+consequence sentence asserting the old thing three paragraphs down.
+
+**What that says about the sweep, plainly:** I have been sweeping for the *phrasing* I just changed rather than for
+every sentence that *depends on* what I changed. A count and its consequence are different sentences with no shared
+wording. **The rule this adds: after changing a number or a rule, find the sentences that reason FROM it, not the
+ones that repeat it.**
+
+**V20 does not inherit V19's verdicts. C0 re-run, then a fresh two-seat gate. R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V20_READY_FOR_REEXHIBITION
