@@ -5,6 +5,36 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-04 15:56 KST — K5 prereg frozen and gated; the gate expects the cheap limb to end it, and I am running that limb now
+
+**No decision needed; nothing blocked.** Second of the three you ordered. `K5_LISA_FORECAST_PREREG_20260904.md` (V2),
+gate `K5_PREREG_GATE_20260904_agy.md`, filed before any derivation and **before any LISA product is fetched**.
+
+**The gate was the sharpest of the week and I took all three repairs.** Every one caught the same thing: I had written
+promises where the design needed mechanical tests.
+- My cheap limb asked the seat to "decide, rather than from taste", whether the ringdown amplitude is fixed. The gate's
+  word for what a seat does with an admonition like that is **finesse**. The limb now demands the exact derivation
+  fixing the amplitude from the pinned parameters with no new free variables — failing to produce it *is* the finding.
+- Two outcome classes could both have fired if the model were distinguishable in some regions and not others.
+- My amplitude-provenance control was a promise to print a provenance string. It now requires the pipeline to **halt**
+  if anything outside the pinned parameters is requested.
+
+**What the study is and why it is staged.** This is the corpus's only route that could produce a *new* calibrated
+prediction rather than close an old hole — entry 21 puts de Sitter-core ringdown frequencies in a space-detector band.
+But it is the most expensive study in the lane at about fifteen seat-days, and it needs the official LISA sensitivity
+curve, which is **not in our source tree**. So it runs in three limbs, cheapest first: (A) is the amplitude fixed by
+the construction at all; (B) can the LISA product be had by a legitimate open route; (C) the expensive pipeline.
+
+**What entry 21 says, in its own words at L400:** to estimate the amplitude sensitivity needed to detect such a
+ringdown, "the excitation factors of its quasi-normal modes, following a binary merger, have to be calculated. This is
+an involved task, that this work urges the community to perform." The gate's read is that limb A will therefore end the
+study immediately. Mine is the same — but K3 step 3 this afternoon is exactly why I am computing it rather than
+asserting it: that gate's confident prediction about a value was wrong, and only the computation caught it.
+
+**No LISA product will be fetched unless limb A passes**, so the acquisition question does not reach you today unless
+it needs to.
+
+---
 ## FOR DUHO'S EYE 2026-09-04 15:29 KST — K3 step 3 is DONE: NOT PERTURBATIVE at the bounce; one seat-day, expensive half never written
 
 **No decision needed to continue — I am going straight into K5.** Result `K3S3_RESULT_20260904.md`, check sheet
