@@ -450,3 +450,31 @@ against the certified numbers — FAITHFUL, citations correct, nothing marked NO
 
 **Offered, not built:** merging the two video notes into one script-ready narrative in the order the video would use.
 Not started — Blanc has not asked and it is not ordered.
+
+---
+## Round 3 COMPLETE — R3A `BETA_FREE`, R3B `RIGIDITY_ABSENT` (2026-09-04 20:53 KST)
+
+Both studies Duho ordered at 19:52 are filed with results, check sheets and critic notes.
+
+**R3A:** entry 59's particle-production coefficient β is **chosen, not derived** ("we choose β = 1/929.25"); β_cr *is*
+derived; the reported n_s, r, α_s are sensitive to β alone. The citation chain was **opened**, per the control written
+for it, and terminates — ref [32] also assumes the form and calls β "a nondimensional constant". A real split (codex:
+FITTED) went to a third seat, which chose FREE because the paper reports its own ~6σ Planck tension. codex also marked
+that citation BLOCKED without opening a file that was in the lane; ruled incorrect and recorded.
+
+**R3B:** `Λ = 3/r_S²` forces `w = −1` **only under an assumed constant total mass**. Entry 56 does not derive it —
+L138 is conditional ("If we want M_T … to be constant"), Eq. (10) engineers a time-dependent junction to deliver it,
+and L143–144 permits M to be a function of time. **The counterexample the packet hoped for is not there; the
+shape/magnitude pattern survives.** More useful than a counterexample: an evolving-w result would select a permitted
+branch rather than refute the model, and w = −1 never discriminated from ΛCDM anyway.
+
+**Two lane failures recorded, both mine.**
+1. **R3B's V1 prereg was rejected `PREREG_UNSOUND` as circular** — I asserted the rigidity the study was to test.
+2. **My dispatch blocked a seat from its own source**, producing a spurious UNDETERMINED. Duho ruled "fix the dispatch
+   and re-run" and added an `ACCESS_SHA` proof requirement; my corrected re-run still lacked the proof and was set
+   aside too. Three filings preserved, none deleted.
+
+**Boundaries held:** no DESI data, no published constraints, no pixel, no network, nothing from Hwao's lane; every
+seat listed every path it opened. Limb B never ran. No tier, token, standing or stamp moved. Paper HOLD.
+
+**On Duho's desk:** an annotation proposal for entries 59 and 56. Watch armed for 09-08.

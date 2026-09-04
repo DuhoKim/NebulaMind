@@ -1,0 +1,106 @@
+
+====================================================================================================
+C5 — HARNESS, LIVE EXECUTION
+====================================================================================================
+  -> 3.9.6
+  -> 1.14.0
+  -> b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3
+C5_HARNESS_PINNED=PASS  (live subprocess output)
+
+====================================================================================================
+C1 — SOURCE IDENTITY (PDF-extracted; repr then normalise)
+====================================================================================================
+  L28 repr: 'Such boundary condition is equivalent to a \x02 term: \x02 = 3/rS2 . We can therefore interpret cosmic acceleration '
+  L28 norm: Such boundary condition is equivalent to a  term:  = 3/rS2 . We can therefore interpret cosmic acceleration as a measurement
+  L138 repr: 'The non-flat case, or more sophisticated global topologies, could             of τ . If we want MT in equation'
+  L138 norm: The non-flat case, or more sophisticated global topologies, could             of τ . If we want MT in equation (7) to be constant 
+C1_SOURCE_IDENTITY=PASS
+
+====================================================================================================
+C2 — EVOLUTION SEARCH: exact terms, and the text they returned
+====================================================================================================
+  search terms used: ['function of time', 'function of τ', 'is a function', 'constant', 'accretion', 'mass loss', 'evaporat', 'Hawking', 'time-dependent', 'evolve']
+
+  'function of time'       -> lines [144, 174]
+  'function of τ'          -> lines []
+  'is a function'          -> lines [137]
+  'constant'               -> lines [24, 134, 138, 143, 244]
+  'accretion'              -> lines [314]
+  'mass loss'              -> lines []
+  'evaporat'               -> lines []
+  'Hawking'                -> lines [207, 208, 209, 318, 328]
+  'time-dependent'         -> lines []
+  'evolve'                 -> lines []
+
+  THE TEXT THOSE TERMS RETURNED, quoted:
+    L134: M = 43π r 3 ρ and r = a(τ )χ , so that equation (3) reproduces the               For the case in equations (4) and (5), the mass inside χ is constant
+    L135: flat (global) FLRW metric, ds2 = −dτ 2 + a2 (dχ 2 + χ 2 d 2 ), and            for matter-dominated fluid when ρ ∼ a−3 . But in the early stages of
+    L136: equation (4) is the corresponding solution, 3H2 (τ ) = 8π Gρ(τ ), which       the expansion, when the energy density is dominated by radiation or a
+    L137: is a global solution (any point can be chosen to be the centre r = 0).        fluid with a different equation of state, the mass inside χ is a function
+    L138: The non-flat case, or more sophisticated global topologies, could             of τ . If we want MT in equation (7) to be constant throughout the
+    L139: also be reproduced if we consider the more general case, but there            evolution, we need the junction χ ∗ in equation (6) to be a function
+    L140: is no observational or theoretical evidence that such complications           of time τ :
+    L143: we have a constant mass inside χ : M = 43π χ 3 ρ0 . More generally, M         R 3 (τ ) ≡ a 3 (τ )χ∗3 (τ ) =         .                              (10)
+    L144: could be a function of time. But at any given time, the total mass                                          4πρ(τ )
+
+C2_EVOLUTION_SEARCH=PASS
+
+====================================================================================================
+THE DECISION: is M_T constant as a CONSEQUENCE, or as an ASSUMPTION?
+====================================================================================================
+  The chain is not in dispute: Lambda = 3/r_S^2 (L28) and r_S = 2 G M_T, so Lambda is
+  constant if and only if M_T is constant, giving w = -1 exactly.
+
+  What the source says about M_T's constancy:
+   (a) L134-135: the mass inside chi is constant ONLY 'for matter-dominated fluid when rho ~ a^-3'.
+   (b) L136-137: with radiation or another equation of state, 'the mass inside chi is a
+       function of tau'. So constancy is NOT general.
+   (c) L138-140: 'IF WE WANT M_T ... to be constant throughout the evolution, we need the
+       junction chi* ... to be a function of time tau' -> Eq. (10).
+   (d) L143-144: 'More generally, M could be a function of time.'
+
+  (c) is the decisive sentence and it is CONDITIONAL. The paper does not derive that M_T is
+  constant; it ADOPTS constancy as a requirement and then engineers a time-dependent junction
+  chi*(tau) to satisfy it. Eq. (10) is the device that delivers the assumption, not a proof of it.
+
+  Is constancy nonetheless forced physically? The paper's picture is an isolated black hole
+  with nothing outside, and an isolated hole's mass is conserved. But that argument is not made
+  in these lines, and the construction as written does not exclude a time-dependent M_T --
+  L143-144 explicitly allows it. A variant with M_T(tau) is admissible on the printed text and
+  would give a time-dependent Lambda, hence w != -1.
+
+====================================================================================================
+C3 — DISCRIMINATION: does LambdaCDM make the same prediction?
+====================================================================================================
+  YES. A cosmological constant gives w = -1 exactly in LambdaCDM too. So even where the
+  rigidity holds, it does NOT discriminate this construction from LambdaCDM, and the prereg's
+  class-4 precedence would apply to any limb-B comparison.
+C3_DISCRIMINATION_STATED=PASS
+
+====================================================================================================
+C5b — EVERY PATH OPENED BY THIS SEAT
+====================================================================================================
+    ../bhu-reading-20260823/sources/gaztanaga_mass_mnras_clean.txt
+  paths outside this lane: none
+C5b_NO_CROSS_LANE_ACCESS=PASS
+
+====================================================================================================
+Class
+====================================================================================================
+C1_SOURCE_IDENTITY=PASS
+C2_EVOLUTION_SEARCH=PASS
+C3_DISCRIMINATION_STATED=PASS
+C5_HARNESS_PINNED=PASS
+C5b_NO_CROSS_LANE_ACCESS=PASS
+C4_PUBLISHED_ONLY=NOT_RUN  (limb B not reached)
+
+SYMBOLIC_TIMEOUT=no  (no symbolic solving was required)
+MECHANISM_FOUND=chi*(tau), a time-dependent junction (L138-140, Eq. 10), adopted expressly
+  so that M_T can be held constant while the enclosed mass is not
+CONSTANCY_STATUS=ASSUMED, not derived -- L138 is conditional ('If we want M_T ... constant')
+LCDM_MAKES_SAME_PREDICTION=yes
+CLASS=RIGIDITY_ABSENT
+CONSEQUENCE=limb B is NOT run; no DESI comparison is made and no data is touched.
+READING=the construction does not FORBID evolving dark energy; it ASSUMES a constant total
+  mass and builds a moving boundary to maintain it. The rigidity is imposed, not derived.
+R3B_LIMBA_CLAUDE_SEAT_COMPLETE

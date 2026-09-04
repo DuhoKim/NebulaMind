@@ -5,7 +5,36 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## FOR DUHO'S EYE 2026-09-04 20:43 KST — R3A filed; R3B's first prereg was REJECTED as circular and has been rebuilt
+## YOUR CALL 2026-09-04 20:53 KST — both round-3 studies are filed. R3B found the opposite of what I predicted.
+
+**R3A: `BETA_FREE`.** Entry 59's production coefficient is chosen, not derived; β_cr *is* derived; the observables ride
+on β alone; the citation chain was opened and terminates.
+
+**R3B: `RIGIDITY_ABSENT`** — and this is the one worth your time, because **I was wrong in the packet**. I ranked it
+second on the strength that it might be the corpus's first rigid, falsifiable magnitude. It isn't. `Λ = 3/r_S²` gives
+`w = −1` only if the total mass is constant, and entry 56 does not derive that — it says "**If we want** M_T … to be
+constant" (L138) and engineers a time-dependent junction to deliver it, while stating outright that "M could be a
+function of time" (L143–144). **The rigidity is a modelling choice.**
+
+**Why that is more useful than the counterexample would have been:** an evolving-w measurement would *not* refute this
+model. It would select a branch the paper already permits. And `w = −1` never discriminated anyway — ΛCDM predicts it
+too, which the prereg said in advance.
+
+**Your data boundary was never approached.** Limb A ended the study; no DESI data, no published constraints, no pixel,
+no network, nothing from Hwao's lane. Both seats listed every path they opened.
+
+**On your 20:48 ruling.** You were right and it was my failure: my dispatch forbade opening any path outside the lane
+and so blocked the seat from the paper it was auditing — the referee-without-access shape, from the other side. Your
+added requirement caught more than the fix did: my own corrected re-run had the right scope but **still could not prove
+it read the source**, so I set it aside too and re-ran a third time with `ACCESS_SHA`. Three filings are preserved,
+none deleted; only the access-proven one counts.
+
+**Proposed for the record (your call, no hurry):** a sentence on entry 59's row (β chosen, β_cr derived, observables
+sensitive to β) and one on entry 56's row (w = −1 follows from an assumed constant mass, not from the construction).
+Tiers, tokens, standings, stamps untouched. Say **"r3 a"**, **"r3 b"**, **"both"** or **"hold"**.
+
+---
+## SUPERSEDED 2026-09-04 20:53 KST — was: FOR DUHO'S EYE 2026-09-04 20:43 KST — R3A filed; R3B's first prereg was REJECTED as circular and has been rebuilt
 
 **No decision needed; nothing blocked.** R3A is complete (`BETA_FREE`). R3B's prereg is now frozen at V3 and gated,
 and limb A runs next.
