@@ -1,3 +1,5 @@
+# SUPERSEDED 2026-09-04 — this draft was lifted to the frozen `K4_BOUNDARY_TRANSFER_PREREG_20260904.md` (V2) when Duho ordered K4 at 13:15 KST; the study ran under that document, not this one, and filed `K4_UNDETERMINED` (`K4_RESULT_20260904.md`). Kept unchanged as the record of what was gated on 09-03. Do not run from this file.
+
 # DRAFT — NOT ORDERED — K4 pre-registration: a genuine causal boundary in the transfer physics, taking K2 as input (Tori, 2026-09-03 20:09 KST)
 
 **Status:** drafted on Blanc's continuation note (20:03 KST). No derivation, no seats beyond the referee gate. Gated as a draft 2026-09-03 20:20 KST (agy via `nm_referee_dispatch.sh`, ACCESS PROVEN, `K4_DRAFT_GATE_agy.md`: PREREG_SOUND_WITH_REPAIRS, four repairs applied). Becomes live only on

@@ -89,7 +89,7 @@ no available reading recovers `⅛` or `¾`.
 
 ## 6. Status
 
-K4, K5 and K6 remain **NOT ORDERED**. No study was started by this note. The annotation packet on rows 9/10/11 and the
+**K4 was ordered 2026-09-04 13:15 KST and completed the same afternoon** — `K4_UNDETERMINED`, no Planck pixel touched (`K4_RESULT_20260904.md`). K5 and K6 remain **NOT ORDERED**. No study was started by this note. The annotation packet on rows 9/10/11 and the
 inheritance rows is with Duho; option (b) in that packet — what the negative sign does to the bounce — would be a
 downstream study and is **not** what §1 above proposes, which is instead a self-consistency check of this step's own
 number. Neither is ordered. Paper HOLD; nothing outward.

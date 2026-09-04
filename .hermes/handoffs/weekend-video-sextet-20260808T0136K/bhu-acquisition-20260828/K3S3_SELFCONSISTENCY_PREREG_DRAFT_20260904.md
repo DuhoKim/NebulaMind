@@ -99,7 +99,7 @@ second route by a different method, Kimi on the check-sheet arithmetic, Tori re-
 ## 7. Non-circularity and scope
 
 No cosmological input; no statement about the bounce; the printed coefficients are under test, never inputs. This
-document cannot move a tier, warrant token, standing or stamp. K4, K5 and K6 remain NOT ORDERED, and option (b) of the
+document cannot move a tier, warrant token, standing or stamp. K4 was ordered and completed on 2026-09-04 (`K4_RESULT_20260904.md`, `K4_UNDETERMINED`); K5 and K6 remain NOT ORDERED, and option (b) of the
 10:27 packet remains NOT ORDERED.
 
 ## 8. Cost and stopping rule
