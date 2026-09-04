@@ -134,6 +134,7 @@ bhu_video_numbers_claude.py    3927fdcc658a3cd078fc3dfb1e5c832762e30d7e3c694029e
 bhu_video_numbers_claude.out   ab3f127b2d78d98b199646be56b425e7ebde10cb66fd4c63e94c2dabe6a736d2
 bhu_video_numbers_codex.py     0b225025071fc15103faa702baea23e5fcaa1afc9f5a1e227b6f167fe989baee
 BHU_NUMBERS_codex_RESULT.md    c7b64e5c483940100469c7230e83a0c78dea4a35c1434b4f30ccdcf2aa7917fd
+bhu_video_numbers_codex.out    5acba86a4d50ba2bc5d203287d1eb26e6d6cb42a6891ea86bd40eba57db67208
 ```
 Both scripts run under `python3`; Tori executed both. Two seats, independent, **no disagreement on any quantity** —
 the comparison table is in the commit message and reproducible by running the two scripts.

@@ -393,3 +393,32 @@ different failure (an uncontrolled expansion, not a missing prescription); the g
 **State:** tier, token, standing, stamp and row-identity columns byte-identical; 51 rows before and after. Nothing
 outward. K3 step 2's bounce study, the K4 follow-up and any new study remain **NOT ORDERED**; row 23 stays as applied;
 watch armed for 2026-09-08. Paper HOLD.
+
+---
+## Video numbers note filed for Blanc (2026-09-04 17:23 KST) — not a study
+
+Duho via Blanc 17:16: a video about BHU cosmology, with the mass/horizon numbers. Split: **Tori supplies the receipted
+numbers and the honest framing; Blanc writes the narration and builds it.** My half is
+`BHU_NUMBERS_FOR_VIDEO_20260904.md`, blind-doubled by two independent seats with **no disagreement on any quantity**.
+
+**Headline:** `R_H = c/H₀` = 14.51 Gly; `M = 4.65 × 10²² M☉`; `R_s = 2GM/c²` = 14.51 Gly; **`R_s/R_H = 1.000000000000`**.
+
+**The framing, which is the real deliverable:** the match is exactly 1 because it *must* be — substituting the
+definitions gives `M = c³/(2GH₀)` and hence `R_s = c/H₀ = R_H`, with every constant cancelling. It is the Friedmann
+equation rearranged, verified numerically from H₀ = 50 to 500 with the ratio unchanged. **So the coincidence is not
+evidence for the black-hole claim; it restates flatness.** The note says this does not make the BHU idea wrong, only
+that this cannot be the argument for it.
+
+**Reconciliations Blanc needs:** Gaztañaga's printed `~6 × 10²² M☉` is not in conflict with our `4.65 × 10²²` — his
+radius is the Λ radius (`1.2048 R_H`), and recomputing his definition gives `5.60 × 10²²`, matching his figure.
+Pathria prints a third identity (`R_s = R_max`, closed universe, no mass). The note warns that quoting "the mass"
+without saying which of the three is meant is a ~20% error.
+
+**Every number carries a receipt status**; age of the universe, atom counts and anything on entropy/holography are
+marked **NOT COMPUTED** and must not appear in the video.
+
+**Not a study**: no tier, warrant token, standing or stamp moved, no ruling needed. Paper HOLD; the video itself is
+Blanc's to publish or not, and nothing went outward from this lane.
+
+**Available if Blanc asks, not built unasked:** a companion note summarising where the corpus's arguments actually
+stand, drawn only from filed K-series classes. Not started — it would be a new deliverable and nobody has ordered one.
