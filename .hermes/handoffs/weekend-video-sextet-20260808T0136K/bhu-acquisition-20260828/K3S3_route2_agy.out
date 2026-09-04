@@ -1,0 +1,42 @@
+K3S3_route2_agy.py - Independent Second Route
+==================================================
+
+1. Integration of Eq. (14)
+Differential equation: da/a = (3*T*alpha*h_n**2/(2*h_*) - 1/T) dT
+Integrated a(T) = C*exp((3*T**2*alpha*h_n**2/2 - 2*h_**log(T))/(2*h_*))
+Matches functional form of printed Eq. (15): a(T) ~ (1/T) * exp(3*alpha*h_n^2 * T^2 / (4*h_*))
+The integration constant C corresponds to a_r * T_r.
+
+2. Critical Temperature from Minimum Condition (da/dT = 0)
+da/dT = C*(3*T*alpha*h_n**2 - 2*h_*/T)*exp((3*T**2*alpha*h_n**2/2 - 2*h_**log(T))/(2*h_*))/(2*h_*)
+T_cr = sqrt(6)*sqrt(h_*)/(3*sqrt(alpha)*h_n)
+Matches printed Eq. (16).
+
+3. R = |eps_tilde| / eps at the bounce
+R(T) = T**2*alpha*h_n**2/h_*
+R(T_cr) = 2/3
+
+4. Tautology check
+The value R = 2/3 is a COMPUTED CONSEQUENCE of the minimum condition da/dT = 0.
+It is NOT a tautology fixed by how the bounce is defined.
+The bounce is NOT defined by the energy densities balancing (which would give R=1).
+It is defined by the minimum of a(T), which evaluates to R = 2/3.
+
+5. R away from the bounce
+At the matter-radiation equality scale, T_r = T_eq ~ 0.75 eV (source lines 345-346).
+T_cr ~ 0.78 m_P ~ 10^28 eV. T_eq / T_cr ~ 10^-28.
+R(T) scales as T^2. Therefore R(T_eq) ~ (10^-28)^2 = 10^-56.
+The interaction is extremely small and perfectly perturbative in that regime.
+
+6. Limb A Threshold
+R at bounce = 0.667. Threshold is 0.1.
+Limb A FIRES: True
+
+7. Controls
+C4_EXPANSION_PARAMETER_COMPUTED=PASS
+C1_FREE_LIMIT_MATCHES_K3S2=NOT RUN
+C2_INTERACTION_DELETED=NOT RUN
+C3_FOUR_TERMS_SEPARATE=NOT RUN
+C5_MAP_DERIVED=NOT RUN
+C6_BOTH_OBJECTS_REPORTED=NOT RUN
+C7_NO_PRINTED_COEFF_INPUT=NOT RUN

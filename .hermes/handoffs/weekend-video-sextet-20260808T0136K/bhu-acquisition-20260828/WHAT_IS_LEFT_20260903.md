@@ -262,3 +262,31 @@ Duho ruled 14:02 KST: **"as tori's rec"** = option (a). Applied 14:04.
 **NOT ordered:** option (b), the follow-up under a declared radiation assumption — Blanc's objection, which Duho
 carried, is that adopting an unsupplied condition to get a number is the failure mode this audit keeps finding in
 published work. K3 step 3, K5, K6 and the bounce study remain NOT ORDERED. Watch armed for 09-08. Paper HOLD.
+
+---
+## K3 step 3 ORDERED and COMPLETE — NOT PERTURBATIVE, one seat-day (2026-09-04 15:28 KST)
+
+Duho ordered "K3 step 3, K5, K6 in order" at 14:56 KST. First of three, sequential; **K5 starts next without waiting
+for a fresh word.**
+
+**Class filed: `K3S3_NOT_PERTURBATIVE`** — 3 seats, 3 methods, unanimous. `R = |ε̃|/ε = 2/3` exactly at the bounce
+(threshold 0.1, declared before computing), `~10⁻⁵⁶` at matter–radiation equality. Limb A fired; **limb B
+(Hartree–Fock) was never written**, so the study cost the cheap limb alone.
+
+**What it means for K3 step 2:** its free-field coefficient stands wherever the theory is perturbative — below about
+`0.32 T_cr` — and is not established at the bounce. Together: the printed closures are refuted where the calculation is
+controlled, and at the bounce nobody has a controlled calculation at all.
+
+**Two corrections, both against the lane.** Tori's own seat asserted `R = 1` by assuming the bounce is where the energy
+density cancels; entry 10's bounce is the minimum of the scale factor, giving `2/3`. codex caught it blind, route 2
+caught it blind by a different method (integrating Eq. (14) itself), Tori re-derived it rather than accepting either.
+**And the prereg's own gate was wrong in the same place** — it predicted "exactly 1, by construction" and used that to
+argue the study was pointless. The value is 2/3 and it is derived. Had the lane trusted the gate's argument instead of
+computing, the record would now carry a wrong number and a wrong justification.
+
+**Honest accounting:** six of seven controls belong to limb B and are recorded NOT RUN. Every script re-run by Tori
+with output preserved and hashed — codex's and route 2's outputs were again unpreserved by their authors, the fourth
+instance this lane has caught. Kimi re-checked all nine arithmetic steps via Moonshot with a no-fallback control.
+
+**On Duho's desk (no hurry, nothing blocked):** an annotation proposal for rows 9/10/11 and the inheritance rows.
+Paper HOLD; nothing outward. **Next: K5.**

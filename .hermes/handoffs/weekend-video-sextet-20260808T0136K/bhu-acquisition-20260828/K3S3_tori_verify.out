@@ -1,0 +1,39 @@
+================================================================================================
+Entry 10 Eq. (15), L170-174, transcribed from the source:
+   a(T) = (a_r T_r / T) * exp( 3 alpha h_n^2 T^2 / (4 h_star) )
+================================================================================================
+a(T)                                               T_r*a_r*exp(3*T**2*alpha*h_n**2/(4*h_star))/T
+d ln a / dT                                        3*T*alpha*h_n**2/(2*h_star) - 1/T
+T_cr from da/dT = 0                                sqrt(6)*sqrt(h_star)/(3*sqrt(alpha)*h_n)
+T_cr^2                                             2*h_star/(3*alpha*h_n**2)
+codex's claimed T_cr^2 = 2 h_star/(3 alpha h_n^2)  2*h_star/(3*alpha*h_n**2)
+MATCH?                                             True
+d2 ln a / dT2 at T_cr (positive => minimum)        3*alpha*h_n**2/h_star
+
+================================================================================================
+The dimensionless ratio, with eps = h_star T^4 and n = h_n T^3 (L152-L168)
+================================================================================================
+R(T) = alpha n^2 / eps                             T**2*alpha*h_n**2/h_star
+R(T_cr)                                            2/3
+codex's claimed 2/3                                2/3
+MATCH?                                             True
+
+Tori's seat asserted R(bounce)                     1
+  which would follow from eps + eps_tilde = 0, i.e. R = 1
+  but that is NOT entry 10's bounce condition; its bounce is da/dT = 0 (L179). 
+Tori's seat was WRONG on this intermediate value   True
+
+================================================================================================
+Does the class change?
+================================================================================================
+prereg declared threshold                          1/10
+|R(T_cr)| >= threshold ?                           True
+class under Tori's (wrong) value 1                 LIMBA_NOT_PERTURBATIVE
+class under the correct value 2/3                  LIMBA_NOT_PERTURBATIVE
+  -> the CLASS is unchanged; only the reported number and its provenance change.
+
+VERIFY_TCR=PASS
+VERIFY_R_BOUNCE_TWO_THIRDS=PASS
+TORI_SEAT_INTERMEDIATE_WRONG=True
+CLASS_UNCHANGED=True
+K3S3_TORI_VERIFY_COMPLETE

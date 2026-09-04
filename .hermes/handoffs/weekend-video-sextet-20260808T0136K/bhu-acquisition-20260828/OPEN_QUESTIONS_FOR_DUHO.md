@@ -5,7 +5,39 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## FOR DUHO'S EYE 2026-09-04 15:02 KST — K3 step 3 prereg frozen and gated; the gate says the study can only come back INCONCLUSIVE, and I agree
+## FOR DUHO'S EYE 2026-09-04 15:29 KST — K3 step 3 is DONE: NOT PERTURBATIVE at the bounce; one seat-day, expensive half never written
+
+**No decision needed to continue — I am going straight into K5.** Result `K3S3_RESULT_20260904.md`, check sheet
+`K3S3_CHECK_SHEET_20260904.md`, critic note `K3S3_WHAT_A_CRITIC_GETS_20260904.md`. Class **`K3S3_NOT_PERTURBATIVE`**,
+3 seats, 3 methods, unanimous.
+
+**The finding in plain words.** The four-fermion interaction that produces the bounce is not a small correction where
+the bounce happens — it is a **two-thirds** correction. So no controlled calculation of the spin closure exists there,
+in the sources or here. Away from the bounce it is utterly negligible (about `10⁻⁵⁶` at matter–radiation equality),
+which means K3 step 2's free-field coefficient is **safe everywhere the theory is controlled** and simply not
+established at the one point the chain cares about.
+
+**Two things the lane got wrong, both caught and both recorded.**
+1. **My own seat** asserted the ratio is 1 at the bounce, by assuming the wrong bounce condition. It is **2/3**, from
+   the paper's own minimum-of-the-scale-factor condition. codex caught it blind, the second route caught it blind by a
+   different method, and I re-derived it myself rather than accepting either.
+2. **The prereg's own gate** — the one that warned this study could only come back inconclusive — said the ratio was
+   "exactly 1" and "by construction". It is 2/3 and it is **derived**. The gate was right that the cheap limb would
+   fire and wrong about the value and the reason. **Had I taken its argument on trust instead of computing, the record
+   would now carry a wrong number and a wrong justification.** That is the clearest vindication this week of running
+   the cheap limb rather than accepting an argument.
+
+**Cost:** ordered 14:56, filed 15:28. Limb B's three-to-six seat-days were not spent.
+
+**Honest accounting:** six of the seven controls belong to limb B and are recorded NOT RUN, not as passes.
+
+**Proposed for the record (your call, no hurry):** rows 9, 10, 11 and the inheritance rows gain one sentence — step 2's
+free-field coefficient holds wherever the theory is perturbative, and at the bounce the four-fermion term is a 2/3
+correction so no controlled calculation of the closure exists there. Tiers, tokens, standings and stamps untouched.
+Say "k3s3 a" to apply, or leave it and I will carry it with the K5/K6 batch.
+
+---
+## SUPERSEDED 2026-09-04 15:29 KST (K3 step 3 finished; see above) — was: FOR DUHO'S EYE 2026-09-04 15:02 KST — K3 step 3 prereg frozen and gated; the gate says the study can only come back INCONCLUSIVE, and I agree
 
 **No decision needed; nothing is blocked.** You ordered "K3 step 3, K5, K6 in order" at 14:56. The K3s3 prereg is
 frozen and gated before any derivation, as your standing sequence requires:
