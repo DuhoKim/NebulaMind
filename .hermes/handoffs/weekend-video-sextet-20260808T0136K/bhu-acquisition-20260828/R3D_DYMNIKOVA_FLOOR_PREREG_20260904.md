@@ -1,6 +1,7 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 14 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-05. Version 15 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -110,9 +111,15 @@ source-pinned equations, so it cannot see a relation excluded before that select
 
 ## 3. Limb structure
 
-**Limb A (~1 seat-day):** attempt to reproduce, from the stated inputs, a printed relation binding size to mass.
-If none is reproduced after the complete census of §2, report that **a size–mass relation was unreproduced from the
-stated inputs**, file `DYM_NO_SIZE_MASS_RELATION` and stop. *(The wording matters: the class records what this lane
+**Limb A (~1 seat-day):** attempt to reproduce, from the stated inputs, a printed relation **binding size to mass
+OR bounding the mass at all**. If none is reproduced after the complete census of §2, report that **a relation
+binding size to mass, or bounding the mass, was unreproduced from the stated inputs**, file
+`DYM_NO_SIZE_MASS_RELATION`, **record C3, C4 and C6 as `NOT_RUN` while C0, C1, C2, C5 and C5b remain reached and
+carry their actual results**, and stop. *(Two defects, one from each seat. kimi: §3 stopped whenever no SIZE–MASS
+relation was reproduced, while §4's table and class 3 both required that NO mass bound of any kind was reproduced —
+so a printed direct mass bound with no `V(M)` was routed to opposite places by clauses that were supposed to agree.
+codex: the limb-A exit named no control dispositions, while §9 permits `NOT_RUN` only where the document explicitly
+makes a control unreached.)* *(The wording matters: the class records what this lane
 could not reproduce, not a claim that the branch contains no such relation.)*
 **Limb B:** if it does, derive the floor and test it against the five breaker conditions.
 
@@ -124,7 +131,7 @@ unique infimum of that set. *(Both seats found this: "floor" alternated between 
 minimum, so a solution set like `M ∈ (1,2) kg` sat in class 5 under one reading and class 1 or 2 under the other,
 and two obedient seats could file differently on identical physics.)*
 
-**How the five scientific classes partition the cases — a decision procedure, not five descriptions.**
+**How the four scientific classes partition the cases — a decision procedure, not four descriptions.**
 An **admissible reading** is either the **completion-free derivation** (the printed relations with nothing added)
 or **the printed relations plus exactly one admissible completion**. Each **consistent** admissible reading either **yields a
 positive floor** — a strictly positive greatest lower bound of its **non-empty** allowed mass set, attained or not
@@ -220,28 +227,28 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   bytes of **every** file it reads, with `repr()` of the extracted text where the pinned text is PDF-extracted.
   **Each printed digest must equal its manifest value**; a mismatch, or any read of a source outside the manifest,
   files `DYM_SOURCE_BLOCKED`. The printed digests are the artefact; a claimed pass without them fails.
-  `C1_SOURCE_IDENTITY=PASS`. *(Previously "source identity" was identity to nothing named: the document bound no
+  This control emits `C1_SOURCE_IDENTITY=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. *(Previously "source identity" was identity to nothing named: the document bound no
   path and no expected hash, so a seat could pass having read a different extraction, edition or truncation — and
   choosing which artefact counts as the source chooses which relations exist.)*
 - **C2 — completion ledger, printed in full.** The seat prints **a row for every candidate premise or relation
   considered**, with status `SOURCE_DERIVED`, `ADDED_COMPLETION` or `UNRESOLVED`. Every `SOURCE_DERIVED` row carries
   the **pinned source path, page/line locator and verbatim supporting text**; every `ADDED_COMPLETION` row names the
   assumption added. **The full printed ledger is the artefact required for the pass; a summary assertion fails.** An
-  `UNRESOLVED` row may not be excluded and forces `DYM_SOURCE_BLOCKED`. `C2_COMPLETION_LEDGER=PASS`.
+  `UNRESOLVED` row may not be excluded and forces `DYM_SOURCE_BLOCKED`. This control emits `C2_COMPLETION_LEDGER=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
   *(As written, C2 could be passed by saying it had been done. That is fatal here specifically: relabelling or
   omitting one candidate relation manufactures the no-relation or underdetermined result.)*
 - **C3 — deletion probe, K6's corrected form:** delete the **source-pinned field equations**; if a unique floor
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
-  fails. `C3_DELETION_PROBE=PASS`.
+  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
 - **C4 — GR benchmark.** For every relation used, the seat **prints the stated-limit algebra** showing equality with
   the Schwarzschild form in the exterior limit, **and prints the premise list** for that algebra showing that no
   interior premise entered. The printed algebra and premise list are the artefact; a claimed pass without them
-  fails. `C4_GR_BENCHMARK=PASS`.
-- **C5 — harness, LIVE.** Execute and print the three commands of §9. `C5_HARNESS_PINNED=PASS`.
+  fails. This control emits `C4_GR_BENCHMARK=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
+- **C5 — harness, LIVE.** Execute and print the three commands of §9. This control emits `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
 - **C5b — path list.** Print every opened path and, **for each path, print `IN_SCOPE` or `OUT_OF_SCOPE` together
   with the exact §9 scope-rule clause applied.** Any `OUT_OF_SCOPE` row **fails** the control. **The complete
-  per-path table is the required artefact; a claimed pass without it fails.** `C5B_PATH_LIST=PASS`. *("Check it"
+  per-path table is the required artefact; a claimed pass without it fails.** This control emits `C5B_PATH_LIST=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. *("Check it"
   named no printed comparison, so the check itself was assertion.)*
   Unreached C5/C5b are recorded `NOT_RUN`, never `PASS`. *(Both codes were previously implicit in "as R3A/R3B";
   a control whose code is not named in the document it governs cannot be checked against it.)*
@@ -775,7 +782,7 @@ actually two.
 can travel** — and it is the second C0 failure in that direction. **If a third occurs, the standing instruction is
 to stop and file rather than repair.**
 
-**The repair is to the definitions, not to the exhibition.** §4's five scientific classes are now stated as a
+**The repair is to the definitions, not to the exhibition.** §4's then-five scientific classes were restated as a
 single **decision procedure over admissible readings**: a reading yields a positive floor or permits zero; `P` is
 the set that yields one, `Z` the set that permits zero. Class 4 requires **`P` empty** — *no* admissible reading
 rescues a positive floor — which is strictly stronger than "some reading permits zero" and no longer swallows
@@ -879,4 +886,45 @@ text**; it now names the token it emits from the exhibition actually run.
 
 **C0 must be re-run on V14: the partition changed. R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V14_READY_FOR_REEXHIBITION
+## 8g. V15 — the V14 reconciliation, and the scar family's fifth appearance
+
+**Both V14 seats returned `PREREG_UNSOUND` on `bbcb4a89…`; both hashes verified by me after each seat exited.**
+
+**WHERE THEY AGREE.** Both found the **partition itself sound** — `P`/`Z`/`I` is exhaustive and mutually exclusive,
+and an inconclusive result is genuinely reachable. Both found **circularity, the re-run guard and fairness sound**.
+Both independently found **the class-count scar**: §4's heading said "six declared: four scientific" while the very
+next line said "five scientific classes partition the cases". Both traced condition 5's PASS and FAIL to concrete
+floors and confirmed the falsifier still bites.
+
+**WHERE THEY DIFFER — and it is complementary, not contradictory.**
+codex found the **limb-A exit named no control dispositions**, while §9 permits `NOT_RUN` only where the document
+explicitly makes a control unreached. kimi found the **limb-A entry condition disagreed with §4** — §3 stopped
+whenever no *size–mass* relation was reproduced, while §4's table and class 3 required that *no mass bound of any
+kind* was reproduced, so **a printed direct mass bound with no `V(M)` was routed to opposite places by clauses meant
+to agree**. Both are real; both are applied; **each seat found what the other missed.**
+
+**THE SCAR FAMILY, FIFTH APPEARANCE — and this one is mine twice over.** kimi found that **six controls still ended
+with a bare `PASS` literal** — `C1` through `C5b` — *"the exact form this document diagnosed and repaired at C0 one
+round ago."* I fixed the site the referee quoted and not the class. **That is the one-site-not-the-class failure
+this lane's own rules forbid, committed in the round that repaired it elsewhere.** All six are now converted to the
+C0 form. kimi also caught the **header still saying `FROZEN`** while §8f said the document was not frozen and C0 was
+`NOT_RUN` — and that the header's timestamp predated the ruling that produced V13.
+
+**ON THE KIMI SEAT'S ENVIRONMENT LIMIT, and why it is the right behaviour.** kimi reported plainly that **script
+execution was blocked in its mode** and verified the comparator arithmetic **by hand** instead, printing its
+intermediates. I re-checked all four: `ħc = 3.16152677e-26`, `m_P = 2.1764343e-8`, `t_0 = 4.353913e17`,
+Hawking lower `1.729826e11`. **Every one is exact.**
+
+**What the hand-verification covers, and what it does not.** It fully covers the **comparator arithmetic**, which is
+pure computation on printed constants — a script would have added nothing. It does **not** cover the **executability
+claims**: that §9's three harness commands run as written, that the C3 deletion probe executes, that the free-symbol
+probe terminates. **codex executed those; kimi could not.** So the two seats together cover what neither covered
+alone — which is an argument for the blind double beyond disagreement-detection.
+
+**A seat that reports its limitation and works around it is doing the thing this lane needs.** The contrast worth
+recording: a seat blocked from its sources earlier in this programme returned a verdict anyway, and that filing had
+to be set aside. **Stating the limit is what makes the rest of the report usable.**
+
+**R3D is NOT frozen and NOT run. C0 must be re-run on V15.**
+
+R3D_PREREG_V15_READY_FOR_REEXHIBITION
