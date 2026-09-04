@@ -43,6 +43,18 @@ source that **prints a numeral the paper asserts as a result of its own** — wi
 as a value. Excluded, by definition and not by taste: numerals that are equation numbers, reference numbers, page or
 line numbers, dates, or values the paper attributes to another work without deriving. **Every candidate passage is
 listed with file and line; inclusion and exclusion are both recorded.**
+**Inclusion is assigned independently by the two pattern-blind seats from the §1 rule alone; disagreement on any
+candidate stops the study under `CENSUS_DENOMINATOR_DISPUTED`, and the third seat audits the complete candidate and
+exclusion ledgers against every pinned source.** *(codex: the audit trail records the boundary but does not make it
+mechanical — whether a numeral is "the paper's own result" remains a judgement, so it moves from one reader to two
+who must agree.)*
+
+<!--SEAT-REDACT-->**Checked, because moving work into blind seats can move the pattern with it:** the §1 rule those seats apply is
+*"a passage printing a numeral the paper asserts as a result of its own"*, with the excluded kinds enumerated —
+equation numbers, reference numbers, page or line numbers, dates, attributed-not-derived. **Nothing in that rule
+mentions magnitudes, shapes, comparison models or any lane conclusion**, and the seats receive the built packet,
+whose redaction is machine-asserted against a forbidden list. **This repair therefore adds readers without adding
+pattern content to what they are told.**<!--/SEAT-REDACT-->
 
 ## 2. Method — per claim, in order
 
@@ -187,9 +199,31 @@ a printed number, so an included claim could never satisfy it — a gate finding
   claim's outcome follows from the clause held in §3 and is not decided here; the field is factual either way.)* **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
-  closed, named list fixed here** — `G`, `c`, `ħ`, `k_B`, and the Planck 2018 TT,TE,EE+lowE+lensing values quoted with
-  their published uncertainties — so "standard" cannot become a selectable family. `C3_NO_SUBSTITUTION=PASS`.
-- - <!--SEAT-REDACT-->**C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
+  closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family:
+
+  | symbol | value | uncertainty |
+  |---|---|---|
+  | `G` | `6.67430e-11` m³ kg⁻¹ s⁻² | CODATA 2018 |
+  | `c` | `2.99792458e8` m s⁻¹ | exact, by definition |
+  | `ħ` | `1.054571817e-34` J s | exact, from the defined `h` |
+  | `k_B` | `1.380649e-23` J K⁻¹ | exact, by definition |
+  | `H₀` | `67.36` km s⁻¹ Mpc⁻¹ | `± 0.54` |
+  | `Ω_m` | `0.3153` | `± 0.0073` |
+  | `Ω_Λ` | `0.6847` | `± 0.0073` |
+  | `Ω_b h²` | `0.02237` | `± 0.00015` |
+  | `Ω_c h²` | `0.1200` | `± 0.0012` |
+  | `n_s` | `0.9649` | `± 0.0042` |
+  | `σ₈` | `0.8111` | `± 0.0060` |
+  | `τ` | `0.0544` | `± 0.0073` |
+  | `ln(10¹⁰ A_s)` | `3.044` | `± 0.014` |
+  | age | `13.797` Gyr | `± 0.023` |
+
+  The cosmological rows are the Planck 2018 TT,TE,EE+lowE+lensing baseline. **A value not in this table is not
+  `STANDARD`**, whatever its provenance. *(The list was previously "fixed here" by naming four symbols and citing a
+  paper whose baseline runs to dozens of base, derived and nuisance parameters across several tables, none printed
+  — so a machine membership test was impossible and "standard" was in practice a selectable family. kimi found it.)*
+  `C3_NO_SUBSTITUTION=PASS|FAIL|NOT_RUN`.
+- <!--SEAT-REDACT-->**C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
   directories; it does not restrict them, and it necessarily grants the lane directory, **which contains the pattern
   record**. So the tooling as it stands cannot enforce blindness to a lane-resident file, and a seat's own
   declaration is self-report.
@@ -238,7 +272,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
 - **C6 — audit, with a frozen sampling frame.** A third pattern-blind seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without seeing
   prior work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim whose filed
-  outcome asserts that the arithmetic reproduced the number** — the class in which an error is both consequential
+  outcome asserts that the arithmetic reproduced the number** — the class in which a result unreproduced from the stated inputs is both consequential
   and invisible, so it gets no sampling discount — and **(ii) a sample of `max(1, ceil(0.20 × N))` of the remaining
   included claims**, `N` being the sealed denominator, drawn by
   `random.Random(seed).sample(sorted(claim_ids), k)`.
@@ -382,4 +416,46 @@ V6 is not dispatched as a fresh round.
 No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD;
 nothing outward. R3D is a separate document with its own gate record.
 
-R3C2_PREREG_V6_NONDEFINITIONAL_READY
+## 10.2 V8 — both gate lists applied; one finding FILED, not repaired, because it turns on the held clause
+
+**Two seats, two engines, both hash-verified against `19a075c6…`, both read only after exit:**
+**codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`.**
+
+**Where they agree:** the **blinding claim** and the **seal mechanism** are **SOUND** — both said so independently,
+and kimi added that the seal's own limits are honestly stated. **Fairness is sound** in the operative outcome
+wording. Both found the **study-level classes lack a filing precedence**, both found **pre-dispatch stops with no
+class**, and both found **C0's "verified by Tori" contradictory**.
+
+**Applied from both lists:** study-level precedence order; `R3C2_NO_CLASS` extended to pre-dispatch control
+failures; C0 re-assigned to **two pattern-blind seats who must agree**, with Tori reduced to a coverage check;
+§1 inclusion assigned independently by two blind seats; the `STANDARD` list **printed literally** with values and
+uncertainties, because "a closed list fixed here" named four symbols and cited a paper whose baseline runs to dozens
+of parameters, none printed — a membership test that could not be machine-checked; the word **"error"** removed
+from C6, where this lane's own rule forbids it; every control given `PASS|FAIL|NOT_RUN`.
+
+**kimi's sharpest catch, applied:** §7 claimed the interpretation protocol *"is fixed and committed before limb A
+begins, **so** it cannot be written to suit the tally."* **That "so" was an overclaim by this document's own
+standard** — the only custody binding on the protocol was §7's seal, which runs **after** Tori computes the tally,
+and until Blanc receipts it the protocol is a local commit in this lane's own custody, which §7 itself calls tamper
+evidence rather than custody. **The relay now happens before limb A**, where the claim requires it.
+
+### FILED, NOT REPAIRED — `REPRO_AFTER_CHOICE` is currently unreachable, and the fix depends on Duho's ruling
+
+kimi, finding 2a: **§2 orders only an admissible-only arithmetic attempt, so no stated procedure ever establishes
+"the number follows only once an inadmissible input is used".** `REPRO_AFTER_CHOICE` — **the class §3 says this
+census exists to detect** — cannot be reached from the method as written.
+
+**This is a declared-versus-actual mismatch, the same family C0 has now found three times.** It is **not repaired**,
+and that is deliberate: kimi's fix inserts a second arithmetic attempt using the printed inadmissible value, which
+is **only required if the ruling keeps the three-member arithmetic group.** Under option **(c)** — reproduce
+mechanically, record provenance separately — `REPRO_AFTER_CHOICE` is retired and the defect disappears with it.
+**Applying the repair would adopt option (b) by implication, and §1's definition is HELD.**
+
+**This is therefore an input to the ruling rather than a defect awaiting a patch, and it has a cost either way:**
+option (b) needs extra machinery — a second arithmetic attempt per claim — to make its own headline class
+reachable; option (c) removes the class and the machinery together. **Recorded here so the ruling can be made
+knowing it.**
+
+**R3C2 is NOT frozen and NOT run. §1's definition remains HELD.**
+
+R3C2_PREREG_V8_BOTH_LISTS_APPLIED_ONE_FILED

@@ -8,7 +8,7 @@ what its results will be compared against have been removed **deliberately and m
 `r3c2_build_seat_packet.py`. Their absence is not an omission for you to fill in, and you should not
 attempt to infer or reconstruct them. Apply the rules below exactly as written.
 
-Built from master sha256 `19a075c66696c4a0793c2fb13a45247f9e174f4b2194ec3a9f540ed001597000` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `b41136025d1a567f4f0557ee92b87ecdadb5bc5e00a62fded6d164b0b367bd3a` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -20,6 +20,13 @@ source that **prints a numeral the paper asserts as a result of its own** — wi
 as a value. Excluded, by definition and not by taste: numerals that are equation numbers, reference numbers, page or
 line numbers, dates, or values the paper attributes to another work without deriving. **Every candidate passage is
 listed with file and line; inclusion and exclusion are both recorded.**
+**Inclusion is assigned independently by the two pattern-blind seats from the §1 rule alone; disagreement on any
+candidate stops the study under `CENSUS_DENOMINATOR_DISPUTED`, and the third seat audits the complete candidate and
+exclusion ledgers against every pinned source.** *(codex: the audit trail records the boundary but does not make it
+mechanical — whether a numeral is "the paper's own result" remains a judgement, so it moves from one reader to two
+who must agree.)*
+
+
 
 ## 2. Method — per claim, in order
 
@@ -139,9 +146,31 @@ is hidden by being excluded.
   claim's outcome follows from the clause held in §3 and is not decided here; the field is factual either way.)* **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
-  closed, named list fixed here** — `G`, `c`, `ħ`, `k_B`, and the Planck 2018 TT,TE,EE+lowE+lensing values quoted with
-  their published uncertainties — so "standard" cannot become a selectable family. `C3_NO_SUBSTITUTION=PASS`.
-- - 
+  closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family:
+
+  | symbol | value | uncertainty |
+  |---|---|---|
+  | `G` | `6.67430e-11` m³ kg⁻¹ s⁻² | CODATA 2018 |
+  | `c` | `2.99792458e8` m s⁻¹ | exact, by definition |
+  | `ħ` | `1.054571817e-34` J s | exact, from the defined `h` |
+  | `k_B` | `1.380649e-23` J K⁻¹ | exact, by definition |
+  | `H₀` | `67.36` km s⁻¹ Mpc⁻¹ | `± 0.54` |
+  | `Ω_m` | `0.3153` | `± 0.0073` |
+  | `Ω_Λ` | `0.6847` | `± 0.0073` |
+  | `Ω_b h²` | `0.02237` | `± 0.00015` |
+  | `Ω_c h²` | `0.1200` | `± 0.0012` |
+  | `n_s` | `0.9649` | `± 0.0042` |
+  | `σ₈` | `0.8111` | `± 0.0060` |
+  | `τ` | `0.0544` | `± 0.0073` |
+  | `ln(10¹⁰ A_s)` | `3.044` | `± 0.014` |
+  | age | `13.797` Gyr | `± 0.023` |
+
+  The cosmological rows are the Planck 2018 TT,TE,EE+lowE+lensing baseline. **A value not in this table is not
+  `STANDARD`**, whatever its provenance. *(The list was previously "fixed here" by naming four symbols and citing a
+  paper whose baseline runs to dozens of base, derived and nuisance parameters across several tables, none printed
+  — so a machine membership test was impossible and "standard" was in practice a selectable family. kimi found it.)*
+  `C3_NO_SUBSTITUTION=PASS|FAIL|NOT_RUN`.
+- 
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_PATTERN_BLIND=PASS` requires that printed path list.
@@ -156,7 +185,7 @@ is hidden by being excluded.
 - **C6 — audit, with a frozen sampling frame.** A third pattern-blind seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without seeing
   prior work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim whose filed
-  outcome asserts that the arithmetic reproduced the number** — the class in which an error is both consequential
+  outcome asserts that the arithmetic reproduced the number** — the class in which a result unreproduced from the stated inputs is both consequential
   and invisible, so it gets no sampling discount — and **(ii) a sample of `max(1, ceil(0.20 × N))` of the remaining
   included claims**, `N` being the sealed denominator, drawn by
   `random.Random(seed).sample(sorted(claim_ids), k)`.
@@ -197,4 +226,3 @@ no-fallback control, one-page check sheet, Tori re-runs every script, critic not
 No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD;
 nothing outward. R3D is a separate document with its own gate record.
 
-R3C2_PREREG_V6_NONDEFINITIONAL_READY
