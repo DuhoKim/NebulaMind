@@ -200,3 +200,38 @@ ORDERED. Nurgaliev & Ponomariev stays a non-blocking acquisition line. Paper HOL
    (`K3S2_BOUND_GATE_20260904_agy.md`), including the check that this is not over-hedging: "the hedge is perfectly
    scaled... without surrendering the negative claim". Tier, token, standing, stamp and row ids again byte-identical;
    51 rows.
+
+---
+## K4 ORDERED and COMPLETE — INCONCLUSIVE, one seat-day, no pixel (2026-09-04 13:30 KST)
+
+Duho ordered K4 at 13:15 KST. Prereg frozen (V2) and gated before any derivation, as his order required; the cheap
+limb of the falsifier ran first and ended the study.
+
+**Class filed: `K4_UNDETERMINED`** — 3 of 4 seats, 2 independent methods, third seat adjudicating. The perturbed
+Darmois junction is neither F1 nor F2 (all four seats agree, so limb 2 does not fire), **but it does not close as a
+boundary condition either**: for every `ℓ ≥ 2` and `m`, the Schwarzschild exterior retains one free function of time
+that the junction does not fix. No derived `C_ℓ`, nothing to score, **no Planck pixel touched**.
+
+**The assumption that would close it** — "no incoming radiation from past null infinity" — is an added physical
+assumption, not a consequence of the Darmois conditions (third seat §1). The prereg forbade manufacturing one and none
+was made.
+
+**Tori's own seat was wrong.** The claude seat filed `LIMB2_NOT_F1_F2` by importing exactly that radiation condition.
+codex caught it blind, route 2 caught it blind by a third method, the third seat ruled it an added assumption. Token
+withdrawn; recorded in the result §4 and on the check sheet rather than quietly dropped.
+
+**Class-gap flag disposed:** the claude seat flagged a possible gap in the outcome classes; the third seat ruled there
+is none, because the problem is genuinely undetermined and that is class 4. No amendment owed.
+
+**Honest accounting:** four of the six controls (`C1_NO_BOUNDARY_LCDM_ROW`, `C3_WINDOW_ROW_REPRODUCED`,
+`C4_SEATS_AGREE`, `C5_ESTIMATOR_C2_REPRODUCED`) belong to the half never reached and are recorded **NOT RUN**, not as
+passes. Executable discipline held: every cited script re-run by Tori with its output preserved and hashed — codex's
+and route 2's outputs were not preserved by their authors, which is what prereg §7 exists to catch.
+
+**Effect on the freedom map's residual:** it does **not** close, but it is sharper — the obstruction is an
+underdetermination in the model, not an unfinished calculation. The referee who advised against running K4 was right
+that there would be no detection and wrong about the reason.
+
+**On Duho's desk:** annotate the residual and the finite-boundary rows, or that plus a conditional follow-up under an
+explicitly declared radiation assumption, or hold. Recommended (a). K3s3, K5, K6 and the bounce study remain NOT
+ORDERED. Paper HOLD; nothing outward.

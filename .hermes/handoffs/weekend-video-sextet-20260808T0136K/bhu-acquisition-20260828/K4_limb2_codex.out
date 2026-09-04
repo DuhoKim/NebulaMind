@@ -1,0 +1,21 @@
+SEAT=codex
+GAUGE=boundary-adapted Gaussian-normal at Sigma (n=0; h_nn=h_na=0); exterior polar modes represented by the Zerilli variable
+NO_PIXEL_INPUT=TRUE
+BACKGROUND=k=0, Lambda=0, dust, comoving chi*=constant, R=a chi*, M=(4/3) pi chi*^3 rho0, Schwarzschild exterior, J_SMOOTH_EXPANDING
+JUNCTION_DECOMPOSITION=h_tt=A_lm Y_lm; h_tA=B_lm Y_A; h_AB=R^2[K_lm Omega_AB Y_lm+G_lm Y_AB]
+DARMOIS_FIRST_FORM=[A_lm]=[B_lm]=[K_lm]=[G_lm]=0 (retain only harmonics existing at that ell)
+DARMOIS_SECOND_FORM=[d_n A_lm]=[d_n B_lm]=[d_n K_lm]=[d_n G_lm]=0 in Gaussian-normal gauge (same harmonic qualifications)
+MULTIPOLE_STRUCTURE=rotational symmetry makes every (ell,m) match independently; it does not project onto ell=0
+ELL0=matches the spherical density/mass perturbation to a constant exterior delta-M; background mass conservation supplies M but does not erase generic nonspherical modes
+ELL1=even-parity vacuum dipole is center-of-mass/gauge data; regular matching fixes relative displacement/gauge, not all ell>=2 amplitudes
+ELL_GE_2=Schwarzschild vacuum has a polar Zerilli master field with two real functional Cauchy data per (ell,m); Darmois relates its boundary value/normal derivative to the interior mode
+BIRKHOFF=Birkhoff fixes only the exactly spherical exterior (ell=0) to Schwarzschild with constant mass; it says nothing that removes ell>=2 vacuum gravitational perturbations
+FREE_MODE=for every ell>=2 and -ell<=m<=ell, arbitrary real finite-energy exterior Zerilli incoming/Cauchy data (two functions, subject to reality and regularity) remain unspecified
+SPECTRUM=without an exterior state/no-incoming-radiation condition, Darmois supplies transmission data, not a homogeneous reflecting eigencondition; k remains continuous and no Delta-k is derived
+CONDITIONAL_CAVITY_SPACING=pi/chi*; if chi*=chi_section=14015 Mpc then pi/chi*=2.241593045729e-04 Mpc^-1, but this spacing is NOT implied by Darmois
+CAUSAL_SCALE=chi_section=3.149 c/H0=14015 Mpc
+F1_COMPARISON=NO: the conditions act mode-by-mode, including ell>=2, rather than only on ell=0
+F2_COMPARISON=NO: they equate boundary data across Sigma and do not impose W_tilde(k) delta_tilde(k)=0 or P=0
+FREEDOM=exterior polar radiation state for every ell>=2; parameter space is arbitrary real finite-energy Zerilli Cauchy-data pairs, not a fixed numeric interval
+LIMITS=dust only; exact spherical symmetry of the background; inherited 0<=Lambda<=Lambda_c (the selected B1 cell has Lambda=0)
+CLASS=LIMB2_UNDETERMINED

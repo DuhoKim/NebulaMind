@@ -5,7 +5,46 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## FOR DUHO'S EYE 2026-09-04 13:31 KST — K4 preregistration is frozen and gated; the referee says the study is not worth running, and I half agree
+## YOUR CALL 2026-09-04 13:30 KST — K4 is finished, INCONCLUSIVE, and it cost one seat-day instead of ten to fourteen
+
+**Result:** `K4_UNDETERMINED` (`K4_RESULT_20260904.md`; one-page check sheet `K4_CHECK_SHEET_20260904.md`).
+**No Planck pixel was touched and none needs to be.**
+
+**What happened, in plain words.** The cheap limb of the falsifier ran first, as the prereg required. It asked whether
+the derived junction kills the route a priori. It does not — but the seats found something better than either answer we
+had listed: **the junction does not determine the interior modes at all.** For every multipole from the quadrupole
+upward, the Schwarzschild exterior keeps one free function of time that the matching conditions simply do not fix. So
+there is no derived CMB prediction to score, and nothing to test against the map.
+
+**One assumption would close it** — "no incoming gravitational radiation from infinity", the standard astrophysical
+choice. It is an *added* physical assumption, not something the junction gives, and the sources never state it. The
+prereg forbade manufacturing one, so I did not. **Recording the freedom is the result.**
+
+**My own seat was wrong and I am telling you before you read the table.** I filed the opposite class by quietly
+assuming that very radiation condition. codex caught it blind; the independent second route caught it blind by a third
+method; the third seat ruled it an added assumption. My token is withdrawn.
+
+**What it does to the open residual.** The freedom map's structural hole (its L174–177 — every row assumes ΛCDM
+transfer physics, nothing constrains a genuine boundary) **does not close**, but it is sharper: the obstruction is an
+underdetermination in the model itself, not an unfinished calculation on our side. The referee who told us K4 was not
+worth running was right that there would be no detection, and wrong about why.
+
+**Honest accounting of what was NOT done:** four of the six controls belong to the expensive half and were never run.
+They are recorded as NOT RUN, not as passes.
+
+**Options for the record:**
+(a) **annotate** the freedom-map residual and the rows carrying the finite-boundary construction with the
+    underdetermination, tiers/tokens/standings/stamps untouched [recommended];
+(b) (a) plus order a follow-up that adopts the no-incoming-radiation condition *explicitly as a declared assumption*
+    and computes the `C_ℓ` under it — a real prediction, but conditional on an assumption the sources never make;
+(c) hold the annotations.
+
+**Why this is your call.** (b) would put the lane's name on a boundary condition the corpus does not state, which is
+exactly the kind of step the record has been refusing all week. I lean (a), and would take (b) only if you want a
+conditional number on the table.
+
+---
+## SUPERSEDED 2026-09-04 13:30 KST (K4 finished; see above) — was: FOR DUHO'S EYE 2026-09-04 13:21 KST — K4 preregistration is frozen and gated; the referee says the study is not worth running, and I half agree
 
 **No decision is needed to proceed** — you ordered K4 at 13:15 and the prereg is filed, as your order required, before
 any derivation and before any Planck pixel is touched: `K4_BOUNDARY_TRANSFER_PREREG_20260904.md` (V2 frozen),

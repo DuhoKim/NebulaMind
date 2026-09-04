@@ -1,0 +1,111 @@
+
+====================================================================================================
+0. Background: the K2 B1 cell, rebuilt here
+====================================================================================================
+a(t) for k=0, Lambda=0 dust                    t**(2/3)
+H = a'/a                                       2/(3*t)
+rho(t) from Friedmann                          1/(6*pi*G*t**2)
+comoving mass M = (4/3) pi chi*^3 rho_0        entry 56 L143 (OCR: 'M = 43pi chi 3 rho0'); K2 §2 row 1
+exterior                                       Schwarzschild, mass M; Birkhoff applies to every spherically symmetric exterior
+
+====================================================================================================
+1. Interior scalar perturbations: the structural fact that decides this limb
+====================================================================================================
+dust growth equation                           Eq(Derivative(delta(t), (t, 2)) + 4*Derivative(delta(t), t)/(3*t) - 2*delta(t)/(3*t**2), 0)
+general solution                               Eq(delta(t), C1/t + C2*t**(2/3))
+
+  DECISIVE STRUCTURAL FACT: the equation contains NO spatial-gradient (k^2) term, because dust
+  has no pressure. Growth is scale-free: delta(x,t) = D(t) * delta_0(x) for an ARBITRARY delta_0(x).
+  The interior dynamics therefore poses NO eigenvalue problem in the radial direction, so a
+  boundary condition at chi* cannot discretise an interior spectrum through the evolution.
+gradient term present in the growth equation?  no
+
+====================================================================================================
+1b. Where the boundary can act: the constraint, not the evolution
+====================================================================================================
+  The perturbed 00-constraint in the declared gauge is the Poisson equation
+      laplacian Phi = 4 pi G a^2 rho delta ,
+  an ELLIPTIC boundary-value problem on the ball chi <= chi*, sourced by delta.
+  Per multipole l, the regular interior solution and the decaying exterior vacuum solution are
+      Phi_l^int ~ r^l  (regular at r=0)   and   Phi_l^ext ~ r^-(l+1)  (decaying at infinity),
+  and the junction fixes the two constants. This DETERMINES Phi given delta; it does not
+  constrain delta. That is the difference between a boundary-value problem and an eigenproblem.
+
+====================================================================================================
+2. What the Schwarzschild vacuum exterior allows, multipole by multipole
+====================================================================================================
+  l = 0    Birkhoff: the only spherically symmetric vacuum perturbation is a shift of the mass parameter, M -> M + dM. No dynamics.
+           -> constrains delta only through the single number dM = integral of delta-rho over the ball
+  l = 1    a vacuum dipole is a translation of the centre of mass (pure gauge / momentum constraint).
+           -> no constraint on the interior spectrum
+  l >= 2   polar (scalar-type) vacuum perturbations are Zerilli solutions; regularity at infinity and no incoming radiation fix the exterior response uniquely.
+           -> determines the exterior continuation from the interior multipole moments; no constraint on the interior spectrum
+
+====================================================================================================
+3. The l = 0 sector, done exactly — this is the only place an F1-type condition could hide
+====================================================================================================
+  If the exterior mass parameter is HELD FIXED, the junction forces
+      integral_ball delta-rho d^3x = delta_M = 0,
+  i.e. the monopole of the interior density perturbation inside the ball must vanish.
+  THAT IS EXACTLY AN F1-TYPE CONDITION (PROGRAM_C_FLUX_RESULT_20260902.md L15-18):
+  one number, the spherical average inside the sphere, touching only l = 0.
+
+  But the exterior mass parameter is NOT held fixed by anything in the K2 cell: Birkhoff
+  permits any Schwarzschild mass, and the Darmois conditions relate it to the interior content.
+  A perturbation that adds mass inside simply shifts M. So the junction imposes
+      delta_M = (the interior monopole), NOT delta_M = 0,
+  which is a DEFINITION of the exterior mass, not a constraint on the interior.
+l = 0 condition                                fixes dM from the interior; does not annihilate the interior monopole
+
+====================================================================================================
+4. Comparison with F1 and F2 — the deliverable
+====================================================================================================
+  F1 (flux result L15-18): touches ONLY l = 0; every C_l for l >= 1 exactly unchanged.
+  F2 (flux result L19-22): W-tilde(k) delta-tilde(k) = 0; no continuous power spectrum except P = 0.
+
+  The perturbed Darmois junction is NEITHER:
+   * it does not annihilate the perturbation field, so it is not F2;
+   * it acts at every l, not only at l = 0 (it fixes the exterior continuation for each l),
+     and at l = 0 it defines the exterior mass rather than killing the monopole, so it is not F1.
+
+  What it imposes instead: for each l, a matching of the interior potential to the unique
+  regular/decaying exterior vacuum solution. This is a boundary-value problem with a source,
+  determining Phi from delta. It leaves the interior density spectrum delta_0(x) FREE.
+
+====================================================================================================
+5. Radial-mode structure and the causal scale (brief item 6)
+====================================================================================================
+chi_§ (in c/H0)                                3149/1000
+chi_§ (Mpc, as pinned)                         14015
+
+  Because the interior evolution has no gradient term and the constraint is a sourced BVP,
+  the junction supplies NO quantisation condition and hence NO spacing Delta k ~ pi/chi*.
+  A finite ball still restricts the DOMAIN on which delta_0 lives, but that is a statement
+  about the initial data, not a condition the Darmois junction imposes. This seat reports
+  the junction only; the domain question is not what limb 2 asks.
+
+====================================================================================================
+6. What would overturn this seat's answer
+====================================================================================================
+  1. a pressure term in the interior (K2's limits exclude it: dust only) would restore a gradient term and with it an eigenproblem;
+  2. an exterior that is not vacuum (K2's cell is matched to Schwarzschild, so this is excluded here);
+  3. a requirement that the exterior mass be held fixed by something outside the junction, which would convert l=0 into a genuine F1 condition;
+  4. a non-comoving boundary, which K2's B3 theorem excludes for a shell-free junction.
+
+====================================================================================================
+7. Class
+====================================================================================================
+FINDING_NO_GRADIENT_TERM=True
+FINDING_L0_IS_DEFINITION_NOT_CONSTRAINT=True
+FINDING_NOT_F1=True
+FINDING_NOT_F2=True
+FINDING_NO_QUANTISATION_FROM_JUNCTION=True
+
+PLANCK_DATA_OPENED=no
+CLASS=LIMB2_NOT_F1_F2
+CONSEQUENCE=limb 2 does NOT fire; the a-priori kill does not apply
+BUT_NOTE=the junction constrains the interior spectrum in no way at all, so this seat's
+  derivation predicts NO C_l modification from the junction itself -- which is 'no low-l
+  modification' WITHOUT being an F1/F2-type condition. Prereg class 1 requires F1/F2; this
+  outcome may fall outside every declared class and is reported as such rather than forced.
+K4_LIMB2_CLAUDE_SEAT_COMPLETE
