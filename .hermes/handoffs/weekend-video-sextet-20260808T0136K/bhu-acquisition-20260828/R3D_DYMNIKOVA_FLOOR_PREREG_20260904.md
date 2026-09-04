@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 17 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 18 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -150,7 +150,7 @@ those that are inconsistent — empty allowed mass set. **Every admissible readi
 | condition | class |
 |---|---|
 | **LIMB A EXIT.** No printed relation binds size to mass or bounds the mass at all, so limb B is never entered | **3** `DYM_NO_SIZE_MASS_RELATION` |
-| **LIMB B ONLY — at least one relation IS printed.** `P` is empty and `Z` or `I` is non-empty: no consistent admissible reading yields a positive floor | **4** `DYM_NO_POSITIVE_FLOOR` |
+| **LIMB B ONLY — at least one relation IS printed.** `P` is empty and `Z` or `I` is non-empty: **a positive floor was unreproduced from the stated inputs** | **4** `DYM_NO_POSITIVE_FLOOR` |
 | **`P` is non-empty** and the readings **disagree** — `P` holds two different floors, or **`Z` is non-empty**, or **`I` is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
 | **`P` non-empty, all of `P` agree on one floor, `Z` AND `I` both empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
 
@@ -408,9 +408,16 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 
 **Two numbers, because one of them was wrong and the difference is the point.**
 
-**C6 applies on 2 of the 6 outcome classes** — `DYM_FLOOR_DERIVED` and `DYM_FLOOR_UNDERDETERMINED`, every class
-that yields a positive floor. **Declared and reachable are now the same number**, which is the point of stating
-both.
+**Two different numbers, and conflating them was the defect both V17 seats found.**
+
+**C6 is INITIALLY ENGAGED on 2 of the 6 outcome classes** — `DYM_FLOOR_DERIVED` and `DYM_FLOOR_UNDERDETERMINED`,
+the classes that yield a positive floor.
+
+**Once engaged, `C6_BREAKER_TEST=FAIL` can be recorded in 4 terminal classes:** those two, **plus
+`DYM_SOURCE_BLOCKED`** when condition 3 remains `UNDECIDED` after its fallback, **plus `R3D_NO_CLASS`** when an
+engaged C6 is followed by a persistent control failure. *(§5a previously counted only the positive scientific
+classes and called that the number of classes on which C6 can fail — but C6, once engaged, travels with the run
+into a terminal class that is not one of the two it engaged from. Engagement and filing are different events.)*
 
 **Reachable: 2. `DYM_FLOOR_COMPLETION_DEPENDENT` IS A DEAD CLASS** — shown unreachable by seat exhibitions on
 **both V11 and V12**, for two different reasons.
@@ -541,7 +548,12 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
   `C2_COMPLETION_LEDGER=PASS|FAIL|NOT_RUN`, `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN`,
   `C4_GR_BENCHMARK=PASS|FAIL|NOT_RUN`, `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`,
   `C5B_PATH_LIST=PASS|FAIL|NOT_RUN`, `C6_BREAKER_TEST=PASS|FAIL|NOT_RUN`. **`NOT_RUN` is permitted only where this
-  document explicitly makes that control unreached.** *(Most controls previously printed only a PASS token. A
+  document explicitly makes that control unreached. A control IS explicitly unreached when an earlier control has
+  already forced `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS` and the later control was never engaged: every such later
+  control is recorded `NOT_RUN`, and every control that WAS engaged before the block carries its actual result.**
+  *(An early terminal block — C1 finding a digest mismatch, C2 an `UNRESOLVED` row, a bounded procedure undecidable
+  after fallback — previously left every later control's status unstated, while the global rule allowed `NOT_RUN`
+  only where the document said so explicitly. It now says so explicitly.)* *(Most controls previously printed only a PASS token. A
   control that can only say PASS is not a control — this lane's own principle, applied to itself.)*
 - **Unreached limbs**: controls recorded `NOT_RUN`, never as passes. **This exact underscore spelling applies to
   every unreached control throughout this document.**
@@ -1043,4 +1055,45 @@ the candidate fix.
 
 **R3D is NOT frozen and NOT run. C0 must be re-run on V17.**
 
-R3D_PREREG_V17_READY_FOR_REEXHIBITION
+## 8j. V18 — the boundary that failed three times is SOUND in both seats, and the third-failure rule did not fire
+
+**codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`, both on `498faefc…`, both hash-verified after exit.**
+
+### The recurring overlap is closed — stated first, because it is the round's result
+
+**Neither seat found the class 3 / class 4 overlap.** codex, unprompted: *"The six terminal classes are exhaustive
+and mutually exclusive as an operational decision procedure. Class 3 is selected only by the limb-A exit; classes
+1, 2, and 4 partition limb B by the disjoint `P`/`Z`/`I` cases."* kimi filed **FINDING 1 — OUTCOME CLASSES: SOUND.**
+
+**The attempt-three repair held, and so did the finding under it.** Separating by **limb** rather than by predicate
+was the right move because the difference was never a predicate: class 3 entails class 4 by meaning, and a
+procedural exit cannot be split from a state predicate by adding conditions to either. **Three predicate-level
+repairs failed; the first structural one passed both seats and the exhibition.** The third-failure rule stood ready
+and was not needed.
+
+### How much of this design is now settled
+
+**kimi found SIX of seven sections SOUND** — outcome classes, controls, circularity, re-run guard, fairness, stall
+— with one defect. **codex found circularity and the class partition sound**, with three. **Both seats' single
+shared defect is the same one**, which is what convergence looks like.
+
+### The shared defect: engagement and filing are different events
+
+**§5a said "C6 applies on 2 of the 6 outcome classes" and treated that as the number of classes in which C6 can
+fail.** But **C6, once engaged, travels with the run into a terminal class that is not one of the two it engaged
+from.** Both seats found it independently.
+
+**Corrected to two numbers:** C6 is **initially engaged** on 2 classes; once engaged, `C6_BREAKER_TEST=FAIL` can be
+recorded in **4 terminal classes** — those two, plus `DYM_SOURCE_BLOCKED` when condition 3 stays `UNDECIDED` after
+its fallback, plus `R3D_NO_CLASS` when an engaged C6 meets a persistent control failure.
+
+**Also from codex, both applied:** an early terminal block left every later control's status unstated while the
+global rule permitted `NOT_RUN` only where the document says so explicitly — it now says so explicitly, and
+distinguishes controls engaged before the block (which carry their real result) from those never engaged. And
+class 4's table row still read *"no consistent admissible reading yields a positive floor"* — **a nonexistence
+claim in an operative clause**, now *"a positive floor was unreproduced from the stated inputs."* kimi called
+fairness sound; codex found this row; **the row is codex's catch and it is right.**
+
+**C0 must be re-run on V18. R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V18_READY_FOR_REEXHIBITION
