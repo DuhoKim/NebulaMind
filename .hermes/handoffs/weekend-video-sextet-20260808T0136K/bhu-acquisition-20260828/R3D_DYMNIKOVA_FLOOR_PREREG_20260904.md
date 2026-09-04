@@ -28,6 +28,12 @@ Komar); which surface; the regularity conditions; and the de Sitter-limit condit
 interior, order-unity coefficient or GR exterior may enter silently** — each is an added completion, named and tested
 separately, exactly as K6 required.
 
+**A completion is ADMISSIBLE if and only if it introduces exactly one named assumption and is consistent with every
+printed relation of the manifest sources.** A completion that contradicts a printed relation is **inadmissible** and
+may not be considered. *(The term carried the whole class structure while being defined nowhere, so whether an
+"order-unity coefficient" counted as admissible when the printed relations already fixed a floor was a seat's
+judgement, and two obedient seats could file different classes for the same physics.)*
+
 ### 2a. The frozen source manifest — the only sources this study may read
 
 Digests are of the raw bytes, computed 2026-09-04 in this lane. **Every source below was confirmed by its own
@@ -48,8 +54,13 @@ artefact and admitting it would let the choice of artefact choose which relation
 
 ### 2b. Measured constants — the closed list
 
-`G`, `c`, `ħ`, `k_B`, and the Planck mass `m_P = 2.176434e-8 kg` (CODATA 2018). **No other value may be introduced
-as "standard"**; anything else is an added completion under C2.
+`G = 6.67430e-11` m³ kg⁻¹ s⁻², `c = 2.99792458e8` m s⁻¹, `ħ = 1.054571817e-34` J s, `k_B`, the solar mass
+`M_☉ = 1.98892e30` kg, and the age of the universe `t_0 = 13.797` Gyr `= 4.3539e17` s. **No other value may be
+introduced as "standard"**; anything else is an added completion under C2.
+
+The **Planck mass** is not listed separately because it is derived from the above:
+`m_P = sqrt(ħc/G) = 2.176434e-8 kg`. **Every comparator value in C6 is likewise computed from this list inside this
+document**, which is what makes condition 5 executable without reading anything outside the manifest.
 
 ### 2c. The census, and how its exhaustiveness is demonstrated
 
@@ -61,15 +72,24 @@ page/line locator and verbatim text. **Exclusion is permitted only for a predecl
 text**. Disagreement or missing evidence is `UNRESOLVED`, **may not be treated as absence**, and forces
 `DYM_SOURCE_BLOCKED`.
 
-**Exhaustiveness is demonstrated mechanically, not asserted.** For each manifest source the seat **prints the
-complete output of a literal, case-insensitive string search** of that source's extracted text for each of these
-eleven terms — `core`, `scale`, `density`, `mass`, `mass function`, `radius`, `horizon`, `matching`, `surface`,
-`regular`, `de Sitter` — and **every hit appears either as its own census row, or is cited inside a `DUPLICATE` row
-naming the row that covers it.** That search output is part of the C2 artefact. **A relation that was never listed
-is therefore mechanically distinguishable from one excluded under a reason code** — which the reason codes alone
-could not do, since they govern only rows that were surfaced in the first place. *(Both blind seats are lane seats;
-a shared blind spot reproduces in both, so blind doubling does not catch an omission. Only an enumeration key a
-reviewer can re-run does.)*
+**Exhaustiveness is demonstrated by accounting for every line, not by a keyword search.** For each manifest source
+the seat **prints the complete extracted text with stable line numbers and assigns every non-blank line exactly one
+census disposition**: its own included row, its own excluded row under a predeclared reason code, or a `DUPLICATE`
+row naming the covering row. **An equation and its defining or context lines may be treated as one explicitly
+bounded block** with a single disposition, provided the block's line range is printed.
+
+**In addition, and as a cross-check on the blocking, every numbered or displayed equation in each manifest source
+appears as its own census row** — cited by equation number, or by page/line locator where the display is unnumbered
+— **and the seat prints each source's full equation list as part of the same C2 artefact.**
+
+The eleven terms `core`, `scale`, `density`, `mass`, `mass function`, `radius`, `horizon`, `matching`, `surface`,
+`regular`, `de Sitter` are retained **only as a search whose output is printed for the reviewer's convenience. They
+are not the enumeration key, and no row may be justified by their absence.** *(They were the key in V4, and every
+one of them is an English word. A size–mass binding in a gravitation paper is overwhelmingly likely to be a bare
+displayed equation — `r_0² = 3/Λ`, `m(r) = …` — which contains none of the eleven strings, produces zero hits and
+never becomes a row. Both blind seats are lane seats, so a shared blind spot reproduces in both, and a re-runnable
+key blind in the same place reproduces it a third time. The omitted-versus-excluded distinction the design claimed
+to have mechanised held only for prose — precisely not for the relations this study exists to find.)*
 
 **The shape/magnitude pattern record and every prior lane conclusion are forbidden as evidence
 for inclusion, exclusion or outcome selection**; the pattern enters this study at exactly one point — C6's breaker
@@ -88,7 +108,10 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 
 ## 4. Outcome classes — declared now
 
-1. **DYM_FLOOR_DERIVED** — a unique positive floor follows from the printed relations with no added completion.
+1. **DYM_FLOOR_DERIVED** — a unique positive floor follows from the printed relations with no added completion,
+   **no admissible completion yields a different floor, and no admissible completion permits masses approaching
+   zero.** *(The guard is required: without it a construction whose printed relations fix a floor while an
+   admissible completion gives a different one satisfied classes 1 and 2 at once, and nothing ordered them.)*
    Report the formula and value, **and test it against all five breaker conditions**; if it passes them, this is a
    counterexample to the pattern and the pattern record must be amended.
 2. **DYM_FLOOR_UNDERDETERMINED** — the printed relations admit **at least two positive but unequal floors** under
@@ -114,9 +137,10 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 6. **DYM_SOURCE_BLOCKED** — a pinned source the branch needs cannot be read. The study **waits**; this is not a
    scientific verdict and must never be reported as one. **This class exists because the gate found §7's
    "reports BLOCKED if not" had no class behind it, so the run would have stalled.**
-7. **R3D_NO_CLASS** — after applying `DYM_SOURCE_BLOCKED` and the seat-split rule of §9, a required control still
-   fails after two attempts **in any seat**. **`DYM_SOURCE_BLOCKED` takes precedence whenever unread or unresolved
-   evidence caused the failure.** **A scientific class may be filed only from a seat report in which every reached
+7. **R3D_NO_CLASS** — **only after ruling out `DYM_SOURCE_BLOCKED`:** if **no** evidence is unread or unresolved
+   and, after applying the seat-split rule of §9, a required control still fails after two attempts **in any seat**,
+   file `R3D_NO_CLASS`; **otherwise file `DYM_SOURCE_BLOCKED`.** *(Class 6 said only that a source "cannot be read",
+   which is narrower than the failure it causes, so an unread source satisfied both classes.)* **A scientific class may be filed only from a seat report in which every reached
    control passed**; if the two seats return the same scientific class but exactly one report is control-clean, that
    class is filed **unless** the third seat re-runs the failed control and also fails it, in which case
    `R3D_NO_CLASS` is filed. *(The old wording said "in both seats", so a control failing persistently in one seat,
@@ -174,29 +198,42 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   | # | proposition | bounded procedure | pass criterion | artefact |
   |---|---|---|---|---|
   | 1 | the derived floor is an observable magnitude | classify the derived quantity's dimension | dimension is mass (kg or M☉), not dimensionless and not a shape/scale/ratio | the printed dimensional analysis |
-  | 2 | every constant traces | build the citation chain for each constant to its origin | every constant terminates in a source equation or in the §2b constant list; any `we assume/choose/simplest form` terminus fails | the full provenance table, one row per constant |
-  | 3 | no free normalisation survives | replace every non-§2b parameter by an algebraically independent free symbol and attempt to recover the printed number | **the printed number IS recovered with no non-§2b parameter chosen** | the printed free-symbol run and its outcome |
-  | 4 | no fixity is assumed | list each quantity held constant and locate its derivation | each is derived, not chosen | the fixity table with source line per row |
+  | 2 | every constant traces | trace each constant **using only the verbatim source passages reproduced in the frozen C2 artefact**, through at most the relations in those passages | every constant terminates in an equation of a §2a manifest source or in the §2b list. **The chain is followed only within the manifest: a terminus outside it fails, exactly as a `we assume / we choose / simplest form` terminus fails** | the full provenance table, one row per constant |
+  | 3 | no free normalisation survives | replace every non-§2b parameter by an **algebraically independent symbol**, simplify the final expression **once** with the pinned SymPy of §9 under the 120-second cap | **PASS exactly when the simplified expression contains none of those symbols** — i.e. the printed number is recovered with no non-§2b parameter chosen. On timeout, run the §9 fallback row; if it does not decide, file the applicable non-scientific class | the printed free-symbol run and its outcome |
+  | 4 | no fixity is assumed | list every quantity held constant in the frozen derivation and identify its deriving passage **using only the verbatim source passages reproduced in the C2 artefact** | **every row has such a passage**; a held-constant quantity with no manifest derivation fails | the fixity table with a source line per row |
   | 5 | a measurement could falsify it | the comparator table below, executed in full | **no** comparator matches within tolerance | the completed comparison table |
 
-  **Condition 5's comparator set, observable, tolerance and corpus — fixed here, in the frozen document.** The
-  observable is **the minimum black-hole mass, in kilograms**. "Shared" means
-  **|log₁₀(M_R3D / M_comparator)| ≤ 1.0** — agreement within one order of magnitude on a scale that spans about
-  sixty. **Any match fails condition 5**, and therefore fails C6.
+  **Condition 5's comparator set, observable, tolerance and corpus — supplied here, computed here, and read from
+  nowhere.** The observable is **the minimum black-hole mass, in kilograms**.
 
-  | comparator (named standard model) | predicted minimum BH mass | value (kg) | source |
+  **Condition 5 quantifies ONLY over the three finite numerical comparators enumerated below**, not over "any
+  standard model" — a universal negative over an unbounded set is not decidable and is not claimed.
+
+  **Every comparator interval is derived from §2b inside this document.** No comparator source file is in the
+  manifest, none may be read, and **none needs to be read**: the numbers below are the frozen artefact.
+
+  | # | comparator hypothesis | interval (kg) | derived here from §2b by |
   |---|---|---|---|
-  | semiclassical GR + QM: Planck-scale remnant | Planck mass | `2.176434e-8` | CODATA 2018 measured constant, §2b |
-  | Hawking evaporation: mass surviving to the present epoch | PBH evaporation floor | `≈5.1e11` | `2026_PBH_constraints_evidence_prospects_arXiv_2601.06024.clean.txt` (manifest §2a) |
-  | stellar collapse: TOV / neutron-star maximum mass | astrophysical BH floor, 2.5 M☉ | `≈4.97e30` | entry 31's bar, `NS_MASS_WATCH_PREREG_20260902.md` |
-  | ΛCDM | **predicts no minimum black-hole mass** | *n/a — cannot match* | recorded so the null case is explicit, not silently skipped |
+  | 1 | semiclassical GR + QM: a Planck-scale remnant | `[2.176434e-8, 2.176434e-8]` | `m_P = sqrt(ħc/G)`; a point value, so the interval is degenerate |
+  | 2 | Hawking evaporation: the mass just evaporating at the present epoch | `[1.730e11, 5.189e11]` | lower end `M = (t_0 ħ c⁴ / 5120π G²)^(1/3) = 1.730e11` kg, the single-species lifetime `τ = 5120π G² M³/(ħc⁴)` set to `t_0`. **Upper end = 3.0 × lower**, because emission into additional particle species shortens the lifetime at fixed mass and so raises the mass that survives to `t_0`; the factor is stated as a bound, not derived here, and the interval is widened to contain it rather than a single figure being asserted |
+  | 3 | stellar collapse: the TOV / neutron-star maximum mass | `[4.376e30, 5.768e30]` | `[2.2, 2.9] M_☉`, the span over which the TOV maximum is contested; `2.2 × 1.98892e30 = 4.376e30`, `2.9 × 1.98892e30 = 5.768e30` |
+  | — | ΛCDM | *no interval — predicts no minimum black-hole mass* | recorded so the null case is explicit rather than silently skipped; **it can never match, and that is stated rather than left to be inferred** |
 
-  **Every comparator is compared and printed, including the ΛCDM row, which is recorded as a non-match by
-  construction rather than omitted.** An unread comparator source files `DYM_SOURCE_BLOCKED`; **only a completed
-  no-match table passes condition 5.** `C6_BREAKER_TEST=PASS`, or `NOT_RUN` if `DYM_FLOOR_DERIVED` is not reached.
-  *(Both seats found condition 5 undecidable in round 1. Round 3 "repaired" it by requiring the comparator set to be
-  fixed before the freeze — but this document IS the frozen artefact, so the requirement was satisfied nowhere and
-  the decisive test stayed pre-disabled. The content is therefore supplied here rather than demanded.)*
+  **Decision rule.** The seat states its derived floor as an interval (a point value is a degenerate interval).
+  **"Shared" means that interval OVERLAPS a comparator interval above.** Any overlap **fails** condition 5 and
+  therefore fails C6. **Additionally**, if the floor lies within one decade of a comparator interval without
+  overlapping it, the seat prints `NEAR_MATCH` with the comparator named — **reported, never decisive**, because a
+  decade is a reporting convenience on a scale spanning sixty and must not be allowed to decide a falsification.
+
+  **All four rows are compared and printed, including ΛCDM.** `C6_BREAKER_TEST=PASS` only on a completed table with
+  no overlap; or `NOT_RUN` if `DYM_FLOOR_DERIVED` is not reached.
+  *(Third round on this condition, and it is worth being exact about how it failed twice. V3 required a comparator
+  set to be fixed "before the run is frozen" — but this document IS the frozen artefact, so the requirement was
+  satisfied nowhere. V4 supplied values while citing two source files that §2a forbids reading, and labelled one of
+  them as being in the manifest when it is not: a seat that read them violated §2a and filed `DYM_SOURCE_BLOCKED`,
+  and a seat that did not read them hit "an unread comparator source files `DYM_SOURCE_BLOCKED`". Both paths
+  blocked, so the decisive test was pre-disabled a second time in a new form. The fix is not another requirement:
+  every value above is computed from §2b here, so there is nothing left to read.)*
 
 ## 6. Non-circularity and fairness
 
@@ -251,8 +288,15 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
 
 ## 9. Inherited discipline, stated so no seat has to infer it
 
-- **Harness, LIVE**: every seat executes and prints `python3 --version`, `sympy.__version__`, and
-  `shasum -a 256 $(command -v python3)`. Transcribing expected values fails `C5_HARNESS_PINNED`.
+- **Harness, LIVE**: every seat executes and prints `python3 --version`,
+  `python3 -c "import sympy; print(sympy.__version__)"`, and `shasum -a 256 $(command -v python3)`.
+  Transcribing expected values fails `C5_HARNESS_PINNED`. *(`sympy.__version__` was written as though it were a
+  shell command; run literally it fails with "command not found", so C5 as frozen could not be executed as frozen
+  and each seat had to either fail it or silently substitute something that worked.)*
+- **No transcription, anywhere.** Transcribing expected values fails the control that required them. **This applies
+  to C1 as well as C5**: §2a prints the expected digests in this same document, so **a digest copied from §2a rather
+  than computed from the file's bytes in the seat's own run fails `C1_SOURCE_IDENTITY`.** *(The anti-transcription
+  rule existed but was scoped to one control, while C1's artefact — "the printed digests" — sat next to the answers.)*
 - **Access proof** (Duho's 2026-09-04 20:48 rule): any seat auditing a pinned source prints
   `ACCESS_SHA=<full 64 hex of that file>` as its first line. **No proof, no verdict** — the report is quarantined,
   exactly as `nm_referee_dispatch.sh` does.
@@ -265,7 +309,7 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
 
   | symbolic operation | fallback | domain and sample | precision | decision threshold | proposition decided |
   |---|---|---|---|---|---|
-  | solve `g_tt(r)=0` for horizon radii | bracketed bisection on sign changes (`mpmath.findroot`) | `r/r_g ∈ [1e-3, 1e3]`, 10⁴ log-spaced samples | `mp.dps=30` | root accepted if a sign change brackets it and `abs(g_tt) < 1e-20` there | "the metric has ≥1 horizon for given (M, r₀)" |
+  | solve `g_tt(r)=0` for horizon radii | bracketed root-finding on detected sign changes — bisection on each bracketing interval, or `mpmath.findroot` seeded from the bracket | `r/r_g ∈ [1e-3, 1e3]`, 10⁴ log-spaced samples | `mp.dps=30` | root accepted if a sign change brackets it and `abs(g_tt) < 1e-20` there | "the metric has ≥1 horizon for given (M, r₀)" |
   | `r→0` limit of curvature invariants | direct evaluation at `r = 10^-k`, `k = 1…20` | as listed | `mp.dps=30` | finite if `abs(value) < 1e6` and monotone-convergent over the last five `k` | "the core is regular" |
   | extremise the mass over the core scale | grid minimisation then local refinement | `r₀ ∈ [1e-3, 1e3] r_g`, 10⁴ log-spaced | `mp.dps=30` | positive floor accepted if the grid minimum is `> 0` and stable to `1e-6` relative under a 2× refinement | "a positive minimum mass exists" |
 
@@ -292,4 +336,38 @@ files `DYM_SOURCE_BLOCKED` on every path; the keyword census is blind exactly wh
 a relation written only in symbols contains none of the eleven terms; conditions 2 and 4 still reach outside this
 document. **R3D remains `PREREG_UNSOUND` and is NOT run.**
 
-R3D_PREREG_V5_PIN_UPDATED_STILL_UNSOUND
+**V6, this version. ORDERED by Duho: "fix the three remaining defects and re-gate".** Both V4 seats returned
+`PREREG_UNSOUND` on `19843627…`, neither read a moving file, and between them they raised more than three — all are
+applied here.
+
+**The decisive one, failed twice before.** V4's comparator table supplied values but cited two files that §2a
+forbids reading, and labelled one of them as being *in* the manifest when it is not. A seat that read them violated
+§2a and filed `DYM_SOURCE_BLOCKED`; a seat that did not hit "an unread comparator source files
+`DYM_SOURCE_BLOCKED`". **Both paths blocked, so condition 5 could never pass and the study's own decisive test was
+pre-disabled for the second consecutive round, in a new form.** V6 removes the reads entirely: **every comparator
+interval is computed from §2b inside this document.** Condition 5 is also narrowed to the three enumerated numerical
+comparators — a universal negative over "any standard model" is not decidable and is no longer claimed — and the
+arbitrary one-decade tolerance is replaced by **interval overlap**, with a `NEAR_MATCH` flag that is reported and
+never decisive.
+
+**The census key was blind exactly where the physics is.** V4 enumerated by eleven English search terms, so a
+relation printed only as symbols — `r_0² = 3/Λ`, `m(r) = …` — produced zero hits and never became a row, in both
+blind seats and in the re-runnable key alike. **V6 accounts for every non-blank line** with an explicit disposition,
+allows bounded equation blocks, and additionally requires **every numbered or displayed equation as its own row**.
+The eleven terms survive only as a printed convenience and may not justify any row.
+
+**`admissible completion` was never defined** while carrying the entire class structure, so two obedient seats could
+file different classes for the same physics; it is now defined, and class 1 is guarded against an admissible
+completion that yields a different floor. Classes 6 and 7 are ordered.
+
+**Two executability defects, both kimi's:** C1's artefact is "the printed digests" while §2a prints the expected
+digests in the same document, so the anti-transcription rule — scoped to C5 alone — is extended to C1; and
+`sympy.__version__` was written as a shell command, which fails with "command not found", meaning **C5 as frozen
+could not be executed as frozen**. Conditions 2 and 4 are confined to the C2 artefact's reproduced passages, and
+condition 3 is given a bounded operation and decision.
+
+codex found the re-run guard sound; kimi found the re-run guard, fairness and stall all sound, and noted that the
+positive class's consequence was unreachable only because of the comparator defect now fixed. **R3D remains NOT
+run.**
+
+R3D_PREREG_V6_READY_FOR_REGATE
