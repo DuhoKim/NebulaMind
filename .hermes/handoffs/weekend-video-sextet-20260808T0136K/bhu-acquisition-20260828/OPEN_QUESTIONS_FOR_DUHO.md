@@ -5,6 +5,34 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-04 20:00 KST — round 3 ranked, R3A frozen and gated, running now
+
+**No decision needed; nothing blocked.** You said "run 1 and 2" at 19:52. R3A's prereg is frozen and gated before any
+derivation: `R3A_BETA_PRODUCTION_PREREG_20260904.md` (V2), gate `R3A_PREREG_GATE_20260904_agy.md`. R3B follows once
+R3A is filed.
+
+**The topic search behind it.** Three blind seats, eleven clusters, scored contested × tractable with ties on
+cost-to-verdict (`TOPIC_ROUND3_RANKED_PACKET_20260904.md`). Two seats independently proposed R3A; two independently
+proposed the corpus-wide census that ranked third.
+
+**This gate was the most useful of the day and it caught me twice.**
+- **My harness pin was cargo-cult.** After your BS-4 note I added a block of pinned versions for seats to print — and
+  the gate correctly said a pre-written block with a hardcoded hash proves nothing, because a seat will simply echo it.
+  It now requires **live execution** of the probe commands, and passes only on real output. The lesson from Hwao's
+  rejection was right; my first implementation of it was theatre.
+- **My source-identity control would have failed on contact.** The gate found the pinned text is PDF-extracted and
+  does not contain clean strings — the epsilon in `K = β(κε̃)²` is stored as a raw control byte and "coefficient"
+  carries a ligature. I re-verified byte-exactly; the gate is right, and its own suggested literal wouldn't have
+  matched either, so C1 now works on `repr()` plus normalisation.
+
+It also warned the design could **stall silently** — symbolic mapping through the paper's solver chain can hang
+forever without ever tripping the two-attempt rule. There is now a 120-second cap on every symbolic operation, with a
+timeout that is a reportable outcome rather than a lost day.
+
+**Boundary noted for R3B:** it touches DESI. Published results only; if anything needs Hwao's data, pipeline or lane
+files I will stop and bring it to you rather than reach across.
+
+---
 ## RESOLVED 2026-09-04 17:08 KST — Duho "all three" = (a)+(b)+(c), applied and gated ACCEPT / BOUNDS=CLEAN. Nine rows annotated (9, 10, 11, 21, 39, 51, 52, 53, 59), freedom-map cross-reference added, shape/magnitude pattern written into the synthesis with its three instances. Tiers, tokens, standings, stamps and row identities byte-identical; 51 rows. Was: YOUR CALL 2026-09-04 16:46 KST — all three studies are filed (K3 step 3, K5, K6). One annotation batch waits on you.
 
 **The sequence you ordered at 14:56 is complete.** All three ran, all three are filed with results, check sheets and
