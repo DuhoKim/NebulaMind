@@ -510,3 +510,54 @@ texts; (c) order the redesign. Nothing else in the lane is blocked on this.
 
 **Also still open, unrelated:** the annotation proposals for entries 59 and 56 from R3A/R3B. Watches armed (NS mass
 watch next 2026-09-08; b68 3/3 PASS). Paper HOLD; nothing outward.
+
+---
+
+# UPDATE — 2026-09-04 23:40 KST. Everything above this line is superseded where it conflicts.
+
+*(Appended, not rewritten: the record above is what was true at 21:27 and stays as written.)*
+
+## The one thing on Duho's desk that blocks work
+
+**R3C2 §1 — what the census MEASURES.** Options **a/b/c/d** are with him via Blanc. The clause is marked **HELD** in
+the preregistration so a referee does not report it as a fresh finding and so it is not counted as another failed
+round. **Two drafts are ready and NOT ADOPTED**, so the ruling picks a variant rather than starting a drafting
+round: `R3C2_OPTION_C_ALTERNATIVE_DRAFT_20260904.md` and `R3C2_PROVENANCE_CONTROL_CLAUSE_DRAFT_20260904.md`
+(whose two variants differ in exactly one of five items). Everything independent of the definition is done.
+
+## What changed since 21:27, and it is more than a status update
+
+**The pattern's own falsifier was inverted.** Breaker condition 3 demanded that recovering the printed number with
+every parameter freed **"must fail"** — but that outcome *is* the presence of a free normalisation, the thing the
+condition exists to exclude. **A construction satisfied it exactly when it had the defect.** The error pointed
+toward **preserving the pattern**: a genuine counterexample would have failed it and been rejected.
+
+- Found by **codex**, gating R3D, because R3D pins the five conditions verbatim under the record's hash. **kimi
+  missed it** and judged the condition decidable — a single-seat catch, and the argument for the blind double.
+- Corrected on Duho's order as a **versioned amendment**: pattern record V1 `fff1f1a8…` → **V2** `5232201a…`.
+- **All six instances re-checked** (`BREAKER_C3_RECHECK_20260904.md`): **no status changes.** Five fail corrected
+  C3; instance 6 (entry 56) **passes** C3 and fails **C4**, which is what the record's prose already said. The
+  defect's entire material effect was **one instance's stated reason**, not any instance's status.
+
+**R3D moved from "not repairable tonight" to one seat's near-pass.** V3 → V8 across five rounds and eight
+dispatched gate runs (full table in **§8a** of the prereg). codex refused V2, V3, V4, V6, then returned
+**`PREREG_SOUND_WITH_REPAIRS` on V7 — its first non-refusal in seven rounds** — with five of seven sections sound,
+having **executed** the harness commands and **re-derived every comparator number**. **No clean `PREREG_SOUND` from
+either seat yet**, and that is reported rather than smoothed.
+
+**R3C2 is at V7** with every non-definitional finding from both V4 seats repaired, plus two defects found here that
+no referee reported: the version table had rows sitting **outside** it with a hash **no seat had ever gated**, and
+the seat packet delivered **C4 as a bare pass-code with no instruction**, its redaction span having swallowed the
+operative text. The packet builder now asserts **required** content as well as forbidden, with a passing deletion
+probe, and the packet has left scratch for `r3c2_seat_packet/` with its digest pinned.
+
+## Still open, unchanged
+
+Annotation proposals for entries **59** (R3A) and **56** (R3B). Whether **R3C2/R3D actually run**. K4's optional
+row-23 extension. Round-3 clusters 3–11 scored in `TOPIC_ROUND3_RANKED_PACKET_20260904.md`, draftable on demand.
+
+## Watches
+
+NS-mass watch armed, next **2026-09-08 10:00 KST**. b68 tripwire 3/3 PASS. DESI curvature watch is Hwao's.
+
+**No tier, warrant token, standing or stamp has moved. Paper HOLD; nothing outward. R3C2 and R3D are NOT run.**
