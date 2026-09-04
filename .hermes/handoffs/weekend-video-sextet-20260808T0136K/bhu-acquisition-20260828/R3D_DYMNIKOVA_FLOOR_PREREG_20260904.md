@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 21 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 22 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -227,8 +227,9 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    and, after applying the seat-split rule of §9, a required control still fails after two attempts **in any seat**,
    file `R3D_NO_CLASS`; **otherwise file `DYM_SOURCE_BLOCKED`.** *(Class 6 said only that a source "cannot be read",
    which is narrower than the failure it causes, so an unread source satisfied both classes.)* **A scientific class may be filed only from a seat report in which every reached
-   control passed**; if the two seats return the same scientific class but **at least one** report is not control-clean,
-   **the third seat re-runs each failed control once. If any re-run control fails again, that is the persistent
+   control passed**; if the two seats return the same scientific class but **at least one** report is not control-clean —
+   **or if, after a different-class split, the third seat's adjudication agrees with a seat whose report is not
+   control-clean** — **the third seat re-runs each failed control of that report once. If any re-run control fails again, that is the persistent
    failure named above and `R3D_NO_CLASS` is filed. If every re-run control passes, that class is filed.**
    *(The rule previously covered "exactly one" clean report, so the zero-clean case — both seats agreeing on class,
    floor and C6 outcome while each fails a DIFFERENT control — convened no split, exhibited no persistently failing
@@ -1240,4 +1241,47 @@ second `SOUND_WITH_REPAIRS` be read as a finish line.**
 
 **R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V21_READY_FOR_REEXHIBITION
+## 8n. V22 — the fourth clear, one substantive finding DEMONSTRATED, and the token defect now raised by BOTH seats
+
+**Both V21 seats `PREREG_SOUND_WITH_REPAIRS` on `82e89d5c…`, hash-verified after exit; C0 passed on V21
+independently.** codex found **six of seven sections SOUND** — classes, controls, circularity, the falsifier,
+the re-run guard, stall — with fairness its only defect. kimi found classes (as a partition), controls,
+circularity and the re-run guard **SOUND**.
+
+### The decision under the criterion declared at 06:19
+
+| finding | seat(s) | classification | disposition |
+|---|---|---|---|
+| **adjudicated-to-non-clean-report routing gap**: after a *different-class* split the third seat may agree with a seat whose report is **not** control-clean; nothing then authorises re-running that seat's failed control, `R3D_NO_CLASS` needs two attempts and only one exists, and the fall-through files `DYM_SOURCE_BLOCKED` on a state its definition does not describe | kimi F7 | **SUBSTANTIVE — demonstrated below**, criterion (1) | **REPAIRED** |
+| the class **tokens** `DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR` assert absence while their definitions say *"unreproduced from the stated inputs"* | **codex AND kimi, independently** | **SUBSTANTIVE**, criterion (4) | **ESCALATED, NOT REPAIRED — authority, not merit** |
+
+**Demonstration of the substantive finding, traced against V21's own text rather than argued:**
+seat A files `DYM_FLOOR_DERIVED` with `C4_GR_BENCHMARK=FAIL`; seat B files `DYM_FLOOR_UNDERDETERMINED`,
+control-clean. **(1)** Different classes ⇒ the split rule convenes the third seat. **(2)** It agrees with A's class.
+**(3)** *"A scientific class may be filed only from a seat report in which every reached control passed"* — present
+in V21, so filing class 1 from A's report is **barred**. **(4)** The same-class branch authorises re-running failed
+controls; **the different-class branch authorises re-executing blocked READS only**. **(5)** `R3D_NO_CLASS` needs a
+control failing after **two** attempts; only one exists. **(6)** The fall-through files `DYM_SOURCE_BLOCKED`, whose
+definition requires an unreadable source, a digest mismatch, an `UNRESOLVED` proposition or an
+undecidable-after-fallback procedure — **none true of a run whose only fault is one seat's benchmark.**
+
+**It is the same defect shape V21 repaired for the same-class branch and left standing in the different-class
+branch** — the scar family's ninth appearance, and mine again. The repair extends the existing rule rather than
+adding machinery.
+
+### Why V21 is not final, and what that costs
+
+**One substantive finding means V21 is not the design of record.** The criterion did what it was declared for a
+second time: a fourth consecutive two-seat clear was not allowed to stand as a finish line on the strength of the
+verdict tokens alone.
+
+### The escalation, now raised by BOTH engines independently
+
+**codex and kimi separately reached the same conclusion**: a class **name** that asserts absence travels into
+reports stripped of the definition qualifying it, and this lane forbids claiming absence for a negative finding.
+**Renaming a class is redefining one — Duho's ruling, not mine.** Two independent seats agreeing raises the weight
+of the escalation; it does not transfer the authority. **Options and costs are unchanged and stated in §8m.**
+
+**R3D is NOT frozen and NOT run. V22 requires its own C0 and its own two-seat gate.**
+
+R3D_PREREG_V22_READY_FOR_REEXHIBITION
