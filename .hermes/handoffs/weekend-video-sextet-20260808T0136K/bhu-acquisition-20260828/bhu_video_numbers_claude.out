@@ -1,0 +1,117 @@
+
+================================================================================================
+1. Inputs
+================================================================================================
+G  (CODATA 2018)                                     6.6743e-11 m^3 kg^-1 s^-2
+c  (exact)                                           299792458.0 m/s
+H0 (Planck 2018)                                     67.4 +/- 0.5 km/s/Mpc
+H0 in SI                                             2.184285e-18 s^-1
+Omega_Lambda (Planck 2018)                           0.6889
+M_sun                                                1.98892e+30 kg
+
+================================================================================================
+2. Mass-energy inside the Hubble radius
+================================================================================================
+rho_c = 3 H0^2 / (8 pi G)                            8.5329e-27 kg/m^3
+R_H = c/H0                                           1.37250e+26 m
+R_H                                                  1.4507e+10 light years
+R_H                                                  14.507 billion light years
+M = (4/3) pi rho_c R_H^3                             9.24096e+52 kg
+M                                                    4.6462e+22 solar masses
+closed form  M = c^3 / (2 G H0)                      9.24096e+52 kg
+agreement with the integral form                     2.301e-16 relative
+
+================================================================================================
+3. Schwarzschild radius of that mass
+================================================================================================
+R_s = 2GM/c^2                                        1.37250e+26 m
+R_s                                                  1.4507e+10 light years
+R_s                                                  14.507 billion light years
+
+================================================================================================
+4. The ratio
+================================================================================================
+R_s / R_H                                            1.000000000000
+R_s - R_H                                            -1.718e+10 m  (floating-point residue only)
+
+================================================================================================
+5. WHY it is exactly 1 -- algebra, not coincidence
+================================================================================================
+  Substitute rho_c = 3H0^2/(8 pi G) and R_H = c/H0 into M = (4/3) pi rho_c R_H^3:
+
+      M = (4/3) pi * [3 H0^2 / (8 pi G)] * [c/H0]^3
+        = (4/3) * (3/(8G)) * c^3 / H0
+        = c^3 / (2 G H0)
+
+  Then the Schwarzschild radius of THAT mass is
+
+      R_s = 2GM/c^2 = (2G/c^2) * c^3/(2 G H0) = c/H0 = R_H .
+
+  The G's, the c's and the 2 all cancel. R_s = R_H is an IDENTITY for any spatially flat
+  universe at critical density -- it is the Friedmann equation rearranged, not an
+  independent numerical coincidence. It would hold for ANY value of H0.
+
+  Demonstration: recompute the ratio at H0 values spanning far more than the tension.
+    H0 =   50.0 km/s/Mpc  ->  M = 6.2631e+22 Msun,  R_s/R_H = 1.000000000000
+    H0 =   67.4 km/s/Mpc  ->  M = 4.6462e+22 Msun,  R_s/R_H = 1.000000000000
+    H0 =   73.0 km/s/Mpc  ->  M = 4.2898e+22 Msun,  R_s/R_H = 1.000000000000
+    H0 =  100.0 km/s/Mpc  ->  M = 3.1316e+22 Msun,  R_s/R_H = 1.000000000000
+    H0 =  500.0 km/s/Mpc  ->  M = 6.2631e+21 Msun,  R_s/R_H = 1.000000000000
+
+  The MASS changes with H0. The RATIO does not, ever.
+
+================================================================================================
+5b. What that means for the claim 'the numbers match, so we are inside a black hole'
+================================================================================================
+  The match is not evidence for the claim. Saying 'R_s equals R_H' is the same statement
+  as 'the universe is spatially flat at the critical density' -- which is what we measure
+  independently. Any flat critical-density universe reproduces it exactly, whether or not
+  it is inside anything. The coincidence has no work left to do once flatness is assumed.
+
+================================================================================================
+6. Does the H0 tension change the conclusion?
+================================================================================================
+  H0 =  67.4 (Planck 2018 (CMB)           )  M = 9.2410e+52 kg = 4.646e+22 Msun,  R_H = 14.51 Gly
+  H0 =  73.0 (local distance-ladder value )  M = 8.5321e+52 kg = 4.290e+22 Msun,  R_H = 13.39 Gly
+spread in M across the tension                       7.7 %
+  => the tension moves the mass by about 8 per cent. It changes the last digit of the
+     quoted mass; it does not touch the ratio, which stays exactly 1.
+
+================================================================================================
+7. What the corpus's own papers print
+================================================================================================
+  ENTRY 56 (Gaztanaga, MNRAS) abstract L29 and Eq. (21) L259: 'a mass M ~ 6 x 10^22 Msun'.
+  His r_S is NOT the Hubble radius: he sets Lambda = 3/r_S^2 (L28, L252), so
+      r_S = sqrt(3/Lambda) = c / (H0 sqrt(Omega_Lambda)).
+  r_S (Gaztanaga's definition)                       1.65361e+26 m
+  r_S / R_H                                          1.2048
+  M_T = c^2 r_S / (2G)                               5.598e+22 solar masses
+  his printed value                                  ~6e22 solar masses
+  agreement                                          0.933 of his rounded figure
+
+  SO: our 4.6e22 Msun and his 6e22 Msun are NOT in conflict -- they are different
+  quantities. Ours is the mass whose Schwarzschild radius equals the HUBBLE radius;
+  his is the mass whose gravitational radius equals the LAMBDA (de Sitter) radius,
+  larger by 1/sqrt(Omega_Lambda) = 1.20. Both follow from the same inputs.
+
+  ENTRY 1 (Pathria 1972) L399-L405 prints a DIFFERENT identity again: R_s = R_max, the
+  Schwarzschild radius equal to the maximum expansion radius of a CLOSED (k=+1) universe,
+  'can hardly be a coincidence'. That is not the flat-universe identity computed here, and
+  Pathria states no mass value at that point. Our numbers neither confirm nor contradict it.
+
+================================================================================================
+8. Receipt status of every number above
+================================================================================================
+quantity                          status                basis
+------------------------------------------------------------------------------------------------
+rho_c, R_H, M, R_s, R_s/R_H       RECEIPTED             equations printed above + the pinned inputs
+M in solar masses                 RECEIPTED             M / M_sun, M_sun cited
+R_H, R_s in light years           RECEIPTED             IAU light year
+the 8% H0 spread                  RECEIPTED             computed above from 67.4 vs 73.0
+Gaztanaga r_S, M_T                RECEIPTED             his Lambda = 3/r_S^2 (L28, L252) + Planck Omega_Lambda
+Gaztanaga's ~6e22 Msun            QUOTED FROM SOURCE    abstract L29, Eq. (21) L259
+Pathria R_s = R_max               QUOTED FROM SOURCE    L399-L405; no mass value printed there
+age of the universe               NOT COMPUTED          not needed; do not quote from this note
+number of atoms / stars           NOT COMPUTED          do not quote from this note
+
+BHU_VIDEO_NUMBERS_CLAUDE_SEAT_COMPLETE
