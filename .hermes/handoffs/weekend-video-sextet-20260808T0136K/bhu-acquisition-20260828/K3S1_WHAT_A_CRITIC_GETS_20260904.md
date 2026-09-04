@@ -22,6 +22,6 @@ A settling calculation must do all of the following without taking either printe
 
 A readable Nurgaliev full text could close the historical citation question, but only an explicit same-object operator calculation can settle the scientific objection.
 
-K3 step 2 remains DRAFT — NOT ORDERED. K4, K5 and K6 remain NOT ORDERED. Paper HOLD; nothing outward.
+**ANSWERED. K3 step 2 was ordered by Duho at 2026-09-04 09:57 KST and completed the same morning (`K3S2_RESULT_20260904.md`, class `K3S2_EXCHANGE_N2_RESTORED`).** The objection recorded above was well founded: the coincident-point exchange contraction of the correct local operator does produce an n² term. It is −(3/8)n²/N_f non-relativistically and −(3/16)n²/N_f ultrarelativistically — negative, and regime- and species-dependent — so it matches neither printed coefficient and contradicts both in sign. The five conditions listed above as "evidence that would settle it" were carried into `K3S2_EXCHANGE_PREREG_20260904.md` as binding deliverables. K4, K5 and K6 remain NOT ORDERED. Paper HOLD; nothing outward.
 
 K3S1_CRITIC_NOTE_COMPLETE

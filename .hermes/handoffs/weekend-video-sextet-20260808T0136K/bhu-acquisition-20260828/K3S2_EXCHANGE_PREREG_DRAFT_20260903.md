@@ -1,3 +1,5 @@
+# SUPERSEDED 2026-09-04 — this draft was lifted to the frozen `K3S2_EXCHANGE_PREREG_20260904.md` (V2) when Duho ordered K3 step 2 at 09:57 KST; the study ran under that document, not this one. Kept unchanged as the record of what was gated on 09-03. Do not run from this file.
+
 # DRAFT — NOT ORDERED — K3 step 2 pre-registration: does an exchange correlation restore an n² spin-density term? (Tori, 2026-09-03 20:09 KST)
 
 **Status:** drafted on Blanc's continuation note (20:03 KST) so that a future "k3 step 2" starts from a gated text. No derivation,

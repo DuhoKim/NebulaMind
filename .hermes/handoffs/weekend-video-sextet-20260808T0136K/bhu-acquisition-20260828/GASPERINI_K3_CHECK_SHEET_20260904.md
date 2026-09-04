@@ -34,6 +34,6 @@ What is **not** derived is the load-bearing identification `⟨S²⟩ = ℏ²⟨
 
 ## Citation and record bounds
 
-Ref. 5 supports the nonzero spin-squared average; Ref. 6 supports the variational formalism/convective condition; Ref. 8 is attached to the equation of state and subsequent averaging law. Do not infer what the still-unread Nurgaliev & Ponomariev paper proves. Gasperini’s result confirms, rather than narrows, K3 step 1. Entry 10’s ¾-versus-⅛ factor-six conflict remains. Nurgaliev stays a non-blocking acquisition note; K3 step 2 stays **NOT ORDERED**.
+Ref. 5 supports the nonzero spin-squared average; Ref. 6 supports the variational formalism/convective condition; Ref. 8 is attached to the equation of state and subsequent averaging law. Do not infer what the still-unread Nurgaliev & Ponomariev paper proves. Gasperini’s result confirms, rather than narrows, K3 step 1. Entry 10’s ¾-versus-⅛ factor-six conflict remains. Nurgaliev stays a non-blocking acquisition note. **K3 step 2 has since been ordered (2026-09-04 09:57 KST) and completed** — see `K3S2_RESULT_20260904.md` and `K3S2_CHECK_SHEET_20260904.md`; it does not change anything on this sheet.
 
 GASPERINI_K3_CHECK_SHEET_COMPLETE
