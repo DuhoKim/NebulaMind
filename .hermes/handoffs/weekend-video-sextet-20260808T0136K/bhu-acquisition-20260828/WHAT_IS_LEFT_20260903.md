@@ -4,12 +4,15 @@ Written on Blanc's continuation note (13:46 KST, step 4). Everything below is ei
 watch, or an acquisition target. No lane work is blocked on machine effort.
 
 ## On Duho's desk (OPEN_QUESTIONS_FOR_DUHO.md)
-1. **Entry 22 (Easson 2026) domain** — the flat/open limb of the no-go is proved by citation, not owned. Options (a) narrow
-   the stamped domain to the closed-daughter limb [recommended], (b) flag only, (c) drop to CONSISTENCY-ONLY.
+1. ~~**Entry 22 (Easson 2026) domain**~~ — **RULED 2026-09-03 14:34 KST**, 22 minutes after this section was written:
+   Duho "22a, me" = option (a), domain narrowed to the closed-daughter limb, tier kept, `W_PROOF_CITED` carried on the
+   wider claim. **Duho's desk is empty**; the line above is kept only so the ruling has its question next to it.
 
 ## Standing watches (no action unless they fire)
-2. **Entry 31 neutron-star mass bar** — Tuesday 10:00 KST cron + b68 tripwire. First pass ran 09-03 13:47: one candidate
-   (arXiv:2609.02395) is a CLEAR candidate on machine pre-read; a human reads it against the 2.5 M☉ criteria.
+2. **Entry 31 neutron-star mass bar** — Tuesday 10:00 KST cron + b68 tripwire; next run 2026-09-08, wiring verified
+   on the 2026-09-04 seat resume (receipts in the closing section of this file). The 09-03 13:47 first pass surfaced arXiv:2609.02395; **that read is closed** — committee 4/4
+   under Duho's delegation ruled it band `CLEAR`, no ledger change (`WATCH_2609.02395_RULING_20260903.md`,
+   `ns_mass_watch_state.json`). No human read is outstanding.
 3. **DESI curvature watch** (Hwao's lane; entry 54 and the 23–27 set predict CLOSED).
 
 ## Acquisition / verification targets (source-limited, not audit-limited)
@@ -99,3 +102,18 @@ cron ticker heartbeat was live at 09:38 KST. The b68 standing tripwire was re-ru
 
 **Unchanged:** K3 step 2, K4, K5, K6 remain DRAFT — NOT ORDERED; K1 stage 2 stays stopped; Nurgaliev & Ponomariev 1983
 stays closed and non-blocking; paper HOLD stands; nothing on Duho's desk.
+
+**Draft-gate repair sweep (2026-09-04 09:58 KST).** Every repair the four draft gates required is present in the draft
+it governs, checked clause by clause rather than assumed from the commit message: K3 step 2 3/3 (both printed
+coefficients now carry `entry 10 L121` / `L113`; the polarized control defers its coefficient to the step-1 pin),
+K4 4/4 (no bare `ℓ ≤ 30` survives — three `ℓ_max` deferrals in its place — and the C1 percentile receipt now reads
+synthesis L96–97), K5 9/9 (the invented "1980s" gone, `L395 and L399`, eight "pinned at step 1" deferrals, and all three
+outcome classes stripped of the tier/standing language the gate rejected), K6 1/1 (`different mass floors`, closing the
+exhaustiveness gap). 17/17. The one repair that was a factual correction rather than wording — K4's C1 line receipt —
+was checked against the source itself: `BHU_CORPUS_SYNTHESIS_20260902.md` L96–97 does carry the 0.15–0.20 percentile,
+and the gate was right that L82–83 does not.
+
+**Two stale pointers repaired in this file (same tick).** §1 still listed entry 22's domain as sitting on Duho's desk;
+he ruled it "22a, me" at 2026-09-03 14:34 KST, 22 minutes after that section was written. §2 still asked for a human
+read of arXiv:2609.02395; the committee closed it 4/4 as band `CLEAR` at 14:43 KST the same day. Both now state their
+outcome. Nothing is on Duho's desk.
