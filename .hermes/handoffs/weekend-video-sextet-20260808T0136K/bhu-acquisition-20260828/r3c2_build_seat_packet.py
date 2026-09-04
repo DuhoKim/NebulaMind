@@ -17,7 +17,9 @@ Exit 0 = packet built and every assertion passed. Exit 1 = FAIL, packet NOT writ
 import re, sys, hashlib, pathlib
 
 MASTER = pathlib.Path("R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md")
-OUT    = pathlib.Path("_tmp_redacted_r3c2/R3C2_SEAT_PACKET.md")
+# Permanent, committed home. NOT a _tmp_ path: a clause cites this file by hash, and a cited
+# artefact that lives in scratch is not part of the record (Blanc 2026-09-04 23:32, item 1).
+OUT    = pathlib.Path("r3c2_seat_packet/R3C2_SEAT_PACKET.md")
 
 # Whole sections dropped: rationale, post-tally handling, out-of-scope, gate/version history.
 DROP_SECTIONS = ["0.", "7.", "8.", "10."]
@@ -26,6 +28,18 @@ DROP_SECTIONS = ["0.", "7.", "8.", "10."]
 # Marking them in the master (rather than listing sentences here) keeps the split visible to a reader
 # of the master and keeps this script from silently under-redacting when the wording changes.
 REDACT_OPEN, REDACT_CLOSE = "<!--SEAT-REDACT-->", "<!--/SEAT-REDACT-->"
+
+# Every control must reach the seat WITH its instruction, not just its pass-code, and every outcome
+# class it may file must be readable. Each entry is checked for literal presence in the built packet.
+REQUIRED = [
+    "C1_DENOMINATOR_PRINTED", "C2_INPUT_LEDGER", "C3_NO_SUBSTITUTION",
+    "C4 — what the seat must do", "C4_PATTERN_BLIND",
+    "C5_HARNESS_PINNED", "C5B_NO_CROSS_LANE", "C6_AUDIT_SAMPLE",
+    "REPRO_EXACT", "REPRO_FAILED", "REPRO_BLOCKED", "REPRO_NOT_EVALUABLE",
+    "REPRO_INPUT_ABSENT", "REPRO_NO_DERIVATION_STATED",
+    "origin_evidence", "root_origins", "derived_from",
+    "Print every path you\n  open",
+]
 
 FORBIDDEN = [
     "shape/magnitude", "pattern record", "the pattern", "ΛCDM", "LCDM",
@@ -80,6 +94,19 @@ def main():
         n_spans += 1
     if REDACT_CLOSE in out:
         print("FAIL: stray <!--/SEAT-REDACT--> without an opener; packet NOT written.")
+        return 1
+
+    # Hard assertion 2: everything a seat NEEDS must SURVIVE. The forbidden list checks what must be
+    # absent; without this, a redaction span that swallows an instruction leaves a control code with
+    # nothing to do -- which is exactly what happened to C4, whose packet entry was reduced to the bare
+    # line "C4_PATTERN_BLIND=PASS" while the master read correctly. A control a seat cannot read is a
+    # control it can only assert.
+    missing = [r for r in REQUIRED if r not in out]
+    if missing:
+        print("FAIL: required seat-facing content did not survive redaction:")
+        for m in missing:
+            print(f"  missing: {m!r}")
+        print("Packet NOT written.")
         return 1
 
     # Hard assertion: nothing on the forbidden list may survive anywhere in the packet.

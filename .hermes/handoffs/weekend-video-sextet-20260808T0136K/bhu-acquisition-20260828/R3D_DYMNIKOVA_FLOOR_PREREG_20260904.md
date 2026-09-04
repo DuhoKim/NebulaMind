@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 7 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 8 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -222,7 +222,7 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   | # | proposition | bounded procedure | pass criterion | artefact |
   |---|---|---|---|---|
   | 1 | the derived floor is an observable magnitude | classify the derived quantity's dimension | dimension is mass (kg or M☉), not dimensionless and not a shape/scale/ratio | the printed dimensional analysis |
-  | 2 | every constant traces | trace each constant **using only the verbatim source passages reproduced in the frozen C2 artefact**, through at most the relations in those passages | every constant terminates in an equation of a §2a manifest source or in the §2b list. **The chain is followed only within the manifest: a terminus outside it fails, exactly as a `we assume / we choose / simplest form` terminus fails** | the full provenance table, one row per constant |
+  | 2 | every constant **of the derived floor** traces | **Scope: the constants appearing in the construction's own derived magnitude. The frozen comparator conventions of condition 5 are not constants of the derived floor and are not tested here.** Trace each such constant **using only the verbatim source passages reproduced in the frozen C2 artefact**, through at most the relations in those passages | every constant terminates in an equation of a §2a manifest source or in the §2b list. **The chain is followed only within the manifest: a terminus outside it fails, exactly as a `we assume / we choose / simplest form` terminus fails** | the full provenance table, one row per constant |
   | 3 | no free normalisation survives | replace every non-§2b parameter by an **algebraically independent symbol**, simplify the final expression **once** with **the seat's SymPy, whose printed version is part of the C5 artefact and must match between the two seats or C5 fails**, under the 120-second cap | **PASS exactly when the simplified expression contains none of those symbols** — i.e. the printed number is recovered with no non-§2b parameter chosen. On timeout, run **§9's fallback row "free-symbol survival"**, which decides this condition's own proposition; if that row is absent, times out, or cannot parse the expression, condition 3 is `UNDECIDED`, C6 does not pass, and the run files `DYM_SOURCE_BLOCKED` | the printed free-symbol run and its outcome |
   | 4 | no fixity is assumed | list every quantity held constant in the frozen derivation and identify its deriving passage **using only the verbatim source passages reproduced in the C2 artefact** | **every row has such a passage**; a held-constant quantity with no manifest derivation fails | the fixity table with a source line per row |
   | 5 | a measurement could falsify it | the comparator table below, executed in full | **no** comparator matches within tolerance | the completed comparison table |
@@ -235,9 +235,11 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 
   **Every comparator interval is computed in this document from §2b constants together with the stated
   dimensionless inputs** — the single-species lifetime coefficient `5120π`, row 2's upper-end factor `3.0`, row 3's
-  span `[2.2, 2.9] M_☉`, and the Gregorian year length inside `t_0`. **Those four are asserted bounds and
-  conventions, NOT derivations from §2b**; each is **recorded as an `ADDED_COMPLETION` in the C2 ledger**, and
-  condition 5 may pass only if **C6 condition 2 accepts them under its provenance rule**. No comparator source file
+  span `[2.2, 2.9] M_☉`, and the Gregorian year length inside `t_0`. **Those four are frozen COMPARATOR
+  CONVENTIONS — not constants in the derived floor, and not derivations from §2b.** Each is **printed in the
+  completed condition-5 comparison artefact**, **does not enter the C2 completion ledger**, and is **outside C6
+  condition 2's provenance test**, which tests the provenance of the constants in *the construction's own derived
+  magnitude*, not of the scaffolding that magnitude is compared against. No comparator source file
   is in the manifest, none may be read, and **none needs to be read**: the numbers below are the frozen artefact.
   *(V6 claimed every interval was "derived from §2b". That was false — three coefficients and a year convention are
   asserted — and both seats caught it. The values were supplied rather than deferred, which was the point, but
@@ -449,4 +451,58 @@ only as good as the header it agrees with.
 
 **R3D remains NOT run.**
 
-R3D_PREREG_V7_READY_FOR_REGATE
+**V8, this version. Blanc 23:32: apply codex's V7 repair now rather than waiting idle for kimi; V7 stays frozen at
+`02c2495b…f211ad11` in commit `f41a6125a` while kimi reads it.**
+
+codex returned **`PREREG_SOUND_WITH_REPAIRS` on V7 — the first time this seat has not refused R3D in seven rounds.**
+Five of seven sections came back sound with no replacement (outcome classes, circularity, re-run guard, fairness,
+stall), and codex verified the rest by execution: it **ran** the three C5 commands, and it **re-derived every
+comparator number** — `2.1764343420511267e-8`, `1.7298245132213753e11`, `5.189473539664126e11`, `4.375624e30`,
+`5.767868e30` — confirming the outward intervals reproduce and stating that **no comparator number is deferred**.
+The overclaim and the rounding bias are closed.
+
+**The single remaining defect, and its origin.** V7 routed the four asserted comparator conventions through C6
+condition 2's provenance rule. **That deadlocks:** condition 2 passes only when a constant terminates in a manifest
+equation or in §2b, and an asserted convention terminates in neither — so condition 2 could never accept them,
+condition 5 could never pass, and C6 was blocked on every path. The same functional failure as the previous rounds,
+reached from the opposite direction.
+
+**This defect came from applying codex's own V6 replacement text verbatim.** Its V6 fix said condition 5 "may pass
+only if C6 condition 2 accepts those comparator assumptions under its provenance rule"; adopted faithfully, it
+deadlocked two clauses the referee had not been asked to check together. **A referee's exact-replacement text is not
+pre-verified against the rest of the document**, and adopting one verbatim is not the same as adopting it — the
+interaction has to be traced. That is recorded here because it cost a round.
+
+**V8's repair, traced rather than transcribed.** The four conventions are **comparator scaffolding, not constants of
+the derived floor**: they are printed in the condition-5 artefact, do not enter the C2 completion ledger, and lie
+outside condition 2's test. **And condition 2's own row now names that scope**, so the decoupling is stated where
+the rule is, not only in a sentence twelve lines away — which is how the V7 version of this defect survived.
+
+**kimi's V7 verdict is still outstanding**; it binds to V7's bytes as committed. Anything new it raises is folded in
+and both seats re-gate against the result. **R3D remains NOT run.**
+
+## 8a. Gate record, re-verified against the reports on disk
+
+**Re-verified 2026-09-04 (Blanc 23:32, item 3).** Every hash below is the `ACCESS_SHA=` the seat itself printed in
+the report named beside it — not my recollection. Each row is checkable with `shasum -a 256` on that report.
+
+| version | sha256 gated | seat | report | verdict |
+|---|---|---|---|---|
+| V2 | `1ecb7ac7ae80352e…` | codex | `R3D_GATE_codex_20260904.md` | `PREREG_UNSOUND` |
+| V3 | `872d4978b73cabc6…` | codex | `R3D_GATE_V3_codex_20260904.md` | `PREREG_UNSOUND` |
+| V3 | `872d4978b73cabc6…` | kimi | `R3D_GATE_V3_kimi_20260904.md` | `PREREG_SOUND_WITH_REPAIRS` |
+| V4 | `19843627fd6b3ce7…` | codex | `R3D_GATE_V4_codex_20260904.md` | `PREREG_UNSOUND` |
+| V4 | `19843627fd6b3ce7…` | kimi | `R3D_GATE_V4_kimi_20260904.md` | `PREREG_UNSOUND` |
+| V5 | *(not dispatched)* | — | pin-update only, after the pattern record was amended to V2 | — |
+| V6 | `14db4dfbdc660fb3…` | codex | `R3D_GATE_V6_codex_20260904.md` | `PREREG_UNSOUND` |
+| V6 | `14db4dfbdc660fb3…` | kimi | `R3D_GATE_V6_kimi_20260904.md` | `PREREG_SOUND_WITH_REPAIRS` |
+| V7 | `02c2495b14c6a0cd…` | codex | `R3D_GATE_V7_codex_20260904.md` | **`PREREG_SOUND_WITH_REPAIRS`** |
+| V7 | `02c2495b14c6a0cd…` | kimi | `R3D_GATE_V7_kimi_20260904.md` | *outstanding at the time of writing* |
+| V8 | *this version* | — | not yet dispatched | — |
+
+**Eight dispatched gate runs on R3D.** The trajectory is the point: codex refused V2, V3, V4 and V6 and returned
+`SOUND_WITH_REPAIRS` on V7, its first non-refusal in seven rounds; kimi's verdicts moved
+`SOUND_WITH_REPAIRS → UNSOUND → SOUND_WITH_REPAIRS`. **No round has yet produced a clean `PREREG_SOUND` from either
+seat, and that is reported rather than smoothed.**
+
+R3D_PREREG_V8_READY_FOR_REGATE

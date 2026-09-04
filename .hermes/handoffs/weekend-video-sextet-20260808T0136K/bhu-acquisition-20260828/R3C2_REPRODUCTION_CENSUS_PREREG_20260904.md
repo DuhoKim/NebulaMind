@@ -172,12 +172,17 @@ a printed number, so an included claim could never satisfy it — a gate finding
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
   closed, named list fixed here** — `G`, `c`, `ħ`, `k_B`, and the Planck 2018 TT,TE,EE+lowE+lensing values quoted with
   their published uncertainties — so "standard" cannot become a selectable family. `C3_NO_SUBSTITUTION=PASS`.
-- <!--SEAT-REDACT-->
-**C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
+- - <!--SEAT-REDACT-->**C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
   directories; it does not restrict them, and it necessarily grants the lane directory, **which contains the pattern
   record**. So the tooling as it stands cannot enforce blindness to a lane-resident file, and a seat's own
   declaration is self-report.
 
+<!--/SEAT-REDACT-->
+  **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
+  open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
+  stop and report that instead of opening it. `C4_PATTERN_BLIND=PASS` requires that printed path list.
+
+<!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
   **seat packet** — not this document — the seat brief and the pinned sources, with the wrapper pointed at that
   directory and **not** at the lane. That is enforceable, and it is the control.
@@ -188,7 +193,15 @@ a printed number, so an included claim could never satisfy it — a gate finding
   the comparison model, gate history, and the names of the people in the custody chain. **If any survives, the
   packet is not written and `C4_PACKET_REDACTED=FAIL`**; the study does not proceed on a hand-checked copy.
   Redaction is done in the builder and marked in this document, so the master is never edited to serve the blind
-  and a reader can see exactly what the seat was not given. *(The first run of this assertion caught fourteen
+  and a reader can see exactly what the seat was not given.
+
+  **Where the packet lives, and how it is pinned.** The built packet is `r3c2_seat_packet/R3C2_SEAT_PACKET.md`, a
+  **committed path, not scratch** — a clause cannot cite an artefact that lives in a temp directory. **Its digest is
+  recorded in `R3C2_SEAT_PACKET.sha256`, not in this document, and that is deliberate**: the packet header embeds
+  this document's own hash, so printing the packet's hash here would make each change to either file invalidate the
+  other. The pin file breaks that circularity. **The seats are given exactly the file whose digest that pin records**,
+  and Tori re-runs the builder and re-checks the pin before any dispatch; a packet whose digest does not match its
+  pin is not dispatched. *(The first run of this assertion caught fourteen
   surviving disclosures in a packet that had been assembled by hand, including the version table — which narrates
   every gate objection — and §0, which states the pattern's topic outright. That is the argument for asserting it
   rather than checking it.)* `C4_PACKET_REDACTED=PASS`. The seat's declaration and printed path list are kept as
@@ -199,7 +212,12 @@ a printed number, so an included claim could never satisfy it — a gate finding
   nothing available here can. The record states that limit rather than implying a stronger blind.
   
 <!--/SEAT-REDACT-->`C4_PATTERN_BLIND=PASS`.
-- **C5 — harness, LIVE**; **C5b — no cross-lane access.** As R3A/R3B; this lane's reading tree is in scope.
+- **C5 — harness, LIVE.** Execute and print `python3 --version`,
+  `python3 -c "import sympy; print(sympy.__version__)"`, and `shasum -a 256 $(command -v python3)`. **Transcribing
+  expected values fails.** `C5_HARNESS_PINNED=PASS`.
+- **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
+  `OUT_OF_SCOPE` row fails the control.** `C5B_NO_CROSS_LANE=PASS`. *("As R3A/R3B" named no command and no code, and
+  a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*
 - **C6 — audit, with a frozen sampling frame.** A third pattern-blind seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without seeing
   prior work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim whose filed
@@ -295,7 +313,8 @@ Two defects were found in the previous table and are corrected here, rather than
 | V4 | `0ba8df028686f10c…` | `R3C2_GATE_V4_codex_20260904.md`, `R3C2_GATE_V4_kimi_20260904.md` | `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS` | provenance replaces location as the admissible-input test; abolished class swept document-wide; `REPRO_NOT_EVALUABLE` and `CENSUS_CONTROL_SPLIT` added; `REPRO_BLOCKED`/`REPRO_INPUT_ABSENT` disambiguated; C4 rebuilt as a redacted out-of-lane copy |
 | V5 | `50e7733c114bbf29…` | *(none — not dispatched)* | — | non-definitional only: second live copy of the enumeration rule removed from §6; study-level classes renumbered 1–6 |
 | V5.1 | `9ad3a313b2e8bd4b…` | *(none — not dispatched)* | — | **HELD** marker added to the core definition so a referee does not report a deliberately open question as a fresh finding |
-| V6 | *this version* | *(pending)* | — | see §10.1 |
+| V6 | `d1d6c5ad2e5d7985…` | *(none — not dispatched)* | — | see §10.1; committed `854362164` |
+| V7 | *this version* | *(none yet)* | — | seat packet moved out of scratch to `r3c2_seat_packet/` and pinned in `R3C2_SEAT_PACKET.sha256`; **C4's instruction rescued from its own redaction span**; C5/C5b made self-contained; builder given a REQUIRED-content assertion with a passing deletion probe |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -303,6 +322,12 @@ Two defects were found in the previous table and are corrected here, rather than
 |---|---|---|---|
 | `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md` | `c5e94620…` | `R3C_GATE_codex_20260904.md` | `PREREG_UNSOUND` |
 | `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md` | `ece4c6d9…` | `R3C_FROZEN_GATE_V2_20260904_agy.md` | see `R3C_GATE_ANOMALY_EVIDENCE_20260904.md` |
+
+**Re-verified against git and disk 2026-09-04 23:35 KST (Blanc 23:32, item 3).** Every R3C2 row's hash was recovered
+by hashing that commit's blob (`git show <commit>:<path> | shasum -a 256`), and every gate row's hash is the
+`ACCESS_SHA=` the seat itself printed. **The V6 row previously read "*this version* / (pending)" and is now the
+committed hash; leaving a live "this version" marker in a table that has since moved on is how the V4 row came to
+carry a hash no seat had gated.**
 
 **Nine dispatched gate runs across R3C and R3C2, no `SOUND` without repairs.** That history is itself reported to
 Duho rather than buried in a version column.
