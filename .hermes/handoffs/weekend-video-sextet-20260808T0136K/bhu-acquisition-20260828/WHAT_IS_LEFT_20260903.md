@@ -355,3 +355,10 @@ would test.
 
 **On Duho's desk:** one annotation batch covering all three, tiers/tokens/standings/stamps untouched. Paper HOLD;
 nothing outward. Watch armed for 2026-09-08.
+
+**Post-sequence propagation (2026-09-04 16:53 KST).** Done while the annotation batch sits with Duho, and touching no
+annotation. The three draft preregs (`K3S3_…_DRAFT_20260904`, `K5_…_DRAFT_20260903`, `K6_…_DRAFT_20260903`) now carry
+superseded headers naming the frozen V2 each study actually ran under and the class each filed; the K3s3 draft's header
+also preserves its NOT RECOMMENDED note and records that Duho overruled it. Three live documents that still said K5 and
+K6 were unstarted now say they were ordered and completed. Dated major-event receipts and the frozen preregs' own scope
+sections are left as written — they record what was true when filed.

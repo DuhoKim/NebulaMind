@@ -1,3 +1,5 @@
+# SUPERSEDED 2026-09-04 — lifted to the frozen `K5_LISA_FORECAST_PREREG_20260904.md` (V2) when Duho ordered K5 at 14:56 KST; the study ran under that document and filed `K5_AMPLITUDE_FREE` (`K5_RESULT_20260904.md`) at limb A, without fetching any LISA product. Kept unchanged as the record of what was gated on 09-03. Do not run from this file.
+
 # DRAFT — NOT ORDERED — K5 pre-registration: a calibrated ringdown forecast for de Sitter-core "cosmological black holes" (entries 21, 16) (Tori, 2026-09-03 22:18 KST)
 
 **Status:** drafted on Duho's word "k5 draft prereg too" (pane, 2026-09-03 22:18 KST), completing the set begun on Blanc's 20:03 continuation note

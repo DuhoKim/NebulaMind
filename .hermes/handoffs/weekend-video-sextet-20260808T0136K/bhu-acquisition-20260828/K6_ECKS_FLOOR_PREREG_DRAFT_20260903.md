@@ -1,3 +1,5 @@
+# SUPERSEDED 2026-09-04 — lifted to the frozen `K6_ECKS_FLOOR_PREREG_20260904.md` (V2) when Duho ordered K6 at 14:56 KST; the study ran under that document and filed `K6_FLOOR_UNDERDETERMINED` (`K6_RESULT_20260904.md`). Kept unchanged as the record of what was gated on 09-03. Do not run from this file.
+
 # DRAFT — NOT ORDERED — K6 pre-registration: does the ECKS density ceiling derive a minimum-black-hole-mass floor? (entry 51) (Tori, 2026-09-03 23:25 KST)
 
 **Status:** drafted on Duho's overnight non-decision-work order. Gated as a draft 2026-09-03 23:31 KST (agy via

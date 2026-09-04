@@ -1,3 +1,5 @@
+# SUPERSEDED 2026-09-04 — lifted to the frozen `K3S3_SELFCONSISTENCY_PREREG_20260904.md` (V2) when Duho ordered K3 step 3 at 14:56 KST; the study ran under that document and filed `K3S3_NOT_PERTURBATIVE` (`K3S3_RESULT_20260904.md`). Kept unchanged as the record of what was gated on 09-04, including its NOT RECOMMENDED note, which Duho overruled. Do not run from this file.
+
 # DRAFT — NOT ORDERED — K3 step 3 pre-registration: does the exchange n² coefficient survive self-consistency?
 
 **Tori, 2026-09-04 13:08 KST.** Drafted so that a future "k3s3" starts from a gated text, exactly as K3 step 2, K4, K5
@@ -99,7 +101,7 @@ second route by a different method, Kimi on the check-sheet arithmetic, Tori re-
 ## 7. Non-circularity and scope
 
 No cosmological input; no statement about the bounce; the printed coefficients are under test, never inputs. This
-document cannot move a tier, warrant token, standing or stamp. K4 was ordered and completed on 2026-09-04 (`K4_RESULT_20260904.md`, `K4_UNDETERMINED`); K5 and K6 remain NOT ORDERED, and option (b) of the
+document cannot move a tier, warrant token, standing or stamp. K4, K5 and K6 were all ordered and completed on 2026-09-04 (`K4_RESULT_20260904.md` `K4_UNDETERMINED`; `K5_RESULT_20260904.md` `K5_AMPLITUDE_FREE`; `K6_RESULT_20260904.md` `K6_FLOOR_UNDERDETERMINED`), and option (b) of the
 10:27 packet remains NOT ORDERED.
 
 ## 8. Cost and stopping rule
