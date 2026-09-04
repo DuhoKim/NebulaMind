@@ -255,3 +255,42 @@ NOT RUN rather than as passes. Rows 24, 26 and 56 carry the finding; tiers, warr
 A follow-up that adopts the missing radiation condition as a declared assumption and computes a conditional `C_ℓ` was
 **considered and NOT ordered**: Blanc's objection, which Duho carried, is that adopting an unsupplied condition to
 obtain a number is close to the failure mode this audit keeps finding in the published corpus.
+
+---
+
+## The shape/magnitude pattern — three instances, recorded on Duho's instruction (2026-09-04 17:07 KST)
+
+Duho asked for this to be written into the record as a pattern rather than left as an impression, after the three
+studies of 2026-09-04 landed on the same shape independently.
+
+**The pattern.** Across this corpus, a construction reliably fixes the *shape* of its prediction — a frequency, a
+scale, a spectrum — and leaves free precisely the *magnitude* that a measurement would have to test. The models are
+falsifiable in form and unfalsified in practice, because the number that would meet the data is the one the derivation
+does not reach.
+
+**The three instances, each with its receipt.**
+
+1. **The causal-horizon cutoff** (entries 23–27). `PROGRAM_A_FREEDOM_MAP_20260902.md`: the ~60° correlation loss is
+   the corpus's one genuinely a-priori CMB prediction, and its **scale** is derived non-circularly — but the paper
+   supplies no perturbation prescription, so every route to an `S₁/₂` number passes through choices external to the
+   theory. **Scale derived; amplitude free.**
+2. **The de Sitter-core ringdown** (entry 21). `K5_RESULT_20260904.md`, class `K5_AMPLITUDE_FREE`: the quasi-normal
+   **frequencies** follow from the scattering potential and do land in a space-detector band — but the mode
+   coefficient carries an integral against the source, and a static equilibrium contains no merger to be that source.
+   **Frequencies derived; amplitude free.**
+3. **The ECKS mass floor** (entry 51). `K6_RESULT_20260904.md`, class `K6_FLOOR_UNDERDETERMINED`: the density ceiling
+   itself is stated and its scaling is derivable — but converting a density bound into a mass bound needs a size–mass
+   relation `V(M)` the source never supplies, and admissible readings give floors differing by decades or none at all.
+   **Ceiling derived; floor free.**
+
+**A fourth case that rhymes without belonging.** `K3S3_RESULT_20260904.md` found the torsion bounce's spin closure not
+underdetermined but *uncontrolled*: the four-fermion interaction is a 2/3 correction exactly at the bounce, so the
+derivation that would fix the coefficient is not available where it matters. That is a different failure — an
+uncontrolled expansion rather than a missing prescription — and it is listed here as adjacent, not as a fourth
+instance.
+
+**What this does and does not claim.** Three instances are a pattern worth naming, not a theorem about the corpus, and
+each carries its own caveat in its own result file — in particular, "not fixed by *this* construction" is not the same
+claim as "irreducibly free", and K5's record says so explicitly. **No tier, warrant token, standing or stamp moves on
+this observation**; it is written here because Duho asked for the pattern to be on the record, and it stays an
+observation until he rules otherwise.

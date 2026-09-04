@@ -5,7 +5,7 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## YOUR CALL 2026-09-04 16:46 KST — all three studies are filed (K3 step 3, K5, K6). One annotation batch waits on you.
+## RESOLVED 2026-09-04 17:08 KST — Duho "all three" = (a)+(b)+(c), applied and gated ACCEPT / BOUNDS=CLEAN. Nine rows annotated (9, 10, 11, 21, 39, 51, 52, 53, 59), freedom-map cross-reference added, shape/magnitude pattern written into the synthesis with its three instances. Tiers, tokens, standings, stamps and row identities byte-identical; 51 rows. Was: YOUR CALL 2026-09-04 16:46 KST — all three studies are filed (K3 step 3, K5, K6). One annotation batch waits on you.
 
 **The sequence you ordered at 14:56 is complete.** All three ran, all three are filed with results, check sheets and
 critic notes, and **none of them needed the expensive half**.

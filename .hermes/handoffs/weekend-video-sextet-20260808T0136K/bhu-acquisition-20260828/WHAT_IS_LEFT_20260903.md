@@ -362,3 +362,34 @@ superseded headers naming the frozen V2 each study actually ran under and the cl
 also preserves its NOT RECOMMENDED note and records that Duho overruled it. Three live documents that still said K5 and
 K6 were unstarted now say they were ordered and completed. Dated major-event receipts and the frozen preregs' own scope
 sections are left as written — they record what was true when filed.
+
+---
+## Annotation batch APPLIED and gated (2026-09-04 17:08 KST) — Duho "all three"
+
+He ruled at 17:03; applied 17:07, gated `VERDICT=ACCEPT` with `BOUNDS=CLEAN`
+(`FINAL_ANNOTATION_GATE_20260904_agy.md`, all eight checks clean).
+
+- **(a) K3 step 3** → rows 9, 10, 11 with the inheritance on 39, 52, 53, 59: the free-field coefficient of K3 step 2
+  holds wherever the theory is perturbative and **not at the bounce**, where the four-fermion term is a 2/3 correction
+  derived from the source's own minimum-scale-factor condition.
+- **(b) K5** → row 21: the route stays CONNECTED and is **not calibratable from this construction** — frequencies
+  fixed, amplitude not, no LISA product fetched, no frequency checked. Cross-reference added to the freedom map's
+  amplitude statement recording this as the second instance.
+- **(c) K6** → row 51: **`W_UNDERIVED` stands**, and the missing premise is named — the size–mass relation `V(M)`.
+  Three admissible readings give 2.70e14 kg, 2.20e14 kg and no floor at all.
+
+**K6's wording held, as Duho required and the gate verified:** the record says **unreproduced from the stated inputs**
+and does not call the paper wrong, because it never states which density it means. The 1.57-decade figure is presented
+as what it is — a demonstration about the obvious reconstruction, not a refutation.
+
+**Caveats travel with all three**, and the gate checked they are load-bearing rather than decorative — in particular
+K5's row distinguishes "not fixed by *this* construction" from "irreducibly free".
+
+**The shape/magnitude pattern is now on the record** (`BHU_CORPUS_SYNTHESIS_20260902.md`, final section), written in
+the lane's own words on Duho's instruction, with its three instances cited — the causal-horizon cutoff, the de
+Sitter-core ringdown, and the ECKS mass floor. K3 step 3 is deliberately held **out** of the pattern as an adjacent but
+different failure (an uncontrolled expansion, not a missing prescription); the gate confirmed that is the right call.
+
+**State:** tier, token, standing, stamp and row-identity columns byte-identical; 51 rows before and after. Nothing
+outward. K3 step 2's bounce study, the K4 follow-up and any new study remain **NOT ORDERED**; row 23 stays as applied;
+watch armed for 2026-09-08. Paper HOLD.

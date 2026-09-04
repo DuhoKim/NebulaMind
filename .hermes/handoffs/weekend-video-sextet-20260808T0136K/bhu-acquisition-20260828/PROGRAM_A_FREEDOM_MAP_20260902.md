@@ -19,6 +19,16 @@ computed here (with all external choices declared) give full-sky `S₁/₂` betw
 0.15–0.2 percentile under ΛCDM and at 0.4–2.8% under the causal-cutoff refinements — every
 refinement leaves it at or below the ~3% level (§9).**
 
+**SECOND INSTANCE RECORDED 2026-09-04 17:07 KST** (Duho "all three" = option (b); `K5_RESULT_20260904.md`, class
+`K5_AMPLITUDE_FREE`). The "amplitude free while the scale is derivable" shape found here is **not unique to this
+model**. K5 asked whether entry 21's de Sitter-core ringdown could be calibrated for a LISA-class detector and found
+the same split from the other end: the quasi-normal **frequencies** are fixed by the scattering potential, but the
+**amplitude** is not — the mode coefficient carries an integral against the source, and a static equilibrium supplies
+no merger to be the source. Two unrelated constructions in this corpus, each fixing a scale or a frequency and leaving
+free the magnitude a measurement would test. Recorded here as a cross-reference and an observation; **it moves no tier,
+warrant token, standing or stamp**, and K5's own caveat travels with it — "not fixed by that construction" is not the
+same claim as "irreducibly free".
+
 ## 1. What the paper actually derives (verified from the source, with line numbers)
 
 Source: arXiv 2003.11544 (`2003.11544_clean.txt`), entry 23, MNRAS 494:2766.
