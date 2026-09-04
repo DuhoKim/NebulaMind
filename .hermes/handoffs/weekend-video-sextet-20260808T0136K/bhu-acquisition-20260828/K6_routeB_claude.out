@@ -1,0 +1,110 @@
+
+==================================================================================================
+LIMB A — source identity and absence (prereg §2)
+==================================================================================================
+  Held publisher text: ../bhu-reading-20260823/sources/poplawski_plb690_vor_clean.txt
+
+  L662-664 (body):   'The mass density of a black hole also cannot exceed rho_Ce, from which
+                      its minimum mass in the ECKS theory is ~10^16 kg, corresponding to
+                      energy ~10^43 GeV.'
+  L37-38 (abstract): 'We also estimate a maximum density of matter to be on the order of the
+                      corresponding Cartan density, ~10^51 kg m^-3, which gives a lower limit
+                      for black-hole masses ~10^16 kg.'
+  L625-627:          'the Cartan density for an electron, rho_Ce ~ m_e/r_Ce^3 ~ 10^51 kg m^-3'
+
+  ABSENCE CHECK: the implication is asserted TWICE ('from which', 'which gives') and the
+  connecting calculation appears in NEITHER place. No intervening equation relates the density
+  ceiling to a mass. Searching the full text for a mass-floor derivation returns only these
+  two assertions plus the GR comparison at L668.
+  => the study's premise HOLDS; K6_PREMISE_VOID does NOT fire.
+C1_SOURCE_IDENTITY=PASS
+
+==================================================================================================
+Constants (control normalisations, labelled as such)
+==================================================================================================
+G  [SI]                                              6.6743e-11
+c  [SI]                                              299792458.0
+rho_Ce [kg/m^3]  (source, order of magnitude)        1e+51
+claimed M_min [kg] (source, order of magnitude)      1e+16
+
+==================================================================================================
+C3 — GR benchmark: the Schwarzschild uniform mean-density identity, derived here
+==================================================================================================
+R_s = 2GM/c^2                                        2*G*M/c**2
+V = (4/3) pi R_s^3   [EUCLIDEAN volume -- an ADDED COMPLETION] 32*pi*G**3*M**3/(3*c**6)
+rho_bar = M / V                                      3*c**6/(32*pi*G**3*M**2)
+prereg's stated identity 3c^6/(32 pi G^3 M^2)        3*c**6/(32*pi*G**3*M**2)
+C3_GR_BENCHMARK=PASS
+  (algebra only; supplies NO ECKS interior premise -- prereg §7 C3)
+
+==================================================================================================
+ROUTE B — admissible completions, each obeying the SAME ceiling rho <= rho_Ce
+==================================================================================================
+  Each completion below is ADMISSIBLE: entry 51 fixes neither the density measure nor the
+  interior, so none is excluded by the source. All obey the same ceiling.
+
+  A: Euclidean mean density in R_s             M_min = 2.699e+14 kg   (the most natural reading; rho_bar = 3c^6/(32 pi G^3 M^2))
+  B: PROPER volume (factor 3/2 larger)         M_min = 2.204e+14 kg   (same ceiling, physical proper-volume measure instead of coordinate)
+
+  C: LOCAL rest-frame density (the reading L629-632 actually motivates -- 'a system of
+     elementary Dirac particles cannot be compressed to densities higher than the densities
+     of its components'): this bounds a LOCAL quantity, not a mean. Without an interior
+     profile rho(r), NO mass bound follows at all: a black hole of any mass can have local
+     density below rho_Ce everywhere if its interior is not assumed uniform.
+     => M_min is UNBOUNDED BELOW under completion C.
+
+==================================================================================================
+Comparison
+==================================================================================================
+claimed M_min (source)                               1.0e+16 kg
+  completion A: M_min = 2.699e+14 kg   -> +1.57 decades from the claimed 1e16 kg
+  completion B: M_min = 2.204e+14 kg   -> +1.66 decades from the claimed 1e16 kg
+  completion C: no positive floor at all
+
+pre-declared match interval                          1e15 <= M_min <= 1e17 kg
+  completion A inside the interval?                  False
+  completion B inside the interval?                  False
+
+==================================================================================================
+Controls
+==================================================================================================
+C1_SOURCE_IDENTITY=PASS   (limb A above)
+C2_EQ33_SCALING=NOT_RUN   (route A's task; this seat did not derive Eq. (33) scaling)
+C3_GR_BENCHMARK=PASS
+C4_DENSITY_SEMANTICS=PASS
+  (each completion states its measure explicitly: A coordinate/Euclidean, B proper volume,
+   C local rest-frame. The distinction is the whole finding, not an afterthought.)
+C5_DELETION_PROBE=NOT_RUN
+  (prereg §7 C5 applies to a proposed UNIQUE-FLOOR proof. This seat files no unique floor,
+   so there is no proof to probe. NOT_RUN, not PASS.)
+C6_COMPLETION_SPLIT=PASS
+  (changing one allowed completion -- the density measure -- changes the floor, and one
+   admissible reading removes it entirely. The result is completion-dependent.)
+
+==================================================================================================
+Assumption ledger
+==================================================================================================
+item                                        status          note
+--------------------------------------------------------------------------------------------------
+rho_Ce ~ 1e51 kg/m^3                        source-derived  L625-627, L38
+claimed M_min ~ 1e16 kg                     source-derived  L663-664, L38
+connecting derivation                       ABSENT          asserted at L663 and L38, derived nowhere
+G, c                                        cited           SI constants
+Euclidean volume (4/3)pi R^3                NEWLY ADDED     not in entry 51; a completion
+Schwarzschild exterior / R = 2GM/c^2        NEWLY ADDED     not in entry 51; a completion
+
+==================================================================================================
+Class
+==================================================================================================
+PREMISE_VOID=no  (connecting derivation absent from both statements)
+COMPLETION_A_EUCLIDEAN_MEAN_KG=2.699e+14
+COMPLETION_B_PROPER_VOLUME_KG=2.204e+14
+COMPLETION_C_LOCAL_DENSITY=no positive floor
+FLOORS_DIFFER=True
+CLASS=K6_FLOOR_UNDERDETERMINED
+FREEDOM=the density measure in 'the mass density of a black hole' is not fixed by entry 51.
+  Coordinate-mean, proper-volume-mean and local rest-frame readings are all admissible; they
+  give different floors, and the local reading -- the one L629-632's own justification
+  motivates -- gives no floor at all without an added interior profile.
+NOTE_NOT_AN_ERROR_CLAIM=this is 'unreproduced from the stated inputs', not 'error'.
+K6_ROUTEB_CLAUDE_SEAT_COMPLETE

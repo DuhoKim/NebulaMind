@@ -322,3 +322,36 @@ passes; entry 16 never reached and its `W_ROUTE_NAMED_ONLY` untouched; no tier, 
 
 **On Duho's desk (no hurry):** an annotation proposal for entry 21's row and the freedom map's amplitude note.
 Paper HOLD; nothing outward. **Next: K6.**
+
+---
+## K6 COMPLETE — FLOOR UNDERDETERMINED; all three ordered studies now filed (2026-09-04 16:46 KST)
+
+Third and last of the sequence Duho ordered at 14:56.
+
+**Class filed: `K6_FLOOR_UNDERDETERMINED`** — both routes, independently and blind. Route A (theorem) derived the chain
+and stopped at the first unbound quantity, **`V(M)`, the size–mass relation**, twice; route B (completions) showed three
+admissible readings of "a black hole's density" giving **2.70 × 10¹⁴ kg**, **2.20 × 10¹⁴ kg**, and **no floor at all**
+— the last being the reading the paper's own justification at L629–632 motivates.
+
+**The number, carefully:** the obvious completion gives 2.70 × 10¹⁴ kg, 1.57 decades below the printed ∼10¹⁶ kg and
+outside the pre-declared interval. **Not an error claim** — the paper never fixes the density measure, so there is no
+completion to attribute and refute. Entry 51 keeps `W_UNDERIVED` and the wording stays "unreproduced from the stated
+inputs".
+
+**The gate's two repairs both proved load-bearing within the hour:** class 3 was widened to cover the stopping rule and
+route A exited by exactly that path (without it, no class); and the deletion probe was rewritten to delete the field
+equations rather than the load-bearing relation, and in that corrected form it caught a circular proof that would have
+passed the original wording.
+
+**Seal audit performed and published, as promised:** the prereg conceded that hashing prior exploratory artifacts is
+tamper evidence, not blinding, and committed to a log audit either way. Clean — no command in either seat's log reads
+`b13_floor_routes.py`, `AGATE_Q2_VERDICT.md` or `CGATE_Q2_VERDICT.md`; all four hashes unchanged; both seats keep
+independent status.
+
+**Sequence summary.** K3 step 3 `NOT_PERTURBATIVE` (~1 day of 3–6), K5 `AMPLITUDE_FREE` (~1 day of 15, no LISA data
+fetched), K6 `FLOOR_UNDERDETERMINED` (within 3 days). **None needed its expensive half.** The through-line: in all
+three the construction fixes a shape — a frequency, a scale, a spectrum — and leaves free the magnitude a measurement
+would test.
+
+**On Duho's desk:** one annotation batch covering all three, tiers/tokens/standings/stamps untouched. Paper HOLD;
+nothing outward. Watch armed for 2026-09-08.

@@ -5,7 +5,47 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## FOR DUHO'S EYE 2026-09-04 16:28 KST — K5 is DONE: the amplitude is not fixed by the model; no LISA data fetched, one seat-day of fifteen
+## YOUR CALL 2026-09-04 16:46 KST — all three studies are filed (K3 step 3, K5, K6). One annotation batch waits on you.
+
+**The sequence you ordered at 14:56 is complete.** All three ran, all three are filed with results, check sheets and
+critic notes, and **none of them needed the expensive half**.
+
+| study | class | cost | what it says |
+|---|---|---|---|
+| K3 step 3 | `K3S3_NOT_PERTURBATIVE` | ~1 day of 3–6 | the four-fermion term is a **2/3 correction at the bounce**, so no controlled calculation of the spin closure exists there |
+| K5 | `K5_AMPLITUDE_FREE` | ~1 day of 15 | entry 21 fixes the ringdown's **frequencies but not its loudness**; no LISA data was fetched |
+| K6 | `K6_FLOOR_UNDERDETERMINED` | within 3 days | entry 51's mass floor needs a **size–mass relation it never supplies**; admissible readings give floors decades apart, or none |
+
+**The through-line, if you want one sentence for the corpus:** in all three, the construction fixes a *shape* — a
+frequency, a scale, a spectrum — and leaves free exactly the *magnitude* that a measurement would test.
+
+**K6's sharpest number, stated carefully.** The obvious reading of "a black hole's density cannot exceed ρ_Ce" gives a
+floor of **2.7 × 10¹⁴ kg**, 1.57 decades below the paper's printed ∼10¹⁶ kg and outside its own order of magnitude.
+**This is not "the paper is wrong"** — the paper never says which density it means, so there is no completion to
+attribute to it and refute. It is the record's existing wording, *unreproduced from the stated inputs*, now with a
+demonstration that even the obvious reconstruction does not reproduce it.
+
+**Two things I want you to see about the process, not the physics.**
+- **K6's gate earned itself within the hour.** It widened an outcome class to cover the stopping rule, and route A
+  exited by exactly that path — without the repair, route A's result would have fallen into no class. And it rewrote
+  my deletion probe to delete the field equations instead of the load-bearing relation; run in the corrected form it
+  **caught a circular proof that would have passed my original**.
+- **I promised a seal audit and it was going to be published either way.** K6's prereg admitted that hashing prior
+  exploratory work is tamper evidence, not blinding. The audit is clean: no command in either seat's log reads the
+  sealed files. Both seats keep independent status.
+
+**One annotation batch for your ruling** — three studies' worth, all tiers/tokens/standings/stamps untouched:
+(a) **K3 step 3** → rows 9, 10, 11 and the inheritance rows: step 2's free-field coefficient holds where the theory is
+    perturbative; at the bounce the interaction is a 2/3 correction, so no controlled calculation exists there.
+(b) **K5** → entry 21's row: the route is connected but the amplitude is not fixed by the construction; and the freedom
+    map's amplitude note gains a cross-reference to this second instance of the pattern.
+(c) **K6** → entry 51's row keeps `W_UNDERIVED` and names the missing premise as the size–mass relation `V(M)`.
+
+Say **"a"**, **"b"**, **"c"** in any combination, or **"all three"**, or **"hold"**. Nothing is blocked either way, and
+the lane has non-decision work regardless.
+
+---
+## SUPERSEDED 2026-09-04 16:46 KST (K5 finished; K6 also finished — see above) — was: FOR DUHO'S EYE 2026-09-04 16:28 KST — K5 is DONE: the amplitude is not fixed by the model; no LISA data fetched, one seat-day of fifteen
 
 **No decision needed to continue — K6 starts next.** Result `K5_RESULT_20260904.md`, check sheet
 `K5_CHECK_SHEET_20260904.md`, critic note `K5_WHAT_A_CRITIC_GETS_20260904.md`. Class **`K5_AMPLITUDE_FREE`**,

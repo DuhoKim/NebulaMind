@@ -1,0 +1,35 @@
+SYMBOLIC_CHAIN_SEALED
+S1 [source-derived, VoR 102-203]: ECKS gives local field equations (3)-(6).
+S2 [source-derived, VoR 204-406]: spin conservation gives multipole identity (17).
+S3 [source-derived, VoR 551-568]: Eq. (33) is only order-of-magnitude:
+   m/r_C^3 ~ (G/c^4)(hbar/r_C^3)^2.
+   Therefore r_C^3 ~ G hbar^2/(m c^4), r_C proportional to m^(-1/3),
+   and rho_C=m/r_C^3 is proportional to m^2.
+S4 [source-derived, VoR 625-653]: rho_Ce is an expected approximate ceiling;
+   extension from particles to self-gravitating systems is expressly conjectural.
+S5 [source-derived, VoR 662-664]: rho_BH <= rho_Ce and ~10^16 kg are asserted.
+THEOREM TEST: a density ceiling alone has no mass dimension and implies no M floor
+unless a source-bound relation supplies a length/volume as a function of mass.
+FAILED_BINDING_ATTEMPT_1: the source does not define rho_BH as a local scalar or
+a proper-volume average; coordinate-volume and Euclidean-volume readings are unlicensed.
+FAILED_BINDING_ATTEMPT_2: the source defines no black-hole mass notion, trapped-surface
+radius relation, interior profile, charge/spin domain, or interior/exterior matching map.
+FIRST_UNBOUND_QUANTITY: V(M), equivalently a source-bound size/mass relation.
+STOPPING_RULE: two failed attempts to bind the same missing global premise.
+CONCLUSION: no source-bound theorem rho <= rho_Ce => M >= M_min > 0 is reproduced
+from the stated inputs; this is not a claim that the printed statement is an error.
+C2 control: unit-coefficient r_Ce=4.655097e-28 m; log10=-27.332071.
+C3 symbolic: R=2GM/c^2 and V=4pi R^3/3 imply rho_bar=3c^6/(32piG^3M^2).
+C3 numerical probe printed by script: M=2.500000e+16 kg, rho=1.165865e+47 kg/m^3.
+ADDED_COMPLETION_CONTROL: Schwarzschild/Euclidean/uniform-mean floor=2.699381e+14 kg.
+COMPLETION_CHANGE_CONTROL: radius coefficient 3 gives floor=1.469357e+14 kg.
+C5 deletion: deleting source ECKS equations leaves the injected GR control floor intact;
+therefore that relation is circular for K6 and no derived-floor class is allowed.
+C6 split: changing an added size/mass completion changes the floor, exposing dependence.
+C1_SOURCE_IDENTITY=PASS
+C2_EQ33_SCALING=PASS
+C3_GR_BENCHMARK=PASS
+C4_DENSITY_SEMANTICS=PASS
+C5_DELETION_PROBE=PASS
+C6_COMPLETION_SPLIT=PASS
+CLASS=K6_FLOOR_UNDERDETERMINED
