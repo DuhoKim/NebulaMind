@@ -146,6 +146,23 @@ a printed number, so an included claim could never satisfy it — a gate finding
 
 ## 5. Controls, each with an exact named code
 
+- **C0 — reachability, run BEFORE the freeze.** For **every per-claim outcome of §3** and **every study-level class
+  of §4** — and for **any condition whose failure would refute this lane's own expectation** — **exhibit a concrete
+  input that produces it**: a specific claim, its inputs, and the path it takes through this document to that
+  verdict. **An outcome for which no such input can be exhibited is UNREACHABLE, and this preregistration does not
+  freeze until it is.** The exhibition table is the artefact. **The exhibitions are authored by a seat and only
+  verified by Tori** — deciding what counts as reachable is where an author's prior would enter, so the author does
+  not decide it. `C0_REACHABILITY=PASS`.
+
+  <!--SEAT-REDACT-->*(Added by Duho's order after the R3D diagnosis. In R3D, three consecutive repairs left the one condition capable
+  of refuting this lane's pattern unable to return PASS on any path, each time in a different way, and **no other
+  control could see it**: every other control checks that something is done correctly, none checks that an outcome
+  **can happen at all**. **This census's §3 and §4 outcomes have never been reachability-tested**, and at least one
+  is worth checking early — `CENSUS_COMPLETE` requires every included claim to carry an arithmetic-group outcome,
+  which a single blocked or absent input in the whole corpus is enough to prevent. C0 does not touch, and does not
+  depend on, the definition held in §1: it asks only whether each declared outcome can occur under whatever
+  definition is settled.)*<!--/SEAT-REDACT-->
+
 - **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and attempts made,
   all printed before any tally. <!--SEAT-REDACT-->*(This control previously referenced a class §3 abolished — a gate finding; the
   document has been swept for every other occurrence.)*<!--/SEAT-REDACT-->

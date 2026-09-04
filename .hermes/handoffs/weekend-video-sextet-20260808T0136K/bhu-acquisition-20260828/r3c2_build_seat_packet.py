@@ -32,7 +32,7 @@ REDACT_OPEN, REDACT_CLOSE = "<!--SEAT-REDACT-->", "<!--/SEAT-REDACT-->"
 # Every control must reach the seat WITH its instruction, not just its pass-code, and every outcome
 # class it may file must be readable. Each entry is checked for literal presence in the built packet.
 REQUIRED = [
-    "C1_DENOMINATOR_PRINTED", "C2_INPUT_LEDGER", "C3_NO_SUBSTITUTION",
+    "C0_REACHABILITY", "C1_DENOMINATOR_PRINTED", "C2_INPUT_LEDGER", "C3_NO_SUBSTITUTION",
     "C4 — what the seat must do", "C4_PATTERN_BLIND",
     "C5_HARNESS_PINNED", "C5B_NO_CROSS_LANE", "C6_AUDIT_SAMPLE",
     "REPRO_EXACT", "REPRO_FAILED", "REPRO_BLOCKED", "REPRO_NOT_EVALUABLE",

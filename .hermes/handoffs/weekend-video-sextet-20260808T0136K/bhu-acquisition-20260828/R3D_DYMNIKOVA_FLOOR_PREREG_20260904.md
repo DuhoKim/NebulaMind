@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 8 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 9 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -169,6 +169,21 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 
 ## 5. Controls, each with an exact named code
 
+- **C0 — reachability, run BEFORE the freeze.** For **every declared outcome class of §4**, and for **every C6
+  breaker condition whose failure would refute this lane's own expectation**, **exhibit a concrete input that
+  produces it**: a specific numeric value or stated configuration, and the path it takes through this document to
+  that verdict. **A class or condition for which no such input can be exhibited is UNREACHABLE, and this
+  preregistration does not freeze until it is.** The exhibition table is the artefact.
+  **The exhibitions are authored by a seat and only verified by Tori** — deciding what counts as reachable is where
+  an author's prior would enter, so the author does not decide it. `C0_REACHABILITY=PASS`.
+
+  *(Added V9 by Duho's order. This control exists because three consecutive repairs left condition 5 unable to
+  return PASS on any path, each time in a different way, and no other control here could see it: every other
+  control checks that something is **done correctly**, and none checks that an outcome **can happen at all**. The
+  check is not speculative — it is exactly what both seats did when asked to trace a matching and a non-matching
+  case, which is how V6's soundness and V7's defect were established. It was being run by referees after dispatch
+  instead of by the lane before it.)*
+
 - **C1 — source identity, bound to the frozen manifest of §2a.** The seat prints the computed SHA-256 of the raw
   bytes of **every** file it reads, with `repr()` of the extracted text where the pinned text is PDF-extracted.
   **Each printed digest must equal its manifest value**; a mismatch, or any read of a source outside the manifest,
@@ -259,14 +274,38 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   | 3 | stellar collapse: the TOV / neutron-star maximum mass | `[4.375e30, 5.768e30]` | `[2.2, 2.9] M_☉`, an **asserted span** over which the TOV maximum is contested; `2.2 × 1.98892e30 = 4.375624e30` **rounded down to 4.375e30**, `2.9 × 1.98892e30 = 5.767868e30` **rounded up to 5.768e30** |
   | — | ΛCDM | *no interval — predicts no minimum black-hole mass* | recorded so the null case is explicit rather than silently skipped; **it can never match, and that is stated rather than left to be inferred** |
 
-  **Decision rule.** The seat states its derived floor as an interval (a point value is a degenerate interval).
-  **"Shared" means that interval OVERLAPS a comparator interval above.** Any overlap **fails** condition 5 and
-  therefore fails C6. **Additionally**, if the floor lies within one decade of a comparator interval without
-  overlapping it, the seat prints `NEAR_MATCH` with the comparator named — **reported, never decisive**, because a
-  decade is a reporting convenience on a scale spanning sixty and must not be allowed to decide a falsification.
+  **Decision rule — stated as a single disjunction, deliberately.** The seat states its derived floor as an
+  interval (a point value is a degenerate interval).
 
-  **All four rows are compared and printed, including ΛCDM.** `C6_BREAKER_TEST=PASS` only on a completed table with
-  no overlap; or `NOT_RUN` if `DYM_FLOOR_DERIVED` is not reached.
+  > **Condition 5 FAILS if, and only if, that interval OVERLAPS one of the comparator intervals above — and the
+  > seat names the comparator it overlaps. Otherwise condition 5 PASSES.**
+
+  **There is no other precondition on the pass.** If the floor lies within one decade of a comparator without
+  overlapping it, the seat prints `NEAR_MATCH` with the comparator named — **reported, never decisive**, since a
+  decade is a reporting convenience on a scale spanning sixty and must not decide a falsification.
+
+  **The completed four-row comparison table, including ΛCDM, is required as a C6 ARTEFACT — not as a precondition
+  of the pass.** An incomplete or missing table **fails C6 as a control**, loudly and by name
+  (`C6_BREAKER_TEST=FAIL`, reported with what is missing).
+
+  **C6's three outcomes, stated in full so the pass is not left implicit:**
+  **`C6_BREAKER_TEST=PASS`** — the table is complete and **every one of conditions 1–5 satisfies its own stated
+  decision rule**. **`C6_BREAKER_TEST=FAIL`** — the table is incomplete or missing, **or** any condition fails its
+  decision rule; **name the condition and print its artefact**. **`C6_BREAKER_TEST=NOT_RUN`** — `DYM_FLOOR_DERIVED`
+  is not reached. *(Recall that a condition failing its decision rule is a **substantive result**: under §4 class 1
+  the floor still stands and is filed, it is simply not a counterexample.)*
+
+  *(This polarity is the V9 redesign, ordered after the diagnosis in
+  `R3D_FALSIFIER_DISABLING_DIAGNOSIS_20260904.md`. Condition 5's pass was previously a **conjunction** — a complete
+  table, every comparator derived, every provenance accepted, no overlap — while its failure was a **disjunction**,
+  one overlap. A conjunction has far more surface area, so a drafting error anywhere in the document landed on the
+  pass, and the test that can refute this lane's own pattern came out of three consecutive repairs unable to fire,
+  in three different ways. **Making the pass a disjunction leaves nothing for a drafting error to break.** The
+  completeness requirement is not dropped: it moves from a place where an unmet requirement is silent — an
+  unreachable pass — to a place where it is loud — a failed control. Every one of the three disablings was silent.
+  The cost is stated rather than hidden: a lazy comparison now yields a PASS, and PASS is the high-stakes
+  direction. That risk is accepted because it is **inspectable** — it produces a printed table that the second
+  seat, the audit and the principal can all check — whereas a disabled falsifier survived four rounds unnoticed.)*
   *(Third round on this condition, and it is worth being exact about how it failed twice. V3 required a comparator
   set to be fixed "before the run is frozen" — but this document IS the frozen artefact, so the requirement was
   satisfied nowhere. V4 supplied values while citing two source files that §2a forbids reading, and labelled one of
@@ -505,4 +544,31 @@ the report named beside it — not my recollection. Each row is checkable with `
 `SOUND_WITH_REPAIRS → UNSOUND → SOUND_WITH_REPAIRS`. **No round has yet produced a clean `PREREG_SOUND` from either
 seat, and that is reported rather than smoothed.**
 
-R3D_PREREG_V8_READY_FOR_REGATE
+**V9, this version. ORDERED by Duho: "redesign condition 5 and add C0 to every prereg", after the diagnosis in
+`R3D_FALSIFIER_DISABLING_DIAGNOSIS_20260904.md`.** This is the structural change the diagnosis recommended, not a
+fourth repair of an instance.
+
+**Condition 5's polarity is inverted.** It now **FAILS on a demonstrated overlap with a named comparator and PASSES
+otherwise** — a disjunction, where it was a conjunction requiring a complete table, every comparator derived, every
+provenance accepted and no overlap. **Three consecutive repairs (V3, V4, V7) each left that conjunction unable to
+return PASS on any path, in three different ways**, because a conjunction has far more surface area and every
+drafting error landed on it. **There is now nothing left for a drafting error to break.** The completeness
+requirement is not dropped: the four-row table, ΛCDM included, is required as a **C6 artefact**, so an unmet
+requirement fails **loudly** as a control instead of **silently** as an unreachable pass. **C6's three outcomes are
+now stated in full**, because the redesign's first draft removed the only line defining `C6_BREAKER_TEST=PASS` and
+left the pass implicit — caught by tracing the change rather than by a referee.
+
+**The accepted cost, stated rather than hidden:** a lazy or incomplete comparison now yields a PASS, and PASS is the
+high-stakes direction — it declares a counterexample and would amend a reported record. That risk is taken because
+it is **inspectable**: it leaves a printed table the second seat, the audit and the principal can all check.
+A disabled falsifier left nothing to inspect and survived four rounds.
+
+**C0 — reachability is added as a control**, and it is the general fix: no other control here checks that an
+outcome *can occur*. Its exhibitions are **authored by a seat and only verified by Tori**, because deciding what
+counts as reachable is where an author's prior would enter. Reachability of the redesigned condition 5 was
+self-checked at V9 (`1.0e15 kg` → PASS, `2.0e11 kg` → FAIL overlapping Hawking, `m_P` → FAIL overlapping Planck,
+`3.0e30 kg` → PASS), **but that is my check and does not satisfy C0**, which requires the seat's exhibition.
+
+**R3D remains NOT run.**
+
+R3D_PREREG_V9_READY_FOR_REGATE

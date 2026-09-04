@@ -8,7 +8,7 @@ what its results will be compared against have been removed **deliberately and m
 `r3c2_build_seat_packet.py`. Their absence is not an omission for you to fill in, and you should not
 attempt to infer or reconstruct them. Apply the rules below exactly as written.
 
-Built from master sha256 `e33a881dcac9956c5e119231b0285299372e8b30aa34dfa3a03740832f524bb0` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `19a075c66696c4a0793c2fb13a45247f9e174f4b2194ec3a9f540ed001597000` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -105,6 +105,16 @@ is hidden by being excluded.
 
 
 ## 5. Controls, each with an exact named code
+
+- **C0 — reachability, run BEFORE the freeze.** For **every per-claim outcome of §3** and **every study-level class
+  of §4** — and for **any condition whose failure would refute this lane's own expectation** — **exhibit a concrete
+  input that produces it**: a specific claim, its inputs, and the path it takes through this document to that
+  verdict. **An outcome for which no such input can be exhibited is UNREACHABLE, and this preregistration does not
+  freeze until it is.** The exhibition table is the artefact. **The exhibitions are authored by a seat and only
+  verified by Tori** — deciding what counts as reachable is where an author's prior would enter, so the author does
+  not decide it. `C0_REACHABILITY=PASS`.
+
+  
 
 - **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and attempts made,
   all printed before any tally. 
