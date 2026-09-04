@@ -95,9 +95,9 @@ a printed number, so an included claim could never satisfy it — a gate finding
 2. **`CENSUS_PARTIAL`** — some claims unresolved after two attempts. Report which, and why. **INCONCLUSIVE.**
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome. The census is void; report
    which.
+4. **`R3C2_NO_CLASS`** — a control fails **in every seat that attempted it** after two attempts.
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts. The census
    does not proceed; the disputed candidates are listed. *(Added because the enumeration stop had no class.)*
-4. **`R3C2_NO_CLASS`** — a control fails **in every seat that attempted it** after two attempts.
 6. **`CENSUS_CONTROL_SPLIT`** — a control fails in one seat and passes in another after two attempts. Report both
    seats' outputs and stop; **do not adopt the passing seat's result.** *(Added because this reachable state landed in
    no class.)* *(Phrased this way
@@ -105,6 +105,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
    the other with no class — a gap codex found.)*
 
 **No study-level outcome is a verdict about the pattern.** §7 is where the pattern is touched, once, afterwards.
+
 
 ## 5. Controls, each with an exact named code
 
@@ -148,8 +149,10 @@ Controls in an unreached limb are `NOT RUN`, never passes.
 ## 6. Limb structure
 
 **Limb A (~1 seat-day):** enumerate every quantitative claim and produce the input ledger. **No arithmetic.** If the
-enumeration is itself contested between the two seats beyond a stated tolerance, stop and report — a census whose
-denominator is disputed cannot proceed.
+two enumerations disagree on any candidate's inclusion after two reconciliation attempts — **tolerance zero,
+measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§4). *(This sentence previously
+survived here after being repaired in §2: the second live copy of a repaired rule is how the last defect got in,
+so §6 now names the class rather than restating the rule.)*
 **Limb B (2–3 seat-days):** the reproduction attempts, then the audit.
 
 ## 7. What happens after the tally — deliberately NOT specified here
@@ -196,10 +199,13 @@ made a valid access proof look unbound during R3C's gate rounds.
 No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD;
 nothing outward. R3D is untouched by this document and remains not run.
 
-R3C2_PREREG_V4_READY_FOR_REGATE
+R3C2_PREREG_V5_NONDEFINITIONAL_READY
 | V3 | `c945c22e…a03611b` | six V2-gate findings applied: exclusions moved out of per-claim outcomes; `CENSUS_DENOMINATOR_DISPUTED` added; C4 rebuilt as fresh seat + declaration + allowlist; C3 ledger given an `origin` field, machine-matched `PRINTED` values and a closed `STANDARD` list; C6 given a frozen seed and minimum sample; the seal re-stated honestly as tamper evidence plus an external relay, with what it cannot prove said outright |
 
-R3C2_PREREG_V4_READY_FOR_REGATE
-| V4 | *this version* | provenance replaces location as the admissible-input test (a printed-but-chosen value is now inadmissible, which is the defect that would have let entry 59's β through); abolished class swept document-wide; `REPRO_NOT_EVALUABLE` and `CENSUS_CONTROL_SPLIT` added; `REPRO_BLOCKED` and `REPRO_INPUT_ABSENT` disambiguated; C4 rebuilt as a redacted out-of-lane working copy, with the tooling's inability to restrict reads stated outright |
+R3C2_PREREG_V5_NONDEFINITIONAL_READY
+| V4 | `040762ad…3666e3` | provenance replaces location as the admissible-input test (a printed-but-chosen value is now inadmissible, which is the defect that would have let entry 59's β through); abolished class swept document-wide; `REPRO_NOT_EVALUABLE` and `CENSUS_CONTROL_SPLIT` added; `REPRO_BLOCKED` and `REPRO_INPUT_ABSENT` disambiguated; C4 rebuilt as a redacted out-of-lane working copy, with the tooling's inability to restrict reads stated outright |
 
-R3C2_PREREG_V4_READY_FOR_REGATE
+R3C2_PREREG_V5_NONDEFINITIONAL_READY
+| V5 | *this version* | **non-definitional only, per Blanc 21:53**: second live copy of the enumeration-dispute rule removed from §6 (it now names the class); study-level classes renumbered 1–6 after insertions left them out of order. **The core definition is untouched and awaits Duho's a/b/c/d ruling.** |
+
+R3C2_PREREG_V5_NONDEFINITIONAL_READY
