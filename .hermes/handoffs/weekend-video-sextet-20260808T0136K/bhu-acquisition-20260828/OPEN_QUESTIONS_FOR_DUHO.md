@@ -5,6 +5,36 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-04 13:31 KST — K4 preregistration is frozen and gated; the referee says the study is not worth running, and I half agree
+
+**No decision is needed to proceed** — you ordered K4 at 13:15 and the prereg is filed, as your order required, before
+any derivation and before any Planck pixel is touched: `K4_BOUNDARY_TRANSFER_PREREG_20260904.md` (V2 frozen),
+gate `K4_PREREG_GATE_20260904_agy.md`. **But one thing in the gate is yours to hear before I spend your seat-days.**
+
+**The gate.** `PREREG_SOUND_WITH_REPAIRS`, three repairs, all applied. The strongest was real: my non-circularity
+control C6 was an unenforceable promise that the seat wouldn't peek at the CMB map. It is now a structural separation —
+the prediction script must run to completion and save its output before any script is allowed to load the Planck map.
+The document was weaker without it.
+
+**The referee's dissent.** Asked outright whether the study is worth ten to fourteen seat-days, it said no: the freedom
+map already shows that even an optimal explicit cutoff cannot lift the Phase (b) percentile far above about 3%, so a
+derived boundary condition can at best reproduce a suppression already known to be insufficient.
+
+**Where I agree and where I don't.** It is probably right that K4 will not produce a detection. But it is measuring
+worth by detection, and the purpose your order names is different: the freedom map records an open structural residual
+in its own text (L174–177) — every row there assumes ΛCDM transfer physics and nothing constrains a genuine boundary.
+**Both** of the likely outcomes close that hole. Closing an admitted hole does not require a detection.
+
+**What I am doing about the cost, without asking you to decide anything.** The prereg's falsifier has two limbs, and
+limb 2 is cheap: if the perturbed junction reduces to an F1/F2-type condition, the route is dead a priori and the study
+stops without touching a pixel. That check is first, and it is roughly one seat-day, not ten. **I am running limb 2
+now and will report before committing the expensive half.** If limb 2 fires, you get the answer for a tenth of the
+estimate.
+
+**Say "hold k4" if you would rather not spend even that**, or "k4 full" if you want me to proceed through the expensive
+half regardless of what limb 2 shows. Silence means I run limb 2 and come back to you before the pixel work.
+
+---
 ## RESOLVED 2026-09-04 12:59 KST — Duho: "as tori's rec" = option (a). Applied: rows 9, 10, 11 annotated with the step-2 finding, inheritance on 39, 52, 59 (spin-fluid 1/8) and 53 (Dirac 3/4), the ⟨s²⟩-ambiguity caveat carried, K3 step 1's wording narrowed only as far as step 2 requires. Tiers, tokens, standings and stamps untouched (verified byte-identical). Option (b) — the downstream bounce-sign study — NOT ordered. Annotation diff gated by a fresh seat. Was: YOUR CALL 2026-09-04 10:27 KST — K3 step 2 is done: the exchange term restores the n² closure, and it comes out NEGATIVE
 
 **You ordered this at 09:57 ("k3s2"). It is finished: preregistered, gated, blind-doubled, second-routed, third-seated,
