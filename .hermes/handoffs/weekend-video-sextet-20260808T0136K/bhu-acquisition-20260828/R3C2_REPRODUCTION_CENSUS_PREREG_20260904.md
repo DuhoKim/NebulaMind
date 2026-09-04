@@ -441,6 +441,17 @@ evidence rather than custody. **The relay now happens before limb A**, where the
 
 ### FILED, NOT REPAIRED — `REPRO_AFTER_CHOICE` is currently unreachable, and the fix depends on Duho's ruling
 
+**CONFIRMED BY A SEAT, 2026-09-05.** `R3C2_C0_EXHIBITION_kimi_20260905.md`, access-proven against `b4113602…`,
+returns **`C0_REACHABILITY=FAIL`** with **exactly one unreachable verdict: `REPRO_AFTER_CHOICE`.** Six of seven §3
+outcomes and **all seven §4 classes** exhibit cleanly with concrete inputs. The seat's own words: *"the method as
+written contains no procedure that can ever file it, and §10.2 already files exactly that."*
+
+**This class is HELD-CONTINGENT alongside §1's definition and is NOT repaired.** Under the standing derivation-only
+wording a printed-and-chosen value — the seat's example is entry 59's `β` — is inadmissible, so the attempt stops
+and nothing can land in the class. **Making it reachable would require choosing option (b) on Duho's behalf.**
+**Option (c) as drafted gives that case a home** by recording provenance beside a mechanical reproduction rather
+than gating admissibility on it, which would retire the class along with the defect.
+
 kimi, finding 2a: **§2 orders only an admissible-only arithmetic attempt, so no stated procedure ever establishes
 "the number follows only once an inadmissible input is used".** `REPRO_AFTER_CHOICE` — **the class §3 says this
 census exists to detect** — cannot be reached from the method as written.

@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 16 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 17 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -149,8 +149,8 @@ those that are inconsistent — empty allowed mass set. **Every admissible readi
 
 | condition | class |
 |---|---|
-| no printed relation binds size to mass or bounds the mass at all — **and therefore, by the admissibility rule above, no admissible completion yields a positive floor either** | **3** `DYM_NO_SIZE_MASS_RELATION` |
-| **`P` is empty** and **`Z` or `I` is non-empty** — no consistent admissible reading yields a positive floor | **4** `DYM_NO_POSITIVE_FLOOR` |
+| **LIMB A EXIT.** No printed relation binds size to mass or bounds the mass at all, so limb B is never entered | **3** `DYM_NO_SIZE_MASS_RELATION` |
+| **LIMB B ONLY — at least one relation IS printed.** `P` is empty and `Z` or `I` is non-empty: no consistent admissible reading yields a positive floor | **4** `DYM_NO_POSITIVE_FLOOR` |
 | **`P` is non-empty** and the readings **disagree** — `P` holds two different floors, or **`Z` is non-empty**, or **`I` is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
 | **`P` non-empty, all of `P` agree on one floor, `Z` AND `I` both empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
 
@@ -163,8 +163,29 @@ underdetermination, which is what class 2 records. **The seat must still report 
 so the completion-dependence is visible in the filing even though it no longer has its own label.
 *(Retired by Duho's ruling — see §8e. The state is not homeless: it is named here and routed.)*
 
-**These four are mutually exclusive and, given the first row's domain restriction, cover every case the run can
-reach after the census, by construction — so NO precedence rule between them is needed, and none is stated.** *(V11 carried one, and it was the defect: class 4's
+**Class 3 is reached ONLY from limb A; classes 1, 2 and 4 ONLY from limb B. They are therefore disjoint by the
+limb that files them, not by any predicate — and classes 1, 2, 4 partition limb B exhaustively. NO precedence rule
+is needed, and none is stated.**
+
+> ### Why this boundary kept failing, stated as a finding rather than repaired again
+>
+> **`DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR` are not two physical states.** If nothing is printed
+> constraining the mass, then the completion-free reading imposes no lower bound, so it lies in `Z`, `P` is empty,
+> and class 4's predicate is **satisfied**. **Class 3 entails class 4 — by meaning, not by wording.** "No relation
+> printed" is a *reason* no floor follows; "permits zero" is the *consequence*. Cause and effect, not alternatives.
+>
+> **And they are different KINDS of thing.** Class 3 is **procedural** — limb A's exit, decided before any
+> completion is considered. Class 4 is a **state predicate** over readings that include completions. **Mixing a
+> procedural exit into a state partition is the category error**, and it is why three predicate-level repairs
+> failed in succession: **you cannot separate by predicate two things that differ only in when you stopped
+> looking.** The repair above therefore separates them by **limb**, which is the actual difference.
+>
+> **The structural alternative is to retire class 3** and fold it into class 4 with a required reason field
+> (`NO_RELATION_PRINTED` / `RELATIONS_PERMIT_ZERO`). **That is not done here: retiring a class is Duho's ruling,
+> not mine**, and it is flagged for him as the candidate structural fix if the limb separation does not hold.
+>
+> **This is attempt three on this specific defect.** If a gate finds this same overlap again, the third-failure
+> rule fires: **stop, file a diagnosis, and wait** — no fourth repair. *(V11 carried one, and it was the defect: class 4's
 "permit" was written as "no positive lower bound follows", which is **exactly** class 5's own precondition, so
 every class-5 case also satisfied class 4 and class 4's precedence took it — **making class 5 unreachable**. The
 repair that widened C6 to three positive-floor classes had left one of the three dead. Requiring **P to be empty**
@@ -994,4 +1015,32 @@ appears, I will stop and file rather than patch a fifth boundary.**
 
 **R3D is NOT frozen and NOT run. C0 must be re-run on V16.**
 
-R3D_PREREG_V16_READY_FOR_REEXHIBITION
+## 8i. V17 — the same boundary, attempt three, and the finding underneath it
+
+**codex gated V16 `81898e25…` `PREREG_UNSOUND`, hash verified after exit.** Its defect is **the same class 3 /
+class 4 overlap** found in V15 and repaired in V16. **Counted honestly: this is attempt three on this specific
+defect, in the same direction. The round counter does not reset because the wording changed.**
+
+**So the rule's actual purpose was served first: I asked why the partition keeps failing, before repairing it
+again.** The answer is in §4 and it is a finding rather than a defect —
+
+- **Class 3 entails class 4, by meaning.** Nothing printed ⇒ the completion-free reading imposes no lower bound
+  ⇒ it lies in `Z`, `P` is empty ⇒ class 4's predicate is satisfied. **"No relation printed" is a *reason* no floor
+  follows; "permits zero" is the *consequence*.** They are cause and effect, not alternatives.
+- **They are different kinds of thing.** Class 3 is **procedural** — limb A's exit, decided before any completion
+  exists. Class 4 is a **state predicate** over readings including completions. **A procedural exit inside a state
+  partition is a category error**, which is exactly why three predicate-level repairs failed in succession.
+
+**The repair follows from the finding rather than patching around it:** the two classes are now separated **by
+limb** — class 3 is filed only from limb A, classes 1, 2 and 4 only from limb B — which is the difference that
+actually exists between them. **No predicate conjunct was added.**
+
+**The structural alternative, flagged for Duho and NOT taken:** retire class 3 and fold it into class 4 with a
+required reason field. **Retiring a class is his ruling, not mine.** If the limb separation does not hold, that is
+the candidate fix.
+
+**If a gate finds this overlap a fourth time, the third-failure rule fires: stop, file, wait. No fourth repair.**
+
+**R3D is NOT frozen and NOT run. C0 must be re-run on V17.**
+
+R3D_PREREG_V17_READY_FOR_REEXHIBITION
