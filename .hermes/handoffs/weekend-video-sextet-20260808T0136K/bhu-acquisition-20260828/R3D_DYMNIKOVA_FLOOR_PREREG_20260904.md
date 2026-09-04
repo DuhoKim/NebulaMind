@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 11 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 12 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -124,51 +124,49 @@ unique infimum of that set. *(Both seats found this: "floor" alternated between 
 minimum, so a solution set like `M ∈ (1,2) kg` sat in class 5 under one reading and class 1 or 2 under the other,
 and two obedient seats could file differently on identical physics.)*
 
-1. **DYM_FLOOR_DERIVED** — a unique positive floor follows from the printed relations **with no added completion**,
-   **no admissible completion yields a different floor, and none permits masses approaching zero.**
-   Report the formula and value, **and test it against all five breaker conditions**; if it passes them, this is a
-   counterexample to the pattern and the pattern record must be amended.
-   **If any breaker condition FAILS under its stated decision rule, `DYM_FLOOR_DERIVED` is still filed** and the
-   failed condition is reported with its artefact: **the floor stands, it is not a counterexample, and the pattern
-   record is not amended.** *(A breaker condition failing on its own decision rule — the derived floor overlapping a
-   comparator, say — is a **substantive physics result, not a control failure**, and does not engage the
-   control-clean rule of `R3D_NO_CLASS`. C6 is reached exactly when this class is reached, so without this sentence
-   the one path the study exists to produce had no correctly fileable outcome: the report would not be
-   control-clean, class 1 could not be filed from it, and a real result would have been recorded as a control
-   stall.)*
-2. **DYM_FLOOR_UNDERDETERMINED** — **a completion-free positive floor follows from the printed relations**, and at
-   least one admissible completion yields a **different** positive floor — so, counting the completion-free
-   derivation among the admitted floors, there are **at least two positive but unequal floors** — and **none permits
-   masses approaching zero**. Report the freedom; choose none. **C6 is RUN on this class** and its result
-   reported: an underdetermined floor carries a surviving freedom, so condition 3 is expected to fail — but the
-   failure must be **exhibited**, not assumed.
+**How the five scientific classes partition the cases — a decision procedure, not five descriptions.**
+An **admissible reading** is either the **completion-free derivation** (the printed relations with nothing added)
+or **the printed relations plus exactly one admissible completion**. Each admissible reading either **yields a
+positive floor** — a strictly positive greatest lower bound of the allowed mass set, attained or not — or
+**permits masses approaching zero**, meaning no positive lower bound follows from it.
+
+Let **P** be the admissible readings that yield a positive floor, and **Z** those that permit zero. Then:
+
+| condition | class |
+|---|---|
+| no printed relation binds size to mass or bounds the mass at all | **3** `DYM_NO_SIZE_MASS_RELATION` |
+| **P is empty** — every admissible reading permits zero, including the case of mutually inconsistent relations | **4** `DYM_NO_POSITIVE_FLOOR` |
+| **P is non-empty** and the readings **disagree** — either P contains two different floors, or **Z is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
+| **P non-empty, all of P agree on one floor, Z empty**, and the **completion-free reading is in P** | **1** `DYM_FLOOR_DERIVED` |
+| **P non-empty, all of P agree on one floor, Z empty**, and the **completion-free reading yields no floor** | **5** `DYM_FLOOR_COMPLETION_DEPENDENT` |
+
+**These five are mutually exclusive and cover every case in which limb B is reached, by construction — so NO
+precedence rule between them is needed, and none is stated.** *(V11 carried one, and it was the defect: class 4's
+"permit" was written as "no positive lower bound follows", which is **exactly** class 5's own precondition, so
+every class-5 case also satisfied class 4 and class 4's precedence took it — **making class 5 unreachable**. The
+repair that widened C6 to three positive-floor classes had left one of the three dead. Requiring **P to be empty**
+for class 4 — no admissible reading rescues a positive floor — separates them, and the mixed case, where one
+reading gives a floor and another permits zero, now lands in class 2 where the genuine freedom belongs.)*
+
+1. **DYM_FLOOR_DERIVED** — as partitioned above. Report the formula and value, **and test it against all five
+   breaker conditions**; if it passes them, this is a counterexample to the pattern and the pattern record must be
+   amended. **If any breaker condition FAILS under its stated decision rule, `DYM_FLOOR_DERIVED` is still filed**
+   and the failed condition is reported with its artefact: **the floor stands, it is not a counterexample, and the
+   pattern record is not amended.** *(A breaker condition failing on its own decision rule is a **substantive
+   physics result, not a control failure**, and does not engage the control-clean rule of `R3D_NO_CLASS`.)*
+2. **DYM_FLOOR_UNDERDETERMINED** — as partitioned above. **Report every admissible reading and what it yields**,
+   including any that permits zero; report the freedom and **choose none**. **C6 is RUN on this class** and its
+   result reported: a surviving freedom is what condition 3 rejects, so it is expected to fail — but the failure
+   must be **exhibited**, not assumed.
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
-4. **DYM_NO_POSITIVE_FLOOR** — **at least one printed relation binds size to mass or bounds the mass**, and those
-   relations, alone or under **at least one** admissible completion, **permit** masses approaching zero — where
-   **"permit" means no positive lower bound on the mass follows.** If the printed relations are mutually
+4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. If the printed relations are mutually
    inconsistent, **report that a consistent solution, and hence a positive lower bound, were unreproduced from the
-   stated inputs**, file here, and **reproduce the contradiction**. *(The previous wording concluded that no lower
-   bound "exists" — a nonexistence claim about the branch, the wording this lane forbids — and it entered in the
-   very round that repaired the same defect in limb A.)* **This class takes precedence over `DYM_FLOOR_UNDERDETERMINED`.** Report the family, or the contradiction.
-   *(Two repairs. One completion giving a positive floor while another permits masses approaching zero satisfied
-   both 2 and 4 with no rule to choose. Separately, with no relations printed at all the vacuous reading of
-   "permit" made class 4 true as well as class 3, and §3 and §4 then gave two obedient seats contradictory orders;
-   requiring a printed relation confines the empty case to class 3, which is exactly limb A's test.)*
-5. **DYM_FLOOR_COMPLETION_DEPENDENT** — **no positive floor follows from the printed relations alone**, at least one
-   named admissible completion yields a positive floor, and none permits masses approaching zero. **Report, for
-   every admissible completion, whether it yields a unique floor, a set or range of positive floors, or no attained
-   minimum**, with every resulting value or freedom, and name the completion(s) relied on. **C6 is RUN on this
-   class** and its result reported; whether this floor is a counterexample is decided by the breaker conditions,
-   **not by this class's name**.
-   *(Classes 1, 2 and 5 are separated by a single discriminator — whether a completion-free floor exists. It exists
-   and every completion agrees: class 1. It exists and some completion differs: class 2. It does not exist: class 5.
-   The earlier wording required **every** completion to yield the **same** floor, so a mixed family — one completion
-   determinate, another leaving a range — fitted no class at all.)* **C6 is RUN and its result reported.** A completion-dependent floor is
-   expected to fail condition 2 or condition 3 — but **it must actually fail one of them**, with the artefact
-   printed, before the pattern record is left unamended. *(Previously this class asserted the conclusion itself.)* *(This state was reachable and fitted
-   no class: not 1, a completion was required; not 2, the floors are not unequal; not 3, a relation exists; not 4,
-   nothing permits zero. A terminal scientific result with nowhere to file is the stall the design claims to close.)*
+   stated inputs**, file here, and **reproduce the contradiction.**
+5. **DYM_FLOOR_COMPLETION_DEPENDENT** — as partitioned above. **Report, for every admissible completion, what it
+   yields**, with every resulting value, and **name the completion(s) relied on**. **C6 is RUN on this class** and
+   its result reported; whether this floor is a counterexample is decided by the breaker conditions, **not by this
+   class's name**.
 6. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
    frozen manifest of §2a, or a required source-dependent proposition is `UNRESOLVED`, or a required bounded
    procedure remains undecidable after its specified fallback.** The study **waits**; this is not a
@@ -355,8 +353,20 @@ and two obedient seats could file differently on identical physics.)*
 
 ### 5a. On how many paths can the falsifier fail — stated here, not left to a gate report
 
-**`C6_BREAKER_TEST=FAIL` is reachable on 3 of the 7 declared outcome classes:** `DYM_FLOOR_DERIVED`,
-`DYM_FLOOR_UNDERDETERMINED`, `DYM_FLOOR_COMPLETION_DEPENDENT` — **every class that yields a positive floor.**
+**Two numbers, because one of them was wrong and the difference is the point.**
+
+**Declared: C6 applies on 3 of the 7 outcome classes** — `DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED`,
+`DYM_FLOOR_COMPLETION_DEPENDENT`, every class that yields a positive floor.
+
+**Reachable: 3 — but in V11 it was 2, and the document said 3.** `DYM_FLOOR_COMPLETION_DEPENDENT` was itself
+**unreachable**: class 4's "permit" was defined as "no positive lower bound follows", which is exactly class 5's
+own precondition, so class 4 swallowed every class-5 case and its precedence took them. **The document therefore
+claimed a falsifiability it did not have — three declared routes to a breaker failure, two that any case could
+actually travel.** §4's partition removes it, and **this number is not to be trusted until a seat exhibition
+confirms all three are reachable on this version.**
+
+**That overstatement is exactly the fault this study exists to detect in other people's papers**, committed here,
+which is why both numbers are printed rather than the flattering one.
 
 **It is `NOT_RUN` on the other 4, and that is correct rather than a gap:** `DYM_NO_SIZE_MASS_RELATION` and
 `DYM_NO_POSITIVE_FLOOR` produce **no number to test**, so there is no candidate counterexample to evaluate; while
@@ -727,4 +737,30 @@ exhibition is about the version it was run on.** V10's `PASS` does not carry to 
 
 **R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V11_READY_FOR_REEXHIBITION_AND_REGATE
+## 8d. V12 — the second C0 failure, and what it cost
+
+**C0 on V11 returned `FAIL`.** `DYM_FLOOR_COMPLETION_DEPENDENT` was **UNREACHABLE**: no input could satisfy it,
+because class 4's definition of "permit" — *"no positive lower bound on the mass follows"* — **is** class 5's own
+precondition, and class 4 carried precedence. **V10's repair, which widened C6 from one positive-floor class to
+three, had created a dead class among the very three it widened to.** Nominally three routes to a breaker failure;
+actually two.
+
+**This is the same family one level down** — not a disabled falsifier, but a **declared route to it that no case
+can travel** — and it is the second C0 failure in that direction. **If a third occurs, the standing instruction is
+to stop and file rather than repair.**
+
+**The repair is to the definitions, not to the exhibition.** §4's five scientific classes are now stated as a
+single **decision procedure over admissible readings**: a reading yields a positive floor or permits zero; `P` is
+the set that yields one, `Z` the set that permits zero. Class 4 requires **`P` empty** — *no* admissible reading
+rescues a positive floor — which is strictly stronger than "some reading permits zero" and no longer swallows
+class 5. The **mixed case**, where one reading gives a floor and another permits zero, now lands in class 2, where
+the genuine freedom belongs. **The five are exclusive and total by construction, so no precedence rule is needed
+and none is stated** — the precedence rule was the mechanism of the defect.
+
+**§5a now prints two numbers, declared and reachable**, and records that V11 declared three while only two were
+reachable. A document that claims more falsifiability than it has is the precise fault this study exists to detect
+in the corpus; it is recorded here rather than quietly corrected.
+
+**C0 must be re-run on V12 before any gate.** R3D is NOT frozen and NOT run.
+
+R3D_PREREG_V12_READY_FOR_REEXHIBITION
