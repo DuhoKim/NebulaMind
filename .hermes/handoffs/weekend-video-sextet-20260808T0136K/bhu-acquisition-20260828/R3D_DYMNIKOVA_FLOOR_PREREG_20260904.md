@@ -1,6 +1,6 @@
-# FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
+# ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 15 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 16 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -29,8 +29,10 @@ Komar); which surface; the regularity conditions; and the de Sitter-limit condit
 interior, order-unity coefficient or GR exterior may enter silently** — each is an added completion, named and tested
 separately, exactly as K6 required.
 
-**A completion is ADMISSIBLE if and only if it introduces exactly one named assumption and is consistent with every
-printed relation of the manifest sources.** A completion that contradicts a printed relation is **inadmissible** and
+**A completion is ADMISSIBLE if and only if it introduces exactly one named assumption, is consistent with every
+printed relation of the manifest sources, AND operates on at least one printed relation — a completion that is
+itself the sole source of a mass bound is NOT admissible, because it supplies the content rather than completing
+it.** A completion that contradicts a printed relation is **inadmissible** and
 may not be considered. **The completion-free derivation — the one that adds nothing — is not itself a completion**,
 but where §4 counts admitted floors it **is counted among them**, so that a printed floor and a differing
 completion's floor are two floors and not one. *(The term carried the whole class structure while being defined nowhere, so whether an
@@ -147,7 +149,7 @@ those that are inconsistent — empty allowed mass set. **Every admissible readi
 
 | condition | class |
 |---|---|
-| no printed relation binds size to mass or bounds the mass at all | **3** `DYM_NO_SIZE_MASS_RELATION` |
+| no printed relation binds size to mass or bounds the mass at all — **and therefore, by the admissibility rule above, no admissible completion yields a positive floor either** | **3** `DYM_NO_SIZE_MASS_RELATION` |
 | **`P` is empty** and **`Z` or `I` is non-empty** — no consistent admissible reading yields a positive floor | **4** `DYM_NO_POSITIVE_FLOOR` |
 | **`P` is non-empty** and the readings **disagree** — `P` holds two different floors, or **`Z` is non-empty**, or **`I` is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
 | **`P` non-empty, all of `P` agree on one floor, `Z` AND `I` both empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
@@ -161,8 +163,8 @@ underdetermination, which is what class 2 records. **The seat must still report 
 so the completion-dependence is visible in the filing even though it no longer has its own label.
 *(Retired by Duho's ruling — see §8e. The state is not homeless: it is named here and routed.)*
 
-**These five are mutually exclusive and cover every case in which limb B is reached, by construction — so NO
-precedence rule between them is needed, and none is stated.** *(V11 carried one, and it was the defect: class 4's
+**These four are mutually exclusive and, given the first row's domain restriction, cover every case the run can
+reach after the census, by construction — so NO precedence rule between them is needed, and none is stated.** *(V11 carried one, and it was the defect: class 4's
 "permit" was written as "no positive lower bound follows", which is **exactly** class 5's own precondition, so
 every class-5 case also satisfied class 4 and class 4's precedence took it — **making class 5 unreachable**. The
 repair that widened C6 to three positive-floor classes had left one of the three dead. Requiring **P to be empty**
@@ -177,7 +179,11 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    physics result, not a control failure**, and does not engage the control-clean rule of `R3D_NO_CLASS`.)*
 2. **DYM_FLOOR_UNDERDETERMINED** — as partitioned above. **This class also carries the completion-dependent state**
    formerly held by the retired class 5: a floor arising only under completions. **Report every admissible reading
-   and what it yields**, including any that permits zero, and **name any completion a floor depends on**; report the freedom and **choose none**. **C6 is RUN on this class** and its
+   and what it yields**, including any that permits zero, and **name any completion a floor depends on**; report the freedom and **choose none**. **Where `P` holds more than one floor, C6 is evaluated SEPARATELY ON EACH
+   floor in `P`, the per-floor artefacts are printed, and `C6_BREAKER_TEST=PASS` exactly when every per-floor
+   evaluation satisfies all five decision rules.** *("The quantity the seat actually FILED" otherwise had no unique
+   referent here, since the seat is told to choose none — two obedient seats could evaluate different floors, split
+   C6 inside one class, and send a case with a scientific answer to `DYM_SOURCE_BLOCKED`.)* **C6 is RUN on this class** and its
    result reported: a surviving freedom is what condition 3 rejects, so it is expected to fail — but the failure
    must be **exhibited**, not assumed.
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
@@ -204,7 +210,9 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 - **C0 — reachability, run BEFORE the freeze.** For **every declared outcome class of §4**, **exhibit a concrete
   input that produces it**: a specific numeric value or stated configuration, and the path it takes through this
   document to that verdict. For **every C6 breaker condition**, **exhibit valid inputs producing PASS and FAIL** —
-  **except that a condition logically ENTAILED by the entry criteria of every class on which C6 runs is marked
+  **Condition 5's FAIL exhibitions must include one input per comparator row, the Planck row included** — an
+  exhibition touching only one comparator would not have seen a degenerate interval excluding its own value.
+  **Except that a condition logically ENTAILED by the entry criteria of every class on which C6 runs is marked
   `ENTAILED` instead: prove the entailment, and exhibit a malformed filing that the condition rejects.**
   *(Without the `ENTAILED` route, C0 demanded a reachable substantive failure for a condition that valid membership
   makes impossible, so a sound document could never freeze — a defect in the control itself, found by a gate.)* **A class or condition for which no such input can be exhibited is UNREACHABLE, and this
@@ -313,7 +321,9 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   calling an assertion a derivation is the same overclaim in smaller form, so the assertions are now named and
   routed through the provenance rule that governs every other constant in this study.)*
 
-  **Comparator endpoints are rounded OUTWARD throughout the table.** *(V6 rounded them inward, so the printed
+  **Comparator endpoints are rounded OUTWARD throughout the table. For a DEGENERATE interval, "outward" widens the
+  point one unit in the last printed digit on each side** — a point cannot be rounded outward, and the convention
+  silently failed at exactly that row. *(V6 rounded them inward, so the printed
   interval `[1.730e11, 5.189e11]` did not contain its own computed lower value `1.7298245e11`. Inward rounding
   narrows a comparator, which makes an overlap — and therefore a condition-5 failure — marginally less likely, i.e.
   it biases the study toward declaring a counterexample. The bias was small and unintentional; the convention is
@@ -321,7 +331,7 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 
   | # | comparator hypothesis | interval (kg) | derived here from §2b by |
   |---|---|---|---|
-  | 1 | semiclassical GR + QM: a Planck-scale remnant | `[2.176434e-8, 2.176434e-8]` | `m_P = sqrt(ħc/G)`; a point value, so the interval is degenerate |
+  | 1 | semiclassical GR + QM: a Planck-scale remnant | `[2.176433e-8, 2.176435e-8]` | `m_P = sqrt(ħc/G) = 2.1764343e-8` kg at §2b's precision; **a point cannot be rounded outward, so the printed point is widened one unit in the last printed digit each side** |
   | 2 | Hawking evaporation: the mass just evaporating at the present epoch | `[1.729e11, 5.190e11]` | lower end `M = (t_0 ħ c⁴ / 5120π G²)^(1/3) = 1.7298e11` kg, **rounded down**, from the single-species lifetime `τ = 5120π G² M³/(ħc⁴)` set to `t_0`. **Upper end = 3.0 × the unrounded lower = 5.1895e11 kg, rounded up.** The factor 3.0 is an **asserted bound**, not a derivation: emission into additional species shortens the lifetime at fixed mass and so raises the surviving mass, and the interval is widened to contain that case rather than a single figure being asserted |
   | 3 | stellar collapse: the TOV / neutron-star maximum mass | `[4.375e30, 5.768e30]` | `[2.2, 2.9] M_☉`, an **asserted span** over which the TOV maximum is contested; `2.2 × 1.98892e30 = 4.375624e30` **rounded down to 4.375e30**, `2.9 × 1.98892e30 = 5.767868e30` **rounded up to 5.768e30** |
   | — | ΛCDM | *no interval — predicts no minimum black-hole mass* | recorded so the null case is explicit rather than silently skipped; **it can never match, and that is stated rather than left to be inferred** |
@@ -927,4 +937,61 @@ to be set aside. **Stating the limit is what makes the rest of the report usable
 
 **R3D is NOT frozen and NOT run. C0 must be re-run on V15.**
 
-R3D_PREREG_V15_READY_FOR_REEXHIBITION
+## 8h. V16 — the V15 reconciliation, and what eleven versions have actually settled
+
+**codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`, both on `4e12ef21…`, both hash-verified after exit.**
+
+### What is settled — worth stating, because it is the difference between a design that is wrong and one that needs sharpening
+
+Across V2→V16, and now across two engines reading independently:
+
+- **No seat says the falsifier is disabled.** Both V15 seats traced condition 5 to concrete PASS and FAIL floors.
+- **No seat finds a class unreachable.** C0 has passed on V13, V14 and V15 with zero unreachable rows.
+- **No seat finds circularity.** Both called §2c and the pattern bar **SOUND**, with no replacement.
+- **The re-run guard and fairness are sound**, on both lists, repeatedly.
+- **The counts are consistent and every control carries `PASS|FAIL|NOT_RUN`.**
+
+**The remaining objections are boundary sharpness and arithmetic precision — not whether the study can answer its
+question.** That progression is the record: the design was wrong in V3–V12 and is now being sharpened.
+
+### The two findings, and each seat again caught what the other missed
+
+**codex — class 3 was not exclusive.** A manifest printing no size–mass relation and no mass bound satisfies the
+no-relation class, while the later classes quantify over **completion-added** readings, so a completion supplying
+`M ≥ 10 kg` put the same case in two classes. **Repaired at the cause, not the row:** a completion must now
+**operate on at least one printed relation** — one that is *itself* the sole source of a mass bound supplies the
+content rather than completing it, and is inadmissible. The row states the consequence as well, so it reads
+self-contained.
+
+**kimi — the comparator that excluded its own value, and it is the serious one.** Comparator 1 was the degenerate
+interval `[2.176434e-8, 2.176434e-8]` while §2b's constants give `m_P = 2.1764343e-8`, which is **larger**. **A
+point cannot be rounded outward, so the outward convention failed silently at exactly that row.** A seat deriving a
+Planck-mass floor would find **no overlap**, condition 5 would **PASS**, and **the canonical semiclassical-remnant
+case — the one input that comparator exists to catch — would escape**, letting C6 certify a counterexample the
+pinned condition-5 text exists to reject. **I re-computed it: `2.1764343421e-8` is outside the printed interval.**
+Widened to `[2.176433e-8, 2.176435e-8]`, which contains it, with the degenerate-interval rule stated and **C0 now
+required to exhibit a condition-5 FAIL per comparator row** — an exhibition touching only the Hawking row would
+never have seen this.
+
+**This is the V6 inward-rounding bias recurring at the one site the outward rule could not reach, and it biases in
+the high-stakes direction: toward amending the pattern record.**
+
+**kimi also found the count scar's SIXTH appearance** — "These **five** are mutually exclusive" survived lower in
+the same section whose heading V15 repaired — and **the title still read `FROZEN`** while the version line beneath
+it said the document is not frozen. Both were one-site fixes of mine that did not reach their siblings.
+
+**And a per-floor gap:** on class 2 the seat is told to **choose none**, so "the quantity the seat actually FILED"
+had no unique referent; C6 is now evaluated **separately on each floor in `P`**.
+
+### The partition-boundary family, counted honestly
+
+This is the **fourth** partition-boundary defect in R3D: V10's routing overlap, V11/V12's dead class, V14's
+limb-A entry mismatch, and now V15's class-3 overlap. **Each was a different boundary and each repair fixed the one
+it addressed, so the third-failure rule has not fired** — that rule is for one defect surviving three repairs in the
+same direction. **But the family is the most expensive thing in this chain**, which is why this repair changed the
+**definition of an admissible completion** rather than adding a conjunct to one row. **If a fifth boundary defect
+appears, I will stop and file rather than patch a fifth boundary.**
+
+**R3D is NOT frozen and NOT run. C0 must be re-run on V16.**
+
+R3D_PREREG_V16_READY_FOR_REEXHIBITION
