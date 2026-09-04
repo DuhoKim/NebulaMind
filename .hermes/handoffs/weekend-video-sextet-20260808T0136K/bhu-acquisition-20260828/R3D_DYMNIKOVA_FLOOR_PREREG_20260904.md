@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 9 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 10 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -113,7 +113,13 @@ stated inputs**, file `DYM_NO_SIZE_MASS_RELATION` and stop. *(The wording matter
 could not reproduce, not a claim that the branch contains no such relation.)*
 **Limb B:** if it does, derive the floor and test it against the five breaker conditions.
 
-## 4. Outcome classes — declared now
+## 4. Outcome classes — seven declared: five scientific outcomes and two non-scientific terminal states
+
+**Definition, so classes 1, 2 and 5 have a common discriminator:** a **positive floor** means a **strictly positive
+greatest lower bound of the allowed mass set, whether or not that bound is attained**; a **unique floor** means the
+unique infimum of that set. *(Both seats found this: "floor" alternated between a lower bound and an attained
+minimum, so a solution set like `M ∈ (1,2) kg` sat in class 5 under one reading and class 1 or 2 under the other,
+and two obedient seats could file differently on identical physics.)*
 
 1. **DYM_FLOOR_DERIVED** — a unique positive floor follows from the printed relations **with no added completion**,
    **no admissible completion yields a different floor, and none permits masses approaching zero.**
@@ -130,7 +136,9 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 2. **DYM_FLOOR_UNDERDETERMINED** — **a completion-free positive floor follows from the printed relations**, and at
    least one admissible completion yields a **different** positive floor — so, counting the completion-free
    derivation among the admitted floors, there are **at least two positive but unequal floors** — and **none permits
-   masses approaching zero**. Report the freedom; choose none.
+   masses approaching zero**. Report the freedom; choose none. **C6 is RUN on this class** and its result
+   reported: an underdetermined floor carries a surviving freedom, so condition 3 is expected to fail — but the
+   failure must be **exhibited**, not assumed.
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
 4. **DYM_NO_POSITIVE_FLOOR** — **at least one printed relation binds size to mass or bounds the mass**, and those
@@ -147,12 +155,15 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 5. **DYM_FLOOR_COMPLETION_DEPENDENT** — **no positive floor follows from the printed relations alone**, at least one
    named admissible completion yields a positive floor, and none permits masses approaching zero. **Report, for
    every admissible completion, whether it yields a unique floor, a set or range of positive floors, or no attained
-   minimum**, with every resulting value or freedom, and name the completion(s) relied on.
+   minimum**, with every resulting value or freedom, and name the completion(s) relied on. **C6 is RUN on this
+   class** and its result reported; whether this floor is a counterexample is decided by the breaker conditions,
+   **not by this class's name**.
    *(Classes 1, 2 and 5 are separated by a single discriminator — whether a completion-free floor exists. It exists
    and every completion agrees: class 1. It exists and some completion differs: class 2. It does not exist: class 5.
    The earlier wording required **every** completion to yield the **same** floor, so a mixed family — one completion
-   determinate, another leaving a range — fitted no class at all.)* **The breaker test is `NOT_RUN` and the
-   pattern record is not amended, because the floor is not completion-free.** *(This state was reachable and fitted
+   determinate, another leaving a range — fitted no class at all.)* **C6 is RUN and its result reported.** A completion-dependent floor is
+   expected to fail condition 2 or condition 3 — but **it must actually fail one of them**, with the artefact
+   printed, before the pattern record is left unamended. *(Previously this class asserted the conclusion itself.)* *(This state was reachable and fitted
    no class: not 1, a completion was required; not 2, the floors are not unequal; not 3, a relation exists; not 4,
    nothing permits zero. A terminal scientific result with nowhere to file is the stall the design claims to close.)*
 6. **DYM_SOURCE_BLOCKED** — a pinned source the branch needs cannot be read. The study **waits**; this is not a
@@ -213,8 +224,21 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   named no printed comparison, so the check itself was assertion.)*
   Unreached C5/C5b are recorded `NOT_RUN`, never `PASS`. *(Both codes were previously implicit in "as R3A/R3B";
   a control whose code is not named in the document it governs cannot be checked against it.)*
-- **C6 — breaker test.** Applies **only if `DYM_FLOOR_DERIVED` is reached**; otherwise `NOT_RUN`, never a
-  pass. The five conditions are **copied verbatim below** from `SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md`,
+- **C6 — breaker test.** **Applies on EVERY outcome that yields a positive floor — `DYM_FLOOR_DERIVED`,
+  `DYM_FLOOR_UNDERDETERMINED` and `DYM_FLOOR_COMPLETION_DEPENDENT`** — and is `NOT_RUN`, never a pass, only where
+  no positive floor is produced at all (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`,
+  `DYM_SOURCE_BLOCKED`, `R3D_NO_CLASS`).
+
+  **The conditions are evaluated on the quantity the seat actually FILED as its floor, not on an idealised one.**
+  If a seat files a quantity that is not a mass, condition 1 **fails** — that is the check, and it is why condition
+  1 is evaluated rather than assumed.
+
+  *(V10, and this is the repair of the C0 failure. Gating C6 behind a single class meant the breaker test could
+  return FAIL on **one path out of seven**, and `NOT_RUN` on every other — so counterexample status was decided by
+  **class assignment** rather than by the falsifier. `DYM_FLOOR_COMPLETION_DEPENDENT` said outright that "the
+  pattern record is not amended, because the floor is not completion-free" **without the conditions ever being
+  evaluated**. That is a verdict about the pattern reached by fiat. Under V10 the same conclusion must be **earned
+  by condition 2 or 3 failing**, on the record, with its artefact.)* The five conditions are **copied verbatim below** from `SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md`,
   **V2**, sha256 `5232201acfdca850c7e8a4d345aad145a3d91fdb750fdbb9a77fb43fec8d4647`, so that evaluation does not depend on an
   unpinned lane-authored text that may drift between seats. **Evaluation against any condition text not pinned here
   fails C6.**
@@ -291,8 +315,12 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   **C6's three outcomes, stated in full so the pass is not left implicit:**
   **`C6_BREAKER_TEST=PASS`** — the table is complete and **every one of conditions 1–5 satisfies its own stated
   decision rule**. **`C6_BREAKER_TEST=FAIL`** — the table is incomplete or missing, **or** any condition fails its
-  decision rule; **name the condition and print its artefact**. **`C6_BREAKER_TEST=NOT_RUN`** — `DYM_FLOOR_DERIVED`
-  is not reached. *(Recall that a condition failing its decision rule is a **substantive result**: under §4 class 1
+  decision rule; **name the condition and print its artefact**. **`C6_BREAKER_TEST=NOT_RUN`** — no positive floor was
+  produced at all, i.e. the filed class is `DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`,
+  `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS`. **If condition 3 is `UNDECIDED`, record
+  `C6_BREAKER_TEST=FAIL`** with the failed primary and fallback artefacts, then file `DYM_SOURCE_BLOCKED` — so
+  PASS, FAIL and NOT_RUN are exhaustive and mutually exclusive, and "does not pass" is never a fourth state.
+  *(Recall that a condition failing its decision rule is a **substantive result**: under §4 class 1
   the floor still stands and is filed, it is simply not a counterexample.)*
 
   *(This polarity is the V9 redesign, ordered after the diagnosis in
@@ -571,4 +599,47 @@ self-checked at V9 (`1.0e15 kg` → PASS, `2.0e11 kg` → FAIL overlapping Hawki
 
 **R3D remains NOT run.**
 
-R3D_PREREG_V9_READY_FOR_REGATE
+## 8b. V10 — REPAIR NOTE A: the C0 reachability failure
+
+**Kept separate from the design-gate repair, per Blanc 00:06, so it stays visible which change was made for which
+reason. This note covers ONLY the C0 failure.** ORDERED by Duho: *"fix the two unreachable verdicts and
+re-exhibit."*
+
+**The exhibition's finding.** `R3D_C0_EXHIBITION_codex_20260904.md`, `C0_REACHABILITY=FAIL`, 18 reachable and
+**2 UNREACHABLE** — C6 condition 1 FAIL and condition 3 FAIL — both blocked by the same pair of clauses: C6 applied
+only after `DYM_FLOOR_DERIVED`, and a candidate that would fail either condition cannot reach that class.
+
+**The mechanism, not the two rows.** Blanc's test is the right one: *on how many paths through this document can
+the breaker test return FAIL?*
+
+| | C6 FAIL reachable on | conditions able to fail |
+|---|---|---|
+| **before (V9)** | **1 path of 7** — `DYM_FLOOR_DERIVED` only; every other class returned `NOT_RUN` | **3 of 5** — conditions 1 and 3 entailed by the gating class |
+| **after (V10)** | **3 paths** — `DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED`, `DYM_FLOOR_COMPLETION_DEPENDENT`, i.e. every outcome that yields a positive floor | **5 of 5** |
+
+**The worse thing the gating was doing.** With C6 reachable from one class only, **counterexample status was being
+decided by class assignment rather than by the falsifier.** `DYM_FLOOR_COMPLETION_DEPENDENT` stated outright that
+"the pattern record is not amended, because the floor is not completion-free" — **a verdict about the lane's own
+pattern, reached by fiat, with the breaker conditions never evaluated.** Under V10 that same conclusion must be
+**earned**: C6 runs, and condition 2 or 3 must actually fail, with its artefact printed.
+
+**How the two rows become reachable.** Condition 3 FAIL is now reachable via `DYM_FLOOR_UNDERDETERMINED`, whose
+surviving freedom is exactly what condition 3 rejects. Condition 1 FAIL is now reachable because **the conditions
+are evaluated on the quantity the seat actually FILED**, not on an idealised one — so a seat filing a dimensionless
+ratio as its floor is caught by condition 1 rather than assumed impossible. **Neither row was made reachable by
+deleting an outcome, widening a class, or arguing the case unphysical.**
+
+**DIRECTION — checked, and stated as required.** This repair makes the falsifying verdict `C6_BREAKER_TEST=PASS`
+**available on more paths than before, and harder on none.** A counterexample can now be certified from three
+classes rather than one. **It does not move the boundary toward preserving the pattern**, which is the direction
+the diagnosis warned about; it moves the other way, and it removes a place where the pattern was being preserved
+without a test.
+
+**Also in this note, because both are C0-adjacent:** "floor" is now defined once, at the class boundary, as a
+strictly positive greatest lower bound whether or not attained — both seats found it ambiguous, and C0 could not
+flag it because a seat resolving an ambiguity favourably still produces a path. And condition 3's `UNDECIDED` state
+now maps to `C6_BREAKER_TEST=FAIL`, so C6's three codes are exhaustive and "does not pass" is never a fourth state.
+
+**R3D is NOT frozen and NOT run.** C0 must return `PASS` from a fresh seat exhibition before either.
+
+R3D_PREREG_V10_READY_FOR_REEXHIBITION
