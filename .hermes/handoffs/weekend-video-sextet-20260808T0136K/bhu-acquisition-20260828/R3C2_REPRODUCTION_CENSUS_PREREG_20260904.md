@@ -58,6 +58,15 @@ listed with file and line; inclusion and exclusion are both recorded.**
 
 ## 3. Per-claim outcomes — declared now
 
+> ⚠️ **HELD PENDING DUHO'S RULING.** The clause below is the census's core definition and is **deliberately not
+> being repaired.** Options **a/b/c/d** are stated in `_tmp_blanc_relay_r3c2_v5.txt` and **Blanc has the question
+> with him**. A referee should **not** report this as a fresh finding, and it must **not** be counted as another
+> failed round — it is one deliberately open question. **No later reader should read the current wording as a
+> settled choice.** When Duho rules, exactly one clause changes.
+>
+> The wording standing here is option **(b)**, derivation-only. Option **(c)** is drafted, unadopted, in
+> `R3C2_OPTION_C_ALTERNATIVE_DRAFT_20260904.md`.
+
 **The admissible input set is defined by PROVENANCE, not by location.** "Printed" says only where a value appears;
 a value can be printed in the paper and still have been chosen or fitted — entry 59's `β = 1/929.25` is printed and
 chosen, and under a location-based rule its downstream numbers would have counted as reproduced, readmitting exactly
