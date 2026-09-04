@@ -422,3 +422,31 @@ Blanc's to publish or not, and nothing went outward from this lane.
 
 **Available if Blanc asks, not built unasked:** a companion note summarising where the corpus's arguments actually
 stand, drawn only from filed K-series classes. Not started — it would be a new deliverable and nobody has ordered one.
+
+**Second video note filed (2026-09-04 18:41 KST).** `BHU_FINITE_VS_INFINITE_FOR_VIDEO_20260904.md`, on Duho's "add to
+the BHU video?" after he put the objection directly: *the universe is infinite in size and mass, but a black hole has
+finite mass and size.*
+
+The note states the objection is **correct and decisive as stated** — an infinite universe is not the interior of a
+finite black hole — and then shows both founding papers concede it by construction: Pathria requires `k = +1` (entry 1
+L395, L406–407) because his `R_max` only exists if the universe recollapses; Gaztañaga argues for a "very large but
+finite regular mass" (entry 56 L24–27) and states the objection himself as the opposite limit of his own family
+(L262–263, "if r_S = ∞, we recover the infinite ΛCDM model with M_T = ∞").
+
+**Guard written in deliberately:** "the universe is infinite" is not a measurement either — flatness is bounded from
+below, not proven exact — so the video may assert neither finite nor infinite.
+
+**It closes the loop with the arithmetic:** the coincidence is computed over a finite sphere of radius `c/H₀` whether
+or not the universe is finite, so it holds in infinite flat ΛCDM too and cannot distinguish the cases — the numbers
+note's §5 conclusion reached from the objection's side. The observable that could decide it is Gaztañaga's own missing
+largest-scale CMB structure (L29–30), which the freedom map and K4 found not calibratable.
+
+**Complication stated, not hidden:** K2 established the closed `k = +1` matching recollapses, which our accelerating
+universe does not appear to do; hence Gaztañaga's flat finite top-hat. Finite ≠ closed.
+
+**Also verified earlier (18:04):** Blanc's rendered arithmetic page `BHU_identity_arithmetic_20260904.pdf` checked
+against the certified numbers — FAITHFUL, citations correct, nothing marked NOT COMPUTED present
+(`BHU_VIDEO_ASSET_VERIFICATION_20260904.md`; the PDF is Blanc's artifact and deliberately not committed here).
+
+**Offered, not built:** merging the two video notes into one script-ready narrative in the order the video would use.
+Not started — Blanc has not asked and it is not ordered.
