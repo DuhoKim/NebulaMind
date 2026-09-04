@@ -8,7 +8,7 @@ what its results will be compared against have been removed **deliberately and m
 `r3c2_build_seat_packet.py`. Their absence is not an omission for you to fill in, and you should not
 attempt to infer or reconstruct them. Apply the rules below exactly as written.
 
-Built from master sha256 `2359ff0e1441c002f0d0fb643ba9859a155ed4cd7585aab48dd500f896b73e12` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `2a1d2023c2ea2b146795d4ddbf401d96a139583d2defe08e342cc703ac5dba22` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 

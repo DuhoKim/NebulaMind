@@ -172,7 +172,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
   **can happen at all**. **This census's §3 and §4 outcomes have never been reachability-tested**, and at least one
   is worth checking early — `CENSUS_COMPLETE` requires every included claim to carry an arithmetic-group outcome,
   which a single blocked or absent input in the whole corpus is enough to prevent. C0 does not touch, and does not
-  depend on, the definition held in §1: it asks only whether each declared outcome can occur under whatever
+  depend on, the definition held in §3: it asks only whether each declared outcome can occur under whatever
   definition is settled.)*<!--/SEAT-REDACT-->
 
 - **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and attempts made,
@@ -446,7 +446,7 @@ returns **`C0_REACHABILITY=FAIL`** with **exactly one unreachable verdict: `REPR
 outcomes and **all seven §4 classes** exhibit cleanly with concrete inputs. The seat's own words: *"the method as
 written contains no procedure that can ever file it, and §10.2 already files exactly that."*
 
-**This class is HELD-CONTINGENT alongside §1's definition and is NOT repaired.** Under the standing derivation-only
+**This class is HELD-CONTINGENT alongside §3's held admissibility definition and is NOT repaired.** Under the standing derivation-only
 wording a printed-and-chosen value — the seat's example is entry 59's `β` — is inadmissible, so the attempt stops
 and nothing can land in the class. **Making it reachable would require choosing option (b) on Duho's behalf.**
 **Option (c) as drafted gives that case a home** by recording provenance beside a mechanical reproduction rather
@@ -460,13 +460,42 @@ census exists to detect** — cannot be reached from the method as written.
 and that is deliberate: kimi's fix inserts a second arithmetic attempt using the printed inadmissible value, which
 is **only required if the ruling keeps the three-member arithmetic group.** Under option **(c)** — reproduce
 mechanically, record provenance separately — `REPRO_AFTER_CHOICE` is retired and the defect disappears with it.
-**Applying the repair would adopt option (b) by implication, and §1's definition is HELD.**
+**Applying the repair would adopt option (b) by implication, and §3's held admissibility definition is HELD.**
 
 **This is therefore an input to the ruling rather than a defect awaiting a patch, and it has a cost either way:**
 option (b) needs extra machinery — a second arithmetic attempt per claim — to make its own headline class
 reachable; option (c) removes the class and the machinery together. **Recorded here so the ruling can be made
 knowing it.**
 
-**R3C2 is NOT frozen and NOT run. §1's definition remains HELD.**
+**R3C2 is NOT frozen and NOT run. §3's held admissibility definition remains HELD.**
 
-R3C2_PREREG_V8_BOTH_LISTS_APPLIED_ONE_FILED
+## 10.3 The C0 exhibition, run by TWO blind seats — they agree exactly
+
+**Both seats, independently and without sight of each other's work, returned `C0_REACHABILITY=FAIL` with EXACTLY
+ONE unreachable verdict: `REPRO_AFTER_CHOICE`.**
+
+| | author seat (kimi) | verifier seat (codex) |
+|---|---|---|
+| verdict | `C0_REACHABILITY=FAIL` | `C0_REACHABILITY=FAIL` |
+| unreachable | `REPRO_AFTER_CHOICE`, and only that | `REPRO_AFTER_CHOICE`, "the sole unreachable verdict" |
+| blocking clause | §2 step 4, admissible-inputs-only | §2 step 4, quoted verbatim |
+| `CENSUS_COMPLETE` | reachable | reachable |
+| held-clause dependence | stated | stated |
+
+**The verifier was told it was verifying, that another exhibition existed, that it had not been shown it and must
+not ask, and that disagreement would be reported rather than reconciled.** It agreed anyway, on the verdict, on the
+single unreachable class, and on the clause that blocks it: *"the mandated attempt may not consume that input, and
+no second attempt is specified."*
+
+**Two blind seats agreeing is not a reason to repair it.** It is a reason to be confident the finding is real
+before it reaches Duho, and the finding is **his** to resolve: making the class reachable means choosing option
+(b), and option (c) as drafted retires the class along with the defect.
+
+**A correction the verifier forced, and it is mine.** I have been calling this "§1's definition" in reports and in
+this document. **The `HELD PENDING DUHO'S RULING` marker sits in §3**, over the admissibility definition; §1's
+question embeds the same notion and changes with it, but the held clause is §3's. The verifier noted the mismatch
+rather than silently adopting my label — *"although the request refers to §1 as held"* — and worked from the
+document. **Three internal references are corrected here; the earlier reports said §1 and were wrong on the
+section number, not on the substance.**
+
+R3C2_PREREG_V9_TWO_SEAT_C0_AGREED_STILL_HELD
