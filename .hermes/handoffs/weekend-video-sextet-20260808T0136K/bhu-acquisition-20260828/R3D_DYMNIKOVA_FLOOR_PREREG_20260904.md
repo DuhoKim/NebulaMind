@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 12 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 13 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -101,7 +101,7 @@ to have mechanised held only for prose — precisely not for the relations this 
 **The shape/magnitude pattern record and every prior lane conclusion are forbidden as evidence
 for inclusion, exclusion or outcome selection**; the pattern enters this study at exactly one point — C6's breaker
 evaluation — and only after a **positive-floor class** has been reached on other grounds
-(`DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED` or `DYM_FLOOR_COMPLETION_DEPENDENT`).
+(`DYM_FLOOR_DERIVED` or `DYM_FLOOR_UNDERDETERMINED`).
 *(This sentence still described the single-class gating that V10 removed — a repair scar. The whole
 document was swept for others; §8b's account of the prior state is history and stays as written.)* C2 passes only if this census is printed in
 full. *(Without it a seat could report a relation absent, omit the contrary row, and let the lane's own pattern become
@@ -116,7 +116,7 @@ stated inputs**, file `DYM_NO_SIZE_MASS_RELATION` and stop. *(The wording matter
 could not reproduce, not a claim that the branch contains no such relation.)*
 **Limb B:** if it does, derive the floor and test it against the five breaker conditions.
 
-## 4. Outcome classes — seven declared: five scientific outcomes and two non-scientific terminal states
+## 4. Outcome classes — six declared: four scientific outcomes and two non-scientific terminal states
 
 **Definition, so classes 1, 2 and 5 have a common discriminator:** a **positive floor** means a **strictly positive
 greatest lower bound of the allowed mass set, whether or not that bound is attained**; a **unique floor** means the
@@ -137,8 +137,16 @@ Let **P** be the admissible readings that yield a positive floor, and **Z** thos
 | no printed relation binds size to mass or bounds the mass at all | **3** `DYM_NO_SIZE_MASS_RELATION` |
 | **P is empty** — every admissible reading permits zero, including the case of mutually inconsistent relations | **4** `DYM_NO_POSITIVE_FLOOR` |
 | **P is non-empty** and the readings **disagree** — either P contains two different floors, or **Z is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
-| **P non-empty, all of P agree on one floor, Z empty**, and the **completion-free reading is in P** | **1** `DYM_FLOOR_DERIVED` |
-| **P non-empty, all of P agree on one floor, Z empty**, and the **completion-free reading yields no floor** | **5** `DYM_FLOOR_COMPLETION_DEPENDENT` |
+| **P non-empty, all of P agree on one floor, Z empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
+
+**Note on the state that has no class of its own.** A floor that exists **only under completions, with every
+completion agreeing**, was formerly class 5, `DYM_FLOOR_COMPLETION_DEPENDENT`. **That state still occurs and still
+files — as `DYM_FLOOR_UNDERDETERMINED` (class 2) — and that is correct, not a place to hide it.** If the
+completion-free reading yields no floor while completions yield 10 kg, the admissible readings **genuinely
+disagree**: one says no positive bound follows, the others say 10 kg. Disagreement among admissible readings **is**
+underdetermination, which is what class 2 records. **The seat must still report every reading and what it yields**,
+so the completion-dependence is visible in the filing even though it no longer has its own label.
+*(Retired by Duho's ruling — see §8e. The state is not homeless: it is named here and routed.)*
 
 **These five are mutually exclusive and cover every case in which limb B is reached, by construction — so NO
 precedence rule between them is needed, and none is stated.** *(V11 carried one, and it was the defect: class 4's
@@ -154,8 +162,9 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    and the failed condition is reported with its artefact: **the floor stands, it is not a counterexample, and the
    pattern record is not amended.** *(A breaker condition failing on its own decision rule is a **substantive
    physics result, not a control failure**, and does not engage the control-clean rule of `R3D_NO_CLASS`.)*
-2. **DYM_FLOOR_UNDERDETERMINED** — as partitioned above. **Report every admissible reading and what it yields**,
-   including any that permits zero; report the freedom and **choose none**. **C6 is RUN on this class** and its
+2. **DYM_FLOOR_UNDERDETERMINED** — as partitioned above. **This class also carries the completion-dependent state**
+   formerly held by the retired class 5: a floor arising only under completions. **Report every admissible reading
+   and what it yields**, including any that permits zero, and **name any completion a floor depends on**; report the freedom and **choose none**. **C6 is RUN on this class** and its
    result reported: a surviving freedom is what condition 3 rejects, so it is expected to fail — but the failure
    must be **exhibited**, not assumed.
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
@@ -163,16 +172,12 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. If the printed relations are mutually
    inconsistent, **report that a consistent solution, and hence a positive lower bound, were unreproduced from the
    stated inputs**, file here, and **reproduce the contradiction.**
-5. **DYM_FLOOR_COMPLETION_DEPENDENT** — as partitioned above. **Report, for every admissible completion, what it
-   yields**, with every resulting value, and **name the completion(s) relied on**. **C6 is RUN on this class** and
-   its result reported; whether this floor is a counterexample is decided by the breaker conditions, **not by this
-   class's name**.
-6. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
+5. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
    frozen manifest of §2a, or a required source-dependent proposition is `UNRESOLVED`, or a required bounded
    procedure remains undecidable after its specified fallback.** The study **waits**; this is not a
    scientific verdict and must never be reported as one. **This class exists because the gate found §7's
    "reports BLOCKED if not" had no class behind it, so the run would have stalled.**
-7. **R3D_NO_CLASS** — **only after ruling out `DYM_SOURCE_BLOCKED`:** if **no** evidence is unread or unresolved
+6. **R3D_NO_CLASS** — **only after ruling out `DYM_SOURCE_BLOCKED`:** if **no** evidence is unread or unresolved
    and, after applying the seat-split rule of §9, a required control still fails after two attempts **in any seat**,
    file `R3D_NO_CLASS`; **otherwise file `DYM_SOURCE_BLOCKED`.** *(Class 6 said only that a source "cannot be read",
    which is narrower than the failure it causes, so an unread source satisfied both classes.)* **A scientific class may be filed only from a seat report in which every reached
@@ -230,8 +235,8 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   named no printed comparison, so the check itself was assertion.)*
   Unreached C5/C5b are recorded `NOT_RUN`, never `PASS`. *(Both codes were previously implicit in "as R3A/R3B";
   a control whose code is not named in the document it governs cannot be checked against it.)*
-- **C6 — breaker test.** **Applies on EVERY outcome that yields a positive floor — `DYM_FLOOR_DERIVED`,
-  `DYM_FLOOR_UNDERDETERMINED` and `DYM_FLOOR_COMPLETION_DEPENDENT`** — and is `NOT_RUN`, never a pass, **only where C6 was never
+- **C6 — breaker test.** **Applies on EVERY outcome that yields a positive floor — `DYM_FLOOR_DERIVED`
+  and `DYM_FLOOR_UNDERDETERMINED`** — and is `NOT_RUN`, never a pass, **only where C6 was never
   engaged** — `DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`, or a `DYM_SOURCE_BLOCKED` / `R3D_NO_CLASS`
   filed **before any C6 evaluation**.
 
@@ -355,15 +360,22 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 
 **Two numbers, because one of them was wrong and the difference is the point.**
 
-**Declared: C6 applies on 3 of the 7 outcome classes** — `DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED`,
-`DYM_FLOOR_COMPLETION_DEPENDENT`, every class that yields a positive floor.
+**C6 applies on 2 of the 6 outcome classes** — `DYM_FLOOR_DERIVED` and `DYM_FLOOR_UNDERDETERMINED`, every class
+that yields a positive floor. **Declared and reachable are now the same number**, which is the point of stating
+both.
 
-**Reachable: 3 — but in V11 it was 2, and the document said 3.** `DYM_FLOOR_COMPLETION_DEPENDENT` was itself
-**unreachable**: class 4's "permit" was defined as "no positive lower bound follows", which is exactly class 5's
-own precondition, so class 4 swallowed every class-5 case and its precedence took them. **The document therefore
-claimed a falsifiability it did not have — three declared routes to a breaker failure, two that any case could
-actually travel.** §4's partition removes it, and **this number is not to be trusted until a seat exhibition
-confirms all three are reachable on this version.**
+**Reachable: 2. `DYM_FLOOR_COMPLETION_DEPENDENT` IS A DEAD CLASS** — shown unreachable by seat exhibitions on
+**both V11 and V12**, for two different reasons.
+
+On V11, class 4's "permit" was defined as "no positive lower bound follows", which is exactly class 5's own
+precondition, so class 4 swallowed every class-5 case and its precedence took them. **V12's partition did not
+revive it:** §4's dichotomy makes "yields no floor" identical to "permits zero", so a completion-free reading that
+yields nothing is necessarily in `Z`, and class 5's requirement that `Z` be empty can never hold.
+
+**The document therefore claimed a falsifiability it does not have — three declared routes to a breaker failure,
+two that any case can actually travel.** The live pair is `DYM_FLOOR_DERIVED` and `DYM_FLOOR_UNDERDETERMINED`.
+**It is NOT repaired a third time**: see `R3D_C0_THIRD_FAILURE_FILING_20260905.md`, filed under the standing
+instruction that a third failure in this direction stops the repair loop.
 
 **That overstatement is exactly the fault this study exists to detect in other people's papers**, committed here,
 which is why both numbers are printed rather than the flattering one.
@@ -669,7 +681,8 @@ the breaker test return FAIL?*
 | | C6 FAIL reachable on | conditions able to fail |
 |---|---|---|
 | **before (V9)** | **1 path of 7** — `DYM_FLOOR_DERIVED` only; every other class returned `NOT_RUN` | **3 of 5** — conditions 1 and 3 entailed by the gating class |
-| **after (V10)** | **3 paths** — `DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED`, `DYM_FLOOR_COMPLETION_DEPENDENT`, i.e. every outcome that yields a positive floor | **5 of 5** |
+| **after (V10)** | **3 paths CLAIMED** — `DYM_FLOOR_DERIVED`, `DYM_FLOOR_UNDERDETERMINED`, `DYM_FLOOR_COMPLETION_DEPENDENT` | **claimed 5 of 5** |
+| **corrected on the V12 definitions** | **2 paths ACTUAL** — the third, `DYM_FLOOR_COMPLETION_DEPENDENT`, is a **DEAD CLASS**, unreachable on V11 and V12 alike | **4 of 5 substantive**; condition 1 `ENTAILED` |
 
 **The worse thing the gating was doing.** With C6 reachable from one class only, **counterexample status was being
 decided by class assignment rather than by the falsifier.** `DYM_FLOOR_COMPLETION_DEPENDENT` stated outright that
@@ -702,7 +715,10 @@ now maps to `C6_BREAKER_TEST=FAIL`, so C6's three codes are exhaustive and "does
 and both read only after their seats exited: **codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`.**
 
 **Where they AGREE — including on the thing that mattered.** Both counted the paths independently and both got
-**C6 FAIL reachable on 3 of the 7 classes**. Neither found the breaker unable to fail. **The defect that recurred
+**C6 FAIL reachable on 3 of the 7 classes** — **a count since shown wrong**: one of those three,
+`DYM_FLOOR_COMPLETION_DEPENDENT`, is unreachable, so the true figure is **2**. Both seats counted the *declared*
+routes; neither tested whether each route was itself reachable. **That gap is exactly what C0 exists for, and C0
+caught it.** Neither found the breaker unable to fail, and that remains true of the two live classes. **The defect that recurred
 four times in four forms is gone**, and it was confirmed by two seats that were not told to look for it. Both found
 the **re-run guard** and **fairness** sound; codex additionally found **circularity** sound.
 
@@ -763,4 +779,46 @@ in the corpus; it is recorded here rather than quietly corrected.
 
 **C0 must be re-run on V12 before any gate.** R3D is NOT frozen and NOT run.
 
-R3D_PREREG_V12_READY_FOR_REEXHIBITION
+## 8e. V13 — a class RETIRED, not repaired a fourth time
+
+**ORDERED by Duho, 2026-09-05 00:59 KST: "retire the class and set the count to two."**
+
+**`DYM_FLOOR_COMPLETION_DEPENDENT` is retired as a declared outcome class.** Its history stays here rather than
+being deleted:
+
+- It was **added at V7** to close a real gap: a reachable result — a positive floor arising only under named
+  admissible completions — that fitted no class at all.
+- **Three seat exhibitions could not produce an input that reaches it.** On **V10** it was reachable only through
+  a routing overlap; on **V11** class 4's "permit" was word-for-word its own precondition, so class 4 swallowed it;
+  on **V12** the partition's dichotomy made "yields no floor" identical to "permits zero", so the completion-free
+  reading was always in `Z` and its requirement that `Z` be empty could never hold.
+- **Evidence for the retirement:** `R3D_C0_EXHIBITION_V12_codex_20260905.md`,
+  sha256 `9c8180b6b0502e03f52ed66c757272e95a9cc57682212556f6a32d985e46bc91`, access-proven against V13's
+  predecessor `c7488e1c…`. The seat constructed the exact reading set the class would need — completion-free yields
+  no floor, two completions agree on one positive floor — and showed §4 routes it elsewhere.
+
+**Three locally-sensible repairs failing to make one class reachable is evidence the class did not name a
+distinguishable state.** It is retired on that evidence, not abandoned in frustration.
+
+**WHAT THE RETIREMENT COSTS, stated plainly.** The class described something real: a floor that exists only under
+completions, with every completion agreeing. **That state still occurs, and it now files as
+`DYM_FLOOR_UNDERDETERMINED`.** That is correct rather than a hiding place: if the completion-free reading yields no
+floor while the completions yield 10 kg, the admissible readings **genuinely disagree** — one says no positive
+bound follows, the others say 10 kg — and disagreement among admissible readings **is** underdetermination.
+**The seat must still report every reading and name any completion a floor depends on**, so the completion-
+dependence remains visible in the filing; only the separate label is gone. **The state is not homeless, and §4
+says where it goes.**
+
+**THE COUNT IS NOW TWO, AND DECLARED EQUALS REACHABLE.** `C6_BREAKER_TEST=FAIL` is reachable on **2 of the 6**
+classes — `DYM_FLOOR_DERIVED` and `DYM_FLOOR_UNDERDETERMINED`. Every earlier claim of three is corrected in place
+and marked, in §5a, in §8b's table and in §8c.
+
+**How to read this episode.** **This is the first time the reachability control ended a class rather than repairing
+one, and that is the control working.** Three attempts, each locally correct, and the evidence eventually said the
+target was not there. A design that had claimed three routes to a breaker failure now claims two and has two — and
+a preregistration that overstates its own falsifiability is the precise fault this study exists to detect in the
+corpus.
+
+**C0 must be re-run on V13: retiring a class changes the partition. R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V13_READY_FOR_REEXHIBITION
