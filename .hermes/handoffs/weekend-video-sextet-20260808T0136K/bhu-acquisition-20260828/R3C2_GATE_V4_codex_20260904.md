@@ -1,0 +1,52 @@
+ACCESS_SHA=0ba8df028686f10cff38af4799998d26362cbb6e2d271e0761c3d280e5dd051f
+GATE=PREREG_UNSOUND
+
+1. QUOTE: “For every quantitative claim in the corpus, **does the paper's own number follow from **admissible** inputs — derived or standard — with no quantity chosen, fitted or imported?**”
+   DEFECT: This is not plain reproduction from the paper's stated inputs. A printed chosen, fitted, or imported value can be substituted exactly as the paper directs and reproduce the printed result, yet the design forbids calling that reproduction. The provenance filter is the lane's recorded shape/magnitude concern, so the pattern still controls outcome assignment and therefore the tally. Enumeration is independent, but the evidence classification is not.
+   EXACT REPLACEMENT: “For every quantitative claim in the corpus, does substituting every numerical input explicitly stated by the paper, together with the closed list of standard constants, reproduce the paper's printed number within its stated precision? Input provenance is recorded but cannot change this reproduction outcome; any hypothesis-level comparison using provenance occurs only after the reproduction tally is sealed.”
+
+2. QUOTE: “**The arithmetic may consume only records with status `PRINTED` or `STANDARD`.**”
+   DEFECT: C3 contradicts the declared admissibility rule: it mechanically permits every `PRINTED` value, including `CHOSEN`, `FITTED`, `IMPORTED`, and `UNDECLARED`, while §3 says those values may not be consumed for `REPRO_EXACT`. The JSON schema also omits `STANDARD` from the allowed `origin` values although §3 defines `STANDARD` as an origin. C3 therefore neither enforces the current rule nor represents all declared records.
+   EXACT REPLACEMENT: “The arithmetic may consume only records with status `PRINTED` or `STANDARD`; the schema is `{claim_id, symbol, status: PRINTED|STANDARD|ABSENT, origin: DERIVED|STANDARD|CHOSEN|FITTED|IMPORTED|UNDECLARED, value, source_file, source_line}`, and provenance is an annotation that cannot alter the reproduction outcome.”
+
+3. QUOTE: “**`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper, so the attempt stops there.”
+   DEFECT: The per-claim classes are not exhaustive. The §1 definition includes a paper-owned printed numeral even when the paper states no producing equation or derivation. Such a claim has no equation whose needed input can be marked `ABSENT`, and it fits none of the six outcomes. This recreates a `NOT_ATTEMPTED`-type escape under another description. The classes also state no precedence for an unobtainable external source that requires unavailable machinery, allowing `REPRO_BLOCKED` and `REPRO_NOT_EVALUABLE` to overlap.
+   EXACT REPLACEMENT: “`REPRO_NO_DERIVATION_STATED` — the paper prints the claim as its own result but states no equation or computational procedure that could produce it. Apply outcomes in this precedence order: `REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`, then the applicable arithmetic outcome; exactly one outcome must be filed.”
+
+4. QUOTE: “**`CENSUS_PARTIAL`** — some claims unresolved after two attempts.”
+   DEFECT: This does not provide a well-defined reachable inconclusive route. Under class 1, every claim carrying even `REPRO_BLOCKED` or `REPRO_NOT_EVALUABLE` makes the census complete; “unresolved” is undefined, while a claim that falls through the per-claim taxonomy can make class 2 depend on discretion. Thus classes 1 and 2 are not operationally exclusive.
+   EXACT REPLACEMENT: “`CENSUS_COMPLETE` — every included claim has exactly one conclusive arithmetic outcome (`REPRO_EXACT`, `REPRO_AFTER_CHOICE`, or `REPRO_FAILED`). `CENSUS_PARTIAL` — after two attempts, at least one included claim has `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`, or `REPRO_NO_DERIVATION_STATED`; report each and why. `CENSUS_PARTIAL` is INCONCLUSIVE and takes precedence over `CENSUS_COMPLETE`.”
+
+5. QUOTE: “That is enforceable, and it is the control.”
+   DEFECT: Moving the working directory and omitting the lane from `--add-dir` is not a read restriction under the document's own account of the wrapper. Unless an OS sandbox or equivalent denies the original lane path, a seat can open that path directly, through an absolute path, a parent directory, search, logs, or another available tool. The printed path list remains self-report. C4 is therefore not mechanical as claimed. The acknowledged prior-exposure limit is fair, but it does not cure current-session filesystem access.
+   EXACT REPLACEMENT: “C4 passes only if the seat runs in a fresh execution context whose filesystem allowlist contains the redacted packet and required runtime files and whose deny test against the original lane and pattern-record paths fails with an access error; otherwise `C4_PATTERN_BLIND=FAIL` and the study stops.”
+
+6. QUOTE: “The sample is drawn by `random.Random(seed).sample(sorted(claim_ids), k)` with the seed fixed as the first 8 hex characters of the sealed tally digest, so it cannot be chosen after the fact and cannot be empty.”
+   DEFECT: The sample cannot be chosen after the seal, but the tally producer can know and alter the seed before sealing by changing non-semantic serialization, ordering, or metadata until a favorable sample appears. C6 lacks canonical tally serialization and an unpredictable post-commit seed. Its full-ledger completeness audit helps enumeration, but does not cure outcome-sample grinding.
+   EXACT REPLACEMENT: “After the canonical tally is committed and its digest receipted by Blanc, Blanc supplies an independently generated seed that was unavailable to Tori before receipt; the auditor records that seed and draws `random.Random(seed).sample(sorted(claim_ids), k)`, with `k=max(1, ceil(0.20*N))`.”
+
+7. QUOTE: “Before the interpretation protocol is opened, Tori commits the tally, then sends **four digests — tally hash, tally commit id, protocol hash, protocol commit id — to Blanc**, who is outside this lane and reports to Duho.”
+   DEFECT: This is genuine external tamper evidence only if receipt and downstream verification are mandatory. The text does not require Blanc to acknowledge and timestamp the four digests, preserve the receipt, verify the opened artifacts, or require the interpretation report to identify the verified hashes. Without those steps a replacement can be used silently in the study record even though Blanc once received other strings.
+   EXACT REPLACEMENT: “Before interpretation, Blanc acknowledges and timestamps the four digests in a preserved receipt; after opening, Blanc independently hashes the tally and protocol, verifies both hashes and commit ids against that receipt, and the interpretation report must print the verified four values. Any mismatch yields `CENSUS_AUDIT_FAILED`, leaves §7 `NOT RUN`, and voids the comparison.”
+
+8. QUOTE: “If the enumeration is itself contested between the two seats beyond a stated tolerance, stop and report — a census whose denominator is disputed cannot proceed.”
+   DEFECT: No tolerance is stated in the operative design. The version history says a prior version set it to zero, but version history is not an operational rule and the live sentence still leaves the stop discretionary. This can move candidates through the only route out of the census and can stall without a determinate trigger.
+   EXACT REPLACEMENT: “If the two enumerations differ on any candidate's presence or inclusion status, the tolerance is zero; after two unsuccessful reconciliation attempts, file `CENSUS_DENOMINATOR_DISPUTED`, list every disputed candidate, mark all unreached controls `NOT RUN`, and stop.”
+
+Fairness (7): The standing wording is preserved: the document explicitly requires “unreproduced from the stated inputs,” not “error,” and I found no slip into an error verdict. The phrase “what this census exists to detect” does, however, disclose that chosen/fitted provenance is the target and reinforces finding 1.
+
+Stall (8): As written, yes: an included printed result with no stated producing equation has no per-claim class, and the unstated enumeration tolerance leaves a discretionary stop. Findings 3 and 8 give exact closures.
+
+Controls (5) and sealing (6): C3 is internally non-enforcing, C4 is not mechanically enforced, and C6 is grindable as written. Unreached controls are correctly specified as `NOT RUN`. The external relay in §7 is the right kind of custody, but it needs the mandatory receipt-and-verification steps in finding 7 before silent substitution is excluded.
+
+Study-level outcomes (4): They are not presently operationally exhaustive and exclusive because `CENSUS_COMPLETE` and `CENSUS_PARTIAL` do not define how blocked/not-evaluable claims affect the result; finding 4 makes the inconclusive route reachable and deterministic.
+
+Answer 1 — Is circularity actually gone? No. The lane-authored pattern no longer selects which numeral passages enter the census, which is a real improvement, and §7 cannot retroactively change a properly sealed raw arithmetic result. But the pattern still reaches the evidence through the `ADMISSIBLE` provenance rule: chosen, fitted, and imported stated inputs are barred from exact reproduction specifically because they instantiate the pattern. It therefore changes per-claim outcomes and the tally. I found no separate hidden `NOT_ATTEMPTED` label, but the no-derivation gap and discretionary enumeration tolerance supply escape/stall paths.
+
+Answer 2 — Is the criterion external? No. “Can stated substitutions reproduce the printed number?” is an external, ordinary criterion. “Can only DERIVED or STANDARD inputs reproduce it, with CHOSEN/FITTED/IMPORTED inputs disqualifying exact reproduction?” is a provenance/independence test and substantially restates the lane's shape/magnitude pattern. The redesign would become external if provenance were recorded without affecting the sealed reproduction outcome.
+
+Answer 9 — Worth ~3–4 seat-days? As written, no: the central tally cannot independently test the pattern, so the cost is not justified until findings 1–8 are repaired.
+
+Answer 9 — Better than the design it replaces? It is better in enumeration coverage, explicit outcome accounting, and attempted blindness/custody, but not better on the decisive validity question because circularity has moved from claim selection into admissible-input outcome assignment.
+
+R3C2_GATE_COMPLETE
