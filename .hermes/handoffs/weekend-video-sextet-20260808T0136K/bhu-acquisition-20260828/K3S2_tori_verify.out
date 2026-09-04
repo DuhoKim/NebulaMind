@@ -1,0 +1,78 @@
+==========================================================================================
+CLAIM A — per-momentum trace
+==========================================================================================
+sum_a Tr(Sigma_a P_+ Sigma_a P_+) = 2*(3*m**2 + p_x**2 + p_y**2 + p_z**2)/(m**2 + p_x**2 + p_y**2 + p_z**2)
+claimed 2 + 4 m^2/E^2            = 4*m**2/(m**2 + p_x**2 + p_y**2 + p_z**2) + 2
+CLAIM_A_VERIFIED = True
+  depends on p?   True
+  value at p=0    6
+  value at m=0    2
+  -> it is 6 at p=0 and 2 at m=0, so it is NOT a constant and may not leave the integral
+
+==========================================================================================
+CLAIM B — the integrated density matrix, with the alpha.p term kept explicitly
+==========================================================================================
+angular average of P_+(p):
+⎡      m          1                                                            ↪
+⎢────────────── + ─          0                    0                     0      ↪
+⎢     _________   2                                                            ↪
+⎢    ╱  2    2                                                                 ↪
+⎢2⋅╲╱  m  + p                                                                  ↪
+⎢                                                                              ↪
+⎢                          m          1                                        ↪
+⎢        0           ────────────── + ─           0                     0      ↪
+⎢                         _________   2                                        ↪
+⎢                        ╱  2    2                                             ↪
+⎢                    2⋅╲╱  m  + p                                              ↪
+⎢                                                                              ↪
+⎢                                                m          1                  ↪
+⎢        0                   0           - ────────────── + ─           0      ↪
+⎢                                               _________   2                  ↪
+⎢                                              ╱  2    2                       ↪
+⎢                                          2⋅╲╱  m  + p                        ↪
+⎢                                                                              ↪
+⎢                                                                      m       ↪
+⎢        0                   0                    0            - ───────────── ↪
+⎢                                                                     ________ ↪
+⎢                                                                    ╱  2    2 ↪
+⎣                                                                2⋅╲╱  m  + p  ↪
+
+↪      ⎤
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪      ⎥
+↪     1⎥
+↪ ─ + ─⎥
+↪ _   2⎥
+↪      ⎥
+↪      ⎦
+equals (1 + beta m/E)/2 exactly?  True
+  -> the alpha.p piece integrates to zero by isotropy; no shortcut was needed.
+
+exchange with rho = A*1 + B*beta : -3*A**2 - 3*B**2
+CLAIM_B_VERIFIED = True
+
+==========================================================================================
+Cross-check: Object L coefficients, with N_f species carried
+==========================================================================================
+NR (B = A = n/(4 N_f)), summed over N_f species : -3*n**2/(8*N_f)
+UR (B = 0),             summed over N_f species : -3*n**2/(16*N_f)
+  N_f = 1 reduces to   -3*n**2/8 and -3*n**2/16
+
+VERIFY_CLAIM_A=PASS
+VERIFY_CLAIM_B=PASS
+TORI_VERIFY_COMPLETE

@@ -117,3 +117,37 @@ and the gate was right that L82–83 does not.
 he ruled it "22a, me" at 2026-09-03 14:34 KST, 22 minutes after that section was written. §2 still asked for a human
 read of arXiv:2609.02395; the committee closed it 4/4 as band `CLEAR` at 14:43 KST the same day. Both now state their
 outcome. Nothing is on Duho's desk.
+
+---
+## K3 step 2 ORDERED and COMPLETE (2026-09-04 10:28 KST)
+
+Duho ordered it at 09:57 KST ("k3s2", relayed by Blanc). Done the same morning, in the order his relay required:
+draft lifted to a frozen preregistration carrying his five binding requirements, gated by a fresh referee through
+`nm_referee_dispatch.sh`, then run.
+
+**Class filed: `K3S2_EXCHANGE_N2_RESTORED`** — 3 of 4 seats, 2 independent methods. The exchange (Fock) contraction of
+the coincident-point operator does restore an `n²` term, at `−(3/8) n²/N_f` non-relativistically and `−(3/16) n²/N_f`
+ultrarelativistically: **negative**, where both printed closures are positive, and regime- and species-dependent rather
+than a single constant. Result `K3S2_RESULT_20260904.md`; human check sheet `K3S2_CHECK_SHEET_20260904.md`.
+
+**Gate.** `K3S2_PREREG_GATE_20260904_agy.md` = `PREREG_SOUND_WITH_REPAIRS`, four repairs. Three applied verbatim — one
+of them closed a real gap in the outcome classes (a term at exactly step 1's order would have fallen into no class), and
+two removed standing declarations the document had no authority to make. **The fourth was declined**: it claimed the
+Eq. (5) denominator sits on source line 83, and it sits on line 82, already inside the cited range. A second fresh
+referee adjudicated the single point and returned `ADJUDICATION=LANE_RIGHT`
+(`K3S2_PREREG_GATE_ADJUDICATION_20260904_agy.md`).
+
+**The split, and how it was settled.** codex filed `EXCHANGE_NEGLIGIBLE` because it computed the cell-averaged object
+rather than the local one; route 2 (blind, position-space Slater determinant) computed **both** and reproduced each.
+The third seat also found a trace-algebra error in codex's script — which Tori re-derived rather than accepting
+(`K3S2_tori_verify.py`/`.out`: the per-momentum trace codex treated as a constant is `2 + 4m²/E²`, equal to 6 at zero
+momentum and 2 at zero mass). Route 2 also caught a factor Tori's own seat had dropped: `N_f`. Both corrections are in
+the reconciliation.
+
+**Verification:** all eight preregistered control codes printed `PASS` by name in all three scripts, `MISSING_CODES=none`;
+Tori re-executed every script; Kimi re-checked all eight arithmetic steps through the Moonshot route with a
+no-fallback control, all correct.
+
+**On Duho's desk:** one packet — annotate rows 9/10/11 (+ inheritance on 39, 52, 53, 59), or that plus a new downstream
+study on what the negative sign does to the bounce, or hold. Recommended (a). K4, K5, K6 remain **NOT ORDERED**; K1
+stage 2 stays stopped; the Tuesday neutron-star mass watch stays armed. Paper HOLD; nothing outward.

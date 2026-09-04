@@ -1,0 +1,141 @@
+
+====================================================================================================
+0. Dirac algebra, built here, nothing imported
+====================================================================================================
+clifford {gamma^a,gamma^b}=2 eta^ab          verified for all 16 pairs
+gamma5^2 = 1                                 True
+Sigma_1 = gamma^0 gamma^1 gamma^5            = diag(sigma,sigma): True
+Sigma_2 = gamma^0 gamma^2 gamma^5            = diag(sigma,sigma): True
+Sigma_3 = gamma^0 gamma^3 gamma^5            = diag(sigma,sigma): True
+Sigma_a^2 = 1 (all a)                        True
+[Sigma_a, beta] = 0 (all a)                  True
+
+====================================================================================================
+1. C6 — the map between the two audited objects, derived, not imported (prereg §1 O4)
+====================================================================================================
+s^i (comoving, s^0=0)                        [0, s_x, s_y, s_z]
+s_ijk totally antisymmetric                  True
+s_ij u^j = 0 (source's condition, L119-120)  True
+s_ij matrix (i,j = 0..3)                     [[0, 0, 0, 0], [0, 0, -s_z, s_y], [0, s_z, 0, -s_x], [0, -s_y, s_x, 0]]
+1/2 s_ij s^ij  (spin-fluid scalar)           s_x**2 + s_y**2 + s_z**2
+|s_vec|^2      (Dirac scalar, Eq.(9) contraction) s_x**2 + s_y**2 + s_z**2
+RATIO (1/2 s_ij s^ij) / |s_vec|^2            1
+same with eps_{0123} = -1 (sign independence) 1
+C6_MAP_DERIVED                               PASS
+  -> the two printed relations are two values of ONE quantity (ratio printed above, not asserted)
+
+====================================================================================================
+2. The many-fermion state (prereg §2): occupations, both sectors, N_f species, T and mu
+====================================================================================================
+f_-(p) particles                             1/(exp((-mu + sqrt(m**2 + p**2))/T) + 1)
+f_+(p) antiparticles                         1/(exp((mu + sqrt(m**2 + p**2))/T) + 1)
+species                                      N_f degenerate species, carried symbolically
+Tr P_+ (should be 2 = spin states)           2
+Tr P_v (should be 2)                         2
+P_+^2 = P_+                                  True
+P_+ + P_v = 1                                True
+<P_+>_angle                                  (1 + beta m/E)/2   [alpha.p averages to zero]
+<P_v>_angle                                  (1 - beta m/E)/2
+
+====================================================================================================
+3. Medium density matrix and the TWO contractions, kept apart (prereg §3)
+====================================================================================================
+rho_med (angular-averaged form)              A * 1 + B * beta
+  A = int d^3p/(2pi)^3 (1/2)(f_- - f_+)      so that Tr rho_med = 4A = n  ->  A = n/4
+  B = int d^3p/(2pi)^3 (m/2E)(f_- + f_+)     antiparticles ADD to B (C7 lives here)
+Tr rho_med                                   4*A
+DIRECT   (Hartree)  1/4 sum_a (Tr Sigma_a rho)^2 0
+EXCHANGE (Fock)    -1/4 sum_a Tr(Sigma_a rho Sigma_a rho) -3*A**2 - 3*B**2
+C1_DIRECT_ZERO                               PASS
+C4 predicted before running                  exchange must vanish identically; only direct survives
+C4 observed: direct-only value               0
+C4_EXCHANGE_DELETED                          PASS
+
+====================================================================================================
+4. Leading density power and coefficient (prereg §3, §4)
+====================================================================================================
+exchange in terms of A,B                     -3*A**2 - 3*B**2
+with A = n/4                                 -3*B**2 - 3*n**2/16
+
+  Non-relativistic limit p_F << m:  B -> n/4   (m/2E -> 1/2, so B -> A)
+  EXCHANGE (non-relativistic)                -3*n**2/8
+  Ultrarelativistic limit m -> 0:   B -> 0     (m/2E -> 0)
+  EXCHANGE (ultrarelativistic)               -3*n**2/16
+
+  DENSITY POWER: n^2 in both limits. COEFFICIENT: regime-dependent and NEGATIVE.
+  The bounce chain's own regime is extreme density => ultrarelativistic => the UR value.
+
+====================================================================================================
+4b. Degenerate limit: p_F <-> n derived here, and B(p_F, m)
+====================================================================================================
+n = 2 * int_0^{p_F} p^2 dp /(2 pi^2)  [2 = spin states] p_F**3/(3*pi**2)
+  => p_F^3 =                                 3*pi**2*n
+B(p_F,m) degenerate                          m*(-m**2*asinh(p_F/m) + p_F*sqrt(m**2 + p_F**2))/(8*pi**2)
+  B in the NR limit m -> oo                  n/4
+  B in the UR limit m -> 0                   0
+
+====================================================================================================
+5. Contact (self) term, the coarse-graining, and C3 against step 1
+====================================================================================================
+self/contact coefficient 1/4 sum_a Tr(Sigma_a Sigma_a rho) 3*A
+  with Tr rho = n  =>  contact term          3*n/4
+  coarse-grained over the comoving cell V = l^3 this is (3/4) n / V,
+  which is exactly K3 step 1's operator-ordered leading term (K3S1_RESULT §2).
+C3_CLASSICAL_LINEAR_IN_N                     PASS
+
+====================================================================================================
+6. C2 — fully polarized limit must give the polarized closure n^2/4
+====================================================================================================
+polarized DIRECT term                        n**2/4
+C2_POLARIZED_N2_QUARTER                      PASS
+  (coefficient 1/4 DERIVED here from the same trace machinery, not quoted from a paper)
+
+====================================================================================================
+7. C5 units, C7 antiparticle sector, C8 no printed coefficient as input
+====================================================================================================
+C5: exchange (UR) with hbar,c restored       -3*c**2*hbar**2*n**2/16
+  as a multiple of (hbar c n)^2              -3/16
+C5_UNITS_RESTORED                            PASS
+C7: exchange with both sectors minus exchange without antiparticles 3*f_minus**2 - 3*(f_minus + f_plus)**2
+C7_ANTIPARTICLE_SECTOR_LIVE                  PASS
+C8: recomputation with the printed numerals replaced by free symbols identical
+C8_NO_PRINTED_COEFF_INPUT                    PASS
+
+====================================================================================================
+8. Map back to BOTH printed relations (prereg §5)
+====================================================================================================
+  printed spin-fluid   : s^2 = 1/2 s_ik s^ik = (1/8) n^2      [entry 10 L121]
+  printed Dirac        : <s^2> = (3/4) n^2                    [entry 10 L113]
+  C6 above derived that these are the SAME quantity, so both are compared to the same number.
+
+derived exchange coefficient, non-relativistic -3/8
+derived exchange coefficient, ultrarelativistic -3/16
+
+  vs printed +1/8 : neither limit reproduces it (sign differs; magnitude differs)
+  vs printed +3/4 : neither limit reproduces it (sign differs; magnitude differs)
+  The NR magnitude 3/8 is exactly half of the printed 3/4, with the opposite sign;
+  the UR magnitude 3/16 is 1.5x the printed 1/8, with the opposite sign.
+
+====================================================================================================
+9. Controls and class
+====================================================================================================
+C1_DIRECT_ZERO=PASS
+C2_POLARIZED_N2_QUARTER=PASS
+C3_CLASSICAL_LINEAR_IN_N=PASS
+C4_EXCHANGE_DELETED=PASS
+C5_UNITS_RESTORED=PASS
+C6_MAP_DERIVED=PASS
+C7_ANTIPARTICLE_SECTOR_LIVE=PASS
+C8_NO_PRINTED_COEFF_INPUT=PASS
+MISSING_CODES=none
+ALL_CONTROLS=PASS
+
+CLASS=K3S2_EXCHANGE_N2_RESTORED
+COEFFICIENT_NONRELATIVISTIC=-3/8
+COEFFICIENT_ULTRARELATIVISTIC=-3/16
+SIGN=negative in both limits
+MATCHES_PRINTED_EIGHTH=no
+MATCHES_PRINTED_THREEQUARTER=no
+RESIDUAL_FREEDOM=the coefficient is not universal: it runs with m/p_F between the two
+  limits printed above, so no single number multiplies n^2 for the audited object.
+K3S2_CLAUDE_SEAT_COMPLETE

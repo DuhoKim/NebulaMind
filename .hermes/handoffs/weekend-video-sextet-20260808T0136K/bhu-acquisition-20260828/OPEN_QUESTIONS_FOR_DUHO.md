@@ -5,6 +5,50 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## YOUR CALL 2026-09-04 10:27 KST — K3 step 2 is done: the exchange term restores the n² closure, and it comes out NEGATIVE
+
+**You ordered this at 09:57 ("k3s2"). It is finished: preregistered, gated, blind-doubled, second-routed, third-seated,
+arithmetic re-checked.** Files: `K3S2_RESULT_20260904.md` (result + reconciliation), `K3S2_CHECK_SHEET_20260904.md`
+(one page, for a human), `K3S2_EXCHANGE_PREREG_20260904.md` (frozen V2, gated).
+
+**What was asked.** K3 step 1 found the spin closure `s² ∝ n²` to be a convention, not a derived average. The
+strongest objection left standing was that step 1 answered a classical uncorrelated ensemble, and that the quantum
+operator Einstein–Cartan actually needs might still produce an `n²` term through Fermi statistics.
+
+**What came back.** The objection was right that a term returns — and the term refutes the closures anyway.
+The exchange (Fock) contraction of the correct local operator gives
+
+  **−(3/8) n²/N_f** for slow fermions, **−(3/16) n²/N_f** at the extreme densities the bounce papers actually use.
+
+Three things, plainly:
+- the `n²` power is real, but it comes from Fermi statistics, not from averaging a randomly oriented spin sum;
+- the coefficient is **not a number** — it runs with mass over Fermi momentum and divides by the number of species;
+- the sign is **negative**, where both printed closures (`⅛ n²` and `¾ n²`) are positive.
+
+**How solid.** Four seats, two independent methods. Three filed `EXCHANGE_N2_RESTORED`. The fourth (codex) filed
+`NEGLIGIBLE` because it computed a *different object* — the cell-average rather than the local operator — and it also
+made a trace-algebra error, which I verified myself rather than taking the third seat's word for
+(`K3S2_tori_verify.out`: the trace it treated as constant is 6 at zero momentum and 2 at zero mass). Kimi re-checked
+all eight arithmetic steps: all correct, Moonshot route, no fallback.
+
+**The one honest caveat.** Two different quantities in this literature are both written `⟨s²⟩`. The field equations
+need the local one (Einstein–Cartan is local, and on the other reading the term would vanish outright, which the paper
+plainly does not intend) — but **the paper never says which**, and I have not invented a reading for it. Either way the
+printed closures fail: on the local object by sign and magnitude, on the other because no `n²` survives at all.
+
+**Options for the record:**
+(a) **annotate rows 9, 10, 11** — the step-1 note gains the specific finding (the correct operator does give `n²`, but
+    negative, regime- and species-dependent, matching neither printed value), and rows 39, 52, 59 and 53 inherit the same
+    sentence; **tiers, tokens, standings and stamps untouched** [recommended — it is the same shape as your 19:34 ruling
+    on step 1];
+(b) (a) plus order the natural next question: what the negative sign does to the bounce itself — that is a real
+    downstream study, not a note, and it is not preregistered;
+(c) hold the annotations.
+
+**Why this is your call and not mine.** It touches what the record says about four papers' central mechanism, and (b)
+would open a new study. The result itself is filed either way.
+
+---
 ## NON-BLOCKING ACQUISITION LINE — updated 2026-09-04 00:25 KST — one source checked; one still closed
 
 Gasperini 1986, Phys. Rev. Lett. 56, 2873 is now pinned from APS's public `harvest.aps.org` version-of-record endpoint (PDF and clean
