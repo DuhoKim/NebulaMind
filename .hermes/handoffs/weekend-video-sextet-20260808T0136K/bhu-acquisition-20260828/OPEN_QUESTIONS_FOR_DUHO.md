@@ -5,13 +5,15 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## NON-BLOCKING ACQUISITION LINE 2026-09-03 20:14 KST — the two 1980s sources behind the ⅛ spin closure (K3; no action unless you have library access)
+## NON-BLOCKING ACQUISITION LINE — updated 2026-09-04 00:25 KST — one source checked; one still closed
 
-Open routes (ADS, INSPIRE, KEK scans, author pages) turned up no free copy of either (`ACQUISITION_1986_1983_codex.md`, every URL and
-status logged). Publisher pages: Gasperini 1986, Phys. Rev. Lett. 56, 2873 — APS, DOI 10.1103/PhysRevLett.56.2873; Nurgaliev &
-Ponomariev 1983, Phys. Lett. B 130, 378 — ScienceDirect pii 0370269383915265 (HTTP 403, "Remote access" institutional login; no price
-displayed). If you download them as before (HermesOps/scripts/), I pin them and test the word "convention" against their own
-derivation. Nothing is blocked on this.
+Gasperini 1986, Phys. Rev. Lett. 56, 2873 is now pinned from APS's public `harvest.aps.org` version-of-record endpoint (PDF and clean
+text, identity and hashes in `ACQUISITION_1986_1983_RETRY_20260903.md`). Nurgaliev & Ponomariev 1983, Phys. Lett. B 130, 378 remains
+unobtained: the search-indexed ScienceDirect PDF URL returns HTTP 403; the page offers organizational access and “Purchase PDF” but
+no price, and OpenAlex reports closed access with no repository full text. No purchase or bypass attempted. Nothing is blocked on this;
+K3 step 2 remains NOT ORDERED. Duho's 00:10 source test is complete (`GASPERINI_K3_RESULT_20260904.md`, check sheet, independent
+second seat): Gasperini defines the same spin-fluid scalar and states the ⅛ relation but does not derive its n² identification;
+`CONVENTION_CONFIRMED` 2/2. K3 step 1 stands; tiers, warrant tokens, standings and stamps are untouched.
 
 ---
 ## RESOLVED 2026-09-03 19:34 KST — Duho "as your rec" = (a): rows 9, 10, 11 annotated, inheritance noted on 39, 52, 53, 59; tiers untouched; provenance pending Blanc. Was: YOUR CALL 2026-09-03 19:32 KST — K3 step 1 result: the torsion-bounce spin closure is a convention, not a derived average (3 seats, 2 methods, unanimous)

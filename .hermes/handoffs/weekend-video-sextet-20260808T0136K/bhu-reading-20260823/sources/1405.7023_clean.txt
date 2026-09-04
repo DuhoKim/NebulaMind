@@ -1,0 +1,3082 @@
+YITP-14-44
+Calculating the mass fraction of primordial black holes 
+Sam Young a, Christian T. Byrnes a, Misao Sasaki b
+aDepartment of Physics and Astronomy, Pevensey II Building, University of Sussex, BN1 9RH, UK
+b Yukawa Institute for Theoretical Physics, Kyoto University, Kyoto 606-8502, Japan
+E-mail: sy81@sussex.ac.uk, cbt22@sussex.ac.uk, misao@yukawa.kyoto-u.ac.jp
+August 7, 2026
+We reinspect the calculation for the mass fraction of primordial black holes (PBHs) which are formed from primordial perturbations, finding that performing the calculation using the comoving curvature perturbation
+ℛ
+c
+\mathcal{R}_{c}
+in the standard way vastly overestimates the number of PBHs, by many orders of magnitude. This is because PBHs form shortly after horizon entry, meaning modes significantly larger than the PBH are unobservable and should not affect whether a PBH forms or not - this important effect is not taken into account by smoothing the distribution in the standard fashion. We discuss alternative methods and argue that the density contrast,
+Δ
+\Delta
+, should be used instead as super-horizon modes are damped by a factor
+k
+2
+k^{2}
+. We make a comparison between using a Press-Schechter approach and peaks theory, finding that the two are in close agreement in the region of interest. We also investigate the effect of varying the spectral index, and the running of the spectral index, on the abundance of primordial black holes.
+Contents
+	1	1 Introduction
+	2	2 Formation criteria
+	3	3 Primordial black hole mass
+	4	4 Primordial black hole abundance
+	1	4.1 Peaks theory vs Press-Schechter
+	2	4.2 Scale invariant power spectrum
+	1	4.2.1 Constraints on the power spectrum
+	3	4.3 Power law power spectrum
+	4	4.4 Running of the spectral index
+	5	4.5 Approximation using the comoving curvature perturbation power spectrum
+	5	5 Conclusions
+	6	6 Acknowledgements
+	7	A Appendix
+	8	References
+1 Introduction
+It is believed that primordial black holes (PBHs) could have formed in the early universe from the collapse of large density fluctuations, and if so, could have observational implications - either from their gravitational effects, or the effects of their Hawking radiation (see [1, 2] for recent lists of the constraints). They have not been observed, but this fact is enough that they can be used to constrain the early universe (i.e. [3, 4, 5, 6, 7]) - and provide the only known tool for probing the primordial universe on extremely small scales (i.e. [8]). However, the constraints from PBHs on small scales are much weaker than those on cosmological scales, for example, the constraints from the cosmic microwave background from Planck.
+During inflation, the Hubble horizon shrinks on a comoving scale, and quantum fluctuations become classical density perturbations once they exit the horizon. Once inflation ends, the horizon begins to grow and perturbations begin to reenter the horizon. If a perturbation is large enough, it will collapse to form a PBH almost immediately after horizon reentry - and there has been extensive research into the nature of this collapse and how large a perturbation must be in order to collapse [9, 10, 11, 12, 13, 14, 15].
+Calculations for the critical value of the density contrast,
+Δ
+\Delta
+, or comoving curvature perturbation,
+ℛ
+c
+\mathcal{R}_{c}
+, above which a region will collapse to form a PBH are typically of order 0.5 or 1 respectively - and so an insignificant number of PBHs will form unless the power spectrum on small scales is much larger than on large scales, by several orders of magnitude. This is possible in several models, such as the running mass model [16], axion inflation [17], a waterfall transition during hybrid inflation [18], from passive density fluctuations [19], or during inflation with small field excursions [20]. For a recent summary of PBH forming models see [21]. Alternatively, the constraint on the formation criteria can be relaxed during a phase transition in the early universe, causing PBHs to form preferentially at that mass scale (i.e. [22]).
+In this paper, we will review the calculation of the PBH abundance. The calculation typically computes the fraction of the universe which is above the critical value - in terms of
+Δ
+\Delta
+or
+ℛ
+c
+\mathcal{R}_{c}
+. This is typically done using the theory of peaks, which calculates the number density of peaks above the critical value, or a Press-Schechter approach, which computes the volume of the universe above the critical value. in order to calculate the abundance of PBHs on different scales, the distribution is convolved with a smoothing function to smooth out modes smaller than the horizon, whilst leaving the horizon and super-horizon modes. When
+ℛ
+c
+\mathcal{R}_{c}
+is used to do the calculation in this manner, the super-horizon modes have a large impact on the calculation - we will argue that they should not affect the calculation and that using
+ℛ
+c
+\mathcal{R}_{c}
+can be misleading and give errors of many orders of magnitude compared to using
+Δ
+\Delta
+.
+In Section 2, we will discuss the formation criteria for PBHs explaining these arguments, and in Section 3, we will briefly review the calculation of the mass of a PBH dependant on the scale it forms at. In Section 4 we discuss the different ways the abundance of PBHs and constraints on the early universe can be calculated for different models. We conclude our arguments in Section 5.
+2 Formation criteria
+The abundance of PBHs is normally stated in terms of
+β
+\beta
+, the mass fraction of the Universe contained within PBHs at the time of their formation. Typically,
+β
+\beta
+is given as a function of their mass (which, we will see later, is a function of the time at which they form) - so that
+β
+\beta
+can be used to describe the mass spectrum of PBHs. In order to determine whether a region of the early universe will collapse to form a PBH, then typically either the density or curvature of that region is compared to a threshold value, which itself is typically calculated from numerical simulations.
+Traditionally, the density contrast
+Δ
+=
+δ
+
+ρ
+−
+ρ
+ρ
+\Delta=\frac{\delta\rho-\rho}{\rho}
+had been used to calculate
+β
+\beta
+. However, following the paper by Shibata and Sasaki in 1999 [9] which calculated the threshold value in terms of a metric perturbation
+ψ
+\psi
+, and the paper by Green, Liddle, Malik and Sasaki (GLMS) in 2004 [23], it became more common to use the comoving curvature perturbation
+ℛ
+c
+\mathcal{R}_{c}
+(for example, [3, 7])11 1 The comoving curvature perturbation
+ℛ
+c
+\mathcal{R}_{c}
+is equal to the curvature perturbation on uniform density slices
+ζ
+\zeta
+on super-horizon scales, and because sub-horizon modes are smoothed out, it is common to use
+ζ
+\zeta
+instead of
+ℛ
+c
+\mathcal{R}_{c}
+..
+In figure 1 we demonstrate the danger of using
+ℛ
+c
+\mathcal{R}_{c}
+to calculate
+β
+\beta
+. By simply comparing the height of either peak, one would be drawn to the conclusion that the first (left hand) peak will collapse to form a PBH and the second (right hand) peak will not. However, because the long wavelength mode is well outside the horizon, it is unobservable at the expected time of collapse and invoking the separate universe approach (see [24]) means that it should not affect the local evolution of the universe. Therefore, the universe looks locally identical to observers at either peak - either both peaks should collapse to form a PBH or neither should22 2 Note that we are assuming that a PBH will form shortly after entering the horizon, or not at all. It is possible for the PBH formation process to last several e-foldings after horizon entry [14] in which case the long wavelength mode will become important, but only for values extremely close to the threshold value - although this is thought to be rare, see equation (13) (however, the effect of a perturbation sitting inside a much larger scale perturbation has not been well studied)..
+
+Figure 1: Here, as an example, we show a universe with two sharp (gaussian) peaks in
+ℛ
+c
+\mathcal{R}_{c}
+which sit on top of a long wavelength mode. The two thick black boxes represent the size of the visible universe to an observer at the centre of the peaks at the time of PBH formation, whilst the dotted red line represents the hypothetical threshold value for collapse. Both universes appear the same locally to each observer, and so the evolution of each patch should be identical (until the long wavelength becomes observable).
+It should be noted that papers which have calculated a critical value in terms of
+ℛ
+c
+\mathcal{R}_{c}
+(i.e. [9, 25]) assume that
+ℛ
+c
+\mathcal{R}_{c}
+drops quickly to zero outside of the perturbation - so these values can be used if one assumes that there are no super-horizon perturbations affecting your calculation. Therefore it may be possible to use
+ℛ
+c
+\mathcal{R}_{c}
+to calculate
+β
+\beta
+if one takes care to exclude super-horizon modes from the calculation (one possibility is to simply subtract the long wavelength modes - although this is strongly dependant on what is considered to be a long wavelength.), and in Section 4.5 we will consider an approximation where only the value of the power spectrum at horizon entry is used.
+A more formal way to consider this to investigate the effect of super-horizon modes on local observables, such as the density contrast and the spatial 3-curvature. Figure 2 shows the same universe as figure 1 but in terms of the spatial curvature and density contrast.
+
+Figure 2: The same universe as shown in figure 1, but this time showing the spatial curvature and the density contrast at the time the scale of the small peaks enter the horizon. We now see that both peaks look identical - and so should evolve in the same manner. We see that the peaks in the spatial curvature and density contrast are very similar, both having a Mexican hat profile (rather than the gaussian shape in the comoving curvature perturbation) - note that the difference in the height of the peaks is due to the arbitrary scaling we have used in the figure.
+Spatial curvature - consider the perturbed, spatially flat FRW metric
+
+d
+
+s
+2
+=
+−
+N
+2
+
+d
+
+t
+2
++
+g
+i
+
+j
+
+(
+d
+
+x
+i
++
+N
+i
+
+d
+
+t
+)
+
+(
+d
+
+x
+j
++
+N
+j
+
+d
+
+t
+)
+;
+g
+i
+
+j
+=
+e
+2
+
+α
+
+δ
+i
+
+j
+,
+ds^{2}=-N^{2}dt^{2}+g_{ij}\left(dx^{i}+N^{i}dt\right)\left(dx^{j}+N^{j}dt\right);g_{ij}=e^{2\alpha}\delta_{ij},
+
+(1)
+where we have chosen a comoving slicing, and
+
+α
+=
+ln
+⁡
+a
+⁡
+(
+t
+)
++
+ℛ
+c
+,
+\alpha=\ln a(t)+\mathcal{R}_{c},
+
+(2)
+with
+a
+⁡
+(
+t
+)
+a(t)
+the scale factor of some flat background and
+ℛ
+c
+\mathcal{R}_{c}
+the comoving curvature perturbation. A constant value of
+ℛ
+c
+\mathcal{R}_{c}
+can be absorbed into the scale factor by defining
+
+a
+¯
+
+(
+t
+)
+=
+a
+
+(
+t
+)
+
+e
+ℛ
+c
+,
+\bar{a}(t)=a(t)e^{\mathcal{R}_{c}},
+
+(3)
+and so a constant
+ℛ
+c
+\mathcal{R}_{c}
+corresponds only to a rescaling of the spatial coordinates, as perhaps clear from the form of the metric (1). The spatial curvature is given by
+
+R
+(
+3
+)
+=
+−
+2
+e
+2
+
+α
+δ
+i
+
+j
+(
+2
+α
+,
+i
+
+j
++
+α
+,
+i
+α
+,
+j
+)
+,
+R^{(3)}=-\frac{2}{e^{2\alpha}}\delta^{ij}\left(2\alpha,_{ij}+\alpha,_{i}\alpha,_{j}\right),
+
+(4)
+and the spatial curvature of the metric is then
+
+R
+(
+3
+)
+=
+−
+2
+e
+2
+
+α
+
+(
+2
+
+∇
+2
+ℛ
+c
++
+(
+∇
+→
+
+ℛ
+c
+)
+2
+)
+.
+R^{(3)}=-\frac{2}{e^{2\alpha}}\left(2\nabla^{2}\mathcal{R}_{c}+(\vec{\nabla}\mathcal{R}_{c})^{2}\right).
+
+(5)
+If we consider a very long wavelength
+ℛ
+c
+\mathcal{R}_{c}
+mode, which appears constant on horizon scales, we see that the spatial curvature due to this mode is negligible due to the derivatives in Eq. (5).
+Density contrast - on comoving slices, there is a simple relation at linear order between the comoving curvature perturbation and the density contrast [23]
+
+Δ
+⁡
+(
+t
+,
+k
+)
+=
+2
+
+(
+1
++
+ω
+)
+5
++
+3
+
+ω
+
+(
+k
+a
+
+H
+)
+2
+
+ℛ
+c
+
+(
+k
+)
+,
+\Delta(t,k)=\frac{2(1+\omega)}{5+3\omega}\left(\frac{k}{aH}\right)^{2}\mathcal{R}_{c}(k),
+
+(6)
+where
+ω
+\omega
+is the equation of state
+ω
+=
+p
+/
+ρ
+\omega=p/\rho
+, which during radiation domination is
+1
+3
+\frac{1}{3}
+.33 3 Josan, Green and Malik [2] derive an alternative formula valid on super- and sub-horizon scales during radiation domination,
+Δ
+⁡
+(
+t
+,
+k
+)
+=
+−
+4
+3
+
+(
+k
+a
+
+H
+)
+
+j
+1
+
+(
+k
+3
+
+a
+
+H
+)
+
+ℛ
+c
+
+(
+k
+)
+,
+\Delta(t,k)=-\frac{4}{\sqrt{3}}\left(\frac{k}{aH}\right)j_{1}\left(\frac{k}{\sqrt{3}aH}\right)\mathcal{R}_{c}(k),
+(7) where
+j
+1
+j_{1}
+is a spherical Bessel function. However, after smoothing, there is little difference between this and equation (6). In real space this is
+
+Δ
+⁡
+(
+t
+,
+x
+)
+=
+2
+
+(
+1
++
+ω
+)
+5
++
+3
+
+ω
+
+(
+1
+a
+
+H
+)
+2
+
+∇
+2
+ℛ
+c
+
+(
+x
+)
+.
+\Delta(t,x)=\frac{2(1+\omega)}{5+3\omega}\left(\frac{1}{aH}\right)^{2}\nabla^{2}\mathcal{R}_{c}(x).
+
+(8)
+Again, we see that this depends on the second derivative of
+ℛ
+c
+\mathcal{R}_{c}
+- and so the effect of super-horizon
+ℛ
+c
+\mathcal{R}_{c}
+modes is negligible. At linear order, the density contrast is therefore equivalent to the spatial curvature. However, there has been extensive research into the threshold value of
+Δ
+\Delta
+but not for
+R
+(
+3
+)
+R^{(3)}
+, we therefore advocate the use of the density contrast in order to calculate the mass fraction,
+β
+\beta
+.
+There has been extensive research on the threshold value for the density contrast above which a PBH will form. Carr [26] was the first to derive a threshold value for the formation of PBHs,
+Δ
+c
+≈
+ω
+\Delta_{c}\approx\omega
+where
+ω
+\omega
+is the equation of state, by calculating the density necessary for gravity to overcome pressure forces. In recent years, numerical simulations of gravitational collapse have been used to investigate the collapse of different shapes of the initial density profile. Niemeyer and Jedamzik [11] studied initial shapes including gaussian, Mexican hat, and polynomial, finding
+Δ
+c
+≈
+0.7
+\Delta_{c}\approx 0.7
+. Musco et al [12, 13, 14]44 4 Musco et al note that the difference in value obtained by Niemeyer and Jedamzik can be explained because they only considered a pure density perturbation imposed at the time of horizon crossing. Later work included only growing modes accounting for the effect of the perturbation in the velocity field. later studied PBH formation, finding
+Δ
+c
+≈
+0.45
+\Delta_{c}\approx 0.45
+. More recently, Harada et al [27] studied a top hat shape, finding an analytic formula
+Δ
+c
+=
+sin
+2
+⁡
+[
+π
+
+ω
+/
+(
+1
++
+3
+
+ω
+)
+]
+=
+0.41
+\Delta_{c}=\sin^{2}[\pi\sqrt{\omega}/(1+3\omega)]=0.41
+during radiation domination, and Nakama et al [25] studied generalised shapes to determine the crucial parameters in the shape and size of an overdensity. See also [10]. 55 5 It was previously thought that there was an upper bound above which density perturbations would form a separate closed universe rather than a PBH, however, this has been shown not to be the case [28]. This is relatively unimportant in practice, as the effect of an upper bound is negligible because higher peaks are exponentially suppressed..
+3 Primordial black hole mass
+In order to calculate the mass spectrum, or mass function, of PBHs, it is necessary to relate the horizon scale at the time of formation to the mass of PBH formed. We will first review the calculation of the horizon mass carried out by GLMS [23]. The horizon mass is
+
+M
+H
+=
+4
+
+π
+3
+
+ρ
+
+(
+H
+−
+1
+)
+3
+.
+M_{H}=\frac{4\pi}{3}\rho(H^{-1})^{3}.
+
+(9)
+In co-moving units, the horizon scale during radiation domination is
+R
+=
+(
+a
+
+H
+)
+−
+1
+∝
+a
+R=(aH)^{-1}\propto a
+, and expansion at constant entropy gives
+ρ
+∝
+g
+
+∗
+
+−
+1
+/
+3
+a
+
+−
+4
+\rho\propto g_{*}^{-1/3}a^{-4}
+(where
+g
+∗
+g_{*}
+is the number of relativistic degrees of freedom, which is expected to be of order 100 in the early universe). This allows the horizon mass at a given reentry scale to be related to the horizon mass at matter radiation equality,
+
+M
+H
+=
+3
+2
+
+M
+H
+,
+e
+
+q
+
+(
+k
+e
+
+q
+
+R
+)
+2
+
+(
+g
+∗
+,
+e
+
+q
+g
+∗
+)
+1
+/
+3
+,
+M_{H}=\frac{3}{2}M_{H,eq}(k_{eq}R)^{2}\left(\frac{g_{*,eq}}{g_{*}}\right)^{1/3},
+
+(10)
+where we use
+k
+e
+
+q
+=
+0.07
+
+Ω
+m
+
+h
+2
+k_{eq}=0.07\Omega_{m}h^{2}
+Mpc-1,
+g
+∗
+,
+e
+
+q
+≈
+3
+g_{*,eq}\approx 3
+and
+g
+∗
+≈
+100
+g_{*}\approx 100
+.
+M
+H
+,
+e
+
+q
+M_{H,eq}
+is given by
+
+M
+H
+,
+e
+
+q
+=
+4
+
+π
+3
+
+2
+
+ρ
+r
+
+a
+
+d
+,
+e
+
+q
+
+H
+e
+
+q
+−
+3
+=
+8
+
+π
+3
+
+ρ
+r
+
+a
+
+d
+,
+0
+k
+e
+
+q
+3
+
+a
+e
+
+q
+,
+M_{H,eq}=\frac{4\pi}{3}2\rho_{rad,eq}H_{eq}^{-3}=\frac{8\pi}{3}\frac{\rho_{rad,0}}{k_{eq}^{3}a_{eq}},
+
+(11)
+where we take
+a
+e
+
+q
+−
+1
+=
+24000
+
+Ω
+m
+
+h
+2
+a_{eq}^{-1}=24000\Omega_{m}h^{2}
+and
+Ω
+r
+
+a
+
+d
+,
+0
+
+h
+2
+=
+4.17
+×
+10
+−
+5
+\Omega_{rad,0}h^{2}=4.17\times 10^{-5}
+. Taking
+Ω
+m
+
+h
+2
+=
+0.14
+\Omega_{m}h^{2}=0.14
+gives
+M
+H
+,
+e
+
+q
+=
+7
+×
+10
+50
+
+g
+M_{H,eq}=7\times 10^{50}g
+(for this calculation, we have used the same numbers as GLMS [23]).
+Now that the horizon mass has been calculated, it remains to determine fraction of the horizon mass which goes into the PBH,
+f
+H
+f_{H}
+. Several papers (for example, [10, 11]) have noted that, when the density is close to the critical value, the mass of PBH formed depends on the size of the over-density, obeying a simple power law,
+
+f
+H
+=
+C
+
+(
+Δ
+−
+Δ
+c
+)
+γ
+,
+f_{H}=C\left(\Delta-\Delta_{c}\right)^{\gamma},
+
+(12)
+where
+C
+C
+and
+γ
+\gamma
+are constants - although the values calculated depend on the shape of the initial over-density. Chisholm [29] summarises the different measurements, as well as discussing a minimum bound on the PBH mass from entropy constraints. Typical values for these parameters which we will consider here are
+C
+=
+3
+C=3
+,
+Δ
+c
+=
+0.5
+\Delta_{c}=0.5
+, and
+γ
+=
+0.3
+\gamma=0.3
+. For these values, the mass of PBH formed is only significantly smaller than than the horizon mass,
+M
+P
+
+B
+
+H
+<
+0.1
+
+M
+H
+M_{PBH}<0.1M_{H}
+, for values of
+Δ
+\Delta
+in the range
+
+0.5
+<
+Δ
+<
+0.500012
+,
+0.5<\Delta<0.500012,
+
+(13)
+and so we will assume that PBHs form with a mass approximately equal to the horizon mass for the remainder of this paper. PBHs of significantly larger mass could form in regions where
+Δ
+\Delta
+is substantially larger than 0.5, but the abundance of these regions is exponentially suppressed, and are thus extremely rare.
+4 Primordial black hole abundance
+We will now discuss the calculation of the PBH mass fraction,
+β
+\beta
+. The density contrast on a comoving slicing,
+Δ
+\Delta
+, is smoothed on a given scale
+R
+R
+, and the fraction of the universe with a density contrast above the critical value is calculated. The smoothed density contrast
+Δ
+⁡
+(
+R
+,
+x
+)
+\Delta(R,x)
+is calculated by convolving the density contrast with a window function
+W
+⁡
+(
+R
+,
+x
+)
+W(R,x)
+:
+
+Δ
+⁡
+(
+R
+,
+x
+)
+=
+∫
+−
+∞
+∞
+d
+3
+
+x
+′
+
+W
+
+(
+R
+,
+x
+−
+x
+′
+)
+
+Δ
+
+(
+x
+′
+)
+.
+\Delta(R,x)=\int_{-\infty}^{\infty}d^{3}x^{\prime}W(R,x-x^{\prime})\Delta(x^{\prime}).
+
+(14)
+The variance of
+Δ
+⁡
+(
+R
+,
+x
+)
+\Delta(R,x)
+is given by
+
+⟨
+Δ
+2
+⟩
+=
+∫
+0
+∞
+d
+
+k
+k
+
+W
+~
+2
+
+(
+R
+,
+k
+)
+
+𝒫
+Δ
+
+(
+k
+)
+,
+\langle\Delta^{2}\rangle=\int_{0}^{\infty}\frac{dk}{k}\tilde{W}^{2}(R,k)\mathcal{P}_{\Delta}(k),
+
+(15)
+where
+W
+~
+
+(
+R
+,
+k
+)
+\tilde{W}(R,k)
+is the fourier transform of the window function, and
+𝒫
+Δ
+
+(
+k
+)
+\mathcal{P}_{\Delta}(k)
+is the density power spectrum. Using equation (6) this can be related to the comoving curvature perturbation power spectrum as,
+
+⟨
+Δ
+2
+⟩
+=
+∫
+0
+∞
+d
+
+k
+k
+
+W
+~
+2
+
+(
+R
+,
+k
+)
+
+4
+
+(
+1
++
+ω
+)
+2
+(
+5
++
+3
+
+ω
+)
+2
+
+(
+k
+
+R
+)
+4
+
+𝒫
+ℛ
+c
+
+(
+k
+)
+.
+\langle\Delta^{2}\rangle=\int_{0}^{\infty}\frac{dk}{k}\tilde{W}^{2}(R,k)\frac{4(1+\omega)^{2}}{(5+3\omega)^{2}}\left(kR\right)^{4}\mathcal{P}_{\mathcal{R}_{c}}(k).
+
+(16)
+Throughout this paper, we will use a volume-normalised gaussian window function, such that the fourier transform is given by
+
+W
+~
+
+(
+R
+,
+k
+)
+=
+exp
+⁡
+(
+−
+k
+2
+
+R
+2
+2
+)
+.
+\tilde{W}(R,k)=\exp\left(-\frac{k^{2}R^{2}}{2}\right).
+
+(17)
+In the remaining portion of this section, we discuss the difference between using a peaks theory or Press-Schechter approach, and the predicted mass spectra of PBHs for a scale invariant curvature spectrum, a power law spectrum and for a spectrum with a running of the spectral index.
+4.1 Peaks theory vs Press-Schechter
+The initial mass fraction of the Universe
+β
+\beta
+, that went into PBHs can be calculated either using a peaks theory approach, or a Press-Schechter approach. A comparison of these two methods was carried out by GLMS [23] who compared the mass spectra calculated using the curvature perturbation, with peaks theory, and the density contrast, using a Press-Schechter approach. In their calculation it was necessary to assume a blue primordial power spectrum,
+n
+s
+>
+1
+n_{s}>1
+, and they found the two to be in close agreement66 6 In the appendix, we correct their calculation, finding that calculating
+β
+\beta
+in the different methods disagree strongly.. We will repeat the calculation here for the density contrast only - finding that using peaks theory or a Press-Schechter are not in as close agreement previously found in [23] but still similar, to within a factor of order 10.
+To investigate the difference between the two methods, we will use a variable
+ν
+=
+Δ
+/
+σ
+\nu=\Delta/\sigma
+77 7 We note here that with peaks theory, the critical value is stated in terms of the peak value of a fluctuation, but in a Press-Schechter approach, it is the average value of the fluctuation. The relationship between the peak value and the average depends on the shape of the fluctuation - but typically, these are expected to differ only by a factor of order unity, with the peak value being higher. The difference in the critical value of the peak value and the average is therefore within the error of the predicted critical value from different sources. We also note the fact that looking for peaks above a certain value in a smoothed distribution is equivalent to looking for patches with an average density above that value - and so the distinction here is only a technical note., where
+σ
+\sigma
+is the square root of the variance
+⟨
+Δ
+2
+⟩
+\langle\Delta^{2}\rangle
+given by equation (15) and is a function of the form of the power spectrum and the smoothing scale (the calculation of
+σ
+\sigma
+is the same for either method).
+In the theory of peaks, the number density of peaks above a height
+ν
+c
+\nu_{c}
+is given by [30]
+
+n
+p
+
+e
+
+a
+
+k
+
+s
+
+(
+ν
+c
+,
+R
+)
+=
+1
+(
+2
+
+π
+)
+2
+
+(
+⟨
+k
+2
+⟩
+
+(
+R
+)
+3
+)
+3
+2
+
+(
+ν
+c
+2
+−
+1
+)
+
+exp
+⁡
+(
+−
+ν
+c
+2
+2
+)
+,
+n_{peaks}(\nu_{c},R)=\frac{1}{(2\pi)^{2}}\left(\frac{\langle k^{2}\rangle(R)}{3}\right)^{\frac{3}{2}}\left(\nu_{c}^{2}-1\right)\exp\left(-\frac{\nu_{c}^{2}}{2}\right),
+
+(18)
+where
+⟨
+k
+2
+⟩
+\langle k^{2}\rangle
+is the second moment of the smoothed density power spectrum
+
+⟨
+k
+2
+⟩
+
+(
+R
+)
+=
+1
+⟨
+Δ
+2
+⟩
+
+(
+R
+)
+
+∫
+0
+∞
+d
+
+k
+k
+
+k
+2
+
+W
+~
+2
+
+(
+k
+,
+R
+)
+
+𝒫
+Δ
+
+(
+k
+)
+.
+\langle k^{2}\rangle(R)=\frac{1}{\langle\Delta^{2}\rangle(R)}\int_{0}^{\infty}\frac{dk}{k}k^{2}\tilde{W}^{2}(k,R)\mathcal{P}_{\Delta}(k).
+
+(19)
+If we assume a power law spectrum
+𝒫
+ℛ
+c
+=
+A
+ℛ
+c
+
+(
+k
+/
+k
+0
+)
+n
+s
+−
+1
+\mathcal{P}_{\mathcal{R}_{c}}=A_{\mathcal{R}_{c}}(k/k_{0})^{n_{s}-1}
+, and a gaussian window function (equation (17)), we obtain
+
+⟨
+k
+2
+⟩
+
+(
+R
+)
+=
+n
+s
++
+3
+2
+
+R
+2
+,
+\langle k^{2}\rangle(R)=\frac{n_{s}+3}{2R^{2}},
+
+(20)
+assuming that
+n
+s
+>
+−
+3
+n_{s}>-3
+. The number density of peaks above the threshold can be related to the density parameter
+Ω
+P
+
+B
+
+H
+,
+p
+
+e
+
+a
+
+k
+
+s
+\Omega_{PBH,peaks}
+(which is equal to the mass fraction
+β
+\beta
+for a flat universe) by
+Ω
+P
+
+B
+
+H
+,
+p
+
+e
+
+a
+
+k
+
+s
+
+(
+ν
+c
+)
+=
+n
+p
+
+e
+
+a
+
+k
+
+s
+
+(
+ν
+c
+,
+R
+)
+
+M
+
+(
+R
+)
+/
+ρ
+\Omega_{PBH,peaks}(\nu_{c})=n_{peaks}(\nu_{c},R)M(R)/\rho
+, where
+M
+⁡
+(
+R
+)
+M(R)
+is the mass of PBH associated with the horizon size
+R
+R
+,
+M
+⁡
+(
+R
+)
+=
+(
+2
+
+π
+)
+3
+/
+2
+
+ρ
+
+R
+3
+M(R)=(2\pi)^{3/2}\rho R^{3}
+. Finally, we have
+
+β
+p
+
+e
+
+a
+
+k
+
+s
+
+(
+ν
+c
+)
+=
+Ω
+P
+
+B
+
+H
+,
+p
+
+e
+
+a
+
+k
+
+s
+
+(
+ν
+c
+)
+=
+(
+n
+s
++
+3
+)
+3
+/
+2
+6
+3
+/
+2
+
+(
+2
+
+π
+)
+1
+/
+2
+
+ν
+c
+2
+
+exp
+⁡
+(
+−
+ν
+c
+2
+2
+)
+.
+\beta_{peaks}(\nu_{c})=\Omega_{PBH,peaks}(\nu_{c})=\frac{(n_{s}+3)^{3/2}}{6^{3/2}(2\pi)^{1/2}}\nu_{c}^{2}\exp\left(-\frac{\nu_{c}^{2}}{2}\right).
+
+(21)
+By contrast, the Press-Schechter calculation simply integrates the probability distribution function (PDF),
+
+P
+⁡
+(
+ν
+)
+=
+1
+2
+
+π
+
+exp
+⁡
+(
+−
+ν
+2
+2
+)
+,
+P(\nu)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{\nu^{2}}{2}\right),
+
+(22)
+over the range of values that form a PBH:
+
+β
+P
+
+S
+
+(
+ν
+c
+)
+=
+2
+
+∫
+ν
+c
+∞
+P
+⁡
+(
+ν
+)
+
+𝑑
+ν
+=
+2
+
+∫
+ν
+c
+∞
+1
+2
+
+π
+
+exp
+⁡
+(
+−
+ν
+2
+2
+)
+
+𝑑
+ν
+.
+\beta_{PS}(\nu_{c})=2\int_{\nu_{c}}^{\infty}P(\nu)d\nu=2\int_{\nu_{c}}^{\infty}\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{\nu^{2}}{2}\right)d\nu.
+
+(23)
+This can be written in terms of the complimentary error function simply as
+
+β
+P
+
+S
+
+(
+ν
+c
+)
+=
+erfc
+
+(
+ν
+c
+2
+)
+,
+\beta_{PS}(\nu_{c})=\textrm{erfc}\left(\frac{\nu_{c}}{\sqrt{2}}\right),
+
+(24)
+and using the asymptotic expansion of erfc
+(
+ν
+c
+)
+(\nu_{c})
+this can be written as
+
+β
+P
+
+S
+
+(
+ν
+c
+)
+≈
+2
+π
+
+1
+ν
+c
+
+exp
+⁡
+(
+−
+ν
+c
+2
+2
+)
+.
+\beta_{PS}(\nu_{c})\approx\sqrt{\frac{2}{\pi}}\frac{1}{\nu_{c}}\exp\left(-\frac{\nu_{c}^{2}}{2}\right).
+
+(25)
+Figure 3 shows the difference in the predicted values of
+β
+\beta
+for either calculation - the two are in relatively close agreement (differing by a factor of order 10), whilst
+ν
+\nu
+is not too large88 8 However, this uncertainty in
+β
+\beta
+has little effect on the uncertainty of
+ν
+c
+\nu_{c}
+which would be calculated, as it depends only on
+log
+⁡
+(
+β
+)
+\log(\beta)
+(see [4]).. For larger values of
+ν
+c
+\nu_{c}
+,
+β
+p
+
+e
+
+a
+
+k
+
+s
+\beta_{peaks}
+is systematically higher than
+β
+P
+
+S
+\beta_{PS}
+. However, the difference between these methods is small compared to the error due to uncertainties in the threshold value
+Δ
+c
+\Delta_{c}
+(see figure 4 for an example).
+
+Figure 3: Here we compare the value of
+β
+\beta
+calculated using peaks theory or Press-Schechter against
+ν
+c
+=
+Δ
+c
+σ
+\nu_{c}=\frac{\Delta_{c}}{\sigma}
+.
+4.2 Scale invariant power spectrum
+In the case where the primordial curvature power spectrum is scale invariant,
+𝒫
+⁡
+(
+k
+)
+=
+A
+ℛ
+c
+\mathcal{P}(k)=A_{\mathcal{R}_{c}}
+, where
+A
+ℛ
+c
+A_{\mathcal{R}_{c}}
+is a constant, then the variance of the smoothed density field during radiation domination,
+ω
+=
+1
+/
+3
+\omega=1/3
+, is
+
+⟨
+Δ
+2
+⟩
+=
+∫
+0
+∞
+d
+
+k
+k
+
+W
+~
+2
+
+(
+k
+,
+R
+)
+
+4
+
+(
+1
++
+ω
+)
+2
+(
+5
++
+3
+
+ω
+)
+2
+
+A
+ℛ
+c
+=
+8
+81
+
+A
+ℛ
+c
+.
+\langle\Delta^{2}\rangle=\int_{0}^{\infty}\frac{dk}{k}\tilde{W}^{2}(k,R)\frac{4(1+\omega)^{2}}{(5+3\omega)^{2}}A_{\mathcal{R}_{c}}=\frac{8}{81}A_{\mathcal{R}_{c}}.
+
+(26)
+Note that, as expected for a scale invariant spectrum, this is now independent of the smoothing scale
+R
+R
+- and so predicts that
+β
+\beta
+is independent of the mass of the PBHs99 9 It is also worth noting that for either a red or scale invariant power spectrum
+⟨
+ℛ
+c
+2
+⟩
+→
+∞
+\langle\mathcal{R}_{c}^{2}\rangle\rightarrow\infty
+.. Using peaks theory:
+
+β
+=
+1
+2
+3
+/
+2
+
+(
+2
+
+π
+)
+1
+/
+2
+
+81
+
+Δ
+c
+2
+8
+
+A
+ℛ
+c
+
+exp
+⁡
+(
+−
+81
+
+Δ
+c
+2
+16
+
+A
+ℛ
+c
+)
+.
+\beta=\frac{1}{2^{3/2}(2\pi)^{1/2}}\frac{81\Delta_{c}^{2}}{8A_{\mathcal{R}_{c}}}\exp\left(-\frac{81\Delta_{c}^{2}}{16A_{\mathcal{R}_{c}}}\right).
+
+(27)
+4.2.1 Constraints on the power spectrum
+Using the relation between the (scale invariant) comoving curvature perturbation power spectrum and
+β
+\beta
+, equation (27), it is simple to calculate a constraint on the power spectrum from the constraint on
+β
+\beta
+at a given scale. We will here consider a constraint of size
+β
+<
+10
+−
+20
+\beta<10^{-20}
+, with
+Δ
+c
+=
+0.5
+\Delta_{c}=0.5
+, and give the constraints one would calculated from peaks theory and Press-Schechter, seeing that the two are in very close agreement:
+
+𝒫
+ℛ
+c
+,
+p
+
+e
+
+a
+
+k
+
+s
+<
+0.026
+,
+\displaystyle\mathcal{P}_{\mathcal{R}_{c},peaks}<0.026,
+
+
+𝒫
+ℛ
+c
+,
+P
+
+S
+<
+0.029
+.
+\displaystyle\mathcal{P}_{\mathcal{R}_{c},PS}<0.029.
+
+(28)
+4.3 Power law power spectrum
+In order to compare with the GLMS paper [23], we will consider a power law spectrum (see also Drees and Erfani [16]). The form of the power spectrum is given by
+
+𝒫
+ℛ
+c
+
+(
+k
+)
+=
+A
+0
+
+(
+k
+k
+0
+)
+n
+s
+−
+1
+,
+\mathcal{P}_{\mathcal{R}_{c}}(k)=A_{0}\left(\frac{k}{k_{0}}\right)^{n_{s}-1},
+
+(29)
+where
+A
+0
+A_{0}
+is the amplitude of the power spectrum defined on some pivot scale
+k
+0
+k_{0}
+, and we will consider only blue spectra,
+n
+s
+>
+1
+n_{s}>1
+. In this case, the variance of the smoothed density field during radiation domination, given by equation (15) is
+
+⟨
+Δ
+2
+⟩
+=
+8
+81
+
+A
+0
+(
+k
+0
+
+R
+)
+n
+s
+−
+1
+
+Γ
+
+(
+n
+s
++
+3
+2
+)
+,
+\langle\Delta^{2}\rangle=\frac{8}{81}\frac{A_{0}}{(k_{0}R)^{n_{s}-1}}\Gamma\left(\frac{n_{s}+3}{2}\right),
+
+(30)
+and
+β
+\beta
+is given by equation (21). For the purposes of making a specific calculation we will take
+A
+0
+=
+2.2
+×
+10
+−
+9
+A_{0}=2.2\times 10^{-9}
+and
+k
+0
+=
+0.05
+k_{0}=0.05
+Mpc-1, loosely based on observations. Figure 4 shows the predicted mass spectra for a range of different spectral indexes
+n
+s
+n_{s}
+, and threshold values of the density contrast
+Δ
+c
+\Delta_{c}
+- here, we only consider a blue spectrum (it is possible to consider a red spectrum on small scales in which case
+β
+\beta
+is larger for more massive PBHs, but a complicated model is needed to produce a significant number of PBHs and be consistent with observations).
+We can place a limit on the spectral index from the observational constraints on the abundance of PBHs - as has been done previously (for example, [5]). Taking
+Δ
+c
+=
+0.5
+\Delta_{c}=0.5
+and using the constraint
+β
+<
+10
+−
+20
+\beta<10^{-20}
+for PBHs in the mass range
+10
+8
+10^{8}
+g
+
+<
+M
+P
+
+B
+
+H
+<
+10
+10
+<M_{PBH}<10^{10}
+g [2], the constraint on the spectral index is
+n
+s
+<
+1.34
+n_{s}<1.34
+. Because there is a minimum mass of PBHs, at the Planck mass, then we can also place a minimum value on
+n
+s
+n_{s}
+which is required to form a significant number of PBHs. Approximately 70 efoldings of inflation are required after todays horizon scale exited during inflation in order for the horizon to reach a sufficiently small scale corresponding to the Planck mass. Typical inflationary models predict that the current horizon scale exited the Hubble scale during inflation about 55 efoldings before the end of inflation [31]. In that case, the mass contained in the horizon scale at the end of inflation is approximately
+e
+30
+
+M
+Planck
+∼
+10
+8
+e^{30}M_{\rm Planck}\sim 10^{8}
+g. If we require that
+β
+>
+10
+−
+20
+\beta>10^{-20}
+for PBHs of mass
+M
+P
+
+B
+
+H
+=
+10
+−
+5
+M_{PBH}=10^{-5}
+g then the spectral index must be
+n
+s
+>
+1.26
+n_{s}>1.26
+. In order for a significant number of PBHs to form, then
+n
+s
+n_{s}
+must lie in the range
+
+1.26
+<
+n
+s
+<
+1.34
+.
+1.26<n_{s}<1.34.
+
+(31)
+
+Figure 4: This figure shows the predicted PBH mass spectra for different values of
+n
+s
+n_{s}
+and
+Δ
+c
+\Delta_{c}
+. A smaller spectral index produces PBHs of smaller masses. Note that the calculation has been artificially cut off when
+β
+\beta
+becomes large as it is only valid for rare peaks (where
+β
+\beta
+is small), as well as for PBHs smaller than the Planck mass (
+M
+≈
+10
+−
+5
+
+g
+M\approx 10^{-5}g
+).
+4.4 Running of the spectral index
+Over the large range of scales considered here, the spectral index is unlikely to be a constant. We will therefore consider a running of the spectral index,
+α
+\alpha
+, defined as
+
+α
+=
+d
+
+n
+s
+d
+
+ln
+⁡
+(
+k
+)
+,
+\alpha=\frac{dn_{s}}{d\ln(k)},
+
+(32)
+leading to an expression for the comoving curvature perturbation power spectrum given by
+
+𝒫
+ℛ
+c
+
+(
+k
+)
+=
+A
+0
+
+(
+k
+k
+0
+)
+n
+0
+−
+1
++
+1
+2
+
+α
+
+ln
+⁡
+(
+k
+/
+k
+0
+)
+,
+\mathcal{P}_{\mathcal{R}_{c}}(k)=A_{0}\left(\frac{k}{k_{0}}\right)^{n_{0}-1+\frac{1}{2}\alpha\ln(k/k_{0})},
+
+(33)
+where
+A
+0
+A_{0}
+and
+n
+0
+n_{0}
+are the values of the power spectrum and spectral index respectively, defined at a pivot scale
+k
+0
+k_{0}
+. If values are given for parameters
+k
+0
+k_{0}
+,
+A
+0
+A_{0}
+,
+n
+0
+n_{0}
+and
+α
+\alpha
+then the PBH mass spectra can be calculated as before, calculating the variance of the smoothed density contrast using equation (15) and finding
+β
+\beta
+using equation (21).
+The same as in the previous section, we will take
+A
+0
+=
+2.2
+×
+10
+−
+9
+A_{0}=2.2\times 10^{-9}
+and
+k
+0
+=
+0.05
+k_{0}=0.05
+Mpc-1. The Planck collaboration [32] found a spectral index
+n
+s
+=
+0.9603
+±
+0.0073
+n_{s}=0.9603\pm 0.0073
+, but no statistically significant running of the spectral index,
+α
+=
+−
+0.0134
+±
+0.0090
+\alpha=-0.0134\pm 0.0090
+. We will therefore take
+n
+0
+=
+0.96
+n_{0}=0.96
+and allow
+α
+\alpha
+to vary - see figure 5. A positive running is necessary to produce a significant number of PBHs, and the smallest value we will consider is
+α
+=
+0.01
+\alpha=0.01
+.
+PBHs of masses greater than
+M
+P
+
+B
+
+H
+≈
+10
+8
+M_{PBH}\approx 10^{8}
+g are well constrained by observations [2, 1], and we see from figure 5 that these values of the running produce too many PBHs, and would be ruled out by observational constraints. We therefore state an upper bound on the running of the spectral index,
+α
+<
+0.0162
+\alpha<0.0162
+(again, using the constraint
+β
+<
+10
+−
+20
+\beta<10^{-20}
+for PBHs in the mass range
+10
+8
+10^{8}
+g
+
+<
+M
+P
+
+B
+
+H
+<
+10
+10
+<M_{PBH}<10^{10}
+g [2]). Although, again, we note that there is no reason to assume the running of the spectral index will be constant over a large range of scales.
+We will not consider the running of the running in this paper, although it has been considered by Erfani [33], who places an upper limit on the running of the running by considering the non-production of (long lived) PBHs.
+
+Figure 5: This figure shows the predicted PBH mass spectra for different values of the running of the spectral index
+α
+\alpha
+. Again, the calculation has been artificially cut off when
+β
+\beta
+becomes large.
+4.5 Approximation using the comoving curvature perturbation power spectrum
+The power spectrum is, formally, the variance of the amplitude of the Fourier modes at a certain scale. Less formally, one can consider it to be the characteristic size of perturbations at that scale. We show in this section that one can quickly find an approximate value for the PBH mass fraction using the comoving curvature perturbation by only considering perturbations at the exact scale of horizon crossing, without using window functions - this is the approach used in previous papers [6, 4]. At horizon crossing, the relation between the density contrast and the comoving curvature perturbation becomes even simpler, as the factor
+(
+k
+/
+a
+
+H
+)
+=
+1
+(k/aH)=1
+:
+
+Δ
+⁡
+(
+t
+H
+,
+k
+)
+=
+2
+
+(
+1
++
+ω
+)
+5
++
+3
+
+ω
+
+ℛ
+c
+
+(
+k
+)
+=
+4
+9
+
+ℛ
+c
+
+(
+k
+)
+,
+\Delta(t_{H},k)=\frac{2(1+\omega)}{5+3\omega}\mathcal{R}_{c}(k)=\frac{4}{9}\mathcal{R}_{c}(k),
+
+(34)
+where
+t
+H
+t_{H}
+is the time at horizon entry, and
+ω
+=
+1
+/
+3
+\omega=1/3
+is the equation of state during radiation domination. As
+Δ
+\Delta
+is proportional to
+ℛ
+c
+\mathcal{R}_{c}
+at horizon entry, it is reasonable to assume that peaks in the smoothed density contrast correspond to peaks in the comoving curvature perturbation (ignoring other scales).
+We will assume that the power spectrum at a given scale gives the variance of the comoving curvature perturbation at that scale and use a Press-Schechter approach to calculate
+β
+\beta
+:
+
+β
+=
+2
+
+∫
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+∞
+P
+⁡
+(
+ℛ
+c
+)
+
+d
+
+ℛ
+c
+,
+\beta=2\int_{\mathcal{R}_{c,crit}}^{\infty}P(\mathcal{R}_{c})d\mathcal{R}_{c},
+
+(35)
+where
+P
+⁡
+(
+ℛ
+c
+)
+P(\mathcal{R}_{c})
+is the (gaussian) probability distribution function. Writing this in terms of the complimentary error function gives
+
+β
+=
+erfc
+
+(
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+2
+
+𝒫
+ℛ
+c
+)
+.
+\beta=\textrm{erfc}\left(\frac{\mathcal{R}_{c,crit}}{\sqrt{2\mathcal{P}_{\mathcal{R}_{c}}}}\right).
+
+(36)
+Compare this to the expression one would derive using the density contrast for a scale invariant power spectrum, where
+⟨
+ℛ
+c
+2
+⟩
+\langle\mathcal{R}_{c}^{2}\rangle
+is given by equation (26),
+
+β
+=
+erfc
+
+(
+9
+
+Δ
+c
+4
+
+𝒫
+ℛ
+c
+)
+.
+\beta=\textrm{erfc}\left(\frac{9\Delta_{c}}{4\sqrt{\mathcal{P}_{\mathcal{R}_{c}}}}\right).
+
+(37)
+These two expressions will be exactly equal if
+Δ
+c
+≈
+2
+
+2
+9
+
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+\Delta_{c}\approx\frac{2\sqrt{2}}{9}\mathcal{R}_{c,crit}
+. However, these methods cannot be considered identical, which is evident if a power law spectrum is considered,
+𝒫
+ℛ
+c
+
+(
+k
+)
+=
+A
+0
+
+(
+k
+/
+k
+0
+)
+n
+s
+−
+1
+\mathcal{P}_{\mathcal{R}_{c}}(k)=A_{0}(k/k_{0})^{n_{s}-1}
+. Equation (36) is unchanged, but equation (37) becomes
+
+β
+=
+erfc
+
+(
+9
+
+Δ
+c
+4
+
+𝒫
+ℛ
+c
+
+Γ
+
+(
+3
++
+n
+s
+2
+)
+)
+.
+\beta=\textrm{erfc}\left(\frac{9\Delta_{c}}{4\sqrt{\mathcal{P}_{\mathcal{R}_{c}}\Gamma{\left(\frac{3+n_{s}}{2}\right)}}}\right).
+
+(38)
+However, provided that
+Γ
+⁡
+(
+3
++
+n
+s
+2
+)
+≈
+1
+\Gamma\left(\frac{3+n_{s}}{2}\right)\approx 1
+(which is satisfied if
+n
+s
+≈
+1
+n_{s}\approx 1
+) and
+Δ
+c
+=
+2
+
+2
+9
+
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+\Delta_{c}=\frac{2\sqrt{2}}{9}\mathcal{R}_{c,crit}
+, these two expressions will be approximately equal. Figure 6 shows a specific example of these calculations, showing that they still agree closely.
+We now compare the constraints on the power spectrum calculated in this method to the constraints calculated earlier (equation (28)). Using
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+=
+1.2
+\mathcal{R}_{c,crit}=1.2
+[9, 23], and
+β
+<
+10
+−
+20
+\beta<10^{-20}
+gives the constraint
+
+𝒫
+ℛ
+c
+<
+0.024
+,
+\mathcal{P}_{\mathcal{R}_{c}}<0.024,
+
+(39)
+which is in close agreement with the previously calculated bound, equation (28).
+
+Figure 6: We show the mass spectra of PBHs calculated, for a power law power spectrum
+𝒫
+ℛ
+c
+
+(
+k
+)
+=
+A
+0
+
+(
+k
+/
+k
+0
+)
+n
+s
+−
+1
+\mathcal{P}_{\mathcal{R}_{c}}(k)=A_{0}(k/k_{0})^{n_{s}-1}
+, using the density contrast (method described in Section 4.3) and the comoving curvature perturbation (method described in Section 4.5). The values we have used in this figure are
+A
+0
+=
+2.2
+×
+10
+−
+9
+A_{0}=2.2\times 10^{-9}
+,
+k
+0
+=
+0.05
+k_{0}=0.05
+Mpc-1,
+n
+s
+=
+1.3
+n_{s}=1.3
+,
+Δ
+c
+=
+0.4
+\Delta_{c}=0.4
+and
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+=
+1.2
+\mathcal{R}_{c,crit}=1.2
+5 Conclusions
+We have placed the calculation of the PBH abundance on a more solid grounding. Using the comoving curvature perturbation
+ℛ
+c
+\mathcal{R}_{c}
+can be misleading and care needs to be taken if one wishes to use
+ℛ
+c
+\mathcal{R}_{c}
+to perform this calculation, due to the effect of super-horizon modes. The problem with using
+ℛ
+c
+\mathcal{R}_{c}
+is most easily seen when one considers either a red or scale-invariant power spectrum, which causes the variance of
+ℛ
+c
+\mathcal{R}_{c}
+to diverge (it is possible to complete the calculation when a blue spectrum is considered but the results differ drastically from using
+Δ
+\Delta
+, see Appendix). We therefore advocate the use of the density contrast to perform the calculation, which does not suffer from the same problem due to the
+k
+2
+k^{2}
+dependance of super-horizon modes. In addition, calculations and simulations to calculate the critical threshold for collapse most often use
+Δ
+\Delta
+. However, it is more convenient to calculate
+ℛ
+c
+\mathcal{R}_{c}
+when studying inflationary models, and finding the constraints on the small scale power spectrum from PBHs - an approximation for
+β
+\beta
+can be quickly calculated using
+ℛ
+c
+\mathcal{R}_{c}
+if the power spectrum,
+𝒫
+ℛ
+c
+\mathcal{P}_{\mathcal{R}_{c}}
+, is used rather than using the variance,
+⟨
+ℛ
+c
+2
+⟩
+\langle\mathcal{R}_{c}^{2}\rangle
+(although this can only ever be an approximation as modes of a similar scale can affect the production of PBHs - which this calculation ignores). It is therefore important that calculations using
+Δ
+\Delta
+or
+ℛ
+c
+\mathcal{R}_{c}
+give the same results, and we have provided a method for doing so.
+We have considered both a Press-Schechter approach and a peaks theory approach, finding that there is a significant discrepancy between the two - however, this is dwarfed by the error due to uncertainty in the critical value of the density contrast above which PBHs are assumed to form,
+Δ
+c
+\Delta_{c}
+. In this paper, we use the peaks theory method, which has a better theoretical grounding. The implications of this paper will be explored further in future papers.
+6 Acknowledgements
+SY is supported by an STFC studentship, and would like to thank Yukawa Institute for Theoretical Physics for its hospitality during a month long stay which was supported by the Bilateral International Exchange Program (BIEP). CB was supported by a Royal Society University Research Fellowship. The authors would like to thank Will Watson, Aurel Schneider, David Seery, Shaun Hotchkiss, Anne Green, Andrew Liddle, John Miller and Ilia Musco for useful discussion which brought about the production of this paper.
+Appendix A Appendix
+For completeness, we include the calculation of the PBH mass fraction
+β
+\beta
+using the comoving curvature perturbation, and compare it to the calculation using the density contrast. This was initially done by GLMS [23] who incorrectly calculated the density contrast power spectrum at the time of PBH formation - we will now correct the calculation. Assuming a blue power spectrum,
+𝒫
+ℛ
+c
+=
+A
+0
+
+(
+k
+/
+k
+0
+)
+n
+s
+−
+1
+\mathcal{P}_{\mathcal{R}_{c}}=A_{0}\left(k/k_{0}\right)^{n_{s}-1}
+where
+n
+s
+>
+1
+n_{s}>1
+, the variance of the smoothed comoving curvature perturbation is
+
+⟨
+ℛ
+c
+2
+⟩
+
+(
+R
+)
+=
+∫
+0
+∞
+d
+
+k
+k
+
+W
+~
+2
+
+(
+k
+,
+R
+)
+
+𝒫
+ℛ
+c
+
+(
+k
+)
+=
+A
+0
+2
+
+(
+k
+0
+
+R
+)
+n
+s
+−
+1
+
+Γ
+
+(
+n
+s
+−
+1
+2
+)
+.
+\langle\mathcal{R}_{c}^{2}\rangle(R)=\int^{\infty}_{0}\frac{dk}{k}\tilde{W}^{2}(k,R)\mathcal{P}_{\mathcal{R}_{c}}(k)=\frac{A_{0}}{2(k_{0}R)^{n_{s}-1}}\Gamma\left(\frac{n_{s}-1}{2}\right).
+
+(40)
+The second moment of the power spectrum is given by
+
+⟨
+k
+2
+⟩
+=
+1
+⟨
+ℛ
+c
+2
+⟩
+
+(
+R
+)
+
+∫
+0
+∞
+d
+
+k
+k
+
+k
+2
+
+W
+~
+2
+
+(
+k
+,
+R
+)
+
+𝒫
+ℛ
+c
+
+(
+k
+)
+=
+n
+s
+−
+1
+2
+
+R
+2
+,
+\langle k^{2}\rangle=\frac{1}{\langle\mathcal{R}_{c}^{2}\rangle(R)}\int^{\infty}_{0}\frac{dk}{k}k^{2}\tilde{W}^{2}(k,R)\mathcal{P}_{\mathcal{R}_{c}}(k)=\frac{n_{s}-1}{2R^{2}},
+
+(41)
+leading us to the final expression for
+β
+\beta
+using equation (18) for comoving curvature perturbation instead of density contrast:
+
+β
+⁡
+(
+R
+)
+=
+(
+n
+s
+−
+1
+)
+3
+/
+2
+6
+3
+/
+2
+
+(
+2
+
+π
+)
+1
+/
+2
+
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+2
+⟨
+ℛ
+c
+2
+⟩
+
+(
+R
+)
+
+exp
+⁡
+(
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+2
+2
+
+⟨
+ℛ
+c
+2
+⟩
+
+(
+R
+)
+)
+\beta(R)=\frac{(n_{s}-1)^{3/2}}{6^{3/2}(2\pi)^{1/2}}\frac{\mathcal{R}_{c,crit}^{2}}{\langle\mathcal{R}_{c}^{2}\rangle(R)}\exp\left(\frac{\mathcal{R}_{c,crit}^{2}}{2\langle\mathcal{R}_{c}^{2}\rangle(R)}\right)
+
+(42)
+The differences between this calculation and the calculation for the density contrast are shown in figure 7 - we can see that they differ by many orders of magnitude.
+
+Figure 7: We have used
+Δ
+c
+=
+0.5
+\Delta_{c}=0.5
+,
+ℛ
+c
+,
+c
+
+r
+
+i
+
+t
+=
+1
+\mathcal{R}_{c,crit}=1
+,
+n
+s
+=
+1.3
+n_{s}=1.3
+,
+A
+0
+=
+2.2
+×
+10
+−
+9
+A_{0}=2.2\times 10^{-9}
+and
+k
+0
+=
+0.05
+k_{0}=0.05
+Mpc-1. Both curves represent the mass spectrum of PBHs formed from identical comoving curvature perturbation power spectra - but differ drastically due to the different methods used in the calculation.
+References
+	•	[1] B. Carr, K. Kohri, Y. Sendouda, and J. Yokoyama, New cosmological constraints on primordial black holes, Phys.Rev. D81 (2010) 104019, [arXiv:0912.5297].
+	•	[2] A. S. Josan, A. M. Green, and K. A. Malik, Generalised constraints on the curvature perturbation from primordial black holes, Phys.Rev. D79 (2009) 103520, [arXiv:0903.3184].
+	•	[3] E. Bugaev and P. Klimai, Cosmological constraints on the curvaton web parameters, Phys.Rev. D88 (2013), no. 2 023521, [arXiv:1212.6529].
+	•	[4] S. Young and C. T. Byrnes, Primordial black holes in non-Gaussian regimes, JCAP 1308 (2013) 052, [arXiv:1307.4995].
+	•	[5] A. M. Green and A. R. Liddle, Constraints on the density perturbation spectrum from primordial black holes, Phys.Rev. D56 (1997) 6166–6174, [astro-ph/9704251].
+	•	[6] C. T. Byrnes, E. J. Copeland, and A. M. Green, Primordial black holes as a tool for constraining non-Gaussianity, Phys.Rev. D86 (2012) 043512, [arXiv:1206.4188].
+	•	[7] S. Shandera, A. L. Erickcek, P. Scott, and J. Y. Galarza, Number Counts and Non-Gaussianity, Phys.Rev. D88 (2013) 103506, [arXiv:1211.7361].
+	•	[8] P. Scott, T. Bringmann, and Y. Akrami, Constraints on small-scale cosmological perturbations from gamma-ray searches for dark matter, J.Phys.Conf.Ser. 375 (2012) 032012, [arXiv:1205.1432].
+	•	[9] M. Shibata and M. Sasaki, Black hole formation in the Friedmann universe: Formulation and computation in numerical relativity, Phys.Rev. D60 (1999) 084002, [gr-qc/9905064].
+	•	[10] I. Hawke and J. Stewart, The dynamics of primordial black hole formation, Class.Quant.Grav. 19 (2002) 3687–3707.
+	•	[11] J. C. Niemeyer and K. Jedamzik, Dynamics of primordial black hole formation, Phys.Rev. D59 (1999) 124013, [astro-ph/9901292].
+	•	[12] I. Musco, J. C. Miller, and L. Rezzolla, Computations of primordial black hole formation, Class.Quant.Grav. 22 (2005) 1405–1424, [gr-qc/0412063].
+	•	[13] I. Musco, J. C. Miller, and A. G. Polnarev, Primordial black hole formation in the radiative era: Investigation of the critical nature of the collapse, Class.Quant.Grav. 26 (2009) 235001, [arXiv:0811.1452].
+	•	[14] I. Musco and J. C. Miller, Primordial black hole formation in the early universe: critical behaviour and self-similarity, Class.Quant.Grav. 30 (2013) 145009, [arXiv:1201.2379].
+	•	[15] J. C. Niemeyer and K. Jedamzik, Near-critical gravitational collapse and the initial mass function of primordial black holes, Phys.Rev.Lett. 80 (1998) 5481–5484, [astro-ph/9709072].
+	•	[16] M. Drees and E. Erfani, Running-Mass Inflation Model and Primordial Black Holes, JCAP 1104 (2011) 005, [arXiv:1102.2340].
+	•	[17] E. Bugaev and P. Klimai, Axion inflation with gauge field production and primordial black holes, arXiv:1312.7435.
+	•	[18] E. Bugaev and P. Klimai, Formation of primordial black holes from non-Gaussian perturbations produced in a waterfall transition, Phys.Rev. D85 (2012) 103504, [arXiv:1112.5601].
+	•	[19] C.-M. Lin and K.-W. Ng, Primordial Black Holes from Passive Density Fluctuations, Phys.Lett. B718 (2013) 1181–1185, [arXiv:1206.1685].
+	•	[20] S. Hotchkiss, A. Mazumdar, and S. Nadathur, Observable gravitational waves from inflation with small field excursions, JCAP 1202 (2012) 008, [arXiv:1110.5389].
+	•	[21] A. M. Green, Primordial Black Holes: sirens of the early Universe, arXiv:1403.1198.
+	•	[22] K. Jedamzik and J. C. Niemeyer, Primordial black hole formation during first order phase transitions, Phys.Rev. D59 (1999) 124014, [astro-ph/9901293].
+	•	[23] A. M. Green, A. R. Liddle, K. A. Malik, and M. Sasaki, A New calculation of the mass fraction of primordial black holes, Phys.Rev. D70 (2004) 041502, [astro-ph/0403181].
+	•	[24] D. Wands, K. A. Malik, D. H. Lyth, and A. R. Liddle, A New approach to the evolution of cosmological perturbations on large scales, Phys.Rev. D62 (2000) 043527, [astro-ph/0003278].
+	•	[25] T. Nakama, T. Harada, A. Polnarev, and J. Yokoyama, Identifying the most crucial parameters of the initial curvature profile for primordial black hole formation, arXiv:1310.3007.
+	•	[26] B. J. Carr, The Primordial black hole mass spectrum, Astrophys.J. 201 (1975) 1–19.
+	•	[27] T. Harada, C.-M. Yoo, and K. Kohri, Threshold of primordial black hole formation, Phys. Rev. D88 (2013) 084051, [arXiv:1309.4201].
+	•	[28] M. Kopp, S. Hofmann, and J. Weller, Separate Universes Do Not Constrain Primordial Black Hole Formation, Phys.Rev. D83 (2011) 124025, [arXiv:1012.4369].
+	•	[29] J. R. Chisholm, Primordial Black Hole Minimum Mass, Phys.Rev. D74 (2006) 043512, [astro-ph/0604174].
+	•	[30] J. M. Bardeen, J. Bond, N. Kaiser, and A. Szalay, The Statistics of Peaks of Gaussian Random Fields, Astrophys.J. 304 (1986) 15–61.
+	•	[31] A. R. Liddle and S. M. Leach, How long before the end of inflation were observable perturbations produced?, Phys.Rev. D68 (2003) 103503, [astro-ph/0305263].
+	•	[32] Planck Collaboration Collaboration, P. Ade et. al., Planck 2013 results. XXII. Constraints on inflation, arXiv:1303.5082.
+	•	[33] E. Erfani, Modulated Inflation Models and Primordial Black Holes, Phys.Rev. D89 (2014) 083511, [arXiv:1311.3090].
+◄  Feeling
+lucky? Conversion
+report Report
+an issue View original
+on arXiv►
+Copyright Privacy Policy
+Generated by LaTeXML oxide

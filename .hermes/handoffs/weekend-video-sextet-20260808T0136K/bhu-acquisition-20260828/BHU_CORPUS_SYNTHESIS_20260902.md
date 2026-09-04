@@ -207,16 +207,22 @@ comoving; then it is the Oppenheimer–Snyder match, and closed daughters recoll
 computation). Entry 56's finite top-hat is that case: its borrowed empty-exterior closure is derived. Pathria's horizon
 identification is realised smoothly by the comoving surface at maximum expansion (R_max = R_s derived), but a null shell on the
 horizon violates the dominant energy condition — the shell-bearing escape entries 4 and 5 left open is closed at that placement.
-Two blind seats, a third seat on two placement-definition splits, an independent Darmois/Misner–Sharp second route: every class
-and control agrees. Ruled (a) by Duho 17:17 KST: warrant fields on 4, 5, 22, 56 annotated; tiers, standings and the entry-22 domain
+Two blind seats, a third seat on two placement-definition splits: every class and control agrees. The 2026-09-04 support audit
+found the route-2 agy companion script was a no-output stub, preserved it, and added a passing executable Tori receipt; the manual
+route-2 report and the final classes are unchanged (`K2_ROUTE2_RECONCILIATION_20260903.md`). Ruled (a) by Duho 17:18 KST:
+warrant fields on 4, 5, 22, 56 annotated; tiers, standings and the entry-22 domain
 untouched.
 
 ## 13. K3 step 1 — the torsion-bounce spin closure is a convention (2026-09-03 20:08 KST; `K3S1_RESULT_20260903.md`, check sheet, second route)
 For randomly oriented, uncorrelated fermions the ensemble average of the squared spin density is linear in n. Neither printed
 closure follows: ¾ n² (entry 10 L113) is the coherent RMS convention; ⅛(ℏcn)² (entries 9, 11; entry 10 L121) needs a prescription
-the definitions never supply, and three seats each manufacture it differently. Under entry 10's own projection the two objects are
-one quantity, so that paper carries two values six times apart. Three seats, two methods, unanimous. The bounce keeps its sign; its
-scale rests on a chosen coefficient; every downstream bounce (39, 52, 53, 59) inherits the choice. Ruled (a) by Duho 19:33/19:37 KST:
+the entries' definitions never supply, and three seats each manufacture it differently. Gasperini's now-pinned 1986 version of record
+defines the same spin-fluid scalar and states `σ² = ℏ²⟨n²⟩/8`, but shows no microscopic average that fixes the n² identification;
+Tori and an independent full-text seat both class it **CONVENTION CONFIRMED** (`GASPERINI_K3_RESULT_20260904.md`, check sheet).
+Under entry 10's own projection the two objects are one quantity, so that paper carries two values six times apart. Three K3 seats,
+two methods, unanimous; the Gasperini source test is 2/2. The bounce keeps its sign; its
+scale rests on a chosen coefficient. Downstream rows 39, 52 and 59 inherit the spin-fluid ⅛ prescription; row 53 inherits the Dirac
+¾ prescription; all four inherit an audited n² coefficient choice. Ruled (a) by Duho 19:34 KST:
 rows 9, 10, 11 annotated, inheritance noted; tiers untouched. Open, not ordered: whether an exchange correlation restores an n² term.
 
 ## 14. K1 — closed at stage 1 (2026-09-03 20:08 KST)

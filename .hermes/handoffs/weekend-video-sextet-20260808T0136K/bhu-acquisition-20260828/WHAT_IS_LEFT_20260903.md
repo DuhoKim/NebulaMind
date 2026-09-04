@@ -44,3 +44,34 @@ publisher pages only).
 **Unstarted, gated drafts ready:** K3 step 2 (exchange correlation), K4 (causal-boundary transfer physics). **Unstarted, no draft:**
 K5 (LISA forecast), K6 (ECKS floor audit — housekeeping).
 **Paper HOLD** stands; nothing outward; tiers untouched all day.
+
+---
+## Hermes overnight update (2026-09-03 23:37 KST)
+
+Major-event receipt: `TORI_HERMES_OVERNIGHT_MAJOR_EVENTS_20260903.md`. K2/K3 propagation is complete and post-repair reread; two
+synthesis-only wording issues from the fresh referee were repaired. K3 step 2, K4, K5 and K6 are now gated `DRAFT — NOT ORDERED`;
+none has started. Gasperini 1986 is pinned from a public APS version-of-record endpoint; Nurgaliev & Ponomariev 1983 remains the sole
+non-blocking closed-access item. Paper HOLD and all tier/stamp boundaries stand.
+
+---
+## Gasperini source-test update (2026-09-04 00:31 KST)
+
+Duho's 00:10 order is complete: Gasperini 1986 was read at full text against K3 step 1 and classed **CONVENTION CONFIRMED**, 2/2
+(`GASPERINI_K3_RESULT_20260904.md`, one-page check sheet, independent agy seat with source-hash proof). He defines the same spin-fluid
+scalar and states the ⅛ relation but does not derive the n² identification from a microscopic average. Rows 9, 10, 11 and the K3
+result/check sheet/synthesis were repaired only to record this source test; tiers, warrant tokens, standings and stamps are untouched.
+Entry 10's factor-six conflict remains. Nurgaliev & Ponomariev 1983 remains closed, unread and non-blocking after the 2026-09-04
+legitimate-open-route retry (`NURGALIEV_PONOMARIEV_OPEN_ROUTE_RETRY_20260904.md`, exact URLs and response receipts). The four draft
+preregs remain `NOT ORDERED`; none has started. Major-event receipt: `TORI_HERMES_GASPERINI_K3_MAJOR_EVENT_20260904.md`.
+
+---
+## Support-audit close (2026-09-04 01:38 KST)
+
+Blanc's 00:53 non-decision queue is complete. The Nurgaliev retry found no validated free full text and remains non-blocking. The K2
+and Gasperini/K3 sentence-support audit repaired six defect classes, including an original no-output K2 route-2 companion script;
+the original is preserved, and a test-first executable Misner-Sharp/FRW receipt now supports the narrowed route-2 wording. The fresh
+authorized diff gate returned `VERDICT=ACCEPT` with no requested repair (`RECORD_SUPPORT_DIFF_GATE_agy.md`). The strongest surviving
+K3-step-1 objection and exact settling evidence are filed as a note only in `K3S1_WHAT_A_CRITIC_GETS_20260904.md`.
+
+Major-event receipt: `TORI_HERMES_SUPPORT_AUDIT_MAJOR_EVENT_20260904.md`. K3 step 2, K4, K5 and K6 remain `DRAFT — NOT ORDERED`;
+none has started. Paper HOLD and all tier/token/standing/stamp boundaries stand. Nothing outward.
