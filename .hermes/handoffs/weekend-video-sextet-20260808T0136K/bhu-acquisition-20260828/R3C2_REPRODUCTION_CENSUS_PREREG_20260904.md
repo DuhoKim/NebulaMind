@@ -48,8 +48,8 @@ listed with file and line; inclusion and exclusion are both recorded.**
 
 1. **Extract** the printed number, its units, and the equation the paper says produces it, with file and line.
 2. **List the inputs** that equation needs.
-3. **Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant: G, c, ħ, Planck 2018
-   parameters), or `ABSENT`.
+3. **Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant **on C3's closed
+   list — that list, verbatim, and no other value**), or `ABSENT`. Record its `origin` with the evidence C3 requires.
 4. **Attempt the arithmetic with ADMISSIBLE inputs only** (§3's definition: origin `DERIVED` or `STANDARD`). A printed
    value whose origin is `CHOSEN` or `FITTED` is **not** admissible.
 5. **Record the outcome**, per claim, as one of §3.
@@ -58,6 +58,7 @@ listed with file and line; inclusion and exclusion are both recorded.**
 
 ## 3. Per-claim outcomes — declared now
 
+<!--SEAT-REDACT-->
 > ⚠️ **HELD PENDING DUHO'S RULING.** The clause below is the census's core definition and is **deliberately not
 > being repaired.** Options **a/b/c/d** are stated in `_tmp_blanc_relay_r3c2_v5.txt` and **Blanc has the question
 > with him**. A referee should **not** report this as a fresh finding, and it must **not** be counted as another
@@ -66,11 +67,14 @@ listed with file and line; inclusion and exclusion are both recorded.**
 >
 > The wording standing here is option **(b)**, derivation-only. Option **(c)** is drafted, unadopted, in
 > `R3C2_OPTION_C_ALTERNATIVE_DRAFT_20260904.md`.
+<!--/SEAT-REDACT-->
 
 **The admissible input set is defined by PROVENANCE, not by location.** "Printed" says only where a value appears;
-a value can be printed in the paper and still have been chosen or fitted — entry 59's `β = 1/929.25` is printed and
+a value can be printed in the paper and still have been chosen or fitted — <!--SEAT-REDACT-->
+entry 59's `β = 1/929.25` is printed and
 chosen, and under a location-based rule its downstream numbers would have counted as reproduced, readmitting exactly
-what this census exists to detect. So:
+what this census exists to detect.
+<!--/SEAT-REDACT--> So:
 
 > **ADMISSIBLE** = a ledger record whose `origin` is `DERIVED` (obtained from the paper's own equations) or
 > `STANDARD` (a measured constant on the closed list in C3). **INADMISSIBLE** = `origin` of `CHOSEN`, `FITTED`,
@@ -87,71 +91,134 @@ what this census exists to detect. So:
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
   this lane does not have. Print `SYMBOLIC_TIMEOUT` and the point reached. *(Added because the stall guard had no
   per-claim outcome to file into.)*
+- **`REPRO_NO_DERIVATION_STATED`** — the paper prints the claim as its own result but **states no equation or
+  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. *(A claim can
+  satisfy §1 — a printed numeral asserted as the paper's own result — while the paper never says how it was
+  obtained. That claim previously fell through every class.)*
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper, so the attempt stops there.
-  **Name the input.** *(This class exists because the rule "a seat may not supply a value for an ABSENT input" had no
-  outcome to file — a gate finding.)* Distinct from `REPRO_AFTER_CHOICE`, where a value **was** supplied and the
+  **Name the input.** <!--SEAT-REDACT-->*(This class exists because the rule "a seat may not supply a value for an ABSENT input" had no
+  outcome to file — a gate finding.)*<!--/SEAT-REDACT--> Distinct from `REPRO_AFTER_CHOICE`, where a value **was** supplied and the
   number then followed.
+**Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
+order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`, then the
+**arithmetic group**. *(Precedence is stated because these conditions genuinely co-occur — an absent input whose
+source is also unobtainable satisfied two classes with no rule to choose between them.)*
+
+**The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number. Its
+membership is fixed by the clause held above; the group is referred to by name below so that §4 does not have to
+be reopened when that clause is settled.
+
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
 is (equation number, reference number, page/line number, date, or attributed-not-derived). The census denominator
 is the count of **included** claims; the exclusion ledger is reported alongside it and audited under C6, so nothing
-is hidden by being excluded. *(The old `NOT_ATTEMPTED` class was incoherent: §1 defines a claim by the presence of
-a printed number, so an included claim could never satisfy it — a gate finding.)*
+is hidden by being excluded. <!--SEAT-REDACT-->*(The old `NOT_ATTEMPTED` class was incoherent: §1 defines a claim by the presence of
+a printed number, so an included claim could never satisfy it — a gate finding.)*<!--/SEAT-REDACT-->
 
 ## 4. Study-level outcomes
 
-1. **`CENSUS_COMPLETE`** — every claim carries one per-claim outcome. Report the full tally with its denominator.
-2. **`CENSUS_PARTIAL`** — some claims unresolved after two attempts. Report which, and why. **INCONCLUSIVE.**
+1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3.**
+   Report the full tally with its denominator.
+2. **`CENSUS_PARTIAL`** — after two attempts, **at least one included claim carries a non-arithmetic outcome**
+   (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
+   why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** *(Previously "some claims unresolved"
+   was undefined, and a blocked claim satisfied both classes.)*
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome. The census is void; report
    which.
 4. **`R3C2_NO_CLASS`** — a control fails **in every seat that attempted it** after two attempts.
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts. The census
    does not proceed; the disputed candidates are listed. *(Added because the enumeration stop had no class.)*
-6. **`CENSUS_CONTROL_SPLIT`** — a control fails in one seat and passes in another after two attempts. Report both
+6. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
+   **more than 10% of included claims**. The census does not proceed; every disputed input is listed with both
+   seats' classification and both quotations. *(Disagreement about provenance is reported, never reconciled — if
+   two blind readers cannot agree from the paper's own text what a number's provenance is, that is a finding about
+   the corpus, and reconciling it would destroy it.)*
+7. **`CENSUS_CONTROL_SPLIT`** — a control fails in one seat and passes in another after two attempts. Report both
    seats' outputs and stop; **do not adopt the passing seat's result.** *(Added because this reachable state landed in
    no class.)* *(Phrased this way
    because the old `R3C_NO_CLASS` said "in both seats", leaving a control that failed twice in one seat and passed in
    the other with no class — a gap codex found.)*
 
+<!--SEAT-REDACT-->
 **No study-level outcome is a verdict about the pattern.** §7 is where the pattern is touched, once, afterwards.
+<!--/SEAT-REDACT-->
 
 
 ## 5. Controls, each with an exact named code
 
 - **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and attempts made,
-  all printed before any tally. *(This control previously referenced a class §3 abolished — a gate finding; the
-  document has been swept for every other occurrence.)*
+  all printed before any tally. <!--SEAT-REDACT-->*(This control previously referenced a class §3 abolished — a gate finding; the
+  document has been swept for every other occurrence.)*<!--/SEAT-REDACT-->
   `C1_DENOMINATOR_PRINTED=PASS`.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT`, each `PRINTED` one carrying file and
   line. `C2_INPUT_LEDGER=PASS`.
 - **C3 — no substitution, machine-checked.** The input ledger is a **JSON file**, one record per input:
-  `{claim_id, symbol, status: PRINTED|STANDARD|ABSENT, origin: DERIVED|CHOSEN|FITTED|IMPORTED|UNDECLARED, value,
-  source_file, source_line}`. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
+  `{claim_id, symbol, status: PRINTED|STANDARD|ABSENT, origin: DERIVED|STANDARD|CHOSEN|FITTED|IMPORTED|UNDECLARED,
+  origin_evidence: {reason_code, source_file, source_line, verbatim}, derived_from: [input_id…], root_origins: […],
+  value, source_file, source_line}`. *(`STANDARD` was missing from the `origin` enumeration while §3 defined
+  admissibility partly by it, so a measured-constant record could not be validly filled in.)*
+
+  **`origin` must be cited, not asserted.** Every record carries `origin_evidence` with a reason code —
+  `ORIG_EQUATION`→`DERIVED`, `ORIG_CONSTANT`→`STANDARD`, `ORIG_CHOICE_STATED`→`CHOSEN`, `ORIG_FIT_STATED`→`FITTED`,
+  `ORIG_CITATION`→`IMPORTED`, `ORIG_SILENT`→`UNDECLARED` — and, except for `ORIG_SILENT`, a **verbatim quotation
+  machine-matched to the cited line**. **`UNDECLARED` is the default, not the residue**: a record leaves it only by
+  producing that text, and an `ORIG_SILENT` record prints the search the seat ran.
+
+  **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
+  ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
+  A chain cannot be made to look clean by classifying only its last step. *(What `root_origins` implies for a
+  claim's outcome follows from the clause held in §3 and is not decided here; the field is factual either way.)* **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
   closed, named list fixed here** — `G`, `c`, `ħ`, `k_B`, and the Planck 2018 TT,TE,EE+lowE+lensing values quoted with
   their published uncertainties — so "standard" cannot become a selectable family. `C3_NO_SUBSTITUTION=PASS`.
-- **C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
+- <!--SEAT-REDACT-->
+**C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
   directories; it does not restrict them, and it necessarily grants the lane directory, **which contains the pattern
   record**. So the tooling as it stands cannot enforce blindness to a lane-resident file, and a seat's own
   declaration is self-report.
 
-  **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing only
-  this preregistration, the seat brief and the pinned sources, with the wrapper pointed at that directory and **not**
-  at the lane. That is enforceable, and it is the control. The seat's declaration and printed path list are kept as
+  **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
+  **seat packet** — not this document — the seat brief and the pinned sources, with the wrapper pointed at that
+  directory and **not** at the lane. That is enforceable, and it is the control.
+
+  **The seat packet is built mechanically, by `r3c2_build_seat_packet.py`, and its redaction is asserted.** The
+  builder drops §0, §7, §8 and §10 whole, strips every span marked `SEAT-REDACT` in this document, and then
+  **asserts that no string on a forbidden list survives anywhere in the output** — the pattern's name and topic,
+  the comparison model, gate history, and the names of the people in the custody chain. **If any survives, the
+  packet is not written and `C4_PACKET_REDACTED=FAIL`**; the study does not proceed on a hand-checked copy.
+  Redaction is done in the builder and marked in this document, so the master is never edited to serve the blind
+  and a reader can see exactly what the seat was not given. *(The first run of this assertion caught fourteen
+  surviving disclosures in a packet that had been assembled by hand, including the version table — which narrates
+  every gate objection — and §0, which states the pattern's topic outright. That is the argument for asserting it
+  rather than checking it.)* `C4_PACKET_REDACTED=PASS`. The seat's declaration and printed path list are kept as
   secondary detection.
 
   **What the blind proves and does not:** it proves the seat was not given the pattern record and did not read it
   from its working directory. **It cannot prove a seat has no prior exposure from training or an earlier session** —
   nothing available here can. The record states that limit rather than implying a stronger blind.
-  `C4_PATTERN_BLIND=PASS`.
+  
+<!--/SEAT-REDACT-->`C4_PATTERN_BLIND=PASS`.
 - **C5 — harness, LIVE**; **C5b — no cross-lane access.** As R3A/R3B; this lane's reading tree is in scope.
 - **C6 — audit, with a frozen sampling frame.** A third pattern-blind seat **first audits the full candidate and
-  exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, without seeing
-  prior work, a sample of `max(1, ceil(0.20 × N))` included claims, `N` being the sealed denominator. **The sample is
-  drawn by `random.Random(seed).sample(sorted(claim_ids), k)` with the seed fixed as the first 8 hex characters of the
-  sealed tally digest**, so it cannot be chosen after the fact and cannot be empty. Any outcome it cannot reproduce,
-  or any ledger incompleteness, triggers §4 class 3. `C6_AUDIT_SAMPLE=PASS`.
+  exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without seeing
+  prior work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim whose filed
+  outcome asserts that the arithmetic reproduced the number** — the class in which an error is both consequential
+  and invisible, so it gets no sampling discount — and **(ii) a sample of `max(1, ceil(0.20 × N))` of the remaining
+  included claims**, `N` being the sealed denominator, drawn by
+  `random.Random(seed).sample(sorted(claim_ids), k)`.
+
+  **The seed comes from outside this lane.** After the tally digests are receipted<!--SEAT-REDACT--> (§7)<!--/SEAT-REDACT-->, **an external custodian
+  outside this lane supplies a seed generated independently and unavailable to Tori before that receipt**, and it
+  is recorded with the receipt. <!--SEAT-REDACT-->*(The custodian is Blanc, who is outside this lane and reports to
+  Duho; §7 states the receipt.)*<!--/SEAT-REDACT-->
+  *(Seeding from the tally's own digest let the tally's producer reshape non-semantic content — ordering, spacing,
+  metadata — until a favourable sample appeared. A seed must not be a function of the thing being audited.)*
+
+  An input on which the two classifications disagree is filed `ORIGIN_DISPUTED` and reported with both seats'
+  classification and both quotations; it is **not** reconciled. Above 10% of included claims,
+  `CENSUS_ORIGIN_DISPUTED`. Any outcome the audit cannot reproduce, or any ledger incompleteness, files
+  `CENSUS_AUDIT_FAILED`. **Classes are cited by name, never by number** — the numbering has shifted twice. `C6_AUDIT_SAMPLE=PASS`.
 
 Controls in an unreached limb are `NOT RUN`, never passes.
 
@@ -173,7 +240,15 @@ itself fixed and committed before limb A begins, so it cannot be written to suit
 
 **What the seal is, and what it is not.** Before the interpretation protocol is opened, Tori commits the tally, then
 sends **four digests — tally hash, tally commit id, protocol hash, protocol commit id — to Blanc**, who is outside
-this lane and reports to Duho. That relay is the custody step; the git commit alone is not, because **a local commit
+this lane and reports to Duho. **The relay is complete only when it is receipted.** Blanc **acknowledges and timestamps the four digests in a
+preserved receipt**; the interpretation protocol is **not opened** without that recorded acknowledgement. After
+opening, Blanc independently re-hashes the tally and the protocol and verifies both hashes and both commit ids
+against the receipt, and **the interpretation report must print the four verified values**. Any mismatch files
+`CENSUS_AUDIT_FAILED`, leaves §7 `NOT RUN` and voids the comparison. *(A send with no recorded receipt is an
+assertion of custody, not custody: a replacement could be used silently even though Blanc once received other
+strings.)*
+
+That relay is the custody step; the git commit alone is not, because **a local commit
 in Tori's own custody can be amended or reset, so it is tamper evidence, not an external custodian** — the same
 objection already on this lane's record about hash chains.
 
@@ -193,28 +268,76 @@ claim; path lists; 120-second cap on symbolic operations with `SYMBOLIC_TIMEOUT`
 controls `NOT RUN`. Blind double, third seat via `nm_referee_dispatch.sh` on a split, Kimi arithmetic with a
 no-fallback control, one-page check sheet, Tori re-runs every script, critic note before any ruling.
 
-**Amendments get a new version number and hash in §10 rather than an in-place rewrite** — the discipline failure that
-made a valid access proof look unbound during R3C's gate rounds.
+<!--SEAT-REDACT-->**Amendments get a new version number and hash in §10 rather than an in-place rewrite** — the discipline failure that
+made a valid access proof look unbound during R3C's gate rounds.<!--/SEAT-REDACT-->
 
-## 10. Version history
+## 10. Version history and gate record
 
-| version | sha256 at dispatch | change |
-|---|---|---|
-| V1 | `977cc127…226799` | redesign; supersedes `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md` |
-| V2 | `bf404b62…2ee7ba` | seven gate findings applied: interpretation excised to a seat-invisible protocol; quantitative claim defined operationally; `REPRO_INPUT_ABSENT` added; `NOT_ATTEMPTED` cannot move the denominator; enumeration tolerance set to zero; C3 given a JSON ledger; C4 made structural via a redacted packet; seal custodied in git |
+**Re-verified 2026-09-04 22:06 KST against the files on disk (Blanc 22:02, item 3).** The `sha256` column is
+**the hash the referee seat itself computed at dispatch**, taken from the `ACCESS_SHA=` line of that seat's own
+report — not from my recollection and not from a pin file I wrote. Every row is checkable by running
+`shasum -a 256` on the report named beside it.
+
+Two defects were found in the previous table and are corrected here, rather than being silently overwritten:
+
+1. **Rows V3, V4 and V5 had been appended below §11**, outside the table, so the rendered version history showed
+   only V1 and V2, and the completion token was duplicated four times. Nine gate rounds is more history than a
+   hand-maintained table survives; that is why this section is now checkable against the reports.
+2. **The V4 row carried `040762ad…3666e3`, which is not a hash any seat gated.** Both V4 seats computed
+   `0ba8df02…dd051f`. `040762ad…` was an intermediate state of the file that was never dispatched. The column is
+   headed "at dispatch", so the gated hash is the correct entry and the wrong one is named here rather than erased.
+
+| version | sha256 at dispatch | gate(s) run against exactly this hash | verdict(s) | change |
+|---|---|---|---|---|
+| V1 | `977cc127d7bc161d…` | `R3C2_GATE_codex_20260904.md` | `PREREG_UNSOUND` | redesign; supersedes `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md` |
+| V2 | `bf404b621679263f…` | `R3C2_GATE_V2_codex_20260904.md` | `PREREG_UNSOUND` | seven findings: interpretation excised to a seat-invisible protocol; quantitative claim defined operationally; `REPRO_INPUT_ABSENT` added; `NOT_ATTEMPTED` cannot move the denominator; enumeration tolerance zero; C3 given a JSON ledger; C4 made structural; seal custodied in git |
+| V3 | `c945c22e110bf030…` | `R3C2_GATE_V3_codex_20260904.md`, `R3C2_GATE_V3_kimi_20260904.md` | `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS` | six findings: exclusions moved out of per-claim outcomes; `CENSUS_DENOMINATOR_DISPUTED` added; C4 rebuilt as fresh seat + allowlist; C3 ledger given `origin`, machine-matched `PRINTED` values, closed `STANDARD` list; C6 given a frozen seed and minimum sample; seal re-stated honestly |
+| V4 | `0ba8df028686f10c…` | `R3C2_GATE_V4_codex_20260904.md`, `R3C2_GATE_V4_kimi_20260904.md` | `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS` | provenance replaces location as the admissible-input test; abolished class swept document-wide; `REPRO_NOT_EVALUABLE` and `CENSUS_CONTROL_SPLIT` added; `REPRO_BLOCKED`/`REPRO_INPUT_ABSENT` disambiguated; C4 rebuilt as a redacted out-of-lane copy |
+| V5 | `50e7733c114bbf29…` | *(none — not dispatched)* | — | non-definitional only: second live copy of the enumeration rule removed from §6; study-level classes renumbered 1–6 |
+| V5.1 | `9ad3a313b2e8bd4b…` | *(none — not dispatched)* | — | **HELD** marker added to the core definition so a referee does not report a deliberately open question as a fresh finding |
+| V6 | *this version* | *(pending)* | — | see §10.1 |
+
+**Predecessor design, kept unchanged as the record of the failed design:**
+
+| document | sha256 gated | gate | verdict |
+|---|---|---|---|
+| `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md` | `c5e94620…` | `R3C_GATE_codex_20260904.md` | `PREREG_UNSOUND` |
+| `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md` | `ece4c6d9…` | `R3C_FROZEN_GATE_V2_20260904_agy.md` | see `R3C_GATE_ANOMALY_EVIDENCE_20260904.md` |
+
+**Nine dispatched gate runs across R3C and R3C2, no `SOUND` without repairs.** That history is itself reported to
+Duho rather than buried in a version column.
+
+## 10.1 V6 — what changed, and what deliberately did not
+
+**Independent of the held definition, therefore repaired now** (Blanc 22:02):
+
+- **C3 schema** gains `STANDARD` as an `origin` value — §3 defined admissibility partly by `origin STANDARD`, but
+  the schema could not express it, so a measured-constant record could not be validly filled in at all
+  (kimi V4 finding 3, codex V4 finding 2 second limb). §2 step 3 now defers to C3's closed list rather than
+  carrying its own shorter parenthetical, which omitted `k_B`.
+- **Provenance is transitive and computed, not asserted**: `derived_from` and a script-computed `root_origins`
+  (design note §2, M2). This closes the one-derivation-step laundering route.
+- **`origin` must cite the line that establishes it** (`origin_evidence` + reason code; design note M1).
+- **The audit no longer samples the class where an error is invisible** (design note M3), and **the audit seed now
+  comes from outside this lane after receipt** (design note M4, codex V4 finding 6).
+- **Disagreement on `origin` is reported, never reconciled**: `ORIGIN_DISPUTED`, and `CENSUS_ORIGIN_DISPUTED` above
+  10% of included claims.
+- **`REPRO_NO_DERIVATION_STATED`** added, with a precedence order over the terminal classes: a paper can print a
+  number as its own result while stating no equation that produces it, and that claim previously had no class
+  (codex V4 finding 3).
+- **`CENSUS_COMPLETE` and `CENSUS_PARTIAL` made exclusive** by defining completeness over the **arithmetic group**
+  of §3 rather than over "every claim carries an outcome" (codex V4 finding 4).
+- **The seal now requires a receipt, not a send** (codex V4 finding 7, kimi V4 finding 9).
+- **The seat packet is built mechanically and its redaction is asserted** (codex V4 finding 5, kimi V4 finding 6).
+
+**NOT repaired, deliberately:** codex V4 findings 1 and 2 (first limb) and kimi V4 findings 1, 2 (admissibility
+consequence) and 4 (the widened FAILED class) all turn on **what the census measures** — the clause held in §3.
+Repairing them under the current wording would be guessing Duho's ruling. They are open, and they are the reason
+V6 is not dispatched as a fresh round.
 
 ## 11. Scope
 
 No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD;
-nothing outward. R3D is untouched by this document and remains not run.
+nothing outward. R3D is a separate document with its own gate record.
 
-R3C2_PREREG_V5_NONDEFINITIONAL_READY
-| V3 | `c945c22e…a03611b` | six V2-gate findings applied: exclusions moved out of per-claim outcomes; `CENSUS_DENOMINATOR_DISPUTED` added; C4 rebuilt as fresh seat + declaration + allowlist; C3 ledger given an `origin` field, machine-matched `PRINTED` values and a closed `STANDARD` list; C6 given a frozen seed and minimum sample; the seal re-stated honestly as tamper evidence plus an external relay, with what it cannot prove said outright |
-
-R3C2_PREREG_V5_NONDEFINITIONAL_READY
-| V4 | `040762ad…3666e3` | provenance replaces location as the admissible-input test (a printed-but-chosen value is now inadmissible, which is the defect that would have let entry 59's β through); abolished class swept document-wide; `REPRO_NOT_EVALUABLE` and `CENSUS_CONTROL_SPLIT` added; `REPRO_BLOCKED` and `REPRO_INPUT_ABSENT` disambiguated; C4 rebuilt as a redacted out-of-lane working copy, with the tooling's inability to restrict reads stated outright |
-
-R3C2_PREREG_V5_NONDEFINITIONAL_READY
-| V5 | *this version* | **non-definitional only, per Blanc 21:53**: second live copy of the enumeration-dispute rule removed from §6 (it now names the class); study-level classes renumbered 1–6 after insertions left them out of order. **The core definition is untouched and awaits Duho's a/b/c/d ruling.** |
-
-R3C2_PREREG_V5_NONDEFINITIONAL_READY
+R3C2_PREREG_V6_NONDEFINITIONAL_READY
