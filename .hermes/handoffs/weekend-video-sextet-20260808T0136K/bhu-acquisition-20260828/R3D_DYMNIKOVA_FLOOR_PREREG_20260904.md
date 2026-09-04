@@ -1,6 +1,6 @@
 # FROZEN — ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-04 21:02 KST. Version 5 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
+**Tori, 2026-09-04 21:02 KST. Version 7 (see §8). FROZEN pending the fresh referee gate. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
 ## 0. Why this would exist
@@ -30,7 +30,9 @@ separately, exactly as K6 required.
 
 **A completion is ADMISSIBLE if and only if it introduces exactly one named assumption and is consistent with every
 printed relation of the manifest sources.** A completion that contradicts a printed relation is **inadmissible** and
-may not be considered. *(The term carried the whole class structure while being defined nowhere, so whether an
+may not be considered. **The completion-free derivation — the one that adds nothing — is not itself a completion**,
+but where §4 counts admitted floors it **is counted among them**, so that a printed floor and a differing
+completion's floor are two floors and not one. *(The term carried the whole class structure while being defined nowhere, so whether an
 "order-unity coefficient" counted as admissible when the printed relations already fixed a floor was a seat's
 judgement, and two obedient seats could file different classes for the same physics.)*
 
@@ -54,8 +56,10 @@ artefact and admitting it would let the choice of artefact choose which relation
 
 ### 2b. Measured constants — the closed list
 
-`G = 6.67430e-11` m³ kg⁻¹ s⁻², `c = 2.99792458e8` m s⁻¹, `ħ = 1.054571817e-34` J s, `k_B`, the solar mass
-`M_☉ = 1.98892e30` kg, and the age of the universe `t_0 = 13.797` Gyr `= 4.3539e17` s. **No other value may be
+`G = 6.67430e-11` m³ kg⁻¹ s⁻², `c = 2.99792458e8` m s⁻¹, `ħ = 1.054571817e-34` J s,
+`k_B = 1.380649e-23` J K⁻¹, the solar mass `M_☉ = 1.98892e30` kg, and the age of the universe
+`t_0 = 13.797` Gyr `= 4.3539e17` s, **using the Gregorian year of 365.2425 × 86400 s** *(the Julian year gives
+4.3540e17; the convention was unstated, and the year length is a value not otherwise in this list)*. **No other value may be
 introduced as "standard"**; anything else is an added completion under C2.
 
 The **Planck mass** is not listed separately because it is derived from the above:
@@ -76,7 +80,10 @@ text**. Disagreement or missing evidence is `UNRESOLVED`, **may not be treated a
 the seat **prints the complete extracted text with stable line numbers and assigns every non-blank line exactly one
 census disposition**: its own included row, its own excluded row under a predeclared reason code, or a `DUPLICATE`
 row naming the covering row. **An equation and its defining or context lines may be treated as one explicitly
-bounded block** with a single disposition, provided the block's line range is printed.
+bounded block** with a single disposition, provided the block's line range is printed. **The seat prints a
+reconciliation line per source giving the count of non-blank lines and the count of assigned dispositions; the two
+must be equal, and a source whose counts differ fails C2.** *(Without the count, an omitted line is invisible in an
+artefact that is otherwise enormous; with it, omission shows up as arithmetic.)*
 
 **In addition, and as a cross-check on the blocking, every numbered or displayed equation in each manifest source
 appears as its own census row** — cited by equation number, or by page/line locator where the display is unnumbered
@@ -108,29 +115,43 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 
 ## 4. Outcome classes — declared now
 
-1. **DYM_FLOOR_DERIVED** — a unique positive floor follows from the printed relations with no added completion,
-   **no admissible completion yields a different floor, and no admissible completion permits masses approaching
-   zero.** *(The guard is required: without it a construction whose printed relations fix a floor while an
-   admissible completion gives a different one satisfied classes 1 and 2 at once, and nothing ordered them.)*
+1. **DYM_FLOOR_DERIVED** — a unique positive floor follows from the printed relations **with no added completion**,
+   **no admissible completion yields a different floor, and none permits masses approaching zero.**
    Report the formula and value, **and test it against all five breaker conditions**; if it passes them, this is a
    counterexample to the pattern and the pattern record must be amended.
-2. **DYM_FLOOR_UNDERDETERMINED** — the printed relations admit **at least two positive but unequal floors** under
-   admissible completions, **and no admissible completion permits masses approaching zero**. Report the freedom;
-   choose none.
+   **If any breaker condition FAILS under its stated decision rule, `DYM_FLOOR_DERIVED` is still filed** and the
+   failed condition is reported with its artefact: **the floor stands, it is not a counterexample, and the pattern
+   record is not amended.** *(A breaker condition failing on its own decision rule — the derived floor overlapping a
+   comparator, say — is a **substantive physics result, not a control failure**, and does not engage the
+   control-clean rule of `R3D_NO_CLASS`. C6 is reached exactly when this class is reached, so without this sentence
+   the one path the study exists to produce had no correctly fileable outcome: the report would not be
+   control-clean, class 1 could not be filed from it, and a real result would have been recorded as a control
+   stall.)*
+2. **DYM_FLOOR_UNDERDETERMINED** — **a completion-free positive floor follows from the printed relations**, and at
+   least one admissible completion yields a **different** positive floor — so, counting the completion-free
+   derivation among the admitted floors, there are **at least two positive but unequal floors** — and **none permits
+   masses approaching zero**. Report the freedom; choose none.
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
 4. **DYM_NO_POSITIVE_FLOOR** — **at least one printed relation binds size to mass or bounds the mass**, and those
    relations, alone or under **at least one** admissible completion, **permit** masses approaching zero — where
    **"permit" means no positive lower bound on the mass follows.** If the printed relations are mutually
-   inconsistent, so that no solution and hence no positive lower bound exists, **file here and report the
-   contradiction.** **This class takes precedence over `DYM_FLOOR_UNDERDETERMINED`.** Report the family, or the contradiction.
+   inconsistent, **report that a consistent solution, and hence a positive lower bound, were unreproduced from the
+   stated inputs**, file here, and **reproduce the contradiction**. *(The previous wording concluded that no lower
+   bound "exists" — a nonexistence claim about the branch, the wording this lane forbids — and it entered in the
+   very round that repaired the same defect in limb A.)* **This class takes precedence over `DYM_FLOOR_UNDERDETERMINED`.** Report the family, or the contradiction.
    *(Two repairs. One completion giving a positive floor while another permits masses approaching zero satisfied
    both 2 and 4 with no rule to choose. Separately, with no relations printed at all the vacuous reading of
    "permit" made class 4 true as well as class 3, and §3 and §4 then gave two obedient seats contradictory orders;
    requiring a printed relation confines the empty case to class 3, which is exactly limb A's test.)*
-5. **DYM_FLOOR_COMPLETION_DEPENDENT** — a unique positive floor follows **only under one or more named admissible
-   completions**, **every** admissible completion yields **the same** floor, and none permits masses approaching
-   zero. Report the formula, **the completion(s) relied on**, and the value. **The breaker test is `NOT_RUN` and the
+5. **DYM_FLOOR_COMPLETION_DEPENDENT** — **no positive floor follows from the printed relations alone**, at least one
+   named admissible completion yields a positive floor, and none permits masses approaching zero. **Report, for
+   every admissible completion, whether it yields a unique floor, a set or range of positive floors, or no attained
+   minimum**, with every resulting value or freedom, and name the completion(s) relied on.
+   *(Classes 1, 2 and 5 are separated by a single discriminator — whether a completion-free floor exists. It exists
+   and every completion agrees: class 1. It exists and some completion differs: class 2. It does not exist: class 5.
+   The earlier wording required **every** completion to yield the **same** floor, so a mixed family — one completion
+   determinate, another leaving a range — fitted no class at all.)* **The breaker test is `NOT_RUN` and the
    pattern record is not amended, because the floor is not completion-free.** *(This state was reachable and fitted
    no class: not 1, a completion was required; not 2, the floors are not unequal; not 3, a relation exists; not 4,
    nothing permits zero. A terminal scientific result with nowhere to file is the stall the design claims to close.)*
@@ -171,7 +192,10 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   interior premise entered. The printed algebra and premise list are the artefact; a claimed pass without them
   fails. `C4_GR_BENCHMARK=PASS`.
 - **C5 — harness, LIVE.** Execute and print the three commands of §9. `C5_HARNESS_PINNED=PASS`.
-- **C5b — path list.** Print every opened path and check it against §9's scope rule. `C5B_PATH_LIST=PASS`.
+- **C5b — path list.** Print every opened path and, **for each path, print `IN_SCOPE` or `OUT_OF_SCOPE` together
+  with the exact §9 scope-rule clause applied.** Any `OUT_OF_SCOPE` row **fails** the control. **The complete
+  per-path table is the required artefact; a claimed pass without it fails.** `C5B_PATH_LIST=PASS`. *("Check it"
+  named no printed comparison, so the check itself was assertion.)*
   Unreached C5/C5b are recorded `NOT_RUN`, never `PASS`. *(Both codes were previously implicit in "as R3A/R3B";
   a control whose code is not named in the document it governs cannot be checked against it.)*
 - **C6 — breaker test.** Applies **only if `DYM_FLOOR_DERIVED` is reached**; otherwise `NOT_RUN`, never a
@@ -199,7 +223,7 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   |---|---|---|---|---|
   | 1 | the derived floor is an observable magnitude | classify the derived quantity's dimension | dimension is mass (kg or M☉), not dimensionless and not a shape/scale/ratio | the printed dimensional analysis |
   | 2 | every constant traces | trace each constant **using only the verbatim source passages reproduced in the frozen C2 artefact**, through at most the relations in those passages | every constant terminates in an equation of a §2a manifest source or in the §2b list. **The chain is followed only within the manifest: a terminus outside it fails, exactly as a `we assume / we choose / simplest form` terminus fails** | the full provenance table, one row per constant |
-  | 3 | no free normalisation survives | replace every non-§2b parameter by an **algebraically independent symbol**, simplify the final expression **once** with the pinned SymPy of §9 under the 120-second cap | **PASS exactly when the simplified expression contains none of those symbols** — i.e. the printed number is recovered with no non-§2b parameter chosen. On timeout, run the §9 fallback row; if it does not decide, file the applicable non-scientific class | the printed free-symbol run and its outcome |
+  | 3 | no free normalisation survives | replace every non-§2b parameter by an **algebraically independent symbol**, simplify the final expression **once** with **the seat's SymPy, whose printed version is part of the C5 artefact and must match between the two seats or C5 fails**, under the 120-second cap | **PASS exactly when the simplified expression contains none of those symbols** — i.e. the printed number is recovered with no non-§2b parameter chosen. On timeout, run **§9's fallback row "free-symbol survival"**, which decides this condition's own proposition; if that row is absent, times out, or cannot parse the expression, condition 3 is `UNDECIDED`, C6 does not pass, and the run files `DYM_SOURCE_BLOCKED` | the printed free-symbol run and its outcome |
   | 4 | no fixity is assumed | list every quantity held constant in the frozen derivation and identify its deriving passage **using only the verbatim source passages reproduced in the C2 artefact** | **every row has such a passage**; a held-constant quantity with no manifest derivation fails | the fixity table with a source line per row |
   | 5 | a measurement could falsify it | the comparator table below, executed in full | **no** comparator matches within tolerance | the completed comparison table |
 
@@ -209,14 +233,28 @@ could not reproduce, not a claim that the branch contains no such relation.)*
   **Condition 5 quantifies ONLY over the three finite numerical comparators enumerated below**, not over "any
   standard model" — a universal negative over an unbounded set is not decidable and is not claimed.
 
-  **Every comparator interval is derived from §2b inside this document.** No comparator source file is in the
-  manifest, none may be read, and **none needs to be read**: the numbers below are the frozen artefact.
+  **Every comparator interval is computed in this document from §2b constants together with the stated
+  dimensionless inputs** — the single-species lifetime coefficient `5120π`, row 2's upper-end factor `3.0`, row 3's
+  span `[2.2, 2.9] M_☉`, and the Gregorian year length inside `t_0`. **Those four are asserted bounds and
+  conventions, NOT derivations from §2b**; each is **recorded as an `ADDED_COMPLETION` in the C2 ledger**, and
+  condition 5 may pass only if **C6 condition 2 accepts them under its provenance rule**. No comparator source file
+  is in the manifest, none may be read, and **none needs to be read**: the numbers below are the frozen artefact.
+  *(V6 claimed every interval was "derived from §2b". That was false — three coefficients and a year convention are
+  asserted — and both seats caught it. The values were supplied rather than deferred, which was the point, but
+  calling an assertion a derivation is the same overclaim in smaller form, so the assertions are now named and
+  routed through the provenance rule that governs every other constant in this study.)*
+
+  **Comparator endpoints are rounded OUTWARD throughout the table.** *(V6 rounded them inward, so the printed
+  interval `[1.730e11, 5.189e11]` did not contain its own computed lower value `1.7298245e11`. Inward rounding
+  narrows a comparator, which makes an overlap — and therefore a condition-5 failure — marginally less likely, i.e.
+  it biases the study toward declaring a counterexample. The bias was small and unintentional; the convention is
+  now stated so it cannot recur silently.)*
 
   | # | comparator hypothesis | interval (kg) | derived here from §2b by |
   |---|---|---|---|
   | 1 | semiclassical GR + QM: a Planck-scale remnant | `[2.176434e-8, 2.176434e-8]` | `m_P = sqrt(ħc/G)`; a point value, so the interval is degenerate |
-  | 2 | Hawking evaporation: the mass just evaporating at the present epoch | `[1.730e11, 5.189e11]` | lower end `M = (t_0 ħ c⁴ / 5120π G²)^(1/3) = 1.730e11` kg, the single-species lifetime `τ = 5120π G² M³/(ħc⁴)` set to `t_0`. **Upper end = 3.0 × lower**, because emission into additional particle species shortens the lifetime at fixed mass and so raises the mass that survives to `t_0`; the factor is stated as a bound, not derived here, and the interval is widened to contain it rather than a single figure being asserted |
-  | 3 | stellar collapse: the TOV / neutron-star maximum mass | `[4.376e30, 5.768e30]` | `[2.2, 2.9] M_☉`, the span over which the TOV maximum is contested; `2.2 × 1.98892e30 = 4.376e30`, `2.9 × 1.98892e30 = 5.768e30` |
+  | 2 | Hawking evaporation: the mass just evaporating at the present epoch | `[1.729e11, 5.190e11]` | lower end `M = (t_0 ħ c⁴ / 5120π G²)^(1/3) = 1.7298e11` kg, **rounded down**, from the single-species lifetime `τ = 5120π G² M³/(ħc⁴)` set to `t_0`. **Upper end = 3.0 × the unrounded lower = 5.1895e11 kg, rounded up.** The factor 3.0 is an **asserted bound**, not a derivation: emission into additional species shortens the lifetime at fixed mass and so raises the surviving mass, and the interval is widened to contain that case rather than a single figure being asserted |
+  | 3 | stellar collapse: the TOV / neutron-star maximum mass | `[4.375e30, 5.768e30]` | `[2.2, 2.9] M_☉`, an **asserted span** over which the TOV maximum is contested; `2.2 × 1.98892e30 = 4.375624e30` **rounded down to 4.375e30**, `2.9 × 1.98892e30 = 5.767868e30` **rounded up to 5.768e30** |
   | — | ΛCDM | *no interval — predicts no minimum black-hole mass* | recorded so the null case is explicit rather than silently skipped; **it can never match, and that is stated rather than left to be inferred** |
 
   **Decision rule.** The seat states its derived floor as an interval (a point value is a degenerate interval).
@@ -311,6 +349,7 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
   |---|---|---|---|---|---|
   | solve `g_tt(r)=0` for horizon radii | bracketed root-finding on detected sign changes — bisection on each bracketing interval, or `mpmath.findroot` seeded from the bracket | `r/r_g ∈ [1e-3, 1e3]`, 10⁴ log-spaced samples | `mp.dps=30` | root accepted if a sign change brackets it and `abs(g_tt) < 1e-20` there | "the metric has ≥1 horizon for given (M, r₀)" |
   | `r→0` limit of curvature invariants | direct evaluation at `r = 10^-k`, `k = 1…20` | as listed | `mp.dps=30` | finite if `abs(value) < 1e6` and monotone-convergent over the last five `k` | "the core is regular" |
+  | **free-symbol survival** (condition 3) | expand the final expression into a frozen expression tree and traverse every node once, substituting only §2b constants | the whole expression; no sampling | exact, symbolic | **PASS iff the printed sorted set of free symbols contains no non-§2b symbol**; FAIL if it contains one | "no free normalisation survives" |
   | extremise the mass over the core scale | grid minimisation then local refinement | `r₀ ∈ [1e-3, 1e3] r_g`, 10⁴ log-spaced | `mp.dps=30` | positive floor accepted if the grid minimum is `> 0` and stable to `1e-6` relative under a 2× refinement | "a positive minimum mass exists" |
 
   *(The fallback was previously called "named" while naming nothing, so a timeout reached an instruction that could
@@ -370,4 +409,44 @@ codex found the re-run guard sound; kimi found the re-run guard, fairness and st
 positive class's consequence was unreachable only because of the comparator defect now fixed. **R3D remains NOT
 run.**
 
-R3D_PREREG_V6_READY_FOR_REGATE
+**V7, this version. ORDERED by Duho: "apply both and re-gate".** V6 (`14db4dfb…9e3f9e`) was gated by both seats
+without the file moving: codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`. **Both independently
+re-derived every comparator number and both reproduced all five**, and both confirmed the §9 commands execute.
+codex found circularity **sound**; kimi found controls, re-run guard, fairness and stall **sound**. Both traced a
+matching and a non-matching path through condition 5 and confirmed **the twice-blocked decisive test can now pass**.
+
+**The overclaim, caught by both.** V6 said *"Every comparator interval is derived from §2b inside this document."*
+**False**: the lifetime coefficient `5120π`, row 2's factor `3.0`, row 3's span `[2.2, 2.9] M_☉` and the Gregorian
+year inside `t_0` are asserted, not derived — and V6's own row 2 admitted the factor was "stated as a bound, not
+derived here" while the heading above it said "every". The values were supplied rather than deferred, which was the
+repair's point, but **calling an assertion a derivation is the same overclaim in smaller form.** All four are now
+named as asserted, recorded as `ADDED_COMPLETION` in the C2 ledger, and routed through C6 condition 2's provenance
+rule like every other constant.
+
+**A bias, small and unintentional, found by kimi.** V6's comparator endpoints were rounded **inward**, so
+`[1.730e11, 5.189e11]` did not contain its own computed value `1.7298245e11`. A narrowed comparator makes overlap —
+and therefore a condition-5 **failure** — less likely, biasing the study **toward** declaring a counterexample.
+Endpoints are now rounded outward, and the convention is stated so it cannot recur silently.
+
+**The deferral migrated again, and is now closed.** Condition 3's timeout branch pointed at "the §9 fallback row"
+when §9 had three rows and none decided condition 3's proposition. **§9 now carries a fourth row, "free-symbol
+survival", which decides exactly that proposition**, and condition 3 names it.
+
+**Also applied:** classes 1, 2 and 5 separated by one discriminator — whether a completion-free floor exists — which
+closes both codex's mixed determinate/underdetermined family and kimi's single-differing-completion construct;
+**a substantive C6 failure now files `DYM_FLOOR_DERIVED` with the failed condition reported**, since a breaker
+condition failing on its decision rule is a physics result and not a control failure — without it, the one path
+this study exists to produce had no correctly fileable outcome; C5b given a per-path `IN_SCOPE`/`OUT_OF_SCOPE`
+table; the census given a non-blank-line/disposition reconciliation count; `k_B` given its value and `t_0` its year
+convention; SymPy determinism required across seats; and the class-4 fairness slip repaired — *"no positive lower
+bound exists"* was a nonexistence claim about the branch, and it entered in the very round that repaired the same
+defect in limb A.
+
+**One defect neither seat reported, found here while applying their findings:** the header still read
+**"Version 5"** while §8 documented V6 — a retry after a failed edit assertion dropped the bump, and **both seats
+gated the document without noticing its own version was wrong.** Corrected, and noted because a version table is
+only as good as the header it agrees with.
+
+**R3D remains NOT run.**
+
+R3D_PREREG_V7_READY_FOR_REGATE
