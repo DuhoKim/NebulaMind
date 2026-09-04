@@ -151,3 +151,13 @@ no-fallback control, all correct.
 **On Duho's desk:** one packet — annotate rows 9/10/11 (+ inheritance on 39, 52, 53, 59), or that plus a new downstream
 study on what the negative sign does to the bounce, or hold. Recommended (a). K4, K5, K6 remain **NOT ORDERED**; K1
 stage 2 stays stopped; the Tuesday neutron-star mass watch stays armed. Paper HOLD; nothing outward.
+
+**Step-2 critic note filed (2026-09-04 11:06 KST).** `K3S2_WHAT_A_CRITIC_GETS_20260904.md` — NOTE ONLY, no study
+started. Records the strongest objections to our own K3s2 result: the free-field evaluation sits in a regime where the
+Hehl-Datta four-fermion term is by construction not negligible (so `−3/16` is a free-field number, not a prediction for
+a real bounce medium); flat-space mode decomposition and vacuum subtraction are used where curvature is Planckian; and
+the unpolarized assumption is doing the work that makes the sign negative — fair, because it is the papers' own
+assumption (entry 10 L121–122, "even without spin polarization"), but load-bearing. Each objection is filed with the
+exact evidence that would settle it. Writing it turned up a source reading that bears on Duho's pending ruling and is
+now in his packet: entry 10 L127–129 disowns the spin-fluid framework the `⅛` closure comes from, making the Dirac
+`¾ n²` at L113 the paper's own operative closure — the form K3 step 2 computed. Not acted on; flagged as his call.

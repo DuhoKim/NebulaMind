@@ -36,6 +36,16 @@ need the local one (Einstein–Cartan is local, and on the other reading the ter
 plainly does not intend) — but **the paper never says which**, and I have not invented a reading for it. Either way the
 printed closures fail: on the local object by sign and magnitude, on the other because no `n²` survives at all.
 
+**One thing found afterwards that bears on your choice** (2026-09-04 11:06 KST, while writing the step-2 critic note
+`K3S2_WHAT_A_CRITIC_GETS_20260904.md`; a reading of the source, not a proposal). Entry 10 does not just quote both
+closures — it **disowns the framework the `⅛` one comes from**. At L127–129 it says the particle approximation for Dirac
+fields "is not self-consistent", that the spin-fluid description "violates the cosmological principle", and that "in this
+paper, we use the Dirac form of the spin tensor". So `⅛ n²` (L121) is attributed to Hehl, von der Heyde and Kerlick
+inside a description this paper rejects, and the paper's own operative closure is the Dirac `¾ n²` at L113 — asserted
+with no citation attached. K3 step 2 computed the Dirac form, so the result is aimed at entry 10's own choice. I have
+**not** acted on this: it may bear on the warrant tokens for rows 9/10/11, and those are yours. If you want it weighed,
+say so and it comes back as its own packet.
+
 **Options for the record:**
 (a) **annotate rows 9, 10, 11** — the step-1 note gains the specific finding (the correct operator does give `n²`, but
     negative, regime- and species-dependent, matching neither printed value), and rows 39, 52, 59 and 53 inherit the same
