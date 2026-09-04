@@ -230,3 +230,28 @@ Stage 1 (semi-analytic): black-hole production rises monotonically with the prim
 mass cap; unanimous, two routes, PBH channel empty. Stage 2 (population synthesis) was stopped by Duho at 19:06 KST ("too weak
 logic to be worth study") after 66 minutes, nothing finished; archived in place. K1 stands as an annotation on entries 6 and 31.
 The Tuesday 10:00 KST watch on entry 31's 2.5 M☉ bar stays armed.
+
+---
+
+## K4 — the causal boundary in the transfer physics (2026-09-04, applied on Duho's ruling "as tori's rec" = option (a))
+
+`K4_RESULT_20260904.md`, class **`K4_UNDETERMINED`**; human check sheet `K4_CHECK_SHEET_20260904.md`.
+
+The freedom map closed topic (A) with one recorded structural residual: every row assumed ΛCDM transfer physics, and
+nothing constrained what a genuine causal boundary would do to the mode structure itself. K4 took the corpus's own
+derived boundary — K2's comoving Oppenheimer–Snyder junction at the edge of the finite top-hat of entry 56
+(`K4_BOUNDARY_TRANSFER_PREREG_20260904.md` §1–§2) — and imposed it on the perturbations.
+
+**It does not determine the interior modes.** The perturbed junction is neither F1 nor F2 (four seats agree, so it does
+not kill the route a priori), but for every `ℓ ≥ 2` and `m` the Schwarzschild vacuum exterior retains one free function
+of time that the Darmois conditions do not fix. Any CMB prediction from this route therefore needs a radiation
+condition at infinity added by hand — the standard astrophysical choice, and an assumption these sources never state.
+
+**The residual does not close; it sharpens.** The obstruction is an underdetermination in the model, not an unfinished
+calculation. No Planck pixel was touched, and the four controls that touch data were never reached and are recorded
+NOT RUN rather than as passes. Rows 24, 26 and 56 carry the finding; tiers, warrant tokens, standings and stamps are untouched. Rows 23 and 25 were annotated first and the annotation was **withdrawn** on a fresh adjudication
+(`K4_ROWSCOPE_ADJUDICATION_20260904_agy.md`): the finding bears on row 23's recorded gap — its claim cell says "no perturbation prescription supplied", and K4 is why one cannot be supplied — but row 23's claim does not itself carry the boundary construction, and the ruling authorised the construction rows. **Whether to extend the annotation to row 23 is Duho's**, not the lane's.
+
+A follow-up that adopts the missing radiation condition as a declared assumption and computes a conditional `C_ℓ` was
+**considered and NOT ordered**: Blanc's objection, which Duho carried, is that adopting an unsupplied condition to
+obtain a number is close to the failure mode this audit keeps finding in the published corpus.

@@ -5,7 +5,27 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## YOUR CALL 2026-09-04 13:30 KST — K4 is finished, INCONCLUSIVE, and it cost one seat-day instead of ten to fourteen
+## SMALL CALL, NO HURRY — 2026-09-04 14:13 KST — should the K4 finding also go on row 23?
+
+Your 14:02 ruling is applied and gated (`K4_ANNOTATION_GATE_20260904_agy.md`, plus a response record
+`K4_ANNOTATION_GATE_RESPONSE_20260904.md`). Rows **24, 26 and 56** carry the K4 finding; the freedom-map residual
+carries it in place; tiers, tokens, standings and stamps are untouched and byte-identical.
+
+**One row is deliberately left bare, and I think you should decide it.** I first annotated rows 23 and 25 as well. The
+gate called that over-broad, and a fresh adjudicator — asked only that question, and told not to be agreeable to either
+side — agreed, so I withdrew both. But the same adjudicator found that row 23 **fails the scope test and passes the
+relevance test**: its claim cell records "no perturbation prescription supplied", and K4 is exactly the demonstration
+that the derived boundary cannot supply one. Its words: the finding "perfectly explains and bears on this row's claim".
+
+So row 23 is where this result lands hardest, and it is bare because your ruling authorised the rows carrying the
+*construction*, and row 23 carries the *premise* instead.
+
+**Options:** (a) leave row 23 bare — the ruling is applied as written [safe]; (b) extend the annotation to row 23, on
+the ground that the finding answers the gap that row already records. Either is defensible; (b) is a scope extension
+and therefore yours. Nothing is blocked on this.
+
+---
+## RESOLVED 2026-09-04 14:04 KST — Duho "as tori's rec" = (a): rows 24, 26, 56 annotated, freedom-map residual annotated in place, tiers/tokens/standings/stamps untouched, gated. Was: YOUR CALL 2026-09-04 13:30 KST — K4 is finished, INCONCLUSIVE, and it cost one seat-day instead of ten to fourteen
 
 **Result:** `K4_UNDETERMINED` (`K4_RESULT_20260904.md`; one-page check sheet `K4_CHECK_SHEET_20260904.md`).
 **No Planck pixel was touched and none needs to be.**

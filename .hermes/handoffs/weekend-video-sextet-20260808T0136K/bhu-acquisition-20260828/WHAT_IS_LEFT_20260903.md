@@ -235,3 +235,30 @@ that there would be no detection and wrong about the reason.
 **On Duho's desk:** annotate the residual and the finite-boundary rows, or that plus a conditional follow-up under an
 explicitly declared radiation assumption, or hold. Recommended (a). K3s3, K5, K6 and the bounce study remain NOT
 ORDERED. Paper HOLD; nothing outward.
+
+---
+## K4 annotations APPLIED (2026-09-04 14:04 KST), gated, and narrowed on adjudication (14:13 KST)
+
+Duho ruled 14:02 KST: **"as tori's rec"** = option (a). Applied 14:04.
+
+- **Freedom-map residual annotated in place** (`PROGRAM_A_FREEDOM_MAP_20260902.md`, the L174–177 paragraph): the
+  original text is intact and now records that K4 probed it and that it **does not close — it sharpens**, because the
+  obstruction is an underdetermination in the model rather than an unfinished calculation.
+- **Warrant rows 24, 26 and 56** carry the finding. I first annotated 23 and 25 as well; the gate called that
+  over-broad and a fresh adjudicator agreed (`K4_ROWSCOPE_ADJUDICATION_20260904_agy.md`, `ROWS_TO_ANNOTATE=24,26,56`),
+  so both were withdrawn. **Row 23 is on Duho's desk as a small optional extension**: the adjudicator found it fails
+  the scope test but passes the relevance test, since its recorded gap is exactly what K4 explains.
+- **Row 54 was NOT added** despite the gate asking for it: it carries a finite cloud but makes no perturbation or CMB
+  claim, so a finding about ℓ ≥ 2 modes does not bear on it. The adjudicator agreed.
+- **Timestamp repairs declined with a receipt** (`K4_ANNOTATION_GATE_RESPONSE_20260904.md`): the gate wanted the
+  annotation stamp changed from 14:04 to the result's 13:29, which would date the annotation *before* the 14:02 ruling
+  that authorised it. The lane's own convention separates these (row 56 carries K2 at 17:18 while the K2 result is
+  stamped 17:11).
+- **The entry-56 reference was kept and given its citation** rather than deleted as the gate asked: it traces to the
+  governing prereg §1–§2, which pins `gaztanaga_mass_mnras_clean.txt` L143. Deleting it would have made the record less
+  traceable.
+- **State:** tier, token, standing, stamp and row-id columns byte-identical to HEAD; 51 rows.
+
+**NOT ordered:** option (b), the follow-up under a declared radiation assumption — Blanc's objection, which Duho
+carried, is that adopting an unsupplied condition to get a number is the failure mode this audit keeps finding in
+published work. K3 step 3, K5, K6 and the bounce study remain NOT ORDERED. Watch armed for 09-08. Paper HOLD.

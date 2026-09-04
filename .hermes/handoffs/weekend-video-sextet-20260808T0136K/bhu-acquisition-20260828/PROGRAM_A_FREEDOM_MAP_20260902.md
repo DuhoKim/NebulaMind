@@ -175,6 +175,22 @@ non-circularly) and fixes *nothing else* — no reading, no convention, no state
   with only the primordial spectrum modified. As the C2 gate put it, this tests "ΛCDM transfer
   physics plus an infrared spectral window" — a genuine causal boundary could alter the mode
   structure, projection, or evolution themselves, and no receipt here constrains that.
+  - **PROBED 2026-09-04 14:04 KST by K4, and the residual does NOT close — it sharpens** (Duho
+    "as tori's rec" = option (a); `K4_RESULT_20260904.md`, class `K4_UNDETERMINED`; one-page
+    check sheet `K4_CHECK_SHEET_20260904.md`). K4 took the corpus's own derived boundary — K2's
+    comoving Oppenheimer–Snyder junction at the edge of the finite top-hat of entry 56
+    (`K4_BOUNDARY_TRANSFER_PREREG_20260904.md` §1–§2, pinning entry 56
+    `gaztanaga_mass_mnras_clean.txt` L143), class `J_SMOOTH_EXPANDING` — and imposed it on the **perturbations** rather than only on the
+    background. **The junction does not determine the interior mode structure.** It is neither
+    F1 nor F2 (all four seats agree, so it does not kill the route a priori), but for every
+    `ℓ ≥ 2` and `m` the Schwarzschild vacuum exterior retains one free function of time that the
+    Darmois conditions do not fix. A `C_ℓ` prediction therefore requires an added radiation
+    condition at infinity — "no incoming radiation" is the standard astrophysical choice and it
+    is an **assumption**, not a consequence of the junction, and these sources never state it.
+    **So the obstruction recorded above is an underdetermination in the model, not a gap in this
+    lane's effort.** No Planck pixel was touched by K4 and none was needed; the four controls
+    that touch data were never reached and are recorded NOT RUN, not as passes. Tiers, warrant
+    tokens, standings and stamps are untouched by this note.
 - **No tier implication.** Whether this map bears on entries 23–27 is Duho's call, not this
   document's.
 
