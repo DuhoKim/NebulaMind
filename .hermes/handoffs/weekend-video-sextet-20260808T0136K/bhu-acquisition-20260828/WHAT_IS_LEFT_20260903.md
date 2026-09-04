@@ -183,3 +183,20 @@ Duho ruled at 12:52 KST via Blanc: **"as tori's rec"** = option (a). Applied exa
 
 **NOT ordered:** option (b), the downstream study on what the negative sign does to the bounce. K4, K5, K6 remain NOT
 ORDERED. Nurgaliev & Ponomariev stays a non-blocking acquisition line. Paper HOLD; nothing outward.
+
+**Post-ruling follow-through (2026-09-04 13:2x KST).** Two things, neither a new study.
+
+1. **K3 step 3 drafted and gated, and NOT recommended.** `K3S3_SELFCONSISTENCY_PREREG_DRAFT_20260904.md` — the
+   self-consistency check of K3 step 2's own number with the Hehl-Datta four-fermion term retained. Gated
+   `PREREG_SOUND_WITH_REPAIRS`; the one repair closed a real class gap (a self-consistent coefficient of exactly zero
+   would have fallen into no class) and is applied. The referee confirmed the step is genuinely distinct from the
+   bounce study Duho declined, and that the objection it answers is real — **but judged it not worth ordering**,
+   because the printed closures are already robustly falsified without it. Tori agrees and does not recommend it; the
+   draft exists so the option is costed rather than unavailable. **NOT ORDERED, AND NOT RECOMMENDED.**
+2. **The seven annotations were bounded.** They asserted that the derived coefficient's sign is opposite to both
+   printed closures without telling a reader that the calculation is free-field, while entry 10's own Hehl-Datta term
+   (L87-88) is an interaction. Each of the seven rows now carries that bound, plus the sentence that the failure of
+   both printed closures does **not** depend on it. A fresh seat gated the bounding diff `VERDICT=ACCEPT`
+   (`K3S2_BOUND_GATE_20260904_agy.md`), including the check that this is not over-hedging: "the hedge is perfectly
+   scaled... without surrendering the negative claim". Tier, token, standing, stamp and row ids again byte-identical;
+   51 rows.
