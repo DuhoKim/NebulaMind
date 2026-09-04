@@ -1,0 +1,26 @@
+HARNESS_LIVE
+python3 -c import sys;print(sys.version): 3.9.6 (default, May 22 2026, 11:13:45) 
+[Clang 21.0.0 (clang-2100.1.1.101)]
+python3 -c import sympy;print(sympy.__version__): 1.14.0
+shasum -a 256 $(command -v python3): b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3
+platform: macOS-26.6.2-arm64-arm-64bit
+C5_HARNESS_PINNED=PASS
+SOURCE_LINE_87_REPR=b'ter [18\xe2\x80\x9328]. Accordingly, the singular Big Bang is replaced by a                 \x02\xcb\x9c = \x02 \xe2\x88\x92 \xce\xb1n2f ,                                                             (1)\n'
+SOURCE_LINE_126_REPR=b'    A model of a closed universe in a black hole with torsion was                K = \xce\xb2(\xce\xba \x02\xcb\x9c )2 ,                                                             (5)\n'
+SOURCE_LINE_128_REPR=b'                                                                                 where \xce\xb2 is a dimensionless particle production coe\xef\xac\x83cient. Equa-\n'
+C1_SOURCE_IDENTITY=PASS
+SYMBOLIC_EQ7_TDOT= -H*T*(-A*H**3*beta/T**3 + 1)
+SYMBOLIC_D_TDOT_D_BETA= A*H**4/T**2
+DEPENDENCE_CHAIN: beta -> K [Eq.(5)] -> Tdot,a,H [Eqs.(4),(7)] -> V,phi [Eqs.(10),(11)] -> epsilon,eta,eta_v,xi [Eqs.(12)-(15)] -> ns,r,alpha_s [Eqs.(16)-(18)].
+SOURCE_LINES_359_374: the authors vary beta and state ns, r, and alpha_s are only sensitive to beta; no one of these is established beta-independent (r is only approximately constant, 0.01--0.03).
+PERTURBATION_AMPLITUDE: ABSENT; the paper reports tilt ns, r, and running alpha_s, but no scalar amplitude A_s, and lines 302-306 explicitly discard the potential's absolute scale.
+C2_DEPENDENCE_MAPPED=PASS
+CITATION_[32]=BLOCKED: the paper says 'Following [32], we assume' Eq.(5); [32] was not opened, so it is not counted as a derivation.
+CITATIONS_[43]_[45]_[46]=BLOCKED: cited reconstruction/slow-roll formulas were not opened; no claim that they derive beta is made.
+C3_CITATIONS_OPENED_OR_BLOCKED=PASS
+FREE_SYMBOL_PROBE: Eq.(7) retains beta symbolically, with nonzero derivative above. Consequently the numerical a(t), reconstructed potential, and ns/r/alpha_s cannot be recovered from the stated inputs without assigning beta.
+PAPER_VALUE_QUOTE_LINES_228_229: 'We need a value of β which is slightly smaller than βcr . Thus, we choose β = 1/929.25'.
+OBSERVABLE_TARGET_QUOTE_LINES_459_463: 'The values of the scalar spectral index agree with the Planck 2015 results when evaluated about 20 e-folds before the end of inflation for a particular range of the particle production coefficient.'
+C4_FREE_SYMBOL_PROBE=PASS
+CLASS=BETA_FITTED
+BASIS: beta is assumed rather than derived; a value/range is chosen and tied to about 60 e-folds and Planck-compatible ns. This is unreproduced from the stated inputs, not an error.

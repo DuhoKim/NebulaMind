@@ -1,0 +1,105 @@
+
+====================================================================================================
+C5 — HARNESS, LIVE EXECUTION (prereg §8; a printed block would be decoration)
+====================================================================================================
+  $ python3 -c import sys;print(sys.version.split()[0])
+    -> 3.9.6
+  $ python3 -c import sympy;print(sympy.__version__)
+    -> 1.14.0
+  $ shasum -a 256 "$(command -v python3)"
+    -> b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3
+C5_HARNESS_PINNED=PASS  (values above are live subprocess output, not transcribed)
+
+====================================================================================================
+C1 — SOURCE IDENTITY on RAW BYTES (the text is PDF-extracted; clean strings do not occur)
+====================================================================================================
+  L87 repr : 'ter [18–28]. Accordingly, the singular Big Bang is replaced by a                 \x02˜ = \x02 − αn2f ,                      '
+  L126 repr : 'A model of a closed universe in a black hole with torsion was                K = β(κ \x02˜ )2 ,                          '
+  L128 repr : 'where β is a dimensionless particle production coeﬃcient. Equa-'
+  L87 norm : ter [18–28]. Accordingly, the singular Big Bang is replaced by a                 ˜ =  − αn2f ,                        
+  L126 norm : A model of a closed universe in a black hole with torsion was                K = β(κ ˜ )2 ,                           
+  L128 norm : where β is a dimensionless particle production coefficient. Equa-
+C1_SOURCE_IDENTITY=PASS
+  (matched after normalisation: the epsilon is a raw \x02 byte, 'coefficient' carries the ffi ligature)
+
+====================================================================================================
+The text that decides the class — entry 59
+====================================================================================================
+  L122: sion and compare them with our approach.                                         tensor [29–31,35]. For a rigorous treatment, it should be derived
+  L123: from quantum field theory in the Riemann–Cartan spacetime. Fol-
+  L124: 2. Universe in a black hole with torsion                                         lowing [32], we assume that
+  L126: A model of a closed universe in a black hole with torsion was                K = β(κ ˜ )2 ,                                                           
+  L128: where β is a dimensionless particle production coefficient. Equa-
+  L197: horizon coincide. The entire interior of a black hole would then                 β < βcr =                                 .                          
+  L199: served from the outside of the black hole because of an infinite                  For standard-model particles, βcr = 1/929.0915.
+  L228: that corresponds to the Big Bang [32]. It is followed by the accel-              the order of 10−27 m [25]. We need a value of β which is slightly
+  L229: erating torsion-dominated era (inflation), which lasts for a finite                smaller than βcr . Thus, we choose β = 1/929.25 and a0 = 10−27 m.
+
+====================================================================================================
+C3 — the citation OPENED, not counted unopened: entry 59 cites [32] for the assumed form
+====================================================================================================
+  entry 59's [32] =                  [32] N.J. Popławski, arXiv:1410.3881, 2014.
+  ref[32] L297: Ultimately, K K should be derived from quantum field theory in the Riemann-Cartan spacetime of the ECSK theory of gravity.
+  ref[32] L298: The simplest form of K K which vanishes at a bounce and has the same dimension as P 2 P^{2} is
+  ref[32] L299: K = β ​ ( κ ​ ϵ ~ ) 2 , K=\beta(\kappa\tilde{\epsilon})^{2},
+  ref[32] L301: where β > 0 \beta>0 is a nondimensional constant.
+C3_CITATIONS_OPENED_OR_BLOCKED=PASS
+  -> the citation chain TERMINATES: [32] does not derive beta either. It says K 'should be
+     derived from quantum field theory', picks 'the simplest form', and calls beta
+     'a nondimensional constant'. Nothing downstream of that is a derivation.
+
+====================================================================================================
+C2 — DEPENDENCE PROBE, under the prereg's 120-second stall guard
+====================================================================================================
+  K = beta*epsilon_tilde**2*kappa**2   [entry 59 Eq. (5), L126]
+  dK/dbeta = epsilon_tilde**2*kappa**2  -> K is exactly linear in beta; it cannot cancel
+  DEPENDENCE_SYMBOLIC_TIMEOUT=no
+
+  The paper states the dependence itself, which is stronger than our algebra:
+    L373: Eq. (17) is shown in Fig. 6. Our estimated value of r for all permis-                     value is O (10−3 − 10−4 ) Therefore, the values of ns , r, a
+    L374: sible values of N is about an order of magnitude smaller than the                         not change significantly with a0 and are only sensitive to β
+  -> the reported observables n_s, r and alpha_s are 'only sensitive to beta'.
+
+====================================================================================================
+C4 — FREE-SYMBOL PROBE: can the reported numbers be recovered without choosing beta?
+====================================================================================================
+  The paper's own answer, L228-229:
+    L228: that corresponds to the Big Bang [32]. It is followed by the accel-              the order of 10−27 m [25]. We need a value of β which is slightly
+    L229: erating torsion-dominated era (inflation), which lasts for a finite                smaller than βcr . Thus, we choose β = 1/929.25 and a0 = 10−27 m.
+
+  beta_cr IS derived from particle content (L199: 'For standard-model particles,
+  beta_cr = 1/929.0915'). beta ITSELF is not: it is CHOSEN to sit just below beta_cr
+  to obtain inflation-like behaviour. With beta a free symbol, no number follows.
+C4_FREE_SYMBOL_PROBE=PASS
+
+====================================================================================================
+FITTED or FREE? separated by quotation, as the prereg requires
+====================================================================================================
+  A FITTED coefficient is chosen to reproduce an observable value. Entry 59's is not:
+  had beta been fitted to the Planck spectral index, the paper would match it. It does not:
+    L368: 50–60), we would obtain a value of ns ≈ 0.99, which on face value                         These variations are shown in Figs. 9, 10, and 11 respective
+    L369: is in tension with the Planck 2015 best-fit estimate at about 6σ .                         always find a red tilt in the spectrum of scalar perturbati
+
+  The paper reports its own 6-sigma tension with Planck 2015 for standard e-fold counts,
+  and rescues it only by adopting a non-standard horizon-crossing scale (N ~ 20-25) or an
+  extra relativistic degree of freedom. A fitted parameter would not leave a 6-sigma gap.
+  Therefore beta is FREE -- chosen for qualitative behaviour, not fitted to data.
+
+====================================================================================================
+Class
+====================================================================================================
+C1_SOURCE_IDENTITY=PASS
+C2_DEPENDENCE_MAPPED=PASS
+C3_CITATIONS_OPENED_OR_BLOCKED=PASS
+C4_FREE_SYMBOL_PROBE=PASS
+C5_HARNESS_PINNED=PASS
+
+FORM_STATUS=ASSUMED (entry 59 L124 'we assume that'; ref[32] L298 'the simplest form')
+BETA_CR_STATUS=DERIVED from standard-model particle content (L199)
+BETA_STATUS=CHOSEN, not derived and not fitted (L229 'we choose beta = 1/929.25')
+OBSERVABLES_DEPEND_ON_BETA=yes, and only on beta (L373-374)
+CITATION_CHAIN=terminates at ref[32], which also does not derive it
+PAPER_OWN_TENSION=6 sigma with Planck 2015 at standard N (L368-369)
+CLASS=BETA_FREE
+WORDING=unreproduced from the stated inputs; NOT an error claim
+R3A_CLAUDE_SEAT_COMPLETE
