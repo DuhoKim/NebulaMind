@@ -75,3 +75,27 @@ K3-step-1 objection and exact settling evidence are filed as a note only in `K3S
 
 Major-event receipt: `TORI_HERMES_SUPPORT_AUDIT_MAJOR_EVENT_20260904.md`. K3 step 2, K4, K5 and K6 remain `DRAFT — NOT ORDERED`;
 none has started. Paper HOLD and all tier/token/standing/stamp boundaries stand. Nothing outward.
+
+---
+## Claude seat resumed (2026-09-04 09:52 KST)
+
+Duho's 09:35 order returned Hwao and Tori to Claude Opus 5. Nothing was lost; all state was already in lane files.
+
+**Banked:** the whole overnight Hermes shift is now committed and pushed — `e25d2019e`, 40 files (Gasperini source test,
+support audit + `RECORD_SUPPORT_DIFF_GATE_agy.md` ACCEPT, Nurgaliev retry log, critic note, K5/K6 drafts and gates,
+four pinned source texts). No tier, token, standing, stamp or study state changed in the commit.
+
+**Repo note for the other lanes:** the commit was blocked by an orphaned `.git/index.lock` (0 bytes, mtime
+2026-09-04 00:13:24, no holder process, no open file descriptor, no commit on the branch since 09-03 22:19). It was left
+behind when the overnight Hermes git call was interrupted, and it was blocking *every* lane on this repo, not just this
+one. Removed at 09:50 KST; the commit and push then went through clean (pre-push tests 49 passed).
+
+**Watch verified armed, not just assumed:** hermes cron `BHU neutron-star mass watch`, id `146e36d34237`, `0 10 * * 2`,
+enabled, `next_run_at 2026-09-08T10:00:00+09:00`, `no_agent` script mode. `nm_ns_mass_watch.py` resolves at the runtime's
+script path `/Users/duhokim/.hermes/scripts/` (a 2026-07-27 failure in `executions.db` proves that is the resolution
+path) and is byte-identical to the lane copy, sha256 `7ea9dd1a…4003`, with absolute lane paths for state and hits. The
+cron ticker heartbeat was live at 09:38 KST. The b68 standing tripwire was re-run: 3/3 PASS, heaviest secure NS
+2.35 M☉, 1.36σ below the 2.5 M☉ bar, GW190814's secondary still tracked `secure=false`.
+
+**Unchanged:** K3 step 2, K4, K5, K6 remain DRAFT — NOT ORDERED; K1 stage 2 stays stopped; Nurgaliev & Ponomariev 1983
+stays closed and non-blocking; paper HOLD stands; nothing on Duho's desk.
