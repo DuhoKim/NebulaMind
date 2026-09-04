@@ -5,7 +5,7 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## YOUR CALL 2026-09-04 10:27 KST — K3 step 2 is done: the exchange term restores the n² closure, and it comes out NEGATIVE
+## RESOLVED 2026-09-04 12:59 KST — Duho: "as tori's rec" = option (a). Applied: rows 9, 10, 11 annotated with the step-2 finding, inheritance on 39, 52, 59 (spin-fluid 1/8) and 53 (Dirac 3/4), the ⟨s²⟩-ambiguity caveat carried, K3 step 1's wording narrowed only as far as step 2 requires. Tiers, tokens, standings and stamps untouched (verified byte-identical). Option (b) — the downstream bounce-sign study — NOT ordered. Annotation diff gated by a fresh seat. Was: YOUR CALL 2026-09-04 10:27 KST — K3 step 2 is done: the exchange term restores the n² closure, and it comes out NEGATIVE
 
 **You ordered this at 09:57 ("k3s2"). It is finished: preregistered, gated, blind-doubled, second-routed, third-seated,
 arithmetic re-checked.** Files: `K3S2_RESULT_20260904.md` (result + reconciliation), `K3S2_CHECK_SHEET_20260904.md`

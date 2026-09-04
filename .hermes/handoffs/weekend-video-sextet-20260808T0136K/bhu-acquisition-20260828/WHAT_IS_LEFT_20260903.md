@@ -161,3 +161,25 @@ assumption (entry 10 L121–122, "even without spin polarization"), but load-bea
 exact evidence that would settle it. Writing it turned up a source reading that bears on Duho's pending ruling and is
 now in his packet: entry 10 L127–129 disowns the spin-fluid framework the `⅛` closure comes from, making the Dirac
 `¾ n²` at L113 the paper's own operative closure — the form K3 step 2 computed. Not acted on; flagged as his call.
+
+---
+## K3 step 2 annotations APPLIED (2026-09-04 12:59 KST)
+
+Duho ruled at 12:52 KST via Blanc: **"as tori's rec"** = option (a). Applied exactly as the packet scoped it, nothing wider.
+
+- **Rows 9, 10, 11** carry the step-2 finding: the n² term IS restored, by the Fermi-statistics exchange (Fock)
+  contraction of the local operator, at −(3/8)n²/N_f (non-relativistic) to −(3/16)n²/N_f (ultrarelativistic); the
+  coefficient runs with m/p_F and carries 1/N_f; the sign is opposite to both printed closures.
+- **Rows 39, 52, 59** (spin-fluid 1/8) and **row 53** (Dirac 3/4) carry the inheritance sentence: the inherited
+  coefficient is now contradicted in sign as well as underived.
+- **The caveat travels with every one of the seven**: two quantities in this literature are both written ⟨s²⟩, the local
+  field equations need the local one, the source never says which, and on either reading the printed closures fail.
+- **K3 step 1 narrowed only as far as step 2 requires** (`K3S1_RESULT_20260903.md` §2): its finding stands unchanged for
+  the ensemble it preregistered — uncorrelated, randomly oriented particles, cross terms vanishing, leading behaviour
+  linear in n — and may not be read as "no n² exists for the audited object at all", which step 2 disproves.
+- **Nothing else moved.** Tier, token and id columns are byte-identical across the annotation diff (51 rows before and
+  after, `diff` clean). Standings and stamps untouched. The per-entry `WARRANT_*_codex.md` records were not touched:
+  step-1 annotations live in the warrant table only, and step 2 follows that precedent.
+
+**NOT ordered:** option (b), the downstream study on what the negative sign does to the bounce. K4, K5, K6 remain NOT
+ORDERED. Nurgaliev & Ponomariev stays a non-blocking acquisition line. Paper HOLD; nothing outward.
