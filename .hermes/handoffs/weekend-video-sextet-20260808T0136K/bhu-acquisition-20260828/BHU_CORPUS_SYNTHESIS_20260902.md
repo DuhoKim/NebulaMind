@@ -289,6 +289,12 @@ derivation that would fix the coefficient is not available where it matters. Tha
 uncontrolled expansion rather than a missing prescription — and it is listed here as adjacent, not as a fourth
 instance.
 
+**SUPERSEDED AND EXTENDED 2026-09-04 20:56 KST** — the running record now lives in
+`SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md`, which carries **six** instances (the three below plus R3A's β, R3B's
+assumed rigidity, and the K3 closure coefficient), holds K4 and K3 step 3 out as adjacent-but-different, and — the part
+missing here — **states the operational breaker**: the five conditions a construction must satisfy to refute the
+pattern. Blanc's note was right that a pattern with no stated breaker is not a finding.
+
 **What this does and does not claim.** Three instances are a pattern worth naming, not a theorem about the corpus, and
 each carries its own caveat in its own result file — in particular, "not fixed by *this* construction" is not the same
 claim as "irreducibly free", and K5's record says so explicitly. **No tier, warrant token, standing or stamp moves on
