@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 20 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 21 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -127,7 +127,7 @@ could not reproduce, not a claim that the branch contains no such relation.)*
 
 ## 4. Outcome classes — six declared: four scientific outcomes and two non-scientific terminal states
 
-**Definition, so classes 1, 2 and 5 have a common discriminator:** a **positive floor** means a **strictly positive
+**Definition, so classes 1, 2 and 4 have a common discriminator:** a **positive floor** means a **strictly positive
 greatest lower bound of the allowed mass set, whether or not that bound is attained**; a **unique floor** means the
 unique infimum of that set. *(Both seats found this: "floor" alternated between a lower bound and an attained
 minimum, so a solution set like `M ∈ (1,2) kg` sat in class 5 under one reading and class 1 or 2 under the other,
@@ -206,7 +206,13 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    referent here, since the seat is told to choose none — two obedient seats could evaluate different floors, split
    C6 inside one class, and send a case with a scientific answer to `DYM_SOURCE_BLOCKED`.)* **C6 is RUN on this class** and its
    result reported: a surviving freedom is what condition 3 rejects, so it is expected to fail — but the failure
-   must be **exhibited**, not assumed.
+   must be **exhibited**, not assumed. **If `C6_BREAKER_TEST=PASS` results here instead — every per-floor
+   evaluation satisfying all five decision rules while the readings still disagree — then EACH floor in `P`
+   independently passes the breaker, and the study reports that outcome with all floors named. It is NOT a single
+   counterexample and the pattern record is NOT amended on it, because no unique magnitude was fixed: what passed
+   is a family, and the pattern concerns a construction fixing A magnitude. The result is reported as
+   `C6 PASS under an underdetermined floor` and referred to Duho.** *(The class previously stated only what a C6
+   FAIL meant here and left a reachable `PASS` with no stated consequence.)*
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
 4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. If the printed relations are mutually
@@ -221,9 +227,12 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    and, after applying the seat-split rule of §9, a required control still fails after two attempts **in any seat**,
    file `R3D_NO_CLASS`; **otherwise file `DYM_SOURCE_BLOCKED`.** *(Class 6 said only that a source "cannot be read",
    which is narrower than the failure it causes, so an unread source satisfied both classes.)* **A scientific class may be filed only from a seat report in which every reached
-   control passed**; if the two seats return the same scientific class but exactly one report is control-clean, that
-   class is filed **unless** the third seat re-runs the failed control and also fails it, in which case
-   `R3D_NO_CLASS` is filed. *(The old wording said "in both seats", so a control failing persistently in one seat,
+   control passed**; if the two seats return the same scientific class but **at least one** report is not control-clean,
+   **the third seat re-runs each failed control once. If any re-run control fails again, that is the persistent
+   failure named above and `R3D_NO_CLASS` is filed. If every re-run control passes, that class is filed.**
+   *(The rule previously covered "exactly one" clean report, so the zero-clean case — both seats agreeing on class,
+   floor and C6 outcome while each fails a DIFFERENT control — convened no split, exhibited no persistently failing
+   control, and fell through to `DYM_SOURCE_BLOCKED`, whose definition would have been false of it.)* *(The old wording said "in both seats", so a control failing persistently in one seat,
    with the seats otherwise agreeing, had no rule and two readings of the document diverged at the terminal step.)*
 
 ## 5. Controls, each with an exact named code
@@ -1190,4 +1199,45 @@ ones that repeat it.**
 
 **V20 does not inherit V19's verdicts. C0 re-run, then a fresh two-seat gate. R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V20_READY_FOR_REEXHIBITION
+## 8m. V21 — the stopping criterion applied for the first time. V20 is NOT final.
+
+**Both V20 seats returned `PREREG_SOUND_WITH_REPAIRS` on `301cba9b…`, hash-verified after exit.** Both found
+**outcome classes, controls, circularity and the re-run guard SOUND**; both counted the falsifier identically —
+FAIL reachable in 4 of 6 terminal classes — and both confirmed condition 1 is correctly marked `ENTAILED`. kimi
+found **fairness and stall sound**; codex found **fairness defective**.
+
+**The stopping criterion of `R3D_STOPPING_CRITERION_20260905.md` was declared at 06:18, before this gate was
+dispatched and before any finding existed. Applied to four findings made blind to it:**
+
+| finding | seat | classification | disposition |
+|---|---|---|---|
+| class 2 states **no consequence for `C6_BREAKER_TEST=PASS`**, and the state is reachable | kimi R2 | **SUBSTANTIVE** — criterion (4): *what the study can conclude* is undefined on a reachable path | **REPAIRED** |
+| **zero-control-clean agreement**: both seats agree on class, floor and C6 outcome while each fails a *different* control — no split convenes, no control persistently fails, and `DYM_SOURCE_BLOCKED` would be filed on a case its definition does not describe | kimi R3 | **SUBSTANTIVE** — criterion (1): *which class a run files*, on a reachable terminal state | **REPAIRED** |
+| *"classes 1, 2 and **5** have a common discriminator"* — stale since V13 retired the old class 5 | kimi R1 | **COSMETIC** — the partition **table** does the filing; this sentence misroutes no procedure | **folded in, and said so** — V21 exists for the two substantive repairs, so a one-token correction rides along. It did **not** cause a version. |
+| the tokens `DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR` **assert absence** while their own definitions say *"unreproduced from the stated inputs"* | codex | **SUBSTANTIVE** — criterion (4): a token quoted as a nonexistence finding misstates the result | **ESCALATED, NOT REPAIRED — see below** |
+
+### The escalation: codex is right, and the fix is beyond my authority
+
+codex proposes renaming the tokens, e.g. `DYM_NO_SIZE_MASS_RELATION` → `DYM_SIZE_MASS_RELATION_UNREPRODUCED`.
+**The objection is correct**: this lane's own rule is that a negative finding is *"unreproduced from the stated
+inputs,"* never a claim of absence — and a class **name** travels into reports and summaries stripped of the
+definition that qualifies it.
+
+**But renaming an outcome class is redefining one, and that is Duho's ruling, not mine.** The standing boundary is
+explicit: no class retired, added or redefined beyond his ruling. **So it is recorded here as a substantive,
+seat-found defect that I am declining to repair on authority grounds, not on merit** — the distinction matters, and
+a later reader should not mistake this for a judgement that codex was wrong.
+
+**For his decision:** rename both tokens to the `…_UNREPRODUCED` form, or leave them and accept that the class
+names overstate what the study found. Cost of renaming: every reference in this document and in any downstream
+record. Cost of leaving: the study's own fairness rule is violated by its outcome vocabulary.
+
+### Consequence for the stopping rule
+
+**V20 is NOT final.** Two substantive findings required repair, so V21 exists and must earn its own C0 and its own
+two-seat gate. **The criterion did the work it was declared for: it forced a per-finding test instead of letting a
+second `SOUND_WITH_REPAIRS` be read as a finish line.**
+
+**R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V21_READY_FOR_REEXHIBITION
