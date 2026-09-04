@@ -5,6 +5,42 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
+## FOR DUHO'S EYE 2026-09-04 20:43 KST — R3A filed; R3B's first prereg was REJECTED as circular and has been rebuilt
+
+**No decision needed; nothing blocked.** R3A is complete (`BETA_FREE`). R3B's prereg is now frozen at V3 and gated,
+and limb A runs next.
+
+**R3A in one line:** entry 59's production coefficient β is **chosen, not derived** — "we choose β = 1/929.25" — while
+the critical value β_cr it must sit below *is* derived; and the reported spectral index, tensor ratio and running are
+sensitive to β alone. The citation chain was opened rather than waved through and it terminates: reference [32] also
+assumes the form and calls β "a nondimensional constant". A real split (codex read it as fitted) went to a third seat,
+which chose FREE because the paper openly reports its own ~6σ tension with Planck — a fitted parameter would not leave
+that gap. codex also marked that citation BLOCKED without opening a file that was in the lane; the third seat ruled
+that incorrect and it is in the record.
+
+**The thing worth your attention is R3B.** Its first frozen prereg was returned **`PREREG_UNSOUND`** — not a repair
+list, a rejection. The gate's finding:
+
+> "The premise is assumed rather than shown… the lane is assuming its own answer to force a constant `r_S`. This makes
+> the whole design circular."
+
+**It was right, and I verified it against the source rather than taking it on trust.** I had asserted the rigidity the
+study was supposed to test — the exact error this lane has spent the week finding in other people's work, committed by
+me, in a preregistration, one day after writing three notes about it.
+
+The source is sharper than either of us first said, and it makes the study *better*: entry 56 says the enclosed mass is
+constant only for matter domination, that with radiation "the mass inside χ is a function of τ", and it then keeps the
+total mass constant by **letting the junction χ\* be a function of time** (its Eq. 10). That is a real evolution
+mechanism, in the paper, which my V1 had assumed away. Limb A now has a genuine chance of returning `RIGIDITY_ABSENT`
+rather than the shared falsifier I predicted.
+
+V2's gate then caught two more: a drafting typo that had inverted "**No** derivation has been run", and a control a
+seat could pass while quietly reading another lane's files — now it must list every path it opened.
+
+**Your data boundary is wired in:** published DESI results only, and `C5b` fails the run if any path outside this lane
+is opened. If limb B cannot be answered from published constraints, the seat stops and it comes to you.
+
+---
 ## FOR DUHO'S EYE 2026-09-04 20:00 KST — round 3 ranked, R3A frozen and gated, running now
 
 **No decision needed; nothing blocked.** You said "run 1 and 2" at 19:52. R3A's prereg is frozen and gated before any

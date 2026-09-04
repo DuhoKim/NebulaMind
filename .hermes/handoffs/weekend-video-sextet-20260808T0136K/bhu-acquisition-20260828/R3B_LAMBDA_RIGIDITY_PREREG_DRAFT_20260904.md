@@ -54,7 +54,7 @@ shared falsifier as a discriminating one.
 - **C1 — source identity.** Reproduce `Λ = 3/r_S²` and the constant-mass statements from the pinned text. Exact
   assertion: `C1_SOURCE_IDENTITY=PASS`.
 - **C2 — evolution search.** The seat must actively search the source for any admissible mechanism letting `r_S`
-  evolve, and print what it searched for. A rigidity claim asserted without that search fails. Exact assertion:
+  evolve, and **print the exact search terms used and quote the resulting text.** A rigidity claim asserted without that search fails. Exact assertion:
   `C2_EVOLUTION_SEARCH=PASS`.
 - **C3 — discrimination test.** State explicitly whether ΛCDM makes the same prediction. If it does, class 4 applies.
   Exact assertion: `C3_DISCRIMINATION_STATED=PASS`.
