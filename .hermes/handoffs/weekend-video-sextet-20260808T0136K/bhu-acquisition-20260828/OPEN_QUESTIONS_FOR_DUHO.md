@@ -5,7 +5,47 @@ question states the stake, gives options with what each costs, and says why the 
 mine. The old version of this file read as a status report and buried a decision inside it.
 
 ---
-## FOR DUHO'S EYE 2026-09-04 15:56 KST — K5 prereg frozen and gated; the gate expects the cheap limb to end it, and I am running that limb now
+## FOR DUHO'S EYE 2026-09-04 16:28 KST — K5 is DONE: the amplitude is not fixed by the model; no LISA data fetched, one seat-day of fifteen
+
+**No decision needed to continue — K6 starts next.** Result `K5_RESULT_20260904.md`, check sheet
+`K5_CHECK_SHEET_20260904.md`, critic note `K5_WHAT_A_CRITIC_GETS_20260904.md`. Class **`K5_AMPLITUDE_FREE`**,
+3 seats, 3 methods, unanimous.
+
+**The finding in plain words.** Entry 21 fixes the *pitch* of the ringing — the frequencies, and they do land in a
+space-detector band. It does not fix the *loudness*. Loudness is set by whatever rings the object, and the model is a
+static equilibrium: it contains no merger. So there is no strain to predict, nothing to compare with a sensitivity
+curve, and the study stopped before fetching one.
+
+**The trap it was built to avoid.** The paper says outright (L400) that the excitation factors "have to be
+calculated… an involved task, that this work urges the community to perform". It would have been easy — and wrong — to
+conclude from that sentence that the model can't fix the amplitude. That is an argument from ignorance about what the
+authors did. All three seats rest on the structure instead, and an independent logic check confirmed the paper's
+omission "appears nowhere in the derivation".
+
+**One inference of ours was rejected, and it made the result stronger.** The logic check ruled invalid our claim that
+"the excitation factor is determined by the model" — that only holds under a narrow definition where it is trivial,
+and entry 21's own usage probably means something wider. If so, what L400 hands to the community is not a hard
+calculation but **a quantity the construction does not contain**.
+
+**The escape we refused.** We could have taken the radiated-energy fraction from ordinary black-hole merger
+simulations and produced a number. Every seat and the logic check called that an added assumption, not a derivation —
+it assumes the merger dynamics and surface structure are unchanged, which is exactly what this model alters.
+
+**A pattern, now twice.** The freedom map found the cutoff's amplitude free while its scale was derivable. K5 finds the
+ringdown's amplitude free while its frequencies are derivable. Twice, in unrelated corners of the corpus, the
+construction gives a scale or a frequency and never the size of the effect — which is the only part a measurement
+tests. **I have recorded that as an observation and moved nothing.**
+
+**Costs and boundaries:** no network, no LISA product, limb C never written; about one seat-day of the fifteen. Four of
+five controls are NOT RUN, not passes. Entry 16 was never reached, so its token stands untouched.
+
+**Proposed for the record (your call, no hurry):** entry 21's row gains a sentence that the route is connected but the
+amplitude is not fixed by the construction; the freedom map's amplitude note gains a cross-reference to this second
+instance. Tiers, tokens, standings and stamps untouched. Say "k5 a" to apply, or leave it and I will bring it with the
+K6 batch.
+
+---
+## SUPERSEDED 2026-09-04 16:28 KST (K5 finished; see above) — was: FOR DUHO'S EYE 2026-09-04 15:56 KST — K5 prereg frozen and gated; the gate expects the cheap limb to end it, and I am running that limb now
 
 **No decision needed; nothing blocked.** Second of the three you ordered. `K5_LISA_FORECAST_PREREG_20260904.md` (V2),
 gate `K5_PREREG_GATE_20260904_agy.md`, filed before any derivation and **before any LISA product is fetched**.

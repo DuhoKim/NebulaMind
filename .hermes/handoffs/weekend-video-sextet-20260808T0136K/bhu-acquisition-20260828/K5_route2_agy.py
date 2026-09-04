@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+def print_structural_claims():
+    claims = [
+        "CLAIM 1: The perturbation problem is an inhomogeneous wave equation with a source term.",
+        "CLAIM 2: The Green's function G(r*, r*', w) is constructed from two homogeneous solutions satisfying physical boundary conditions.",
+        "CLAIM 3: In the Laplace/Fourier transform domain, quasi-normal mode poles arise where the Wronskian W(w) of these homogeneous solutions vanishes.",
+        "CLAIM 4: The residue at these poles yields an excitation factor and an excitation coefficient.",
+        "CLAIM 5: The excitation FACTOR depends only on the homogeneous solutions and Wronskian, which are fully determined by the potential V(r*).",
+        "CLAIM 6: The excitation COEFFICIENT depends on the integral of the Green's function with the dynamical source term S(r*, w) (or initial data).",
+        "CLAIM 7: The observable ringdown AMPLITUDE is the product involving the excitation factor and the excitation coefficient.",
+        "CLAIM 8: Therefore, the excitation FACTOR is determined by (M, alpha) through the potential alone.",
+        "CLAIM 9: However, the observable ringdown AMPLITUDE is NOT determined by (M, alpha, distance) alone; it additionally depends on the source term S(r*, w) from the binary merger.",
+        "CLAIM 10: This conclusion holds independently of L400. The static construction intrinsically lacks the dynamical source term.",
+        "CLAIM 11: Importing numerical-relativity calibrations would be an added assumption, as the highly non-linear merger dynamics are not captured by the static equilibrium model."
+    ]
+    for claim in claims:
+        print(claim)
+
+if __name__ == "__main__":
+    print_structural_claims()

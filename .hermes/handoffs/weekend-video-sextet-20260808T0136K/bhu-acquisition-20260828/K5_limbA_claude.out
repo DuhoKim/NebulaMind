@@ -1,0 +1,98 @@
+
+==================================================================================================
+1. The chain from entry 21's static equilibrium to a detector strain
+==================================================================================================
+#  link                                                          status      source
+--------------------------------------------------------------------------------------------------
+1  static equilibrium interior solution rho(r), p(r)             DERIVED     entry 21 Eqs. (4)-(7), L245
+2  axial perturbation equation and its scattering potential V(r) DERIVED     entry 21 L250 (perturbation ansatz), L269 (potential, positive => stable)
+3  quasi-normal-mode FREQUENCIES omega_n (real and imaginary parts)DERIVED     entry 21 Table 1 L365; Figures 4-5 L271, L367; band statement L395
+4  excitation FACTORS B_n (residues of the Green's function at the QNM poles)DERIVABLE   fixed in principle by the SAME potential V(r) as step 2; entry 21 does not compute them (L400)
+5  excitation COEFFICIENTS C_n = B_n x (overlap with the initial data of the ringing event)FREE        requires the initial data of the perturbing event -- a binary merger (L400 names 'following a binary merger')
+6  ringdown strain at the source, h_source ~ sum_n C_n exp(-i omega_n t)FREE        inherits the freedom of step 5
+7  strain at the detector h = h_source x (source-frame to detector-frame factors) / DDERIVABLE   given h_source and a pinned cosmology; the 1/D scaling is standard
+
+==================================================================================================
+2. The two statements the prereg forbids conflating
+==================================================================================================
+  STATEMENT 1: 'entry 21 does not compute the excitation factors.'
+    TRUE, and the paper says so itself at L400: the excitation factors 'have to be
+    calculated. This is an involved task, that this work urges the community to perform.'
+    A full-text search of the source finds no computation of them; the only other
+    occurrences of 'excitation' are a reference title in the bibliography (L753-754).
+
+  STATEMENT 2: 'the construction does not FIX the amplitude.'
+    This does NOT follow from statement 1, and this seat does not rest on statement 1.
+    It rests on step 5 of the chain above:
+      - the excitation FACTORS B_n are properties of the scattering potential V(r), which
+        entry 21 does supply, so they are DERIVABLE from the pinned parameters (M, alpha);
+      - but the observable amplitude is C_n = B_n x <initial data>, and the initial data of
+        a binary merger is NOT contained in a STATIC EQUILIBRIUM solution. Entry 21's model
+        (Eqs. 4-7, L245) describes an equilibrium configuration, not a merger.
+    So the freedom is in the SOURCE of the ringing, not in the paper's diligence.
+this seat's conclusion rests on                    statement 2 (structural), not statement 1 (bibliographic)
+
+==================================================================================================
+3. The mechanical attempt required by the prereg: express h in (M, alpha, D) alone
+==================================================================================================
+  Attempting h_detector = f(M, alpha, D) ...
+h_detector (symbolic, best obtainable)             M*epsilon_0*B(M, alpha)/D
+pinned set                                         ['D', 'M', 'alpha']
+symbols appearing that are NOT pinned              ['epsilon_0']
+NEW INDEPENDENT VARIABLE introduced                epsilon_0
+
+  epsilon_0 is the amplitude of the perturbation that rings the object -- equivalently the
+  fraction of the mass radiated in the ringdown. It depends on the merger dynamics, which
+  entry 21 does not model. It is NOT a function of (M, alpha, D).
+
+  THE DERIVATION CANNOT BE COMPLETED. It halts at exactly one new variable.
+derivation completed without new free variables?   False
+
+==================================================================================================
+4. The standard escape: calibrate the radiated fraction against numerical relativity
+==================================================================================================
+  In general relativity, ringdown amplitudes are routinely set by calibrating the radiated-
+  energy fraction against numerical-relativity merger simulations (a few per cent of the
+  total mass for comparable-mass binaries).
+
+  Does such a calibration exist for THIS model? NO. It would require merger simulations of
+  de Sitter-core regular black holes in this theory. Entry 21 provides a static equilibrium
+  and a linear perturbation spectrum about it; it does not simulate a merger, and this seat
+  found no such simulation cited in the source.
+
+  Would importing the general-relativity value be a DERIVATION from the construction?
+  NO -- it would be an ADDED ASSUMPTION, and a strong one: the radiated fraction depends on
+  the merger dynamics and the horizon/surface structure, which is exactly what this model
+  changes. Importing it would assume the answer to the question the model exists to raise.
+importing the GR-calibrated fraction is an added assumption True
+the prereg forbids manufacturing one               yes (§9); none is manufactured here
+
+==================================================================================================
+5. Controls
+==================================================================================================
+C5_AMPLITUDE_PROVENANCE=PASS
+  (operational test per prereg §6: the pipeline halts when a variable outside the pinned
+   set (M, alpha, D) is requested. It halted, at epsilon_0. No external amplitude was
+   injected to get past it.)
+
+NOT RUN, and NOT passes -- these belong to limbs B and C, which this limb does not reach:
+  C1_TABLE1_REPRODUCED=NOT_RUN
+  C2_SCHWARZSCHILD_LIMIT=NOT_RUN
+  C3_DETECTOR_CONTROL=NOT_RUN
+  C4_DISTINGUISHABILITY_DELETION=NOT_RUN
+
+==================================================================================================
+6. Class
+==================================================================================================
+LISA_PRODUCT_FETCHED=no
+NETWORK_USED=no
+DERIVATION_HALTS_AT=epsilon_0
+EXCITATION_FACTORS_STATUS=DERIVABLE from the pinned potential, not computed by entry 21 (L400)
+EXCITATION_COEFFICIENTS_STATUS=FREE, requires merger initial data absent from a static equilibrium
+CONCLUSION_RESTS_ON=statement 2 (structural), not statement 1 (bibliographic)
+CLASS=LIMBA_AMPLITUDE_FREE
+CONSEQUENCE=limb B (LISA acquisition) and limb C (the ~15 seat-day pipeline) are NOT run;
+  K5 files K5_AMPLITUDE_FREE, which prereg §4 gives precedence over classes 1, 2 and 3.
+SECOND_INSTANCE=this is the corpus's SECOND 'amplitude irreducibly free' finding, after the
+  cutoff amplitude in PROGRAM_A_FREEDOM_MAP_20260902.md -- a pattern, not a coincidence.
+K5_LIMBA_CLAUDE_SEAT_COMPLETE

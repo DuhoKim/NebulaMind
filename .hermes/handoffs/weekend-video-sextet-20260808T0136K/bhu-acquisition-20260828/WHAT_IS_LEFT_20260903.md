@@ -290,3 +290,35 @@ instance this lane has caught. Kimi re-checked all nine arithmetic steps via Moo
 
 **On Duho's desk (no hurry, nothing blocked):** an annotation proposal for rows 9/10/11 and the inheritance rows.
 Paper HOLD; nothing outward. **Next: K5.**
+
+---
+## K5 ORDERED and COMPLETE — AMPLITUDE FREE, one seat-day of fifteen, no LISA data fetched (2026-09-04 16:28 KST)
+
+Second of the three Duho ordered at 14:56 ("go ahead" confirmed). **K6 starts next.**
+
+**Class filed: `K5_AMPLITUDE_FREE`** — 3 seats, 3 methods, unanimous; prereg §4 gives it precedence over the
+detectability classes. Entry 21 fixes the ringdown frequencies (and they do land in a space-detector band) but not the
+normalisation: the Green's-function coefficient `C_n = (dW/dω)⁻¹ ∫φ₁Ŝ` splits into a potential-determined factor and a
+**source-determined integral**, and a static equilibrium contains no merger source. Pole structure fixed up to scale;
+scale free.
+
+**The non-conflation was the point.** Entry 21's L400 says the excitation factors "have to be calculated… an involved
+task". Concluding from that sentence that the model cannot fix the amplitude would be an argument from ignorance. All
+three seats rest on the structure; Kimi's independent logic check confirmed the paper's omission "appears nowhere in
+the derivation".
+
+**One of our own inferences was rejected and it strengthened the finding.** Kimi ruled invalid the claim that the
+excitation *factor* is model-determined — true only under the narrow Wronskian definition, where it is trivial, and
+entry 21's usage probably means something wider. If so, L400 defers to the community a quantity the construction does
+not contain.
+
+**Refused:** calibrating the radiated-energy fraction from ordinary NR mergers. Added assumption, not a derivation.
+
+**Second instance of a pattern:** the freedom map found the cutoff amplitude free while its scale was derivable; K5
+finds the ringdown amplitude free while its frequencies are derivable. Recorded as an observation; nothing moved.
+
+**Boundaries held:** no network, no LISA product fetched, limbs B and C never run; four of five controls NOT RUN, not
+passes; entry 16 never reached and its `W_ROUTE_NAMED_ONLY` untouched; no tier, token, standing or stamp moved.
+
+**On Duho's desk (no hurry):** an annotation proposal for entry 21's row and the freedom map's amplitude note.
+Paper HOLD; nothing outward. **Next: K6.**
