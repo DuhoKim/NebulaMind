@@ -2474,3 +2474,5 @@ Options: **(a) fold**, **(b) keep** the two classes as the design of record has 
 
 **Q-RUN — RULED 12:26 "run r3d"; RUN COMPLETE and FILED 2026-09-05 13:39:27 KST: DYM_NO_POSITIVE_FLOOR (see R3D_RUN_FILING_20260905.md, R3D_CHECK_SHEET_20260905.md).** Original question: R3D's design is closed (V30 FINAL). Does it **run**? Options: **(a) run now** as designed, **(b) run
 after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
+
+- 2026-09-05 19:14 KST — **Q-R3C2 settled by ruling:** "hide the comparison, keep the taxonomy" (18:52) is applied in V17; the residual "provenance matters" finding, if the gate returns it, is the accepted floor by that ruling. **Still open, his:** (a) run R3C2 or not once the gate settles; (b) the REPRO_EXACT and DERIVED_ONLY renames (both engines asked; neither blocks).

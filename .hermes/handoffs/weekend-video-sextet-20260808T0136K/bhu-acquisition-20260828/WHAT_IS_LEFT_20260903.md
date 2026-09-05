@@ -584,3 +584,5 @@ re-runs after any repair.
 4. **R3D RAN (Duho 12:26) and is FILED 2026-09-05 13:39:27 KST: R3D_CLASS=DYM_NO_POSITIVE_FLOOR — a positive floor unreproduced from the stated inputs; receipts in R3D_RUN_FILING_20260905.md; check sheet R3D_CHECK_SHEET_20260905.md.** Whether R3C2 runs after its ruling remains his.
 
 **No tier, warrant token, standing or stamp has moved. Paper HOLD; nothing outward.**
+
+- 2026-09-05 19:14 KST — R3C2 at V17 under the 18:52 ruling (comparison hidden, taxonomy kept, floor accepted); C0 V17 running on two seats, then the Q1–Q6 gate. Not frozen, not run. Next after the gate: unstarted round-3 prereg drafts. See TORI_STATE_20260905_1042.md.
