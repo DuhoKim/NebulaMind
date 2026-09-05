@@ -8,6 +8,11 @@
       or any claim record with `rests_on` already set is REJECTED (exit 2).
   /usr/bin/python3 r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
       C1: every candidate passage has exactly one disposition; counts recomputed; exit 0 PASS / 1 FAIL.
+  /usr/bin/python3 r3c2_ledger_tools.py merge    <ledger_seatA.json> <ledger_seatB.json> <merged.json>
+      merges two independently VALIDATED seat ledgers over the same input_ids; where origin differs the merged record
+      carries origin_alt and origin_evidence_alt (seat B's); exit 1 if the input_id sets differ. compute then reads the
+      merged ledger. The seat-authored ledger MUST omit root_origins, rests_on, origin_alt, origin_evidence_alt; validate
+      fails a ledger carrying a computed field; an ORIG_SILENT record must carry origin_search {query, files, matches}.
   /usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
       asserts: every record has the schema fields; status in {PRINTED,STANDARD,ABSENT}; origin in
       {DERIVED,STANDARD,CHOSEN,FITTED,IMPORTED,UNDECLARED}; reason_code/origin pair is one of the allowed pairs;
@@ -98,6 +103,11 @@ def cmd_validate(ledger,srcdir):
         if r["status"] not in STATUS: fails.append(f"{r['input_id']}: bad status {r['status']}")
         if r["origin"] not in ORIGIN: fails.append(f"{r['input_id']}: bad origin {r['origin']}")
         ev=r["origin_evidence"]; rc=ev.get("reason_code")
+        for computed in ("root_origins","rests_on"):
+            if computed in r: fails.append(f"{r['input_id']}: seat-authored ledger carries computed field {computed}")
+        if rc=="ORIG_SILENT":
+            srch=r.get("origin_search")
+            if not isinstance(srch,dict) or not all(k in srch for k in ("query","files","matches")): fails.append(f"{r['input_id']}: ORIG_SILENT requires origin_search {{query, files, matches}}")
         if PAIRS.get(rc)!=r["origin"]: fails.append(f"{r['input_id']}: reason_code {rc} does not map to origin {r['origin']}")
         if r["status"]=="ABSENT" and r.get("value") not in (None,""): fails.append(f"{r['input_id']}: ABSENT record carries a value")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
@@ -144,9 +154,24 @@ def cmd_census(candidates,exclusions):
     print(f"candidates={len(cids)} included={inc} excluded={exc} reconciled={'YES' if not fails and inc+exc==len(cids) else 'NO'}")
     print("C1_DENOMINATOR_PRINTED=" + ("PASS" if not fails and inc+exc==len(cids) else "FAIL")); return 0 if not fails and inc+exc==len(cids) else 1
 
+def cmd_merge(a,b,out):
+    """Merge two independently validated seat ledgers (same input_ids) into one: where origin differs, the merged record
+    keeps seat A's origin/evidence and carries origin_alt + origin_evidence_alt from seat B. Exit 0; exit 1 on id mismatch."""
+    da,ra=load(a); db,rb=load(b); A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
+    if set(A)!=set(Bm):
+        print("FAIL: input_id sets differ:", sorted(set(A)^set(Bm))); return 1
+    out_recs=[]; ndis=0
+    for k in sorted(A):
+        r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None)
+        if Bm[k]["origin"]!=A[k]["origin"]:
+            r["origin_alt"]=Bm[k]["origin"]; r["origin_evidence_alt"]=Bm[k]["origin_evidence"]; ndis+=1
+        out_recs.append(r)
+    pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); return 0
+
 if __name__=="__main__":
     a=sys.argv[1:]
     if len(a)==3 and a[0]=="compute": sys.exit(cmd_compute(a[1],a[2]))
     if len(a)==3 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2]))
     if len(a)==3 and a[0]=="census": sys.exit(cmd_census(a[1],a[2]))
+    if len(a)==4 and a[0]=="merge": sys.exit(cmd_merge(a[1],a[2],a[3]))
     print(__doc__); sys.exit(2)
