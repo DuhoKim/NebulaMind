@@ -29,7 +29,7 @@ Once the tally is sealed under §7's receipted relay, Tori — and only Tori —
 - **Non-arithmetic outcomes dominate** (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`,
   `REPRO_NOT_EVALUABLE`) → the corpus prints fewer evaluable results than assumed; report that; the pattern is neither
   supported nor weakened.
-- **`CENSUS_ORIGIN_DISPUTED`, `CENSUS_DENOMINATOR_DISPUTED`, `CENSUS_AUDIT_FAILED`, `CENSUS_CONTROL_SPLIT`,
+- **`CENSUS_ORIGIN_DISPUTED`, `CENSUS_DENOMINATOR_DISPUTED`, `CENSUS_OUTCOME_DISPUTED`, `CENSUS_AUDIT_FAILED`, `CENSUS_CONTROL_SPLIT`,
   `R3C2_NO_CLASS`** → no comparison is made; the study-level class is reported as is.
 
 ## What this step may not do
@@ -42,3 +42,8 @@ R3C2_INTERPRETATION_PROTOCOL_V2_COMPLETE
 
 ---
 **V3 (2026-09-05 23:02 KST):** `REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION` throughout, following Duho's "1a rename" ruling applied in R3C2 V21; no rule of interpretation changed. Prior digest `8b44becb89539eb3…`.
+
+---
+**V4 (2026-09-06 00:46 KST):** the stop list gains `CENSUS_OUTCOME_DISPUTED` (added to the prereg at V21 by Duho's ruling): a census stopped on a
+surviving per-claim outcome split reaches no comparison, like every other stop class; the study-level class is reported as is.
+No rule of interpretation changed. Prior digest recorded in the run log.
