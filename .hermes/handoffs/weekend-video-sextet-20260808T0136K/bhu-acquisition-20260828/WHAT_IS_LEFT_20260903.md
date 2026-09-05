@@ -586,3 +586,4 @@ re-runs after any repair.
 **No tier, warrant token, standing or stamp has moved. Paper HOLD; nothing outward.**
 
 - 2026-09-05 19:14 KST — R3C2 at V17 under the 18:52 ruling (comparison hidden, taxonomy kept, floor accepted); C0 V17 running on two seats, then the Q1–Q6 gate. Not frozen, not run. Next after the gate: unstarted round-3 prereg drafts. See TORI_STATE_20260905_1042.md.
+- 2026-09-05 20:45 KST — R3C2 at V19 (a0cf4d5c…): V18 gate LEAK=NONE on both seats; every substantive defect left is one of two rulings on Duho's desk (split class + zero-denominator sub-option; REPRO_EXACT rename). C0 V19 PASS+PASS; V19 gate running. Five round-3 drafts (R3E–R3I) written, not ordered.
