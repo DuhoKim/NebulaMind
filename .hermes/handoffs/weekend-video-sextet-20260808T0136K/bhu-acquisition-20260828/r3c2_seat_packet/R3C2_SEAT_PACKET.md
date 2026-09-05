@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `fe194fb4aee7603dbeecbfeda62dc8507aba2a994e3b9a206c8089490700e1c9` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `6748415e3483f10d2eddb4e76ced7e152e75bd32862c40cc39c8d2c76183ad21` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -207,6 +207,10 @@ is hidden by being excluded.
   The cosmological rows are the Planck 2018 TT,TE,EE+lowE+lensing baseline. **A value not in this table is not
   `STANDARD`**, whatever its provenance. **A `STANDARD` record carries `symbol` = the ledger key and `value` = the exact
   string printed in the value column; `validate` compares strings.** 
+  Each seat runs `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
+  resolved and prints the working directory, the resolved command, complete stdout and stderr, and the exit status; the
+  control's printed artefact is that run. `C3_NO_SUBSTITUTION=PASS` only on exit 0 from every printed run in the artefact; a
+  token asserted without the printed run is FAIL.
   `C3_NO_SUBSTITUTION=PASS|FAIL|NOT_RUN`.
 - 
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
@@ -240,6 +244,11 @@ is hidden by being excluded.
   classification and both quotations; it is **not** reconciled. Above 10% of included claims,
   `CENSUS_ORIGIN_DISPUTED`. Any outcome the audit cannot reproduce, or any ledger incompleteness, files
   `CENSUS_AUDIT_FAILED`.
+  The auditor writes and prints `C6_AUDIT.json` containing: the sealed denominator, receipt T and the seed; the sorted
+  arithmetic-group ids and the sorted remaining ids; the computed k and the sampled ids; a completeness disposition for every
+  candidate and every exclusion; and, for every audited claim, the auditor's independently re-derived per-claim outcome, the
+  re-classified `origin` of each of its inputs, and `MATCH` or `MISMATCH` against the sealed record. `C6_AUDIT_SAMPLE=PASS` only if
+  that artefact exists, is printed, and carries no `MISMATCH` and no incompleteness; a token without the artefact is FAIL.
   **Classes are cited by name, never by number**. `C6_AUDIT_SAMPLE=PASS|FAIL|NOT_RUN`.
 
 Controls in an unreached limb are `NOT_RUN`, never passes.

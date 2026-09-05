@@ -273,19 +273,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
 
   **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
   that names no record, a cycle, and a `DERIVED` record with no `derived_from`.<!--SEAT-REDACT--> *(Lane side: `r3c2_lane_tools.py
-  compute` derives `root_origins`, the origins at the leaves of that chain, from every step; no seat writes that field.)*<!--/SEAT-REDACT--><!--SEAT-REDACT--> **The script is `r3c2_ledger_tools.py`,
-  committed beside this document, sha256 `3519ca617434ddca222c0a85e8a5630f30710b8a9c7d74d79bfc4fa56973b959`; the seat runs
-  `/usr/bin/python3 r3c2_ledger_tools.py compute <ledger.json> <out.json>` and prints its stdout and exit status. It
-  computes each claim's `rests_on` from its `root_origins` and prints the root-origin set beside it; it REJECTS (exit 2) a
-  ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names
-  no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; the two seats'
-  independently validated ledgers are merged by `/usr/bin/python3 r3c2_ledger_tools.py merge <ledger_seatA.json>
-  <ledger_seatB.json> <merged.json>` (exit 1 if their `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the
-  paper's stated equation once; an input-set difference surviving that reconciliation stops the study under
-  `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**); where the two `origin` classifications
-  differ the merged record carries `origin_alt` and `origin_evidence_alt`, `compute` reads the merged ledger, and the
-  claim's `rests_on` is computed under both and marked `DISPUTED`.** A `rests_on` value present in the seat-authored input ledger fails this control; after a successful `compute` run,
-  a `rests_on` value absent from the script-produced output ledger fails this control.<!--/SEAT-REDACT--> **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
+  compute` derives `root_origins`, the origins at the leaves of that chain, from every step; no seat writes that field.)*<!--/SEAT-REDACT--><!--SEAT-REDACT--> **Lane side, after both seats have exited: the lane owner runs `/usr/bin/python3 r3c2_lane_tools.py merge <ledger_seatA.json> <ledger_seatB.json> <merged.json>` and then `/usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json>`, printing for each the working directory, the resolved command, complete stdout and stderr, and the exit status. `merge` exits 1 if the two `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the paper's stated equation once; an input-set difference surviving that reconciliation stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**; where the two `origin` classifications differ the merged record carries `origin_alt` and `origin_evidence_alt`. `compute` derives each claim's `root_origins` and `rests_on` and prints the root-origin set beside it; it REJECTS (exit 2) a ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; a disputed pair is computed under both origins and marked `DISPUTED`. The seat tool `r3c2_ledger_tools.py` has no `compute` and no `merge`; a seat that runs either has left its packet. A `rests_on` value present in a seat-authored input ledger fails this control; after a successful `compute` run, a `rests_on` value absent from the script-produced output ledger fails this control.**<!--/SEAT-REDACT--> **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that no `ABSENT` or `BLOCKED` record carries a value, that **each `PRINTED` value machine-matches the
   text at its cited source line and each verbatim quotation is a substring of that line**, and that **each `STANDARD`
   value is one of a closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family;
@@ -314,6 +302,11 @@ before audit — which is codex's order; kimi's differed only in placing the den
   string printed in the value column; `validate` compares strings.** <!--SEAT-REDACT-->*(The list was previously "fixed here" by naming four symbols and citing a
   paper whose baseline runs to dozens of base, derived and nuisance parameters across several tables, none printed
   — so a machine membership test was impossible and "standard" was in practice a selectable family. kimi found it.)*<!--/SEAT-REDACT-->
+  Each seat runs `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
+  resolved and prints the working directory, the resolved command, complete stdout and stderr, and the exit status; the
+  control's printed artefact is that run.<!--SEAT-REDACT--> The lane's `merge` and `compute` runs are printed the same way and are
+  part of the same artefact.<!--/SEAT-REDACT--> `C3_NO_SUBSTITUTION=PASS` only on exit 0 from every printed run in the artefact; a
+  token asserted without the printed run is FAIL.
   `C3_NO_SUBSTITUTION=PASS|FAIL|NOT_RUN`.
 - <!--SEAT-REDACT-->**C4 — pattern blindness, and an honest statement of its limit.** The referee wrapper's `--add-dir` **grants**
   directories; it does not restrict them, and it necessarily grants the lane directory, **which contains the pattern
@@ -405,6 +398,11 @@ before audit — which is codex's order; kimi's differed only in placing the den
   `CENSUS_ORIGIN_DISPUTED`. Any outcome the audit cannot reproduce, or any ledger incompleteness, files
   `CENSUS_AUDIT_FAILED`.<!--SEAT-REDACT--> **A claim whose root-origin set contains an `ORIGIN_DISPUTED` input carries `rests_on` computed
   under both classifications, printed as a pair and marked `DISPUTED`; the `rests_on` tally reports a `DISPUTED` row.**<!--/SEAT-REDACT-->
+  The auditor writes and prints `C6_AUDIT.json` containing: the sealed denominator, receipt T and the seed; the sorted
+  arithmetic-group ids and the sorted remaining ids; the computed k and the sampled ids; a completeness disposition for every
+  candidate and every exclusion; and, for every audited claim, the auditor's independently re-derived per-claim outcome, the
+  re-classified `origin` of each of its inputs, and `MATCH` or `MISMATCH` against the sealed record. `C6_AUDIT_SAMPLE=PASS` only if
+  that artefact exists, is printed, and carries no `MISMATCH` and no incompleteness; a token without the artefact is FAIL.
   **Classes are cited by name, never by number**. `C6_AUDIT_SAMPLE=PASS|FAIL|NOT_RUN`.
 
 Controls in an unreached limb are `NOT_RUN`, never passes.
@@ -784,7 +782,7 @@ no source at all.
 
 **Applied from codex:** the seat-authored ledger schema now omits the computed fields and `validate` fails a ledger
 that carries one; `origin_search {query, files, matches}` required for `ORIG_SILENT`; the merge of the two seats'
-validated ledgers is a named command, `r3c2_ledger_tools.py merge`, producing `origin_alt` and `origin_evidence_alt`,
+validated ledgers is a named command, `r3c2_lane_tools.py merge`, producing `origin_alt` and `origin_evidence_alt`,
 which `compute` then reads — script re-pinned `dc9c5642f1d2a092…`, its controls re-run (the negative control's exact
 failure set is now five). **Applied from kimi (cosmetic, adopted as written):** "receipt verification of the seal" in
 place of a pointer to a withheld section; "after the §2 attempt (one repeat permitted…)" in place of "after two

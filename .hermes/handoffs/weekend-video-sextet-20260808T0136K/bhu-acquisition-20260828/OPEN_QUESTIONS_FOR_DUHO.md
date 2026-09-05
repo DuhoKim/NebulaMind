@@ -2476,3 +2476,18 @@ Options: **(a) fold**, **(b) keep** the two classes as the design of record has 
 after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
 
 - 2026-09-05 19:14 KST — **Q-R3C2 settled by ruling:** "hide the comparison, keep the taxonomy" (18:52) is applied in V17; the residual "provenance matters" finding, if the gate returns it, is the accepted floor by that ruling. **Still open, his:** (a) run R3C2 or not once the gate settles; (b) the REPRO_EXACT and DERIVED_ONLY renames (both engines asked; neither blocks).
+
+## YOUR CALL 2026-09-05 19:48 KST — R3C2 V18: the leak floor HELD on both seats; one class ruling and one rename are yours
+
+**The good news first.** Your 18:52 ruling worked. Both V17 gate seats say the packet shows no consequence (CONSEQUENCE_VISIBLE=NO on both); codex could only say origin "is independently re-classified and disagreements file the dispute class"; kimi says ORIGIN_PURPOSE=CANNOT_STATE and calls the residue "content-level only: provenance is a recorded attribute". That is the floor you accepted, cited in C4. Six repairs from the two lists are applied in V18; C0 is running on two seats again.
+
+**Two things only you can do:**
+
+1. **A per-claim outcome split has no class.** Kimi found the gap: both seats agree on everything, but on one claim seat A files REPRO_EXACT and seat B REPRO_FAILED — nothing in §4 covers it. Adding a class is on your stop-and-file list, so I wrote the assembly rule (one reconciliation against the printed numeral) and left the class as a pending note in §4. Choose:
+   - **(a) add `CENSUS_OUTCOME_DISPUTED`** between DENOMINATOR_DISPUTED and ORIGIN_DISPUTED, kimi's wording (the census stops; both outcomes and both number pairs listed) — my recommendation, it matches how every other disagreement is handled;
+   - **(b) fold it into `CENSUS_DENOMINATOR_DISPUTED`** (widen that class's definition; one fewer class, less precise);
+   - **(c) file it as `CENSUS_PARTIAL`** with the split claim listed (weakest: it calls a disagreement an incompleteness).
+   Until you rule, V18 cannot be frozen; C0 and the gate can still run.
+2. **`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`** (both engines, every round since V10). A rename, not a redefinition; say **"rename"** or **"keep"**. Same for `DERIVED_ONLY` → codex's earlier suggestion; say **"rename both"** if you want both.
+
+Still yours, unchanged: whether R3C2 RUNS at all.
