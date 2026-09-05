@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 23 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 24 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -215,7 +215,11 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    FAIL meant here and left a reachable `PASS` with no stated consequence.)*
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
-4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. If the printed relations are mutually
+4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. **Record `C3_DELETION_PROBE=NOT_RUN` on
+   this class: no positive floor survives, so the deletion probe has no candidate to test; C0, C1, C2, C4, C5 and
+   C5b remain reached and carry their actual results, and C6 is `NOT_RUN` because no positive floor was produced.**
+   *(The class named no control dispositions while §9 permits `NOT_RUN` only where the document says so explicitly
+   — the sibling, one class over, of the limb-A gap codex found at V15.)* If the printed relations are mutually
    inconsistent, **report that a consistent solution, and hence a positive lower bound, were unreproduced from the
    stated inputs**, file here, and **reproduce the contradiction.**
 5. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
@@ -233,7 +237,7 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    which is narrower than the failure it causes, so an unread source satisfied both classes.)* **A scientific class may be filed only from a seat report in which every reached
    control passed**; if the two seats return the same scientific class but **at least one** report is not control-clean —
    **or if, after a different-class split, the third seat's adjudication agrees with a seat whose report is not
-   control-clean** — **the third seat re-runs each failed control of that report once. If any re-run control fails again, that is the persistent
+   control-clean** — **the third seat re-runs each failed control of EACH report that is not control-clean, once per failed control. If any re-run control fails again, that is the persistent
    failure named above and `R3D_NO_CLASS` is filed. If every re-run control passes, that class is filed.**
    *(The rule previously covered "exactly one" clean report, so the zero-clean case — both seats agreeing on class,
    floor and C6 outcome while each fails a DIFFERENT control — convened no split, exhibited no persistently failing
@@ -283,11 +287,21 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 - **C3 — deletion probe, K6's corrected form:** delete the **source-pinned field equations**; if a unique floor
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
-  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script at the absolute path
-  `.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py`
-  relative to the repository root — a seat must resolve it there, not in its own working directory — and the seat
-  writes `relations.json` in its own working directory, invoking
-  `python3 <that absolute path> relations.json`** — the JSON file `relations.json` carries `target`, `symbols`, the §2b `constants`
+  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script at the repository-root-relative path
+  `.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py`,
+  pinned by sha256 `7db669313568d08dc9be7bb18d142a956db3cc3ad62a87bff9e4724c47527874`.** A seat resolves it at
+  that path, not in its own working directory, verifies the digest before use, and writes `relations.json` in its
+  own working directory. **The literal command is:**
+
+  ```
+  python3 .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py relations.json
+  ```
+
+  *(Two faults, one of them mine twice over. The probe was the **one unpinned run dependency** — sources are
+  pinned by digest in §2a, the pattern record by digest in C6, the constants by value in §2b, the interpreter by
+  digest in C5 — while the script that decides circularity was cited by name alone. And the invocation had angle
+  brackets, which are shell redirection: V22 repaired exactly that, and **V23 reintroduced it while fixing the
+  path**. The command is now written literally, with no placeholder notation of any kind.)* — the JSON file `relations.json` carries `target`, `symbols`, the §2b `constants`
   list, and one record per relation with `id`, `origin` (`SOURCE_PINNED` or `INJECTED`) and `expr`. It prints the
   retained ids, the deleted ids, the injected relations, and the solve result with and without the pinned
   equations, exiting **0 on PASS, 1 on FAIL, 2 on NOT_RUN**. **A floor is DETERMINATE when its free symbols all lie
@@ -1312,4 +1326,31 @@ class's text describe the runs it already receives is repair.**
 
 **V22 is therefore NOT final.** V23 requires its own C0 and its own two-seat gate.
 
-R3D_PREREG_V23_READY_FOR_REEXHIBITION
+## 8p. V24 — sixth consecutive clear; three substantive repairs, and a defect I reintroduced while repairing
+
+**Both V23 seats `PREREG_SOUND_WITH_REPAIRS` on `4939d193…`, hash-verified after exit; C0 passed on V23
+independently.** kimi found **five of seven sections SOUND** — classes, circularity, the falsifier, the re-run
+guard, stall. codex found classes, circularity, the falsifier, the re-run guard and stall sound.
+
+| finding | seat(s) | classification | disposition |
+|---|---|---|---|
+| C3's invocation `python3 <that absolute path> relations.json` — **angle brackets are shell redirection**, so the literal command does not run; **and the probe was the one unpinned run dependency** | codex + kimi 2.1 | **SUBSTANTIVE**, criterion (2) | **REPAIRED** — literal command, no placeholders, plus sha256 `7db66931…` |
+| class 4 names **no control dispositions**, though C3 genuinely has no candidate there and §9 allows `NOT_RUN` only where stated explicitly | kimi 2.2 | **SUBSTANTIVE**, criterion (2) | **REPAIRED** |
+| *"the third seat re-runs each failed control of **that report**"* — singular, but the trigger covers the **zero-clean** case with two non-clean reports; re-running one versus both **changes the terminal class** | kimi 2.3 | **SUBSTANTIVE**, criterion (1) | **REPAIRED** |
+| the `DYM_NO_*` tokens assert absence | codex + kimi, **fourth time** | **SUBSTANTIVE**, criterion (4) | **ESCALATED — authority, not merit** |
+
+### The one worth stating plainly: I reintroduced a defect while repairing another
+
+**V22 repaired C3's angle brackets. V23 reintroduced them** — I rewrote the same clause to fix the *path* and typed
+`<that absolute path>` into a line the document tells seats to execute literally. **Both seats caught it
+immediately.** The clause is now written with no placeholder notation of any kind, because the lesson is not "avoid
+that phrase" but **"a line a seat executes must contain nothing that means something to a shell."**
+
+**And the probe was the only unpinned dependency in the run.** Sources are pinned by digest in §2a, the pattern
+record by digest in C6, the constants by value in §2b, the interpreter by digest in C5 — while the script that
+decides **circularity** was cited by name alone. kimi could not compute its digest, having been correctly barred
+from reading other files, and said so and asked the lane to supply it. **It is `7db66931…`, computed and pinned.**
+
+**V23 is NOT final.** V24 requires its own C0 and its own two-seat gate.
+
+R3D_PREREG_V24_READY_FOR_REEXHIBITION
