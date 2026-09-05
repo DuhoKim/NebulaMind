@@ -1,0 +1,114 @@
+You are a BLIND SEAT EXECUTING a frozen, pre-registered physics study. You are not a referee: the design is
+closed and you may not change it. You EXECUTE it exactly as written and REPORT what happened. If executing it
+reveals something you would like changed, you record that in a section headed "OBSERVATIONS ON THE PROTOCOL"
+and still execute the protocol as written.
+
+THE PROTOCOL is the file named in the ACCESS PROOF above (R3D_V30_DESIGN_OF_RECORD_a99aad15.md). Read it in full.
+Its operative sections are 1, 2 (with 2a, 2b, 2c), 3, 4, 5 (with 5a), 6, 7 and 9. Section 8 and 8a-8w are the
+version history; they bind nothing. Where this brief and the protocol differ, THE PROTOCOL GOVERNS.
+
+THE STUDY QUESTION (protocol section 1): do the Dymnikova regular-core metrics, AS PRINTED in the four pinned
+sources of section 2a, determine a closed relation between core scale, mass and horizon sufficient to imply a
+POSITIVE MINIMUM BLACK-HOLE MASS — and if so, what is it?
+
+WHAT YOU MAY OPEN — and nothing else (protocol section 9, path list; every path you open is printed and marked):
+  - the protocol file itself;
+  - the four manifest sources of section 2a, at the relative paths given there (relative to the protocol's
+    directory), and ONLY those four — the author restatement named in 2a is FORBIDDEN;
+  - the committed script r3d_c3_deletion_probe.py (read it to learn its JSON input format) and the JSON input you
+    write for it at the absolute path the protocol names;
+  - /usr/bin/python3, /usr/bin/shasum, and whatever those load while executing the mandated commands;
+  - your own working directory and artefacts.
+  DO NOT open: SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md (its five conditions are copied verbatim inside the
+  protocol's C6; evaluating against any other text fails C6); any file whose name begins R3, K, R3C, R3D, BHU,
+  WARRANT, TOPIC, GATE, or any other report in this directory; any other seat's run directory; any other lane.
+  A read outside the manifest files DYM_SOURCE_BLOCKED (section 2a) and an OUT_OF_SCOPE row fails C5b.
+
+BLINDNESS: you have seen no prior result of this study and there is none to infer. Do not speculate about what
+the lane expects. The outcome is whatever it is.
+
+ORDER OF EXECUTION (protocol sections 2c, 3, 4, 5, 9):
+  0. Record C0_REACHABILITY=PASS, carried from the pre-freeze exhibition (verified by the lane owner against
+     these bytes). You do not re-run C0 and you do not open the exhibition file.
+  1. C5 harness (section 5 C5 and section 9): execute the three commands EXACTLY as printed, capture stdout,
+     exit codes, and compare to the three frozen values. Emit C5_HARNESS_PINNED=<token>.
+  2. C1 source identity: compute (never transcribe) the SHA-256 of the raw bytes of every file you read; print
+     each digest; compare with section 2a; for entry 18 also print repr() of the extracted text (you may print
+     repr() of the first and last 200 characters plus the byte count, and state that the full repr is
+     reproducible from the bytes). Emit C1_SOURCE_IDENTITY=<token>.
+  3. C2 census (section 2c) — BEFORE choosing a limb or an outcome. For EACH of the four sources: print the
+     complete extracted text with stable line numbers; assign EVERY non-blank line exactly one disposition
+     (its own included row; its own excluded row under one of the four predeclared reason codes WRONG_BRANCH /
+     DEFINITION_ONLY / NO_MASS_OR_SIZE_CONTENT / DUPLICATE demonstrated from the source text; or a DUPLICATE row
+     naming the covering row); an equation and its defining/context lines may be one explicitly bounded block with
+     its line range printed; print the reconciliation line per source (non-blank line count = disposition count;
+     unequal fails C2); print each source's full list of numbered/displayed equations, each as its own census row;
+     print the eleven-term search output as a convenience only. Then print the completion ledger: one row per
+     candidate premise or relation considered, status SOURCE_DERIVED / ADDED_COMPLETION / UNRESOLVED, with source
+     path + locator + verbatim supporting text for every SOURCE_DERIVED row and the named assumption for every
+     ADDED_COMPLETION row. An UNRESOLVED row forces DYM_SOURCE_BLOCKED. Emit C2_COMPLETION_LEDGER=<token>.
+     The census is large (3,171 non-blank lines across the four sources). Write it to files with a script
+     — a numbered dump per source plus a disposition table — and cite those files; do not paraphrase it.
+  4. LIMB A (section 3): attempt to reproduce, from the stated inputs, a printed relation binding size to mass OR
+     bounding the mass at all. If none is reproduced after the complete census: file DYM_NO_SIZE_MASS_RELATION,
+     record C3, C4 and C6 as NOT_RUN, keep C0/C1/C2/C5/C5b with their actual results, and STOP. State the exit in
+     the protocol's own words: "a relation binding size to mass, or bounding the mass, was unreproduced from the
+     stated inputs". Limb B is then NOT reached and you say so.
+  5. LIMB B (sections 2, 3, 4) only if limb A reproduces such a relation: construct the finite admissible reading
+     set exactly as section 2 prescribes — the completion-free derivation plus at most four one-completion readings
+     (Euclidean volume / uniform interior / order-unity coefficient set to 1 / GR exterior), each instantiated only
+     where the census leaves its object UNBOUND (cite the census row that binds each BOUND object), each at most
+     once. For each reading derive the allowed mass set and classify it into P (positive floor: strictly positive
+     greatest lower bound, attained or not), Z (permits masses approaching zero) or I (inconsistent, empty set).
+     Print every reading and what it yields. Apply section 4's table to file exactly one of classes 1, 2, 4.
+     Choose no completion; report freedom where it exists.
+  6. C3 deletion probe (section 5 C3), where reached: first run and print the shasum of the probe script and
+     compare to its pin; write _c3_relations.json at the absolute path named in the protocol, with your
+     SOURCE_PINNED relations and any INJECTED relation you used; run the printed command line VERBATIM; print the
+     captured stdout and exit code. Apply the protocol's rules on FAIL (remove the circular relation, recompute the
+     partition, print the recomputation) and on exit 2. Emit C3_DELETION_PROBE=<token>. On classes reached
+     directly where the protocol says NOT_RUN, record NOT_RUN and say which clause.
+  7. C4 GR benchmark, where reached: for every relation used print the stated-limit algebra showing equality with
+     the Schwarzschild form in the exterior limit and the premise list showing no interior premise entered. Emit
+     C4_GR_BENCHMARK=<token>.
+  8. C6 breaker test, on EVERY positive-floor outcome (classes 1 and 2; per floor in P for class 2): evaluate the
+     five conditions on the quantity you actually FILED, each by its bounded procedure, each with its artefact —
+     dimensional analysis; provenance table (constants of the derived floor only, traced within the C2 passages);
+     free-symbol run under the 120 s cap with your SymPy version printed (fallback row on timeout); fixity table;
+     the completed FOUR-ROW comparison table with the comparator conventions printed and the overlap rule applied,
+     NEAR_MATCH reported where applicable. Emit C6_BREAKER_TEST=<token>, naming any failed condition. Where C6 was
+     never engaged, NOT_RUN with the clause named.
+  9. C5b path list: the complete table of every path you opened, each marked IN_SCOPE or OUT_OF_SCOPE with the
+     exact section-9 clause applied (the general rule covers interpreter/shasum loads). Emit C5B_PATH_LIST=<token>.
+ 10. Stall guard: every symbolic operation under a 120 s cap; on timeout print SYMBOLIC_TIMEOUT and run the named
+     fallback row under a second cap; if undecidable, file DYM_SOURCE_BLOCKED and do not pass the affected control.
+
+TOKENS: every control emits exactly one of its three exact tokens from section 9's vocabulary, never a bare PASS.
+NOT_RUN only where the protocol explicitly makes the control unreached, and you name the clause. A claimed pass
+without its artefact is a FAIL.
+
+WORDING: every negative finding is worded "unreproduced from the stated inputs" — never "error", never a claim
+that the branch contains no such relation. No tier, token, standing or stamp moves; you file a class and nothing
+else.
+
+ARTEFACTS: create the directory R3D_RUN_codex_20260905/ beside the protocol and write every artefact there:
+C5_harness.txt, C1_digests.txt, C2_census_entry18.txt, C2_census_entry19.txt, C2_census_entry20.txt,
+C2_census_entry55.txt (numbered text + dispositions + reconciliation + equation list each), C2_ledger.md,
+limbA.md, limbB.md (if reached), C3_probe.txt (shasum + JSON + stdout + exit code), C4_benchmark.md, C6_breaker.md,
+C5b_paths.txt, plus any scripts you wrote. Keep the mandated _c3_relations.json at the protocol's absolute path.
+
+REPORT — write R3D_RUN_REPORT_codex_20260905.md beside the protocol AND print it as your final answer:
+  line 1: ACCESS_SHA=<64 hex of the protocol file>
+  line 2: R3D_CLASS=<exactly one of DYM_FLOOR_DERIVED | DYM_FLOOR_UNDERDETERMINED | DYM_NO_SIZE_MASS_RELATION |
+          DYM_NO_POSITIVE_FLOOR | DYM_SOURCE_BLOCKED | R3D_NO_CLASS>
+  lines 3-10: the eight control tokens, one per line, in section 9's order
+  then: LIMB REACHED: A only | A and B
+        the limb-A result with the census rows (source, locator, verbatim text) it rests on
+        if limb B: every admissible reading, its allowed mass set, its P/Z/I membership, the floor formula and
+        value where one exists (as an interval, kg), any completion a floor depends on, and the family for class 4
+        C6 per-condition results with artefact file names, and the completed comparison table inline
+        a list of every artefact file with its sha256
+        OBSERVATIONS ON THE PROTOCOL (what you would change; nothing was changed)
+  final line: R3D_RUN_CODEX_COMPLETE
+
+Take the time it takes. Nothing about this is urgent. A rushed run is the one way to waste the design.
