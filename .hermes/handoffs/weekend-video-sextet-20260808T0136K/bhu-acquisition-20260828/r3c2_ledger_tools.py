@@ -6,6 +6,8 @@
       leaves of its derived_from chain) and for every claim_id `rests_on`, writes <out.json> with both fields
       filled, and prints them. A seat never writes either field: any record that arrives with `root_origins`
       or any claim record with `rests_on` already set is REJECTED (exit 2).
+  /usr/bin/python3 r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
+      C1: every candidate passage has exactly one disposition; counts recomputed; exit 0 PASS / 1 FAIL.
   /usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
       asserts: every record has the schema fields; status in {PRINTED,STANDARD,ABSENT}; origin in
       {DERIVED,STANDARD,CHOSEN,FITTED,IMPORTED,UNDECLARED}; reason_code/origin pair is one of the allowed pairs;
@@ -20,8 +22,11 @@ rests_on severity order is fixed by §3 of the preregistration:
 import json, sys, pathlib
 
 STATUS={"PRINTED","STANDARD","ABSENT"}
-ORIGIN={"DERIVED","STANDARD","CHOSEN","FITTED","IMPORTED","UNDECLARED"}
-PAIRS={"ORIG_EQUATION":"DERIVED","ORIG_CONSTANT":"STANDARD","ORIG_CHOICE_STATED":"CHOSEN","ORIG_FIT_STATED":"FITTED","ORIG_CITATION":"IMPORTED","ORIG_SILENT":"UNDECLARED"}
+ORIGIN={"DERIVED","STANDARD","MEASURED","CHOSEN","FITTED","IMPORTED","UNDECLARED"}
+PAIRS={"ORIG_EQUATION":"DERIVED","ORIG_CONSTANT":"STANDARD","ORIG_MEASURED":"MEASURED","ORIG_CHOICE_STATED":"CHOSEN","ORIG_FIT_STATED":"FITTED","ORIG_CITATION":"IMPORTED","ORIG_SILENT":"UNDECLARED"}
+# when more than one code matches the cited sentence, the FIRST applicable in this order is filed (a sentence naming an
+# external source for the value is a citation whatever else it says):
+CODE_PRECEDENCE=["ORIG_CITATION","ORIG_FIT_STATED","ORIG_CHOICE_STATED","ORIG_MEASURED","ORIG_EQUATION","ORIG_CONSTANT","ORIG_SILENT"]
 SEVERITY=["UNDECLARED","IMPORTED","FITTED","CHOSEN"]   # most severe first
 STANDARD_LIST={"G":"6.67430e-11","c":"2.99792458e8","hbar":"1.054571817e-34","k_B":"1.380649e-23","H0":"67.36","Omega_m":"0.3153","Omega_L":"0.6847","Omega_b_h2":"0.02237","Omega_c_h2":"0.1200","n_s":"0.9649","sigma8":"0.8111","tau":"0.0544","ln1e10As":"3.044","age_Gyr":"13.797"}
 FIELDS=["claim_id","input_id","symbol","status","origin","origin_evidence","derived_from","value","source_file","source_line"]
@@ -32,11 +37,19 @@ def load(p):
     assert isinstance(recs,list) and recs, "ledger has no records"
     return d,recs
 
+def roots_alt(rec_by_id, rid):
+    """root set when every disputed record takes its origin_alt instead of origin"""
+    alt={k:dict(v) for k,v in rec_by_id.items()}
+    for v in alt.values():
+        if v.get("origin_alt"): v["origin"]=v["origin_alt"]
+    return roots(alt, rid)
+
 def roots(rec_by_id, rid, seen=None):
     seen=seen or set()
     if rid in seen: raise ValueError(f"cycle at {rid}")
     r=rec_by_id[rid]; seen=seen|{rid}
-    if r["origin"]!="DERIVED" or not r.get("derived_from"): return {r["origin"]}
+    if r["origin"]=="DERIVED" and not r.get("derived_from"): raise ValueError(f"{rid}: DERIVED record with no derived_from (a derived input must name what it was derived from)")
+    if r["origin"]!="DERIVED": return {r["origin"]}
     out=set()
     for d in r["derived_from"]:
         if d not in rec_by_id: raise ValueError(f"{rid}: derived_from {d} not in ledger")
@@ -44,7 +57,7 @@ def roots(rec_by_id, rid, seen=None):
     return out
 
 def rests_on(rootset):
-    if rootset<= {"DERIVED","STANDARD"}: return "DERIVED_ONLY"
+    if rootset<= {"DERIVED","STANDARD","MEASURED"}: return "DERIVED_ONLY"
     for sev in SEVERITY:
         if sev in rootset: return "USES_"+sev
     return "DERIVED_ONLY"
@@ -55,15 +68,22 @@ def cmd_compute(ledger,out):
         if "root_origins" in r: print(f"REJECT: {r.get('input_id')} arrives with root_origins set"); return 2
         if "rests_on" in r: print(f"REJECT: {r.get('input_id')} arrives with rests_on set"); return 2
     by={r["input_id"]:r for r in recs}
-    claims={}
+    claims={}; claims_alt={}; disputed_claims=set()
     for r in recs:
-        try: rs=roots(by,r["input_id"])
+        try: rs=roots(by,r["input_id"]); ra=roots_alt(by,r["input_id"])
         except ValueError as e: print("FAIL:",e); return 1
         r["root_origins"]=sorted(rs)
-        claims.setdefault(r["claim_id"],set()).update(rs)
-    result={"records":recs,"claims":{c:{"root_origins":sorted(rs),"rests_on":rests_on(rs)} for c,rs in claims.items()}}
+        claims.setdefault(r["claim_id"],set()).update(rs); claims_alt.setdefault(r["claim_id"],set()).update(ra)
+        if r.get("origin_alt") and r["origin_alt"]!=r["origin"]: disputed_claims.add(r["claim_id"])
+    out_claims={}
+    for c,rs in claims.items():
+        if c in disputed_claims:
+            out_claims[c]={"root_origins":sorted(rs),"rests_on":[rests_on(rs),rests_on(claims_alt[c])],"DISPUTED":True}
+        else:
+            out_claims[c]={"root_origins":sorted(rs),"rests_on":rests_on(rs)}
+    result={"records":recs,"claims":out_claims}
     pathlib.Path(out).write_text(json.dumps(result,indent=1))
-    for c,v in result["claims"].items(): print(f"{c}\trests_on={v['rests_on']}\troot_origins={v['root_origins']}")
+    for c,v in out_claims.items(): print(f"{c}\trests_on={v['rests_on']}\troot_origins={v['root_origins']}"+("\tDISPUTED" if v.get("DISPUTED") else ""))
     return 0
 
 def cmd_validate(ledger,srcdir):
@@ -94,8 +114,34 @@ def cmd_validate(ledger,srcdir):
     for x in fails: print("FAIL:",x)
     print("C3_NO_SUBSTITUTION=" + ("PASS" if not fails else "FAIL")); return 0 if not fails else 1
 
+def cmd_census(candidates,exclusions):
+    """C1: every candidate passage has exactly one disposition (included or excluded with a reason kind); counts recomputed."""
+    C=json.loads(pathlib.Path(candidates).read_text()); X=json.loads(pathlib.Path(exclusions).read_text())
+    C=C["candidates"] if isinstance(C,dict) else C; X=X["exclusions"] if isinstance(X,dict) else X
+    fails=[]; KINDS={"EQUATION_NUMBER","REFERENCE_NUMBER","PAGE_OR_LINE_NUMBER","DATE","ATTRIBUTED_NOT_DERIVED"}
+    cids={}
+    for c in C:
+        for f in ["candidate_id","source_file","source_line","numeral","included"]:
+            if f not in c: fails.append(f"candidate {c.get('candidate_id')}: missing {f}")
+        if c.get("candidate_id") in cids: fails.append(f"candidate {c['candidate_id']}: duplicate")
+        cids[c.get("candidate_id")]=c
+    xids=set()
+    for x in X:
+        if x.get("candidate_id") not in cids: fails.append(f"exclusion {x.get('candidate_id')}: not a candidate")
+        if x.get("kind") not in KINDS: fails.append(f"exclusion {x.get('candidate_id')}: kind {x.get('kind')} not predeclared")
+        if x.get("candidate_id") in xids: fails.append(f"exclusion {x.get('candidate_id')}: duplicate")
+        xids.add(x.get("candidate_id"))
+    for cid,c in cids.items():
+        if c.get("included") and cid in xids: fails.append(f"candidate {cid}: included AND excluded")
+        if not c.get("included") and cid not in xids: fails.append(f"candidate {cid}: excluded with no exclusion row")
+    inc=sum(1 for c in cids.values() if c.get("included")); exc=len(xids)
+    for x in fails: print("FAIL:",x)
+    print(f"candidates={len(cids)} included={inc} excluded={exc} reconciled={'YES' if not fails and inc+exc==len(cids) else 'NO'}")
+    print("C1_DENOMINATOR_PRINTED=" + ("PASS" if not fails and inc+exc==len(cids) else "FAIL")); return 0 if not fails and inc+exc==len(cids) else 1
+
 if __name__=="__main__":
     a=sys.argv[1:]
     if len(a)==3 and a[0]=="compute": sys.exit(cmd_compute(a[1],a[2]))
     if len(a)==3 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2]))
+    if len(a)==3 and a[0]=="census": sys.exit(cmd_census(a[1],a[2]))
     print(__doc__); sys.exit(2)

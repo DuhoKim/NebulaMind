@@ -45,6 +45,10 @@ FORBIDDEN = [
     "shape/magnitude", "pattern record", "the pattern", "ΛCDM", "LCDM",
     "what this census exists to detect", "gate finding", "gate findings", "PREREG_UNSOUND",
     "Blanc", "entry 59", "929.25", "hypothesis", "Duho", "R3C_MAGNITUDE", "circular",
+    # V11 (Duho 14:31: strip consequence, not just content) — custody chain, engines, sibling study, consequence words
+    "Tori", "codex", "kimi", "Kimi", "agy", "R3D", "R3A", "R3B",
+    "expectation", "expects", "refute", "consequential", "invisible", "favourable", "unfavourable", "stake", "prior", "tempting", "warn",
+    "pattern-blind", "removed **deliberately",
 ]
 
 def split_sections(text):
@@ -75,10 +79,8 @@ def main():
         "# R3-C2 seat packet — reproduction census: what to do\n\n"
         "**You are one of two independent seats. Work only from this file, the seat brief, and the pinned\n"
         "sources in this directory. Do not open any other path; print every path you open.**\n\n"
-        "This packet is a redacted extract of a preregistration. Sections concerning why the study exists and\n"
-        "what its results will be compared against have been removed **deliberately and mechanically** by\n"
-        "`r3c2_build_seat_packet.py`. Their absence is not an omission for you to fill in, and you should not\n"
-        "attempt to infer or reconstruct them. Apply the rules below exactly as written.\n\n"
+        "This packet is the complete instruction set for your task, extracted mechanically by\n"
+        "`r3c2_build_seat_packet.py`. Apply the rules below exactly as written.\n\n"
         f"Built from master sha256 `{master_sha}` by `r3c2_build_seat_packet.py`.\n\n"
     )
     out = header + "".join(b for _, b in kept)

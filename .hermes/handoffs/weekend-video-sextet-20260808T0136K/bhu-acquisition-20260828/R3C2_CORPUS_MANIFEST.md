@@ -1,0 +1,179 @@
+# R3C2 CORPUS MANIFEST — the pinned census corpus (adopted by V11)
+
+**Definition (mechanical, V11 §2):** the census corpus is the set of clean-text extractions (`*_clean.txt` and other `.txt`) present in `../bhu-reading-20260823/sources/` at freeze, pinned below by SHA-256 of the raw bytes. A seat enumerates claims from these files and no other. Raw PDFs/HTML/JSON in the same tree are the sources the texts were extracted from; they are listed as RAW and are NOT enumerable by the census (a PDF has no stable line numbers). A published entry whose only file is RAW is therefore outside the census, and that exclusion is visible here rather than silent.
+
+## Enumerable texts
+| # | file | sha256 | bytes | non-blank lines |
+|---|---|---|---|---|
+| 1 | `0210105_clean.txt` | `82fd83229be202847a4e0d5d37953f4aa41b06931fdf8eba151771fb45118242` | 23613 | 281 |
+| 2 | `0902.1994_clean.txt` | `6c22823e60a67959f63c795a20d8d9137f728dce5c9b3d03e6859815ce740258` | 27244 | 229 |
+| 3 | `0910.1181_clean.txt` | `9a2359a1014188159caaeb35074d06d16baf75ac8d4416492a8adec133a3ff66` | 38209 | 318 |
+| 4 | `1007.0587_clean.txt` | `979ece413d5ce934d53e516f3c9f04fccffe869f3c2bd6ee59372e431ae18c73` | 38192 | 354 |
+| 5 | `1105.6127_clean.txt` | `5289e4b7dde39ce2be28ff8ced360548c1c355e5be0b79c066de0a950645b5c4` | 24650 | 292 |
+| 6 | `1110.1726_clean.txt` | `8f49418708594992cc8f9da284fb8f5fb5b2ce074c3b1932fa8b1fa58b1340f2` | 80944 | 2079 |
+| 7 | `1111.1017_clean.txt` | `c9780a2591948a4f63eaeaf4d63c7b8b61939135bd40a3e0cb8301becd2276ca` | 9271 | 109 |
+| 8 | `1111.4595v2_poplawski_prd85_clean.txt` | `2d1c7fbf9e99f30bc9cc9797e55c7e77738a6b8ab4eb1b85efbea07f0aaa3f54` | 36360 | 368 |
+| 9 | `1309.1487_clean.txt` | `4b1be15404374ca6b9f737ea63ea9cf37e763af8adf5ca0ea2bdd56ae5d4f8de` | 56984 | 860 |
+| 10 | `1403.0007_clean.txt` | `765f6280e9348517f7269459f39cc95717406fa11b0a9bb644dfdd94451bb7bc` | 295905 | 3474 |
+| 11 | `1405.7023_clean.txt` | `2ad25933ea8b537d3e08f50af8c4bd7c9b5c30b60b90e6d73b5e61162b876327` | 48001 | 2660 |
+| 12 | `1410.3881_clean.txt` | `df5bc5d0b9508dc95406b50e3de5be5758f0da45004a3479864500920affa497` | 49610 | 431 |
+| 13 | `1603.02698_clean.txt` | `4a71ead091feef1761080593d6eeab992be8665dec6fde8ade3882d2cc990bed` | 169433 | 1923 |
+| 14 | `1705.05567_clean.txt` | `2fd298db51c702b51646910175dd214b26e6e2eb872d66f525e4efc999a5c025` | 49726 | 1518 |
+| 15 | `1807.06209_clean.txt` | `afd514ceab21892748c8852e5f952a2fc847c17348e0ef875c2bc7b12cc14095` | 542686 | 6625 |
+| 16 | `1808.08327_clean.txt` | `b8c9ca327683921f758dd299bb55567735c2f272579ba169c6175d7ec78c4b8d` | 32052 | 447 |
+| 17 | `1906.02552v2_planck2018_isotropy_clean.txt` | `583401aa87ad3ec27b1064264ee151a159be39adccec02a5f2126cf61b0a0263` | 507646 | 4318 |
+| 18 | `1906.11824_clean.txt` | `a02d0cff45e3a34d304b48cdaf55b360537234716573e6f8783e87e78a9aa6b7` | 29207 | 376 |
+| 19 | `1909.07129_clean.txt` | `71a32804964cb77e6769aa25496b352b6101a0d48112d8a16de428f8245588c8` | 48197 | 458 |
+| 20 | `2002.12778_clean.txt` | `707d7280c1331f3477caa6815ecd4b28780df42ce49ab75eb09c29e86dd13554` | 367572 | 3582 |
+| 21 | `2003.11544_clean.txt` | `25cf2122ba7ba12fdee1dd37508f9f0c2515ac19a0ddb0f0196e0fa9141fe5ff` | 50312 | 532 |
+| 22 | `2006.12611_clean.txt` | `b3503ae65f1651cf8141af1430b6f1c4494fb03680f28f49a0134cb1d36e3f5b` | 341817 | 5266 |
+| 23 | `2007.06664_clean.txt` | `b34183bf58eb36d6745262816a6736e8f43c9f7ed11c852c80c7a3e7a378d8be` | 194150 | 1196 |
+| 24 | `2007.10999_clean.txt` | `dd116cfd2040ce57a8e5c7467b6b789f337b5139b57c7ade77a5ef0c5690b265` | 34113 | 310 |
+| 25 | `2007.11556_clean.txt` | `d94c72e4e4db7d0d98834410a5171ab58d6e800b400e81beb76c00460578d205` | 41135 | 402 |
+| 26 | `2008.02136_clean.txt` | `30adcbcfee018c8c879d10b9dc6b30c4f8c81042c5ead54cf0407acbeab3bd90` | 36772 | 359 |
+| 27 | `2011.00910v4_fosalba_gaztanaga_clean.txt` | `8491601f3e9f95e6f3b9f674eab56db97abdc8907bf66c399549998ddd5d88d9` | 125087 | 1176 |
+| 28 | `2026_ATLAS_quantum_black_holes_lepton_jet_arXiv_2604.19495.clean.txt` | `dcd66a95eee7bbfe4cf94e08363d977f82b79f0c282e2a7d3dc3593a62d363cb` | 139076 | 1512 |
+| 29 | `2026_CMS_microscopic_black_holes_EXO-24-028_arXiv_2604.10732.clean.txt` | `edb918d477525dabafaaf17889991d25d31ace308b9db9366406d08bce6b79d9` | 155560 | 1956 |
+| 30 | `2026_PBH_constraints_evidence_prospects_arXiv_2601.06024.clean.txt` | `c06409efa728b8eb26a1155434e23104dfdff7023954c02b88841c1beeadb895` | 183103 | 1769 |
+| 31 | `2101.01735_clean.txt` | `296c10b9b545fc05fe56260bf7096544204f111677291ac0931ba74b206bfe42` | 42296 | 707 |
+| 32 | `2104.00521_clean.txt` | `ff5670f8ff9a2e34f8875a5fed70c21482e96505eb220343198bd0345053d47a` | 22169 | 267 |
+| 33 | `2104.00880_clean.txt` | `b0f903b750c1912926f5e8f4655b93c37b60784eb2b4208117328f1f57e46d27` | 87340 | 708 |
+| 34 | `2109.10352_clean.txt` | `08f215e2e751696178db16eaed37adde3d12e45a86d76faacc26ef57975ce595` | 243633 | 2335 |
+| 35 | `2110.15607_clean.txt` | `cb90d58cdbbe9884e1ed1c4c4e9f1be9502c749e24aab0a76813a6857aab20d8` | 90750 | 812 |
+| 36 | `2111.03634_clean.txt` | `88cc548a27a8ad61d62147a8bfea639fca47366efc5ae89508888bb56bac0eae` | 560831 | 5234 |
+| 37 | `2203.13295_clean.txt` | `82f0d604d5b43c86ad893af052cf03dfaafda73e681b80e8123f51ec2789a2ab` | 72801 | 820 |
+| 38 | `2204.11608_clean.txt` | `c1e91c0a88a679f4e7ffd118506341efe1cc9c85868f918f9686f63c2031f453` | 90280 | 1015 |
+| 39 | `2207.05124_clean.txt` | `96f5c2b62ad6780fa904ce96e43d37e3284d5e84c5ed9b3ea3307bbe70ad53ca` | 31553 | 204 |
+| 40 | `2210.15186_clean.txt` | `2765b415a4f8b041601bec179c731328a4749f8e9fa74438ef76ba614ae8189d` | 89251 | 691 |
+| 41 | `2304.12018_clean.txt` | `589bfda50476bbad1703617cfcaddb2e13819058c5a1f5671bca94bdf5a55d57` | 60729 | 517 |
+| 42 | `2411.14673_clean.txt` | `8da92ab32ee2801f10164862fd388c911491515cfea484f1a06e0aeac64d5783` | 103528 | 618 |
+| 43 | `2503.14738_clean.txt` | `cf72282ab92c8041742688ab29d89d53b31bde00db9cb799a90fc790737d2cbc` | 241485 | 1765 |
+| 44 | `2505.23877_clean.txt` | `5b56ab59eb511a5146ad983ed3bcccf582a4ea246a0ff338b7a6160e1400472f` | 86560 | 580 |
+| 45 | `2509.11468v2_poplawski_ijmpa40_clean.txt` | `8297f879829f430baab68b3f8b917e8889ef878386b46f505592c71ad807b9ad` | 30111 | 300 |
+| 46 | `2511.10662_clean.txt` | `a5cc189393c8a5918d541645e078a1d73b80f5d3f8448c7fe80cfe4c0d61b09d` | 24760 | 310 |
+| 47 | `2512.05099_clean.txt` | `27ad9e5dba194cbf0a1bbba45da92f68164faa1ca9f86006668e8c57200c25fc` | 30547 | 229 |
+| 48 | `2512.09486_clean.txt` | `37f097db4a7819a1bc8df0ef348eee99a3fbf7fce6952e96cdd8c93fa3395a94` | 58095 | 449 |
+| 49 | `2604.10732_clean.txt` | `4c7e6a1782d25c0956eae74335d63acd9f421b7520a19bbbcebc7a2d1cb96b1a` | 197489 | 1681 |
+| 50 | `2606.25023_clean.txt` | `14e2200090a9c8073f79937ed2ce0282786a7512ff8864d0dbd30f18550653da` | 51868 | 924 |
+| 51 | `2609.02395_clean.txt` | `61c9f95b21beaa8a3c650f55ec2ad83b46438df810081c33814f1ef5b7a0f6ca` | 70580 | 676 |
+| 52 | `astro-ph_0009005_clean.txt` | `0aa2174396080f6ea51f88b9270088931a242a13e3f5174ab3e55a350222e8ae` | 87143 | 968 |
+| 53 | `astro-ph_0212469_clean.txt` | `bcdb34e6532e73d91344275307f4bd4a140145e6a7c855cd29f654749c340789` | 68109 | 999 |
+| 54 | `astro-ph_0611454_clean.txt` | `c14f95336af9ad140997abb925002c66a2cdcbff71bc993553def72e26b922c3` | 160100 | 1931 |
+| 55 | `blau_guendelman_guth_1987_clean.txt` | `f25a944c12de2676fa1b465180ba8f941f30821df4119f6cb5bb828094269d39` | 89578 | 2489 |
+| 56 | `desai_poplawski_2016_plb755_183_clean.txt` | `d4dbd9bd2ae2f1f4007196888d71ae5d4bef9ebe7a3a446aef4eac9acbc15a9f` | 52011 | 492 |
+| 57 | `desai_poplawski_2016_plb755_183_vor_clean.txt` | `af3a22829242075a5f94bbf34f8b8970059d2e1d2b406e69a3b0dca9ac22812f` | 58318 | 440 |
+| 58 | `dymnikova_1992_grg24_235_vor_clean.txt` | `2f3ca3e10ec016eed83104750d11d2428d5523c712814f68d559724d8b2c6b6f` | 18761 | 286 |
+| 59 | `dymnikova_2019_universe_clean.txt` | `ded87358184a4239d9f5bd0ffe8c5aee7732e992fc00be8f97370e73cbc7af47` | 34214 | 936 |
+| 60 | `farhi_guth_guven_ctp1690_clean.txt` | `832cd58a1e1b94603a8085221c90532a6154722ec01952fa0e05ecbc1635664c` | 157643 | 3549 |
+| 61 | `farhi_guth_mitctp1400_clean.txt` | `34721943eb699c4a1b2362489e59e820cd24733d8f1a3a9c208b3ceea05cc599` | 27643 | 500 |
+| 62 | `frolov_markov_mukhanov_1989_plb216_272_clean.txt` | `60c26f78847610020d4bf94f5b9baca7a80cb4c2835b30c4bb3afbdaeb8dc09c` | 22430 | 523 |
+| 63 | `frolov_markov_mukhanov_ic8891_clean.txt` | `e4d5220d202350cba0b9300bdd97bf1b99c922f991535cd3222840dffaa1a095` | 46092 | 1459 |
+| 64 | `gasperini_1986_prl56_2873_vor_clean.txt` | `037f72b7ac0cd7051c201b9835da38eeb713e906851d799cc24e13b9cbc80d04` | 22932 | 237 |
+| 65 | `gaztanaga_mass_mnras_clean.txt` | `17dec02b20e65e57d8f5a9d1a6ea8644ad8ee6f58ac73051e7f1f1458735c2a4` | 39398 | 324 |
+| 66 | `gonzalez-diaz_1991_plb261_357_clean.txt` | `a52d364a4a1106274f7feeb5f9ae3643a89438347169d2a43d138bc2fdcc20d1` | 21908 | 497 |
+| 67 | `good_1972_chinese_universes_phystoday25_15_clean.txt` | `3204f1bec6bfde7f912334b28ccf155f917f75a7437044b5a90fe5931217ae10` | 5877 | 178 |
+| 68 | `gr-qc_0006014_clean.txt` | `616d845c80c1a38c70e0c0f789e06500ccfe1dcf6a239f21cb52d5113643c621` | 39680 | 581 |
+| 69 | `gr-qc_0611022_clean.txt` | `6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92` | 47876 | 753 |
+| 70 | `hep-th_0103019_clean.txt` | `8b3a991e6d75463dd1ca0a991564d1035784c77253ecacb43b683687b8fac944` | 30837 | 440 |
+| 71 | `khakshournia_2010_note_pathria_arxiv1412.0105_clean.txt` | `a33cb03a7a598eaa5b04ac0d01437702eddfafe841e59e19f30355f2fc47b5e7` | 13350 | 179 |
+| 72 | `knutsen_2009_gravcosmol15_273_clean.txt` | `9ad0849660d12b93dd92bcd101313137872fbac5da2ae90de94cfe8f78dd1436` | 19113 | 793 |
+| 73 | `math-ph_0302036_clean.txt` | `47c47ac44788115032c90be1407771611042508a3954fbe87b170a0731ebe210` | 185081 | 2176 |
+| 74 | `pathria_1972_universe_black_hole_nature240_298_clean.txt` | `d6204599e2ff150e193465b9a018f0d72384e96c4b248446414433487c8b4898` | 13003 | 361 |
+| 75 | `poplawski_2010_plb690_73_vor_with_update_clean.txt` | `ed872d37167d8b185de64973d24554caeb97a208f7c989259fdb140d8d7dd270` | 53993 | 428 |
+| 76 | `poplawski_2013_plb727_575_update_clean.txt` | `e21d24ef2bfea825afedbada9498509fb65fe4c775cc2f9c1d11c0dbab0d3d25` | 1491 | 22 |
+| 77 | `poplawski_plb690_erratum_clean.txt` | `410a106789729390eb94f70084a039b99e8320ca93e55fa2249b657fea958c7d` | 1190 | 26 |
+| 78 | `poplawski_plb690_vor_clean.txt` | `69fc5a729197468f745a90a1862ec6de3bc1d6cb61c63511916054a9e4ca8cf7` | 31023 | 772 |
+| 79 | `pourhassan_2025_npb1020_clean.txt` | `793a1db9d48656b94f1ce7274cc4ce24008a99deafcaef4d90c3f82a00354613` | 54636 | 746 |
+| 80 | `sato_kodama_sasaki_maeda_1982_plb108_103_clean.txt` | `860c319d2543dfc518ce71ed4f9f9124e621d79aae2a316ddeddda8251c71683` | 17271 | 411 |
+| 81 | `smolin_1992_clean.txt` | `3da9aaab5f8068aa5ce6ade661d87acde0b3ba7127ecfd9e28f9bf4a1b8f6c5a` | 65444 | 984 |
+| 82 | `smolin_2004_cns_clean.txt` | `b051f707ca421362191618e6b9964de702ab70b76f643a20763a552087816f40` | 26599 | 360 |
+| 83 | `smoller_temple_1997_clean.txt` | `37d2869df53ec3b372f679bc5cb47257d015fcfef94b0bdacae271a05df2a848` | 68607 | 3486 |
+| 84 | `smoller_temple_2000_clean.txt` | `13d07d24a6d4877a15f288c0e5c622e53fb7eb9e0290a9bab43b4a6709b33d03` | 74812 | 3078 |
+| 85 | `stuckey_1994_observable_universe_black_hole_ajp62_788_clean.txt` | `00837f61b316a49e7454098c959207c4f5386fd0939ce2bab105b37d02aa91d2` | 953 | 208 |
+| 86 | `stuckey_1994_observable_universe_black_hole_ajp62_788_ocr_clean.txt` | `7ba8aa107625273257e2c93192f1b09f3336efea48c2a32ad54f9773991b29cd` | 29482 | 737 |
+| 87 | `sym14091849_clean.txt` | `391a2510c8be4caf054e30f21f1533ca28591ee8d57c6ea689b7aad1bcb50d7d` | 83877 | 5847 |
+| 88 | `sym14101984_clean.txt` | `01aad28a7d44fac2682a279295c83260cbc1493ac9fb517fe44e601135fff428` | 57073 | 2181 |
+| 89 | `universe5050111_dymnikova2019_clean.txt` | `dbb30e4a2750337461d79d3cdd0b9a4f6f4b40157edba2971047f2595d7492c7` | 24017 | 277 |
+
+## RAW (not enumerable)
+| file | sha256 | bytes |
+|---|---|---|
+| `_stuckey.pdf` | `a5f3454c61cf60a71372cffef7732810110010b6dfc8d3e74943c8b7f75dcc0e` | 20178 |
+| `1110.1726.pdf` | `2d99ea4252d293d8bed4c80673e5425f70d1ff6a3763626ed8e27ed931942839` | 601811 |
+| `1111.4595v2_poplawski_prd85.pdf` | `dce45dbb6c4d625f828252ad354717be94cda7ebda940489873548991c1463d0` | 426839 |
+| `1309.1487.pdf` | `a34c7aac29dbf4b9b2ecc638ee3128862b6b20f74e12185b09354c4adf8cde65` | 854790 |
+| `1403.0007.pdf` | `324864fc735b52fa35c6bc8beb920a362edb0d22a7c728bcee064f56a1160a57` | 1246302 |
+| `1603.02698.pdf` | `3a1e66e7686849abe5b392130def0df6140fe185f94340647b38edb016d2c907` | 2265432 |
+| `1906.02552v2_planck2018_isotropy.pdf` | `0387b7aa3b29af85afd4cf4c0f7192dce1e6114e698abf10ac2d66ee3a20d840` | 18012534 |
+| `2011.00910v4_fosalba_gaztanaga.pdf` | `0facf2c571586d60134e7bf6b4e6395709ebb103e6c6534482366ad29e446df9` | 12465642 |
+| `2026_ATLAS_quantum_black_holes_lepton_jet_arXiv_2604.19495.pdf` | `bf0b5b4fbe92f7a5525b3e78d310e7ec4c54a44214ae163deb06e4fcfb3cdd4a` | 1509596 |
+| `2026_CMS_microscopic_black_holes_EXO-24-028_arXiv_2604.10732.pdf` | `6df0c56986fb5f0b0381a099ed254083a6f688cb2c62b0a9b9ffc6a914d73a29` | 1223724 |
+| `2026_PBH_constraints_evidence_prospects_arXiv_2601.06024.pdf` | `bbe53b99962d54ceab0a11a73bb4f9a137385e0f114712f37f46756347bb8283` | 2067649 |
+| `2109.10352.pdf` | `1ccfda5cf7d9658aba2ff8ab31c25a4d2a6a7ba233bf32eed571271102692cc6` | 10321539 |
+| `2110.15607.pdf` | `8006190e260e96065580b6c769d4e94bd189420fe8b428f70efc4f6edd95c9f3` | 2809759 |
+| `2111.03634.pdf` | `3e616e77962260040e3def02a4d7aac3152ee62a76fa8d5a8262b64b34c96ed9` | 11436130 |
+| `2509.11468v2_poplawski_ijmpa40.pdf` | `1fa609e5f1d32eceda0908c34bae418344cb147301ad17acceda77c5e272c5ac` | 256023 |
+| `2609.02395.pdf` | `d9a4a6977770df2ad71cdc13d9cf3dd136c620cea55c7b5cf1bf9ad355c87936` | 1197039 |
+| `ar5iv_0210105.html` | `11f2f26ad74ffbdba4c72abd2303865322a6656b4dea3a7bcb5f3e397ce304d6` | 153933 |
+| `ar5iv_0902.1994.html` | `d63f48403d297ff672442fd78073916e84b239129cbbf13ddaccb1e35c599e31` | 148793 |
+| `ar5iv_0910.1181.html` | `8afa614ac2c5db3747e348046c1a381912cea702c06481ed0cfae950bc4c80ea` | 171873 |
+| `ar5iv_1105.6127.html` | `2f60f0429cfb1ac8080f40d62cb0f6a6cd48a08542293d0b3cd0ed3bac2e50c0` | 114127 |
+| `ar5iv_1111.1017.html` | `1c9d1dcd98d68fd5acc6c9504382cf904ddadfde0a7790cb53ab0c3e1119b85e` | 40386 |
+| `ar5iv_1309.1487.html` | `7ec2d7e019c95f80c562869d5159d782e412cf2d9454ffa18193d47ec6d1051d` | 234786 |
+| `ar5iv_1808.08327.html` | `6fb84be5632519f07d59c7f5c28e8cf9980dba1e53b7a21caef4e6501ea19ada` | 173601 |
+| `ar5iv_1906.11824.html` | `60919934f9badd230604c0d7032f84aa8e26b0addb525bd49316145019b55c4f` | 171100 |
+| `ar5iv_2003.11544.html` | `137b4ab997f53d04be214bab558f67573e5b7935b478ad4031f2e769bf707288` | 262532 |
+| `ar5iv_2007.06664.html` | `057b657efafa14e0fe4a070e3d90b63a8a8454c11facd83bd1b541c429ddcf59` | 901029 |
+| `ar5iv_2007.11556.html` | `630803161e297c0bce3cb0df4b39ba2c63cab5b26a127aca0bcdde71bf77cfd2` | 200429 |
+| `ar5iv_2008.02136.html` | `2704131318986eec87ce96dae8a88073efbc29ebf1143807beebc0bd78a94213` | 183682 |
+| `ar5iv_2104.00521.html` | `1d2cc264abba341b94599f914fff2ae2f1f2ce77987e5a0b3a328eb2e2c44760` | 112168 |
+| `ar5iv_2203.13295.html` | `4aa71cc1d9d96e4ab54737cd0afdc2842e2c26278ff7dd922e690e4583f8ab40` | 463460 |
+| `ar5iv_2204.11608.html` | `d328eba009d05bd84e3a42d0de6a69637ace7acac7adcd2b7199e43fa346c7d0` | 424103 |
+| `ar5iv_2210.15186.html` | `0cad9720f3b401e5b4ce05c8c677366dcabf40a09b916f94596acfce8c2ac022` | 494412 |
+| `ar5iv_2304.12018.html` | `e908f5ad3d45451c5b86b7990132da9ffd4c32d9c0e788580e1bab2299f5700f` | 242624 |
+| `ar5iv_2505.23877.html` | `861790f4b3b8c9dca040caf3be3116299ac6ac2658e612c563f4e3ee603883bb` | 328207 |
+| `ar5iv_2512.09486.html` | `dccebb0aaaccdaa4713c8140beba847fd9de3d3a0db957fe0bc974af083d3418` | 256050 |
+| `ar5iv_2606.25023.html` | `4d07d97d209bc9a903877a4d996ce840ba1eb54d34b578f9c8237da45d0750bd` | 248218 |
+| `ar5iv_gr-qc_0201058_dymnikova_restatement.html` | `710e36274fe031c390ddf9e3fba8dc114dedc7e6235d359da9e4600c5e257b58` | 274187 |
+| `ar5iv_math-ph_0302036.html` | `b8a2df7a837c230fc5911040262425d050da34db779ad197ac019c068e7dcdb5` | 1573841 |
+| `arxiv_1104.2815_abs.html` | `5bf7c92ddc47bbe437ff9bba06b8ab1d14e13b1ec47eba884c29d7ef4ecf5eff` | 42386 |
+| `arxiv_1911.02087_divalentino2020_closed_universe_natastron_abs.html` | `4a0a05ab49d604d170f4c2f14eb48b22015cadbf69fbcd6f63ddaab07073ccaf` | 44692 |
+| `arxiv_2404.03002_desi2024vi_bao_cosmology_abs.html` | `1c1f4b85f53bb6825347918fdebd6bf727de00da82646481acb7a3f1a508e5ae` | 82843 |
+| `arxiv_2503.14452_act_dr6_2025_power_spectra_abs.html` | `6c4cc64c37f76b503491a41a749cb2aedcae97d3e732a6f556dc9f629a285f05` | 75796 |
+| `astro-ph_0009005.pdf` | `63441542f13a8588d9b5ac7d5fe3a542c8d8c300f1f7fc4030711cb3dde0e43d` | 606931 |
+| `astro-ph_0611454.pdf` | `1c2406cd529a0d5d2590b3eb3a69c97a511225069630c3f8efe0c5326606a8da` | 1265497 |
+| `blau_guendelman_guth_1987_prd35_1747.pdf` | `1d195f5f035d4b6f0ebd7342eab9e693279e3cb01e3f84c6d2ceaaa1bcfbaed4` | 973786 |
+| `blau_guendelman_guth_1987_prd35.pdf` | `c02870d1183e45f6fa9cf411bf652607dfafe6caae92f2b46805d28f291f215e` | 5759 |
+| `crossref_10.1103_qs86-npwk_entry22.json` | `54269cc6f8e6a3c3e23f2c34ad968147bfbf659a5e043308bfe6ebbc91da940e` | 7986 |
+| `crossref_publication_audit.jsonl` | `f077183f616c03218d8dd18c180988c55c0ead0fe0f5d3a338180cc1760ce541` | 15682 |
+| `desai_poplawski_2016_plb755_183_arxiv1510.08834.pdf` | `2687f65d808365758e351323c80eff642fce5e0edc877b5cc43c3cec124005dc` | 636730 |
+| `desai_poplawski_2016_plb755_183_vor.pdf` | `039d9c2de5ca27e2f0903a512d06ee1d6c95250c8b2c6e9c0a45c9c33ba002c8` | 1168547 |
+| `dymnikova_1992_grg24_235_vor.pdf` | `7801ca263ee02ee1063895e3d547ca886504400a2a663ee1552414ea98e8a359` | 382835 |
+| `dymnikova_2019_universe.pdf` | `2ddc3454a0744b1251cad6e7ef288f5ad1b26422732a2eafb3d1819bd03d65a5` | 327054 |
+| `ellis_1993_qjras34_315.pdf` | `c357c9c29c38ff62086893f1fee611aa10e854c2461e37063aa5cac6a7b70300` | 223655 |
+| `farhi_guth_guven_ctp1690_kekscan_2000_36_692.pdf` | `32e93d710705e11d9dbad13813a04a032b816db67908cff00bf683200774deb0` | 2208278 |
+| `farhi_guth_mitctp1400_kekscan_2000_36_705.pdf` | `573ff9751ceccca965173b4d01fe804beade6356e08db54a5af77f05532c418e` | 362014 |
+| `frolov_markov_mukhanov_1989_plb216_272.pdf` | `04df8bd67466db9b41a09150d8b47c243c3b42605f8fc8af4d25da211af61c7d` | 395998 |
+| `frolov_markov_mukhanov_ic8891_kekscan_2000_33_351.pdf` | `1dcb755eb0afb58184731175a76e38c1033b35c3c5985ce3ddddf76a5f23b13c` | 792934 |
+| `gasperini_1986_prl56_2873_vor.pdf` | `61203294b65a872231354577f2bd9b900080fe032c017117468ac2243c98cf5f` | 360878 |
+| `gaztanaga_mass_mnras.pdf` | `9f61444d6c1dcfeb935bd7224a39f3879c5243a2337dd1dd56d8d2212bec364c` | 775903 |
+| `gonzalez-diaz_1991_plb261_357.pdf` | `69724da8c62f1488f9c1eab05e790d3240377bd5c365fc2d327c2b6fa85a5f4b` | 456902 |
+| `good_1972_chinese_universes_phystoday25_15.pdf` | `6772c3fb58bd2d93357a2b8ad245e55ddcaf66c611486e8f5ef96484b9e6ee40` | 239256 |
+| `harrison_1995_qjras36_193.pdf` | `ea3e8d081592d063b3f87f693a86da9d25f0ae837d762ff1a320e2b06ba4ce54` | 277259 |
+| `khakshournia_2010_note_pathria_arxiv1412.0105.pdf` | `a525348938646d75b194f6ff7ec9ead049e5972a26ba6d8ba5ec1ba20ec34cc4` | 82407 |
+| `knutsen_2009_gravcosmol15_273.pdf` | `63c21258e05b375232b583d0450443044b8a1379f28671d753f1ade4fb8ec303` | 516175 |
+| `pathria_1972_universe_black_hole_nature240_298.pdf` | `712fc5402584dee0c926ad66353e11de3bf846d9c5c8eeb72b9a86204420a220` | 3220601 |
+| `poplawski_2010_plb690_73_vor_with_update.pdf` | `230f4a4d92ef1c6b968f0537782e86080507a866902cf3ea05af3bf0d197dcb3` | 345576 |
+| `poplawski_2013_plb727_575_update.pdf` | `d9d2f5ce7f5842cccdfeb4ee42d1d6b9674f5bde9a2fa1822026a0b56dc5a261` | 140053 |
+| `poplawski_plb690_73_2010_vor.pdf` | `747bce6d54d4da9ffdf81de64be2040dda075f0155b4c249ef06bbea192f43fe` | 345844 |
+| `poplawski_plb690_erratum_2013.pdf` | `dafedba1ce9e8c7b18ff693c5deefdc75df7ada63ab7b0f9e94ccbf9c3da1aad` | 139656 |
+| `pourhassan_2025_npb1020_117160_scoap3.pdf` | `2d11feddb342f1c30a97ee76ce08845ea3acfe2e453e15e39412defab700a14e` | 1431004 |
+| `rothman_ellis_1993_qjras34_201.pdf` | `ad76b7ace95cb173e961fe0cc6abb014cf44a776dbda0eee13e1d90ecfd3ae70` | 179670 |
+| `rothman_ellis_1993_qjras34.pdf` | `ad76b7ace95cb173e961fe0cc6abb014cf44a776dbda0eee13e1d90ecfd3ae70` | 179670 |
+| `sato_kodama_sasaki_maeda_1982_plb108_103.pdf` | `249ed66925ea22c727ef9f2ee54201008e4b894d0d576e021bf3685871e9fc27` | 362637 |
+| `silk_1997_holistic_cosmology_science277_644.pdf` | `1d98d968ca895d14de0cf49466862957448411094459a809ff7acd292a5f81a2` | 593232 |
+| `smolin_1992_did_the_universe_evolve_cqg9_173.pdf` | `951bba97a30173a0c2ac61a422477db67461d6e84385c53539c251311e47e4ec` | 1171999 |
+| `smolin_2004_cns_physica_a340.pdf` | `46e57c4345660fae54075adc61d038179b66aa6b099af322418813c97f5bd417` | 206648 |
+| `smoller_temple_1997_oppenheimer_snyder_arma138_cv47.pdf` | `6e709a9cfed2ae1a3263df4be86d2fa16a96a09bd1c8319ac8b932bee2adb933` | 575751 |
+| `smoller_temple_2000_shockwave_astroph9812063.pdf` | `ef90490466fa464675ef8baf8d1591f25ae89c80a01cac0ae648d7360317f28f` | 440037 |
+| `stuckey_1994_observable_universe_black_hole_ajp62_788.pdf` | `91aa1fae9327b9f05f81fb3c0b5a37cccdee08f2d0d9870dc6420a9247ea64ce` | 919691 |
