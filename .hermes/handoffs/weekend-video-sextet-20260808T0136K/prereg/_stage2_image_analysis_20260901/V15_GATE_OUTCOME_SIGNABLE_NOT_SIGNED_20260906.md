@@ -28,3 +28,8 @@ then the lane fills SIGNATURE UTC / DUHO SIGNATURE and re-runs `signature_preima
 
 ## Independence note
 Codex authored the beacon_v2 code (00:13–02:00 window) and gated the document that pins it; it disclosed this in its first paragraph as instructed (Blanc 00:19). Agy did not author any of it. A third, non-authoring gate on the code alone remains available to Duho if he wants one before signing.
+
+## Post-gate housekeeping (02:09–02:15 KST; no edit to V15)
+- Every file V15 pins by SHA-256 is now a tracked blob on `feat/paper-workflow-v2` (commits 1dacdc97e, 08e3d6fbd, 692dd16ef, 0f86e8c46, all confirmed on the remote). Before 02:09 the whole `_optionA_dev/` tree, the pinned root PEM and the observed-behaviour record were untracked — a custody gap in the record, not in the rule.
+- **Textual finding for the next version (not a pin, not a gate item):** V15 §E3 says the builder's refusal vocabulary "is enumerated in `_optionA_dev/beacon/CODEX_BEACON_BUILD_RESULT_20260906.md`"; that file now lives at `_optionA_dev/beacon_v1_retired_20260906/beacon/CODEX_BEACON_BUILD_RESULT_20260906.md` (moved with the retired beacon_v1 tree). Both seats hashed every pinned file; this pointer carries no digest and neither seat flagged it. If Duho signs V15 as is, the pointer is resolved by this note.
+- Seat scratch found only in the sandbox (`test_pulse.py`, `test_pulse2.py` under the job tmp dir), nothing in the lane; fresh lane snapshot `v15post` taken.
