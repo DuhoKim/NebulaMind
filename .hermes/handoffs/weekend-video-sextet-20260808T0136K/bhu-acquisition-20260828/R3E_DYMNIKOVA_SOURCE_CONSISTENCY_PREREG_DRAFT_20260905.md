@@ -5,8 +5,38 @@ starting"). Round-3 ranked packet cluster **#7** (codex proposal; CONT 3, TRACT 
 Nothing runs on this document. No tier, warrant token, standing or stamp moves. Paper HOLD. Nothing outward. Published
 peer-reviewed sources only. Nothing from Hwao's lane, pipeline or data.
 
-**Version:** DRAFT 1 (this file). A freeze produces `R3E_DYMNIKOVA_SOURCE_CONSISTENCY_PREREG_2026MMDD.md` with §8 filled,
+**Version:** DRAFT 2 (this file). A freeze produces `R3E_DYMNIKOVA_SOURCE_CONSISTENCY_PREREG_2026MMDD.md` with §8 filled,
 a C0 reachability exhibition by two seats, and a two-seat design gate, before any seat derives anything.
+
+## 0. Design rules carried from R3D and R3C2 (`R3_PREREG_DESIGN_RULES_20260905.md`) — DRAFT 2
+
+**Rule 1 — C0 first.** Before this document is gated, two seats on different engines each write a reachability exhibition:
+one concrete input and the verbatim clause path for every class in §4, or UNREACHABLE with the blocking clause. The lane owner
+authors none of it, repairs none of it, verifies ACCESS_SHA after exit, and gates only on PASS+PASS.
+
+**Rule 2 — falsifier asymmetry (a design rule of §4, not a note).** `PROFILE_CONSISTENT` is filed only from a positive printed artefact
+for (P2)–(P7). Every way the pipeline can fail lands away from it, as follows — an anchor mismatch in C1 lands on
+`R3E_NO_CLASS`; a symbolic timeout or unavailable machinery in any limb lands on `R3E_NOT_EVALUABLE` (or the study's explicit
+not-evaluable class where §4 names one) for that item, never on the pass class; a script exception or an unexpected exit
+status lands on `R3E_NO_CLASS` with the printed traceback; a control failing its exact expected set lands on `R3E_NO_CLASS`;
+a seat disagreement on any classified row is carried as a pair and lands on the study's DISPUTED class where §4 names one,
+else on `R3E_NO_CLASS`; a missing artefact is a failure, never a default. No precondition sits on the pass path that the fail
+path lacks.
+
+**Rule 3 — the cap, declared now.** After the freeze, one C0 round and one two-seat gate. Repairs are applied against both lists
+together, once per version. If a gate round after the first repair returns new non-escalated, non-cosmetic findings, or if
+C0 fails a second time, the lane stops, files `R3E_STOP_DIAGNOSIS_<date>.md`, and waits. Class additions, renames and
+tier or warrant moves are escalated to Duho at once and never count against the cap.
+
+**Rule 4 — every control executes and prints.** §5 below names each control's exact command, its printed artefact (resolved
+command, stdout, stderr, exit status) and the exact token set that defines PASS; a control described but not executed, or a
+token asserted from prose, is a defect the gate is asked to flag. Scripts: `r3e_controls.py` (C1 identity, C2 benchmark, C3 deletion probe, negative control), `r3e_limbs.py` (limbs A–C; every symbolic call through `r3c2_timeout.py`), committed and pinned by sha256
+beside this document at freeze; each has a positive and a negative form.
+
+**Rule 5 — abort guards and the delivered read set.** Version apply chains fail-stop after every step and write at the end.
+The seat's read set is exactly: `R3E_SEAT_PACKET.md`, `SEAT_BRIEF.md`, `r3e_controls.py`, `r3e_limbs.py`, `r3c2_timeout.py`, `R3E_SEAT_PACKET.sha256`, the two pinned Dymnikova texts and the restatement — each pinned in `R3E_SEAT_PACKET.sha256`; no operative command names
+a tool outside that set or at an absolute path. Third-seat dispatch through the lane's dispatcher is an administrative action
+of the lane owner and is not claimed executable from the packet.
 
 ## 1. Question
 
@@ -90,6 +120,17 @@ tier or warrant movement.
 - **C4 HARNESS** — live `sympy` version print through the wrapper; exit code recorded.
 - **Negative control** — a planted coefficient (3/2 → 1) in (P4) must file a non-zero residual in limbs A and C.
 
+
+**Executable form (Rule 4) — each line is one printed run; PASS is defined by its printed output only:**
+
+```
+/usr/bin/python3 r3e_controls.py c1 ../bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt  → C1_SOURCE_IDENTITY=PASS|FAIL, each anchor listed with its repr() match
+/usr/bin/python3 r3e_controls.py c2  → C2_GR_BENCHMARK=PASS only if Schwarzschild returns T=0 and de Sitter returns the printed isotropic tensor, both printed
+/usr/bin/python3 r3e_controls.py c3  → must print exactly {R3E_C3_NO_FIELD_EQUATIONS} and exit 1; any other set = control FAIL
+/usr/bin/python3 r3c2_timeout.py 120 -- /usr/bin/python3 -c 'import sympy; print(sympy.__version__)'  → C4_HARNESS=PASS on exit 0 with the version printed
+/usr/bin/python3 r3e_controls.py neg  → planted 3/2→1 in (P4) must print a non-zero residual in limbs A and C
+```
+
 ## 6. Seats
 
 Blind double, two engines (codex via the dispatcher; kimi via `--provider moonshot -m kimi-k3`), packet only, ACCESS_SHA on
@@ -107,5 +148,6 @@ No ledger entry is re-run.
 | version | date (KST) | change |
 |---|---|---|
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated |
+| DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
 
 R3E_PREREG_DRAFT_COMPLETE
