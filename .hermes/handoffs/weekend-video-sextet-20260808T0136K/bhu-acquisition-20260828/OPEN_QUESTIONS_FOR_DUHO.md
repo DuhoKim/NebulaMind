@@ -2511,3 +2511,9 @@ Then one final V21 with those and the five small items, one C0, one gate, and th
 yours.** If you would rather I apply the small items now without waiting, say "V21 now" and I will, leaving your three open.
 
 ## RESOLVED 2026-09-05 22:58 KST — Duho "1a rename" (22:53 KST via Blanc): `CENSUS_OUTCOME_DISPUTED` added, `REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`. V21 written with the ruling plus my four small repairs and the zero-denominator clause (labelled as mine in §10.15). `DERIVED_ONLY` NOT renamed (not in the ruling). C0 two seats now, then the gate; after that the document is freezable. **Still yours:** whether R3C2 runs.
+
+## FOR YOUR MORNING 2026-09-06 00:38 KST — R3C2 V23 is SIGNABLE; nothing is signed
+Both seats cleared V23 with the blind intact (LEAK=NONE both; kimi cannot state what origin is for). The only non-cosmetic item left is
+`DERIVED_ONLY` → `DERIVED_STANDARD_OR_MEASURED_ONLY`, which your "rename" did not cover, so it is yours. Freeze statement, digest and
+blanks: `R3C2_V23_SIGNABLE_20260906.md`. **Say the digest to freeze**, or **"rename DERIVED_ONLY too"** for a V24 first. Running stays a
+separate word.
