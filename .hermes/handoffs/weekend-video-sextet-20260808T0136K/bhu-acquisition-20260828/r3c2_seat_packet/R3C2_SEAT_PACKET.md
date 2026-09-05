@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `b293f14016f20aca40c50f258ab52c53a9a16524623107b1eeefc5a51174762c` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `3a42205da5a8454eac9ab320c5fb038bcec76820720df9fd5536b2b83acc6acd` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -36,7 +36,11 @@ and are outside the census, visibly.**
 2. **List the inputs** that equation needs.
 3. **Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant **on C3's closed
    list — that list, verbatim, and no other value**), `BLOCKED` (traced to a named source but carrying no
-   machine-matchable value, §3), or `ABSENT`. Record its `origin` with the evidence C3 requires.
+   machine-matchable value, §3), or `ABSENT`. **`STANDARD` applies only when the value appears in the claiming paper (or
+   in a pinned enumerable text under the `IMPORTED` rule below): a value the paper does not print is classified by the
+   named-source rule alone and is never `STANDARD`. Where a value the paper prints is on the closed list verbatim, file
+   `STANDARD`; otherwise `PRINTED` — the two routes are outcome-identical, and this rule keeps both seats on the same
+   one.** Record its `origin` with the evidence C3 requires.
 4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
    i.e. every ledger record with status `PRINTED` or `STANDARD`, chosen and fitted values included.** Provenance is
    **recorded** (C3's `origin`, `derived_from`, `root_origins`), never filtered on. *(A paper can direct you to use its own chosen constant, and following that instruction is reproducing the
@@ -61,7 +65,7 @@ survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 > **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
 > its `origin`) or `STANDARD` (on C3's closed list). **PROVENANCE IS RECORDED, NOT FILTERED**: each record's `origin`
 > is cited under C3, independently by both seats; `root_origins` and the per-claim summary field **`rests_on`** are
-> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `c2b62e31029171adebfdc6aa7d77ff61a82749237d627ff46ba6e1a0457788d1`), with the full
+> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `e7f053b9b98b2ba55639104b151ce4c09f174dcde46a1ead367377429c71f394`), with the full
 > root-origin set printed beside it. **No seat writes `root_origins` or `rests_on`; the script rejects a ledger that
 > arrives with either set.**
 
@@ -81,7 +85,8 @@ survive: the arithmetic reproduces AND the ledger says what it rested on. So:
   source. It is recorded with status `BLOCKED` (C3) and never consumed. *(Distinct from `REPRO_INPUT_ABSENT`, which is an input the paper neither prints nor traces to any named
   source; a value cited from a pinned enumerable text is `PRINTED` there under §2.)* 
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
-  this lane does not have. Print `SYMBOLIC_TIMEOUT` and the point reached. *(Added because the stall guard had no
+  this lane does not have. Print `SYMBOLIC_TIMEOUT` when the 120-second cap is exceeded, or `MACHINERY_UNAVAILABLE` when the lane lacks the
+  machinery, and the point reached. *(Added because the stall guard had no
   per-claim outcome to file into.)*
 - **`REPRO_NO_DERIVATION_STATED`** — the paper prints the claim as its own result but **states no equation or
   computational procedure that could produce it**, so there is nothing to attempt. Name the passage. *(A claim can
@@ -96,7 +101,9 @@ order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `R
 source is also unobtainable satisfied two classes with no rule to choose between them.)*
 
 **The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
-`REPRO_EXACT` and `REPRO_FAILED`**.
+`REPRO_EXACT` and `REPRO_FAILED`**. **`rests_on` is computed and reported for every included claim that has at least one
+ledger record, whatever its outcome; a claim with no ledger record carries `rests_on` `NOT_COMPUTED`, and the `rests_on`
+tally reports a `NOT_COMPUTED` row.**
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
@@ -117,7 +124,7 @@ is hidden by being excluded.
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, **or the receipt verification
    of the seal fails**. No tally is filed; report which.
 4. **`R3C2_NO_CLASS`** — a control among C0 through C5b fails **in every seat that attempted it** after two attempts;
-   a packet or seat-isolation failure before dispatch stops dispatch without a census tally. **A C6 audit failure or a
+   a packet or seat-isolation failure before dispatch files this class. **A C6 audit failure or a
    seal-receipt failure files `CENSUS_AUDIT_FAILED`, not this class.**
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts. The census
    does not proceed; the disputed candidates are listed. *(Added because the enumeration stop had no class.)*
@@ -152,10 +159,13 @@ is hidden by being excluded.
 
 - **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and attempts made,
   all printed before any tally. 
-  **The candidate and exclusion ledgers are JSON files validated by the pinned script:
-  `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>` — exit 0 only if every candidate
-  carries exactly one disposition and the printed counts equal the recomputed counts; print its command, stdout and
-  exit status.** The candidate and exclusion ledgers use the script's candidate schema: each candidate carries
+  **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
+  candidates: [...]}` and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print
+  those four declared counts verbatim from the files, then run
+  `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
+  script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate,
+  and that each declared count equals the count recomputed from the rows; its stdout prints both the declared and the
+  recomputed counts. Print its command, stdout and exit status.** The candidate and exclusion ledgers use the script's candidate schema: each candidate carries
   `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every exclusion row names a candidate and a `kind`;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
@@ -187,7 +197,7 @@ is hidden by being excluded.
   **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
   ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
   A chain's root origins are computed from every step, never from its last step alone. **The script is `r3c2_ledger_tools.py`,
-  committed beside this document, sha256 `c2b62e31029171adebfdc6aa7d77ff61a82749237d627ff46ba6e1a0457788d1`; the seat runs
+  committed beside this document, sha256 `e7f053b9b98b2ba55639104b151ce4c09f174dcde46a1ead367377429c71f394`; the seat runs
   `/usr/bin/python3 r3c2_ledger_tools.py compute <ledger.json> <out.json>` and prints its stdout and exit status. It
   computes each claim's `rests_on` from its `root_origins` and prints the root-origin set beside it; it REJECTS (exit 2) a
   ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names

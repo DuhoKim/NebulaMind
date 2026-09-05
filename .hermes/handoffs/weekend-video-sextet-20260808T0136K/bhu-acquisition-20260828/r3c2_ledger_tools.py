@@ -7,7 +7,9 @@
       filled, and prints them. A seat never writes either field: any record that arrives with `root_origins`
       or any claim record with `rests_on` already set is REJECTED (exit 2).
   /usr/bin/python3 r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
-      C1: every candidate passage has exactly one disposition; counts recomputed; exit 0 PASS / 1 FAIL.
+      C1: candidates.json = {declared_candidate_count, declared_included_count, declared_excluded_count, candidates:[...]},
+      exclusions.json = {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; the
+      declared counts are compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
   /usr/bin/python3 r3c2_ledger_tools.py merge    <ledger_seatA.json> <ledger_seatB.json> <merged.json>
       merges two independently VALIDATED seat ledgers over the same input_ids; where origin differs the merged record
       carries origin_alt and origin_evidence_alt (seat B's); exit 1 if the input_id sets differ. compute then reads the
@@ -132,9 +134,14 @@ def cmd_validate(ledger,srcdir):
 
 def cmd_census(candidates,exclusions):
     """C1: every candidate passage has exactly one disposition (included or excluded with a reason kind); counts recomputed."""
-    C=json.loads(pathlib.Path(candidates).read_text()); X=json.loads(pathlib.Path(exclusions).read_text())
-    C=C["candidates"] if isinstance(C,dict) else C; X=X["exclusions"] if isinstance(X,dict) else X
+    Cd=json.loads(pathlib.Path(candidates).read_text()); Xd=json.loads(pathlib.Path(exclusions).read_text())
     fails=[]; KINDS={"EQUATION_NUMBER","REFERENCE_NUMBER","PAGE_OR_LINE_NUMBER","DATE","ATTRIBUTED_NOT_DERIVED"}
+    if not isinstance(Cd,dict) or "candidates" not in Cd: print("FAIL: candidates file must be an object {declared_candidate_count, declared_included_count, declared_excluded_count, candidates:[...]}"); print("C1_DENOMINATOR_PRINTED=FAIL"); return 1
+    if not isinstance(Xd,dict) or "exclusions" not in Xd: print("FAIL: exclusions file must be an object {declared_exclusion_count, exclusions:[...]}"); print("C1_DENOMINATOR_PRINTED=FAIL"); return 1
+    C=Cd["candidates"]; X=Xd["exclusions"]
+    for k in ("declared_candidate_count","declared_included_count","declared_excluded_count"):
+        if k not in Cd: fails.append(f"candidates file: missing {k}")
+    if "declared_exclusion_count" not in Xd: fails.append("exclusions file: missing declared_exclusion_count")
     cids={}
     for n,c in enumerate(C,1):
         if not isinstance(c,dict) or "candidate_id" not in c:
@@ -154,8 +161,12 @@ def cmd_census(candidates,exclusions):
         if c.get("included") and cid in xids: fails.append(f"candidate {cid}: included AND excluded")
         if not c.get("included") and cid not in xids: fails.append(f"candidate {cid}: excluded with no exclusion row")
     inc=sum(1 for c in cids.values() if c.get("included")); exc=len(xids)
+    for k,v in (("declared_candidate_count",len(cids)),("declared_included_count",inc),("declared_excluded_count",exc)):
+        if k in Cd and Cd[k]!=v: fails.append(f"{k}={Cd[k]} but recomputed {v}")
+    if "declared_exclusion_count" in Xd and Xd["declared_exclusion_count"]!=exc: fails.append(f"declared_exclusion_count={Xd['declared_exclusion_count']} but recomputed {exc}")
     for x in fails: print("FAIL:",x)
-    print(f"candidates={len(cids)} included={inc} excluded={exc} reconciled={'YES' if not fails and inc+exc==len(cids) else 'NO'}")
+    print(f"declared: candidates={Cd.get('declared_candidate_count')} included={Cd.get('declared_included_count')} excluded={Cd.get('declared_excluded_count')} exclusions={Xd.get('declared_exclusion_count')}")
+    print(f"recomputed: candidates={len(cids)} included={inc} excluded={exc} reconciled={'YES' if not fails and inc+exc==len(cids) else 'NO'}")
     print("C1_DENOMINATOR_PRINTED=" + ("PASS" if not fails and inc+exc==len(cids) else "FAIL")); return 0 if not fails and inc+exc==len(cids) else 1
 
 def cmd_merge(a,b,out):
