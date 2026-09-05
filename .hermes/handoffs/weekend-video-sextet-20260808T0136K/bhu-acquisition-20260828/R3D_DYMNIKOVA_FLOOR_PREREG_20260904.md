@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 22 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 23 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -220,7 +220,11 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    stated inputs**, file here, and **reproduce the contradiction.**
 5. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
    frozen manifest of §2a, or a required source-dependent proposition is `UNRESOLVED`, or a required bounded
-   procedure remains undecidable after its specified fallback.** The study **waits**; this is not a
+   procedure remains undecidable after its specified fallback, **or a terminal seat split under §9 that no
+   adjudication resolves to one declared class**.** *(§9 already commands class 5 on a three-way or undecidable
+   split among control-clean reports; the enumeration did not describe that state, so the filed class's own
+   definition was false of the run — the study would have reported "source blocked" when no source was blocked.
+   This appends the state the routing already sends here; it does not change where anything routes.)* The study **waits**; this is not a
    scientific verdict and must never be reported as one. **This class exists because the gate found §7's
    "reports BLOCKED if not" had no class behind it, so the run would have stalled.**
 6. **R3D_NO_CLASS** — **only after ruling out `DYM_SOURCE_BLOCKED`:** if **no** evidence is unread or unresolved
@@ -279,8 +283,11 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 - **C3 — deletion probe, K6's corrected form:** delete the **source-pinned field equations**; if a unique floor
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
-  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, invoked as
-  `python3 r3d_c3_deletion_probe.py relations.json`** — the JSON file `relations.json` carries `target`, `symbols`, the §2b `constants`
+  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script at the absolute path
+  `.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py`
+  relative to the repository root — a seat must resolve it there, not in its own working directory — and the seat
+  writes `relations.json` in its own working directory, invoking
+  `python3 <that absolute path> relations.json`** — the JSON file `relations.json` carries `target`, `symbols`, the §2b `constants`
   list, and one record per relation with `id`, `origin` (`SOURCE_PINNED` or `INJECTED`) and `expr`. It prints the
   retained ids, the deleted ids, the injected relations, and the solve result with and without the pinned
   equations, exiting **0 on PASS, 1 on FAIL, 2 on NOT_RUN**. **A floor is DETERMINATE when its free symbols all lie
@@ -1284,4 +1291,25 @@ of the escalation; it does not transfer the authority. **Options and costs are u
 
 **R3D is NOT frozen and NOT run. V22 requires its own C0 and its own two-seat gate.**
 
-R3D_PREREG_V22_READY_FOR_REEXHIBITION
+## 8o. V23 — fifth consecutive clear; two substantive findings DEMONSTRATED, one cosmetic DECLINED, one still escalated
+
+**Both V22 seats `PREREG_SOUND_WITH_REPAIRS` on `b76df473…`, hash-verified after exit; C0 passed on V22
+independently.** kimi found **five of seven sections SOUND**; codex found classes, circularity, the re-run guard
+and stall **SOUND**, and both agree the falsifier reaches `FAIL` in 4 of 6 classes with condition 1 honestly
+`ENTAILED`.
+
+| finding | seat | classification | disposition |
+|---|---|---|---|
+| **C3's probe path is relative** — a seat resolving `r3d_c3_deletion_probe.py` from its own working directory cannot find it | codex | **SUBSTANTIVE**, criterion (2) — *demonstrated*: run from another cwd, the command fails with `can't open file … No such file or directory`, so **C3 cannot be executed by a conforming seat** | **REPAIRED** — absolute path from the repository root |
+| **class 5's definition is false of a state §9 already files there** — a three-way or undecidable split among *control-clean* reports is none of the four conditions class 5 enumerates | kimi 7a | **SUBSTANTIVE**, criterion (4) — the study would report *"source blocked"* when **no source is blocked**, misstating why it stopped | **REPAIRED** — the enumeration now covers the state its own routing sends here; **no routing changed** |
+| §0's motivational line *"the source never supplies"* is an absence claim | kimi 6b | **COSMETIC** — §0 is non-operative motivation, is **redacted from every seat packet**, and governs no class, control, reachability, conclusion or value | **DECLINED, knowingly.** Recorded here rather than repaired, per the criterion. kimi rates it minor and I agree; it is preserved as a finding, not silently dropped. |
+| the tokens `DYM_NO_SIZE_MASS_RELATION` / `DYM_NO_POSITIVE_FLOOR` assert absence | **codex and kimi, again** | **SUBSTANTIVE**, criterion (4) | **ESCALATED — authority, not merit.** Three independent seat-findings now; the weight rises, the authority does not move. |
+
+**On the boundary I am drawing for kimi 7a, since it touches a class definition:** §9 *already* commands class 5 on
+that split. Appending the state to class 5's enumeration makes the **definition true of the routing that exists**;
+it does **not** change which states route where. Retiring, adding or renaming a class would be Duho's — **making a
+class's text describe the runs it already receives is repair.**
+
+**V22 is therefore NOT final.** V23 requires its own C0 and its own two-seat gate.
+
+R3D_PREREG_V23_READY_FOR_REEXHIBITION
