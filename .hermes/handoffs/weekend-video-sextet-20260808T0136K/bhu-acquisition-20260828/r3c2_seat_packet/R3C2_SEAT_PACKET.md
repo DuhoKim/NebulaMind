@@ -6,14 +6,11 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `47c55a74af9520586af75e31d408c969a0e81f831c94f8eac59b59ead0a91381` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `fe194fb4aee7603dbeecbfeda62dc8507aba2a994e3b9a206c8089490700e1c9` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
-For every quantitative claim in the corpus, **two questions from one pass: (i) does the paper's own number follow
-from the paper's own recipe applied to the inputs it states; and (ii) what does that
-number rest on — derived, standard or measured inputs only, or a chosen, fitted, imported or undeclared one?** The first is the
-reproduction verdict; the second is the ledger's `rests_on` field. **The reproduction verdict and the provenance fields are recorded separately.**
+For every quantitative claim in the corpus, **does the paper's own number follow from the paper's own recipe applied to the inputs it states **The reproduction verdict and the provenance fields are recorded separately.**
 
 **Operational definition, so the enumeration is not a judgement:** a *quantitative claim* is a passage in a pinned
 source that **prints a numeral the paper asserts as a result of its own** — with units, or dimensionless and stated
@@ -42,9 +39,8 @@ and are outside the census, visibly.**
    `STANDARD`; otherwise `PRINTED` — the two routes are outcome-identical, and this rule keeps both seats on the same
    one.** Record its `origin` with the evidence C3 requires.
 4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
-   i.e. every ledger record with status `PRINTED` or `STANDARD`.** Provenance is recorded under C3 (`origin`,
-   `derived_from`, `root_origins`).
-5. **Record the outcome**, per claim, as one of §3, **and let the script record the claim's `rests_on`** from the ledger.
+   i.e. every ledger record with status `PRINTED` or `STANDARD`.** Provenance is recorded under C3 (`origin`, `derived_from`).
+5. **Record the outcome**, per claim, as one of §3.
 
 **A value the paper does not print but traces to a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md` is
 classified `PRINTED` from that source, with `origin` `IMPORTED`, `origin_evidence` `ORIG_CITATION` cited to the named
@@ -56,25 +52,24 @@ Encountering one ends that claim's attempt.
 ## 3. Per-claim outcomes — declared now
 
 
-**One pass, two tallies.** The reproduction verdict answers *"does the paper's arithmetic work from what it states?"*
-The ledger answers *"what did it rest on?"* So:
+
 
 > **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
-> is cited under C3, independently by both seats; `root_origins` and the per-claim summary field **`rests_on`** are
-> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `bb5f1fc578fa79f09880a609f71b4ae81eec2f8bfd9fae9ec661d4996af9efd4`), with the full
-> root-origin set printed beside it. **No seat writes `root_origins` or `rests_on`; the script rejects a ledger that
-> arrives with either set.**
+> is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
+> `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `3519ca617434ddca222c0a85e8a5630f30710b8a9c7d74d79bfc4fa56973b959`, pinned
+> beside the packet in `R3C2_SEAT_PACKET.sha256`; the seat runs its `census` and `validate` subcommands only.**
+
 
 
 - **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, **from the paper's own recipe
   applied to the inputs it states** (`PRINTED` or `STANDARD`). **Report both numbers.** **Where the paper states no
   precision for the claim, the printed precision is the claim's stated precision: the reproduced value must round to
-  the printed numeral at that precision.** The claim's `rests_on` is reported beside it. 
+  the printed numeral at that precision.** 
 
 - **`REPRO_FAILED`** — the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the
-  paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."** `rests_on`
-  is reported beside it.
+  paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."**
 - **`REPRO_BLOCKED`** — an input whose value the claiming paper does not print, and for which the claiming paper
   **names a source (a citation)** that either **is not an enumerable text pinned in `R3C2_CORPUS_MANIFEST.md`** or **is
   an enumerable pinned text at whose cited line the value does not machine-match**; in the first case whether that
@@ -88,15 +83,13 @@ The ledger answers *"what did it rest on?"* So:
   computational procedure that could produce it**, so there is nothing to attempt. Name the passage. 
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper — **neither printed nor traced to
   any named source** — so the attempt stops there. **Name the input.**  Distinct from a claim whose inputs the paper DOES state, chosen or not — that
-  claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED` with its `rests_on`.
+  claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED`.
 **Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
 order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `REPRO_NOT_EVALUABLE`, then the
 **arithmetic group**. 
 
 **The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
-`REPRO_EXACT` and `REPRO_FAILED`**. **`rests_on` is computed and reported for every included claim that has at least one
-ledger record, whatever its outcome; a claim with no ledger record carries `rests_on` `NOT_COMPUTED`, and the `rests_on`
-tally reports a `NOT_COMPUTED` row.**
+`REPRO_EXACT` and `REPRO_FAILED`**.
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
@@ -108,7 +101,7 @@ is hidden by being excluded.
 ## 4. Study-level outcomes
 
 1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3.**
-   Report the full tally with its denominator, **and the `rests_on` tally beside it — two tallies from one pass.**
+   Report the full tally with its denominator
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
    **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
@@ -149,14 +142,16 @@ is hidden by being excluded.
 
   
 
-- **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and attempts made,
-  all printed before any tally. 
+- **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and the attempts
+  made, all printed before any tally. 
   **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
-  candidates: [...]}` and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print
+  declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
+  on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print
   those four declared counts verbatim from the files, then run
   `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
   script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate,
-  and that each declared count equals the count recomputed from the rows; its stdout prints both the declared and the
+  that every included candidate carries a permitted `attempts` value, and that each of the four declared counts equals
+  the count recomputed from the rows; its stdout prints both the declared and the
   recomputed counts. Print its command, stdout and exit status.** The candidate and exclusion ledgers use the script's candidate schema: each candidate carries
   `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every exclusion row names a candidate and a `kind`;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
@@ -166,65 +161,52 @@ is hidden by being excluded.
   every angle-bracket placeholder replaced by the actual in-scope path
   (exit 0 = PASS; every failure printed). `C2_INPUT_LEDGER=PASS|FAIL|NOT_RUN`.
 - **C3 — no substitution, machine-checked.** The input ledger is a **JSON file**, one record per input:
-  `{claim_id, input_id, symbol, status: PRINTED|STANDARD|ABSENT|BLOCKED, origin: DERIVED|STANDARD|MEASURED|CHOSEN|FITTED|IMPORTED|UNDECLARED,
+  `{claim_id, input_id, symbol, status: PRINTED|STANDARD|ABSENT|BLOCKED, origin: CHOSEN|DERIVED|FITTED|IMPORTED|MEASURED|STANDARD|UNDECLARED,
   origin_evidence: {reason_code, source_file, source_line, verbatim}, origin_search: {query, files, matches} (required
   when reason_code is ORIG_SILENT), derived_from: [input_id…], value, source_file, source_line}`. **The seat-authored
-  ledger MUST omit `root_origins`, `rests_on`, `origin_alt` and `origin_evidence_alt`; `validate` fails a ledger that
-  carries any of them. The script adds `root_origins` and per-claim `rests_on` on `compute`; the merge step adds
-  `origin_alt` and `origin_evidence_alt`. An input that files `REPRO_BLOCKED` under §3 is recorded with status `BLOCKED`,
+  ledger carries only the schema fields; `validate` fails a ledger that carries any other field.** An input that files `REPRO_BLOCKED` under §3 is recorded with status `BLOCKED`,
   `origin` `IMPORTED`, `ORIG_CITATION` evidence cited to the claiming paper's naming sentence, and no value; the arithmetic
   never consumes it.** 
 
   **`origin` must be cited, not asserted.** Every record carries `origin_evidence` with a reason code —
-  `ORIG_EQUATION`→`DERIVED`, `ORIG_CONSTANT`→`STANDARD`, `ORIG_MEASURED`→`MEASURED` (a quantity the paper reports as
-  its own measurement, with the measurement described), `ORIG_CHOICE_STATED`→`CHOSEN`, `ORIG_FIT_STATED`→`FITTED`,
-  `ORIG_CITATION`→`IMPORTED`, `ORIG_SILENT`→`UNDECLARED` — and, except for `ORIG_SILENT`, a **verbatim quotation
+  `ORIG_CHOICE_STATED`→`CHOSEN`, `ORIG_EQUATION`→`DERIVED`, `ORIG_FIT_STATED`→`FITTED`, `ORIG_CITATION`→`IMPORTED`,
+  `ORIG_MEASURED`→`MEASURED` (a quantity the paper reports as its own measurement, with the measurement described),
+  `ORIG_CONSTANT`→`STANDARD`, `ORIG_SILENT`→`UNDECLARED` (listed alphabetically by origin; the list carries no order of its own) — and, except for `ORIG_SILENT`, a **verbatim quotation
   machine-matched to the cited line**. **Every input's `origin` is classified independently by both seats.** **Where
   more than one reason code matches the cited sentence, file the first in this order: `ORIG_CITATION`,
   `ORIG_FIT_STATED`, `ORIG_CHOICE_STATED`, `ORIG_MEASURED`, `ORIG_EQUATION`, `ORIG_CONSTANT`, `ORIG_SILENT` — a sentence
-  that names an external source for the value is a citation whatever else it says.**  **`UNDECLARED` is the default, not the residue**: a record leaves it only by
+  that names an external source for the value is a citation whatever else it says — the order is a tie-break by the
+  specificity of the evidence, not a ranking of the values.**  **`UNDECLARED` is the default, not the residue**: a record leaves it only by
   producing that text, and an `ORIG_SILENT` record prints the search the seat ran.
 
-  **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
-  ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
-  A chain's root origins are computed from every step, never from its last step alone. **The script is `r3c2_ledger_tools.py`,
-  committed beside this document, sha256 `bb5f1fc578fa79f09880a609f71b4ae81eec2f8bfd9fae9ec661d4996af9efd4`; the seat runs
-  `/usr/bin/python3 r3c2_ledger_tools.py compute <ledger.json> <out.json>` and prints its stdout and exit status. It
-  computes each claim's `rests_on` from its `root_origins` and prints the root-origin set beside it; it REJECTS (exit 2) a
-  ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names
-  no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; the two seats'
-  independently validated ledgers are merged by `/usr/bin/python3 r3c2_ledger_tools.py merge <ledger_seatA.json>
-  <ledger_seatB.json> <merged.json>` (exit 1 if their `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the
-  paper's stated equation once; an input-set difference surviving that reconciliation stops the study under
-  `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**); where the two `origin` classifications
-  differ the merged record carries `origin_alt` and `origin_evidence_alt`, `compute` reads the merged ledger, and the
-  claim's `rests_on` is computed under both and marked `DISPUTED`.** A `rests_on` value present in the seat-authored input ledger fails this control; after a successful `compute` run,
-  a `rests_on` value absent from the script-produced output ledger fails this control. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
+  **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
+  that names no record, a cycle, and a `DERIVED` record with no `derived_from`. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that no `ABSENT` or `BLOCKED` record carries a value, that **each `PRINTED` value machine-matches the
   text at its cited source line and each verbatim quotation is a substring of that line**, and that **each `STANDARD`
   value is one of a closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family;
   **completeness of a claim's input list against the paper's equation is seat-authored and audited under C6, not
   machine-checked**:
 
-  | symbol | value | uncertainty |
-  |---|---|---|
-  | `G` | `6.67430e-11` m³ kg⁻¹ s⁻² | CODATA 2018 |
-  | `c` | `2.99792458e8` m s⁻¹ | exact, by definition |
-  | `ħ` | `1.054571817e-34` J s | exact, from the defined `h` |
-  | `k_B` | `1.380649e-23` J K⁻¹ | exact, by definition |
-  | `H₀` | `67.36` km s⁻¹ Mpc⁻¹ | `± 0.54` |
-  | `Ω_m` | `0.3153` | `± 0.0073` |
-  | `Ω_Λ` | `0.6847` | `± 0.0073` |
-  | `Ω_b h²` | `0.02237` | `± 0.00015` |
-  | `Ω_c h²` | `0.1200` | `± 0.0012` |
-  | `n_s` | `0.9649` | `± 0.0042` |
-  | `σ₈` | `0.8111` | `± 0.0060` |
-  | `τ` | `0.0544` | `± 0.0073` |
-  | `ln(10¹⁰ A_s)` | `3.044` | `± 0.014` |
-  | age | `13.797` Gyr | `± 0.023` |
+  | symbol | ledger key | value | uncertainty |
+  |---|---|---|---|
+  | `G` | `G` | `6.67430e-11` m³ kg⁻¹ s⁻² | CODATA 2018 |
+  | `c` | `c` | `2.99792458e8` m s⁻¹ | exact, by definition |
+  | `ħ` | `hbar` | `1.054571817e-34` J s | exact, from the defined `h` |
+  | `k_B` | `k_B` | `1.380649e-23` J K⁻¹ | exact, by definition |
+  | `H₀` | `H0` | `67.36` km s⁻¹ Mpc⁻¹ | `± 0.54` |
+  | `Ω_m` | `Omega_m` | `0.3153` | `± 0.0073` |
+  | `Ω_Λ` | `Omega_L` | `0.6847` | `± 0.0073` |
+  | `Ω_b h²` | `Omega_b_h2` | `0.02237` | `± 0.00015` |
+  | `Ω_c h²` | `Omega_c_h2` | `0.1200` | `± 0.0012` |
+  | `n_s` | `n_s` | `0.9649` | `± 0.0042` |
+  | `σ₈` | `sigma8` | `0.8111` | `± 0.0060` |
+  | `τ` | `tau` | `0.0544` | `± 0.0073` |
+  | `ln(10¹⁰ A_s)` | `ln1e10As` | `3.044` | `± 0.014` |
+  | age | `age_Gyr` | `13.797` Gyr | `± 0.023` |
 
   The cosmological rows are the Planck 2018 TT,TE,EE+lowE+lensing baseline. **A value not in this table is not
-  `STANDARD`**, whatever its provenance. 
+  `STANDARD`**, whatever its provenance. **A `STANDARD` record carries `symbol` = the ledger key and `value` = the exact
+  string printed in the value column; `validate` compares strings.** 
   `C3_NO_SUBSTITUTION=PASS|FAIL|NOT_RUN`.
 - 
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
@@ -241,7 +223,7 @@ is hidden by being excluded.
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
   list is complete.** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
-  exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources, and recomputing `rests_on` by the pinned script**: **(i) every claim in the arithmetic
+  exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
   group** — no sampling discount — and **(ii) a sample of `min(max(1, ceil(0.20 × N)), R)` of the remaining included
   claims**, `N` being the sealed denominator and `R` the number of remaining claims (when `R` is zero the sample is empty
   and every included claim is already audited under (i)), drawn by `random.Random(seed_int).sample(remaining_ids, k)`
@@ -257,8 +239,7 @@ is hidden by being excluded.
   An input on which the two classifications disagree is filed `ORIGIN_DISPUTED` and reported with both seats'
   classification and both quotations; it is **not** reconciled. Above 10% of included claims,
   `CENSUS_ORIGIN_DISPUTED`. Any outcome the audit cannot reproduce, or any ledger incompleteness, files
-  `CENSUS_AUDIT_FAILED`. **A claim whose root-origin set contains an `ORIGIN_DISPUTED` input carries `rests_on` computed
-  under both classifications, printed as a pair and marked `DISPUTED`; the `rests_on` tally reports a `DISPUTED` row.**
+  `CENSUS_AUDIT_FAILED`.
   **Classes are cited by name, never by number**. `C6_AUDIT_SAMPLE=PASS|FAIL|NOT_RUN`.
 
 Controls in an unreached limb are `NOT_RUN`, never passes.

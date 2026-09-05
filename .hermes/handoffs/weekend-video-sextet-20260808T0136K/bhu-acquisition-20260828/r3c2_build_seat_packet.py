@@ -37,7 +37,7 @@ REQUIRED = [
     "C5_HARNESS_PINNED", "C5B_NO_CROSS_LANE", "C6_AUDIT_SAMPLE",
     "REPRO_EXACT", "REPRO_FAILED", "REPRO_BLOCKED", "REPRO_NOT_EVALUABLE",
     "REPRO_INPUT_ABSENT", "REPRO_NO_DERIVATION_STATED",
-    "origin_evidence", "root_origins", "derived_from", "rests_on",
+    "origin_evidence", "derived_from", "origin_search",
     "Print every path you\n  open",
 ]
 
@@ -51,6 +51,8 @@ FORBIDDEN = [
     "pattern-blind", "removed **deliberately",
     # V12 (kimi V11 R2/R4): the bare word, the ruling residue, the version residue, the valence phrase
     "pattern", "ruling", "principal", "V10", "V11", "look clean",
+    # V17 (the principal: hide the comparison): the comparison vocabulary
+    "rests_on", "root_origins", "two tallies", "tallies", "rest on", "severity", "USES_", "r3c2_lane_tools", "DISPUTED pair", "what it is for",
 ]
 BRIEF = pathlib.Path("r3c2_seat_packet/SEAT_BRIEF.md")   # V12: the brief rides beside the packet and is asserted too
 
