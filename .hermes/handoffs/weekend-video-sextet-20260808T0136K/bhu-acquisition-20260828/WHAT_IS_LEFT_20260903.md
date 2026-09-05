@@ -561,3 +561,26 @@ row-23 extension. Round-3 clusters 3–11 scored in `TOPIC_ROUND3_RANKED_PACKET_
 NS-mass watch armed, next **2026-09-08 10:00 KST**. b68 tripwire 3/3 PASS. DESI curvature watch is Hwao's.
 
 **No tier, warrant token, standing or stamp has moved. Paper HOLD; nothing outward. R3C2 and R3D are NOT run.**
+
+## Round 3, closed on the design side: R3D V30 IS FINAL; R3C2 V9 HELD on §3 (2026-09-05 12:26 KST)
+
+**R3D — FINAL, the design of record.** `R3D_DYMNIKOVA_FLOOR_PREREG_20260904.md` V30, gated bytes
+`a99aad15f168290f…`, declaration-carrying file `56ea050614ed6637…` (both in `R3D_DESIGN_OF_RECORD.sha256`).
+C0 reachability PASS on V30; codex `SOUND_WITH_REPAIRS` (one cosmetic, knowingly not repaired; tokens escalated);
+kimi `SOUND` (zero repairs; C3's literal command executed from the lane directory and from `/`, byte-identical;
+every frozen value reproduced by arithmetic). Counts from disk: 19 C0 passes, 10 two-seat clears, 30 versions.
+The stale note above ("R3D perhaps one round from sound", V8) is superseded by this one. **FINAL ≠ RUN: no limb,
+no seat, no derivation, no census until Duho's word.**
+
+**R3C2 — V9 `b41136025d1a567f…`, HELD on §3** (the held clause is §3's admissibility definition — earlier notes
+said "§1"; corrected). Options a/b/c/d are with Duho via Blanc. Nothing to repair until he rules; the design gate
+re-runs after any repair.
+
+**Open rulings, his alone (also listed in OPEN_QUESTIONS_FOR_DUHO.md):**
+1. R3C2 §3 — a/b/c/d.
+2. R3D — rename `DYM_NO_SIZE_MASS_RELATION` / `DYM_NO_POSITIVE_FLOOR` to the `…_UNREPRODUCED` forms (eleven
+   independent seat findings; a rename is a redefinition, beyond the lane).
+3. R3D — retire class 3 into class 4 with a reason field (structural alternative flagged at V17).
+4. Whether R3D runs; whether R3C2 runs after its ruling.
+
+**No tier, warrant token, standing or stamp has moved. Paper HOLD; nothing outward.**

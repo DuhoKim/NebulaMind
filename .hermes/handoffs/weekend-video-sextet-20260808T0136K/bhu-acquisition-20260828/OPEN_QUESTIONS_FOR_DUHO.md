@@ -2454,3 +2454,23 @@ is not true now. Recorded to stop a stale "go read Farhi & Guth" pointer from re
 
 
 </details>
+
+---
+
+## Round 3 rulings waiting on you (2026-09-05 12:26 KST) — plain words, real choices
+
+**Q-R3C2.** What should the reproduction census count as an admissible reproduction? The four options a/b/c/d are
+in Blanc's hands (`_tmp_blanc_relay_r3c2_v5.txt`). The clause is marked HELD in §3 of
+`R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md` (V9). Choose one letter, or say "none, redraft".
+
+**Q-R3D-1.** Two of R3D's outcome names say "NO" (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`) while their
+definitions say "unreproduced from the stated inputs". Eleven seat verdicts asked for the rename; it is a
+redefinition, so it is yours. Options: **(a) rename** to `DYM_SIZE_MASS_RELATION_UNREPRODUCED` /
+`DYM_POSITIVE_FLOOR_UNREPRODUCED` (a versioned amendment with its own C0 + gate); **(b) keep** the names, the
+definitions govern.
+
+**Q-R3D-2.** Fold class 3 (no relation reproduced at all) into class 4 (no positive floor) with a reason field?
+Options: **(a) fold**, **(b) keep** the two classes as the design of record has them.
+
+**Q-RUN.** R3D's design is closed (V30 FINAL). Does it **run**? Options: **(a) run now** as designed, **(b) run
+after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
