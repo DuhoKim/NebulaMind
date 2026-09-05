@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 21 (see §10; §10.15 — Duho's ruling "1a rename" applied: `CENSUS_OUTCOME_DISPUTED` added, `REPRO_EXACT` renamed; the four small V20 items and the zero-denominator clause applied as lane repairs; no ruling pending — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 22 (see §10; §10.16 — V21 gate: kimi SOUND, codex SOUND_WITH_REPAIRS (one cosmetic, applied here); no ruling pending; SIGNABLE if V22's C0 and gate hold — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -176,7 +176,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
    denominator of zero files `CENSUS_PARTIAL` with the empty enumeration named; no census is complete over nothing.**
    Report the full tally with its denominator<!--SEAT-REDACT-->, **and the `rests_on` tally beside it — two tallies from one pass.**<!--/SEAT-REDACT-->
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
-   **at least one included claim carries a non-arithmetic outcome**
+   **at least one included claim carries a non-arithmetic outcome, or the denominator is zero**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** <!--SEAT-REDACT-->*(Previously "some claims unresolved"
    was undefined, and a blocked claim satisfied both classes.)*<!--/SEAT-REDACT-->
@@ -533,7 +533,8 @@ Two defects were found in the previous table and are corrected here, rather than
 | V18 | `e67339905813549f…` | C0 two seats AGREE on V17; `R3C2_GATE_V17_codex_20260905.md` (UNSOUND, LEAK=NONE), `R3C2_GATE_V17_kimi_20260905.md` (SOUND_WITH_REPAIRS, leak content-level only) | both lists applied; class addition + `REPRO_EXACT` rename escalated (§10.12) | C0 by two seats, then gate — pending |
 | V19 | `a0cf4d5cae4a2b74…` | C0 two seats AGREE on V18; `R3C2_GATE_V18_codex_20260905.md` (UNSOUND on the two escalated items only; LEAK=NONE), `R3C2_GATE_V18_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE) | seven wording repairs applied; class question (+ zero-denominator clause) and rename remain escalated (§10.13) | C0 by two seats, then gate — pending |
 | V20 | `e8ba4a7438d61f02…` | C0 two seats AGREE on V19; `R3C2_GATE_V19_codex_20260905.md` (UNSOUND: the escalated items + 2.1 final command + 7.1 dispatch list; LEAK=NONE), `R3C2_GATE_V19_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE) | seven repairs applied incl. `PARENTS_DISPUTED` in the lane tool; escalated items unchanged (§10.14) | C0 by two seats, then gate — pending; a further round of NEW non-escalated findings stops the lane and files a diagnosis |
-| V21 | *this version* | C0 two seats AGREE on V20; `R3C2_GATE_V20_codex_20260905.md` (UNSOUND on the escalated items + 2 small; LEAK=NONE), `R3C2_GATE_V20_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE; ORIGIN_PURPOSE=CANNOT_STATE); lane STOPPED by its cap; Duho ruled "1a rename" 22:53 KST | ruling applied + four small repairs + zero-denominator clause (§10.15) | C0 by two seats, then gate — then freezable |
+| V21 | `b146c8c45ad2dd9a…` | C0 two seats AGREE on V20; `R3C2_GATE_V20_codex_20260905.md` (UNSOUND on the escalated items + 2 small; LEAK=NONE), `R3C2_GATE_V20_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE; ORIGIN_PURPOSE=CANNOT_STATE); lane STOPPED by its cap; Duho ruled "1a rename" 22:53 KST | ruling applied + four small repairs + zero-denominator clause (§10.15) | C0 by two seats, then gate — then freezable |
+| V22 | *this version* | C0 two seats AGREE on V21 (both exhibit `CENSUS_OUTCOME_DISPUTED`); `R3C2_GATE_V21_codex_20260905.md` (SOUND_WITH_REPAIRS: one cosmetic; LEAK=NONE; rename verified, 0 governing old-token references), `R3C2_GATE_V21_kimi_20260905.md` (SOUND; LEAK=NONE) | the one cosmetic applied: `CENSUS_PARTIAL`'s definition names the zero-denominator case (§10.16) | C0 by two seats, then gate — then SIGNABLE for Duho |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -996,3 +997,14 @@ The builder's required-content list carried the old token and was updated with t
 
 **Scope guard honoured:** class added and name changed exactly as presented; nothing wider. NOT FROZEN, NOT RUN — C0 by two
 seats and one two-seat gate follow; R3C2 does not run without Duho's separate word. Nothing outward. Paper HOLD.
+
+## 10.16 V22 — V21 gate: the first clean round; one cosmetic applied (2026-09-05 23:32 KST)
+
+V21 gate: **kimi `PREREG_SOUND`** (no repairs; LEAK=NONE; CONSEQUENCE_VISIBLE=NO; origin purpose = a cross-reader integrity check the
+arithmetic never consumes). **codex `PREREG_SOUND_WITH_REPAIRS`** (LEAK=NONE; CONSEQUENCE_VISIBLE=NO; the rename verified by its own
+grep and by `R3C2_V21_RENAME_AUDIT_20260905.md`: zero governing references to the old token) with one cosmetic inconsistency:
+`CENSUS_PARTIAL`'s definition required "at least one included claim carries a non-arithmetic outcome", which a zero denominator
+cannot satisfy although the zero-denominator clause orders `CENSUS_PARTIAL`. **Applied:** the definition now reads "…, or the
+denominator is zero". Nothing else changed. Both escalated items are ruled and applied (§10.15). The cap of §10.14 is not
+triggered (cosmetic only). NOT FROZEN, NOT RUN: C0 by two seats and one two-seat gate on V22; if both hold, V22 is SIGNABLE and
+the freeze is Duho's chat signature on its digest. Running the census remains his separate word.
