@@ -68,3 +68,21 @@ no seat, no derivation, no census.** A final version is a finished *design*, wai
 substantive/cosmetic line is right but needs a definition that a later reader — or a seat — can apply without me,
 otherwise "substantive" becomes whatever the author wants at the time, which is the failure mode this lane exists
 to catch.
+
+## Amendment, declared 11:13 KST while kimi's V28 gate was still running — how an ESCALATED finding counts
+
+**The criterion above did not say how to treat a substantive finding that I am not permitted to repair.** The
+`DYM_NO_*` token rename is exactly that: substantive under criterion (4), found independently by seats eight times,
+and **beyond my authority** because renaming an outcome class is Duho's ruling.
+
+**Declared reading, fixed now so it cannot be tuned to the V28 result:**
+
+- An escalated-substantive finding **does not block finality of the design I can author.** It cannot cause a new
+  version, because no version I write may act on it.
+- It is **carried as an OPEN RULING annotated on the final version**, with its hash. The final design is final
+  *subject to* that ruling; if Duho rules "rename", the rename is applied as an amendment to the named final
+  version — a versioned change with its own C0 and gate — not as a reopening of the design.
+- **A seat re-raising it in a later round does not reset anything.** It is already on his desk.
+
+**Why declare this before the verdict rather than after:** if I waited for kimi's V28 and it came back clean, I
+would be deciding under the pressure of a finish line. Declared now, the rule binds whichever way kimi lands.
