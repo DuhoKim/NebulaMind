@@ -6,14 +6,14 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `f997fce89cce1749648e9751cb24ff40c4e78f1cd7ced92067d3098c8638877d` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `550555128cf7d103352ae6b04941c9890abd731ef969714fdd209f50b1cf3a1e` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
 For every quantitative claim in the corpus, **two questions from one pass: (i) does the paper's own number follow
-from the paper's own recipe applied to the inputs it states — chosen constants included; and (ii) what does that
+from the paper's own recipe applied to the inputs it states; and (ii) what does that
 number rest on — derived, standard or measured inputs only, or a chosen, fitted, imported or undeclared one?** The first is the
-reproduction verdict; the second is the ledger's `rests_on` field. **Neither contaminates the other.**
+reproduction verdict; the second is the ledger's `rests_on` field. **The reproduction verdict and the provenance fields are recorded separately.**
 
 **Operational definition, so the enumeration is not a judgement:** a *quantitative claim* is a passage in a pinned
 source that **prints a numeral the paper asserts as a result of its own** — with units, or dimensionless and stated
@@ -42,9 +42,8 @@ and are outside the census, visibly.**
    `STANDARD`; otherwise `PRINTED` — the two routes are outcome-identical, and this rule keeps both seats on the same
    one.** Record its `origin` with the evidence C3 requires.
 4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
-   i.e. every ledger record with status `PRINTED` or `STANDARD`, chosen and fitted values included.** Provenance is
-   **recorded** (C3's `origin`, `derived_from`, `root_origins`), never filtered on. *(A paper can direct you to use its own chosen constant, and following that instruction is reproducing the
-   paper.)*
+   i.e. every ledger record with status `PRINTED` or `STANDARD`.** Provenance is recorded under C3 (`origin`,
+   `derived_from`, `root_origins`).
 5. **Record the outcome**, per claim, as one of §3, **and let the script record the claim's `rests_on`** from the ledger.
 
 **A value the paper does not print but traces to a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md` is
@@ -57,15 +56,13 @@ Encountering one ends that claim's attempt.
 ## 3. Per-claim outcomes — declared now
 
 
-**One pass, two tallies.** The reproduction verdict answers *"does the paper's
-arithmetic work from what it states?"* The ledger answers *"what did it rest on?"* — a value can be printed in the
-paper and still have been chosen or fitted, and both facts
-survive: the arithmetic reproduces AND the ledger says what it rested on. So:
+**One pass, two tallies.** The reproduction verdict answers *"does the paper's arithmetic work from what it states?"*
+The ledger answers *"what did it rest on?"* So:
 
 > **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
-> its `origin`) or `STANDARD` (on C3's closed list). **PROVENANCE IS RECORDED, NOT FILTERED**: each record's `origin`
+> its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats; `root_origins` and the per-claim summary field **`rests_on`** are
-> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `e7f053b9b98b2ba55639104b151ce4c09f174dcde46a1ead367377429c71f394`), with the full
+> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `bb5f1fc578fa79f09880a609f71b4ae81eec2f8bfd9fae9ec661d4996af9efd4`), with the full
 > root-origin set printed beside it. **No seat writes `root_origins` or `rests_on`; the script rejects a ledger that
 > arrives with either set.**
 
@@ -121,14 +118,14 @@ is hidden by being excluded.
 4. **`R3C2_NO_CLASS`** — a control among C0 through C5b fails **in every seat that attempted it** after two attempts;
    a packet or seat-isolation failure before dispatch files this class. **A C6 audit failure or a
    seal-receipt failure files `CENSUS_AUDIT_FAILED`, not this class.**
-5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts. The census
-   does not proceed; the disputed candidates are listed. *(Added because the enumeration stop had no class.)*
+5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts, **or the two
+   seats' input lists for the agreed claims disagree after the one C3 reconciliation**. The census does not proceed; the
+   disputed candidates or inputs are listed. 
 6. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
    **more than 10% of included claims**. The census does not proceed; every disputed input is listed with both
    seats' classification and both quotations. 
 7. **`CENSUS_CONTROL_SPLIT`** — a control fails in one seat and passes in another after two attempts. Report both
-   seats' outputs and stop; **do not adopt the passing seat's result.** *(Added because this reachable state landed in
-   no class.)* 
+   seats' outputs and stop; **do not adopt the passing seat's result.**  
 
 **Exactly one study-level outcome is filed. Where more than one condition holds, file the first in this order:**
 `R3C2_NO_CLASS`, `CENSUS_CONTROL_SPLIT`, `CENSUS_DENOMINATOR_DISPUTED`, `CENSUS_ORIGIN_DISPUTED`, `CENSUS_AUDIT_FAILED`,
@@ -176,8 +173,7 @@ is hidden by being excluded.
   carries any of them. The script adds `root_origins` and per-claim `rests_on` on `compute`; the merge step adds
   `origin_alt` and `origin_evidence_alt`. An input that files `REPRO_BLOCKED` under §3 is recorded with status `BLOCKED`,
   `origin` `IMPORTED`, `ORIG_CITATION` evidence cited to the claiming paper's naming sentence, and no value; the arithmetic
-  never consumes it.** *(`STANDARD` was missing from the `origin` enumeration while §3 defined
-  admissibility partly by it, so a measured-constant record could not be validly filled in.)*
+  never consumes it.** 
 
   **`origin` must be cited, not asserted.** Every record carries `origin_evidence` with a reason code —
   `ORIG_EQUATION`→`DERIVED`, `ORIG_CONSTANT`→`STANDARD`, `ORIG_MEASURED`→`MEASURED` (a quantity the paper reports as
@@ -192,13 +188,15 @@ is hidden by being excluded.
   **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
   ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
   A chain's root origins are computed from every step, never from its last step alone. **The script is `r3c2_ledger_tools.py`,
-  committed beside this document, sha256 `e7f053b9b98b2ba55639104b151ce4c09f174dcde46a1ead367377429c71f394`; the seat runs
+  committed beside this document, sha256 `bb5f1fc578fa79f09880a609f71b4ae81eec2f8bfd9fae9ec661d4996af9efd4`; the seat runs
   `/usr/bin/python3 r3c2_ledger_tools.py compute <ledger.json> <out.json>` and prints its stdout and exit status. It
   computes each claim's `rests_on` from its `root_origins` and prints the root-origin set beside it; it REJECTS (exit 2) a
   ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names
   no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; the two seats'
   independently validated ledgers are merged by `/usr/bin/python3 r3c2_ledger_tools.py merge <ledger_seatA.json>
-  <ledger_seatB.json> <merged.json>` (exit 1 if their `input_id` sets differ); where the two `origin` classifications
+  <ledger_seatB.json> <merged.json>` (exit 1 if their `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the
+  paper's stated equation once; an input-set difference surviving that reconciliation stops the study under
+  `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**); where the two `origin` classifications
   differ the merged record carries `origin_alt` and `origin_evidence_alt`, `compute` reads the merged ledger, and the
   claim's `rests_on` is computed under both and marked `DISPUTED`.** A `rests_on` value present in the seat-authored input ledger fails this control; after a successful `compute` run,
   a `rests_on` value absent from the script-produced output ledger fails this control. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
@@ -261,7 +259,7 @@ is hidden by being excluded.
   `CENSUS_ORIGIN_DISPUTED`. Any outcome the audit cannot reproduce, or any ledger incompleteness, files
   `CENSUS_AUDIT_FAILED`. **A claim whose root-origin set contains an `ORIGIN_DISPUTED` input carries `rests_on` computed
   under both classifications, printed as a pair and marked `DISPUTED`; the `rests_on` tally reports a `DISPUTED` row.**
-  **Classes are cited by name, never by number** — the numbering has shifted twice. `C6_AUDIT_SAMPLE=PASS|FAIL|NOT_RUN`.
+  **Classes are cited by name, never by number**. `C6_AUDIT_SAMPLE=PASS|FAIL|NOT_RUN`.
 
 Controls in an unreached limb are `NOT_RUN`, never passes.
 
@@ -275,8 +273,10 @@ measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§
 ## 9. Inherited discipline
 
 Live harness (C5); `ACCESS_SHA` proof for any pinned source audited, verified by the lane owner after the run and not
-on the seat's claim; path lists (C5b); 120-second cap on symbolic operations with `SYMBOLIC_TIMEOUT` as a reportable
-outcome; unreached controls `NOT_RUN`. Two independent seats. 
+on the seat's claim; path lists (C5b); every symbolic operation launched through the committed wrapper `r3c2_timeout.py` (sha256
+`fbb9bef7d6622a17b4dc2e856791e3166b60394c187286ea5581b2f39003f331`) as `/usr/bin/python3 r3c2_timeout.py 120.0 -- <command>`, which enforces a 120.0-second wall-clock
+deadline on the monotonic clock, prints the wrapper command, the child's stdout and stderr and its exit status, and on
+the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome; unreached controls `NOT_RUN`. Two independent seats. 
 
 
 

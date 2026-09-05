@@ -16,7 +16,7 @@
       merged ledger. The seat-authored ledger MUST omit root_origins, rests_on, origin_alt, origin_evidence_alt; validate
       fails a ledger carrying a computed field; an ORIG_SILENT record must carry origin_search {query, files, matches}.
   /usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
-      asserts: every record has the schema fields; status in {PRINTED,STANDARD,ABSENT}; origin in
+      asserts: every record has the schema fields; status in {PRINTED,STANDARD,ABSENT,BLOCKED}; origin in
       reason_code/origin pair is one of the allowed pairs;
       origin in {DERIVED,STANDARD,MEASURED,CHOSEN,FITTED,IMPORTED,UNDECLARED}; no ABSENT or BLOCKED record carries a value; a BLOCKED record (traced to a named source, no machine-matchable
       value) carries origin IMPORTED with ORIG_CITATION evidence and is never consumed; every PRINTED record's verbatim quotation is a substring of the cited
