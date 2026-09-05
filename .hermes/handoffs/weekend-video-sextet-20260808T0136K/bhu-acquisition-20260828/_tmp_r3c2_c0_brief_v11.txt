@@ -1,0 +1,43 @@
+You are producing the C0 REACHABILITY EXHIBITION for a pre-registration. You are NOT gating it and
+NOT judging its physics. Read it from disk, in full:
+  R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md
+Do not read or look for any other file in this directory.
+
+The study is a reproduction census: for every quantitative claim in a corpus of papers, does the
+paper's own printed number follow from the inputs it states?
+
+C0 requires: for EVERY per-claim outcome in section 3, and EVERY study-level class in section 4,
+EXHIBIT A CONCRETE INPUT THAT PRODUCES IT -- a specific claim with specific inputs, plus the clause
+path through the document that routes it to that verdict.
+
+Do this for:
+(A) Every per-claim outcome in section 3.
+(B) Every study-level class in section 4.
+(C) Say explicitly, for each, whether it is reachable.
+
+PAY PARTICULAR ATTENTION TO ONE SUSPICION and answer it directly: CENSUS_COMPLETE requires every
+included claim to carry an outcome from the arithmetic group. In a real corpus of many papers, is
+there any input under which CENSUS_COMPLETE can actually be filed -- or does a single blocked,
+absent-input, or no-derivation-stated claim anywhere in the corpus force CENSUS_PARTIAL, making
+CENSUS_COMPLETE unreachable in practice? State your answer as reachable or unreachable and show the
+routing.
+
+NOTE: section 3's definition was settled by a ruling (option (c): one pass, two tallies; REPRO_AFTER_CHOICE
+retired into a script-computed rests_on field). Treat the wording as it stands; there is no held clause.
+
+RULES:
+- A verdict you cannot exhibit is the important result. Mark it UNREACHABLE and quote the clause that
+  blocks every path. Do not invent a path the text does not license.
+- Do not judge whether the design is good. Only whether each declared verdict CAN OCCUR.
+
+OUTPUT:
+Line 1: ACCESS_SHA=d6695c06c78c4735cb155269737175fbe55b7cdff0161cfccd0e85a71b21aca1
+Line 2: C0_REACHABILITY=PASS  (only if every outcome and class is exhibited)
+     or C0_REACHABILITY=FAIL  (if any is UNREACHABLE)
+Then a table: verdict | concrete input | clause path | reachable yes/no.
+Then, for every UNREACHABLE verdict, the blocking clause quoted verbatim.
+Final line: R3C2_C0_EXHIBITION_COMPLETE
+
+THIS VERSION: §3's per-claim outcomes and §4's study-level classes have both changed, and §4 now carries an
+explicit filing precedence. Exhibit against the text as it stands. Note that §1's core definition is marked
+rather than assuming a reading — that dependence is itself a result worth having.
