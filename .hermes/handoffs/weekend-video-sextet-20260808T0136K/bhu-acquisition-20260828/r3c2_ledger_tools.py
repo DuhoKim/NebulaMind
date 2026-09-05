@@ -3,7 +3,7 @@
 
   /usr/bin/python3 r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
       C1: candidates.json = {declared_candidate_count, declared_included_count, declared_excluded_count,
-      declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2}; exclusions.json =
+      declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2} and outcome (a section-3 token or PENDING; `census ... final` rejects PENDING and requires printed_value/reproduced_value on arithmetic outcomes); exclusions.json =
       {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; the declared counts are
       compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
   /usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
@@ -19,6 +19,8 @@
 import json, sys, pathlib
 
 STATUS={"PRINTED","STANDARD","ABSENT","BLOCKED"}
+OUTCOMES={"REPRO_EXACT","REPRO_FAILED","REPRO_BLOCKED","REPRO_INPUT_ABSENT","REPRO_NOT_EVALUABLE","REPRO_NO_DERIVATION_STATED"}
+ARITH={"REPRO_EXACT","REPRO_FAILED"}
 ORIGIN={"CHOSEN","DERIVED","FITTED","IMPORTED","MEASURED","STANDARD","UNDECLARED"}
 PAIRS={"ORIG_EQUATION":"DERIVED","ORIG_CONSTANT":"STANDARD","ORIG_MEASURED":"MEASURED","ORIG_CHOICE_STATED":"CHOSEN","ORIG_FIT_STATED":"FITTED","ORIG_CITATION":"IMPORTED","ORIG_SILENT":"UNDECLARED"}
 # when more than one reason code matches the cited sentence, the first applicable in this order is filed (a sentence
@@ -85,7 +87,7 @@ def cmd_validate(ledger,srcdir):
     for x in fails: print("FAIL:",x)
     print("C3_NO_SUBSTITUTION=" + ("PASS" if not fails else "FAIL")); return 0 if not fails else 1
 
-def cmd_census(candidates,exclusions):
+def cmd_census(candidates,exclusions,final=False):
     """C1: every candidate passage has exactly one disposition (included or excluded with a reason kind); counts recomputed."""
     Cd=json.loads(pathlib.Path(candidates).read_text()); Xd=json.loads(pathlib.Path(exclusions).read_text())
     fails=[]; KINDS={"EQUATION_NUMBER","REFERENCE_NUMBER","PAGE_OR_LINE_NUMBER","DATE","ATTRIBUTED_NOT_DERIVED"}
@@ -103,6 +105,11 @@ def cmd_census(candidates,exclusions):
             if f not in c: fails.append(f"candidate {c.get('candidate_id')}: missing {f}")
         if c.get("included"):
             if "attempts" not in c or c["attempts"] not in (0,1,2): fails.append(f"candidate {c.get('candidate_id')}: included claim must carry attempts in {{0,1,2}}")
+            oc=c.get("outcome")
+            if oc is None: fails.append(f"candidate {c.get('candidate_id')}: included claim must carry outcome (a section-3 token, or PENDING before limb B)")
+            elif oc not in OUTCOMES and oc!="PENDING": fails.append(f"candidate {c.get('candidate_id')}: outcome {oc!r} is not a section-3 token")
+            elif oc=="PENDING" and final: fails.append(f"candidate {c.get('candidate_id')}: outcome still PENDING in final census")
+            elif oc in ARITH and not (isinstance(c.get("printed_value"),str) and isinstance(c.get("reproduced_value"),str)): fails.append(f"candidate {c.get('candidate_id')}: arithmetic outcome must carry printed_value and reproduced_value as strings")
         if c.get("candidate_id") in cids: fails.append(f"candidate {c['candidate_id']}: duplicate")
         cids[c.get("candidate_id")]=c
     xids=set()
@@ -122,6 +129,10 @@ def cmd_census(candidates,exclusions):
     if "declared_exclusion_count" in Xd and Xd["declared_exclusion_count"]!=exc: fails.append(f"declared_exclusion_count={Xd['declared_exclusion_count']} but recomputed {exc}")
     for x in fails: print("FAIL:",x)
     print(f"declared: candidates={Cd.get('declared_candidate_count')} included={Cd.get('declared_included_count')} excluded={Cd.get('declared_excluded_count')} attempts={Cd.get('declared_attempt_count')} exclusions={Xd.get('declared_exclusion_count')}")
+    oc_t={}
+    for c in cids.values():
+        if c.get("included"): oc_t[c.get("outcome")]=oc_t.get(c.get("outcome"),0)+1
+    print("outcomes:", " ".join(f"{k}={v}" for k,v in sorted(oc_t.items(), key=lambda kv: str(kv[0]))))
     print(f"recomputed: candidates={len(cids)} included={inc} excluded={exc} attempts={att} reconciled={'YES' if not fails and inc+exc==len(cids) else 'NO'}")
     print("C1_DENOMINATOR_PRINTED=" + ("PASS" if not fails and inc+exc==len(cids) else "FAIL")); return 0 if not fails and inc+exc==len(cids) else 1
 
@@ -129,5 +140,5 @@ def cmd_census(candidates,exclusions):
 if __name__=="__main__":
     a=sys.argv[1:]
     if len(a)==3 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2]))
-    if len(a)==3 and a[0]=="census": sys.exit(cmd_census(a[1],a[2]))
+    if len(a) in (3,4) and a[0]=="census" and (len(a)==3 or a[3]=="final"): sys.exit(cmd_census(a[1],a[2],final=(len(a)==4)))
     print(__doc__); sys.exit(2)

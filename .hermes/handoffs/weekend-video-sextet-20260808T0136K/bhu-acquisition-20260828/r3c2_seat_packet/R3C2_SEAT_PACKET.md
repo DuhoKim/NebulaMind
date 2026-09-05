@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `6748415e3483f10d2eddb4e76ced7e152e75bd32862c40cc39c8d2c76183ad21` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `e67339905813549fec1c2cebb58cad264e9cc1b94a95aa0d2715866f9f356b6e` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -40,7 +40,10 @@ and are outside the census, visibly.**
    one.** Record its `origin` with the evidence C3 requires.
 4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
    i.e. every ledger record with status `PRINTED` or `STANDARD`.** Provenance is recorded under C3 (`origin`, `derived_from`).
-5. **Record the outcome**, per claim, as one of §3.
+5. **Record the outcome**, per claim, as one of §3, in the candidate file's `outcome` field; the sealed reproduction tally is
+   the merged candidate file on which the two seats' `outcome` fields agree, claim by claim, after one reconciliation against
+   the printed numeral and the stated-precision rule of §3; the class filed when a disagreement survives that reconciliation is
+   **an open decision recorded in §10.12**; this document is not frozen until that decision is recorded.
 
 **A value the paper does not print but traces to a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md` is
 classified `PRINTED` from that source, with `origin` `IMPORTED`, `origin_evidence` `ORIG_CITATION` cited to the named
@@ -58,7 +61,7 @@ Encountering one ends that claim's attempt.
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `3519ca617434ddca222c0a85e8a5630f30710b8a9c7d74d79bfc4fa56973b959`, pinned
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `8e286817f124a8c6a688e6a7c9795a3bd0afc803a796329bc41b12e8ca09f7ac`, pinned
 > beside the packet in `R3C2_SEAT_PACKET.sha256`; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -66,7 +69,8 @@ Encountering one ends that claim's attempt.
 - **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, **from the paper's own recipe
   applied to the inputs it states** (`PRINTED` or `STANDARD`). **Report both numbers.** **Where the paper states no
   precision for the claim, the printed precision is the claim's stated precision: the reproduced value must round to
-  the printed numeral at that precision.** 
+  the printed numeral at that precision.** **Where the paper states an uncertainty, the test is |reproduced − printed| ≤ the stated
+  uncertainty, taken once — not doubled, not rounded; where it states none, the rounding rule above applies.** 
 
 - **`REPRO_FAILED`** — the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the
   paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."**
@@ -114,6 +118,10 @@ is hidden by being excluded.
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts, **or the two
    seats' input lists for the agreed claims disagree after the one C3 reconciliation**. The census does not proceed; the
    disputed candidates or inputs are listed. 
+   *Open (§10.12): the class filed when the two seats' per-claim outcomes on an agreed included claim differ after the
+   one reconciliation of §2 step 5 — the gate found §4 not exhaustive over that state; a class is not added or redefined
+   by this document's author, so the gap is recorded here as open rather than written in.*
+
 6. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
    **more than 10% of included claims**. The census does not proceed; every disputed input is listed with both
    seats' classification and both quotations. 
@@ -153,7 +161,11 @@ is hidden by being excluded.
   that every included candidate carries a permitted `attempts` value, and that each of the four declared counts equals
   the count recomputed from the rows; its stdout prints both the declared and the
   recomputed counts. Print its command, stdout and exit status.** The candidate and exclusion ledgers use the script's candidate schema: each candidate carries
-  `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every exclusion row names a candidate and a `kind`;
+  `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every included candidate additionally carries `outcome` —
+  one of the six §3 tokens, or `PENDING` before limb B — and every included candidate whose `outcome` is in the arithmetic
+  group carries `printed_value` and `reproduced_value` (strings, as printed and as computed); every exclusion row names a
+  candidate and a `kind`; the `census` subcommand run again after limb B with the word `final` verifies that every included
+  candidate carries exactly one §3 outcome, none `PENDING`, and that arithmetic-group outcomes carry both values;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
   line, in the JSON schema of C3, validated by `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
