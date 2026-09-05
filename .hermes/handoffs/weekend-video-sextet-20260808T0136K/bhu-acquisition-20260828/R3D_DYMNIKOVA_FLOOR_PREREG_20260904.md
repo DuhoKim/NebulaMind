@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 25 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 26 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -35,7 +35,15 @@ itself the sole source of a mass bound is NOT admissible, because it supplies th
 it.** A completion that contradicts a printed relation is **inadmissible** and
 may not be considered. **The completion-free derivation — the one that adds nothing — is not itself a completion**,
 but where §4 counts admitted floors it **is counted among them**, so that a printed floor and a differing
-completion's floor are two floors and not one. *(The term carried the whole class structure while being defined nowhere, so whether an
+completion's floor are two floors and not one.
+
+**THE COMPLETIONS TESTED ARE EXACTLY THE FOUR KINDS NAMED ABOVE — a Euclidean volume, a uniform interior, an
+order-unity coefficient set to 1, and the GR exterior — each instantiated ONLY where the printed relations leave
+its object unbound, and NO OTHER COMPLETION MAY BE TESTED OR COUNTED.** The admissible reading set is therefore
+finite: the completion-free derivation plus at most four one-completion readings. *(Without this the set over
+which §4 partitions was never fixed — infinitely many completions satisfy "one named assumption, consistent with
+the printed relations" — so class 1's "all of `P` agree" quantified over an unbounded set and was undecidable, and
+two seats could test different completions and file different classes on the same physics. kimi V24, load-bearing.)* *(The term carried the whole class structure while being defined nowhere, so whether an
 "order-unity coefficient" counted as admissible when the printed relations already fixed a floor was a seat's
 judgement, and two obedient seats could file different classes for the same physics.)*
 
@@ -206,7 +214,9 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    referent here, since the seat is told to choose none — two obedient seats could evaluate different floors, split
    C6 inside one class, and send a case with a scientific answer to `DYM_SOURCE_BLOCKED`.)* **C6 is RUN on this class** and its
    result reported: a surviving freedom is what condition 3 rejects, so it is expected to fail — but the failure
-   must be **exhibited**, not assumed. **If `C6_BREAKER_TEST=PASS` results here instead — every per-floor
+   must be **exhibited**, not assumed. **Record `C3_DELETION_PROBE=NOT_RUN` on this class: the probe's trigger is a unique floor surviving on an injected
+   relation alone, and this class files no unique floor — the seat chooses none — so the probe has no target.**
+   **If `C6_BREAKER_TEST=PASS` results here instead — every per-floor
    evaluation satisfying all five decision rules while the readings still disagree — then EACH floor in `P`
    independently passes the breaker, and the study reports that outcome with all floors named. It is NOT a single
    counterexample and the pattern record is NOT amended on it, because no unique magnitude was fixed: what passed
@@ -286,6 +296,10 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   omitting one candidate relation manufactures the no-relation or underdetermined result.)*
 - **C3 — deletion probe, K6's corrected form:** delete the **source-pinned field equations**; if a unique floor
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
+  **When the probe files `FAIL`, the circular relation is removed from every reading that used it, the partition of
+  §4 is recomputed on the remaining readings, and the run files whichever class the recomputed partition selects —
+  with the removed relation and the probe's captured output printed in the filing.** *(Previously `FAIL` barred a
+  class without naming what is filed instead — a terminal state with no routing.)*
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
   fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, pinned by sha256
   `7db669313568d08dc9be7bb18d142a956db3cc3ad62a87bff9e4724c47527874`.** The seat writes its relations file to the
@@ -1415,4 +1429,31 @@ defect wearing my shell environment. That check is added to the gate brief for V
 
 **R3D is NOT frozen and NOT run. V25 requires its own C0 and its own two-seat gate.**
 
-R3D_PREREG_V25_READY_FOR_REEXHIBITION
+## 8r. V26 — kimi's V24 gate was UNSOUND on a load-bearing defect no seat had raised in seven rounds
+
+**kimi gated V24 `4c8d0d32…` `PREREG_UNSOUND`**, hash-verified against V24 as committed. Its verdict on the design's
+spine: *"largely sound — the partition per fixed reading set, the census, the comparator arithmetic, the falsifier's
+polarity, the control vocabulary"* — and it verified every comparator number by hand. **The UNSOUND rests on one
+finding, and it is a real one.**
+
+| finding | classification | disposition |
+|---|---|---|
+| **F3 — the set of readings §4 partitions over is never fixed.** Infinitely many completions satisfy "one named assumption, consistent with the printed relations"; class 1's *"all of `P` agree"* quantifies over an unbounded set and is **undecidable**; two seats can test different completions and file different classes on the same physics | **SUBSTANTIVE**, criteria (1) and (3) — and load-bearing: it removes the fixity every other soundness claim assumed | **REPAIRED** — the completions tested are exactly the four kinds §2 already named, each only where the sources leave its object unbound; the reading set is now finite |
+| **2b — C3 on class 2 was neither RUN nor NOT_RUN**, so §9's default forced it RUN with no target; and **C3=FAIL barred a class without naming what is filed** | **SUBSTANTIVE**, criteria (1) and (2) | **REPAIRED** — class 2 records `C3=NOT_RUN` with its reason; a `FAIL` removes the circular relation and recomputes the partition |
+| 2a — the V24 command is not executable as instructed | **SUBSTANTIVE** — and **already fixed in V25** under Duho's ruling, executed verbatim from three directories | **ANSWERED: superseded**, §8q |
+| F6 — the `DYM_NO_*` tokens assert absence | SUBSTANTIVE, criterion (4) | **ESCALATED — fifth independent seat-finding; authority unchanged** |
+
+**Why this one is different from the partition-boundary family.** That family was about *where the lines between
+classes fall*. **This is about what the classes are lines *over*.** Seven rounds of both engines called circularity
+sound because the census — what goes *in* — is genuinely mechanical. What nobody had asked is whether the
+*completions* — what the seat is allowed to *add* — were bounded. They were not. **A partition over an unbounded
+domain is not a partition.** The repair bounds it to the four kinds the document had named as examples since V3
+and now names as the exhaustive set.
+
+**V25 is superseded before its gate ran**; its C0 result, when it lands, is filed and not acted on. **V26 requires
+its own C0 and its own two-seat gate**, whose brief will additionally ask each seat whether it **ran** C3 and what it
+got.
+
+**R3D is NOT frozen and NOT run.**
+
+R3D_PREREG_V26_READY_FOR_REEXHIBITION
