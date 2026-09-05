@@ -18,7 +18,10 @@ A reader arriving cold can follow 2026-09-05 from these files, in this order. Ti
 4. **What the day taught, as rules:** `R3_PREREG_DESIGN_RULES_20260905.md` (five rules). The five unordered round-3 drafts carry them:
    `R3E_…`, `R3F_…`, `R3G_…`, `R3H_…`, `R3I_…_PREREG_DRAFT_20260905.md` (DRAFT 2 each; not ordered, not gated).
 5. **Watches:** `WATCH_POSITIVE_CONTROLS_20260906.md` — b68 tripwire and the Tuesday neutron-star cron both tested and armed.
-6. **Running record:** `R3D_RUN_LOG_20260905.md` (every dispatch, hash, verdict, and the two disclosed process errors: the V18
+6. **The argued position:** `BHU_PROGRAMME_SYNTHESIS_20260906.md` — what the programme now says, five questions answered with
+   sources, judgements labelled; a blind source-referee report sits beside it when it lands
+   (`BHU_PROGRAMME_SYNTHESIS_SOURCE_REFEREE_codex_20260906.md`).
+7. **Running record:** `R3D_RUN_LOG_20260905.md` (every dispatch, hash, verdict, and the two disclosed process errors: the V18
    half-apply and one early read of a kimi report). Open items for Duho: `OPEN_QUESTIONS_FOR_DUHO.md` (latest sections at the end).
    Lane state: `TORI_STATE_20260905_1042.md` (updates appended at the end).
 

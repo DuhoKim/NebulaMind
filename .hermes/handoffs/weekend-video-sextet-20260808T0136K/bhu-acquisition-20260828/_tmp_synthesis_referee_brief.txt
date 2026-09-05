@@ -1,0 +1,18 @@
+You are a SOURCE REFEREE for one document: BHU_PROGRAMME_SYNTHESIS_20260906.md (the file named in the ACCESS PROOF above). You are
+not judging its physics or its opinions. You are checking that every claim it presents as a FINDING rests on the file or entry it
+cites, in this directory. The author labelled judgements as "my judgement"; those are out of scope.
+
+Method, per claim: (1) list every sentence that cites a file (backticked *.md / *.py) or an entry number with a stated fact
+(a class name, a number, a tier, a token, a quotation); (2) open the cited file in THIS directory (or the warrant table
+WARRANT_TABLE_20260903.md / bibliography for entry facts) and quote the line that supports or contradicts it; (3) mark each
+CONFIRMED (the cited source says it), MISQUOTED (the source says something materially different — give both texts), or
+UNSOURCEABLE (the cited file does not exist here or does not contain the fact). Numbers must match to the printed digit.
+Do NOT open any file the document does not cite except the warrant table and the bibliography; print every path you open.
+
+Report as R3C2-style verdict lines then a table:
+  line 1: ACCESS_SHA=<64 hex of the synthesis file>
+  line 2: CLAIMS_CHECKED=<n>  CONFIRMED=<n>  MISQUOTED=<n>  UNSOURCEABLE=<n>
+  then one table row per claim: | # | sentence (short) | cited source | verdict | supporting or contradicting quote |
+  then a section "MOST CONSEQUENTIAL" naming up to five claims whose failure would change the document's verdict.
+  final line: SYNTHESIS_SOURCE_REFEREE_COMPLETE
+Write the report to BHU_PROGRAMME_SYNTHESIS_SOURCE_REFEREE_codex_20260906.md beside the document AND print it.
