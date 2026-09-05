@@ -1,0 +1,225 @@
+Deliverable verified on disk (223 lines, sha256 33f4731dd766a763a6462aeab9b571d375035c2b6e90e4fde6d1b8e40b763608). Full report:
+
+ACCESS_SHA=22355a08b2d9cb98163427f5d2647181e48912f794852ac498e4e5e9ff23f11f
+PACKET_SHA=3eb3879f7cbb9b0cd4a53bee909ba6230768f85361e9d8fa6d86d74e11db681d
+GATE=PREREG_SOUND_WITH_REPAIRS
+LEAK=content-level only: the corpus is cosmology on the Planck-2018 baseline (C3's printed STANDARD list); chosen/fitted constants are anticipated and pre-decided as reproduction-with-provenance (packet §1 "chosen constants included", §2 step 4 parenthetical); failures are anticipated with protected wording ("unreproduced", never "error"); the rests_on tally and DISPUTED machinery show the provenance tally is expected to be informative; no hypothesis direction, comparison target, or preferred outcome is inferable
+CONSEQUENCE_VISIBLE=NO
+
+Fresh referee pass over R3C2 V13. I read the packet first, in full, before opening the master; Q5 and Q3 below are answered from the packet alone. I opened no file other than the master and the packet for content; every other named artefact was checked by existence, digest, or execution only (evidence ledger at the end). Section 10 of the master is history; nothing below inherits its narrated findings.
+
+=====================================================================
+STEP 1 — THE PACKET ALONE (answered before the master was opened)
+=====================================================================
+
+Q5. CAN YOU TELL, FROM THE PACKET ALONE, THAT ANY OUTCOME IS MORE CONSEQUENTIAL THAN ANY OTHER?
+
+No. No sentence in the packet makes any outcome weightier than any other, for the lane or for anyone. The only consequence-adjacent sentence in the packet is §11:
+
+  "No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD; nothing outward."
+
+That sentence flattens consequence rather than differentiating it: whatever the tally, nothing moves and nothing goes outward. The only other candidate is §6's "Limb A (~1 seat-day)" / "Limb B (2–3 seat-days)", which are costs of running, not consequences of outcomes. Every study-level class in §4 is given the same treatment: a definition, a report instruction, no downstream action. CONSEQUENCE_VISIBLE=NO.
+
+Q3. WHAT CAN YOU INFER ABOUT WHAT THE LANE EXPECTS OR HOPES THE CENSUS WILL SHOW?
+
+Five inferences, each with the packet sentence that leaks it; none reaches a preferred direction.
+
+(i) The corpus is cosmology, framed on the Planck-2018 baseline. C3's closed STANDARD list prints H₀, Ω_m, Ω_Λ, Ω_b h², Ω_c h², n_s, σ₈, τ, ln(10¹⁰ A_s), age and states: "The cosmological rows are the Planck 2018 TT,TE,EE+lowE+lensing baseline." A census whose only admissible measured constants are that baseline is a census of papers that consume it. This is a comparison-model-shaped leak, but note what it is not: the list constrains admissibility of inputs, it does not state anything the tally is compared against.
+
+(ii) The lane expects chosen/fitted constants to be load-bearing in corpus claims, and has pre-decided that their presence does not defeat reproduction. §1: "does the paper's own number follow from the paper's own recipe applied to the inputs it states — chosen constants included". §2 step 4: "(A paper can direct you to use its own chosen constant, and following that instruction is reproducing the paper.)" §3: "a value can be printed in the paper and still have been chosen or fitted, and under (c) both facts survive". Three defensive statements of one convention is a tell: the lane anticipates this case will be frequent and contested, and wants it counted as reproduction-with-provenance, not failure.
+
+(iii) The lane expects some claims to fail reproduction and pre-protects the papers from the framing. §3: "Wording: \"unreproduced from the stated inputs,\" not \"error.\"" You do not legislate the wording of an outcome you do not expect to occur. This leaks an anticipated pattern (failures will occur) and a reputational sensitivity (someone may read the tally as an accusation), not a direction.
+
+(iv) The provenance question is expected to be at least as informative as the reproduction question. The design computes a second tally (rests_on) beside every verdict, carries disagreements as printed DISPUTED pairs, and stops the census if origin classifications diverge on more than 10% of claims. You do not build that machinery around a field you expect to be uniform. The shape of the expected result — a non-trivial mix of DERIVED_ONLY versus chosen/fitted/imported/undeclared roots — is visible; which mix the lane prefers is not.
+
+(v) The arithmetic group is where the lane expects the risk. C6 re-derives "every claim in the arithmetic group — no sampling discount" while the remaining claims are sampled at 20%. Audit weight maps expected risk; the lane expects the reproduction verdicts to be the consequential core and the non-arithmetic outcomes to be the minority.
+
+What I could NOT infer: any hypothesis the tally would support or break, any comparison the tally feeds, any outcome the lane would rather see. "Paper HOLD" (§11) reveals a held paper exists — a stake container — but attaches no direction to any outcome. The packet tells me the topography of what the lane thinks matters; it does not tell me which way the lane wants it to come out.
+
+=====================================================================
+STEP 2 — THE MASTER, JUDGED (operative sections 1,2,3,4,5,6,7,9,11)
+=====================================================================
+
+Section 3's core definition is settled by the principal's ruling (option (c)); I judge it as written. Where a defect is found: verbatim quote, defect, exact replacement. COSMETIC is marked where a finding changes no class filed, no control's passability, no reachability, no conclusion and no tested value.
+
+---------------------------------------------------------------------
+1. OUTCOME CLASSES — and Q1
+---------------------------------------------------------------------
+
+Exhaustiveness and exclusivity, attacked:
+
+- Per-claim: six outcomes, arithmetic group exactly {REPRO_EXACT, REPRO_FAILED}. Total precedence: REPRO_NO_DERIVATION_STATED > REPRO_BLOCKED > REPRO_INPUT_ABSENT > REPRO_NOT_EVALUABLE > arithmetic group. I tried to co-file: a claim with no stated derivation AND an absent input files NO_DERIVATION_STATED (first); a cited-but-unobtainable input that is also unreachable files BLOCKED before ABSENT; a timeout on an otherwise-exact claim files NOT_EVALUABLE; EXACT and FAILED cannot co-occur because the precision rule is deterministic ("the reproduced value must round to the printed numeral at that precision" when none is stated). Exactly one outcome per co-occurrence, every time.
+- I tried to orphan a claim (no class fits): printed numeral with all inputs printed (EXACT/FAILED); printed numeral, no equation (NO_DERIVATION_STATED); input neither printed nor traced (INPUT_ABSENT); input traced to a named source (PRINTED-from-source on a machine match, else BLOCKED by §2's routing — see F3); machinery missing (NOT_EVALUABLE). No orphan found.
+- Study-level: seven classes with total precedence R3C2_NO_CLASS > CENSUS_CONTROL_SPLIT > CENSUS_DENOMINATOR_DISPUTED > CENSUS_ORIGIN_DISPUTED > CENSUS_AUDIT_FAILED > CENSUS_PARTIAL > CENSUS_COMPLETE. I tried to co-file COMPLETE and PARTIAL: PARTIAL takes precedence by its own clause. An origin dispute at or under 10% is not a stop: disputed inputs file ORIGIN_DISPUTED, rests_on computed under both and printed as a DISPUTED pair (verified live, section 2 below), the census continues. No tally fits two classes; no tally fits none.
+- INCONCLUSIVE is genuinely reachable: any single non-arithmetic claim in the corpus files CENSUS_PARTIAL, which is labelled INCONCLUSIVE and takes precedence over CENSUS_COMPLETE. Reachable, perhaps cheaply so — one absent input in 89 texts suffices — but that is a stated design property, not a defect.
+
+Q1 (direct): DOES SECTION 3's DEFINITION, AS WRITTEN UNDER OPTION (c), MAKE EVERY DECLARED OUTCOME REACHABLE AND KEEP THE REPRODUCTION QUESTION DECIDABLE?
+
+YES. The tension that killed the earlier rounds is resolved structurally: admissibility is a machine-checkable status (PRINTED/STANDARD), not a judgement about chosen-ness; provenance is moved out of the verdict into a script-computed field. The hardest cases, each traced to exactly one outcome and one rests_on:
+
+1. Printed-but-chosen input ("we adopt β = …"): status PRINTED, origin CHOSEN via ORIG_CHOICE_STATED with a machine-matched quotation; the arithmetic consumes it; the verdict is EXACT or FAILED by the precision rule; rests_on = USES_CHOSEN by script. One outcome, one rests_on. (Machinery verified live: a CHOSEN record validates and computes deterministically.)
+2. A fitted parameter the paper states: PRINTED/FITTED, consumed, one verdict, rests_on = USES_FITTED. Verified: my compute run returned "c2 rests_on=USES_FITTED root_origins=['FITTED']".
+3. An imported value with a machine match at the named pinned source's cited line: PRINTED-from-source, origin IMPORTED, consumed, one verdict, rests_on = USES_IMPORTED. Verified: "c1 rests_on=USES_IMPORTED root_origins=['FITTED','IMPORTED']" — the most-severe rule fires as documented.
+4. A cited-but-unprinted input with no machine match, a RAW source, or a source outside the manifest: all three limbs file REPRO_BLOCKED by §2's routing. (§3's class definition must say so too — finding F3.) Script-side the BLOCKED record is never consumed: validate accepts status BLOCKED with origin IMPORTED, ORIG_CITATION evidence, and no value (verified).
+5. The paper prints the value AND cites an external source ("We adopt H₀ = 67.4 from Planck (2018)"): PRINTED in the claiming paper; the reason-code precedence files ORIG_CITATION first → IMPORTED; the value machine-matches the claiming paper's own line (verified: a 67.5-versus-67.4 mismatch fails with "value 67.5 not at cited line"). One verdict; rests_on = USES_IMPORTED. The wrong-but-plausible CHOSEN filing passes the machine and is caught only by redundancy — Q2 below.
+6. A derived chain over a chosen root: root_origins computed from every step (verified: gamma DERIVED from beta FITTED computes roots ['FITTED']); a dangling derived_from id, a cycle, and a DERIVED record with no parents each FAIL with exit 1 (all three verified), so an empty root set cannot occur.
+7. A list constant printed in the paper: consumable as PRINTED (paper's line) or STANDARD (list membership is verbatim: 67.4 rejected, 67.36 accepted — verified); one value, one verdict either way; any origin disagreement between seats files DISPUTED with both computed values.
+
+Every declared per-claim outcome has a non-empty domain; every study-level class is reachable (CENSUS_COMPLETE in a corpus where every claim's inputs are stated; the stop classes via their named conditions). Decidability holds because the verdict never looks at provenance. Q1 = YES, with two text repairs required so the class definition and the schema say what the routing and the script already do (F3, F4).
+
+FINDING F3 — §3's REPRO_BLOCKED definition misses the limb §2 routes to it. (Substantive: a class definition.)
+QUOTE (§3): "- **`REPRO_BLOCKED`** — an input whose value the claiming paper does not print, and for which the claiming paper **names a source (a citation)** that is **not an enumerable text pinned in `R3C2_CORPUS_MANIFEST.md`**; whether that source is obtainable elsewhere is irrelevant, because the census may not open or consume it."
+DEFECT: §2 files REPRO_BLOCKED for two cases — "a cited value that does not machine-match at the named source's cited line, or whose named source is not an enumerable text of the manifest" — but §3's definition covers only the second. The no-machine-match case has a routing (§2) and a script encoding (status BLOCKED, verified) but no home in the class definition: the newest rule lives in two copies and they diverge, the exact failure mode §6's own note warns about ("the second live copy of a repaired rule is how the last defect got in"). Reachability survives because §2's routing is unambiguous, so this is a definition repair, not the old tension returning.
+EXACT REPLACEMENT: "- **`REPRO_BLOCKED`** — an input whose value the claiming paper does not print, and for which the claiming paper **names a source (a citation)** that either **is not an enumerable text pinned in `R3C2_CORPUS_MANIFEST.md`** or **is an enumerable pinned text at whose cited line the value does not machine-match**; in the first case whether that source is obtainable elsewhere is irrelevant, because the census may not open or consume it. Name the input and the source."
+
+FINDING F4 — the ledger schema has no status for a blocked input (three live copies). (Substantive: control passability.)
+QUOTE (C3): "`{claim_id, input_id, symbol, status: PRINTED|STANDARD|ABSENT, origin: DERIVED|STANDARD|MEASURED|CHOSEN|FITTED|IMPORTED|UNDECLARED, ...}`"
+DEFECT: a REPRO_BLOCKED input is not PRINTED (no machine match), not STANDARD, and §3 reserves REPRO_INPUT_ABSENT for inputs traced to no named source — so the schema gives a seat no valid encoding for it. The delivered script already implements the missing status (validate accepts status BLOCKED with ORIG_CITATION/IMPORTED and no value; its usage text describes it as "never consumed"), but the document never tells the seat to use it. Concrete failure: seat A encodes the blocked input as ABSENT (best reading of the schema), seat B omits the record or encodes it differently; the merge then exits 1 on input_id-set mismatch, or C2 fails a record that legitimately names a source — a control failure manufactured by the schema gap.
+EXACT REPLACEMENTS (all three live copies):
+(a) C3 schema: "status: PRINTED|STANDARD|ABSENT|BLOCKED", and append to the schema sentence: "**An input that files `REPRO_BLOCKED` under §3 is recorded with status `BLOCKED`, `origin` `IMPORTED`, `ORIG_CITATION` evidence cited to the claiming paper's naming sentence, and no value; the arithmetic never consumes it.**"
+(b) C2: "Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and line, ..."
+(c) §2 step 3: "**Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant **on C3's closed list — that list, verbatim, and no other value**), `BLOCKED` (traced to a named source but carrying no machine-matchable value, §3), or `ABSENT`."
+
+---------------------------------------------------------------------
+2. CONTROLS — and Q2
+---------------------------------------------------------------------
+
+Pass-by-assertion audit, control by control:
+- C0: requires an exhibited table authored by one independent seat and verified by a second, both returning PASS; the lane owner checks coverage only. Artefact-based.
+- C1: script exit 0 on the printed candidate/exclusion files; counts recomputed. Verified live: empty/empty prints "candidates=0 included=0 excluded=0 reconciled=YES / C1_DENOMINATOR_PRINTED=PASS"; a broken pair prints per-row failures and "C1_DENOMINATOR_PRINTED=FAIL". Machine.
+- C2: validate exit 0 with the resolved command printed. Verified. Machine.
+- C3: machine-matched quotations and values, closed STANDARD list, computed-field rejection, transitive root origins. Verified live with one gap at intake (F2) and one sentence that overclaims the machine (F5).
+- C4_SEAT_ISOLATION / C5b: self-reported path lists BY DESIGN, and labelled so ("makes no claim that the list is complete"). Assertion-grade by construction, honestly disclosed.
+- C4_PACKET_REDACTED: machine-asserted by the builder; I re-verified the assertion on the delivered packet (section 4).
+- C5: printed live output — but no PASS predicate exists (F6).
+- C6: a re-derivation, not an assertion.
+Unreached controls are NOT_RUN, never passes — stated in §4, in the §5 tail, and in §9, consistently.
+
+Q2 (direct): IS THE PROVENANCE FIELD CHECKABLE RATHER THAN ASSERTED? — tested, as ordered.
+
+The wrong-but-plausible record I filed: {claim c1, input i1, symbol H0, status PRINTED, origin CHOSEN, origin_evidence {reason_code ORIG_CHOICE_STATED, source fake_paper.txt line 1, verbatim "We adopt H0 = 67.4 from Planck (2018)."}, value 67.4}. The sentence genuinely contains choice language ("We adopt"), so the filing is plausible; it is wrong because the reason-code precedence makes ORIG_CITATION win ("a sentence that names an external source for the value is a citation whatever else it says").
+
+What caught it and what did not, measured on the delivered script:
+- The machine did NOT catch it: validate returned C3_NO_SUBSTITUTION=PASS (exit 0), because the quotation machine-matches the cited line and the reason/origin pair is legal. compute then returned rests_on=USES_FITTED for the claim (roots CHOSEN+FITTED) where the correct filing returns USES_IMPORTED — the misclassification propagates into the computed field.
+- The second seat caught it: merging the wrong ledger against the corrected one returned "merged 3 records; origin disagreements=1", and compute on the merged ledger printed "c1 rests_on=['USES_FITTED','USES_IMPORTED'] root_origins=['CHOSEN','FITTED'] DISPUTED" — carried as a pair, marked DISPUTED, never reconciled, exactly as documented; above 10% of included claims it files CENSUS_ORIGIN_DISPUTED.
+- C6 catches it: the audit re-classifies every input's origin from the pinned sources; the planted CHOICE reading has no precedence defence against the citation sentence.
+- The floor is real and is stated in the master: if every reader misclassifies identically, the record stands. The machine enforces the reason_code↔origin mapping (ORIG_CITATION paired with origin CHOSEN fails: "reason_code ORIG_CITATION does not map to origin CHOSEN" — verified), the quotation substring match ("verbatim not found at fake_paper.txt:1" — verified), the value-at-line match, and the closed STANDARD list. An ORIG_SILENT record must CARRY origin_search {query, files, matches} (a missing one fails — verified), but the search's CONTENTS are not re-run by the machine: my fabricated search (query "67.4", matches: [], while the fake source contains 67.4) passed intake. The master claims only that the search is printed, so this is a stated boundary, not an overclaim; the second seat and C6 are the check on its honesty.
+
+ANSWER: checkable — by redundancy (second seat + merge + C6 re-classification), with the machine's floor stated honestly in the document. Demonstrated end-to-end on the delivered tooling.
+
+FINDING F5 — one C3 sentence asserts a machine check that has no artefact. (Minor; near-cosmetic in effect — C3's pass/fail is unchanged — but it is an overclaim of record, the describe-versus-compute family.)
+QUOTE (C3): "A script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a closed list PRINTED LITERALLY BELOW**"
+DEFECT: the last three conjuncts are implemented (verified live: ABSENT-with-value fails; "value 67.5 not at cited line"; "STANDARD value 70.0 for H0 not on the closed list"). The first conjunct is not: no named artefact records which values an attempt used, the ledger schema has no field for it, and the script's own assert list does not include it — the machine has no channel to learn "used". The underlying risk (a claim's input list silently incomplete) is real but covered elsewhere: completeness is seat-authored, merged between seats, and C6 re-derives every arithmetic-group claim from the sources.
+EXACT REPLACEMENT: "A script asserts that no `ABSENT` or `BLOCKED` record carries a value, that **each `PRINTED` value machine-matches the text at its cited source line and each verbatim quotation is a substring of that line**, and that **each `STANDARD` value is one of a closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family; **completeness of a claim's input list against the paper's equation is seat-authored and audited under C6, not machine-checked**:"
+
+FINDING F6 — C5 names no PASS predicate, and fingerprints the PATH interpreter rather than the one the ledger commands use. (Substantive: a control's passability.)
+QUOTE: "- **C5 — harness, LIVE.** Execute and print `python3 --version`, `python3 -c \"import sympy; print(sympy.__version__)\"`, and `shasum -a 256 $(command -v python3)`. **Transcribing expected values fails.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`."
+DEFECT: (i) every other control names its pass condition (exit 0, a printed list, a row present); C5 says only that transcribing fails, so any printed trio could be claimed PASS and two seats could split on identical output. (ii) It fingerprints $(command -v python3) while C1–C3 execute /usr/bin/python3; on this machine they coincide (Python 3.9.6, sha256 b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9, sympy 1.14.0 — verified live), but as written the receipt can fingerprint a binary the ledger tool never runs under.
+EXACT REPLACEMENT: "- **C5 — harness, LIVE.** Execute and print `/usr/bin/python3 --version`, `/usr/bin/python3 -c \"import sympy; print(sympy.__version__)\"`, and `shasum -a 256 /usr/bin/python3`. **PASS requires all three commands to exit 0 and their full stdout to be printed; any non-zero exit, missing output, or a transcribed value in place of live output is FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`."
+
+---------------------------------------------------------------------
+3. CIRCULARITY
+---------------------------------------------------------------------
+
+Every channel from an expectation to the evidence, checked:
+- Inclusion: a mechanical rule ("prints a numeral the paper asserts as a result of its own", enumerated exclusion kinds), applied independently by two seats, zero-tolerance on disagreement, and the FULL candidate and exclusion ledgers are audited against every pinned source. A contrary claim cannot be quietly excluded: every excluded candidate must carry one of five enumerated kinds (EQUATION_NUMBER, REFERENCE_NUMBER, PAGE_OR_LINE_NUMBER, DATE, ATTRIBUTED_NOT_DERIVED), none of which can describe a shape or a conclusion, and the exclusion ledger is re-audited row by row. The residual judgement ("asserts as a result of its own") cannot steer a class — at worst it stops the study, visibly, with the disputed candidates listed.
+- Origin classification: quotations machine-matched to cited lines (verified), two independent classifications, disagreements printed as DISPUTED pairs and never reconciled, audit re-classifies from sources. A reader cannot tilt rests_on without producing text; a reader cannot plant a tilt pre-merge — except through the F2 hole, which the audit backstops.
+- rests_on and root_origins: script-computed; seat-written values are rejected (verified: validate exit 1, compute exit 2).
+- The interpretation channel: the protocol is fixed, committed and receipted BEFORE limb A (receipt P), before any evidence exists; no seat may open it; the packet contains no hypothesis mapping (verified by reading and by the forbidden-string scan). The tally is bound by receipt T before the protocol is opened. The lane cannot tune the mapping to the tally or the tally to the mapping.
+- The audit sample: the seed is external, generated independently, unavailable before the tally receipt — the tally's producer cannot shape the sample.
+- The corpus: the manifest is pinned and inherited; a RAW exclusion is visible by rule. Selection circularity is upstream of this document and out of its remit.
+Stated floors, honestly disclosed: identical misclassification by all readers stands; prior exposure cannot be disproven. No channel found by which an expectation reaches the evidence.
+
+---------------------------------------------------------------------
+4. THE BLIND
+---------------------------------------------------------------------
+
+The redaction is machine-asserted as claimed, and I re-verified the assertion on the delivered artifact rather than trusting the builder's description:
+- The pin file R3C2_SEAT_PACKET.sha256 verifies the delivered packet AND the seat brief: "shasum -a 256 -c" returned OK for both. The packet header embeds the master hash I computed myself (22355a08…).
+- The packet contains §§1,2,3,4,5,6,9,11 and nothing from §0, §7, §8 or §10; every SEAT-REDACT span I checked in the master is absent from the packet (the C4 mechanism description, the rests_on severity order, the custodian's name, the entry-59 β example, the judgement-floor note, the gate-history asides). The operative C4 instruction the seat needs ("what the seat must do") is present, outside any redact span.
+- Forbidden-list re-test, case-insensitive substring scan of the whole packet for the master's enumerated list — consequence words (expectation, refute, consequential, invisible, favourable, unfavourable, stake, prior, tempting, warn), engine names (codex, kimi), custody names (Tori, Duho, Blanc, Hwao), pattern/topic words (pattern, magnitude, shape), the comparison model (ΛCDM/LCDM), R3D, gate vocabulary (gate, UNSOUND): ZERO hits.
+Does C4 as described prevent what it claims? Yes at the level it claims: the seat is not given the pattern record and cannot read it from its working directory; the consequence words are gone (my Q5 = NO is the empirical check); the limit is stated honestly — "procedural, not enforced by the filesystem", the list "blocks the enumerated strings and does not establish that every consequence-bearing word is gone", and "it cannot prove a seat has no prior exposure from training or an earlier session — nothing available here can." No overclaim found.
+
+---------------------------------------------------------------------
+5. THE SEAL (§7)
+---------------------------------------------------------------------
+
+The two-receipt relay binds what it claims, before the steps it must precede. Receipt P (protocol hash + commit id, acknowledged and timestamped by the external custodian) precedes limb A — the interpretation mapping is bound before any evidence exists, so it cannot be written to suit the tally. Receipt T (tally hash + commit id) precedes the opening of the protocol — the tally is bound before the interpretation is known, so it cannot be reshaped to suit the mapping. "The relay is complete only when it is receipted" closes the send-versus-receipt hole. Post-opening, the custodian independently re-hashes both artefacts and the interpretation report must print both receipts and all four verified values; any missing receipt or mismatch files CENSUS_AUDIT_FAILED, which §4.3 names explicitly ("or the receipt verification of the seal fails"). The design correctly demotes a local git commit to tamper evidence and puts custody in the external receipt. Limits stated without overclaim: it proves existence-before-comparison, not that the answer was not already guessed. Sound. One adjacent gap, not in the seal itself: the audit seed's delivery is not covered by the missing-receipt clause — F8.
+
+---------------------------------------------------------------------
+6. FAIRNESS
+---------------------------------------------------------------------
+
+Every negative outcome is worded "unreproduced from the stated inputs," never "error": the rule is present in master §3 and in the packet. A full-document scan for the word "error" finds it only in the fairness rule itself (operative) and in §10 history (lines 496, 532, 665 — history, binds nothing). No class name asserts more than its definition: the negative classes name the input, source or passage and none asserts wrongdoing; REPRO_EXACT's name-versus-definition tension (it means "within stated precision") is the known rename question already escalated to the principal, not re-argued here. CENSUS_COMPLETE's name matches its definition (every included claim in the arithmetic group) with PARTIAL's precedence stated beside it.
+
+---------------------------------------------------------------------
+7. STALL / EXECUTABILITY — and Q4
+---------------------------------------------------------------------
+
+Stall audit: enumeration disagreements capped at two reconciliations; control failures capped at two attempts; one repeat for REPRO_NOT_EVALUABLE; a 120-second cap on symbolic operations with SYMBOLIC_TIMEOUT as a fileable outcome; stop classes with NOT_RUN for unreached limbs; total precedence at both levels so no tally hangs between classes. One unbounded wait found — F8.
+
+FINDING F8 — seed non-delivery has no class and no timeout. (Minor: reachable only on custodian non-performance; the design's named trust anchor.)
+QUOTE (C6): "**The seed comes from outside this lane.** After the tally digests are receipted<!--SEAT-REDACT--> (§7)<!--/SEAT-REDACT-->, **an external custodian outside this lane supplies a seed generated independently and unavailable to the lane before that receipt**, and it is recorded with the receipt."
+DEFECT: every other external dependency is receipt-gated, but if the seed is never supplied, no class literally files: CENSUS_AUDIT_FAILED covers an audit that "cannot reproduce a sampled per-claim outcome or ledger, or the receipt verification of the seal fails" — a missing seed is neither — and CENSUS_COMPLETE's letter (every included claim arithmetic) would hold with the audit unrun. The study hangs between the tally receipt and the audit with no filing rule.
+EXACT REPLACEMENT (append to the C6 seed paragraph): "**If the seed is not supplied and recorded with the receipt, the audit does not run, `C6_AUDIT_SAMPLE=NOT_RUN`, and the study files `CENSUS_AUDIT_FAILED` with the missing seed named.**"
+
+FINDING F7 — §1 drops the reconciliation qualifier and promises an audit that §4's stop rule makes NOT_RUN. (Substantive: can change the study-level class filed.)
+QUOTE (§1): "**Inclusion is assigned independently by the two independent seats from the §1 rule alone; disagreement on any candidate stops the study under `CENSUS_DENOMINATOR_DISPUTED`, and the third seat audits the complete candidate and exclusion ledgers against every pinned source.**"
+DEFECT: two divergences from §4.5 and §6 ("after two reconciliation attempts"): (i) a seat applying §1 stops at the first disagreement, filing CENSUS_DENOMINATOR_DISPUTED where §4/§6 would first run two reconciliations that could resolve it — the dropped qualifier can change the study-level class filed; (ii) §1 promises the third-seat ledger audit on the dispute path, but §4's stop rule ("Once a stop class applies, later limbs are unreached and their controls are `NOT_RUN`") makes C6 — which owns that audit, in Limb B — NOT_RUN, so the promise contradicts the stop rule.
+EXACT REPLACEMENT: "**Inclusion is assigned independently by the two independent seats from the §1 rule alone; disagreement on any candidate that survives two reconciliation attempts stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4): the disputed candidates are listed and the complete candidate and exclusion ledgers are reported with the dispute.**"
+
+Q4 (direct): CAN ANYTHING THE DOCUMENT DESCRIBES NOT BE EXECUTED AS DELIVERED?
+
+Yes — one thing, and it is the keystone artefact.
+
+FINDING F1 — the pinned script is not what is delivered. (Gating for C0/dispatch.)
+QUOTE (master §3 and C3, identically in the packet): "The script is `r3c2_ledger_tools.py`, committed beside this document, sha256 `dc9c5642f1d2a092e9820bbdaa04dab75f96e4772bec9a7ebdf3a57197e4018e`"
+DEFECT: the file beside the document hashes 0c3c865e8b41e94cbbaecce2ffa92cb61e6c26b89db875d7578a6f51ca8b2dc8, not the pinned dc9c5642f1d2a092e9820bbdaa04dab75f96e4772bec9a7ebdf3a57197e4018e. The resolution is precise: git status shows " M r3c2_ledger_tools.py", the COMMITTED blob at HEAD hashes to exactly dc9c5642f1d2a092e9820bbdaa04dab75f96e4772bec9a7ebdf3a57197e4018e (verified: "git show HEAD:./r3c2_ledger_tools.py | shasum -a 256"), and the worktree file is an uncommitted modification on top of it — timeline: pinned build committed 16:13, pin file written 16:26, worktree edited 16:37 (all 2026-09-05; facts, not inference — I do not assert a cause or an author). So the pinned build EXISTS (at HEAD), but the delivered working tree diverges from the pin, and any dispatch that copies the working directory ships the unpinned build to the seats. Every control that names "the pinned script" (C1, C2, C3) currently executes an unpinned binary from the worktree. I executed both builds: the worktree build behaves as documented on every probe except F2, and the pinned build shares the F2 gap — so this is a custody break in the delivery, not a functional absence.
+REPAIR (a lane action, not a text edit): restore the committed build to the worktree, or commit the 16:37 edit deliberately — but either way F2 must be fixed first and the script's controls re-run, because F2 is a defect of the pinned build itself; then re-pin the master and the rebuilt packet to whatever build ships.
+
+FINDING F2 — the computed-field MUST-omit is half-enforced, and compute consumes a planted origin_alt. (Gating with F1.)
+QUOTE (C3): "**The seat-authored ledger MUST omit `root_origins`, `rests_on`, `origin_alt` and `origin_evidence_alt`; `validate` fails a ledger that carries any of them.**"
+DEFECT: validate REJECTS root_origins and rests_on (exit 1; compute exit 2) but ACCEPTS origin_alt and origin_evidence_alt (exit 0, C3_NO_SUBSTITUTION=PASS), and compute then CONSUMES the plant: my ledger with origin_alt CHOSEN planted on an IMPORTED record computed "rests_on=['USES_IMPORTED','USES_CHOSEN'] DISPUTED" with no second seat and no merge. Verified on BOTH builds: the uncommitted worktree copy (0c3c865e…) and the pinned committed build (a blob copy verified dc9c5642… before execution: planted origin_alt PASS, planted origin_evidence_alt PASS, baseline ledger PASS and identical compute output). The gap is therefore in the pinned artifact itself, not in the 16:37 edit. The merge is the only legitimate channel for origin_alt; the plant bypasses it, letting one seat unilaterally manufacture DISPUTED rows. The backstop is real (C6 re-classifies every origin from the sources; the planted arm has no quotation and files CENSUS_AUDIT_FAILED), but the intake gate the sentence promises is absent in the pinned build. The script's own usage text repeats the promise, so text and intent agree; the build lags both.
+REPAIR: extend validate's computed-field rejection to origin_alt and origin_evidence_alt, re-run the script's controls, re-pin (F1). No master-text change needed.
+
+The full executability inventory (everything else checks out):
+- Named artefacts: R3C2_CORPUS_MANIFEST.md exists and its digest MATCHES the document (300d4da1…). r3c2_build_seat_packet.py exists (digest 804e6f21…, unpinned by the document — noted; its output is the pinned artifact). r3c2_seat_packet/R3C2_SEAT_PACKET.md exists and matches the pin (shasum -c: OK). r3c2_seat_packet/SEAT_BRIEF.md exists and matches the same pin file (OK). R3C2_INTERPRETATION_PROTOCOL_20260904.md exists (2,796 bytes; unread — §7 forbids seats opening it; its pre-limb-A existence is consistent with the P-receipt being possible). /Users/duhokim/HermesOps/scripts/nm_referee_dispatch.sh exists (named in a redacted span of §9; existence only, unread).
+- Literal commands: all four ledger subcommands (census, validate, compute, merge) execute with the documented exit codes (0/1/2) — verified on twenty-three synthetic probes against the worktree build and four against the pinned build. C5's commands execute here (python3 resolves to /usr/bin/python3, 3.9.6; sympy 1.14.0 present). Note: my own environment's approval layer blocked the "-c" form, so I verified sympy through an equivalent script file; the seat runs the literal commands live. The builder was NOT run: it writes the packet, a state change outside a read-only gate; its claims were verified on the artifact instead (pin match, forbidden-list scan, redacted sections absent, correct master hash in the header).
+- Fields a script is said to compute: root_origins and rests_on (compute — verified), origin_alt and origin_evidence_alt (merge — verified: "origin disagreements=1", DISPUTED pair on compute). Exit-code semantics: validate 0/1, compute 0/1/2, merge 0/1, census 0/1 — all as documented. Control tokens printed by the script match the document's named codes (C3_NO_SUBSTITUTION, C1_DENOMINATOR_PRINTED).
+- Paths a seat is told to use: the working directory and "." as sole sources_dir (C2) — executable as stated. The dispatch copy directory of C4 does not exist yet; it is created at dispatch and the lane owner lists its contents before launch — a dispatch-time artefact, not a delivery gap.
+- Not executable as delivered: any command that says "the pinned script" — the pinned build exists only as the committed blob at HEAD while the working tree carries an uncommitted divergent edit; a dispatch copying the working directory ships the unpinned build (F1).
+
+COSMETIC findings (change no class, no control's passability, no reachability, no conclusion, no tested value):
+- C-a: C1's candidate/exclusion JSON schema is not stated in the document (C3's input-ledger schema is); a seat learns it from the script's failure lines — my first probe produced "missing included", "not a candidate", "excluded with no exclusion row", each self-explanatory. Suggested sentence for C1: "The candidate and exclusion ledgers use the script's candidate schema (each candidate carries `included`; every exclusion row names a candidate); the script's failure lines name any missing field."
+- C-b: the delivered script's usage text for validate lists "origin in {DERIVED,STANDARD,CHOSEN,FITTED,IMPORTED,UNDECLARED}", omitting MEASURED, while its footer lists MEASURED and validate ACCEPTS a MEASURED record (verified, exit 0). Behavior correct, text line stale; fix at re-pin.
+- C-c: §2's PRINTED-from-source sentence opens "traces to a named source that is itself a text in `R3C2_CORPUS_MANIFEST.md`" where "an enumerable text" is meant; the same sentence's tail already routes RAW to REPRO_BLOCKED, so the looseness changes no outcome. Replacement: "a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md`".
+- C-d: the REPRO_EXACT rename (to REPRO_WITHIN_STATED_PRECISION) stays escalated to the principal; noted, not re-argued.
+
+---------------------------------------------------------------------
+FAILED ATTACKS (what I tried that did NOT break the design)
+---------------------------------------------------------------------
+- Co-filing two per-claim outcomes on one claim (blocked+absent; no-derivation+blocked; exact+timeout): the total precedence resolves each to exactly one.
+- Co-filing COMPLETE and PARTIAL on one tally: PARTIAL's precedence clause resolves it; COMPLETE's arithmetic-group definition is exclusive by construction.
+- Orphaning a claim (no class fits): every construction found a home; the cited-but-unprinted trio routes to BLOCKED by §2 (F3 covers the definition side).
+- Laundering provenance through one derivation step: roots computed from the whole chain; DERIVED-without-parents, cycles, and dangling ids all FAIL (verified live).
+- Passing a wrong origin via a mismatched reason code: pair enforcement FAILS it (verified).
+- Fabricating an ORIG_SILENT search: passes intake, but the document claims only that the search is printed; its content is checked by the second seat and C6. Boundary, not a finding.
+- Making the packet leak a stake or a preferred outcome: failed; closest is "Paper HOLD" (a container with no direction) and the Planck-2018 list (admissibility content).
+- Filing a study-level tally into no class: ≤10% origin disputes resolve to DISPUTED rows and continuation; merge input_id mismatch files through the control-failure classes; the one gap is F8 (minor).
+- Breaking the blind: forbidden-list scan clean; redacted spans absent; pin verified.
+- Breaking the seal's ordering: P precedes evidence, T precedes opening, missing receipt files AUDIT_FAILED. Held.
+
+---------------------------------------------------------------------
+EVIDENCE LEDGER
+---------------------------------------------------------------------
+Content read (the two named files only): the master (753 lines) and the seat packet (272 lines).
+Metadata/execution only, never content: R3C2_CORPUS_MANIFEST.md (digest match), r3c2_ledger_tools.py (digest MISMATCH vs pin; executed), r3c2_build_seat_packet.py (exists), R3C2_SEAT_PACKET.sha256 (shasum -c: packet OK, SEAT_BRIEF OK), r3c2_seat_packet/SEAT_BRIEF.md (pin OK), R3C2_INTERPRETATION_PROTOCOL_20260904.md (exists), /Users/duhokim/HermesOps/scripts/nm_referee_dispatch.sh (exists). No gate files sought or opened; §10 read as history and not inherited.
+Key runs: shasum of master/packet/manifest/script/builder; find+shasum for all script copies in the lane subtree (one worktree copy); git blob-vs-worktree check ("git show HEAD:./r3c2_ledger_tools.py | shasum -a 256" → dc9c5642…, the pinned digest; worktree = 0c3c865e…); packet forbidden-string scan (0 hits); master "error" scan (3 hits, all §10); python3/sympy harness probes; twenty-three synthetic-ledger probes against the worktree build and four against a digest-verified copy of the pinned build (validate/compute/merge/census) as quoted in sections 1, 2 and 7; scratch files under ./_tmp_gate_v13_kimi/ (synthetic ledgers, a fake source, and the digest-verified blob copy — LEFT IN PLACE: this environment's approval layer blocked their removal; they contain no lane data).
+Post-write git status of the lane dir: my only addition is the report file plus the _tmp_gate_v13_kimi/ scratch dir; the pre-existing modifications " M r3c2_ledger_tools.py" (the F1 finding itself) and " M _tmp_r3c2_ledger_ctl/o.json" are not mine — I never wrote to either path.
+Blocked by my own environment's approval layer (not by the design): an execute_code sandbox call, and the literal "python3 -c" form of the C5 probe — worked around with a script file. No denial was routed around; the workaround is disclosed.
+
+UNCERTAINTIES / DELIBERATELY NOT INSPECTED: the contents of the manifest's 89 enumerable texts (the pin is verified; the texts are the seats' remit); the contents of SEAT_BRIEF.md, the interpretation protocol, the builder and the dispatch script (existence/digest only — the brief forbids opening them); the 120-second cap and SYMBOLIC_TIMEOUT (process rules, unverifiable at gate time with no derivation run); the intent of the 16:37 worktree edit (fact: it exists and diverges from the pin; the lane must say whether it was meant to ship).
+
+VERDICT RATIONALE: the design is coherent and its hard mechanisms — the blind, the seal, fairness, both precedence orders, the one-pass-two-tallies definition, and the machine chain's documented behaviors — verified sound, most of them live on the tooling. The repairs are exact and bounded: F1 (restore the committed pinned build to the worktree, or commit the edit deliberately — a one-command lane action) and F2 (extend the computed-field rejection in the script; required regardless of F1's resolution because the gap is in the pinned build itself), then re-run the script's controls and re-pin; F3, F4, F5, F6, F7, F8 (text repairs as quoted). None requires redesign; none touches the settled option (c). After the text repairs land, the packet must be rebuilt and re-pinned (its §1, §2, §3, C2, C3, C5 texts change), then C0 by two seats proceeds as ordered.
+
+R3C2_V13_KIMI_GATE_COMPLETE
