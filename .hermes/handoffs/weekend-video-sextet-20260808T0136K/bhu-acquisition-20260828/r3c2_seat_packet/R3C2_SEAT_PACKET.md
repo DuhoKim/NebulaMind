@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `e67339905813549fec1c2cebb58cad264e9cc1b94a95aa0d2715866f9f356b6e` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `a0cf4d5cae4a2b744fead10a7ee09d72479cf6e8a8ddc7ef622b81167f6ea9af` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -61,8 +61,8 @@ Encountering one ends that claim's attempt.
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `8e286817f124a8c6a688e6a7c9795a3bd0afc803a796329bc41b12e8ca09f7ac`, pinned
-> beside the packet in `R3C2_SEAT_PACKET.sha256`; the seat runs its `census` and `validate` subcommands only.**
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `8e286817f124a8c6a688e6a7c9795a3bd0afc803a796329bc41b12e8ca09f7ac`, pinned at
+> `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
 
@@ -70,7 +70,8 @@ Encountering one ends that claim's attempt.
   applied to the inputs it states** (`PRINTED` or `STANDARD`). **Report both numbers.** **Where the paper states no
   precision for the claim, the printed precision is the claim's stated precision: the reproduced value must round to
   the printed numeral at that precision.** **Where the paper states an uncertainty, the test is |reproduced − printed| ≤ the stated
-  uncertainty, taken once — not doubled, not rounded; where it states none, the rounding rule above applies.** 
+  uncertainty, taken once — not doubled, not rounded; where it states none, the rounding rule above applies. Where the stated uncertainty is asymmetric,
+  the stated uncertainty is the half-width on the side the reproduced value falls.** 
 
 - **`REPRO_FAILED`** — the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the
   paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."**
@@ -84,7 +85,9 @@ Encountering one ends that claim's attempt.
   this lane does not have. Print `SYMBOLIC_TIMEOUT` when the 120-second cap is exceeded, or `MACHINERY_UNAVAILABLE` when the lane lacks the
   machinery, and the point reached. 
 - **`REPRO_NO_DERIVATION_STATED`** — the paper prints the claim as its own result but **states no equation or
-  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. 
+  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. **A procedure named but not
+  specified — a sentence that says where the number came from without stating operations a seat could attempt — states no
+  computational procedure that could produce it; file this class and name the passage.** 
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper — **neither printed nor traced to
   any named source** — so the attempt stops there. **Name the input.**  Distinct from a claim whose inputs the paper DOES state, chosen or not — that
   claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED`.
@@ -119,7 +122,7 @@ is hidden by being excluded.
    seats' input lists for the agreed claims disagree after the one C3 reconciliation**. The census does not proceed; the
    disputed candidates or inputs are listed. 
    *Open (§10.12): the class filed when the two seats' per-claim outcomes on an agreed included claim differ after the
-   one reconciliation of §2 step 5 — the gate found §4 not exhaustive over that state; a class is not added or redefined
+   one reconciliation of §2 step 5 — §4 is not exhaustive over that state; a class is not added or redefined
    by this document's author, so the gap is recorded here as open rather than written in.*
 
 6. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
@@ -189,7 +192,9 @@ is hidden by being excluded.
   `ORIG_FIT_STATED`, `ORIG_CHOICE_STATED`, `ORIG_MEASURED`, `ORIG_EQUATION`, `ORIG_CONSTANT`, `ORIG_SILENT` — a sentence
   that names an external source for the value is a citation whatever else it says — the order is a tie-break by the
   specificity of the evidence, not a ranking of the values.**  **`UNDECLARED` is the default, not the residue**: a record leaves it only by
-  producing that text, and an `ORIG_SILENT` record prints the search the seat ran.
+  producing that text, and an `ORIG_SILENT` record prints the search the seat ran; that printed `origin_search` (query, files, matches) is the
+  mechanism by which the second seat and the auditor judge the search adequate — a search of one query with no variants is
+  not adequate, and the auditor re-classifies the record from the pinned sources.
 
   **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
   that names no record, a cycle, and a `DERIVED` record with no `derived_from`. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A

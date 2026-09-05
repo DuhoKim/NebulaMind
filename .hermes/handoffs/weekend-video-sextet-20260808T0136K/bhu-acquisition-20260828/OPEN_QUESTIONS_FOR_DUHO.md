@@ -2491,3 +2491,5 @@ after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
 2. **`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`** (both engines, every round since V10). A rename, not a redefinition; say **"rename"** or **"keep"**. Same for `DERIVED_ONLY` → codex's earlier suggestion; say **"rename both"** if you want both.
 
 Still yours, unchanged: whether R3C2 RUNS at all.
+
+- 2026-09-05 20:33 KST — **addendum to the 19:48 class question:** kimi's V18 gate adds an optional sub-option — a census whose denominator is zero (no included claim anywhere) would file `CENSUS_COMPLETE` vacuously; the clause "a denominator of zero files `CENSUS_PARTIAL` with the empty enumeration named" fixes that but moves a degenerate case between two classes, so it is yours. Say **"and zero → PARTIAL"** with your (a)/(b)/(c) if you want it. Both V18 gates: LEAK=NONE on both seats for the first time; every substantive defect left is one of these two rulings. V19 (wording repairs only) is in C0 now.

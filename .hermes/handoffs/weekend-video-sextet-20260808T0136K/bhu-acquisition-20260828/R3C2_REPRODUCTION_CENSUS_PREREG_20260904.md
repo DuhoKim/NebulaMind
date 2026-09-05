@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 18 (see §10; §10.12 — both V17 gate lists applied; one class ruling pending — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 19 (see §10; §10.13 — both V18 gate lists applied; LEAK=NONE on both seats; one class ruling pending — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -99,8 +99,8 @@ The ledger answers *"what did it rest on?"* So:<!--/SEAT-REDACT-->
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `8e286817f124a8c6a688e6a7c9795a3bd0afc803a796329bc41b12e8ca09f7ac`, pinned
-> beside the packet in `R3C2_SEAT_PACKET.sha256`; the seat runs its `census` and `validate` subcommands only.**
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `8e286817f124a8c6a688e6a7c9795a3bd0afc803a796329bc41b12e8ca09f7ac`, pinned at
+> `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 <!--SEAT-REDACT-->
 > *(Lane side: `root_origins` and the per-claim field `rests_on` are computed from the merged ledger by `r3c2_lane_tools.py`,
 > which no seat is given.)*
@@ -119,7 +119,8 @@ The ledger answers *"what did it rest on?"* So:<!--/SEAT-REDACT-->
   applied to the inputs it states** (`PRINTED` or `STANDARD`). **Report both numbers.** **Where the paper states no
   precision for the claim, the printed precision is the claim's stated precision: the reproduced value must round to
   the printed numeral at that precision.** **Where the paper states an uncertainty, the test is |reproduced − printed| ≤ the stated
-  uncertainty, taken once — not doubled, not rounded; where it states none, the rounding rule above applies.**<!--SEAT-REDACT--> The claim's `rests_on` is reported beside it.<!--/SEAT-REDACT--> <!--SEAT-REDACT-->*(kimi V10:
+  uncertainty, taken once — not doubled, not rounded; where it states none, the rounding rule above applies. Where the stated uncertainty is asymmetric,
+  the stated uncertainty is the half-width on the side the reproduced value falls.**<!--SEAT-REDACT--> The claim's `rests_on` is reported beside it.<!--/SEAT-REDACT--> <!--SEAT-REDACT-->*(kimi V10:
   "13.8 Gyr" against 13.797 was fileable either way; the rule decides it mechanically. codex V10 asked for the name
   to change to `REPRO_WITHIN_STATED_PRECISION`; a class rename is the principal's, escalated in §10.5.)*<!--/SEAT-REDACT-->
 <!--SEAT-REDACT-->- *(`REPRO_AFTER_CHOICE` — RETIRED at V10 by the principal's ruling adopting option (c). What it recorded — that the number
@@ -142,7 +143,9 @@ The ledger answers *"what did it rest on?"* So:<!--/SEAT-REDACT-->
   machinery, and the point reached. <!--SEAT-REDACT-->*(Added because the stall guard had no
   per-claim outcome to file into.)*<!--/SEAT-REDACT-->
 - **`REPRO_NO_DERIVATION_STATED`** — the paper prints the claim as its own result but **states no equation or
-  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. <!--SEAT-REDACT-->*(A claim can
+  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. **A procedure named but not
+  specified — a sentence that says where the number came from without stating operations a seat could attempt — states no
+  computational procedure that could produce it; file this class and name the passage.** <!--SEAT-REDACT-->*(A claim can
   satisfy §1 — a printed numeral asserted as the paper's own result — while the paper never says how it was
   obtained. That claim previously fell through every class.)*<!--/SEAT-REDACT-->
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper — **neither printed nor traced to
@@ -185,7 +188,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
    seats' input lists for the agreed claims disagree after the one C3 reconciliation**. The census does not proceed; the
    disputed candidates or inputs are listed. <!--SEAT-REDACT-->*(Added because the enumeration stop had no class.)*<!--/SEAT-REDACT-->
    *Open (§10.12): the class filed when the two seats' per-claim outcomes on an agreed included claim differ after the
-   one reconciliation of §2 step 5 — the gate found §4 not exhaustive over that state; a class is not added or redefined
+   one reconciliation of §2 step 5 — §4 is not exhaustive over that state; a class is not added or redefined
    by this document's author, so the gap is recorded here as open rather than written in.*
 
 6. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
@@ -281,7 +284,9 @@ before audit — which is codex's order; kimi's differed only in placing the den
   machine; if every reader misclassifies identically, the record stands — that floor is stated here rather than implied
   away. `MEASURED` added because a measured-but-silent input was forced to
   `UNDECLARED`, the most severe root, by construction — kimi's observation 2.)*<!--/SEAT-REDACT--> **`UNDECLARED` is the default, not the residue**: a record leaves it only by
-  producing that text, and an `ORIG_SILENT` record prints the search the seat ran.
+  producing that text, and an `ORIG_SILENT` record prints the search the seat ran; that printed `origin_search` (query, files, matches) is the
+  mechanism by which the second seat and the auditor judge the search adequate — a search of one query with no variants is
+  not adequate, and the auditor re-classifies the record from the pinned sources.
 
   **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
   that names no record, a cycle, and a `DERIVED` record with no `derived_from`.<!--SEAT-REDACT--> *(Lane side: `r3c2_lane_tools.py
@@ -371,8 +376,9 @@ before audit — which is codex's order; kimi's differed only in placing the den
 
   **The accepted floor, ruled by the principal (2026-09-05 18:52 KST, "hide the comparison, keep the taxonomy"):** the task
   reveals that provenance is classified with care — seven values, quotations, two independent readers, disputes carried
-  — and no wording removes that; the packet no longer reveals that provenance is compared with reproduction, what a
-  summary of it would be called, or what the study does with it. A gate finding that a seat can tell provenance matters
+  — and no wording removes that; the packet reveals that recorded provenance is independently re-classified and checked against the sealed
+  record, but does not reveal that provenance is combined with the reproduction tally, what that summary is called, or how
+  the interpretation uses it. A gate finding that a seat can tell provenance matters
   is the accepted floor under that ruling, not a defect; the argument is in `R3C2_LEAK_FLOOR_JUDGEMENT_20260905.md`.
   **What the blind supports and does not:** the dispatch record proves that the seat was not furnished the pattern
   record in its working directory. The self-reported path list is secondary evidence and, because it is not complete
@@ -441,8 +447,9 @@ itself fixed and committed before limb A begins, so it cannot be written to suit
 
 **What the seal is, and what it is not — two receipts.** **(P) Before limb A begins, Tori commits the interpretation
 protocol and sends its hash and commit id to Blanc, who is outside this lane and reports to Duho; Blanc acknowledges
-and timestamps them in a preserved receipt P; limb A does not begin without receipt P.** **(T) After the tally is
-committed and before the protocol is opened, Tori sends the tally hash and tally commit id; Blanc receipts them as T;
+and timestamps them in a preserved receipt P; limb A does not begin without receipt P.** **(T) After the tally — one commit containing the merged candidate file, the exclusion ledger, and the merged input ledger
+with its `compute` output — is committed and before the protocol is opened, Tori sends the tally hash and tally commit id;
+Blanc receipts them as T, and the receipt names every file in that commit;
 the interpretation protocol is not opened without both receipts.** **The relay is complete only when it is receipted.**
 After opening, Blanc independently re-hashes the tally and the protocol and verifies all four values against the two
 receipts, and **the interpretation report must print both receipts and the four verified values**. Any missing receipt
@@ -518,7 +525,8 @@ Two defects were found in the previous table and are corrected here, rather than
 | V15 | `f997fce89cce1749…` | C0 two seats AGREE; `R3C2_GATE_V15_codex_20260905.md`, `R3C2_GATE_V15_kimi_20260905.md` | C0 PASS+PASS; gate `PREREG_UNSOUND` (CONSEQUENCE_VISIBLE=NO), `PREREG_SOUND_WITH_REPAIRS` (CONSEQUENCE_VISIBLE=NO) | see §10.10 |
 | V16 | `47c55a74af952058…` | C0 two seats AGREE; `R3C2_GATE_V16_codex_20260905.md`, `R3C2_GATE_V16_kimi_20260905.md` | C0 PASS+PASS; gate `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS`; CONSEQUENCE_VISIBLE=NO both | see §10.11 |
 | V17 | `fe194fb4aee7603d…` | *(C0 by two independent seats, then two-seat gate with a sixth question — pending)* | — | **the principal's ruling applied: comparison hidden, taxonomy kept; both V16 lists applied; see §10.11** |
-| V18 | *this version* | C0 two seats AGREE on V17; `R3C2_GATE_V17_codex_20260905.md` (UNSOUND, LEAK=NONE), `R3C2_GATE_V17_kimi_20260905.md` (SOUND_WITH_REPAIRS, leak content-level only) | both lists applied; class addition + `REPRO_EXACT` rename escalated (§10.12) | C0 by two seats, then gate — pending |
+| V18 | `e67339905813549f…` | C0 two seats AGREE on V17; `R3C2_GATE_V17_codex_20260905.md` (UNSOUND, LEAK=NONE), `R3C2_GATE_V17_kimi_20260905.md` (SOUND_WITH_REPAIRS, leak content-level only) | both lists applied; class addition + `REPRO_EXACT` rename escalated (§10.12) | C0 by two seats, then gate — pending |
+| V19 | *this version* | C0 two seats AGREE on V18; `R3C2_GATE_V18_codex_20260905.md` (UNSOUND on the two escalated items only; LEAK=NONE), `R3C2_GATE_V18_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE) | seven wording repairs applied; class question (+ zero-denominator clause) and rename remain escalated (§10.13) | C0 by two seats, then gate — pending |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -929,3 +937,18 @@ No class retired, added or redefined. Not frozen, not run. *Process note, disclo
 without abort guards, wrote only the codex items, built a packet and dispatched C0 seats on a master still headed V17; both seats
 were stopped within a minute and their output archived unread; this is the complete V18.*
 
+## 10.13 V19 — both V18 gate lists applied; LEAK=NONE on both seats (2026-09-05 20:33 KST)
+
+V18 gate: codex `PREREG_UNSOUND` — its substantive defects are exactly the two items already escalated (the surviving per-claim
+outcome split has no class, 1.1/7.1; the `REPRO_EXACT` rename, 6.1) plus one cosmetic (4.1); LEAK=NONE, CONSEQUENCE_VISIBLE=NO,
+origin purpose = the C6 audit's own re-classification. kimi `PREREG_SOUND_WITH_REPAIRS` — LEAK=NONE (down from "content-level
+only" at V17), CONSEQUENCE_VISIBLE=NO, ORIGIN_PURPOSE statable only as a check; D0 = the split class (the same escalated item),
+C2 = the rename. **Applied (wording, no class or control changed):** codex 4.1 (C4 states what the packet does and does not
+reveal, exactly); kimi R1 (asymmetric uncertainty = the half-width on the side the reproduced value falls); R2 (a named but
+unspecified procedure files `REPRO_NO_DERIVATION_STATED`, passage named); C1 (`origin_search` is the adequacy mechanism; one
+query, no variants, is inadequate); C4 (the §4 open note no longer says a gate found it — a process trace in the seat's view);
+R3 (receipt T is one named commit — merged candidate file, exclusion ledger, merged input ledger with `compute` output — and
+the receipt names every file); C3 (pin-file location worded truly). **Escalated, not applied:** the split class (options
+filed 19:48 KST) — and kimi C5's optional clause that a zero denominator files `CENSUS_PARTIAL` rather than a vacuous
+`CENSUS_COMPLETE` is added to that same ruling as a sub-option, since it moves a degenerate census between two classes; the
+`REPRO_EXACT` rename. No class retired, added or redefined. Not frozen, not run.
