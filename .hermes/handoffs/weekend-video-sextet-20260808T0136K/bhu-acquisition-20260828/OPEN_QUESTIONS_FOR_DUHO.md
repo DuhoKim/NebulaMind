@@ -2517,3 +2517,6 @@ Both seats cleared V23 with the blind intact (LEAK=NONE both; kimi cannot state 
 `DERIVED_ONLY` → `DERIVED_STANDARD_OR_MEASURED_ONLY`, which your "rename" did not cover, so it is yours. Freeze statement, digest and
 blanks: `R3C2_V23_SIGNABLE_20260906.md`. **Say the digest to freeze**, or **"rename DERIVED_ONLY too"** for a V24 first. Running stays a
 separate word.
+
+## FOR YOUR MORNING 2026-09-06 01:28 KST — the synthesis exists; one question is yours
+`BHU_PROGRAMME_SYNTHESIS_20260906.md` (V3, two blind source referees: 36/42 and 46/50 claims confirmed, every misquote corrected, no verdict changed). In plain words: the programme is real but small. One claim is falsifiable as stated and alive (entry 31's neutron-star bar, drifting away from firing); one sign is watched (entry 54); everything else that looks testable fixes a shape and leaves the magnitude free, and R3D added the regular-core floor to that list. The live frontier is R3C2's question: does any construction compute a magnitude from its own equations. **Your call, when you have read it:** is that the frame the paper is written in ("consistent geometries, one borrowed falsifier"), or do you want the census to run first and let it decide? Say **"frame"** or **"census first"**; nothing moves until you do.
