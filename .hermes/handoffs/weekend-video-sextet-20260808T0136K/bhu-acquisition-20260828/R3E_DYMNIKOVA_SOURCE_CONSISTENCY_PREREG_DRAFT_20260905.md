@@ -5,7 +5,7 @@ starting"). Round-3 ranked packet cluster **#7** (codex proposal; CONT 3, TRACT 
 Nothing runs on this document. No tier, warrant token, standing or stamp moves. Paper HOLD. Nothing outward. Published
 peer-reviewed sources only. Nothing from Hwao's lane, pipeline or data.
 
-**Version:** DRAFT 2 (this file). A freeze produces `R3E_DYMNIKOVA_SOURCE_CONSISTENCY_PREREG_2026MMDD.md` with §8 filled,
+**Version:** DRAFT 3 (this file). A freeze produces `R3E_DYMNIKOVA_SOURCE_CONSISTENCY_PREREG_2026MMDD.md` with §8 filled,
 a C0 reachability exhibition by two seats, and a two-seat design gate, before any seat derives anything.
 
 ## 0. Design rules carried from R3D and R3C2 (`R3_PREREG_DESIGN_RULES_20260905.md`) — DRAFT 2
@@ -37,6 +37,10 @@ beside this document at freeze; each has a positive and a negative form.
 The seat's read set is exactly: `R3E_SEAT_PACKET.md`, `SEAT_BRIEF.md`, `r3e_controls.py`, `r3e_limbs.py`, `r3c2_timeout.py`, `R3E_SEAT_PACKET.sha256`, the two pinned Dymnikova texts and the restatement — each pinned in `R3E_SEAT_PACKET.sha256`; no operative command names
 a tool outside that set or at an absolute path. Third-seat dispatch through the lane's dispatcher is an administrative action
 of the lane owner and is not claimed executable from the packet.
+
+**Control kit (Rule 4), committed tonight and executed:** `r3e_controls.py` (sha256 `8ece3e0f904fbbdb…`) over `r3_controls_lib.py` (`ca23604af06eaf39…`), pins in `R3_CONTROL_KITS.sha256`; every control is one printed command with an exact token and exit 1 on any FAIL; planted inputs in `_tmp_r3_ctl/`.
+**Kit result tonight:** `r3e_controls.py all <1992 text>` → 10/10 (C1 with two anchors drifting by 2 and 7 lines in the OCR text — the freeze pins the found lines; C2 Schwarzschild/de Sitter benchmark exact; C3 exact code; C4 live; NEG planted 3/2→1 gives a non-zero residual).
+**Disclosure (Rule 2, honesty about the blind):** building the negative control required the same machinery as limb A, and the lane ran it unplanted: with the coefficient 3/2 as read, BOTH printed components (P2) and (P4) give zero residual against the Einstein tensor of (P1). The lane therefore already holds limb A's likely answer (`PROFILE_CONSISTENT`, if the OCR reading holds). The seats' blind double stands on their own code; the control kit is not given to seats as a derivation, and any seat output byte-identical to the kit's fails the blind. If Duho judges the pre-computation fatal to the study's value, R3E becomes an annotation (P2/P4 exact) rather than a study.
 
 ## 1. Question
 
@@ -149,5 +153,6 @@ No ledger entry is re-run.
 |---|---|---|
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated |
 | DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
+| DRAFT 3 | 2026-09-06 | control kit written and executed (Rule 4); kit results and disclosures recorded in §0; only Duho's order is missing — plus, for R3G, the PDF-exact form of eq. 7.31 at freeze |
 
 R3E_PREREG_DRAFT_COMPLETE

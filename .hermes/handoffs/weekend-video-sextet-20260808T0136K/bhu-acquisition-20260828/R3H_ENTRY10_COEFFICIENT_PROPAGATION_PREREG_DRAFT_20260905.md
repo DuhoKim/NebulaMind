@@ -5,7 +5,7 @@ starting"). Round-3 ranked packet cluster **#8** (claude proposal; CONT 3, TRACT
 blocked**, propagation limb not blocked). Nothing runs on this document. No tier, warrant token, standing or stamp moves.
 Paper HOLD. Nothing outward. Published peer-reviewed sources only. Nothing from Hwao's lane, pipeline or data.
 
-**Version:** DRAFT 2. A freeze produces `R3H_ENTRY10_COEFFICIENT_PROPAGATION_PREREG_2026MMDD.md` with §8 filled, C0 by two
+**Version:** DRAFT 3. A freeze produces `R3H_ENTRY10_COEFFICIENT_PROPAGATION_PREREG_2026MMDD.md` with §8 filled, C0 by two
 seats and a two-seat design gate before any derivation.
 
 ## 0. Design rules carried from R3D and R3C2 (`R3_PREREG_DESIGN_RULES_20260905.md`) — DRAFT 2
@@ -37,6 +37,9 @@ beside this document at freeze; each has a positive and a negative form.
 The seat's read set is exactly: `R3H_SEAT_PACKET.md`, `SEAT_BRIEF.md`, `r3h_controls.py`, `r3h_propagate.py`, `r3c2_timeout.py`, `R3H_SEAT_PACKET.sha256`, the five pinned entry texts (10, 39, 52, 53, 59) — each pinned in `R3H_SEAT_PACKET.sha256`; no operative command names
 a tool outside that set or at an absolute path. Third-seat dispatch through the lane's dispatcher is an administrative action
 of the lane owner and is not claimed executable from the packet.
+
+**Control kit (Rule 4), committed tonight and executed:** `r3h_controls.py` (sha256 `820aa7a64fd2abbc…`) over `r3_controls_lib.py` (`ca23604af06eaf39…`), pins in `R3_CONTROL_KITS.sha256`; every control is one printed command with an exact token and exit 1 on any FAIL; planted inputs in `_tmp_r3_ctl/`.
+**Kit result tonight:** `r3h_controls.py all <entry 10 text> <rows.json>` → all pass after one correction to the lane's own test rows: a six-fold change of the coefficient moves a quantity that scales as its square root (a critical temperature ∝ α^{−1/2}) by √6 = 2.45, which is BELOW the declared factor-3 threshold and files `WITHIN_PRECISION`. This is the threshold doing what it was set to do, and it means the likely shape of the result is `CONCLUSION_ROBUST` on existence claims and on square-root scales, with `ORDER_MOVES` only on quantities linear in the coefficient. Recorded before any real number is computed. The four inheriting entries' pinned files are resolved at freeze from the ledger's entry→file map (the R3C2 manifest numbers rows, not entries).
 
 ## 1. Question
 
@@ -140,5 +143,6 @@ K4 were about perturbations across the bounce, not coefficient propagation. No t
 |---|---|---|
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated; provenance limb pre-filed BLOCKED |
 | DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
+| DRAFT 3 | 2026-09-06 | control kit written and executed (Rule 4); kit results and disclosures recorded in §0; only Duho's order is missing — plus, for R3G, the PDF-exact form of eq. 7.31 at freeze |
 
 R3H_PREREG_DRAFT_COMPLETE

@@ -5,7 +5,7 @@ starting"). Round-3 ranked packet cluster **#6** (claude proposal; CONT 4, TRACT
 re-costed below at 1–2 because the chain is eight equations). Not blocked. Nothing runs on this document. No tier, warrant
 token, standing or stamp moves. Paper HOLD. Nothing outward. Published peer-reviewed sources only. Nothing from Hwao's lane.
 
-**Version:** DRAFT 2. A freeze produces `R3F_ROUPAS_ENTROPY_PREREG_2026MMDD.md` with §8 filled, C0 by two seats and a
+**Version:** DRAFT 3. A freeze produces `R3F_ROUPAS_ENTROPY_PREREG_2026MMDD.md` with §8 filled, C0 by two seats and a
 two-seat design gate before any derivation.
 
 ## 0. Design rules carried from R3D and R3C2 (`R3_PREREG_DESIGN_RULES_20260905.md`) — DRAFT 2
@@ -37,6 +37,10 @@ beside this document at freeze; each has a positive and a negative form.
 The seat's read set is exactly: `R3F_SEAT_PACKET.md`, `SEAT_BRIEF.md`, `r3f_controls.py`, `r3f_limbs.py`, `r3c2_timeout.py`, `R3F_SEAT_PACKET.sha256`, the pinned Roupas text and its rendered copy — each pinned in `R3F_SEAT_PACKET.sha256`; no operative command names
 a tool outside that set or at an absolute path. Third-seat dispatch through the lane's dispatcher is an administrative action
 of the lane owner and is not claimed executable from the packet.
+
+**Control kit (Rule 4), committed tonight and executed:** `r3f_controls.py` (sha256 `fb2a9b46bd2c0862…`) over `r3_controls_lib.py` (`ca23604af06eaf39…`), pins in `R3_CONTROL_KITS.sha256`; every control is one printed command with an exact token and exit 1 on any FAIL; planted inputs in `_tmp_r3_ctl/`.
+**Kit result tonight:** `r3f_controls.py all <Roupas text>` → 10/10 (C1 four anchors exact; C2 the shell identity S = Mc²/T0 verified for a concrete linear profile and, by explicit integration by parts, for any profile with ρ(a)=ρ0, ρ(b)=0; C3 exact code; C4 live; NEG the isotropic-pressure plant gives S = 0).
+**Observation:** the C2 identity is profile-independent, which is the paper's own "for any α and all solutions" claim in general form; limb A's value is therefore in confirming that the PRINTED spectrum (eqs. 7, 8, 12, 14) satisfies the boundary conditions the identity needs, not in the integral itself. Limb B (what fixes T0) remains the study's real content.
 
 ## 1. Question
 
@@ -143,5 +147,6 @@ entropy chain is self-supporting.
 |---|---|---|
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated |
 | DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
+| DRAFT 3 | 2026-09-06 | control kit written and executed (Rule 4); kit results and disclosures recorded in §0; only Duho's order is missing — plus, for R3G, the PDF-exact form of eq. 7.31 at freeze |
 
 R3F_PREREG_DRAFT_COMPLETE

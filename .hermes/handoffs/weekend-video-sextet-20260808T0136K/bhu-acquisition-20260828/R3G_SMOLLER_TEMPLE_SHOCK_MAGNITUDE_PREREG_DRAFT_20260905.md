@@ -5,7 +5,7 @@ starting"). Round-3 ranked packet cluster **#10** (agy and codex proposed indepe
 as costed by agy, 2 by codex). Not blocked. Nothing runs on this document. No tier, warrant token, standing or stamp moves.
 Paper HOLD. Nothing outward. Published peer-reviewed sources only. Nothing from Hwao's lane, pipeline or data.
 
-**Version:** DRAFT 2. A freeze produces `R3G_SMOLLER_TEMPLE_SHOCK_MAGNITUDE_PREREG_2026MMDD.md` with §8 filled, C0 by two seats
+**Version:** DRAFT 3. A freeze produces `R3G_SMOLLER_TEMPLE_SHOCK_MAGNITUDE_PREREG_2026MMDD.md` with §8 filled, C0 by two seats
 and a two-seat design gate before any derivation.
 
 ## 0. Design rules carried from R3D and R3C2 (`R3_PREREG_DESIGN_RULES_20260905.md`) — DRAFT 2
@@ -37,6 +37,10 @@ beside this document at freeze; each has a positive and a negative form.
 The seat's read set is exactly: `R3G_SEAT_PACKET.md`, `SEAT_BRIEF.md`, `r3g_controls.py`, `r3g_limbs.py`, `r3c2_timeout.py`, `R3G_SEAT_PACKET.sha256`, the two pinned Smoller–Temple texts — each pinned in `R3G_SEAT_PACKET.sha256`; no operative command names
 a tool outside that set or at an absolute path. Third-seat dispatch through the lane's dispatcher is an administrative action
 of the lane owner and is not claimed executable from the packet.
+
+**Control kit (Rule 4), committed tonight and executed:** `r3g_controls.py` (sha256 `4ff41825f7635ea7…`) over `r3_controls_lib.py` (`ca23604af06eaf39…`), pins in `R3_CONTROL_KITS.sha256`; every control is one printed command with an exact token and exit 1 on any FAIL; planted inputs in `_tmp_r3_ctl/`.
+**Kit result tonight:** `r3g_controls.py all <2000 text> <transcription.json>` → 9/10. C1 five anchors exact; C3, C4, NEG as designed; **C2 FAILS on the lane's own transcription**: reading eq. 7.31 from the extracted text as (2.62–2.65)×10⁻⁷ T0⁴/(h0²H0²)·ln²(1/R*) gives √(r²−r*²) = 0.0495–0.0498 Hubble lengths against the printed 0.019, while the same coefficients with ln(1/R*) unsquared give 0.0183 ≈ 0.019.
+**Consequence for the design:** the exact printed form of eq. 7.31 (the placement of the ½ and the power of the logarithm in the PDF layout) is a freeze-time task from the PDF, not the extracted text, and the negative control as drafted ("plant ln for ln²") is INVALID until it is settled — the planted form may be the true one. The kit keeps the transcription as an input file so the seat's reading, not the lane's, is what C2 tests. This is the strongest argument that R3G needs the PDF pinned beside the text.
 
 ## 1. Question
 
@@ -152,5 +156,6 @@ entry is re-run. Entries 37, 38, 57 are pinned as foundation only; no claim in t
 |---|---|---|
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated |
 | DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
+| DRAFT 3 | 2026-09-06 | control kit written and executed (Rule 4); kit results and disclosures recorded in §0; only Duho's order is missing — plus, for R3G, the PDF-exact form of eq. 7.31 at freeze |
 
 R3G_PREREG_DRAFT_COMPLETE

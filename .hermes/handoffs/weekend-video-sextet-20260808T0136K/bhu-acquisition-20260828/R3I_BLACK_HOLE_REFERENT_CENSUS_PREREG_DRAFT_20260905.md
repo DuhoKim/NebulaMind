@@ -5,7 +5,7 @@ starting"). Round-3 ranked packet cluster **#5** (claude proposal; CONT 4, TRACT
 Nothing runs on this document. No tier, warrant token, standing or stamp moves. Paper HOLD. Nothing outward. Published
 peer-reviewed sources only. Nothing from Hwao's lane, pipeline or data.
 
-**Version:** DRAFT 2. A freeze produces `R3I_BLACK_HOLE_REFERENT_CENSUS_PREREG_2026MMDD.md` with §8 filled, C0 by two seats and
+**Version:** DRAFT 3. A freeze produces `R3I_BLACK_HOLE_REFERENT_CENSUS_PREREG_2026MMDD.md` with §8 filled, C0 by two seats and
 a two-seat design gate before any classification. The seat machinery is R3C2's (packet builder, two independent seats, disputes
 carried, machine-matched quotations); nothing from R3C2's comparison layer is reused.
 
@@ -38,6 +38,9 @@ beside this document at freeze; each has a positive and a negative form.
 The seat's read set is exactly: `R3I_SEAT_PACKET.md`, `SEAT_BRIEF.md`, `r3i_validate.py`, `R3I_SEAT_PACKET.sha256`, `R3C2_CORPUS_MANIFEST.md`, the 89 pinned texts — each pinned in `R3I_SEAT_PACKET.sha256`; no operative command names
 a tool outside that set or at an absolute path. Third-seat dispatch through the lane's dispatcher is an administrative action
 of the lane owner and is not claimed executable from the packet.
+
+**Control kit (Rule 4), committed tonight and executed:** `r3i_validate.py` (sha256 `72edb4a02a40f7cc…`) over `r3_controls_lib.py` (`ca23604af06eaf39…`), pins in `R3_CONTROL_KITS.sha256`; every control is one printed command with an exact token and exit 1 on any FAIL; planted inputs in `_tmp_r3_ctl/`.
+**Kit result tonight:** `r3i_validate.py <ledger> <sources>` on three planted texts → the planted-good ledger passes 3/3; the planted-bad ledger fails on the fabricated quotation and PASSES on a genuine quotation attached to the wrong referent. That second case is the human floor stated in §2: the machine checks that the quotation exists, not what it means; the second seat and the auditor are the check on meaning, exactly as in R3C2.
 
 ## 1. Question
 
@@ -126,5 +129,6 @@ No ledger entry is re-run.
 |---|---|---|
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated |
 | DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
+| DRAFT 3 | 2026-09-06 | control kit written and executed (Rule 4); kit results and disclosures recorded in §0; only Duho's order is missing — plus, for R3G, the PDF-exact form of eq. 7.31 at freeze |
 
 R3I_PREREG_DRAFT_COMPLETE
