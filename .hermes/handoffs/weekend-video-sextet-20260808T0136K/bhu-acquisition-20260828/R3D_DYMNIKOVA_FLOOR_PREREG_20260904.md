@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 27 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 28 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -303,7 +303,13 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **When the probe files `FAIL`, the circular relation is removed from every reading that used it, the partition of
   §4 is recomputed on the remaining readings, and the run files whichever class the recomputed partition selects —
-  with the removed relation and the probe's captured output printed in the filing.** *(Previously `FAIL` barred a
+  with the removed relation and the probe's captured output printed in the filing. A probe `FAIL` handled by this
+  recomputation is a SUBSTANTIVE CIRCULARITY FINDING, not a control failure: it does NOT engage the control-clean
+  rule of `R3D_NO_CLASS`, and the filing records `C3_DELETION_PROBE=FAIL` with the removed relation and the
+  recomputation printed.** *(kimi V27: without this, a probe FAIL made the report not control-clean, so the
+  recomputed scientific class and `R3D_NO_CLASS` both claimed the same path — class 1's C6 carve-out had no C3
+  parallel. The colliding sentence was kimi's own V26 replacement, adopted at V27 without tracing it against class
+  6 — the §8b lesson, repeated.)* *(Previously `FAIL` barred a
   class without naming what is filed instead — a terminal state with no routing.)*
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
   fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, pinned by sha256
@@ -343,7 +349,16 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   the Schwarzschild form in the exterior limit, **and prints the premise list** for that algebra showing that no
   interior premise entered. The printed algebra and premise list are the artefact; a claimed pass without them
   fails. This control emits `C4_GR_BENCHMARK=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
-- **C5 — harness, LIVE.** Execute and print the three commands of §9. This control emits `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself.
+- **C5 — harness, LIVE.** Execute and print the three commands of §9. **The frozen expected outputs are:
+  `/usr/bin/python3 --version` → `Python 3.9.6`; `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"` →
+  `1.14.0`; `shasum -a 256 /usr/bin/python3` → `b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9`.
+  `C5_HARNESS_PINNED=PASS` exactly when all three commands exit 0 AND their printed values equal these frozen
+  values; otherwise `FAIL`; `NOT_RUN` only when explicitly unreached under §9.** The three captured outputs, exit
+  codes and comparisons are the required artefact; a claimed pass without them fails. This control emits exactly
+  `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a
+  claim this document makes about itself. *(codex V27: printing a digest is not the same as pinning identity — with
+  no frozen expected value, the seat classified its own output. The three frozen values were re-executed from `/`
+  and matched before being written here.)*
 - **C5b — path list.** Print every opened path and, **for each path, print `IN_SCOPE` or `OUT_OF_SCOPE` together
   with the exact §9 scope-rule clause applied.** Any `OUT_OF_SCOPE` row **fails** the control. **The complete
   per-path table is the required artefact; a claimed pass without it fails.** This control emits `C5B_PATH_LIST=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. *("Check it"
@@ -596,8 +611,11 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
   exactly as `nm_referee_dispatch.sh` does.
 - **Path list**: every seat prints every path it opened. **IN SCOPE:** this lane's own reading tree
   (`../bhu-reading-20260823/sources/`); **this preregistration**; **the committed script
-  `r3d_c3_deletion_probe.py` and the JSON input the seat writes for it**; and **the seat's own working directory
-  and artefacts**. **OUT OF SCOPE:** another lane's files, and any path not named above. *(The rule previously
+  `r3d_c3_deletion_probe.py` and the JSON input the seat writes for it**; **the pinned interpreter `/usr/bin/python3`,
+  executed and hashed under C5 and invoked by C3**; and **the seat's own working directory and artefacts**. *(kimi
+  V27: C5 commands the seat to hash the interpreter and C3 to run it, yet no scope clause named it and "any path not
+  named above" is `OUT_OF_SCOPE` — so a conforming seat failed its own C5b on every run, deterministically. The V20
+  C5b defect, one path over.)* **OUT OF SCOPE:** another lane's files, and any path not named above. *(The rule previously
   named only the reading tree as in-scope, while the design itself requires a seat to open this document, the probe
   and its input — so every mandated read would have been marked `OUT_OF_SCOPE` and failed C5b. A control that fails
   on the paths its own design requires is not a scope rule.)* That distinction is stated
@@ -1506,4 +1524,32 @@ the probe digest check (match).
 
 **R3D is NOT frozen and NOT run. V27 requires its own C0 and gate.**
 
-R3D_PREREG_V27_READY_FOR_REEXHIBITION
+## 8t. V28 — seventh consecutive two-seat clear; both seats executed C3, kimi from outside the lane; three substantive repairs
+
+**codex `SOUND_WITH_REPAIRS` (one defect, six sections clean), kimi `SOUND_WITH_REPAIRS` (two defects, five sections
+sound), both on `3e5b6979…`, both hash-verified.**
+
+**Both seats ran C3's literal command.** codex from the lane directory, `PASS`, exit 0. **kimi from `/` and then from
+`/Users/duhokim` — neither the lane nor the repository root — stdout byte-identical, `PASS`, exit 0**, with the same
+plain caveat as before that it ran against the negative control already in place. That is the first seat execution
+that actually exercised the no-dependence-on-working-directory claim.
+
+| finding | seat | classification | disposition |
+|---|---|---|---|
+| C5 printed commands with **no frozen expected values and no comparison** — the seat classified its own output | codex | **SUBSTANTIVE**, criterion (2) | **APPLIED** — three frozen values, re-executed from `/` and matched before writing |
+| the C3=FAIL "recompute and file" clause **collides with class 6's control-clean rule** — one reachable path, two classes | kimi F1 | **SUBSTANTIVE**, criterion (1) | **APPLIED** — a probe FAIL handled by recomputation is a substantive circularity finding, mirroring class 1's C6 carve-out |
+| C5b's scope rule names neither `/usr/bin/python3`, which C5 hashes and C3 runs, so **every conforming run fails C5b** | kimi F2 | **SUBSTANTIVE**, criterion (2) | **APPLIED** |
+| the `DYM_NO_*` tokens | neither seat, this round | — | **escalation stands on seven prior findings; one round's silence does not retract them** |
+
+**F1's colliding sentence was kimi's own V26 replacement, adopted at V27 without tracing it against class 6** — the
+§8b lesson repeated by me on the same document twelve versions later.
+
+**A process fault in getting here, recorded rather than hidden:** the first attempt to write this version aborted on
+a mis-quoted anchor, wrote nothing, and the script then ran on — committing a state file that said "V28, three
+repairs applied" against V27's unchanged hash and dispatching a C0 against V27's bytes under a V28 name. The commit
+is corrected by a later one that names it; the dispatch was killed before any output was read and its files are
+archived under `_tmp_ABORTED_*`. **A script that asserts must also stop when an assertion fails.**
+
+**V27 is NOT final. V28 requires its own C0 and gate.**
+
+R3D_PREREG_V28_READY_FOR_REEXHIBITION
