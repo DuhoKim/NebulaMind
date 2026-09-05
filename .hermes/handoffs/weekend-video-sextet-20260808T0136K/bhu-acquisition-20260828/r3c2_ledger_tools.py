@@ -15,8 +15,9 @@
       fails a ledger carrying a computed field; an ORIG_SILENT record must carry origin_search {query, files, matches}.
   /usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
       asserts: every record has the schema fields; status in {PRINTED,STANDARD,ABSENT}; origin in
-      {DERIVED,STANDARD,CHOSEN,FITTED,IMPORTED,UNDECLARED}; reason_code/origin pair is one of the allowed pairs;
-      no ABSENT record carries a value; every PRINTED record's verbatim quotation is a substring of the cited
+      reason_code/origin pair is one of the allowed pairs;
+      origin in {DERIVED,STANDARD,MEASURED,CHOSEN,FITTED,IMPORTED,UNDECLARED}; no ABSENT or BLOCKED record carries a value; a BLOCKED record (traced to a named source, no machine-matchable
+      value) carries origin IMPORTED with ORIG_CITATION evidence and is never consumed; every PRINTED record's verbatim quotation is a substring of the cited
       source line; every STANDARD value is on the closed list; derived_from ids exist and the graph is acyclic.
       Exit 0 = PASS, 1 = FAIL (every failure printed), 2 = usage/schema error.
 
@@ -28,7 +29,7 @@ origin_alt and the claim's rests_on is printed as a pair marked DISPUTED.
 """
 import json, sys, pathlib
 
-STATUS={"PRINTED","STANDARD","ABSENT"}
+STATUS={"PRINTED","STANDARD","ABSENT","BLOCKED"}
 ORIGIN={"DERIVED","STANDARD","MEASURED","CHOSEN","FITTED","IMPORTED","UNDECLARED"}
 PAIRS={"ORIG_EQUATION":"DERIVED","ORIG_CONSTANT":"STANDARD","ORIG_MEASURED":"MEASURED","ORIG_CHOICE_STATED":"CHOSEN","ORIG_FIT_STATED":"FITTED","ORIG_CITATION":"IMPORTED","ORIG_SILENT":"UNDECLARED"}
 # when more than one code matches the cited sentence, the FIRST applicable in this order is filed (a sentence naming an
@@ -103,13 +104,16 @@ def cmd_validate(ledger,srcdir):
         if r["status"] not in STATUS: fails.append(f"{r['input_id']}: bad status {r['status']}")
         if r["origin"] not in ORIGIN: fails.append(f"{r['input_id']}: bad origin {r['origin']}")
         ev=r["origin_evidence"]; rc=ev.get("reason_code")
-        for computed in ("root_origins","rests_on"):
+        for computed in ("root_origins","rests_on","origin_alt","origin_evidence_alt"):
             if computed in r: fails.append(f"{r['input_id']}: seat-authored ledger carries computed field {computed}")
         if rc=="ORIG_SILENT":
             srch=r.get("origin_search")
             if not isinstance(srch,dict) or not all(k in srch for k in ("query","files","matches")): fails.append(f"{r['input_id']}: ORIG_SILENT requires origin_search {{query, files, matches}}")
         if PAIRS.get(rc)!=r["origin"]: fails.append(f"{r['input_id']}: reason_code {rc} does not map to origin {r['origin']}")
         if r["status"]=="ABSENT" and r.get("value") not in (None,""): fails.append(f"{r['input_id']}: ABSENT record carries a value")
+        if r["status"]=="BLOCKED":
+            if r.get("value") not in (None,""): fails.append(f"{r['input_id']}: BLOCKED record carries a value")
+            if r["origin"]!="IMPORTED" or rc!="ORIG_CITATION": fails.append(f"{r['input_id']}: BLOCKED record must carry origin IMPORTED with ORIG_CITATION evidence from the claiming paper")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
         if r["status"]=="PRINTED":
             f=pathlib.Path(srcdir)/r["source_file"]
