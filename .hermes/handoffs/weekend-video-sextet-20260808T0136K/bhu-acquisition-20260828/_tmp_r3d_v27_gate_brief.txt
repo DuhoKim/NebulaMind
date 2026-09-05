@@ -1,0 +1,47 @@
+You are a fresh adversarial referee gating a FROZEN-pending pre-registration for a physics study.
+Judge the DESIGN only. No derivation has been run. You have seen no prior verdict on this document
+and there is none to infer; do not speculate about earlier versions, and do not look for or read any
+other file in this directory. Judge the document as it stands.
+
+TARGET (read it from disk, in full):
+  R3D_DYMNIKOVA_FLOOR_PREREG_20260904.md
+
+What the study asks: whether the Dymnikova regular-core ("de Sitter core") black-hole metrics, AS
+PRINTED in its pinned sources, determine a closed relation between core scale, mass and horizon
+sufficient to imply a POSITIVE MINIMUM BLACK-HOLE MASS.
+
+The lane that wrote this document also holds a pattern -- a generalisation about the papers it is
+auditing -- that a result from this study could refute. Assume the danger that a lane-authored
+pattern becomes evidence for its own confirmation is LIVE.
+
+JUDGE, each explicitly and in order:
+1. OUTCOME CLASSES. Are they exhaustive and MUTUALLY EXCLUSIVE? Construct a real result fitting two
+   classes, or none, if you can. Is an INCONCLUSIVE result genuinely reachable?
+2. CONTROLS. Can any control be passed by ASSERTION rather than a printed artefact? Does each name an
+   exact code with PASS/FAIL/NOT_RUN? Are unreached controls handled? Is every literal command the
+   document tells a seat to execute actually executable as written?
+3. CIRCULARITY. Can the lane's pattern reach the evidence -- through which relations are enumerated,
+   which excluded, or which class is selected? Can a contrary relation be quietly omitted?
+4. THE FALSIFIER. Section 5's C6 breaker test. State, AS A NUMBER, on how many of the declared
+   outcome classes C6 can return FAIL. For EACH of the five conditions, say whether it can PASS and
+   whether it can FAIL, and give a concrete input for each direction. Name any condition that cannot
+   fail on any path.
+5. RE-RUN GUARD. Does the design assume an earlier study's outcome repeats, or is the positive class
+   genuinely reachable?
+6. FAIRNESS. Is the negative-finding wording "unreproduced from the stated inputs", not "error", held
+   in every operative clause?
+7. STALL. Can the run reach a terminal state with NO fileable class?
+
+For every defect: quote the sentence VERBATIM, state the defect, give an EXACT replacement. If a
+section is sound, say so and give no replacement.
+
+OUTPUT:
+Line 1: ACCESS_SHA=3e5b6979930535e5cb09c8eb6d3f6f3c7fefd47c6df8697cf2d384124c753234
+Line 2: GATE=PREREG_SOUND or GATE=PREREG_SOUND_WITH_REPAIRS or GATE=PREREG_UNSOUND
+Then the numbered findings.
+Final line: R3D_V27_GATE_COMPLETE
+
+ONE ADDITIONAL QUESTION, answered explicitly under heading 2 (CONTROLS): did you RUN the C3 deletion
+probe using the literal command printed in the document, exactly as printed? State (a) whether you
+executed it, (b) from what working directory, (c) the exact stdout and exit code you got. If you could not
+execute it, say so plainly and say why. Do not report a run you did not perform.
