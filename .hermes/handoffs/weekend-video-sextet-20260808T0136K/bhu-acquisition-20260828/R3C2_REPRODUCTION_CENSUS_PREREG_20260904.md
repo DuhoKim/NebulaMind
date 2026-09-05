@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 12 (see §10; §10.6 for the V11 gate reconciliation). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 13 (see §10; §10.7 for the V12 gate reconciliation). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -79,7 +79,9 @@ and are outside the census, visibly.** <!--SEAT-REDACT-->*(V11: no version befor
 
 **A value the paper does not print but traces to a named source that is itself a text in `R3C2_CORPUS_MANIFEST.md` is
 classified `PRINTED` from that source, with `origin` `IMPORTED`, `origin_evidence` `ORIG_CITATION` cited to the named
-source's file and line, and the value machine-matched there.** **A seat may not supply a value for an `ABSENT` input.**
+source's file and line, and the value machine-matched there — **only when such a match exists; a cited value that does
+not machine-match at the named source's cited line, or whose named source is not an enumerable text of the manifest,
+files `REPRO_BLOCKED` under §3.** **A seat may not supply a value for an `ABSENT` input.**
 Encountering one ends that claim's attempt.
 
 ## 3. Per-claim outcomes — declared now
@@ -93,7 +95,7 @@ survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 > **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
 > its `origin`) or `STANDARD` (on C3's closed list). **PROVENANCE IS RECORDED, NOT FILTERED**: each record's `origin`
 > is cited under C3, independently by both seats; `root_origins` and the per-claim summary field **`rests_on`** are
-> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `f1e51c8c73c3a8058159d385ff033ac68b6bd218363bae243aff596029fe5554`), with the full
+> computed from the ledger by the pinned script `r3c2_ledger_tools.py` (sha256 `dc9c5642f1d2a092e9820bbdaa04dab75f96e4772bec9a7ebdf3a57197e4018e`), with the full
 > root-origin set printed beside it. **No seat writes `root_origins` or `rests_on`; the script rejects a ledger that
 > arrives with either set.**
 <!--SEAT-REDACT-->
@@ -119,9 +121,11 @@ survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 - **`REPRO_FAILED`** — the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the
   paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."** `rests_on`
   is reported beside it.
-- **`REPRO_BLOCKED`** — an input whose value the paper does not print, but for which the paper **names a source (a
-  citation)**, where that source is outside this lane and cannot be obtained. Name it. *(Distinct from
-  `REPRO_INPUT_ABSENT`, which is an input the paper neither prints nor traces to any named source.)* <!--SEAT-REDACT-->*(kimi V10:
+- **`REPRO_BLOCKED`** — an input whose value the claiming paper does not print, and for which the claiming paper
+  **names a source (a citation)** that is **not an enumerable text pinned in `R3C2_CORPUS_MANIFEST.md`**; whether that
+  source is obtainable elsewhere is irrelevant, because the census may not open or consume it. Name the input and the
+  source. *(Distinct from `REPRO_INPUT_ABSENT`, which is an input the paper neither prints nor traces to any named
+  source; a value cited from a pinned enumerable text is `PRINTED` there under §2.)* <!--SEAT-REDACT-->*(kimi V10:
   as written every unobtainable input was first `ABSENT` and the precedence filed it `REPRO_INPUT_ABSENT`, so this
   class's exclusive domain was empty. The named-source test separates them; the precedence below puts BLOCKED first.)*<!--/SEAT-REDACT-->
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
@@ -155,12 +159,13 @@ a printed number, so an included claim could never satisfy it — a gate finding
 
 1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3.**
    Report the full tally with its denominator, **and the `rests_on` tally beside it — two tallies from one pass.**
-2. **`CENSUS_PARTIAL`** — after two attempts, **at least one included claim carries a non-arithmetic outcome**
+2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
+   **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** *(Previously "some claims unresolved"
    was undefined, and a blocked claim satisfied both classes.)*
-3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, **or the §7
-   receipt verification fails**. No tally is filed; report which.
+3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, **or the receipt verification
+   of the seal fails**. No tally is filed; report which.
 4. **`R3C2_NO_CLASS`** — a control fails **in every seat that attempted it** after two attempts.
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts. The census
    does not proceed; the disputed candidates are listed. *(Added because the enumeration stop had no class.)*
@@ -222,8 +227,11 @@ before audit — which is codex's order; kimi's differed only in placing the den
   (exit 0 = PASS; every failure printed). `C2_INPUT_LEDGER=PASS|FAIL|NOT_RUN`.
 - **C3 — no substitution, machine-checked.** The input ledger is a **JSON file**, one record per input:
   `{claim_id, input_id, symbol, status: PRINTED|STANDARD|ABSENT, origin: DERIVED|STANDARD|MEASURED|CHOSEN|FITTED|IMPORTED|UNDECLARED,
-  origin_evidence: {reason_code, source_file, source_line, verbatim}, derived_from: [input_id…], root_origins: […],
-  value, source_file, source_line}`. *(`STANDARD` was missing from the `origin` enumeration while §3 defined
+  origin_evidence: {reason_code, source_file, source_line, verbatim}, origin_search: {query, files, matches} (required
+  when reason_code is ORIG_SILENT), derived_from: [input_id…], value, source_file, source_line}`. **The seat-authored
+  ledger MUST omit `root_origins`, `rests_on`, `origin_alt` and `origin_evidence_alt`; `validate` fails a ledger that
+  carries any of them. The script adds `root_origins` and per-claim `rests_on` on `compute`; the merge step adds
+  `origin_alt` and `origin_evidence_alt`.** *(`STANDARD` was missing from the `origin` enumeration while §3 defined
   admissibility partly by it, so a measured-constant record could not be validly filled in.)*
 
   **`origin` must be cited, not asserted.** Every record carries `origin_evidence` with a reason code —
@@ -245,13 +253,15 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
   ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
   A chain's root origins are computed from every step, never from its last step alone. **The script is `r3c2_ledger_tools.py`,
-  committed beside this document, sha256 `f1e51c8c73c3a8058159d385ff033ac68b6bd218363bae243aff596029fe5554`; the seat runs
+  committed beside this document, sha256 `dc9c5642f1d2a092e9820bbdaa04dab75f96e4772bec9a7ebdf3a57197e4018e`; the seat runs
   `/usr/bin/python3 r3c2_ledger_tools.py compute <ledger.json> <out.json>` and prints its stdout and exit status. It
   computes each claim's `rests_on` from its `root_origins` and prints the root-origin set beside it; it REJECTS (exit 2) a
   ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names
-  no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; where the
-  two seats' `origin` classifications differ the record carries `origin_alt` and the claim's `rests_on` is computed under
-  both and marked `DISPUTED`.** A `rests_on` value present in the seat-authored input ledger fails this control; after a successful `compute` run,
+  no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; the two seats'
+  independently validated ledgers are merged by `/usr/bin/python3 r3c2_ledger_tools.py merge <ledger_seatA.json>
+  <ledger_seatB.json> <merged.json>` (exit 1 if their `input_id` sets differ); where the two `origin` classifications
+  differ the merged record carries `origin_alt` and `origin_evidence_alt`, `compute` reads the merged ledger, and the
+  claim's `rests_on` is computed under both and marked `DISPUTED`.** A `rests_on` value present in the seat-authored input ledger fails this control; after a successful `compute` run,
   a `rests_on` value absent from the script-produced output ledger fails this control. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
@@ -288,7 +298,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the copy directory is `FAIL`.
+  makes no claim that the list is complete. Any path outside the working directory is `FAIL`.
 
 <!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
@@ -453,7 +463,8 @@ Two defects were found in the previous table and are corrected here, rather than
 | V9 | `2a1d2023c2ea2b14…` | C0 by two blind seats (`R3C2_C0_EXHIBITION_kimi_20260905.md`, `R3C2_C0_VERIFY_codex_20260905.md`) | `C0_REACHABILITY=FAIL`, one unreachable class, both seats agree | see §10.3; HELD |
 | V10 | `5c69ae471edb1b19…` | C0 two blind seats AGREE (`R3C2_C0_EXHIBITION_V10_codex…`, `…kimi…`), then `R3C2_GATE_V10_codex_20260905.md`, `R3C2_GATE_V10_kimi_20260905.md` | C0 PASS+PASS; gate `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS` | **option (c) adopted on the ruling; see §10.4; first gate with a settled definition — see §10.5** |
 | V11 | `d6695c06c78c4735…` | C0 two seats AGREE (`R3C2_C0_EXHIBITION_V11_codex…`, `…kimi…`); `R3C2_GATE_V11_codex_20260905.md`, `R3C2_GATE_V11_kimi_20260905.md` | C0 PASS+PASS; gate `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS`; codex LEAK=NONE, kimi CONSEQUENCE_VISIBLE=NO | see §10.6 |
-| V12 | *this version* | *(C0 by two independent seats, then two-seat gate — pending)* | — | **both V11 lists applied; see §10.6** |
+| V12 | `065dc0e48090d7d5…` | C0 two seats AGREE; `R3C2_GATE_V12_codex_20260905.md`, `R3C2_GATE_V12_kimi_20260905.md` | C0 PASS+PASS; gate `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS`; codex Q5 procedural only, kimi CONSEQUENCE_VISIBLE=NO, leak content-level only | see §10.7 |
+| V13 | *this version* | *(C0 by two independent seats, then two-seat gate — pending)* | — | **both V12 lists applied; see §10.7** |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -716,4 +727,27 @@ reason-code choice stated, master-only (kimi Q2).
 
 **V12 has NOT had its own C0 or gate. R3C2 is NOT frozen and NOT run.**
 
-R3C2_PREREG_V12_READY_FOR_C0
+## 10.7 V13 — the V12 gate reconciled; both lists applied (2026-09-05 16:26 KST)
+
+**Both V12 verdicts bound to `065dc0e48090d7d5…` and to the packet `535173e6…`; both hashes verified by the lane owner after
+each seat exited: codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`.** **The leak fix did not regress:** codex
+`LEAK` names no hypothesis, model or preferred result and sees consequence only in the procedural "No tally is filed";
+kimi `CONSEQUENCE_VISIBLE=NO` and `LEAK` content-level only (the corpus is cosmology; the chosen-input case is
+anticipated). **Q1 is YES on kimi and NO on codex for the same one boundary**, which both engines located at the
+cited-but-unprinted input: codex, a source obtainable but outside the manifest; kimi, a source that is RAW in the
+manifest or enumerable with no matchable value at the cited line. **One rule closes all three:** the
+PRINTED-from-source rule applies only when the value machine-matches at the named source's cited line; every other
+cited-but-unprinted input files `REPRO_BLOCKED` (§2, §3), and `REPRO_INPUT_ABSENT` stays limited to an input traced to
+no source at all.
+
+**Applied from codex:** the seat-authored ledger schema now omits the computed fields and `validate` fails a ledger
+that carries one; `origin_search {query, files, matches}` required for `ORIG_SILENT`; the merge of the two seats'
+validated ledgers is a named command, `r3c2_ledger_tools.py merge`, producing `origin_alt` and `origin_evidence_alt`,
+which `compute` then reads — script re-pinned `dc9c5642f1d2a092…`, its controls re-run (the negative control's exact
+failure set is now five). **Applied from kimi (cosmetic, adopted as written):** "receipt verification of the seal" in
+place of a pointer to a withheld section; "after the §2 attempt (one repeat permitted…)" in place of "after two
+attempts"; "working directory" in place of "copy directory". **Escalated, unchanged:** the `REPRO_EXACT` rename.
+
+**V13 has NOT had its own C0 or gate. R3C2 is NOT frozen and NOT run.**
+
+R3C2_PREREG_V13_READY_FOR_C0
