@@ -1,0 +1,42 @@
+You are a fresh adversarial referee gating a pre-registration. Judge the DESIGN only. No derivation
+has been run. You have seen no prior verdict on this document and there is none to infer; do not
+speculate about earlier versions.
+
+TARGET (read it from disk, in full):
+  R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md
+
+BARRED: you may NOT open R3C2_INTERPRETATION_PROTOCOL_20260904.md, and you must not seek out or read
+any other file in this directory. The interpretation protocol is deliberately withheld from every
+seat, including you; its exclusion is part of the design you are judging, not an omission.
+
+What the study is: a reproduction census. For every quantitative claim in a corpus of papers, does
+the paper's own printed number follow from the inputs it states? The lane that wrote this document
+holds a pattern -- a generalisation about those papers -- that the census result could bear on. The
+predecessor design failed repeatedly because the lane's own hypothesis reached its own evidence.
+Assume that danger is LIVE.
+
+NOTE -- THE FORMERLY HELD CLAUSE IS SETTLED. Section 3's core definition was ruled by the principal
+(option (c): one pass, two tallies -- reproduce mechanically from every input the paper states, record
+provenance in the ledger, a script computes each claim's rests_on; REPRO_AFTER_CHOICE retired into that
+field). Section 10.4 records the ruling. Judge the operative text as it stands; there is no open clause,
+and section 10's history binds nothing.
+
+JUDGE, each explicitly:
+1. Can the lane's hypothesis still influence which claims are counted, or how outcomes are assigned?
+2. Are the per-claim outcomes (§3) and study-level classes (§4) exhaustive and mutually exclusive?
+   Does every mandated stop land in exactly one class?
+3. Are the controls mechanical, or can any be passed by ASSERTION? Does each name an exact code with
+   PASS/FAIL/NOT_RUN? Is every literal command executable as written?
+4. Is the blinding claim honest -- does the document state what it can and cannot enforce?
+5. Is the seal honestly described, neither overclaimed nor useless?
+6. Is the fairness wording "unreproduced from the stated inputs", not "error", held throughout?
+7. Can the run reach a terminal state with NO fileable class?
+
+For every defect: quote the sentence VERBATIM, state the defect, give an EXACT replacement. If a
+section is sound, say so and give no replacement.
+
+OUTPUT:
+Line 1: ACCESS_SHA=5c69ae471edb1b1970594255e970fb07274fbb814dce1096de81c9d647ad1a5b
+Line 2: GATE=PREREG_SOUND or GATE=PREREG_SOUND_WITH_REPAIRS or GATE=PREREG_UNSOUND
+Then the numbered findings.
+Final line: R3C2_V10_GATE_COMPLETE
