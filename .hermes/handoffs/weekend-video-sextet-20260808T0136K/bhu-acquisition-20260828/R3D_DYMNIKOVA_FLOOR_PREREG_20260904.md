@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 28 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 29 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -219,8 +219,15 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    referent here, since the seat is told to choose none — two obedient seats could evaluate different floors, split
    C6 inside one class, and send a case with a scientific answer to `DYM_SOURCE_BLOCKED`.)* **C6 is RUN on this class** and its
    result reported: a surviving freedom is what condition 3 rejects, so it is expected to fail — but the failure
-   must be **exhibited**, not assumed. **Record `C3_DELETION_PROBE=NOT_RUN` on this class: the probe's trigger is a unique floor surviving on an injected
-   relation alone, and this class files no unique floor — the seat chooses none — so the probe has no target.**
+   must be **exhibited**, not assumed. **Record `C3_DELETION_PROBE=NOT_RUN` on this class WHEN THE RUN REACHES IT DIRECTLY: the probe's trigger is a
+   unique floor surviving on an injected relation alone, and a run reaching this class directly files no unique
+   floor — the seat chooses none — so the probe has no target. If this class was instead SELECTED BY THE RECOMPUTED
+   PARTITION after a probe FAIL, C3 was engaged and the filing records `C3_DELETION_PROBE=FAIL` with the removed
+   relation and the recomputation printed, as C3's own clause commands; a control that ran is never recorded
+   `NOT_RUN`.** *(kimi V28: on the class 1 → probe FAIL → recompute → class 2 path, this clause commanded `NOT_RUN`
+   while C3's commanded `FAIL` — two tokens for one control in one filing, and `NOT_RUN` false of a run in which
+   the probe found circularity. The class-2 clause (V26) and the recomputation clause (V27) were each repaired
+   pairwise and never traced against each other.)*
    **If `C6_BREAKER_TEST=PASS` results here instead — every per-floor
    evaluation satisfying all five decision rules while the readings still disagree — then EACH floor in `P`
    independently passes the breaker, and the study reports that outcome with all floors named. It is NOT a single
@@ -231,8 +238,14 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
 4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. **Record `C3_DELETION_PROBE=NOT_RUN` on
-   this class: no positive floor survives, so the deletion probe has no candidate to test; C0, C1, C2, C4, C5 and
-   C5b remain reached and carry their actual results, and C6 is `NOT_RUN` because no positive floor was produced.**
+   this class WHEN THE RUN REACHES IT DIRECTLY: no positive floor survives, so the deletion probe has no candidate
+   to test; C0, C1, C2, C4, C5 and C5b remain reached and carry their actual results, and C6 is `NOT_RUN` because
+   no positive floor was produced. If this class was instead SELECTED BY THE RECOMPUTED PARTITION after a probe
+   FAIL — the stripped reading set leaving `P` empty — C3 was engaged and the filing records
+   `C3_DELETION_PROBE=FAIL` with the removed relation and the recomputation printed; a control that ran is never
+   recorded `NOT_RUN`.** *(The sibling of kimi's V28 finding, found by tracing its replacement against every clause
+   that records C3's disposition rather than applying it to the quoted class alone: the recomputed partition can
+   select class 4 as readily as class 2, and this clause carried the identical collision.)*
    *(The class named no control dispositions while §9 permits `NOT_RUN` only where the document says so explicitly
    — the sibling, one class over, of the limb-A gap codex found at V15.)* If the printed relations are mutually
    inconsistent, **report that a consistent solution, and hence a positive lower bound, were unreproduced from the
@@ -1552,4 +1565,25 @@ archived under `_tmp_ABORTED_*`. **A script that asserts must also stop when an 
 
 **V27 is NOT final. V28 requires its own C0 and gate.**
 
-R3D_PREREG_V28_READY_FOR_REEXHIBITION
+## 8v. V29 — V28 was NOT final: one substantive token collision, and its sibling found by tracing
+
+**codex `SOUND_WITH_REPAIRS` — six of seven sections sound, sole defect the escalated token rename. kimi
+`SOUND_WITH_REPAIRS` — five sections sound with no replacement, two defects. Both on `bc79306d…`, both
+hash-verified after exit; C0 passed on V28 independently.**
+
+**Both seats executed C3 again.** codex from the lane directory; **kimi from `/Users/duhokim`, "deliberately neither
+the lane directory nor the repository root"** — `PASS`, exit 0, with its scope stated: the pinned relations file
+held the negative control.
+
+| finding | seat | classification | disposition |
+|---|---|---|---|
+| **class 1 → probe FAIL → recompute → class 2**: class 2's clause commands `C3_DELETION_PROBE=NOT_RUN`, C3's clause commands `FAIL` — **two tokens for one control in one filing, and `NOT_RUN` false of a run in which the probe found circularity**; §9's split rule convenes on classes, C6, floors and families, not control tokens, so nobody adjudicates | kimi 2-A | **SUBSTANTIVE**, criterion (4): the filing misstates what the study found about circularity | **APPLIED**, kimi's exact text |
+| **the same collision on the recompute → class 4 path** — class 4 carried the identical `NOT_RUN` clause | **found by tracing 2-A's replacement against every clause recording C3's disposition** — not raised by either seat | **SUBSTANTIVE**, same criterion | **APPLIED** — applying kimi's text to the quoted class alone would have been the sibling scar's tenth appearance |
+| the `DYM_NO_*` tokens — kimi: *"I confirm it on the merits, eighth finding"* | both | substantive, criterion (4) | **OPEN RULING on this version per the 11:13 amendment; not a blocker; Duho's** |
+
+**On the sibling:** the §8b rule — trace a referee's replacement before adopting it — was applied here for the
+first time *before* rather than after a gate caught the omission. The trace took one grep. It found a live path.
+
+**V28 is NOT final. V29 requires its own C0 and gate.**
+
+R3D_PREREG_V29_READY_FOR_REEXHIBITION
