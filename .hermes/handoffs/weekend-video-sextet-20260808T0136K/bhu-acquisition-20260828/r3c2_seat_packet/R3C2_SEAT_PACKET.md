@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `e8ba4a7438d61f028e3c46c7308d7078f011e53886e332b946bd7e21f6a1c6c8` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `b146c8c45ad2dd9affc6a94b0be5ed5886d231c8d4eeaf3bc6c03ce6146e36bd` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -42,8 +42,8 @@ and are outside the census, visibly.**
    i.e. every ledger record with status `PRINTED` or `STANDARD`.** Provenance is recorded under C3 (`origin`, `derived_from`).
 5. **Record the outcome**, per claim, as one of §3, in the candidate file's `outcome` field; the sealed reproduction tally is
    the merged candidate file on which the two seats' `outcome` fields agree, claim by claim, after one reconciliation against
-   the printed numeral and the stated-precision rule of §3; the class filed when a disagreement survives that reconciliation is
-   **an open decision recorded by the lane owner**; this document is not frozen until that decision is recorded.
+   the printed numeral and the stated-precision rule of §3; a disagreement surviving that reconciliation files
+   `CENSUS_OUTCOME_DISPUTED` (§4).
 
 **A value the paper does not print but traces to a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md` is
 classified `PRINTED` from that source, with `origin` `IMPORTED`, `origin_evidence` `ORIG_CITATION` cited to the named
@@ -61,15 +61,15 @@ Encountering one ends that claim's attempt.
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `8e286817f124a8c6a688e6a7c9795a3bd0afc803a796329bc41b12e8ca09f7ac`, pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `f9b7d3c818647e6e3e10e19013db3a042247fc141ee01282b8928de06372c9ac`, pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
 
-- **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, **from the paper's own recipe
+- **`REPRO_WITHIN_STATED_PRECISION`**  — the paper's number follows, within its own stated precision, **from the paper's own recipe
   applied to the inputs it states** (`PRINTED` or `STANDARD`). **Report both numbers.** **Where the paper states no
   precision for the claim, the printed precision is the claim's stated precision: the reproduced value must round to
-  the printed numeral at that precision.** **Where the paper states an uncertainty, the test is |reproduced − printed| ≤ the stated
+  the printed numeral at that precision, rounding half away from zero.** **Where the paper states an uncertainty, the test is |reproduced − printed| ≤ the stated
   uncertainty, taken once — not doubled, not rounded; where it states none, the rounding rule above applies. Where the stated uncertainty is asymmetric,
   the stated uncertainty is the half-width on the side the reproduced value falls.** 
 
@@ -90,13 +90,13 @@ Encountering one ends that claim's attempt.
   computational procedure that could produce it; file this class and name the passage.** 
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper — **neither printed nor traced to
   any named source** — so the attempt stops there. **Name the input.**  Distinct from a claim whose inputs the paper DOES state, chosen or not — that
-  claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED`.
+  claim is attempted and files `REPRO_WITHIN_STATED_PRECISION` or `REPRO_FAILED`.
 **Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
 order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `REPRO_NOT_EVALUABLE`, then the
 **arithmetic group**. 
 
 **The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
-`REPRO_EXACT` and `REPRO_FAILED`**.
+`REPRO_WITHIN_STATED_PRECISION` and `REPRO_FAILED`**.
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
@@ -107,7 +107,8 @@ is hidden by being excluded.
 
 ## 4. Study-level outcomes
 
-1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3, with `C6_AUDIT_SAMPLE=PASS`.**
+1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3, with `C6_AUDIT_SAMPLE=PASS`. A
+   denominator of zero files `CENSUS_PARTIAL` with the empty enumeration named; no census is complete over nothing.**
    Report the full tally with its denominator
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
    **at least one included claim carries a non-arithmetic outcome**
@@ -122,18 +123,18 @@ is hidden by being excluded.
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts, **or the two
    seats' input lists for the agreed claims disagree after the one C3 reconciliation**. The census does not proceed; the
    disputed candidates or inputs are listed. 
-   *Open (recorded by the lane owner): the class filed when the two seats' per-claim outcomes on an agreed included claim differ after the
-   one reconciliation of §2 step 5 — §4 is not exhaustive over that state; a class is not added or redefined
-   by this document's author, so the gap is recorded here as open rather than written in.*
+6. **`CENSUS_OUTCOME_DISPUTED`** — the two seats' filed per-claim outcomes on an agreed included claim differ after one
+   reconciliation against the printed numeral and the stated-precision rule of §3. The census does not proceed; the claim is
+   listed with both seats' outcomes, both number pairs, and the step each seat reached. 
 
-6. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
+7. **`CENSUS_ORIGIN_DISPUTED`** — the two seats' independent `origin` classifications disagree on inputs affecting
    **more than 10% of included claims**. The census does not proceed; every disputed input is listed with both
    seats' classification and both quotations. 
-7. **`CENSUS_CONTROL_SPLIT`** — a control fails in one seat and passes in another after two attempts. Report both
+8. **`CENSUS_CONTROL_SPLIT`** — a control fails in one seat and passes in another after two attempts. Report both
    seats' outputs and stop; **do not adopt the passing seat's result.**  
 
 **Exactly one study-level outcome is filed. Where more than one condition holds, file the first in this order:**
-`R3C2_NO_CLASS`, `CENSUS_CONTROL_SPLIT`, `CENSUS_DENOMINATOR_DISPUTED`, `CENSUS_ORIGIN_DISPUTED`, `CENSUS_AUDIT_FAILED`,
+`R3C2_NO_CLASS`, `CENSUS_CONTROL_SPLIT`, `CENSUS_DENOMINATOR_DISPUTED`, `CENSUS_OUTCOME_DISPUTED`, `CENSUS_ORIGIN_DISPUTED`, `CENSUS_AUDIT_FAILED`,
 `CENSUS_PARTIAL`, `CENSUS_COMPLETE`. **Once a stop class applies, later limbs are unreached and their controls are
 `NOT_RUN`.** 
 
@@ -158,8 +159,8 @@ is hidden by being excluded.
   made, all printed before any tally. 
   **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
-  on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print
-  those four declared counts verbatim from the files, then run
+  on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print these five declared counts verbatim from the files — `declared_candidate_count`,
+  `declared_included_count`, `declared_excluded_count`, `declared_attempt_count`, `declared_exclusion_count` — then run
   `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
   script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate, that every excluded candidate is named by exactly one exclusion row,
   that every included candidate carries a permitted `attempts` value, and that each of the five declared counts equals
@@ -176,7 +177,8 @@ is hidden by being excluded.
   line, in the JSON schema of C3, validated by `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
   directory (`.` is the sole allowed `sources_dir`); before execution the seat prints the fully resolved command with
   every angle-bracket placeholder replaced by the actual in-scope path
-  (exit 0 = PASS; every failure printed). `C2_INPUT_LEDGER=PASS|FAIL|NOT_RUN`.
+  (exit 0 = PASS; every failure printed; the printed C3 run — command, stdout, stderr, exit status — is this control's
+  artefact). `C2_INPUT_LEDGER=PASS|FAIL|NOT_RUN`.
 - **C3 — no substitution, machine-checked.** The input ledger is a **JSON file**, one record per input:
   `{claim_id, input_id, symbol, status: PRINTED|STANDARD|ABSENT|BLOCKED, origin: CHOSEN|DERIVED|FITTED|IMPORTED|MEASURED|STANDARD|UNDECLARED,
   origin_evidence: {reason_code, source_file, source_line, verbatim}, origin_search: {query, files, matches} (required
