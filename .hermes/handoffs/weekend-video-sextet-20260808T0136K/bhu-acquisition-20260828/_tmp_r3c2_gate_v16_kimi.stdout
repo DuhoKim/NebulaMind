@@ -1,0 +1,256 @@
+ACCESS_SHA=47c55a74af9520586af75e31d408c969a0e81f831c94f8eac59b59ead0a91381
+PACKET_SHA=b12b8887098e9b957bf17801266b83f1594aaefe4407a1ba058ae22319dc277f
+GATE=PREREG_SOUND_WITH_REPAIRS
+LEAK=content-level only: §1(ii)'s "derived, standard or measured inputs only, or a chosen, fitted, imported or undeclared one?" plus the co-primary rests_on tally imply the lane expects some claims to rest on chosen/fitted/imported/undeclared inputs, and the Planck-2018 STANDARD table implies a cosmology corpus; no direction, magnitude, comparison target, or preferred per-claim outcome is inferable.
+CONSEQUENCE_VISIBLE=NO
+
+STEP 1 — answered from the packet ALONE, before the master was opened.
+
+Q5 (asked and answered before Q3): CAN I TELL, FROM THE PACKET ALONE, THAT ANY OUTCOME IS MORE
+CONSEQUENTIAL THAN ANY OTHER? No. No sentence does. The packet's only consequence-adjacent
+sentences are procedural stops ("stops the study", "The census does not proceed", "No tally is
+filed", "do not adopt the passing seat's result") and one filing label ("INCONCLUSIVE, and it
+takes precedence over CENSUS_COMPLETE") — these say what gets filed, never what anything is
+worth to anyone. The one sentence that speaks to consequence at all denies it, packet §11:
+"No tier, warrant token, standing or stamp moves." What a tier, warrant or stamp is, and whose,
+is nowhere in the packet. CONSEQUENCE_VISIBLE=NO.
+
+Q3: WHAT CAN I INFER ABOUT WHAT THE LANE EXPECTS OR HOPES THE CENSUS WILL SHOW?
+Adversarial reconstruction of the stake from the packet alone:
+  (a) The corpus is cosmology. The C3 closed list is the Planck 2018 TT,TE,EE+lowE+lensing
+      baseline plus CODATA constants; no other domain would carry that table. Content, not stake.
+  (b) The lane's interest is provenance, co-primary with reproduction. §1 states "two questions
+      from one pass: (i) does the paper's own number follow from the paper's own recipe applied
+      to the inputs it states; and (ii) what does that number rest on — derived, standard or
+      measured inputs only, or a chosen, fitted, imported or undeclared one?" The "only, or"
+      phrasing erects a clean-versus-tainted dichotomy, and the packet builds heavy machinery for
+      exactly the tainted pole: a script-computed rests_on field reported beside every verdict, a
+      DISPUTED tally row, transitive root origins. A census designer builds that tally only if it
+      expects some claims to land on chosen/fitted/imported/undeclared roots. That is an
+      expectation about the census's product — a leak of interest, content-level.
+  (c) Failure outcomes are anticipated as real: the wording of a negative is legislated in
+      advance ("unreproduced from the stated inputs," not "error"), and a 120-second timeout has
+      its own per-claim outcome. Any honest census legislates for failure; this is weak evidence
+      of expectation, not of preference.
+  (d) Scale expectation: §6 budgets ~1 + 2–3 seat-days, so the lane expects a modest corpus.
+What I CANNOT infer: any expected direction or magnitude (no "we expect N%", no "more", no
+"less"), any comparison model or named target, any preferred per-claim or study-level outcome,
+and what any tally would mean for any hypothesis — the packet contains no hypothesis at all.
+
+STEP 2 — the master, judged as written, operative sections 1, 2, 3, 4, 5, 6, 7, 9, 11. Section 3's
+core definition is settled under option (c) by the principal's ruling; §10 was read as history and
+binds nothing below; no gate files were sought; no file other than the two named was opened for
+content (all artefact checks were digests, existence booleans, or execution of the pinned scripts
+on synthetic inputs in a temp directory — the script sources were never read).
+
+1. OUTCOME CLASSES (Q1 placed here).
+Per-claim: six outcomes, exhaustive over the decision tree §2 actually walks: no stated procedure
+(REPRO_NO_DERIVATION_STATED); a needed input unprinted with a named source that is not an
+enumerable pinned text or does not machine-match at the cited line (REPRO_BLOCKED); a needed
+input neither printed nor traced to any named source (REPRO_INPUT_ABSENT); attempt exceeds the
+cap or the lane's machinery (REPRO_NOT_EVALUABLE); attempt completes (REPRO_EXACT /
+REPRO_FAILED). Mutual exclusivity is enforced by the stated precedence
+(REPRO_NO_DERIVATION_STATED > REPRO_BLOCKED > REPRO_INPUT_ABSENT > REPRO_NOT_EVALUABLE >
+arithmetic group), and the precedence is load-bearing, not decorative: a claim with one BLOCKED
+and one ABSENT input genuinely satisfies two definitions and the order files BLOCKED. I could not
+construct a real claim that escapes all six or lands in two after precedence. Study-level: seven
+classes with a total precedence (R3C2_NO_CLASS > CENSUS_CONTROL_SPLIT >
+CENSUS_DENOMINATOR_DISPUTED > CENSUS_ORIGIN_DISPUTED > CENSUS_AUDIT_FAILED > CENSUS_PARTIAL >
+CENSUS_COMPLETE). A real tally fitting two classes: every claim arithmetic-group (COMPLETE's
+condition) plus a failed audit re-derivation (AUDIT_FAILED's) — precedence files
+CENSUS_AUDIT_FAILED. INCONCLUSIVE is genuinely reachable and indeed fragile in the right
+direction: one single blocked or absent input anywhere in the corpus files one non-arithmetic
+outcome, and CENSUS_PARTIAL "takes precedence over CENSUS_COMPLETE" — the inconclusive pole
+cannot be defined away.
+
+Q1 (asked directly): DOES §3 UNDER OPTION (c) MAKE EVERY DECLARED OUTCOME REACHABLE AND KEEP THE
+REPRODUCTION QUESTION DECIDABLE? YES, as written. Hardest cases traced:
+  - Printed-but-chosen input ("we adopt β = 1/929.25", no citation): §2 step 3 files status
+    PRINTED; C3's reason code files ORIG_CHOICE_STATED → origin CHOSEN; §3's admissibility rule
+    ("every ledger record with status PRINTED or STANDARD") lets the arithmetic consume it; the
+    claim files exactly one of REPRO_EXACT / REPRO_FAILED and the script computes exactly one
+    rests_on (USES_CHOSEN). The old tension — admissibility gating making the chosen-input case
+    unreachable — is gone because status, not origin, gates consumption.
+  - Fitted parameter the paper states: PRINTED + ORIG_FIT_STATED → FITTED; consumed; one outcome,
+    rests_on USES_FITTED.
+  - Imported value printed with a citation ("H₀ = 67.4 (Planck 2018)"): the reason-code
+    precedence makes ORIG_CITATION win ("a sentence that names an external source for the value
+    is a citation whatever else it says") → IMPORTED; consumed; rests_on USES_IMPORTED.
+  - Cited-but-unprinted value: decidable mechanically — machine-match at the named source's cited
+    line in a pinned enumerable text → PRINTED/IMPORTED and the attempt proceeds; otherwise
+    REPRO_BLOCKED. No judgement residue.
+  - Stated precision: "13.8 Gyr" against a reproduced 13.797 rounds to the printed numeral at the
+    printed precision → REPRO_EXACT, mechanically.
+The two residual judgement points — whether a passage "asserts a numeral as a result of its own"
+(§1) and which reason code a sentence supports (C3) — are not class defects: both are assigned
+to two independent seats with disagreement stops (CENSUS_DENOMINATOR_DISPUTED /
+CENSUS_ORIGIN_DISPUTED), and C6 re-classifies every origin from the sources. The four earlier
+failures on this tension are answered by the option-(c) split: reachability no longer depends on
+an origin filter, and decidability is carried by status plus machine-match.
+
+2. CONTROLS (Q2 placed here).
+Every control names an exact code and every code is three-valued: C0_REACHABILITY,
+C1_DENOMINATOR_PRINTED, C2_INPUT_LEDGER, C3_NO_SUBSTITUTION, C4_SEAT_ISOLATION,
+C4_PACKET_REDACTED, C5_HARNESS_PINNED, C5B_NO_CROSS_LANE, C6_AUDIT_SAMPLE, each
+PASS|FAIL|NOT_RUN, with "Controls in an unreached limb are NOT_RUN, never passes." No control can
+be passed by bare assertion: C1/C2/C3/C5 require printed commands, stdout and exit statuses of
+the pinned script and interpreter; C0's artefact is the exhibition table authored and verified by
+two independent seats with the lane owner reduced to a coverage check; C4/C5b are self-reported
+path lists and the document says so at their true strength ("PASS means the printed list contains
+no such row and makes no claim that the list is complete"); C3's one seat-authored element
+(completeness of an input list against the paper's equation) is named as seat-authored and routed
+to C6, not implied to be machine-checked.
+
+Q2 (asked directly): IS THE PROVENANCE FIELD CHECKABLE RATHER THAN ASSERTED? YES, with a stated
+floor. Test — a wrong-but-plausible origin: the paper's line reads "We take the present-day
+Hubble constant to be H₀ = 67.4 km s⁻¹ Mpc⁻¹ from Planck (2018)." A seat files origin CHOSEN with
+ORIG_CHOICE_STATED and crops its verbatim to "We take the present-day Hubble constant to be H₀ =
+67.4 km s⁻¹ Mpc⁻¹", omitting the citation. The machine passes it: the cropped string IS a
+substring of the cited line, and I verified by execution that validate checks substring
+containment, not line coverage. What catches it: the second seat's independent classification
+quoting the full sentence files IMPORTED; merge records origin_alt; compute prints rests_on as a
+DISPUTED pair (verified by execution: "rests_on=['USES_CHOSEN', 'USES_FITTED'] ... DISPUTED"); C6
+re-classifies every origin from the pinned sources with no sampling discount on the arithmetic
+group. What never catches it: the machine, and — if every reader crops identically — no one; the
+master states exactly that floor in C3 rather than implying it away. I also verified the pairing
+is machine-enforced below the floor: ORIG_FIT_STATED filed with origin CHOSEN fails validate
+("reason_code ORIG_FIT_STATED does not map to origin CHOSEN"), and a DERIVED record's roots are
+computed through the whole chain (cycle, dangling id, and parentless DERIVED all exit 1).
+
+3. CIRCULARITY.
+The expectation cannot reach the evidence through any of the four named channels. Inclusion: the
+§1 rule contains no pattern vocabulary (verified: the packet copy contains no hit on pattern,
+shape, magnitude, hypothesis, comparison model, or any named model token), is applied by two
+independent seats, and any surviving disagreement stops the study with the disputed candidates
+listed — no unilateral inclusion. Exclusion: five mechanical kinds, a separate exclusion ledger
+with file/line/numeral/kind, and C6 audits "the full candidate and exclusion ledgers against
+every pinned source — completeness, not just outcomes", so a contrary claim cannot be quietly
+excluded: quiet exclusion requires two blind seats to agree and then to survive a full audit.
+Origin classification: seats are blind to what rests_on means for anything (STEP 1), reason codes
+are citation-backed with an explicit precedence, disagreements are reported as DISPUTED pairs,
+never reconciled away. Interpretation: fixed before the evidence exists (see 5). The STANDARD
+list itself cannot steer provenance: §2 makes the STANDARD/PRINTED status routes
+"outcome-identical", and rests_on is computed from origin, which comes from quoted evidence, not
+from status.
+
+4. THE BLIND.
+Machine-asserted as claimed, and verified beyond the claim where execution could reach. The
+packet on disk (sha256 b12b8887…, matching R3C2_SEAT_PACKET.sha256, which also covers the seat
+brief) contains exactly sections 1, 2, 3, 4, 5, 6, 9, 11 — §0, §7, §8, §10 absent, no SEAT-REDACT
+tag residue — and a word probe found zero forbidden-list survivors (pattern, refute, expectation,
+consequential, invisible, favourable, unfavourable, stake, prior, tempting, warn, the lane
+owner's and engines' and custodians' names, R3D, magnitude, shape, gate, hypothesis, CDM: all
+absent). The packet header embeds the master hash 47c55a74…, which is the ACCESS_SHA above, so
+the packet provably derives from the gated master. I did not re-run the builder: running it
+rewrites the pinned packet, which is a dispatch act, not a gate act; its output's properties were
+verified instead. C4 as described prevents what it claims to prevent — a hand-assembled or stale
+packet cannot dispatch ("a packet whose digest does not match its pin is not dispatched"; the
+assertion is fail-closed: "the packet is not written and C4_PACKET_REDACTED=FAIL") — and the
+document states the mechanism's limits at their true strength and no stronger: the blind is
+"procedural, not enforced by the filesystem", the seat's path list is self-reported detection,
+the forbidden list "blocks the enumerated strings and does not establish that every
+consequence-bearing word is gone", and "It cannot prove a seat has no prior exposure from
+training or an earlier session — nothing available here can."
+
+5. THE SEAL (§7).
+The receipted relay binds what it claims, before the step it must precede. Receipt P (protocol
+hash + commit id, acknowledged and timestamped by the external custodian) must exist before limb
+A begins — so the interpretation mapping is fixed before any evidence exists. Receipt T (tally
+hash + commit id) must exist before the protocol is opened — so the tally is fixed before the
+interpretation is known; neither side can be rewritten to suit the other. Post-opening, the
+custodian re-hashes and verifies all four values, the interpretation report must print both
+receipts and the four verified values, and any missing receipt or mismatch files
+CENSUS_AUDIT_FAILED — which §4's definition explicitly names ("or the receipt verification of
+the seal fails"). The C6 seed rides the same receipt, so the audit frame is frozen by the same
+custody event. Limits stated honestly: a local commit "is tamper evidence, not an external
+custodian", and "It does not prove Tori had not already guessed the answer — nothing available
+here could prove that. It bounds the record, not the mind."
+
+6. FAIRNESS.
+Every negative outcome is worded at the evidence, not the paper: REPRO_FAILED carries the
+mandated wording "unreproduced from the stated inputs," not "error"; REPRO_BLOCKED's cause is
+assigned to the census's own scope ("the census may not open or consume it");
+REPRO_NO_DERIVATION_STATED and REPRO_INPUT_ABSENT state facts and name the passage or input;
+REPRO_NOT_EVALUABLE names the lane's own limitation. No operative clause uses "error" for a
+paper. One name asserts more than its definition:
+
+F2 (COSMETIC). Quote: "- **`REPRO_EXACT`** — the paper's number follows, within its own stated
+precision". Defect: the name asserts exact equality while the definition admits rounding to the
+printed numeral at the printed precision — a reproduced 13.797 against a printed "13.8" files
+REPRO_EXACT without being exactly equal. Marked COSMETIC: the definition, the precedence, and
+"Report both numbers" fully determine what is filed and reported; the name changes no class
+filed, no control's passability, no reachability, no conclusion and no tested value. Exact
+replacement if the principal wants it: rename the class REPRO_WITHIN_STATED_PRECISION at every
+occurrence (a class rename is a redefinition and is the principal's call; the master's own
+history records the escalation, which binds nothing here).
+
+7. STALL / EXECUTABILITY (Q4 placed here).
+Stall: every stall path has a declared landing. Per-claim timeout/machinery → REPRO_NOT_EVALUABLE
+with one repeat; enumeration disagreement → CENSUS_DENOMINATOR_DISPUTED after two reconciliations;
+input-list disagreement after merge exit 1 → one reconciliation, then CENSUS_DENOMINATOR_DISPUTED;
+origin disagreement → DISPUTED pairs, CENSUS_ORIGIN_DISPUTED above 10%; missing seed →
+C6_AUDIT_SAMPLE=NOT_RUN and CENSUS_AUDIT_FAILED with the missing seed named; missing or
+mismatching receipts → CENSUS_AUDIT_FAILED; control failure everywhere → R3C2_NO_CLASS; split →
+CENSUS_CONTROL_SPLIT with "do not adopt the passing seat's result"; C0 failure before freeze →
+the preregistration never freezes, fail-closed by design.
+
+Q4 (asked directly): CAN ANYTHING THE DOCUMENT DESCRIBES NOT BE EXECUTED AS DELIVERED? One thing
+can not (F1 below). Everything else named was executed or verified as follows — scripts run only
+on synthetic inputs in a temp directory, sources never read:
+  - Files said to exist: r3c2_ledger_tools.py (digest bb5f1fc5… = the pin in §3/C3),
+    r3c2_timeout.py (fbb9bef7… = the pin in §9), R3C2_CORPUS_MANIFEST.md (300d4da1… = the pin in
+    §2), r3c2_seat_packet/R3C2_SEAT_PACKET.md (b12b8887… = R3C2_SEAT_PACKET.sha256, which also
+    covers SEAT_BRIEF.md), r3c2_build_seat_packet.py (exists; not run — it writes the pinned
+    packet), /Users/duhokim/HermesOps/scripts/nm_referee_dispatch.sh (exists at the absolute path
+    §9 states), R3C2_INTERPRETATION_PROTOCOL_20260904.md (exists; §7's receipt P gates limb A on
+    its committed hash, so it cannot be silently absent when needed).
+  - Harness: /usr/bin/python3 is 3.9.6; sympy 1.14.0 imports under it — C5's three live commands
+    execute.
+  - validate: PASS on a clean ledger; FAIL on a planted rests_on, planted origin_alt, a PRINTED
+    value absent from the cited line, a verbatim that is not a substring, an ABSENT record
+    carrying a value, a BLOCKED record carrying a value, an ORIG_SILENT record without
+    origin_search, and a reason_code/origin mispairing. ABSENT and BLOCKED records with
+    "value": null PASS.
+  - compute: writes per-record root_origins and per-claim rests_on to the output ledger and
+    prints them; exit 2 on a ledger arriving with rests_on set; exit 1 on a cycle, on a dangling
+    derived_from id, and on a DERIVED record with no parents; on a merged ledger with origin_alt
+    it prints rests_on as a pair marked DISPUTED.
+  - merge: exit 1 when the input_id sets differ; adds origin_alt and origin_evidence_alt on an
+    origin disagreement.
+  - census: exit 0 with reconciled=YES when declared counts equal recomputed counts; exit 1
+    naming the mismatch otherwise.
+  - wrapper: a fast command exits 0 with command, stdout, stderr, exit status and elapsed
+    printed; a 3-second sleep under a 1.0-second cap printed SYMBOLIC_TIMEOUT, exited 124, and
+    measured 1.004 s on the monotonic clock.
+
+F1 (REQUIRED — Q4, changes a control's passability). Quotes: "A script asserts that … each
+`STANDARD` value is one of a closed list PRINTED LITERALLY BELOW" (C3); "`STANDARD` (a measured
+constant **on C3's closed list — that list, verbatim, and no other value**)" (§2 step 3). Defect:
+the printed list and the delivered membership test are not the same list on the symbol axis, and
+the value encoding is nowhere specified. Executed against the pinned script (bb5f1fc5… = pin):
+  (i) 9 of the 14 printed rows FAIL when filed verbatim with the table's own symbols and values —
+    ħ=1.054571817e-34, H₀=67.36, σ₈=0.8111, τ=0.0544, Ω_m=0.3153, Ω_Λ=0.6847, Ω_b h²=0.02237,
+    Ω_c h²=0.1200, age=13.797 — each returning "STANDARD value … not on the closed list"; each of
+    those values PASSES under an ASCII alias that appears nowhere in the document or packet
+    (hbar, H0, sigma8, tau, Omega_m, Omega_L, Omega_b_h2, Omega_c_h2, age_Gyr respectively).
+  (ii) The ln(10¹⁰ A_s)=3.044 row passed under no key among 16 tried; I cannot confirm that row
+    exists in the delivered list at all (the script's source was not read, per the gate's limits).
+  (iii) Values must be the exact printed string: G and c PASS as "6.67430e-11"/"2.99792458e8"
+    strings but FAIL as JSON numbers ("6.6743e-11", "299792458.0"), and Ω_c h²'s printed "0.1200"
+    serializes as 0.12. The C3 schema declares no type for `value`.
+  Consequence: a seat applying §2's commanded rule ("Where a value the paper prints is on the
+  closed list verbatim, file STANDARD") with the table as printed fails C3 through no judgement
+  of its own; two seats can both fail (→ R3C2_NO_CLASS) or split on transcription
+  (→ CENSUS_CONTROL_SPLIT). Exact replacement: add a third column "ledger key" to the C3 table
+  giving the machine key for every row (G, c, hbar, k_B, H0, Omega_m, Omega_L, Omega_b_h2,
+  Omega_c_h2, n_s, sigma8, tau, <the ln(10¹⁰ A_s) row's key — confirm it exists in the list>,
+  age_Gyr), and add to the C3 schema: "`value` of a STANDARD record is the exact string printed
+  in the table's value column." If any row's value is absent from the script's list, add it and
+  re-pin the script in the same commit; the pin in §3/C3 must equal the delivered file's digest.
+
+Verdict basis: the design's classes, controls, circularity closure, blind, seal, fairness and
+stall structure are sound as written, and Q1/Q2 are YES under the settled option-(c) definition;
+F1 is a bounded document-versus-artefact mismatch repairable by printing keys (or re-keying and
+re-pinning the script); F2 is cosmetic and the principal's.
+
+R3C2_V16_KIMI_GATE_COMPLETE
