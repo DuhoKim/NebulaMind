@@ -45,7 +45,7 @@ is a falsifier only for models that inherit the ECKS premise, and its floor is U
   by the lane's committee (memory of the 09-03 adjudication; receipts in the freedom-map gates). It cannot be scored.
 - The de Sitter-core ringdown, entry 21 (Roupas 2022): frequencies derived and in LISA's band, amplitude free
   (`K5_RESULT_20260904.md`, `K5_AMPLITUDE_FREE`).
-- The torsion bounce, entries 9–11 (Popławski 2010, 2012, 2014): the n² closure is a convention with two printed coefficients
+- The torsion bounce, entries 9–11 (Popławski 2010 PLB, 2012 PRD, 2016 ApJ — bibliography): the n² closure is a convention with two printed coefficients
   six times apart in one paper (`K3S1_RESULT_20260903.md`); the derivation that would fix it is uncontrolled where it matters
   (`K3S3_RESULT_20260904.md`); the inflationary numbers of entry 59 rest on a chosen β (`R3A_RESULT_20260904.md`, `BETA_FREE`).
 - Λ from a boundary, entry 56: w = −1 follows only from an assumed constant mass; the paper's own text permits M(τ)
@@ -79,7 +79,8 @@ for this corpus, the "quantum-gravity core sets a mass scale" motif as a *derive
 and de Sitter limits, finite curvature invariants, and an anisotropic vacuum source (entry 18, `W_CONSTRUCTION_ASSERTED` on the
 profile, which is an ansatz by the paper's own words). The R3E kit's unplanted run (disclosed in `R3E_DYMNIKOVA_SOURCE_CONSISTENCY_PREREG_DRAFT_20260905.md`, §0, and the kit `r3e_controls.py`) indicates
 the printed components are internally exact — so the branch is *consistent*, just not *predictive* of a mass. Entries that
-lean on the same construction and are therefore touched: 19 and 20 (Dymnikova's later restatements; `W_MIXED`), 55 (the
+lean on the same construction and are therefore touched: 19 (Dymnikova 2019, a later restatement; `W_MIXED`), 20 (Bronnikov, Melnikov &
+Dehnen 2007, a regular-core model in the same de Sitter-core family, not a Dymnikova paper; `W_MIXED` — bibliography), 55 (the
 asymptotically de Sitter interior inside Schwarzschild, PRD 2020; the R3D prereg §1 names it as sharing the de Sitter-core
 premise), and, at one remove, entry 21 (Roupas's fluid-shell spectrum, which matches a de Sitter core to Schwarzschild: its
 ringdown frequencies do not depend on a floor, so K5's result is untouched, but any "minimum object" reading of entry 21 is
@@ -117,8 +118,9 @@ paper, not a falsifier), clusters #9 and #11 of the ranked packet (transfer func
   worth a seat-day because eq. 24's identity is the corpus's cleanest α-independent relation and nobody has checked it.
 - **R3G** (Smoller–Temple shock position): settles whether the present shock distance is bounded by the printed floor on the
   start epoch (tonight's PDF reading says the logarithm is unsquared and a floor exists, so bounded is now the live option);
-  does NOT settle whether the shock exists or is observable — the paper names no signature beyond "comparable to the Hubble
-  length". If `INVARIANT_FIXED` files, it is the first construction-fixed magnitude in the family; my expectation is
+  does NOT settle whether the shock exists or is observable — the paper's stated signature is that the present shock distance is
+  "comparable to the Hubble distance" (entry 36 abstract, `smoller_temple_2000_clean.txt` line 14), with the pure-radiation
+  comparison "significantly beyond the Hubble length" (lines 285–299); neither is an observable a survey targets. If `INVARIANT_FIXED` files, it is the first construction-fixed magnitude in the family; my expectation is
   `MAGNITUDE_BOUNDED`, an order-of-magnitude claim that restates its inputs.
 - **R3H** (entry 10's ⅛ vs ¾ propagation; `R3H_ENTRY10_COEFFICIENT_PROPAGATION_PREREG_DRAFT_20260905.md`): settles which downstream printed numbers move under the other coefficient and by how
   much (linear quantities six-fold, square-root quantities √6 = 2.45-fold, under the declared factor-3 threshold — the draft's §0 and `r3h_controls.py` c2 rows); does NOT settle the physics,
@@ -164,6 +166,11 @@ A blind codex source referee (`BHU_PROGRAMME_SYNTHESIS_SOURCE_REFEREE_codex_2026
 claims: 36 confirmed, 2 misquoted, 4 unsourceable as cited. Corrected here: the directional-assumed count is FIVE of eight, not
 six (rows 24, 26, 54 are derived); entry 7 fired on a BORROWED bar, not one its author fixed — the sentence now says so; and the
 four draft/kit citations (R3E, R3F, R3G, R3H) now carry their full file names and the kit files. No finding, judgement or
-verdict changed. A kimi source referee runs in parallel; its report is filed beside this one when it lands.
+verdict changed. **V3 (2026-09-06 01:27 KST):** the kimi source referee (`BHU_PROGRAMME_SYNTHESIS_SOURCE_REFEREE_kimi_20260906.md`, read against V1) checked 50
+claims: 46 confirmed, 4 misquoted, 0 unsourceable; all five pillars it named as consequential (R3D's family and infimum, the 51-entry
+tally, entry 31's numbers, the six-instance pattern with its breaker) CONFIRMED to the digit. Its four misquotes: the count (already
+corrected in V2), and three of mine corrected here — entry 11 is 2016 not 2014; entry 20 is Bronnikov–Melnikov–Dehnen 2007, not a
+Dymnikova restatement; the shock paper's phrase is "comparable to the Hubble distance" (abstract), now cited to its line.
+Disclosed: V2 was written while the kimi seat was still reading V1 (run log); its report was reconciled against V1 bytes.
 
 BHU_PROGRAMME_SYNTHESIS_COMPLETE
