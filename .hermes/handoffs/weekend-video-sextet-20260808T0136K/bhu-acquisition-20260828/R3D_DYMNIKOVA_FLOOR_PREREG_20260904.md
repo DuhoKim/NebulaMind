@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 26 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 27 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -39,8 +39,13 @@ completion's floor are two floors and not one.
 
 **THE COMPLETIONS TESTED ARE EXACTLY THE FOUR KINDS NAMED ABOVE — a Euclidean volume, a uniform interior, an
 order-unity coefficient set to 1, and the GR exterior — each instantiated ONLY where the printed relations leave
-its object unbound, and NO OTHER COMPLETION MAY BE TESTED OR COUNTED.** The admissible reading set is therefore
-finite: the completion-free derivation plus at most four one-completion readings. *(Without this the set over
+its object unbound, and NO OTHER COMPLETION MAY BE TESTED OR COUNTED.** **An object is UNBOUND unless the §2c census contains a
+printed relation that fixes it, cited by census row in the C2 ledger; otherwise it is BOUND and its kind is not
+instantiated. Each kind is instantiated AT MOST ONCE, in a single reading that sets every one of its unbound
+objects together — that joint setting is the kind's one named assumption. Two seats applying this rule to the
+same census construct the same reading set.** The admissible reading set is therefore finite: the completion-free
+derivation plus at most four one-completion readings. *(kimi V26: "leave its object unbound" named no decision
+procedure, and the count assumed one unbound object per kind.)* *(Without this the set over
 which §4 partitions was never fixed — infinitely many completions satisfy "one named assumption, consistent with
 the printed relations" — so class 1's "all of `P` agree" quantified over an unbounded set and was undecidable, and
 two seats could test different completions and file different classes on the same physics. kimi V24, load-bearing.)* *(The term carried the whole class structure while being defined nowhere, so whether an
@@ -232,8 +237,8 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    — the sibling, one class over, of the limb-A gap codex found at V15.)* If the printed relations are mutually
    inconsistent, **report that a consistent solution, and hence a positive lower bound, were unreproduced from the
    stated inputs**, file here, and **reproduce the contradiction.**
-5. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity does not match the
-   frozen manifest of §2a, or a required source-dependent proposition is `UNRESOLVED`, or a required bounded
+5. **DYM_SOURCE_BLOCKED** — a required pinned source **cannot be read, or its computed identity — **or the pinned C3 probe's** — does not match the
+   frozen digest, or a required source-dependent proposition is `UNRESOLVED`, or a required bounded
    procedure remains undecidable after its specified fallback, **or a terminal seat split under §9 that no
    adjudication resolves to one declared class**.** *(§9 already commands class 5 on a three-way or undecidable
    split among control-clean reports; the enumeration did not describe that state, so the filed class's own
@@ -302,8 +307,11 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   class without naming what is filed instead — a terminal state with no routing.)*
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
   fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, pinned by sha256
-  `7db669313568d08dc9be7bb18d142a956db3cc3ad62a87bff9e4724c47527874`.** The seat writes its relations file to the
-  absolute path named below, then runs the following line **verbatim — interpreter, script and argument all
+  `7db669313568d08dc9be7bb18d142a956db3cc3ad62a87bff9e4724c47527874`.** The seat **first runs and prints
+  `shasum -a 256 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py`
+  and compares the result to the pin above; a mismatch is a pinned artefact failing its pin and files
+  `DYM_SOURCE_BLOCKED`** *(the digest was declared and never checked by any control — codex V26)*. It then writes
+  its relations file `_c3_relations.json` to the absolute path named in the command below, and runs the line **verbatim — interpreter, script and argument all
   absolute, no placeholders, no brackets, no shell metacharacters, no dependence on the seat's working directory**:
 
   ```
@@ -318,10 +326,13 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   pinned by digest in §2a, the pattern record by digest in C6, the constants by value in §2b, the interpreter by
   digest in C5 — while the script that decides circularity was cited by name alone. And the invocation had angle
   brackets, which are shell redirection: V22 repaired exactly that, and **V23 reintroduced it while fixing the
-  path**. The command is now written literally, with no placeholder notation of any kind.)* — the JSON file `relations.json` carries `target`, `symbols`, the §2b `constants`
+  path**. The command is now written literally, with no placeholder notation of any kind.)* — the JSON file `_c3_relations.json` carries `target`, `symbols`, the §2b `constants`
   list, and one record per relation with `id`, `origin` (`SOURCE_PINNED` or `INJECTED`) and `expr`. It prints the
   retained ids, the deleted ids, the injected relations, and the solve result with and without the pinned
-  equations, exiting **0 on PASS, 1 on FAIL, 2 on NOT_RUN**. **A floor is DETERMINATE when its free symbols all lie
+  equations, exiting **0 on PASS, 1 on FAIL, 2 on NOT_RUN**. **On a class where C3 is reached, an exit of 2 is a control failure,
+  not `NOT_RUN`: the seat corrects its relations file and re-runs once; a second exit of 2 is a persistently failing
+  control and is routed by the §9 control-failure rule, with both captured outputs printed.** *(kimi V26: exit 2
+  was outside the control vocabulary wherever C3 is reached.)* **A floor is DETERMINATE when its free symbols all lie
   in §2b**; the probe files FAIL — circular — when a determinate floor still follows from the injected relation
   alone. *(Supplied rather than promised, with a passing positive control — injected `M = 3·sqrt(ħc/G)` alone fixes
   the floor, FAIL, exit 1 — and negative control — injected `r₀ = 2GM/c²` alone leaves `M` free in `r₀`, PASS,
@@ -567,8 +578,12 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
 
 ## 9. Inherited discipline, stated so no seat has to infer it
 
-- **Harness, LIVE**: every seat executes and prints `python3 --version`,
-  `python3 -c "import sympy; print(sympy.__version__)"`, and `shasum -a 256 $(command -v python3)`.
+- **Harness, LIVE**: every seat executes and prints `/usr/bin/python3 --version`,
+  `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"`, and `shasum -a 256 /usr/bin/python3`, with the
+  first command likewise `/usr/bin/python3 --version`. **All three name the interpreter absolutely — the same binary
+  C3 invokes.** *(`$(command -v python3)` resolved through the seat's PATH and was nowhere constrained to be
+  `/usr/bin/python3`, so C3's claim that C5 pins its interpreter was true only where the two happened to coincide.
+  Both V26 seats found it.)*
   Transcribing expected values fails `C5_HARNESS_PINNED`. *(`sympy.__version__` was written as though it were a
   shell command; run literally it fails with "command not found", so C5 as frozen could not be executed as frozen
   and each seat had to either fail it or silently substitute something that worked.)*
@@ -1456,4 +1471,39 @@ got.
 
 **R3D is NOT frozen and NOT run.**
 
-R3D_PREREG_V26_READY_FOR_REEXHIBITION
+## 8s. V27 — both V26 seats executed C3; five substantive control findings, all applied
+
+**codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`, both on `6d60bb0a…`, both hash-verified.** Both found
+**classes, circularity's census, the falsifier and the re-run guard sound.**
+
+### The question this gate was dispatched to answer
+
+**Both seats ran C3's literal command.** codex: *"Yes. I executed the literal command exactly as printed"* — from
+the lane directory, `PASS`, exit 0. kimi: *"Yes, I executed it — twice"* — `PASS`, exit 0 both runs, **and it said
+plainly that the designated input already held the negative control and that it ran against it as it stood without
+writing anything.** That caveat is the correct report: it says what was tested and what was not, and it is why the
+two `PASS`es agree. **After four versions in which no seat could run the circularity control, both engines have.**
+
+### The findings, each verified here before being accepted
+
+| finding | seat(s) | verified how | disposition |
+|---|---|---|---|
+| C5 pins `$(command -v python3)` — PATH-dependent — while C3 runs `/usr/bin/python3` absolutely; "the interpreter C5 pins" was true only where they coincided | codex 2.1 = kimi 2a | `command -v python3` → `/usr/bin/python3` **here**; not constrained elsewhere | **APPLIED** — all three C5 commands name `/usr/bin/python3` |
+| the probe's digest is **declared and never checked** by any control | codex 2.2 | grep for a `shasum` of the probe in any operative clause: **0** | **APPLIED** — seat prints the digest and compares before use; mismatch files `DYM_SOURCE_BLOCKED`, whose mismatch clause now names the probe |
+| prose says the seat writes `relations.json`; the command reads `_c3_relations.json` | codex 2.3 | both strings present in the operative clause | **APPLIED** — **mine, introduced at V25 while fixing the path** |
+| probe exit 2 has no mapping on a class where C3 is reached | kimi 2b | — | **APPLIED** — control failure, one re-run, then §9 |
+| "leave its object unbound" names no decision procedure, and the four-reading count assumed one unbound object per kind | kimi F3 | — | **APPLIED** — UNBOUND iff no census row fixes it; each kind instantiated at most once, jointly |
+| the `DYM_NO_*` tokens | both, **seventh** finding | — | **ESCALATED; authority unchanged** |
+
+**All five are SUBSTANTIVE under criterion (2) or (1); none is cosmetic; V26 is not final.**
+
+**On class 5's mismatch clause naming the probe:** a pinned artefact failing its pin is what that class already
+routes for sources; extending its text to the one other pinned artefact makes the definition describe the routing
+the digest check needs. Not a retirement, addition or rename.
+
+**Every new executable line in V27 was executed from `/` before being written**: the three absolute C5 commands and
+the probe digest check (match).
+
+**R3D is NOT frozen and NOT run. V27 requires its own C0 and gate.**
+
+R3D_PREREG_V27_READY_FOR_REEXHIBITION
