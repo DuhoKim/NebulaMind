@@ -1,8 +1,16 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 30 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
-fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
-20:56 note. **Drafting is not starting. No derivation has been run.**
+**Tori, 2026-09-05. Version 30 — FINAL, THE DESIGN OF RECORD, AUTHORISED TO RUN.** Gated bytes
+`a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b` (the file `R3D_V30_DESIGN_OF_RECORD_a99aad15.md`,
+which the run executes against and which is not edited). **C0 `C0_REACHABILITY=PASS` on those bytes; both engines
+returned — kimi `PREREG_SOUND`, codex `PREREG_SOUND_WITH_REPAIRS` with one cosmetic finding; declared final under the
+stopping criterion of 2026-09-05 06:19 (§8u); AUTHORISED TO RUN by Duho, "run r3d", 2026-09-05 12:26 KST
+(`R3D_RUN_ORDER_20260905.md`).** Originally ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.
+**FINAL SUBJECT TO ONE OPEN RULING, DUHO'S ALONE: the tokens `DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR`
+assert absence while their definitions say "unreproduced from the stated inputs"; eleven independent seat findings
+asked for the `…_UNREPRODUCED` names. The rename is annotated on V30 (§8u), does not block the run, and if made is an
+amendment to this final version, not a reopening.** *(This file carries the §8u declaration and this header on top of
+the gated bytes; its own hash therefore differs from `a99aad15…` and is recorded in `R3D_DESIGN_OF_RECORD.sha256`.)*
 
 ## 0. Why this would exist
 
@@ -1619,6 +1627,14 @@ for the reader; the rule governs what the list omits.
 **V29 is NOT final. V30 requires its own C0 and gate.**
 
 ## 8u. V30 IS FINAL — the design of record
+
+*(Header history, relocated 2026-09-05 12:32 KST on Duho's order "fix the header". Until 12:26 KST on 2026-09-05 the header of every
+version, V30 included, read: "NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a fresh seat
+exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze", followed by the
+2026-09-04 20:56 note "Drafting is not starting. No derivation has been run." Both were true when written: this
+document required C0 and a two-seat gate before it could freeze, and V30 then received both — C0 PASS 12:04 KST, codex
+12:08 KST, kimi 12:22 KST — was declared final at 12:23 KST, and was authorised to run at 12:26 KST. The gated bytes
+`a99aad15…` still carry the old header verbatim, because they are the gated artefact and are not edited.)*
 
 **sha256 `a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b`.**
 

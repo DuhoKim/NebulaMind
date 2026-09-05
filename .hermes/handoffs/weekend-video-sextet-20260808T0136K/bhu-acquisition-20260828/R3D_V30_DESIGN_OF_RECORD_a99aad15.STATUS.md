@@ -1,0 +1,12 @@
+# STATUS of R3D_V30_DESIGN_OF_RECORD_a99aad15.md — 2026-09-05 12:32 KST
+
+**This file is the gated bytes of R3D V30 (sha256 a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b) and is
+NEVER EDITED — the run's seats prove access against exactly this hash.** Its header therefore still reads "NOT FROZEN and
+NOT RUN: C0 must return PASS … before any freeze", which was true when written and is superseded:
+
+- C0 `C0_REACHABILITY=PASS` on these bytes (12:04 KST); codex `PREREG_SOUND_WITH_REPAIRS`, one cosmetic finding (12:08);
+  kimi `PREREG_SOUND` (12:22); declared FINAL, design of record, under the 06:19 stopping criterion (12:23).
+- AUTHORISED TO RUN by Duho, "run r3d", 2026-09-05 12:26 KST (`R3D_RUN_ORDER_20260905.md`). Codex seat running since 12:30.
+- FINAL SUBJECT TO ONE OPEN RULING, Duho's alone: rename `DYM_NO_SIZE_MASS_RELATION` / `DYM_NO_POSITIVE_FLOOR` to the
+  `…_UNREPRODUCED` forms (eleven seat findings). Does not block the run; if made, an amendment to V30, not a reopening.
+- The living document with the corrected header is `R3D_DYMNIKOVA_FLOOR_PREREG_20260904.md` (sha256 8a3e63b4da28965f93221232ff92c4fb697f112de888b0599592426209ae884b).
