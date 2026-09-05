@@ -4,7 +4,7 @@ per-claim rests_on from the merged ledger. Usage:
   /usr/bin/python3 r3c2_lane_tools.py merge   <ledger_seatA.json> <ledger_seatB.json> <merged.json>
   /usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json>
 rests_on: DERIVED_ONLY if every root origin is DERIVED, STANDARD or MEASURED; else the most severe root present,
-USES_UNDECLARED > USES_IMPORTED > USES_FITTED > USES_CHOSEN; a disputed root gives a pair marked DISPUTED.
+USES_UNDECLARED > USES_IMPORTED > USES_FITTED > USES_CHOSEN; a disputed root gives a pair marked DISPUTED; a derived_from disagreement between seats is carried as derived_from_alt + PARENTS_DISPUTED and computed under both parent lists.
 A ledger arriving with root_origins or rests_on set is REJECTED (exit 2)."""
 import json, sys, pathlib
 
@@ -20,6 +20,7 @@ def roots_alt(rec_by_id, rid):
     alt={k:dict(v) for k,v in rec_by_id.items()}
     for v in alt.values():
         if v.get("origin_alt"): v["origin"]=v["origin_alt"]
+        if v.get("derived_from_alt") is not None: v["derived_from"]=v["derived_from_alt"]
     return roots(alt, rid)
 
 
@@ -56,7 +57,7 @@ def cmd_compute(ledger,out):
         except ValueError as e: print("FAIL:",e); return 1
         r["root_origins"]=sorted(rs)
         claims.setdefault(r["claim_id"],set()).update(rs); claims_alt.setdefault(r["claim_id"],set()).update(ra)
-        if r.get("origin_alt") and r["origin_alt"]!=r["origin"]: disputed_claims.add(r["claim_id"])
+        if (r.get("origin_alt") and r["origin_alt"]!=r["origin"]) or r.get("PARENTS_DISPUTED"): disputed_claims.add(r["claim_id"])
     out_claims={}
     for c,rs in claims.items():
         if c in disputed_claims:
@@ -75,12 +76,15 @@ def cmd_merge(a,b,out):
     da,ra=load(a); db,rb=load(b); A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
     if set(A)!=set(Bm):
         print("FAIL: input_id sets differ:", sorted(set(A)^set(Bm))); return 1
-    out_recs=[]; ndis=0
+    out_recs=[]; ndis=0; npar=0
     for k in sorted(A):
-        r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None)
+        r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None); r.pop("derived_from_alt",None); r.pop("PARENTS_DISPUTED",None)
         if Bm[k]["origin"]!=A[k]["origin"]:
             r["origin_alt"]=Bm[k]["origin"]; r["origin_evidence_alt"]=Bm[k]["origin_evidence"]; ndis+=1
+        if sorted(A[k].get("derived_from") or []) != sorted(Bm[k].get("derived_from") or []):
+            r["derived_from_alt"]=Bm[k].get("derived_from") or []; r["PARENTS_DISPUTED"]=True; npar+=1
         out_recs.append(r)
+    pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); print(f"PARENTS_DISPUTED={npar}")
     pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); return 0
 
 

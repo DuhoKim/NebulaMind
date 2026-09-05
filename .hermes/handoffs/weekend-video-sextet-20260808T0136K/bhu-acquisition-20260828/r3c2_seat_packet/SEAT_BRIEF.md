@@ -16,8 +16,9 @@ Order of work:
 5. Limb B: for each included claim, attempt the arithmetic exactly as the packet's section 2 prescribes, launching
    every symbolic operation through the wrapper as the packet states; record one per-claim outcome from section 3
    with both numbers where the packet asks for them; write each outcome into the candidate file's `outcome` field (with
-   `printed_value` and `reproduced_value` for arithmetic outcomes), then run `census` again with the word `final` and print
-   its output.
+   `printed_value` and `reproduced_value` for arithmetic outcomes), then run
+   `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final` with the placeholders resolved and
+   print its output.
 6. Print the path list with the scope mark for each row, and every control's token in the exact form the packet
    gives.
 7. Write your report as `SEAT_REPORT.md` in this directory: digests, control tokens, the tally with its

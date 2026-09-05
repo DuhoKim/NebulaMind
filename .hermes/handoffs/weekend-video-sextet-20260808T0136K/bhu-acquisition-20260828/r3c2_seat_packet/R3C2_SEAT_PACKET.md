@@ -6,11 +6,11 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `a0cf4d5cae4a2b744fead10a7ee09d72479cf6e8a8ddc7ef622b81167f6ea9af` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `e8ba4a7438d61f028e3c46c7308d7078f011e53886e332b946bd7e21f6a1c6c8` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
-For every quantitative claim in the corpus, **does the paper's own number follow from the paper's own recipe applied to the inputs it states **The reproduction verdict and the provenance fields are recorded separately.**
+For every quantitative claim in the corpus, **does the paper's own number follow from the paper's own recipe applied to the inputs it states.** **The reproduction verdict and the provenance fields are recorded separately.**
 
 **Operational definition, so the enumeration is not a judgement:** a *quantitative claim* is a passage in a pinned
 source that **prints a numeral the paper asserts as a result of its own** — with units, or dimensionless and stated
@@ -43,7 +43,7 @@ and are outside the census, visibly.**
 5. **Record the outcome**, per claim, as one of §3, in the candidate file's `outcome` field; the sealed reproduction tally is
    the merged candidate file on which the two seats' `outcome` fields agree, claim by claim, after one reconciliation against
    the printed numeral and the stated-precision rule of §3; the class filed when a disagreement survives that reconciliation is
-   **an open decision recorded in §10.12**; this document is not frozen until that decision is recorded.
+   **an open decision recorded by the lane owner**; this document is not frozen until that decision is recorded.
 
 **A value the paper does not print but traces to a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md` is
 classified `PRINTED` from that source, with `origin` `IMPORTED`, `origin_evidence` `ORIG_CITATION` cited to the named
@@ -107,13 +107,14 @@ is hidden by being excluded.
 
 ## 4. Study-level outcomes
 
-1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3.**
+1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3, with `C6_AUDIT_SAMPLE=PASS`.**
    Report the full tally with its denominator
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
    **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** 
-3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, **or the receipt verification
+3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, or does not run to PASS for any cause (the
+   cause named), **or the receipt verification
    of the seal fails**. No tally is filed; report which.
 4. **`R3C2_NO_CLASS`** — a control among C0 through C5b fails **in every seat that attempted it** after two attempts;
    a packet or seat-isolation failure before dispatch files this class. **A C6 audit failure or a
@@ -121,7 +122,7 @@ is hidden by being excluded.
 5. **`CENSUS_DENOMINATOR_DISPUTED`** — the two enumerations disagree after two reconciliation attempts, **or the two
    seats' input lists for the agreed claims disagree after the one C3 reconciliation**. The census does not proceed; the
    disputed candidates or inputs are listed. 
-   *Open (§10.12): the class filed when the two seats' per-claim outcomes on an agreed included claim differ after the
+   *Open (recorded by the lane owner): the class filed when the two seats' per-claim outcomes on an agreed included claim differ after the
    one reconciliation of §2 step 5 — §4 is not exhaustive over that state; a class is not added or redefined
    by this document's author, so the gap is recorded here as open rather than written in.*
 
@@ -160,15 +161,16 @@ is hidden by being excluded.
   on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print
   those four declared counts verbatim from the files, then run
   `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
-  script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate,
-  that every included candidate carries a permitted `attempts` value, and that each of the four declared counts equals
+  script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate, that every excluded candidate is named by exactly one exclusion row,
+  that every included candidate carries a permitted `attempts` value, and that each of the five declared counts equals
   the count recomputed from the rows; its stdout prints both the declared and the
   recomputed counts. Print its command, stdout and exit status.** The candidate and exclusion ledgers use the script's candidate schema: each candidate carries
   `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every included candidate additionally carries `outcome` —
   one of the six §3 tokens, or `PENDING` before limb B — and every included candidate whose `outcome` is in the arithmetic
   group carries `printed_value` and `reproduced_value` (strings, as printed and as computed); every exclusion row names a
-  candidate and a `kind`; the `census` subcommand run again after limb B with the word `final` verifies that every included
-  candidate carries exactly one §3 outcome, none `PENDING`, and that arithmetic-group outcomes carry both values;
+  candidate and a `kind`; after limb B the seat runs `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final`, with
+  all placeholders resolved, and prints its output; that run verifies that every included candidate carries exactly one §3
+  outcome, none is `PENDING`, and arithmetic-group outcomes carry both values;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
   line, in the JSON schema of C3, validated by `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
