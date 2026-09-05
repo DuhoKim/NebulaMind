@@ -1,0 +1,74 @@
+ACCESS PROOF (mandatory). Step 1, before anything else: run exactly  shasum -a 256 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_V30_DESIGN_OF_RECORD_a99aad15.md  and print the result as the FIRST line of your written report AND of your final answer, in the exact form ACCESS_SHA=<the full 64 hexadecimal characters> — never abbreviate. If you cannot read that file, print ACCESS_SHA=NO_ACCESS and stop. Your working directory is /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828. Step 2: write your full report to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_THIRD_SEAT_ROW9_20260905.md (overwrite), then also print it in your final answer.
+
+You are a THIRD SEAT of a frozen, pre-registered physics study, convened by the principal's order "adjudicate row 9".
+You do not change the protocol. You rule, to the LETTER of the protocol as written, on one control row of one seat's
+report, and you perform the one re-run that ruling may require. The outcome is whatever it is.
+
+THE PROTOCOL is the file named in the ACCESS PROOF above (R3D_V30_DESIGN_OF_RECORD_a99aad15.md). Read sections 4, 5
+(C5 and C5b) and 9 in full before anything else.
+
+BACKGROUND (all from printed artefacts you may open):
+  - The R3D run has been FILED as DYM_NO_POSITIVE_FLOOR: see R3D_RUN_FILING_20260905.md. Two blind seats agreed on the
+    physics; codex's C5b failed twice (it opened its bundled `rg` and `/usr/bin/head` for inspection and marked them
+    OUT_OF_SCOPE), kimi's C5b passed; a third seat re-ran codex's C5b once (PASS) and filed the common class under
+    section 4 class 6. Read R3D_RUN_THIRD_SEAT_20260905.md for that adjudication.
+  - The residual to adjudicate: kimi's C5b artefact R3D_RUN_kimi_20260905/C5b_paths.txt, ROW 9, reads:
+      "Shell and basic utilities (/bin/zsh, /usr/bin/wc, /usr/bin/grep, /usr/bin/awk, /bin/mkdir, /usr/bin/time)
+       opened only as vehicles of the mandated commands and of artefact assembly/inspection inside the seat's own
+       working directory. IN_SCOPE — [GENERAL RULE]."
+    codex marked the same KIND of use (inspection utilities it chose) OUT_OF_SCOPE. The section-9 GENERAL RULE reads:
+      "a path opened as a necessary consequence of executing a command this document mandates is IN_SCOPE by that
+       fact, printed and marked under this clause." And: "OUT OF SCOPE: another lane's files, and any path not named
+       above."
+  - A second residual: kimi's C5 command 2 (`/usr/bin/python3 -c "import sympy; print(sympy.__version__)"`) was not
+    executed in the literal -c form (its sandbox blocked it); the identical program ran from a file under the same
+    pinned interpreter, printed 1.14.0, exit 0. Section 5 C5 says "Execute and print the three commands of section 9
+    ... PASS exactly when all three commands exit 0 AND their printed values equal these frozen values."
+
+THE CLAUSES THAT GOVERN THE CONSEQUENCE — quote them:
+  (1) Section 4 class 6: "A scientific class may be filed only from a seat report in which every reached control
+      passed; if the two seats return the same scientific class but at least one report is not control-clean ... the
+      third seat re-runs each failed control of EACH report that is not control-clean, once per failed control. If any
+      re-run control fails again, that is the persistent failure named above and R3D_NO_CLASS is filed. If every
+      re-run control passes, that class is filed."
+  (2) Section 9 seat split, as already applied in R3D_RUN_THIRD_SEAT_20260905.md.
+
+WHAT YOU DO, IN ORDER:
+  1. C5 harness: execute the three section-9 commands exactly as printed; print stdout, exit codes, comparisons.
+     Emit C5_HARNESS_PINNED=<token>.
+  2. RULE ON ROW 9, to the letter: for each utility named in row 9, is opening it "a necessary consequence of
+     executing a command this document mandates"? Distinguish (a) the shell that submits a mandated command line from
+     (b) utilities chosen for "artefact assembly/inspection". State the ruling per utility and the ruling for the row.
+     Emit ROW9_RULING=IN_SCOPE or ROW9_RULING=OUT_OF_SCOPE (the row is OUT_OF_SCOPE if any utility in it is).
+  3. RULE ON kimi's C5 command 2: does executing the identical program from a file satisfy "execute ... the three
+     commands" as written? Emit C5_RULING_FOR_KIMI=PASS or C5_RULING_FOR_KIMI=FAIL, with the sentence you rely on.
+  4. CONSEQUENCE: if either ruling makes kimi's report not control-clean, clause (1) requires ONE re-run of EACH failed
+     control for kimi's report. Perform each required re-run once: for C5b, execute the mandated commands of the path
+     this run took (the four C1 digests with /usr/bin/shasum; the three C5 commands) opening ONLY section-9 in-scope
+     paths, using your file-reading tool rather than shell utilities for any inspection, and print your complete
+     per-path table with the clause for each row; for C5, the literal three commands (already done in step 1 — cite
+     it). Emit C5B_RERUN_FOR_KIMI=PASS|FAIL|NOT_REQUIRED and C5_RERUN_FOR_KIMI=PASS|FAIL|NOT_REQUIRED.
+  5. EFFECT ON THE FILING: apply clause (1) to the outcome of step 4 and state the effect. Emit
+     FILING_EFFECT=UNCHANGED_DYM_NO_POSITIVE_FLOOR or FILING_EFFECT=R3D_NO_CLASS. Note: the filed class can change only
+     if a re-run control FAILS again.
+  6. Wording: negatives are "unreproduced from the stated inputs"; never "error". You file nothing else; no token,
+     tier, standing or stamp moves.
+
+WHAT YOU MAY OPEN: the protocol; R3D_RUN_FILING_20260905.md; R3D_RUN_THIRD_SEAT_20260905.md; the two run reports and
+run directories R3D_RUN_codex_20260905/ and R3D_RUN_kimi_20260905/; the four manifest sources of section 2a (for the
+re-run's C1 digests); /usr/bin/python3, /usr/bin/shasum and what they load; your own artefacts. DO NOT open the pattern
+record, R3D_TORI_SECOND_ROUTE_BLIND_20260905.md, any R3D_GATE_*, R3D_C0_*, R3C*, K*, BHU*, WARRANT*, TOPIC* file, or any
+other lane. Print every path you opened.
+
+REPORT — write R3D_RUN_THIRD_SEAT_ROW9_20260905.md beside the protocol AND print it as your final answer:
+  line 1: ACCESS_SHA=<64 hex of the protocol file>
+  line 2: ROW9_RULING=<IN_SCOPE|OUT_OF_SCOPE>
+  line 3: C5_RULING_FOR_KIMI=<PASS|FAIL>
+  line 4: C5B_RERUN_FOR_KIMI=<PASS|FAIL|NOT_REQUIRED>
+  line 5: C5_RERUN_FOR_KIMI=<PASS|FAIL|NOT_REQUIRED>
+  line 6: FILING_EFFECT=<UNCHANGED_DYM_NO_POSITIVE_FLOOR|R3D_NO_CLASS>
+  line 7: C5_HARNESS_PINNED=<token>
+  then: the clauses quoted; the per-utility ruling; the C5 ruling; the re-run path table if performed; the effect;
+        paths opened; OBSERVATIONS ON THE PROTOCOL (changed nothing).
+  final line: R3D_ROW9_COMPLETE
+Take the time it takes.

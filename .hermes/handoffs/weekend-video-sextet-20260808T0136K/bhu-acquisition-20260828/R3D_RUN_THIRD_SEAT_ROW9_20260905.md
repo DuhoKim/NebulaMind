@@ -1,0 +1,151 @@
+ACCESS_SHA=a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b
+ROW9_RULING=OUT_OF_SCOPE
+C5_RULING_FOR_KIMI=FAIL
+C5B_RERUN_FOR_KIMI=PASS
+C5_RERUN_FOR_KIMI=PASS
+FILING_EFFECT=UNCHANGED_DYM_NO_POSITIVE_FLOOR
+C5_HARNESS_PINNED=PASS
+
+# R3D third-seat adjudication of kimi C5b row 9 — 2026-09-05
+
+## Governing clauses, quoted
+
+Section 4, class 6:
+
+> “A scientific class may be filed only from a seat report in which every reached control passed; if the two seats return the same scientific class but at least one report is not control-clean — or if, after a different-class split, the third seat's adjudication agrees with a seat whose report is not control-clean — the third seat re-runs each failed control of EACH report that is not control-clean, once per failed control. If any re-run control fails again, that is the persistent failure named above and `R3D_NO_CLASS` is filed. If every re-run control passes, that class is filed.”
+
+Section 9, seat split:
+
+> “if the two blind seats return different terminal classes of any kind — scientific, `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS` — or the same scientific class with different `C6_BREAKER_TEST` outcomes, or with different reported floor formulas or values (classes 1 and 2), or different reported families (class 4) (reachable because conditions 2 and 4 are bounded by each seat's own C2 artefact and no rule forces the two ledgers to agree — so two control-clean seats could file one class while one certifies a counterexample and the other does not) — the third seat adjudicates exactly that split from the printed artefacts, re-executing any blocked read once before ruling; its class is filed only if it agrees with one of the two. If all three differ, or the third seat cannot decide, file `DYM_SOURCE_BLOCKED`. Every terminal path files exactly one declared class.”
+
+Section 9, path scope:
+
+> “GENERAL RULE, which the list above instantiates and which governs any path the list omits: a path opened as a necessary consequence of executing a command this document mandates is `IN_SCOPE` by that fact, printed and marked under this clause.”
+
+> “OUT OF SCOPE: another lane's files, and any path not named above.”
+
+Section 5, C5:
+
+> “Execute and print the three commands of §9.”
+
+> “`C5_HARNESS_PINNED=PASS` exactly when all three commands exit 0 AND their printed values equal these frozen values; otherwise `FAIL`; `NOT_RUN` only when explicitly unreached under §9.”
+
+## 1. Third-seat C5 harness
+
+The three Section-9 commands were executed exactly as printed. The unattended terminal launcher declined to start command 2; that refusal occurred before `/usr/bin/python3` was executed and is not counted as a command run. The exact command was then submitted unchanged in an interactive `/bin/zsh` process.
+
+| command | captured stdout | exit code | frozen expected value | comparison |
+|---|---|---:|---|---|
+| `/usr/bin/python3 --version` | `Python 3.9.6` | 0 | `Python 3.9.6` | MATCH |
+| `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"` | `1.14.0` | 0 | `1.14.0` | MATCH |
+| `shasum -a 256 /usr/bin/python3` | `b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3` | 0 | `b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9` | MATCH |
+
+All three commands exited 0 and all printed values equal the frozen values.
+
+`C5_HARNESS_PINNED=PASS`
+
+## 2. Ruling on kimi C5b row 9
+
+The GENERAL RULE is command-causal, not purpose-causal. A path is not brought into scope merely because it helped create or inspect a required artefact. The path must be a necessary consequence of executing a command the protocol mandates, unless another express Section-9 in-scope clause names it.
+
+| utility in row 9 | ruling | clause applied and reason |
+|---|---|---|
+| `/bin/zsh` | IN_SCOPE | GENERAL RULE. In the seat's command-execution environment, this was the shell that submitted the protocol's mandated command lines and captured their statuses. Its opening was a necessary consequence of executing those mandated command lines. |
+| `/usr/bin/wc` | OUT_OF_SCOPE | “any path not named above.” It was a chosen counting/inspection utility. The protocol mandates census accounting and printed reconciliation, but it does not mandate a `wc` command; the result can be assembled without opening `wc`. |
+| `/usr/bin/grep` | OUT_OF_SCOPE | “any path not named above.” It was a chosen search/inspection utility. The protocol requires a convenience search to be printed, but it does not mandate a `grep` command; the search can be performed without opening `grep`. |
+| `/usr/bin/awk` | OUT_OF_SCOPE | “any path not named above.” It was chosen for artefact processing/inspection, not opened as a necessary consequence of any command the protocol mandates. |
+| `/bin/mkdir` | OUT_OF_SCOPE | “any path not named above.” Creating an artefact directory was an implementation choice. The protocol requires artefacts, but it does not mandate a `mkdir` command. |
+| `/usr/bin/time` | OUT_OF_SCOPE | “any path not named above.” It was a chosen timing utility. The protocol states caps and requires captured results, but it does not mandate a `/usr/bin/time` command. |
+
+The shell that submits a mandated command line is therefore different from utilities selected for artefact assembly or inspection. Five utilities bundled into row 9 are OUT_OF_SCOPE. Because any OUT_OF_SCOPE row fails C5b, the row as a whole is OUT_OF_SCOPE.
+
+`ROW9_RULING=OUT_OF_SCOPE`
+
+## 3. Ruling on kimi C5 command 2
+
+Kimi did not execute command 2 as printed. Kimi executed `/usr/bin/python3 <seat-file>` rather than `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"`.
+
+The controlling sentence is: “Execute and print the three commands of §9.” The identical program text, same pinned interpreter, output `1.14.0`, and exit 0 establish semantic equivalence of the Python program, but they do not establish execution of the command the protocol names. The command form is part of the frozen instruction. Therefore kimi's original C5 does not pass to the letter.
+
+`C5_RULING_FOR_KIMI=FAIL`
+
+## 4. Required re-runs for kimi
+
+The two rulings make kimi's report not control-clean on C5b and C5. Section 4 class 6 therefore requires one re-run of each failed control for kimi's report.
+
+### C5b re-run for kimi: commands and C1 digest comparisons
+
+The four manifest sources were hashed with `/usr/bin/shasum`. No shell inspection utility was used. Each command exited 0.
+
+| source path | computed SHA-256 | frozen SHA-256 | exit | comparison |
+|---|---|---|---:|---|
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt` | `2f3ca3e10ec016eed83104750d11d2428d5523c712814f68d559724d8b2c6b6f` | `2f3ca3e10ec016eed83104750d11d2428d5523c712814f68d559724d8b2c6b6f` | 0 | MATCH |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_2019_universe_clean.txt` | `ded87358184a4239d9f5bd0ffe8c5aee7732e992fc00be8f97370e73cbc7af47` | `ded87358184a4239d9f5bd0ffe8c5aee7732e992fc00be8f97370e73cbc7af47` | 0 | MATCH |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt` | `6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92` | `6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92` | 0 | MATCH |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/2007.06664_clean.txt` | `b34183bf58eb36d6745262816a6736e8f43c9f7ed11c852c80c7a3e7a378d8be` | `b34183bf58eb36d6745262816a6736e8f43c9f7ed11c852c80c7a3e7a378d8be` | 0 | MATCH |
+
+The three C5 commands are the exact commands reported in section 1. They opened only the explicitly named interpreter, shasum/Perl path class, their expressly included loads, and the necessary command-submission shell path class.
+
+### C5b re-run for kimi: complete path table
+
+A category row below covers every member of a path class that Section 9 itself expressly groups together, such as files loaded by the pinned interpreter. Reads used the file-reading tool; `/usr/bin/wc`, `/usr/bin/grep`, `/usr/bin/awk`, `/bin/mkdir`, `/usr/bin/time`, `rg`, and `head` were not opened in this re-run.
+
+| opened path or Section-9 path class | scope | exact Section-9 clause applied |
+|---|---|---|
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/` | IN_SCOPE | “the seat's own working directory and artefacts” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_V30_DESIGN_OF_RECORD_a99aad15.md` | IN_SCOPE | “this preregistration” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_FILING_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_THIRD_SEAT_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts”; printed artefact required by this row-9 adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_REPORT_codex_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts”; printed seat artefact required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_REPORT_kimi_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts”; printed seat artefact required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/` | IN_SCOPE | “the seat's own working directory and artefacts”; directory of printed seat artefacts required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C5_harness.txt` | IN_SCOPE | same own-working-directory/artefacts clause; printed control artefact required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C5b_paths.txt` | IN_SCOPE | same own-working-directory/artefacts clause; printed control artefact required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/` | IN_SCOPE | “the seat's own working directory and artefacts”; directory of printed seat artefacts required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C5_harness.txt` | IN_SCOPE | same own-working-directory/artefacts clause; printed failed-control artefact required by the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C5b_paths.txt` | IN_SCOPE | same own-working-directory/artefacts clause; row 9 is the subject of the adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt` | IN_SCOPE | “this lane's own reading tree (`../bhu-reading-20260823/sources/`)” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_2019_universe_clean.txt` | IN_SCOPE | same reading-tree clause |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt` | IN_SCOPE | same reading-tree clause |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/2007.06664_clean.txt` | IN_SCOPE | same reading-tree clause |
+| `/usr/bin/python3` | IN_SCOPE | “the pinned interpreter `/usr/bin/python3`, executed and hashed under C5” |
+| Every Python standard-library file, installed SymPy/mpmath package file, and dependent shared library loaded by the exact mandated Python commands | IN_SCOPE | “together with every file that interpreter loads while executing the mandated commands — its standard library, the installed sympy and mpmath packages, and their dependent shared libraries” |
+| `/usr/bin/shasum` | IN_SCOPE | “`/usr/bin/shasum`, executed under C1, C3 and C5” |
+| `/usr/bin/perl` and every Perl library/dependent shared library loaded by `/usr/bin/shasum` | IN_SCOPE | “together with the perl interpreter and libraries it loads” |
+| `/bin/zsh` and its dependent shared libraries used to submit the exact mandated command lines and capture their exit statuses | IN_SCOPE | GENERAL RULE: “a path opened as a necessary consequence of executing a command this document mandates is `IN_SCOPE` by that fact” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_THIRD_SEAT_ROW9_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts” |
+
+No OUT_OF_SCOPE row exists in this fresh C5b execution. No forbidden source, pattern record, gate file, C0 file, prior route, or other lane was opened.
+
+`C5B_PATH_LIST=PASS`
+
+`C5B_RERUN_FOR_KIMI=PASS`
+
+### C5 re-run for kimi
+
+Section 1 is the one required C5 re-run. Unlike kimi's original execution, it executed all three literal Section-9 commands. Each exited 0 and matched its frozen value.
+
+`C5_RERUN_FOR_KIMI=PASS`
+
+## 5. Effect on the filing
+
+Kimi's original report is not control-clean under the row-9 and C5 rulings. The required fresh C5b and C5 re-runs both pass. Section 4 class 6 says: “If every re-run control passes, that class is filed.” It does not permit the filed scientific class to change merely because an original control was ruled failed; the change to `R3D_NO_CLASS` occurs only if a re-run control fails again.
+
+Accordingly, the filing remains class 4, `DYM_NO_POSITIVE_FLOOR`: a positive floor was unreproduced from the stated inputs. Nothing else is filed. No token, tier, standing, or stamp moves.
+
+`FILING_EFFECT=UNCHANGED_DYM_NO_POSITIVE_FLOOR`
+
+## Paths opened
+
+The complete paths-opened list is the C5b table above. Two attempted lookups used guessed filenames `R3D_RUN_codex_20260905.md` and `R3D_RUN_kimi_20260905.md`; neither path existed, so neither file was opened. The actual report files opened are the two `R3D_RUN_REPORT_*_20260905.md` rows listed above.
+
+## OBSERVATIONS ON THE PROTOCOL
+
+Nothing in the protocol was changed.
+
+1. The GENERAL RULE reaches the shell that the execution environment necessarily uses to submit a mandated command, but it does not reach optional executables selected for assembling or inspecting artefacts. Bundling those two kinds in one path row makes that row fail if any optional executable is included.
+2. C5's frozen language binds execution to the three printed commands, not merely to equivalent program semantics and matching output. A same-interpreter file execution is useful evidence, but it is not the printed `-c` command.
+3. The literal `python3 -c` command is executable in this environment through an interactive shell even though the unattended launcher declines inline execution. The successful exact invocation printed `1.14.0` and exited 0.
+4. Applying the class-6 re-run clause leaves the filed scientific class unchanged because both fresh controls pass. The scientific negative remains only that a positive floor was unreproduced from the stated inputs.
+
+R3D_ROW9_COMPLETE

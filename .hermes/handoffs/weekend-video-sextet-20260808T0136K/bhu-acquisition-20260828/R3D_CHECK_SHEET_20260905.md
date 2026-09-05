@@ -58,3 +58,8 @@ number to test. No tier, warrant, standing or stamp moves. The wording rule hold
 **Receipts.** `R3D_RUN_REPORT_codex_20260905.md`, `R3D_RUN_REPORT_kimi_20260905.md`, `R3D_RUN_THIRD_SEAT_20260905.md`,
 run directories `R3D_RUN_{codex,kimi}_20260905/`, `R3D_RUN_LOG_20260905.md`, Tori's blind route
 `R3D_TORI_SECOND_ROUTE_BLIND_20260905.md` (committed before any report existed, sha256 `87af14ff…`).
+
+**Addendum (2026-09-05 14:06:04 KST), on Duho's order "adjudicate row 9".** Ruled to the letter: kimi's row 9 utilities were OUT of scope and
+its harness command 2 was not the printed form — so, like codex, kimi's original report was not control-clean. The
+protocol's remedy is one fresh re-run of each failed control by the third seat; all three re-runs (codex C5b, kimi C5b,
+kimi C5) passed. **Filed class unchanged: `DYM_NO_POSITIVE_FLOOR`.** Receipt: `R3D_RUN_THIRD_SEAT_ROW9_20260905.md`.

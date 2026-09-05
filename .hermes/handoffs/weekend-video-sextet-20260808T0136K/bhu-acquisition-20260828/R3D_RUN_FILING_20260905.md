@@ -70,3 +70,27 @@ infimum is 0. Three routes — codex, kimi, and Tori's independent mpmath solve 
 | run log | `R3D_RUN_LOG_20260905.md` |
 
 R3D_RUN_FILED_DYM_NO_POSITIVE_FLOOR
+
+---
+## ADDENDUM — row 9 adjudicated on Duho's order "adjudicate row 9" (2026-09-05 14:06:04 KST)
+
+A fresh third seat (gpt-5.6-sol via openai-codex, session 20260905_135549_918e17, 0 fallback lines, ACCESS PROVEN
+a99aad15) ruled **to the letter of §9 and §5** on the two residuals recorded above. Report:
+`R3D_RUN_THIRD_SEAT_ROW9_20260905.md` (sha256 a309d4e18950e1e1ad3a26ab8c296e4e8731d5d3ad6145ced155b362db83d958).
+
+| question | ruling | reason in the seat's words |
+|---|---|---|
+| kimi C5b row 9 | **OUT_OF_SCOPE** | "The GENERAL RULE is command-causal, not purpose-causal." `/bin/zsh` IN_SCOPE (it submitted the mandated command lines); `wc`, `grep`, `awk`, `mkdir`, `time` OUT_OF_SCOPE ("any path not named above" — chosen for artefact assembly/inspection, mandated by no command). Any OUT_OF_SCOPE member fails the row. |
+| kimi C5 command 2 | **FAIL as written** | "The command form is part of the frozen instruction." A file execution of the identical program is evidence, "but it is not the printed `-c` command." |
+| consequence under §4 class 6 | kimi's report not control-clean on C5b and C5 → **one re-run of each** | **C5b re-run for kimi: PASS** (fresh execution of the mandated commands; no inspection utility opened; complete path table, no OUT_OF_SCOPE row). **C5 re-run for kimi: PASS** (all three literal commands, exit 0, values match). |
+| effect on the filing | **UNCHANGED — `DYM_NO_POSITIVE_FLOOR`** | "It does not permit the filed scientific class to change merely because an original control was ruled failed; the change to `R3D_NO_CLASS` occurs only if a re-run control fails again." |
+
+**So the letter and the earlier reading agree on the class, and the record now says why.** Both blind seats' original
+reports were, to the letter, not control-clean on C5b (codex: `rg`, `head`; kimi: `wc`, `grep`, `awk`, `mkdir`,
+`time`), and kimi's C5 additionally on its command form; the protocol's own remedy — one fresh re-run per failed
+control by the third seat — passed every time, three re-runs in all. Nothing in the protocol was changed. The seat's
+observations (the general rule reaches the submitting shell but not optional executables; C5 binds the printed command
+form; the literal `-c` runs through an interactive shell) are recorded for any future amendment, which would carry its
+own C0 and gate.
+
+R3D_RUN_FILED_DYM_NO_POSITIVE_FLOOR_ROW9_ADJUDICATED
