@@ -1,0 +1,144 @@
+ACCESS_SHA=d6695c06c78c4735cb155269737175fbe55b7cdff0161cfccd0e85a71b21aca1
+C0_REACHABILITY=PASS
+
+# R3C2 — C0 REACHABILITY EXHIBITION, V11 (kimi seat), 2026-09-05
+
+Target document: `R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md`, Version 11, sha256 as above (computed by
+`shasum -a 256` on the file on disk at the path named in the brief; it matches the hash the brief itself
+declares). Read in full, 668 lines. No other file in the directory was opened. This exhibition is against
+the text as it stands: §3's core definition is settled by the principal's ruling of 2026-09-05 (option (c),
+one pass, two tallies; §10.4). There is no held clause. The dependence of this result on that ruling is
+stated at the end — it is itself a result.
+
+Exhibits are constructed concrete claims (a specific claim, specific inputs, and the clause path), which is
+what C0's operative text requires ("exhibit a concrete input that produces it"). Where the document itself
+names a concrete case — entry 59's printed-but-chosen `β = 1/929.25`, and "13.8 Gyr" against 13.797 — those
+are used. Arithmetic exhibits were machine-checked before filing this table: with the STANDARD-list values
+`H₀ = 67.36 km s⁻¹ Mpc⁻¹` and `G = 6.67430e-11`, `3H₀²/8πG = 8.5227e-27 kg/m³`, which rounds to `8.5e-27`
+and not to `9.5e-27`; `13.797` rounds to `13.8` at 0.1 Gyr.
+
+## (A) §3 per-claim outcomes — six declared, six exhibited
+
+| verdict | concrete input | clause path | reachable |
+|---|---|---|---|
+| `REPRO_EXACT` | A paper prints "ρ_c = 8.5×10⁻²⁷ kg/m³" as its own result and states the recipe `ρ_c = 3H₀²/8πG`. Its only inputs are `H₀` and `G`, both on C3's closed STANDARD list printed literally in the document. Mechanical evaluation gives `8.5227e-27 kg/m³`. The paper states no precision, so the printed precision (2 significant figures) is the claim's stated precision, and `8.5227e-27` rounds to `8.5e-27` at it. | §1 (printed numeral asserted as the paper's own result → included) → §2 steps 1–3 (extract; list inputs; classify both `STANDARD` on C3's closed list) → §2 step 4 (mechanical attempt consumes every `PRINTED`/`STANDARD` record) → §3 `REPRO_EXACT` ("follows, within its own stated precision"; stated-precision rule: "the reproduced value must round to the printed numeral at that precision"). Both numbers reported; `rests_on` computed by the pinned script from the ledger (`DERIVED_ONLY` if all root origins are `DERIVED`/`STANDARD`/`MEASURED`). | yes |
+| `REPRO_EXACT` (chosen-input variant, the option-(c) trace) | Entry 59's `β = 1/929.25`: the paper prints β and directs its use in its own recipe; β's `origin` is `CHOSEN` (`ORIG_CHOICE_STATED`, verbatim cited). The recipe applied to the stated inputs reproduces the paper's printed number at its stated precision. | §1 → §2 steps 1–4: under the ruling, the arithmetic consumes β because its status is `PRINTED` — §3: "THE INPUTS THE ARITHMETIC MAY CONSUME = every ledger record with status `PRINTED` (given in the paper, whatever its `origin`) or `STANDARD`... PROVENANCE IS RECORDED, NOT FILTERED" → §3 `REPRO_EXACT`, with `rests_on = USES_CHOSEN` computed by the pinned script (`CHOSEN` the most severe root origin present, per the fixed severity order) and printed beside the verdict — one pass, two tallies. | yes |
+| `REPRO_FAILED` | The same paper prints "ρ_c = 9.5×10⁻²⁷ kg/m³" with the same recipe and the same two STANDARD inputs. Mechanical evaluation gives `8.5227e-27 kg/m³`, which does not round to `9.5e-27` at the printed precision. | §1 → §2 steps 1–4 (all inputs `PRINTED`/`STANDARD`; the attempt completes) → §3 `REPRO_FAILED`: "the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the paper's number." Both numbers reported; wording "unreproduced from the stated inputs," not "error"; `rests_on` reported beside it. | yes |
+| `REPRO_BLOCKED` | A paper prints "z* = 1089.80" as its own result and states the recipe (a stated fitting formula) whose input `Ω_b h²` it does **not** print, writing instead "using the value of Smith et al. (2019)". Smith et al. (2019) is not among the enumerable texts pinned by `R3C2_CORPUS_MANIFEST.md` — it is outside this lane and cannot be obtained. | §1 → §2 steps 1–3 (recipe extracted; input listed; status `ABSENT` — not printed, not on C3's closed list) → §2 final rule ("A seat may not supply a value for an `ABSENT` input. Encountering one ends that claim's attempt.") → §3 terminal-class precedence: `REPRO_NO_DERIVATION_STATED` does not hold (a recipe is stated); `REPRO_BLOCKED` holds ("the paper does not print [the value], but... names a source (a citation), where that source is outside this lane and cannot be obtained") and "the precedence below puts BLOCKED first" — filed before `REPRO_INPUT_ABSENT` by the named-source test. Input and source named. | yes |
+| `REPRO_NOT_EVALUABLE` | A paper prints "D(z=0) = 0.784" as its own result, states the producing equation (a stated growth-integral ODE) and prints every input the equation needs (all `PRINTED` or STANDARD-list). Symbolic/numerical evaluation of the stated integral does not complete within the 120-second cap. | §1 → §2 steps 1–4 (attempt begun; no `ABSENT` input, so no earlier terminal class holds — precedence puts `REPRO_NOT_EVALUABLE` after `NO_DERIVATION_STATED`/`BLOCKED`/`INPUT_ABSENT` and before the arithmetic group, so it requires a stated recipe and all inputs present) → §9 ("120-second cap on symbolic operations with `SYMBOLIC_TIMEOUT` as a reportable outcome") → §3 `REPRO_NOT_EVALUABLE`; `SYMBOLIC_TIMEOUT` and the point reached (the unevaluated integral) printed. | yes |
+| `REPRO_NO_DERIVATION_STATED` | A paper's results section prints "we find Ω_Λ = 0.69" as its own result. No equation and no computational procedure that could produce 0.69 appears anywhere in the pinned text. | §1 (printed numeral asserted as the paper's own result → included, although no recipe exists: "A claim can satisfy §1... while the paper never says how it was obtained") → §2 step 1 finds no equation the paper says produces it → §3 `REPRO_NO_DERIVATION_STATED` ("states no equation or computational procedure that could produce it, so there is nothing to attempt"). Passage named. First in the §3 precedence, so it files even if a reconstructed recipe would have needed absent inputs. | yes |
+| `REPRO_INPUT_ABSENT` | A paper prints "r_s = 147.09 Mpc" as its own result and states the recipe `r_s = ∫ c_s(z)/H(z) dz`, whose evaluation needs the baryon-to-photon ratio `η`. The paper never prints `η`, never names any source for it, and `η` is not on C3's closed STANDARD list. | §1 → §2 steps 1–3 (input classified `ABSENT` — "neither printed nor traced to any named source") → §2 final rule (seat may not supply a value; the attempt stops there) → §3 precedence: `NO_DERIVATION_STATED` no; `BLOCKED` no (no source is named — the named-source test is what separates the two classes); `REPRO_INPUT_ABSENT` yes. Input named. | yes |
+
+Retired, therefore not exhibited: `REPRO_AFTER_CHOICE` — "RETIRED at V10 by the principal's ruling adopting
+option (c)... it is retired, not repaired" (§3, redaction-span note). What it recorded is now the
+script-computed `rests_on` field (exhibited in the `REPRO_EXACT` chosen-input row above). The abolished
+`NOT_ATTEMPTED` class and candidate exclusions are not per-claim outcomes ("Candidate exclusions are not
+per-claim outcomes", §3); exclusion-ledger entries (equation number, reference number, page/line number,
+date, attributed-not-derived) are recorded beside the denominator, not filed as outcomes.
+
+### §3 declared conditions (precedence), exhibited per C0's "every declared condition"
+
+| condition | concrete input | clause path | reachable |
+|---|---|---|---|
+| Co-occurring terminal conditions file the first in the §3 order (BLOCKED before INPUT_ABSENT) | The `z* = 1089.80` claim above: its missing input is `ABSENT`-status **and** has a named, unobtainable source — two terminal conditions hold at once. | §3 precedence: "Where more than one terminal condition holds, file the first in this order: `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, ..." → files `REPRO_BLOCKED`, exactly one outcome filed. (This is the co-occurrence the precedence was stated for: "an absent input whose source is also unobtainable satisfied two classes with no rule to choose between them.") | yes |
+| `REPRO_NO_DERIVATION_STATED` precedes every other condition | The "Ω_Λ = 0.69" claim above, where additionally any reconstruction of the unstated recipe would have required an input the paper does not print. | §3 precedence, first position: `REPRO_NO_DERIVATION_STATED` files; the input question is never reached because "there is nothing to attempt". | yes |
+| Exactly one outcome per claim, arithmetic group last | The `ρ_c = 8.5e-27` claim: recipe stated, all inputs present, evaluation completes and matches. | §3 precedence: no terminal condition holds, so the arithmetic group is reached; `REPRO_EXACT` files. "Exactly one outcome is filed per claim." | yes |
+
+## (B) §4 study-level classes — seven declared, seven exhibited
+
+The §4 filing precedence is: `R3C2_NO_CLASS`, `CENSUS_CONTROL_SPLIT`, `CENSUS_DENOMINATOR_DISPUTED`,
+`CENSUS_ORIGIN_DISPUTED`, `CENSUS_AUDIT_FAILED`, `CENSUS_PARTIAL`, `CENSUS_COMPLETE` — exactly one filed;
+"Once a stop class applies, later limbs are unreached and their controls are `NOT_RUN`." Each exhibit below
+specifies that no condition earlier in the order holds, so the exhibited class is the one filed.
+
+| verdict | concrete input | clause path | reachable |
+|---|---|---|---|
+| `CENSUS_COMPLETE` | A corpus whose enumeration yields exactly 3 included claims, all agreed by both seats: (i) the `ρ_c = 8.5e-27` claim → `REPRO_EXACT`; (ii) the `ρ_c = 9.5e-27` misprint claim → `REPRO_FAILED`; (iii) a claim printing "the age is 13.8 Gyr" with a stated recipe over STANDARD-list inputs, reproducing to 13.797 Gyr and rounding to the printed numeral at its stated precision → `REPRO_EXACT`. No claim states no derivation, no input is absent or blocked, every evaluation completes within the cap. All controls pass in both seats; enumerations agree; origin classifications agree on all inputs; the C6 audit reproduces every outcome; both §7 receipts verify. | §4.1: "every included claim carries exactly one outcome from the arithmetic group of §3" — the arithmetic group is "exactly `REPRO_EXACT` and `REPRO_FAILED`" (§3). No earlier condition in the §4 order holds; §4.2's condition ("at least one included claim carries a non-arithmetic outcome") does not hold. Files `CENSUS_COMPLETE`; the full tally with its denominator (3/3) and the `rests_on` tally are reported beside it — two tallies from one pass. | yes |
+| `CENSUS_PARTIAL` | The 3-claim corpus above plus a 4th included claim: the `r_s = 147.09 Mpc` claim from §3, whose needed input `η` is neither printed nor traced to any named source → `REPRO_INPUT_ABSENT`, still so after two attempts. All earlier-in-order conditions absent (controls pass, enumerations agree, origins agree, audit clean, receipts verify). | §4.2: "after two attempts, at least one included claim carries a non-arithmetic outcome (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`)" → files `CENSUS_PARTIAL`; each such claim and why reported. "INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`" — also §4's order, which places `CENSUS_PARTIAL` immediately before `CENSUS_COMPLETE`. | yes |
+| `CENSUS_AUDIT_FAILED` (audit limb) | The 3-claim corpus above. Seat filings: claim (i) `REPRO_EXACT` (printed `8.5e-27`, reproduced `8.5227e-27`). The C6 third seat, without sight of earlier work and re-classifying every `origin` from the pinned sources, re-derives claim (i) — every arithmetic-group claim is audited, no sampling discount — and obtains a value that does not round to the printed numeral at the stated precision (i.e., cannot reproduce the filed outcome). | C6: "Any outcome the audit cannot reproduce, or any ledger incompleteness, files `CENSUS_AUDIT_FAILED`" → §4.3: "the audit of §6 cannot reproduce a sampled per-claim outcome or ledger... The census is void; report which." (Ledger variant: the audit's completeness pass finds a numeral passage in a pinned source absent from the candidate ledger → same filing, "report which".) | yes |
+| `CENSUS_AUDIT_FAILED` (receipt limb) | Any tally, cleanly audited. At opening, Blanc independently re-hashes the tally and finds it does not match the hash recorded in receipt T (alternatively: receipt P — required before limb A — was never obtained, or receipt T is missing). | §7: "Any missing receipt or mismatch files `CENSENS_AUDIT_FAILED` (§4, whose definition now names this case), leaves the interpretation `NOT_RUN` and voids the comparison" → §4.3: "or the §7 receipt verification fails. The census is void; report which." | yes |
+| `R3C2_NO_CLASS` | Both seats build input ledgers for the corpus; in both seats' ledgers a `PRINTED` record's value fails C3's machine match against its cited source line (the record carries `67.4` where the cited line prints `67.36`). The pinned validation run `validate` exits non-zero for both seats; after two attempts the control fails in every seat that attempted it. | C3: "each `PRINTED` value machine-matches the text at its cited source line" → control fails in both seats → §4.4: "a control fails **in every seat that attempted it** after two attempts" → files `R3C2_NO_CLASS`, first in the §4 order; all later limbs unreached, their controls `NOT_RUN`. | yes |
+| `CENSUS_DENOMINATOR_DISPUTED` | Seat A includes a passage printing "z* = 1089.80" as the paper's own result; seat B excludes the same candidate as attributed-not-derived (the passage attributes the value to another work without deriving it). Two reconciliation attempts fail to produce agreement on that one candidate. | §1: "disagreement on any candidate stops the study under `CENSUS_DENOMINATOR_DISPUTED`"; §6: "tolerance zero, measured in candidate passages"; §4.5: "the two enumerations disagree after two reconciliation attempts. The census does not proceed; the disputed candidates are listed." | yes |
+| `CENSUS_ORIGIN_DISPUTED` | A corpus with 10 included claims. One input, `H₀`, feeds claims 1 and 2. Its cited sentence reports a value and also names an external source. Seat A files `origin = MEASURED` (`ORIG_MEASURED`); seat B files `origin = IMPORTED` (`ORIG_CITATION` — which the reason-code precedence would favour, but the seats' independent classifications are what they are, and disagreement "is reported, never reconciled"). 2 of 10 included claims affected = 20%. | C6: "An input on which the two classifications disagree is filed `ORIGIN_DISPUTED`... it is **not** reconciled. Above 10% of included claims, `CENSUS_ORIGIN_DISPUTED`." → §4.6: "disagree on inputs affecting **more than 10% of included claims**. The census does not proceed; every disputed input is listed with both seats' classification and both quotations." 20% > 10%. | yes |
+| `CENSUS_CONTROL_SPLIT` | Seat A's input ledger validates under the pinned `validate` command (exit 0, C2 PASS); seat B's ledger fails validation (a `PRINTED` record missing its `source_line`, exit 1, C2 FAIL). After two attempts the split persists: the control has failed in one seat and passed in the other. | §4.7: "a control fails in one seat and passes in another after two attempts. Report both seats' outputs and stop; **do not adopt the passing seat's result.**" Files `CENSUS_CONTROL_SPLIT`, second in the §4 order (after `R3C2_NO_CLASS`, which does not hold because the control did not fail in *every* seat that attempted it). | yes |
+
+### §4 declared conditions (precedence and stop), exhibited
+
+| condition | concrete input | clause path | reachable |
+|---|---|---|---|
+| Earlier stop class pre-empts later conditions; later controls `NOT_RUN` | A corpus in which C3 validation fails in both seats (the `67.4`-vs-`67.36` ledger above) **and** the two enumerations also disagree on a candidate. Both `R3C2_NO_CLASS` and `CENSUS_DENOMINATOR_DISPUTED` conditions hold. | §4: "Where more than one condition holds, file the first in this order: `R3C2_NO_CLASS`, `CENSUS_CONTROL_SPLIT`, `CENSUS_DENOMINATOR_DISPUTED`, ..." → files `R3C2_NO_CLASS`. "Once a stop class applies, later limbs are unreached and their controls are `NOT_RUN`" — the enumeration dispute is recorded but the study does not proceed to it; exactly one study-level outcome is filed. | yes |
+| `CENSUS_PARTIAL` pre-empts `CENSUS_COMPLETE` when both conditions hold | The 4-claim `CENSUS_PARTIAL` corpus: 3 claims carry arithmetic-group outcomes and 1 carries `REPRO_INPUT_ABSENT`. The §4.1 condition ("every included claim carries exactly one outcome from the arithmetic group") fails on the fourth claim; the §4.2 condition holds. | §4.2: "it takes precedence over `CENSUS_COMPLETE`"; §4 order places `CENSUS_PARTIAL` before `CENSUS_COMPLETE` → files `CENSUS_PARTIAL`, tally reported per claim. | yes |
+
+## (C) Reachability, stated per verdict
+
+§3: `REPRO_EXACT` reachable; `REPRO_FAILED` reachable; `REPRO_BLOCKED` reachable; `REPRO_NOT_EVALUABLE`
+reachable; `REPRO_NO_DERIVATION_STATED` reachable; `REPRO_INPUT_ABSENT` reachable.
+§4: `CENSUS_COMPLETE` reachable; `CENSUS_PARTIAL` reachable; `CENSUS_AUDIT_FAILED` reachable (both limbs);
+`R3C2_NO_CLASS` reachable; `CENSUS_DENOMINATOR_DISPUTED` reachable; `CENSUS_ORIGIN_DISPUTED` reachable;
+`CENSUS_CONTROL_SPLIT` reachable.
+
+No declared per-claim outcome and no declared study-level class is UNREACHABLE. No blocking clause exists to
+quote; the blocking-clause section required for unreachable verdicts is therefore empty by result, not by
+omission.
+
+## THE ASKED QUESTION — is `CENSUS_COMPLETE` reachable in practice?
+
+**Answer: REACHABLE. The routing, and the exact sense in which the suspicion is correct:**
+
+1. The suspicion is structurally correct. `CENSUS_COMPLETE` requires "every included claim [to carry]
+   exactly one outcome from the arithmetic group of §3", and the arithmetic group is exactly
+   `REPRO_EXACT` and `REPRO_FAILED`. `CENSUS_PARTIAL` holds the moment "at least one included claim carries
+   a non-arithmetic outcome" and "takes precedence over `CENSUS_COMPLETE`" (§4.2); the §4 order ratifies
+   that by placing `CENSUS_PARTIAL` immediately before `CENSUS_COMPLETE`. So yes: **one single
+   `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `REPRO_NO_DERIVATION_STATED`, or `REPRO_NOT_EVALUABLE` claim
+   anywhere in the corpus forces `CENSUS_PARTIAL`** (provided no earlier stop class applies). The class is
+   exactly as fragile as suspected — maximally fragile: its condition is universal over the whole
+   denominator, and its negation is existential.
+
+2. Fragility is not unreachability. C0's test is existential: exhibit one licensed input that produces the
+   filing. That input exists and is exhibited above: a corpus in which every included claim states its
+   recipe and prints (or standard-lists) every input, and every evaluation completes within the cap — the
+   concrete 3-claim corpus of §4 row 1. Then no non-arithmetic outcome exists, §4.2's condition fails,
+   §4.1's condition holds, and `CENSUS_COMPLETE` files. Nothing in the document *requires* a corpus to
+   contain a blocked, absent-input, no-derivation, or timed-out claim; the corpus is pinned by manifest
+   (§2) but its content is whatever the papers print. The document neither guarantees nor excludes
+   `CENSUS_COMPLETE`.
+
+3. Two routing facts keep the class alive on realistic corpora, and both are consequences of the settled
+   wording. (a) `REPRO_FAILED` is **inside** the arithmetic group: a wrong printed number — unreproduced
+   from the stated inputs — still counts toward completeness; only the four terminal classes break it.
+   (b) Under option (c), provenance does not break completeness either: a printed-but-chosen input (entry
+   59's β) is consumed by the arithmetic and yields an arithmetic-group outcome with `rests_on =
+   USES_CHOSEN` beside it — "one pass, two tallies." What breaks `CENSUS_COMPLETE` is exactly and only a
+   claim the method cannot bring to an arithmetic verdict.
+
+4. Whether the pinned 89-text corpus contains even one such claim is an empirical property of the corpus,
+   unenumerated (the study is NOT RUN). That is the census doing its job, not a defect in the filing
+   rules: `CENSUS_PARTIAL` exists precisely so that a corpus containing one blocked claim has a filing,
+   and its precedence over `CENSUS_COMPLETE` is what makes a completeness claim mean something when it is
+   filed.
+
+## Dependence on the settled definition — recorded, per the brief
+
+This exhibition runs against the option-(c) wording settled by the principal's ruling of 2026-09-05
+(§10.4); the brief's instruction that there is no held clause is followed. The dependence is itself a
+result worth having, and it is on this document's own record: under the prior derivation-only wording
+(held V5.1–V9), the arithmetic group had three members, and two blind seats agreed — independently, with
+the blocking clause quoted verbatim — that `REPRO_AFTER_CHOICE` was UNREACHABLE, returning
+`C0_REACHABILITY=FAIL` (§10.3). The ruling retired that class into the script-computed `rests_on` field,
+and the two-member arithmetic group is what makes every §3 outcome and every §4 class above exhibitable.
+§10.3 also records that the held marker sat over §3's admissibility definition, not §1's — earlier reports
+mislabelled the section. A different ruling would have produced a different reachability set; this PASS is
+a property of the text as it stands at the hash on line 1, and of no other wording.
+
+## UNREACHABLE verdicts and their blocking clauses
+
+None. Every declared per-claim outcome of §3 and every declared study-level class of §4 has an exhibited
+concrete input and clause path above, so there is no blocking clause to quote verbatim. For the record, the
+one class this control has ever found unreachable in this study's history is not part of the V11 outcome
+set: `REPRO_AFTER_CHOICE`, blocked at V9 by §2 step 4's admissible-inputs-only attempt ("the mandated
+attempt may not consume that input, and no second attempt is specified", §10.3) and retired by the ruling
+at V10 (§3: "it is retired, not repaired").
+
+R3C2_C0_EXHIBITION_COMPLETE
+R3C2_C0_V11_KIMI_COMPLETE
