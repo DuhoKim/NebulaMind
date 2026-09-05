@@ -539,8 +539,8 @@ V6 is not dispatched as a fresh round.
 
 ## 11. Scope
 
-No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD;
-nothing outward. <!--SEAT-REDACT-->R3D is a separate document with its own gate record.<!--/SEAT-REDACT-->
+No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. <!--SEAT-REDACT-->Paper HOLD;
+nothing outward.<!--/SEAT-REDACT--> <!--SEAT-REDACT-->R3D is a separate document with its own gate record.<!--/SEAT-REDACT-->
 
 ## 10.2 V8 — both gate lists applied; one finding FILED, not repaired, because it turns on the held clause
 

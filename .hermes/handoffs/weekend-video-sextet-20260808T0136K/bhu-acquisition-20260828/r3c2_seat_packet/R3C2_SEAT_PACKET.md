@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `550555128cf7d103352ae6b04941c9890abd731ef969714fdd209f50b1cf3a1e` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `47c55a74af9520586af75e31d408c969a0e81f831c94f8eac59b59ead0a91381` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -282,6 +282,5 @@ the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome;
 
 ## 11. Scope
 
-No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane. Paper HOLD;
-nothing outward. 
+No tier, warrant token, standing or stamp moves. Published sources only; nothing from another lane.  
 
