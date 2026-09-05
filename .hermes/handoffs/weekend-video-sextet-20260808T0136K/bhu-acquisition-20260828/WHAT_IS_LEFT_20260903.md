@@ -581,6 +581,6 @@ re-runs after any repair.
 2. **RULED 2026-09-05 12:38 KST — "rename the tokens"; V31 amendment written, C0 + gate pending; the run files under V30's names.** R3D — rename `DYM_NO_SIZE_MASS_RELATION` / `DYM_NO_POSITIVE_FLOOR` to the `…_UNREPRODUCED` forms (eleven
    independent seat findings; a rename is a redefinition, beyond the lane).
 3. R3D — retire class 3 into class 4 with a reason field (structural alternative flagged at V17).
-4. Whether R3D runs; whether R3C2 runs after its ruling.
+4. **R3D RAN (Duho 12:26) and is FILED 2026-09-05 13:39:27 KST: R3D_CLASS=DYM_NO_POSITIVE_FLOOR — a positive floor unreproduced from the stated inputs; receipts in R3D_RUN_FILING_20260905.md; check sheet R3D_CHECK_SHEET_20260905.md.** Whether R3C2 runs after its ruling remains his.
 
 **No tier, warrant token, standing or stamp has moved. Paper HOLD; nothing outward.**

@@ -1,0 +1,218 @@
+ACCESS_SHA=a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b
+R3D_THIRD_SEAT_CLASS=DYM_NO_POSITIVE_FLOOR
+C5B_RERUN_FOR_CODEX=PASS
+C5_HARNESS_PINNED=PASS
+
+# R3D third-seat adjudication — 2026-09-05
+
+## Governing clauses, quoted verbatim
+
+Section 9, “Seat split”:
+
+> “if the two blind seats return different terminal classes of any kind — scientific, `DYM_SOURCE_BLOCKED` or `R3D_NO_CLASS` — the third seat adjudicates exactly that split from the printed artefacts, re-executing any blocked read once before ruling; its class is filed only if it agrees with one of the two. If all three differ, or the third seat cannot decide, file `DYM_SOURCE_BLOCKED`.”
+
+Section 4, class 6:
+
+> “A scientific class may be filed only from a seat report in which every reached control passed; if the two seats return the same scientific class but at least one report is not control-clean — or if, after a different-class split, the third seat's adjudication agrees with a seat whose report is not control-clean — the third seat re-runs each failed control of EACH report that is not control-clean, once per failed control. If any re-run control fails again, that is the persistent failure named above and `R3D_NO_CLASS` is filed. If every re-run control passes, that class is filed.”
+
+Both clauses apply. The seats returned different terminal classes, while their printed scientific partitions selected the same class. The codex report was not control-clean because `C5B_PATH_LIST=FAIL`; therefore its one failed control was re-run once.
+
+## C5 harness
+
+The three Section-9 commands were executed exactly as printed. Captured results:
+
+| command | stdout | exit code | frozen value | comparison |
+|---|---|---:|---|---|
+| `/usr/bin/python3 --version` | `Python 3.9.6` | 0 | `Python 3.9.6` | MATCH |
+| `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"` | `1.14.0` | 0 | `1.14.0` | MATCH |
+| `shasum -a 256 /usr/bin/python3` | `b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3` | 0 | `b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9` | MATCH |
+
+All three commands exited 0 and all printed values equal the frozen values.
+
+`C5_HARNESS_PINNED=PASS`
+
+## Printed artefacts of the two blind seats
+
+### Codex seat
+
+The report files terminal class `R3D_NO_CLASS`, with the pre-control scientific partition selecting class 4, `DYM_NO_POSITIVE_FLOOR`. Its control statuses are C0 PASS, C1 PASS, C2 PASS, C3 NOT_RUN, C4 PASS, C5 PASS, C5b FAIL, and C6 NOT_RUN.
+
+Its limb-A artefact reproduces both required routes into limb B:
+
+- `r_*³=r₀²r_g` together with `r_g=2GM/c²`, binding characteristic size, core scale, and mass.
+- The printed statement `M≥Mcrit`, with `Mcrit` corresponding to the double horizon.
+
+Its C2 ledger contains no `UNRESOLVED` row and no added completion. It marks all four completion kinds BOUND, leaving one admissible reading: the completion-free reading. Its limb-B artefact derives
+
+`Mcrit(r₀)=0.878794537877033254981263151673 c²r₀/G`.
+
+Because the printed relations leave positive `r₀` unfixed, the reading's allowed mass set over the family is `(0,∞)`, with greatest lower bound 0. Its printed partition is therefore `P=∅`, `Z={R0}`, `I=∅`, which follows directly through the Section-4 table to class 4, `DYM_NO_POSITIVE_FLOOR`: a positive floor was unreproduced from the stated inputs.
+
+The codex census reconciliation lines are:
+
+| source entry | non-blank lines | dispositions | equal |
+|---|---:|---:|---|
+| 18 | 286 | 286 | YES |
+| 19 | 937 | 937 | YES |
+| 20 | 753 | 753 | YES |
+| 55 | 1196 | 1196 | YES |
+
+`C3_probe.txt` prints `C3_DELETION_PROBE=NOT_RUN` because class 4 was reached directly and no positive floor survived. `C6_breaker.md` prints `C6_BREAKER_TEST=NOT_RUN` because no positive-floor class was entered.
+
+The codex C5b artefact records two `OUT_OF_SCOPE` inspection paths, the Codex-bundled `rg` executable and `/usr/bin/head`, on both of its attempts. That is the sole reason its scientific class was displaced by terminal class `R3D_NO_CLASS`.
+
+### Kimi seat
+
+The report files terminal and scientific class `DYM_NO_POSITIVE_FLOOR`. Its printed status line for every reached control is PASS; C3 and C6 are NOT_RUN on the direct class-4 path.
+
+Its limb-A artefact reproduces the same two routes into limb B: `r_*³=r₀²r_g` with `r_g=2GM/c²`, and the printed `M≥Mcrit` double-horizon bound.
+
+Its C2 ledger likewise contains no `UNRESOLVED` row and no added completion. It marks the same four completion kinds BOUND and retains only the completion-free reading. Its limb-B artefact derives
+
+`Mcrit(r₀)=0.878794537877033254981263151673 c²r₀/G`.
+
+It obtains the same family-wide allowed mass set `(0,∞)`, the same greatest lower bound 0, and the same partition `P=∅`, `Z={completion-free}`, `I=∅`. The Section-4 table therefore selects class 4, `DYM_NO_POSITIVE_FLOOR`: a positive floor was unreproduced from the stated inputs.
+
+The kimi census reconciliation lines are:
+
+| source entry | non-blank lines | dispositions | equal |
+|---|---:|---:|---|
+| 18 | 286 | 286 | True |
+| 19 | 936 | 936 | True |
+| 20 | 753 | 753 | True |
+| 55 | 1196 | 1196 | True |
+
+The kimi run directory contains no separate C3 or C6 file. Its report and limb-B artefact print `C3_DELETION_PROBE=NOT_RUN`; its report prints `C6_BREAKER_TEST=NOT_RUN` and states that no C6 artefact was created because C6 was never engaged.
+
+### Cross-seat family comparison
+
+The limb-B families AGREE. Both print the identical family
+
+`Mcrit(r₀)=0.878794537877033254981263151673 c²r₀/G`, for free `r₀>0`,
+
+and both place their sole admissible reading in `Z`. The different coordinate substitutions used in the two derivations do not change the printed critical coefficient, allowed mass set, or Section-4 partition.
+
+Cross-seat equality of the entry-19 non-blank-line count was unreproduced from the stated inputs: codex prints `937=937`, while kimi prints `936=936`. Each seat's own printed reconciliation closes, and their ledgers, relied-on source relations, limb-B family, and partition agree. No required source-dependent proposition is printed `UNRESOLVED` in either ledger.
+
+## One C5b re-run for the codex report
+
+### C1 digest commands executed during the re-run
+
+Each manifest source was hashed with `/usr/bin/shasum`; all commands exited 0.
+
+| source path | computed SHA-256 | frozen SHA-256 | exit | comparison |
+|---|---|---|---:|---|
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt` | `2f3ca3e10ec016eed83104750d11d2428d5523c712814f68d559724d8b2c6b6f` | `2f3ca3e10ec016eed83104750d11d2428d5523c712814f68d559724d8b2c6b6f` | 0 | MATCH |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_2019_universe_clean.txt` | `ded87358184a4239d9f5bd0ffe8c5aee7732e992fc00be8f97370e73cbc7af47` | `ded87358184a4239d9f5bd0ffe8c5aee7732e992fc00be8f97370e73cbc7af47` | 0 | MATCH |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt` | `6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92` | `6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92` | 0 | MATCH |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/2007.06664_clean.txt` | `b34183bf58eb36d6745262816a6736e8f43c9f7ed11c852c80c7a3e7a378d8be` | `b34183bf58eb36d6745262816a6736e8f43c9f7ed11c852c80c7a3e7a378d8be` | 0 | MATCH |
+
+The three C5 commands were then executed exactly as printed and again produced `Python 3.9.6`, `1.14.0`, and `b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9`, each with exit code 0.
+
+### Complete path table
+
+| opened path | scope | exact Section-9 clause applied |
+|---|---|---|
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/` | IN_SCOPE | “the seat's own working directory and artefacts” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_V30_DESIGN_OF_RECORD_a99aad15.md` | IN_SCOPE | “this preregistration” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_REPORT_codex_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts”; also necessary to execute the mandated seat-split adjudication under the GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_REPORT_kimi_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts”; also necessary to execute the mandated seat-split adjudication under the GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/` | IN_SCOPE | “the seat's own working directory and artefacts”; printed artefacts required by the seat-split adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/limbA.md` | IN_SCOPE | “the seat's own working directory and artefacts”; printed artefact required by the seat-split adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/limbB.md` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C2_ledger.md` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C5b_paths.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C1_digests.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C3_probe.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C6_breaker.md` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C2_census_entry18.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C2_census_entry19.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C2_census_entry20.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/C2_census_entry55.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/` | IN_SCOPE | “the seat's own working directory and artefacts”; printed artefacts required by the seat-split adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/limbA.md` | IN_SCOPE | “the seat's own working directory and artefacts”; printed artefact required by the seat-split adjudication |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/limbB.md` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C2_ledger.md` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C5b_paths.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C1_digests.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C2_census_entry18.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C2_census_entry19.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C2_census_entry20.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/C2_census_entry55.txt` | IN_SCOPE | same own-working-directory/artefacts clause and GENERAL RULE |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt` | IN_SCOPE | “this lane's own reading tree (`../bhu-reading-20260823/sources/`)” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_2019_universe_clean.txt` | IN_SCOPE | same reading-tree clause |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt` | IN_SCOPE | same reading-tree clause |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/2007.06664_clean.txt` | IN_SCOPE | same reading-tree clause |
+| `/usr/bin/python3` | IN_SCOPE | “the pinned interpreter `/usr/bin/python3`, executed and hashed under C5” |
+| Python standard-library files, installed SymPy/mpmath package files, and dependent shared libraries loaded by the exact mandated Python commands | IN_SCOPE | “together with every file that interpreter loads while executing the mandated commands — its standard library, the installed sympy and mpmath packages, and their dependent shared libraries” |
+| `/usr/bin/shasum` | IN_SCOPE | “`/usr/bin/shasum`, executed under C1, C3 and C5” |
+| `/usr/bin/perl` and Perl library/dependent-library files loaded by `/usr/bin/shasum` | IN_SCOPE | “together with the perl interpreter and libraries it loads” |
+| `/bin/zsh` and dependent libraries used to submit the exact mandated command lines and capture their exit statuses | IN_SCOPE | GENERAL RULE: “a path opened as a necessary consequence of executing a command this document mandates is `IN_SCOPE` by that fact” |
+| `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_THIRD_SEAT_20260905.md` | IN_SCOPE | “the seat's own working directory and artefacts” |
+
+No `OUT_OF_SCOPE` row exists in this re-run. Neither Codex's bundled `rg` executable nor `/usr/bin/head` was opened. No forbidden source, pattern record, gate file, prior route, or other lane was opened.
+
+`C5B_PATH_LIST=PASS`
+
+`C5B_RERUN_FOR_CODEX=PASS`
+
+## Adjudication
+
+I agree with the kimi terminal class, `DYM_NO_POSITIVE_FLOOR`.
+
+Reason:
+
+1. Both printed scientific partitions independently select class 4 from their own ledgers: limb B is reached; the sole admissible reading is completion-free; `P=∅`; `Z` contains that reading; and `I=∅`.
+2. Their limb-B families agree in formula, coefficient, free parameter, allowed mass set, and zero family-wide infimum. A positive floor was unreproduced from the stated inputs.
+3. The terminal split is entirely attributable to codex's non-control-clean C5b report.
+4. Section 4 class 6 requires one re-run of that failed control. The re-run opened only Section-9 in-scope paths, so `C5B_PATH_LIST=PASS`.
+5. Because every required re-run control passes, class 6 directs that the common scientific class be filed. That class agrees with one of the two blind seats, as Section 9 requires.
+
+Accordingly:
+
+`R3D_THIRD_SEAT_CLASS=DYM_NO_POSITIVE_FLOOR`
+
+This filing moves no token, tier, standing, or stamp.
+
+## Artefact SHA-256 ledger
+
+All hashes below were recomputed from the files named, not transcribed from either seat report.
+
+| artefact | SHA-256 |
+|---|---|
+| `R3D_V30_DESIGN_OF_RECORD_a99aad15.md` | `a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b` |
+| `R3D_RUN_REPORT_codex_20260905.md` | `cb7c585e423abee3dc5ab1ee81780c5685f552d5f1b6dafdef8c8d200fb537b4` |
+| `R3D_RUN_REPORT_kimi_20260905.md` | `a7fb6ce6ddb52ed74f357d99e638e771de7d087d4923ea4403ff26aa6118b4e6` |
+| `R3D_RUN_codex_20260905/limbA.md` | `277c15a282fc3fb7244ab03b03e32efbec3d1e909e678bc2a73636de12023210` |
+| `R3D_RUN_codex_20260905/limbB.md` | `70b43e046aab81bec05e811f4679bdfd9186c2aab7795c1789ed5c73469029e6` |
+| `R3D_RUN_codex_20260905/C2_ledger.md` | `0cc528e311da7f2242dc3d4b6fcd8a716e8ebc40c503c6ef45eeb5664c6d34cb` |
+| `R3D_RUN_codex_20260905/C5b_paths.txt` | `7f093dfe75d2f1af8fc7d5a606a7706fd18f7042ac047fa17f7365be1f0a22da` |
+| `R3D_RUN_codex_20260905/C1_digests.txt` | `9ea143b7d851bb973016f7d4be8ee318aedb491ac71d0d207ddf3a9587d0ea5a` |
+| `R3D_RUN_codex_20260905/C3_probe.txt` | `c94331eb8ad7f671e5c7f9579d9ea444ba50b484432f73451b121f451945ce78` |
+| `R3D_RUN_codex_20260905/C6_breaker.md` | `b4a2d8c66d14176e488e72566404c98682596ba09334f1c0c194a21776a305ed` |
+| `R3D_RUN_codex_20260905/C2_census_entry18.txt` | `15acfa441b59018b217edaba140dab5c1b462e319ae12278e96b75560b4484e0` |
+| `R3D_RUN_codex_20260905/C2_census_entry19.txt` | `74c37abd9d815e13bad5bb586b287c8d0a5a9f24f7c87232aef35f556553445b` |
+| `R3D_RUN_codex_20260905/C2_census_entry20.txt` | `b57f3416cea43a9353f42a53d889862d8eaee7185009cc114c473764246aaa88` |
+| `R3D_RUN_codex_20260905/C2_census_entry55.txt` | `a203f29a982e05b7f7d2f0408fccdbd303b4542ef454a6ee6c6d9bab97c5c631` |
+| `R3D_RUN_kimi_20260905/limbA.md` | `a08ce1bfc2ede4a4320ae113eda685425abdbd6816d94a5402bc46702ce6d962` |
+| `R3D_RUN_kimi_20260905/limbB.md` | `7e5358a260de8dce16bee97db850527dad77bfd43a02911490c8266dc50e9df5` |
+| `R3D_RUN_kimi_20260905/C2_ledger.md` | `4d8df7623581fab9569283c0b3471326b07a6ae46b26cbafef0e9dc7833b1eba` |
+| `R3D_RUN_kimi_20260905/C5b_paths.txt` | `5884ee367b88b0370b139daf47299c0c962ff2ed93c66d08e4d75cd566c0afc6` |
+| `R3D_RUN_kimi_20260905/C1_digests.txt` | `7754a24613814f21368d3f40e035f84a15a944e9aa237d89c803d77285762fb0` |
+| `R3D_RUN_kimi_20260905/C2_census_entry18.txt` | `c77c617851e867fbd04815868e86fa37e03b163a2338492b485bc2cc45838a8a` |
+| `R3D_RUN_kimi_20260905/C2_census_entry19.txt` | `726d83717ba39a4cf74af4d3def139489632dd97cd262610de0219f306fc1f79` |
+| `R3D_RUN_kimi_20260905/C2_census_entry20.txt` | `35d4d70fad05807900eb8644d3689e61bb363a8cb3fcb321fc19643337dc97b4` |
+| `R3D_RUN_kimi_20260905/C2_census_entry55.txt` | `43fc875a662b23b18db61bad155451e90649941771116e11ad910dc76164dc1c` |
+
+The report cannot contain its own stable hash without changing that hash; it is the sole new third-seat artefact.
+
+## OBSERVATIONS ON THE PROTOCOL
+
+Nothing in the protocol was changed.
+
+1. The class-6 re-run rule resolves this split cleanly: codex's inspection-utility path failure is not inherited by a fresh C5b execution whose path table contains only in-scope rows.
+2. Cross-seat equality of the entry-19 non-blank count was unreproduced from the stated inputs (`937` versus `936`), although both per-seat reconciliation equalities close and the scientific ledgers and families agree.
+3. The exact `python3 -c` command was executable through an interactive shell after the non-interactive terminal API declined to launch it; the successful exact invocation printed `1.14.0` and exited 0. No substitute program or transcribed value was used for this third-seat result.
+4. No scientific negative stronger than the protocol permits is filed: the result is that a positive floor was unreproduced from the stated inputs, not a claim that the branch contains none.
+
+R3D_THIRD_SEAT_COMPLETE

@@ -2472,5 +2472,5 @@ definitions govern.
 **Q-R3D-2.** Fold class 3 (no relation reproduced at all) into class 4 (no positive floor) with a reason field?
 Options: **(a) fold**, **(b) keep** the two classes as the design of record has them.
 
-**Q-RUN.** R3D's design is closed (V30 FINAL). Does it **run**? Options: **(a) run now** as designed, **(b) run
+**Q-RUN — RULED 12:26 "run r3d"; RUN COMPLETE and FILED 2026-09-05 13:39:27 KST: DYM_NO_POSITIVE_FLOOR (see R3D_RUN_FILING_20260905.md, R3D_CHECK_SHEET_20260905.md).** Original question: R3D's design is closed (V30 FINAL). Does it **run**? Options: **(a) run now** as designed, **(b) run
 after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
