@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `5cd4e6da543d2c0dd4b301a9ebdbed17336257cd6ed731ae615d97230f14832e` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `55b466fadf8ca75f4894f97721da86584057ddc4d15c15ca1739c67ff6333c6f` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -111,8 +111,8 @@ is hidden by being excluded.
    denominator of zero files `CENSUS_PARTIAL` with the empty enumeration named; no census is complete over nothing.**
    Report the full tally with its denominator
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
-   **at least one included claim carries a non-arithmetic outcome, or the denominator is zero**
-   (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
+   **at least one included claim carries a non-arithmetic outcome (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`,
+   `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`), or the denominator is zero**. Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** 
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, or does not run to PASS for any cause (the
    cause named), **or the receipt verification

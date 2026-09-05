@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 22 (see §10; §10.16 — V21 gate: kimi SOUND, codex SOUND_WITH_REPAIRS (one cosmetic, applied here); no ruling pending; SIGNABLE if V22's C0 and gate hold — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 23 (see §10; §10.17 — V22 gate: both seats SOUND_WITH_REPAIRS, three cosmetics, two in the document/tool applied here; no ruling pending; SIGNABLE if V23's C0 and gate hold — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -176,8 +176,8 @@ a printed number, so an included claim could never satisfy it — a gate finding
    denominator of zero files `CENSUS_PARTIAL` with the empty enumeration named; no census is complete over nothing.**
    Report the full tally with its denominator<!--SEAT-REDACT-->, **and the `rests_on` tally beside it — two tallies from one pass.**<!--/SEAT-REDACT-->
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
-   **at least one included claim carries a non-arithmetic outcome, or the denominator is zero**
-   (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
+   **at least one included claim carries a non-arithmetic outcome (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`,
+   `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`), or the denominator is zero**. Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** <!--SEAT-REDACT-->*(Previously "some claims unresolved"
    was undefined, and a blocked claim satisfied both classes.)*<!--/SEAT-REDACT-->
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, or does not run to PASS for any cause (the
@@ -295,7 +295,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
 
   **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
   that names no record, a cycle, and a `DERIVED` record with no `derived_from`.<!--SEAT-REDACT--> *(Lane side: `r3c2_lane_tools.py
-  compute` derives `root_origins`, the origins at the leaves of that chain, from every step; no seat writes that field.)*<!--/SEAT-REDACT--><!--SEAT-REDACT--> **Lane side, after both seats have exited: the lane owner runs the lane-side script `r3c2_lane_tools.py`, committed beside this document, sha256 `2aa1ea7dc6f425aad13e7fffe5cdc5815865a74165fbc380f3ba81b3f8fa8a94`: `/usr/bin/python3 r3c2_lane_tools.py merge <ledger_seatA.json> <ledger_seatB.json> <merged.json>` and then `/usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json>`, printing for each the working directory, the resolved command, complete stdout and stderr, and the exit status. `merge` exits 1 if the two `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the paper's stated equation once; an input-set difference surviving that reconciliation stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**; where the two `origin` classifications differ the merged record carries `origin_alt` and `origin_evidence_alt`; where the two `derived_from` lists differ the merged record carries both parent lists marked `PARENTS_DISPUTED`, and `compute` derives `root_origins` under both, printed as a pair, as for a disputed origin. `compute` derives each claim's `root_origins` and `rests_on` and prints the root-origin set beside it; it REJECTS (exit 2) a ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; a disputed pair is computed under both origins and marked `DISPUTED`. The seat tool `r3c2_ledger_tools.py` has no `compute` and no `merge`; a seat that runs either has left its packet. A `rests_on` value present in a seat-authored input ledger fails this control; after a successful `compute` run, a `rests_on` value absent from the script-produced output ledger fails this control.**<!--/SEAT-REDACT--> **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
+  compute` derives `root_origins`, the origins at the leaves of that chain, from every step; no seat writes that field.)*<!--/SEAT-REDACT--><!--SEAT-REDACT--> **Lane side, after both seats have exited: the lane owner runs the lane-side script `r3c2_lane_tools.py`, committed beside this document, sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`: `/usr/bin/python3 r3c2_lane_tools.py merge <ledger_seatA.json> <ledger_seatB.json> <merged.json>` and then `/usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json>`, printing for each the working directory, the resolved command, complete stdout and stderr, and the exit status. `merge` exits 1 if the two `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the paper's stated equation once; an input-set difference surviving that reconciliation stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**; where the two `origin` classifications differ the merged record carries `origin_alt` and `origin_evidence_alt`; where the two `derived_from` lists differ the merged record carries both parent lists marked `PARENTS_DISPUTED`, and `compute` derives `root_origins` under both, printed as a pair, as for a disputed origin. `compute` derives each claim's `root_origins` and `rests_on` and prints the root-origin set beside it; it REJECTS (exit 2) a ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; a disputed pair is computed under both origins and marked `DISPUTED`. The seat tool `r3c2_ledger_tools.py` has no `compute` and no `merge`; a seat that runs either has left its packet. A `rests_on` value present in a seat-authored input ledger fails this control; after a successful `compute` run, a `rests_on` value absent from the script-produced output ledger fails this control.**<!--/SEAT-REDACT--> **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that no `ABSENT` or `BLOCKED` record carries a value, that **each `PRINTED` value machine-matches the
   text at its cited source line and each verbatim quotation is a substring of that line**, and that **each `STANDARD`
   value is one of a closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family;
@@ -488,7 +488,7 @@ the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome;
 `ACCESS_SHA` proof; third-seat dispatch is an administrative action of the lane owner and is not claimed executable from
 the packet. Lane-side procedure, not the seat's: the no-fallback control is the provider log showing
 no fallback line for the seat's session, checked by the lane owner; a one-page check sheet `R3C2_CHECK_SHEET_<date>.md`
-in plain words with source lines is written by the lane owner after the tally; the lane owner runs `r3c2_lane_tools.py` (sha256 `2aa1ea7dc6f425aad13e7fffe5cdc5815865a74165fbc380f3ba81b3f8fa8a94`; merge, then compute) after both seats exit and re-runs every script; a
+in plain words with source lines is written by the lane owner after the tally; the lane owner runs `r3c2_lane_tools.py` (sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`; merge, then compute) after both seats exit and re-runs every script; a
 critic note precedes any ruling.<!--/SEAT-REDACT-->
 
 <!--SEAT-REDACT-->**Amendments get a new version number and hash in §10 rather than an in-place rewrite** — the discipline failure that
@@ -534,7 +534,8 @@ Two defects were found in the previous table and are corrected here, rather than
 | V19 | `a0cf4d5cae4a2b74…` | C0 two seats AGREE on V18; `R3C2_GATE_V18_codex_20260905.md` (UNSOUND on the two escalated items only; LEAK=NONE), `R3C2_GATE_V18_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE) | seven wording repairs applied; class question (+ zero-denominator clause) and rename remain escalated (§10.13) | C0 by two seats, then gate — pending |
 | V20 | `e8ba4a7438d61f02…` | C0 two seats AGREE on V19; `R3C2_GATE_V19_codex_20260905.md` (UNSOUND: the escalated items + 2.1 final command + 7.1 dispatch list; LEAK=NONE), `R3C2_GATE_V19_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE) | seven repairs applied incl. `PARENTS_DISPUTED` in the lane tool; escalated items unchanged (§10.14) | C0 by two seats, then gate — pending; a further round of NEW non-escalated findings stops the lane and files a diagnosis |
 | V21 | `b146c8c45ad2dd9a…` | C0 two seats AGREE on V20; `R3C2_GATE_V20_codex_20260905.md` (UNSOUND on the escalated items + 2 small; LEAK=NONE), `R3C2_GATE_V20_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE; ORIGIN_PURPOSE=CANNOT_STATE); lane STOPPED by its cap; Duho ruled "1a rename" 22:53 KST | ruling applied + four small repairs + zero-denominator clause (§10.15) | C0 by two seats, then gate — then freezable |
-| V22 | *this version* | C0 two seats AGREE on V21 (both exhibit `CENSUS_OUTCOME_DISPUTED`); `R3C2_GATE_V21_codex_20260905.md` (SOUND_WITH_REPAIRS: one cosmetic; LEAK=NONE; rename verified, 0 governing old-token references), `R3C2_GATE_V21_kimi_20260905.md` (SOUND; LEAK=NONE) | the one cosmetic applied: `CENSUS_PARTIAL`'s definition names the zero-denominator case (§10.16) | C0 by two seats, then gate — then SIGNABLE for Duho |
+| V22 | `5cd4e6da543d2c0d…` | C0 two seats AGREE on V21 (both exhibit `CENSUS_OUTCOME_DISPUTED`); `R3C2_GATE_V21_codex_20260905.md` (SOUND_WITH_REPAIRS: one cosmetic; LEAK=NONE; rename verified, 0 governing old-token references), `R3C2_GATE_V21_kimi_20260905.md` (SOUND; LEAK=NONE) | the one cosmetic applied: `CENSUS_PARTIAL`'s definition names the zero-denominator case (§10.16) | C0 by two seats, then gate — then SIGNABLE for Duho |
+| V23 | *this version* | C0 two seats AGREE on V22; `R3C2_GATE_V22_codex_20260905.md` (SOUND_WITH_REPAIRS: one brief artefact; LEAK=NONE), `R3C2_GATE_V22_kimi_20260905.md` (SOUND_WITH_REPAIRS: two cosmetics; leak = the accepted content-level floor; ORIGIN_PURPOSE=CANNOT_STATE) | kimi F1 (parenthetical on the right limb) and F2 (lane tool duplicate write removed, re-pinned) applied (§10.17) | C0 by two seats, then gate — then SIGNABLE for Duho |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -907,7 +908,7 @@ asks one question; "two tallies", every `rests_on`, the severity order, "what th
 tally and its membership rule, the DISPUTED pair, and "what the interpretation reads" live only in `SEAT-REDACT` spans;
 `origin` is one recorded attribute of a ledger record. (3) *The tool split*: the seat's `r3c2_ledger_tools.py` (sha256
 `f9b7d3c818647e6e3e10e19013db3a042247fc141ee01282b8928de06372c9ac`) now has `validate` and `census` only and no word of the comparison in its text; `merge` and
-`compute` are the lane's `r3c2_lane_tools.py` (sha256 `2aa1ea7dc6f425aad13e7fffe5cdc5815865a74165fbc380f3ba81b3f8fa8a94`), never given to a seat — because a tool that
+`compute` are the lane's `r3c2_lane_tools.py` (sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`), never given to a seat — because a tool that
 names `rests_on` in its usage text tells the seat what origin is for. (4) *Taxonomy order*: the origin values and the
 reason-code list are now alphabetical wherever a seat sees them; the previous order (DERIVED, STANDARD, MEASURED,
 CHOSEN, FITTED, IMPORTED, UNDECLARED) encoded the severity ladder; the reason-code tie-break keeps its order because it
@@ -1008,3 +1009,15 @@ cannot satisfy although the zero-denominator clause orders `CENSUS_PARTIAL`. **A
 denominator is zero". Nothing else changed. Both escalated items are ruled and applied (§10.15). The cap of §10.14 is not
 triggered (cosmetic only). NOT FROZEN, NOT RUN: C0 by two seats and one two-seat gate on V22; if both hold, V22 is SIGNABLE and
 the freeze is Duho's chat signature on its digest. Running the census remains his separate word.
+
+## 10.17 V23 — V22 gate: cosmetics only, applied (2026-09-06 00:03 KST)
+
+V22 gate: codex `PREREG_SOUND_WITH_REPAIRS` (LEAK=NONE; its one item, 7.1, was the gate brief's version substitution pointing at a
+non-existent V22 audit file — a brief artefact, the rename re-verified by its own grep; no document change). kimi
+`PREREG_SOUND_WITH_REPAIRS` (CONSEQUENCE_VISIBLE=NO; ORIGIN_PURPOSE=CANNOT_STATE; leak line = the content-level residue accepted as
+the floor by the 18:52 ruling, stated by the seat as "at or below the accepted floor"). **Applied:** kimi F1 — the non-arithmetic
+token list now sits on the limb it defines, the zero-denominator limb after it; kimi F2 — `r3c2_lane_tools.py` wrote the merged
+file twice (a V20 insertion of mine); the duplicate removed, controls re-run (one `merged` line, `PARENTS_DISPUTED` still detected,
+pair still computed), re-pinned. Nothing else changed. NOT FROZEN, NOT RUN: C0 by two seats and one two-seat gate on V23; if both
+hold with no finding above cosmetic, V23 is SIGNABLE and the freeze is Duho's chat signature on its digest. Running remains his
+separate word.

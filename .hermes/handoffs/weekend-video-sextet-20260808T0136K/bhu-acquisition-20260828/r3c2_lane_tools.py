@@ -84,7 +84,7 @@ def cmd_merge(a,b,out):
         if sorted(A[k].get("derived_from") or []) != sorted(Bm[k].get("derived_from") or []):
             r["derived_from_alt"]=Bm[k].get("derived_from") or []; r["PARENTS_DISPUTED"]=True; npar+=1
         out_recs.append(r)
-    pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); print(f"PARENTS_DISPUTED={npar}")
+    print(f"PARENTS_DISPUTED={npar}")
     pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); return 0
 
 
