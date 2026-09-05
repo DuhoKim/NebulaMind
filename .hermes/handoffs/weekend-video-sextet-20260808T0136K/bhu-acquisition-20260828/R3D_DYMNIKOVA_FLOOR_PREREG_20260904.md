@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 29 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 30 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -625,7 +625,16 @@ codex did find the fairness rule broken in limb A and in class 3's label. Both a
 - **Path list**: every seat prints every path it opened. **IN SCOPE:** this lane's own reading tree
   (`../bhu-reading-20260823/sources/`); **this preregistration**; **the committed script
   `r3d_c3_deletion_probe.py` and the JSON input the seat writes for it**; **the pinned interpreter `/usr/bin/python3`,
-  executed and hashed under C5 and invoked by C3**; and **the seat's own working directory and artefacts**. *(kimi
+  executed and hashed under C5 and invoked by C3, together with every file that interpreter loads while executing
+  the mandated commands — its standard library, the installed sympy and mpmath packages, and their dependent shared
+  libraries**; **`/usr/bin/shasum`, executed under C1, C3 and C5, together with the perl interpreter and libraries it
+  loads**; and **the seat's own working directory and artefacts**. **GENERAL RULE, which the list above instantiates
+  and which governs any path the list omits: a path opened as a necessary consequence of executing a command this
+  document mandates is `IN_SCOPE` by that fact, printed and marked under this clause.** *(kimi V29, confirmed here by
+  execution: the mandated sympy import opens 62 directories, none named, so a conforming seat marked each
+  `OUT_OF_SCOPE` and failed C5b on every run. This clause had been repaired by adding one path at a time — V20, V27,
+  V28 — and failed each time at the next unnamed path. `shasum` and its perl were the next one, found by tracing
+  rather than by a gate. The rule now follows the mandate, not the list.)* *(kimi
   V27: C5 commands the seat to hash the interpreter and C3 to run it, yet no scope clause named it and "any path not
   named above" is `OUT_OF_SCOPE` — so a conforming seat failed its own C5b on every run, deterministically. The V20
   C5b defect, one path over.)* **OUT OF SCOPE:** another lane's files, and any path not named above. *(The rule previously
@@ -1586,4 +1595,27 @@ first time *before* rather than after a gate caught the omission. The trace took
 
 **V28 is NOT final. V29 requires its own C0 and gate.**
 
-R3D_PREREG_V29_READY_FOR_REEXHIBITION
+## 8w. V30 — V29 NOT final: the scope clause failed a fourth time by enumeration, and is now a rule
+
+**codex `SOUND_WITH_REPAIRS` — six of seven sections sound, sole defect the escalated token rename. kimi
+`SOUND_WITH_REPAIRS` — classes, circularity, re-run guard, stall SOUND, fairness "held in every operative clause",
+one substantive controls defect. Both on `ff1e5011…`, both hash-verified after exit; C0 passed on V29 independently.**
+
+**Both seats executed C3.** codex from the lane directory; **kimi from `/` and `/Users/duhokim`, stdout byte-identical
+(`cmp` confirmed)**, `PASS`, exit 0, scope of the run stated.
+
+| finding | seat | classification | disposition |
+|---|---|---|---|
+| **C5b's scope names the interpreter but not the files it loads.** The mandated sympy import opens the standard library and site-packages; "any path not named above" is `OUT_OF_SCOPE`; any such row fails the control — **so every conforming run failed C5b.** kimi confirmed by execution; **confirmed here by execution: 62 directories, none named** | kimi | **SUBSTANTIVE**, criterion (2) | **APPLIED**, and generalised |
+| **`/usr/bin/shasum` and the perl it loads** — executed under C1, C3 and C5, named by no scope clause | **found by tracing kimi's replacement one step further** | same | **APPLIED** |
+| the `DYM_NO_*` tokens | codex (ninth); kimi did not re-raise | — | **open ruling; not a blocker** |
+
+**Why this clause kept failing, and what changed.** C5b's scope was repaired at V20, V27, V28 and now V29 — each time by
+**adding one path**, each time failing at the **next** unnamed path a mandated command happens to open. An enumeration
+can never be complete against "every file an interpreter loads". **V30 adds a general rule the list instantiates:
+a path opened as a necessary consequence of executing a mandated command is in scope by that fact.** The list stays
+for the reader; the rule governs what the list omits.
+
+**V29 is NOT final. V30 requires its own C0 and gate.**
+
+R3D_PREREG_V30_READY_FOR_REEXHIBITION
