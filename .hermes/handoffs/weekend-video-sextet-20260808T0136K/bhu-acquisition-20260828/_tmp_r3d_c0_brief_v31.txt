@@ -1,0 +1,57 @@
+You are producing the **C0 REACHABILITY EXHIBITION** for a frozen-pending physics preregistration.
+You are NOT gating it and NOT judging its physics. Read it from disk, in full:
+  R3D_DYMNIKOVA_FLOOR_PREREG_20260904.md
+
+C0 requires: for EVERY declared outcome class of section 4, and for EVERY breaker condition in C6
+(section 5), EXHIBIT A CONCRETE INPUT THAT PRODUCES IT -- a specific numeric value or stated
+configuration, plus the path it takes through the document to that verdict, citing the clauses it
+passes through.
+
+Do this for:
+(A) Each of the SIX outcome classes in section 4 — four scientific, two non-scientific terminal states. DYM_FLOOR_COMPLETION_DEPENDENT was RETIRED and is NOT a class; do not test it. For each: a concrete construction/result
+    description that lands there, and the clause chain that routes it there. If two classes could
+    both accept your input, say so -- that is a finding.
+(B) Each of the FIVE breaker conditions in C6, BOTH DIRECTIONS: an input making the condition PASS
+    and an input making it FAIL. For condition 5 give explicit floor values in kg and say which
+    comparator interval, if any, they overlap.
+(C) The three C6 outcomes: C6_BREAKER_TEST = PASS, FAIL, NOT_RUN.
+
+RULES:
+- Work only from this document and the numbers it prints. Do not read the Dymnikova sources; you are
+  testing the DOCUMENT's machinery, not the physics.
+- A verdict you CANNOT exhibit is the important result. Mark it **UNREACHABLE** and explain exactly
+  which clause blocks every path. Do not invent a path that the text does not license.
+- Arithmetic: compute comparator overlaps yourself from the intervals the document prints.
+- Do not judge whether the design is good. Only whether each declared verdict CAN OCCUR.
+
+OUTPUT:
+Line 1: ACCESS_SHA=aa3b184192503205229ea2a7428f7145741757636fe6ccd7fd0d834ebb108e62
+Line 2: C0_REACHABILITY=PASS   (only if every verdict in A, B and C is exhibited)
+     or C0_REACHABILITY=FAIL   (if any is UNREACHABLE)
+Then a table: verdict | concrete input | clause path | reachable yes/no.
+Then, for every UNREACHABLE verdict, the blocking clause quoted verbatim.
+Final line: R3D_C0_EXHIBITION_COMPLETE
+
+NOTE FOR THIS ROUND: a previous exhibition found two C6 breaker-condition FAILURES unreachable
+because C6 ran only after one outcome class. C6 has since been ungated. Construct your own cases from
+scratch; do not assume the previous ones. Pay particular attention to whether EVERY breaker condition
+can now FAIL on at least one path, and state, as a number, on how many of the six outcome classes
+C6 can return FAIL.
+
+THIS ROUND: section 4's scientific classes have been rewritten as a single decision procedure over
+"admissible readings". Test that partition hard. For EACH of the four scientific classes exhibit a
+case, and state whether any case you construct fits two classes or none. Say explicitly whether
+the six declared classes each have a reachable input, and whether any case fits two classes or none.
+
+THIS ROUND: condition 5's FAIL exhibitions must include ONE INPUT PER COMPARATOR ROW — the Planck row,
+the Hawking row and the TOV row — not only one of them. Compute each overlap yourself from the printed
+intervals and say which comparator each input overlaps.
+
+THIS ROUND SPECIFICALLY: §4 now separates the no-relation class from the no-positive-floor class BY LIMB rather
+than by predicate — class 3 is filed only from limb A, classes 1/2/4 only from limb B. Test that separation hard:
+construct a case with no printed size–mass relation and no printed mass bound, and say which single class it files
+and why it cannot also file the other. If it still fits both, say so plainly — that is the result.
+
+THIS ROUND: §2 now fixes the tested completions to exactly FOUR named kinds, so the admissible reading set is
+finite. Exhibit class 1 with an explicit reading set — the completion-free reading plus each applicable
+completion — and show all of P agreeing. Then exhibit class 2 with a reading set where they do not.

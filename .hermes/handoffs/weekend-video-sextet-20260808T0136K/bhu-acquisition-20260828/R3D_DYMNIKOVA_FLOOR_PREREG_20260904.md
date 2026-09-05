@@ -1,12 +1,15 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 30 — FINAL, THE DESIGN OF RECORD, AUTHORISED TO RUN.** Gated bytes
+**Tori, 2026-09-05. Version 31 — AMENDMENT TO V30 (class-token rename, Duho's ruling "rename the tokens", relay
+12:34 KST). V31 is NOT yet gated: it requires its own C0 and two-seat gate. Until it clears, V30 remains the design of
+record, and THE RUN IN PROGRESS EXECUTES UNDER V30's BYTES AND FILES UNDER V30's TOKEN NAMES (§8x mapping).**
+**Version 30 — FINAL, THE DESIGN OF RECORD, AUTHORISED TO RUN.** Gated bytes
 `a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b` (the file `R3D_V30_DESIGN_OF_RECORD_a99aad15.md`,
 which the run executes against and which is not edited). **C0 `C0_REACHABILITY=PASS` on those bytes; both engines
 returned — kimi `PREREG_SOUND`, codex `PREREG_SOUND_WITH_REPAIRS` with one cosmetic finding; declared final under the
 stopping criterion of 2026-09-05 06:19 (§8u); AUTHORISED TO RUN by Duho, "run r3d", 2026-09-05 12:26 KST
 (`R3D_RUN_ORDER_20260905.md`).** Originally ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.
-**FINAL SUBJECT TO ONE OPEN RULING, DUHO'S ALONE: the tokens `DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR`
+**FINAL SUBJECT TO ONE OPEN RULING, DUHO'S ALONE: the tokens `DYM_SIZE_MASS_RELATION_UNREPRODUCED` and `DYM_POSITIVE_FLOOR_UNREPRODUCED`
 assert absence while their definitions say "unreproduced from the stated inputs"; eleven independent seat findings
 asked for the `…_UNREPRODUCED` names. The rename is annotated on V30 (§8u), does not block the run, and if made is an
 amendment to this final version, not a reopening.** *(This file carries the §8u declaration and this header on top of
@@ -137,7 +140,7 @@ source-pinned equations, so it cannot see a relation excluded before that select
 **Limb A (~1 seat-day):** attempt to reproduce, from the stated inputs, a printed relation **binding size to mass
 OR bounding the mass at all**. If none is reproduced after the complete census of §2, report that **a relation
 binding size to mass, or bounding the mass, was unreproduced from the stated inputs**, file
-`DYM_NO_SIZE_MASS_RELATION`, **record C3, C4 and C6 as `NOT_RUN` while C0, C1, C2, C5 and C5b remain reached and
+`DYM_SIZE_MASS_RELATION_UNREPRODUCED`, **record C3, C4 and C6 as `NOT_RUN` while C0, C1, C2, C5 and C5b remain reached and
 carry their actual results**, and stop. *(Two defects, one from each seat. kimi: §3 stopped whenever no SIZE–MASS
 relation was reproduced, while §4's table and class 3 both required that NO mass bound of any kind was reproduced —
 so a printed direct mass bound with no `V(M)` was routed to opposite places by clauses that were supposed to agree.
@@ -170,8 +173,8 @@ those that are inconsistent — empty allowed mass set. **Every admissible readi
 
 | condition | class |
 |---|---|
-| **LIMB A EXIT.** After the frozen census of §2, **a relation binding size to mass, or bounding the mass, was unreproduced from the stated inputs**, so limb B is never entered | **3** `DYM_NO_SIZE_MASS_RELATION` |
-| **LIMB B ONLY — at least one relation IS printed.** `P` is empty and `Z` or `I` is non-empty: **a positive floor was unreproduced from the stated inputs** | **4** `DYM_NO_POSITIVE_FLOOR` |
+| **LIMB A EXIT.** After the frozen census of §2, **a relation binding size to mass, or bounding the mass, was unreproduced from the stated inputs**, so limb B is never entered | **3** `DYM_SIZE_MASS_RELATION_UNREPRODUCED` |
+| **LIMB B ONLY — at least one relation IS printed.** `P` is empty and `Z` or `I` is non-empty: **a positive floor was unreproduced from the stated inputs** | **4** `DYM_POSITIVE_FLOOR_UNREPRODUCED` |
 | **`P` is non-empty** and the readings **disagree** — `P` holds two different floors, or **`Z` is non-empty**, or **`I` is non-empty** | **2** `DYM_FLOOR_UNDERDETERMINED` |
 | **`P` non-empty, all of `P` agree on one floor, `Z` AND `I` both empty** — which requires the completion-free reading to be in `P` | **1** `DYM_FLOOR_DERIVED` |
 
@@ -190,7 +193,7 @@ is needed, and none is stated.**
 
 > ### Why this boundary kept failing, stated as a finding rather than repaired again
 >
-> **`DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR` are not two physical states.** If nothing is printed
+> **`DYM_SIZE_MASS_RELATION_UNREPRODUCED` and `DYM_POSITIVE_FLOOR_UNREPRODUCED` are not two physical states.** If nothing is printed
 > constraining the mass, then the completion-free reading imposes no lower bound, so it lies in `Z`, `P` is empty,
 > and class 4's predicate is **satisfied**. **Class 3 entails class 4 — by meaning, not by wording.** "No relation
 > printed" is a *reason* no floor follows; "permits zero" is the *consequence*. Cause and effect, not alternatives.
@@ -243,9 +246,9 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
    is a family, and the pattern concerns a construction fixing A magnitude. The result is reported as
    `C6 PASS under an underdetermined floor` and referred to Duho.** *(The class previously stated only what a C6
    FAIL meant here and left a reachable `PASS` with no stated consequence.)*
-3. **DYM_NO_SIZE_MASS_RELATION** — limb A's exit: **a relation binding size to mass, or bounding the mass, was
+3. **DYM_SIZE_MASS_RELATION_UNREPRODUCED** *(V31: formerly `DYM_NO_SIZE_MASS_RELATION`; renamed on Duho's ruling because the old name asserted absence while this definition says "unreproduced from the stated inputs" — the lane's standing wording rule for every negative finding, applied to the class name itself; eleven independent seat findings)* — limb A's exit: **a relation binding size to mass, or bounding the mass, was
    unreproduced from the stated inputs** after the frozen census of §2 was completed.
-4. **DYM_NO_POSITIVE_FLOOR** — as partitioned above. Report the family. **Record `C3_DELETION_PROBE=NOT_RUN` on
+4. **DYM_POSITIVE_FLOOR_UNREPRODUCED** *(V31: formerly `DYM_NO_POSITIVE_FLOOR`; renamed for the same reason as class 3)* — as partitioned above. Report the family. **Record `C3_DELETION_PROBE=NOT_RUN` on
    this class WHEN THE RUN REACHES IT DIRECTLY: no positive floor survives, so the deletion probe has no candidate
    to test; C0, C1, C2, C4, C5 and C5b remain reached and carry their actual results, and C6 is `NOT_RUN` because
    no positive floor was produced. If this class was instead SELECTED BY THE RECOMPUTED PARTITION after a probe
@@ -388,7 +391,7 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   a control whose code is not named in the document it governs cannot be checked against it.)*
 - **C6 — breaker test.** **Applies on EVERY outcome that yields a positive floor — `DYM_FLOOR_DERIVED`
   and `DYM_FLOOR_UNDERDETERMINED`** — and is `NOT_RUN`, never a pass, **only where C6 was never
-  engaged** — `DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`, or a `DYM_SOURCE_BLOCKED` / `R3D_NO_CLASS`
+  engaged** — `DYM_SIZE_MASS_RELATION_UNREPRODUCED`, `DYM_POSITIVE_FLOOR_UNREPRODUCED`, or a `DYM_SOURCE_BLOCKED` / `R3D_NO_CLASS`
   filed **before any C6 evaluation**.
 
   **The conditions are evaluated on the quantity the seat actually FILED as its floor, not on an idealised one.**
@@ -480,7 +483,7 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
   **`C6_BREAKER_TEST=PASS`** — the table is complete and **every one of conditions 1–5 satisfies its own stated
   decision rule**. **`C6_BREAKER_TEST=FAIL`** — the table is incomplete or missing, **or** any condition fails its
   decision rule; **name the condition and print its artefact**. **`C6_BREAKER_TEST=NOT_RUN`** — **C6 was never engaged**: no
-  positive-floor class was entered (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`), or
+  positive-floor class was entered (`DYM_SIZE_MASS_RELATION_UNREPRODUCED`, `DYM_POSITIVE_FLOOR_UNREPRODUCED`), or
   `DYM_SOURCE_BLOCKED` / `R3D_NO_CLASS` was filed **before any C6 evaluation**. *(A run that entered C6 and hit
   condition 3's `UNDECIDED` produced a positive floor and DID engage C6, so it records `FAIL`, not `NOT_RUN`,
   even though its filed class is `DYM_SOURCE_BLOCKED`. Two clauses previously assigned opposite codes to that one
@@ -540,7 +543,7 @@ instruction that a third failure in this direction stops the repair loop.
 **That overstatement is exactly the fault this study exists to detect in other people's papers**, committed here,
 which is why both numbers are printed rather than the flattering one.
 
-**It is `NOT_RUN` on `DYM_NO_SIZE_MASS_RELATION` and `DYM_NO_POSITIVE_FLOOR`, and that is correct rather than a
+**It is `NOT_RUN` on `DYM_SIZE_MASS_RELATION_UNREPRODUCED` and `DYM_POSITIVE_FLOOR_UNREPRODUCED`, and that is correct rather than a
 gap:** those classes produce **no number to test**, so there is no candidate counterexample to evaluate — **a
 breaker test run where there is nothing to test would report on nothing.** *(This sentence previously said
 `NOT_RUN` on "the other 4" and named `DYM_SOURCE_BLOCKED` and `R3D_NO_CLASS` among them — contradicting the
@@ -1667,3 +1670,30 @@ mechanical, and the circularity control executes.
 
 R3D_PREREG_V30_FINAL_DESIGN_OF_RECORD
 
+## 8x. V31 — AMENDMENT to the final V30: the class tokens renamed on Duho's ruling (2026-09-05 12:38 KST)
+
+**Ruling.** Duho, relayed by Blanc 2026-09-05 12:34 KST: "rename the tokens". Applied as the escalation rule on V30
+provides — **an amendment to the named final version with its own C0 and two-seat gate, not a reopening.** V30's gated
+bytes `a99aad15…` are untouched; they are what the run's seats prove access against.
+
+| old token (V30 and earlier) | new token (V31) | class | definition and routing |
+|---|---|---|---|
+| `DYM_NO_SIZE_MASS_RELATION` | `DYM_SIZE_MASS_RELATION_UNREPRODUCED` | 3 | unchanged |
+| `DYM_NO_POSITIVE_FLOOR` | `DYM_POSITIVE_FLOOR_UNREPRODUCED` | 4 | unchanged |
+
+**Why.** The old names asserted absence — "no relation", "no positive floor" — while their definitions say "unreproduced
+from the stated inputs". Eleven independent seat verdicts read them that way. This is the lane's standing wording rule
+for every negative finding, finally applied to the class names themselves. Nothing else changes: no class is added,
+retired or redefined; no control, criterion, range or rule moves.
+
+**The run.** The R3D run authorised at 12:26 KST executes under V30's bytes and **files under V30's names**. Any V30
+result read against V31 must use the table above. Both blind seats run V30, so the §9 split rule compares like with like.
+
+**Consumers, checked after the rename (grep for the old strings):** operative sections §0–§7 and §9 of this file: **0**.
+The version history §8, §8a–§8w and the V30 declaration §8u: the old names remain there **as quotations of what earlier
+versions said and what seats found** — the record is not rewritten. The C3 probe script names no class token. The V31
+C0 brief and V31 gate brief carry the new names; the V30 run briefs are deliberately left on V30's names because the
+kimi run seat must execute the same protocol as codex. `WHAT_IS_LEFT`, `OPEN_QUESTIONS_FOR_DUHO` and the STATUS sidecar
+record the ruling.
+
+R3D_PREREG_V31_READY_FOR_REEXHIBITION

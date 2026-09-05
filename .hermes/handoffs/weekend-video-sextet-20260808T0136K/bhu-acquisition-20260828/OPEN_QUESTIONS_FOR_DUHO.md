@@ -2463,7 +2463,7 @@ is not true now. Recorded to stop a stale "go read Farhi & Guth" pointer from re
 in Blanc's hands (`_tmp_blanc_relay_r3c2_v5.txt`). The clause is marked HELD in §3 of
 `R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md` (V9). Choose one letter, or say "none, redraft".
 
-**Q-R3D-1.** Two of R3D's outcome names say "NO" (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`) while their
+**Q-R3D-1 — RULED 2026-09-05 12:38 KST: "rename the tokens" → V31 amendment (sha256 aa3b184192503205…), C0 + two-seat gate pending; the run files under V30's names.** Original question: Two of R3D's outcome names say "NO" (`DYM_NO_SIZE_MASS_RELATION`, `DYM_NO_POSITIVE_FLOOR`) while their
 definitions say "unreproduced from the stated inputs". Eleven seat verdicts asked for the rename; it is a
 redefinition, so it is yours. Options: **(a) rename** to `DYM_SIZE_MASS_RELATION_UNREPRODUCED` /
 `DYM_POSITIVE_FLOOR_UNREPRODUCED` (a versioned amendment with its own C0 + gate); **(b) keep** the names, the
