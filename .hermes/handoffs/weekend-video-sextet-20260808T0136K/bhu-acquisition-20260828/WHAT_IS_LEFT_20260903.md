@@ -577,7 +577,7 @@ said "§1"; corrected). Options a/b/c/d are with Duho via Blanc. Nothing to repa
 re-runs after any repair.
 
 **Open rulings, his alone (also listed in OPEN_QUESTIONS_FOR_DUHO.md):**
-1. R3C2 §3 — a/b/c/d.
+1. **RULED 2026-09-05 14:13 KST — "Q-R3C2 c"; V10 under option (c) written; C0 + gate pending.** R3C2 §3 — a/b/c/d.
 2. **RULED 2026-09-05 12:38 KST — "rename the tokens"; V31 amendment written, C0 + gate pending; the run files under V30's names.** R3D — rename `DYM_NO_SIZE_MASS_RELATION` / `DYM_NO_POSITIVE_FLOOR` to the `…_UNREPRODUCED` forms (eleven
    independent seat findings; a rename is a redefinition, beyond the lane).
 3. R3D — retire class 3 into class 4 with a reason field (structural alternative flagged at V17).

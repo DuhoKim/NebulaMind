@@ -37,7 +37,7 @@ REQUIRED = [
     "C5_HARNESS_PINNED", "C5B_NO_CROSS_LANE", "C6_AUDIT_SAMPLE",
     "REPRO_EXACT", "REPRO_FAILED", "REPRO_BLOCKED", "REPRO_NOT_EVALUABLE",
     "REPRO_INPUT_ABSENT", "REPRO_NO_DERIVATION_STATED",
-    "origin_evidence", "root_origins", "derived_from",
+    "origin_evidence", "root_origins", "derived_from", "rests_on",
     "Print every path you\n  open",
 ]
 

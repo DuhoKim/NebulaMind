@@ -8,12 +8,14 @@ what its results will be compared against have been removed **deliberately and m
 `r3c2_build_seat_packet.py`. Their absence is not an omission for you to fill in, and you should not
 attempt to infer or reconstruct them. Apply the rules below exactly as written.
 
-Built from master sha256 `2a1d2023c2ea2b146795d4ddbf401d96a139583d2defe08e342cc703ac5dba22` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `5c69ae471edb1b1970594255e970fb07274fbb814dce1096de81c9d647ad1a5b` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
-For every quantitative claim in the corpus, **does the paper's own number follow from **admissible** inputs —
-derived or standard — with no quantity chosen, fitted or imported?**
+For every quantitative claim in the corpus, **two questions from one pass: (i) does the paper's own number follow
+from the paper's own recipe applied to the inputs it states — chosen constants included; and (ii) what does that
+number rest on — derived and standard inputs only, or a chosen, fitted, imported or undeclared one?** The first is the
+reproduction verdict; the second is the ledger's `rests_on` field. **Neither contaminates the other.**
 
 **Operational definition, so the enumeration is not a judgement:** a *quantitative claim* is a passage in a pinned
 source that **prints a numeral the paper asserts as a result of its own** — with units, or dimensionless and stated
@@ -34,29 +36,40 @@ who must agree.)*
 2. **List the inputs** that equation needs.
 3. **Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant **on C3's closed
    list — that list, verbatim, and no other value**), or `ABSENT`. Record its `origin` with the evidence C3 requires.
-4. **Attempt the arithmetic with ADMISSIBLE inputs only** (§3's definition: origin `DERIVED` or `STANDARD`). A printed
-   value whose origin is `CHOSEN` or `FITTED` is **not** admissible.
-5. **Record the outcome**, per claim, as one of §3.
+4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
+   i.e. every ledger record with status `PRINTED` or `STANDARD`, chosen and fitted values included.** Provenance is
+   **recorded** (C3's `origin`, `derived_from`, `root_origins`), never filtered on. *(V10, option (c): refusing chosen
+   inputs stopped this being reproduction at all — a paper can direct you to use its own chosen constant, and
+   following that instruction IS reproducing the paper.)*
+5. **Record the outcome**, per claim, as one of §3, **and let the script record the claim's `rests_on`** from the ledger.
 
 **A seat may not supply a value for an `ABSENT` input.** Encountering one ends that claim's attempt.
 
 ## 3. Per-claim outcomes — declared now
 
 
+**One pass, two tallies (option (c), the principal's ruling 2026-09-05).** The reproduction verdict answers *"does the paper's
+arithmetic work from what it states?"* The ledger answers *"what did it rest on?"* — a value can be printed in the
+paper and still have been chosen or fitted, and under (c) both facts
+survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 
-**The admissible input set is defined by PROVENANCE, not by location.** "Printed" says only where a value appears;
-a value can be printed in the paper and still have been chosen or fitted —  So:
+> **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
+> its `origin`) or `STANDARD` (on C3's closed list). **PROVENANCE IS RECORDED, NOT FILTERED**: each record's `origin`
+> is cited under C3, `root_origins` is computed by script, and the claim's **`rests_on`** field is computed by the
+> same script — `DERIVED_ONLY` when every root origin is `DERIVED` or `STANDARD`; otherwise the most severe root
+> origin present, in the fixed order `USES_UNDECLARED` > `USES_IMPORTED` > `USES_FITTED` > `USES_CHOSEN` — with the
+> full root-origin set printed beside it. **No seat writes `rests_on`.** The interpretation step reads `rests_on`,
+> never the reproduction verdict (§7).
 
-> **ADMISSIBLE** = a ledger record whose `origin` is `DERIVED` (obtained from the paper's own equations) or
-> `STANDARD` (a measured constant on the closed list in C3). **INADMISSIBLE** = `origin` of `CHOSEN`, `FITTED`,
-> `IMPORTED` or `UNDECLARED`, **however prominently the value is printed.**
-
-- **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, from **admissible inputs only**.
-- **`REPRO_AFTER_CHOICE`** — it follows only once an **inadmissible** input is used, i.e. one whose origin is
-  `CHOSEN`, `FITTED`, `IMPORTED` or `UNDECLARED` — **including one printed in the paper.** Name the quantity and its
-  origin.
-- **`REPRO_FAILED`** — admissible inputs are sufficient but the arithmetic does not give the paper's number.
-  Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."**
+- **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, **from the paper's own recipe
+  applied to the inputs it states** (`PRINTED` or `STANDARD`). The claim's `rests_on` is reported beside it.
+- *(`REPRO_AFTER_CHOICE` — RETIRED at V10 by the principal's ruling adopting option (c). What it recorded — that the number
+  rests on a chosen, fitted, imported or undeclared input — is now the `rests_on` field of a `REPRO_EXACT` or
+  `REPRO_FAILED` claim, computed by script. Two blind C0 seats had found the class unreachable under the derivation-only
+  wording (§10.3); it is retired, not repaired.)*
+- **`REPRO_FAILED`** — the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the
+  paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."** `rests_on`
+  is reported beside it.
 - **`REPRO_BLOCKED`** — an input traces to a source **outside this lane that we cannot obtain**. Name it. *(Distinct
   from `REPRO_INPUT_ABSENT`, which is an input the paper simply never states.)*
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
@@ -67,16 +80,15 @@ a value can be printed in the paper and still have been chosen or fitted —  So
   satisfy §1 — a printed numeral asserted as the paper's own result — while the paper never says how it was
   obtained. That claim previously fell through every class.)*
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper, so the attempt stops there.
-  **Name the input.**  Distinct from `REPRO_AFTER_CHOICE`, where a value **was** supplied and the
-  number then followed.
+  **Name the input.**  Distinct from a claim whose inputs the paper DOES state, chosen or not — that
+  claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED` with its `rests_on`.
 **Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
 order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`, then the
 **arithmetic group**. *(Precedence is stated because these conditions genuinely co-occur — an absent input whose
 source is also unobtainable satisfied two classes with no rule to choose between them.)*
 
-**The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number. Its
-membership is fixed by the clause held above; the group is referred to by name below so that §4 does not have to
-be reopened when that clause is settled.
+**The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
+`REPRO_EXACT` and `REPRO_FAILED`** (V10; the group had three members under the derivation-only wording).
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
@@ -87,7 +99,7 @@ is hidden by being excluded.
 ## 4. Study-level outcomes
 
 1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3.**
-   Report the full tally with its denominator.
+   Report the full tally with its denominator, **and the `rests_on` tally beside it — two tallies from one pass.**
 2. **`CENSUS_PARTIAL`** — after two attempts, **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** *(Previously "some claims unresolved"
@@ -142,7 +154,9 @@ is hidden by being excluded.
 
   **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
   ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
-  A chain cannot be made to look clean by classifying only its last step. *(What `root_origins` implies for a
+  A chain cannot be made to look clean by classifying only its last step. **The same script computes each claim's
+  `rests_on` from its `root_origins` by the fixed severity order of §3 and prints the root-origin set beside it; a
+  `rests_on` value written by a seat, or absent, fails this control.** *(What `root_origins` implies for a
   claim's outcome follows from the clause held in §3 and is not decided here; the field is factual either way.)* **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
@@ -184,7 +198,7 @@ is hidden by being excluded.
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*
 - **C6 — audit, with a frozen sampling frame.** A third pattern-blind seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without seeing
-  prior work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim whose filed
+  prior work and re-classifying every input's `origin` from the pinned sources, and recomputing `rests_on` by the same script**: **(i) every claim whose filed
   outcome asserts that the arithmetic reproduced the number** — the class in which a result unreproduced from the stated inputs is both consequential
   and invisible, so it gets no sampling discount — and **(ii) a sample of `max(1, ceil(0.20 × N))` of the remaining
   included claims**, `N` being the sealed denominator, drawn by

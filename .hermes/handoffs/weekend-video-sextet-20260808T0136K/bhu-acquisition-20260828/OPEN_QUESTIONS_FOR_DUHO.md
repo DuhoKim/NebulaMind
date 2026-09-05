@@ -2459,7 +2459,7 @@ is not true now. Recorded to stop a stale "go read Farhi & Guth" pointer from re
 
 ## Round 3 rulings waiting on you (2026-09-05 12:26 KST) — plain words, real choices
 
-**Q-R3C2.** What should the reproduction census count as an admissible reproduction? The four options a/b/c/d are
+**Q-R3C2 — RULED 2026-09-05 14:13 KST: "Q-R3C2 c" → V10 written under option (c) (sha256 5c69ae471edb1b19…); C0 by two blind seats + two-seat gate pending.** Original question: What should the reproduction census count as an admissible reproduction? The four options a/b/c/d are
 in Blanc's hands (`_tmp_blanc_relay_r3c2_v5.txt`). The clause is marked HELD in §3 of
 `R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md` (V9). Choose one letter, or say "none, redraft".
 

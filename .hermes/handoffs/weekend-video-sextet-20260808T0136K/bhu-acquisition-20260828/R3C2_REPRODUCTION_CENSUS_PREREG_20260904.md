@@ -1,6 +1,9 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-04 21:32 KST. Version 1. ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST.**
+**Tori, 2026-09-05. Version 10 (see §10). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+two tallies. NOT FROZEN and NOT RUN: C0 by two pattern-blind seats who must agree, then the two-seat gate, before any
+freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
+listed every version — a scar found and fixed here.)*
 **Supersedes `R3C_MAGNITUDE_CENSUS_PREREG_20260904.md`, which failed four gate rounds across two engines and is kept
 unchanged as the record of the failed design.** No derivation has been run.
 
@@ -35,8 +38,10 @@ Three consequences, each fixing a named gate defect:
 
 ## 1. The question, exactly
 
-For every quantitative claim in the corpus, **does the paper's own number follow from **admissible** inputs —
-derived or standard — with no quantity chosen, fitted or imported?**
+For every quantitative claim in the corpus, **two questions from one pass: (i) does the paper's own number follow
+from the paper's own recipe applied to the inputs it states — chosen constants included; and (ii) what does that
+number rest on — derived and standard inputs only, or a chosen, fitted, imported or undeclared one?** The first is the
+reproduction verdict; the second is the ledger's `rests_on` field. **Neither contaminates the other.**
 
 **Operational definition, so the enumeration is not a judgement:** a *quantitative claim* is a passage in a pinned
 source that **prints a numeral the paper asserts as a result of its own** — with units, or dimensionless and stated
@@ -62,42 +67,40 @@ pattern content to what they are told.**<!--/SEAT-REDACT-->
 2. **List the inputs** that equation needs.
 3. **Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant **on C3's closed
    list — that list, verbatim, and no other value**), or `ABSENT`. Record its `origin` with the evidence C3 requires.
-4. **Attempt the arithmetic with ADMISSIBLE inputs only** (§3's definition: origin `DERIVED` or `STANDARD`). A printed
-   value whose origin is `CHOSEN` or `FITTED` is **not** admissible.
-5. **Record the outcome**, per claim, as one of §3.
+4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
+   i.e. every ledger record with status `PRINTED` or `STANDARD`, chosen and fitted values included.** Provenance is
+   **recorded** (C3's `origin`, `derived_from`, `root_origins`), never filtered on. *(V10, option (c): refusing chosen
+   inputs stopped this being reproduction at all — a paper can direct you to use its own chosen constant, and
+   following that instruction IS reproducing the paper.)*
+5. **Record the outcome**, per claim, as one of §3, **and let the script record the claim's `rests_on`** from the ledger.
 
 **A seat may not supply a value for an `ABSENT` input.** Encountering one ends that claim's attempt.
 
 ## 3. Per-claim outcomes — declared now
 
-<!--SEAT-REDACT-->
-> ⚠️ **HELD PENDING DUHO'S RULING.** The clause below is the census's core definition and is **deliberately not
-> being repaired.** Options **a/b/c/d** are stated in `_tmp_blanc_relay_r3c2_v5.txt` and **Blanc has the question
-> with him**. A referee should **not** report this as a fresh finding, and it must **not** be counted as another
-> failed round — it is one deliberately open question. **No later reader should read the current wording as a
-> settled choice.** When Duho rules, exactly one clause changes.
->
-> The wording standing here is option **(b)**, derivation-only. Option **(c)** is drafted, unadopted, in
-> `R3C2_OPTION_C_ALTERNATIVE_DRAFT_20260904.md`.
-<!--/SEAT-REDACT-->
 
-**The admissible input set is defined by PROVENANCE, not by location.** "Printed" says only where a value appears;
-a value can be printed in the paper and still have been chosen or fitted — <!--SEAT-REDACT-->
-entry 59's `β = 1/929.25` is printed and
-chosen, and under a location-based rule its downstream numbers would have counted as reproduced, readmitting exactly
-what this census exists to detect.
-<!--/SEAT-REDACT--> So:
+**One pass, two tallies (option (c), the principal's ruling 2026-09-05).** The reproduction verdict answers *"does the paper's
+arithmetic work from what it states?"* The ledger answers *"what did it rest on?"* — a value can be printed in the
+paper and still have been chosen or fitted, <!--SEAT-REDACT-->as entry 59's `β = 1/929.25` is, <!--/SEAT-REDACT-->and under (c) both facts
+survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 
-> **ADMISSIBLE** = a ledger record whose `origin` is `DERIVED` (obtained from the paper's own equations) or
-> `STANDARD` (a measured constant on the closed list in C3). **INADMISSIBLE** = `origin` of `CHOSEN`, `FITTED`,
-> `IMPORTED` or `UNDECLARED`, **however prominently the value is printed.**
+> **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
+> its `origin`) or `STANDARD` (on C3's closed list). **PROVENANCE IS RECORDED, NOT FILTERED**: each record's `origin`
+> is cited under C3, `root_origins` is computed by script, and the claim's **`rests_on`** field is computed by the
+> same script — `DERIVED_ONLY` when every root origin is `DERIVED` or `STANDARD`; otherwise the most severe root
+> origin present, in the fixed order `USES_UNDECLARED` > `USES_IMPORTED` > `USES_FITTED` > `USES_CHOSEN` — with the
+> full root-origin set printed beside it. **No seat writes `rests_on`.** The interpretation step reads `rests_on`,
+> never the reproduction verdict (§7).
 
-- **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, from **admissible inputs only**.
-- **`REPRO_AFTER_CHOICE`** — it follows only once an **inadmissible** input is used, i.e. one whose origin is
-  `CHOSEN`, `FITTED`, `IMPORTED` or `UNDECLARED` — **including one printed in the paper.** Name the quantity and its
-  origin.
-- **`REPRO_FAILED`** — admissible inputs are sufficient but the arithmetic does not give the paper's number.
-  Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."**
+- **`REPRO_EXACT`** — the paper's number follows, within its own stated precision, **from the paper's own recipe
+  applied to the inputs it states** (`PRINTED` or `STANDARD`). The claim's `rests_on` is reported beside it.
+- *(`REPRO_AFTER_CHOICE` — RETIRED at V10 by the principal's ruling adopting option (c). What it recorded — that the number
+  rests on a chosen, fitted, imported or undeclared input — is now the `rests_on` field of a `REPRO_EXACT` or
+  `REPRO_FAILED` claim, computed by script. Two blind C0 seats had found the class unreachable under the derivation-only
+  wording (§10.3); it is retired, not repaired.)*
+- **`REPRO_FAILED`** — the inputs the paper states are sufficient for its recipe, but the arithmetic does not give the
+  paper's number. Report both numbers. **Wording: "unreproduced from the stated inputs," not "error."** `rests_on`
+  is reported beside it.
 - **`REPRO_BLOCKED`** — an input traces to a source **outside this lane that we cannot obtain**. Name it. *(Distinct
   from `REPRO_INPUT_ABSENT`, which is an input the paper simply never states.)*
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
@@ -109,16 +112,15 @@ what this census exists to detect.
   obtained. That claim previously fell through every class.)*
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper, so the attempt stops there.
   **Name the input.** <!--SEAT-REDACT-->*(This class exists because the rule "a seat may not supply a value for an ABSENT input" had no
-  outcome to file — a gate finding.)*<!--/SEAT-REDACT--> Distinct from `REPRO_AFTER_CHOICE`, where a value **was** supplied and the
-  number then followed.
+  outcome to file — a gate finding.)*<!--/SEAT-REDACT--> Distinct from a claim whose inputs the paper DOES state, chosen or not — that
+  claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED` with its `rests_on`.
 **Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
 order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`, then the
 **arithmetic group**. *(Precedence is stated because these conditions genuinely co-occur — an absent input whose
 source is also unobtainable satisfied two classes with no rule to choose between them.)*
 
-**The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number. Its
-membership is fixed by the clause held above; the group is referred to by name below so that §4 does not have to
-be reopened when that clause is settled.
+**The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
+`REPRO_EXACT` and `REPRO_FAILED`** (V10; the group had three members under the derivation-only wording).
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
@@ -130,7 +132,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
 ## 4. Study-level outcomes
 
 1. **`CENSUS_COMPLETE`** — **every included claim carries exactly one outcome from the arithmetic group of §3.**
-   Report the full tally with its denominator.
+   Report the full tally with its denominator, **and the `rests_on` tally beside it — two tallies from one pass.**
 2. **`CENSUS_PARTIAL`** — after two attempts, **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
    why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** *(Previously "some claims unresolved"
@@ -195,7 +197,9 @@ a printed number, so an included claim could never satisfy it — a gate finding
 
   **Provenance is transitive, and the transitivity is computed.** Every `DERIVED` record lists its `derived_from`
   ids; **a script computes `root_origins`, the origins at the leaves of that chain, and no seat writes that field.**
-  A chain cannot be made to look clean by classifying only its last step. *(What `root_origins` implies for a
+  A chain cannot be made to look clean by classifying only its last step. **The same script computes each claim's
+  `rests_on` from its `root_origins` by the fixed severity order of §3 and prints the root-origin set beside it; a
+  `rests_on` value written by a seat, or absent, fails this control.** *(What `root_origins` implies for a
   claim's outcome follows from the clause held in §3 and is not decided here; the field is factual either way.)* **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that every value used appears in the ledger, that no `ABSENT` record carries a value, that **each
   `PRINTED` value machine-matches the text at its cited source line**, and that **each `STANDARD` value is one of a
@@ -271,7 +275,7 @@ a printed number, so an included claim could never satisfy it — a gate finding
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*
 - **C6 — audit, with a frozen sampling frame.** A third pattern-blind seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without seeing
-  prior work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim whose filed
+  prior work and re-classifying every input's `origin` from the pinned sources, and recomputing `rests_on` by the same script**: **(i) every claim whose filed
   outcome asserts that the arithmetic reproduced the number** — the class in which a result unreproduced from the stated inputs is both consequential
   and invisible, so it gets no sampling discount — and **(ii) a sample of `max(1, ceil(0.20 × N))` of the remaining
   included claims**, `N` being the sealed denominator, drawn by
@@ -302,7 +306,10 @@ so §6 now names the class rather than restating the rule.)*
 
 ## 7. What happens after the tally — deliberately NOT specified here
 
-**This preregistration says nothing about what any tally would mean for any hypothesis, and no seat is told.** The
+**This preregistration says nothing about what any tally would mean for any hypothesis, and no seat is told.**
+**What the interpretation step READS is stated, because it is a fact about this design and not about any hypothesis:
+it reads the ledger's `rests_on` tally and the reproduction tally as two separate facts; the reproduction verdict
+alone is never the interpretive input (option (c)).** The
 gate's finding was that stating the mapping in the document the seats read hands them the stake of each outcome.
 The interpretation step lives in `R3C2_INTERPRETATION_PROTOCOL_20260904.md`, which **no seat may open** and which is
 itself fixed and committed before limb A begins, so it cannot be written to suit the tally.
@@ -366,6 +373,9 @@ Two defects were found in the previous table and are corrected here, rather than
 | V5.1 | `9ad3a313b2e8bd4b…` | *(none — not dispatched)* | — | **HELD** marker added to the core definition so a referee does not report a deliberately open question as a fresh finding |
 | V6 | `d1d6c5ad2e5d7985…` | *(none — not dispatched)* | — | see §10.1; committed `854362164` |
 | V7 | *this version* | *(none yet)* | — | seat packet moved out of scratch to `r3c2_seat_packet/` and pinned in `R3C2_SEAT_PACKET.sha256`; **C4's instruction rescued from its own redaction span**; C5/C5b made self-contained; builder given a REQUIRED-content assertion with a passing deletion probe |
+| V8 | `19a075c6…` | `R3C2_GATE_V7_codex…`, `R3C2_GATE_V7_kimi…` (on V7) | `PREREG_UNSOUND`, `PREREG_SOUND_WITH_REPAIRS` | see §10.2; both lists applied; `REPRO_AFTER_CHOICE` filed unreachable, HELD-CONTINGENT |
+| V9 | `2a1d2023c2ea2b14…` | C0 by two blind seats (`R3C2_C0_EXHIBITION_kimi_20260905.md`, `R3C2_C0_VERIFY_codex_20260905.md`) | `C0_REACHABILITY=FAIL`, one unreachable class, both seats agree | see §10.3; HELD |
+| V10 | *this version* | *(C0 by two blind seats, then two-seat gate — pending)* | — | **option (c) adopted on Duho's ruling; see §10.4** |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -498,4 +508,47 @@ rather than silently adopting my label — *"although the request refers to §1 
 document. **Three internal references are corrected here; the earlier reports said §1 and were wrong on the
 section number, not on the substance.**
 
-R3C2_PREREG_V9_TWO_SEAT_C0_AGREED_STILL_HELD
+## 10.4 V10 — the held clause RULED: option (c), one pass, two tallies (2026-09-05 14:12 KST)
+
+**Ruling.** Duho, typed into the lane pane 2026-09-05 14:08 KST: **"Q-R3C2 c"** — option (c) of the four put to him by
+Blanc on 2026-09-04 21:53 KST (a: mechanical reproduction; b: derivation only; c: one pass, two tallies; d: stop the
+census). The HELD marker that stood over §3 since V5.1 is removed; its text is preserved here verbatim, in the past
+tense, because it was true when written:
+
+<!--SEAT-REDACT-->
+> ⚠️ **HELD PENDING DUHO'S RULING.** The clause below is the census's core definition and is **deliberately not
+> being repaired.** Options **a/b/c/d** are stated in `_tmp_blanc_relay_r3c2_v5.txt` and **Blanc has the question
+> with him**. A referee should **not** report this as a fresh finding, and it must **not** be counted as another
+> failed round — it is one deliberately open question. **No later reader should read the current wording as a
+> settled choice.** When Duho rules, exactly one clause changes.
+>
+> The wording standing here is option **(b)**, derivation-only. Option **(c)** is drafted, unadopted, in
+> `R3C2_OPTION_C_ALTERNATIVE_DRAFT_20260904.md`.
+<!--/SEAT-REDACT-->
+
+**Exactly what changed, traced against every consumer:**
+| clause | V9 (option b, HELD) | V10 (option c) |
+|---|---|---|
+| §1 question | admissible inputs, nothing chosen | two questions from one pass: does the recipe work; what does it rest on |
+| §2 step 4 | admissible-only attempt | mechanical attempt with every `PRINTED`/`STANDARD` input the recipe names |
+| §3 definition | ADMISSIBLE/INADMISSIBLE by `origin` | inputs consumed by status; provenance recorded; `rests_on` computed by script |
+| `REPRO_AFTER_CHOICE` | a per-claim outcome (unreachable, §10.3) | **RETIRED** into `rests_on` — by the ruling, not by repair |
+| arithmetic group | three members, held | **two: `REPRO_EXACT`, `REPRO_FAILED`** |
+| §4 tally | reproduction tally | reproduction tally + `rests_on` tally |
+| C3 | `root_origins` by script | + `rests_on` by the same script; seat-written or absent fails |
+| C6 audit | re-classify `origin` | + recompute `rests_on` |
+| §7 | silent on what is read | states that the interpretation reads `rests_on`, never the verdict alone |
+| interpretation protocol | mapped on `REPRO_AFTER_CHOICE` and the abolished `NOT_ATTEMPTED` | revised to read `rests_on`; still no seat may open it; committed before limb A |
+| header | "Version 1" (stale since V2) | Version 10 |
+
+**Why (c), in the record's own words:** refusing every chosen or fitted input stopped the census being reproduction at
+all, since a paper can direct you to use its own chosen constant and following that instruction IS reproducing the
+paper. (c) restores reproduction as reproduction, keeps the provenance information by moving it from the verdict to a
+factual field, and puts more distance between the hypothesis and the evidence: the interpretation reads a ledger field,
+not an outcome whose definition the lane tuned. **No class is added; one is retired by the ruling that put its content
+into a field.** Every study-level class, control, seal and blinding provision carries over.
+
+**What V10 has NOT had:** its own C0 (two pattern-blind seats who must agree) and its own two-seat gate. It inherits
+nothing from V9's rounds. **R3C2 is NOT frozen and NOT run.**
+
+R3C2_PREREG_V10_OPTION_C_READY_FOR_C0
