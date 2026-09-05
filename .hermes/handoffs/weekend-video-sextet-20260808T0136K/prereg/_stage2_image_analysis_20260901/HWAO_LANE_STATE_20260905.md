@@ -1,5 +1,7 @@
 > **CURRENT STATUS (02:08 KST, 09-06): V15 SIGNABLE — both seats SIGNABLE-AS-PRECOMMITMENT, no fatal, no major. Digest fdd9eedd9938c2ba7df312cdc9b82a06612772ccc087e9365b33fd7d9d9a97d1. NOT SIGNED (no signature overnight, per Duho 00:10). Filed: `V15_GATE_OUTCOME_SIGNABLE_NOT_SIGNED_20260906.md`. Lane STOPPED for Duho: (1) sign or not (chat statement of the digest + UTC, then the two-step preimage check); (2) custodian account `nmcustody`; (3) server-side branch protection on feat/paper-workflow-v2; (4) the NIST 2048-bit-key / 512-byte-signature finding — keep the beacon as written (live pulses refused → drand fallback after 24 h) or amend. Beacon cap re-armed: no V16 without a ruling.**
 
+> Housekeeping 03:07 KST: the seal_gate.py / test_seal_gate.py / study_renderer/__init__.py versions pinned by the signed Tier-C V35 lineage, and the 62-line seal journal, were uncommitted in the shared worktree since 09-04; committed as 7c640211c (custody filing, no behaviour change; 34 seal-gate tests OK). Lane working tree now has no unfiled modifications.
+
 # HWAO lane state — 2026-09-06 01:2x KST (refreshed on Blanc's 01:23 note; assume everything not on disk is lost)
 
 ## CURRENT STATUS — one paragraph
