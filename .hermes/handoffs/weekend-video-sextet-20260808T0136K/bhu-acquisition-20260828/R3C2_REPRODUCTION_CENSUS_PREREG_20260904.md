@@ -94,7 +94,7 @@ Encountering one ends that claim's attempt.
 
 **One pass, two tallies.** The reproduction verdict answers *"does the paper's
 arithmetic work from what it states?"* The ledger answers *"what did it rest on?"* — a value can be printed in the
-paper and still have been chosen or fitted, <!--SEAT-REDACT-->as entry 59's `β = 1/929.25` is, <!--/SEAT-REDACT-->and under (c) both facts
+paper and still have been chosen or fitted, <!--SEAT-REDACT-->as entry 59's `β = 1/929.25` is, <!--/SEAT-REDACT-->and both facts
 survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 
 > **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
@@ -136,20 +136,20 @@ survive: the arithmetic reproduces AND the ledger says what it rested on. So:
   class's exclusive domain was empty. The named-source test separates them; the precedence below puts BLOCKED first.)*<!--/SEAT-REDACT-->
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
   this lane does not have. Print `SYMBOLIC_TIMEOUT` when the 120-second cap is exceeded, or `MACHINERY_UNAVAILABLE` when the lane lacks the
-  machinery, and the point reached. *(Added because the stall guard had no
-  per-claim outcome to file into.)*
+  machinery, and the point reached. <!--SEAT-REDACT-->*(Added because the stall guard had no
+  per-claim outcome to file into.)*<!--/SEAT-REDACT-->
 - **`REPRO_NO_DERIVATION_STATED`** — the paper prints the claim as its own result but **states no equation or
-  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. *(A claim can
+  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. <!--SEAT-REDACT-->*(A claim can
   satisfy §1 — a printed numeral asserted as the paper's own result — while the paper never says how it was
-  obtained. That claim previously fell through every class.)*
+  obtained. That claim previously fell through every class.)*<!--/SEAT-REDACT-->
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper — **neither printed nor traced to
   any named source** — so the attempt stops there. **Name the input.** <!--SEAT-REDACT-->*(This class exists because the rule "a seat may not supply a value for an ABSENT input" had no
   outcome to file — a gate finding.)*<!--/SEAT-REDACT--> Distinct from a claim whose inputs the paper DOES state, chosen or not — that
   claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED` with its `rests_on`.
 **Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
 order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `REPRO_NOT_EVALUABLE`, then the
-**arithmetic group**. *(Precedence is stated because these conditions genuinely co-occur — an absent input whose
-source is also unobtainable satisfied two classes with no rule to choose between them.)*
+**arithmetic group**. <!--SEAT-REDACT-->*(Precedence is stated because these conditions genuinely co-occur — an absent input whose
+source is also unobtainable satisfied two classes with no rule to choose between them.)*<!--/SEAT-REDACT-->
 
 **The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
 `REPRO_EXACT` and `REPRO_FAILED`**. **`rests_on` is computed and reported for every included claim that has at least one
@@ -171,8 +171,8 @@ a printed number, so an included claim could never satisfy it — a gate finding
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
    **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
-   why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** *(Previously "some claims unresolved"
-   was undefined, and a blocked claim satisfied both classes.)*
+   why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** <!--SEAT-REDACT-->*(Previously "some claims unresolved"
+   was undefined, and a blocked claim satisfied both classes.)*<!--/SEAT-REDACT-->
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, **or the receipt verification
    of the seal fails**. No tally is filed; report which.
 4. **`R3C2_NO_CLASS`** — a control among C0 through C5b fails **in every seat that attempted it** after two attempts;
@@ -399,9 +399,9 @@ Controls in an unreached limb are `NOT_RUN`, never passes.
 
 **Limb A (~1 seat-day):** enumerate every quantitative claim and produce the input ledger. **No arithmetic.** If the
 two enumerations disagree on any candidate's inclusion after two reconciliation attempts — **tolerance zero,
-measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§4). *(This sentence previously
+measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§4). <!--SEAT-REDACT-->*(This sentence previously
 survived here after being repaired in §2: the second live copy of a repaired rule is how the last defect got in,
-so §6 now names the class rather than restating the rule.)*
+so §6 now names the class rather than restating the rule.)*<!--/SEAT-REDACT-->
 **Limb B (2–3 seat-days):** the reproduction attempts, then the audit.
 
 ## 7. What happens after the tally — deliberately NOT specified here

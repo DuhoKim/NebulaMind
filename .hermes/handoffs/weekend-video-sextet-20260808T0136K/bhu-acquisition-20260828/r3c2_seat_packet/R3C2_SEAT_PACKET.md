@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `3a42205da5a8454eac9ab320c5fb038bcec76820720df9fd5536b2b83acc6acd` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `f997fce89cce1749648e9751cb24ff40c4e78f1cd7ced92067d3098c8638877d` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -59,7 +59,7 @@ Encountering one ends that claim's attempt.
 
 **One pass, two tallies.** The reproduction verdict answers *"does the paper's
 arithmetic work from what it states?"* The ledger answers *"what did it rest on?"* — a value can be printed in the
-paper and still have been chosen or fitted, and under (c) both facts
+paper and still have been chosen or fitted, and both facts
 survive: the arithmetic reproduces AND the ledger says what it rested on. So:
 
 > **THE INPUTS THE ARITHMETIC MAY CONSUME** = every ledger record with status `PRINTED` (given in the paper, whatever
@@ -86,19 +86,15 @@ survive: the arithmetic reproduces AND the ledger says what it rested on. So:
   source; a value cited from a pinned enumerable text is `PRINTED` there under §2.)* 
 - **`REPRO_NOT_EVALUABLE`** — the arithmetic could not be completed within the 120-second cap, or requires machinery
   this lane does not have. Print `SYMBOLIC_TIMEOUT` when the 120-second cap is exceeded, or `MACHINERY_UNAVAILABLE` when the lane lacks the
-  machinery, and the point reached. *(Added because the stall guard had no
-  per-claim outcome to file into.)*
+  machinery, and the point reached. 
 - **`REPRO_NO_DERIVATION_STATED`** — the paper prints the claim as its own result but **states no equation or
-  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. *(A claim can
-  satisfy §1 — a printed numeral asserted as the paper's own result — while the paper never says how it was
-  obtained. That claim previously fell through every class.)*
+  computational procedure that could produce it**, so there is nothing to attempt. Name the passage. 
 - **`REPRO_INPUT_ABSENT`** — an input the equation needs is `ABSENT` from the paper — **neither printed nor traced to
   any named source** — so the attempt stops there. **Name the input.**  Distinct from a claim whose inputs the paper DOES state, chosen or not — that
   claim is attempted and files `REPRO_EXACT` or `REPRO_FAILED` with its `rests_on`.
 **Exactly one outcome is filed per claim. Where more than one terminal condition holds, file the first in this
 order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `REPRO_NOT_EVALUABLE`, then the
-**arithmetic group**. *(Precedence is stated because these conditions genuinely co-occur — an absent input whose
-source is also unobtainable satisfied two classes with no rule to choose between them.)*
+**arithmetic group**. 
 
 **The arithmetic group** is the set of outcomes that state whether the arithmetic reproduced the number: **exactly
 `REPRO_EXACT` and `REPRO_FAILED`**. **`rests_on` is computed and reported for every included claim that has at least one
@@ -119,8 +115,7 @@ is hidden by being excluded.
 2. **`CENSUS_PARTIAL`** — after the §2 attempt (one repeat permitted, meaningful only for `REPRO_NOT_EVALUABLE`),
    **at least one included claim carries a non-arithmetic outcome**
    (`REPRO_NO_DERIVATION_STATED`, `REPRO_INPUT_ABSENT`, `REPRO_BLOCKED`, `REPRO_NOT_EVALUABLE`). Report each and
-   why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** *(Previously "some claims unresolved"
-   was undefined, and a blocked claim satisfied both classes.)*
+   why. **INCONCLUSIVE, and it takes precedence over `CENSUS_COMPLETE`.** 
 3. **`CENSUS_AUDIT_FAILED`** — the audit of §6 cannot reproduce a sampled per-claim outcome or ledger, **or the receipt verification
    of the seal fails**. No tally is filed; report which.
 4. **`R3C2_NO_CLASS`** — a control among C0 through C5b fails **in every seat that attempted it** after two attempts;
@@ -274,9 +269,7 @@ Controls in an unreached limb are `NOT_RUN`, never passes.
 
 **Limb A (~1 seat-day):** enumerate every quantitative claim and produce the input ledger. **No arithmetic.** If the
 two enumerations disagree on any candidate's inclusion after two reconciliation attempts — **tolerance zero,
-measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§4). *(This sentence previously
-survived here after being repaired in §2: the second live copy of a repaired rule is how the last defect got in,
-so §6 now names the class rather than restating the rule.)*
+measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§4). 
 **Limb B (2–3 seat-days):** the reproduction attempts, then the audit.
 
 ## 9. Inherited discipline
