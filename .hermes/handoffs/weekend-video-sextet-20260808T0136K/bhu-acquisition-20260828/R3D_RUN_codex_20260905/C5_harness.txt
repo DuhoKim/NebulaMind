@@ -1,0 +1,21 @@
+C5 HARNESS — LIVE EXECUTION
+
+COMMAND 1 (exact): /usr/bin/python3 --version
+stdout: Python 3.9.6
+exit_code: 0
+frozen_expected: Python 3.9.6
+comparison: MATCH
+
+COMMAND 2 (exact): /usr/bin/python3 -c "import sympy; print(sympy.__version__)"
+stdout: 1.14.0
+exit_code: 0
+frozen_expected: 1.14.0
+comparison: MATCH
+
+COMMAND 3 (exact): shasum -a 256 /usr/bin/python3
+stdout: b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3
+exit_code: 0
+frozen_expected: b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3
+comparison: MATCH
+
+C5_HARNESS_PINNED=PASS

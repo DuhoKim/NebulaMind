@@ -1,0 +1,24 @@
+C5b COMPLETE PATH LIST
+
+| opened path | scope | exact §9 clause |
+|---|---|---|
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_V30_DESIGN_OF_RECORD_a99aad15.md | IN_SCOPE | “this preregistration” |
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt | IN_SCOPE | “this lane's own reading tree (`../bhu-reading-20260823/sources/`)” |
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_2019_universe_clean.txt | IN_SCOPE | same reading-tree clause |
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt | IN_SCOPE | same reading-tree clause |
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/2007.06664_clean.txt | IN_SCOPE | same reading-tree clause |
+| /usr/bin/python3 | IN_SCOPE | “the pinned interpreter `/usr/bin/python3`, executed and hashed under C5” |
+| Python standard-library, installed SymPy/mpmath, dependent shared-library paths loaded by the mandated C5 command | IN_SCOPE | explicit interpreter-load clause and §9 GENERAL RULE |
+| /usr/bin/shasum and its Perl interpreter/libraries | IN_SCOPE | explicit shasum/Perl-load clause and §9 GENERAL RULE |
+| /bin/zsh and its dependent libraries used to invoke the protocol-mandated shell command lines | IN_SCOPE | §9 GENERAL RULE: necessary consequence of executing mandated commands |
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_codex_20260905/* | IN_SCOPE | “the seat's own working directory and artefacts” |
+| /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_REPORT_codex_20260905.md | IN_SCOPE | “the seat's own working directory and artefacts” |
+| /Users/duhokim/.local/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/codex-path/rg | OUT_OF_SCOPE | “any path not named above”; this utility was chosen for inspection and was not a necessary consequence of a command the protocol mandates |
+| /usr/bin/head | OUT_OF_SCOPE | “any path not named above”; this utility was chosen for output truncation and was not a necessary consequence of a command the protocol mandates |
+
+No other lane, seat run, forbidden prefix file, author restatement, pattern record, or report was opened.
+
+FIRST ATTEMPT: C5B_PATH_LIST=FAIL because OUT_OF_SCOPE rows are present.
+SECOND ATTEMPT (required control re-run): C5B_PATH_LIST=FAIL; reprinting cannot erase paths already opened, so the same two OUT_OF_SCOPE rows persist.
+
+C5B_PATH_LIST=FAIL
