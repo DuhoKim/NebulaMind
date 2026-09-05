@@ -2493,3 +2493,19 @@ after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
 Still yours, unchanged: whether R3C2 RUNS at all.
 
 - 2026-09-05 20:33 KST — **addendum to the 19:48 class question:** kimi's V18 gate adds an optional sub-option — a census whose denominator is zero (no included claim anywhere) would file `CENSUS_COMPLETE` vacuously; the clause "a denominator of zero files `CENSUS_PARTIAL` with the empty enumeration named" fixes that but moves a degenerate case between two classes, so it is yours. Say **"and zero → PARTIAL"** with your (a)/(b)/(c) if you want it. Both V18 gates: LEAK=NONE on both seats for the first time; every substantive defect left is one of these two rulings. V19 (wording repairs only) is in C0 now.
+
+## YOUR CALL 2026-09-05 22:08 KST — R3C2 stopped at V20 by my own cap; two rulings unlock the last version
+
+**Plain words.** Four gate rounds since your 18:52 ruling. The blind holds: both seats, every round, say the packet shows no
+consequence, and kimi now says it cannot state what the recorded origin is for at all. Every real objection left is one of the
+two things only you can decide; the rest are typos-sized. I said in V20 that another round of small findings would stop me, and
+it did, so I stopped. Diagnosis: `R3C2_V20_STOP_DIAGNOSIS_20260905.md`.
+
+**What I need from you, in one message if you like:**
+1. **Split class:** "a" (add `CENSUS_OUTCOME_DISPUTED` — recommended), "b" (widen DENOMINATOR_DISPUTED), or "c" (file as
+   PARTIAL); add "and zero → PARTIAL" if you want the zero-denominator clause.
+2. **Names:** "rename", "rename both", or "keep" (`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`; `DERIVED_ONLY`).
+3. **Dispatcher:** "pin it" or "disclaim it" (I recommend disclaim: it is infrastructure, not a study command).
+
+Then one final V21 with those and the five small items, one C0, one gate, and the document is freezable. **Whether it runs stays
+yours.** If you would rather I apply the small items now without waiting, say "V21 now" and I will, leaving your three open.
