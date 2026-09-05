@@ -33,7 +33,7 @@ REDACT_OPEN, REDACT_CLOSE = "<!--SEAT-REDACT-->", "<!--/SEAT-REDACT-->"
 # class it may file must be readable. Each entry is checked for literal presence in the built packet.
 REQUIRED = [
     "C0_REACHABILITY", "C1_DENOMINATOR_PRINTED", "C2_INPUT_LEDGER", "C3_NO_SUBSTITUTION",
-    "C4 — what the seat must do", "C4_PATTERN_BLIND",
+    "C4 — what the seat must do", "C4_SEAT_ISOLATION",
     "C5_HARNESS_PINNED", "C5B_NO_CROSS_LANE", "C6_AUDIT_SAMPLE",
     "REPRO_EXACT", "REPRO_FAILED", "REPRO_BLOCKED", "REPRO_NOT_EVALUABLE",
     "REPRO_INPUT_ABSENT", "REPRO_NO_DERIVATION_STATED",
@@ -49,7 +49,10 @@ FORBIDDEN = [
     "Tori", "codex", "kimi", "Kimi", "agy", "R3D", "R3A", "R3B",
     "expectation", "expects", "refute", "consequential", "invisible", "favourable", "unfavourable", "stake", "prior", "tempting", "warn",
     "pattern-blind", "removed **deliberately",
+    # V12 (kimi V11 R2/R4): the bare word, the ruling residue, the version residue, the valence phrase
+    "pattern", "ruling", "principal", "V10", "V11", "look clean",
 ]
+BRIEF = pathlib.Path("r3c2_seat_packet/SEAT_BRIEF.md")   # V12: the brief rides beside the packet and is asserted too
 
 def split_sections(text):
     """Return [(heading_or_None, body)] preserving order; heading is like '0.' for '## 0. ...'."""
@@ -124,6 +127,13 @@ def main():
         print("Packet NOT written.")
         return 1
 
+    if BRIEF.exists():
+        btext = BRIEF.read_text(encoding="utf-8")
+        bad = [f for f in FORBIDDEN if f.lower() in btext.lower()]
+        if bad:
+            print("FAIL: C4_PACKET_REDACTED=FAIL — forbidden content in SEAT_BRIEF.md:", bad); return 1
+    else:
+        print("FAIL: C4_PACKET_REDACTED=FAIL — SEAT_BRIEF.md missing beside the packet"); return 1
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(out, encoding="utf-8")
     print(f"C4_PACKET_REDACTED=PASS")

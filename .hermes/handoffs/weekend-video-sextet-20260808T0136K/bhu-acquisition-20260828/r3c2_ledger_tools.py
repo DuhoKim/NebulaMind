@@ -15,9 +15,11 @@
       source line; every STANDARD value is on the closed list; derived_from ids exist and the graph is acyclic.
       Exit 0 = PASS, 1 = FAIL (every failure printed), 2 = usage/schema error.
 
-rests_on severity order is fixed by §3 of the preregistration:
-  DERIVED_ONLY  if every root origin is DERIVED or STANDARD;
+rests_on is computed from root origins by a fixed rule stated in the preregistration's master text:
+  DERIVED_ONLY  if every root origin is DERIVED, STANDARD or MEASURED;
   else the most severe root origin present: USES_UNDECLARED > USES_IMPORTED > USES_FITTED > USES_CHOSEN.
+origin values: DERIVED | STANDARD | MEASURED | CHOSEN | FITTED | IMPORTED | UNDECLARED. A disputed record carries
+origin_alt and the claim's rests_on is printed as a pair marked DISPUTED.
 """
 import json, sys, pathlib
 
@@ -120,13 +122,16 @@ def cmd_census(candidates,exclusions):
     C=C["candidates"] if isinstance(C,dict) else C; X=X["exclusions"] if isinstance(X,dict) else X
     fails=[]; KINDS={"EQUATION_NUMBER","REFERENCE_NUMBER","PAGE_OR_LINE_NUMBER","DATE","ATTRIBUTED_NOT_DERIVED"}
     cids={}
-    for c in C:
-        for f in ["candidate_id","source_file","source_line","numeral","included"]:
+    for n,c in enumerate(C,1):
+        if not isinstance(c,dict) or "candidate_id" not in c:
+            fails.append(f"candidate #{n}: missing candidate_id"); continue
+        for f in ["source_file","source_line","numeral","included"]:
             if f not in c: fails.append(f"candidate {c.get('candidate_id')}: missing {f}")
         if c.get("candidate_id") in cids: fails.append(f"candidate {c['candidate_id']}: duplicate")
         cids[c.get("candidate_id")]=c
     xids=set()
-    for x in X:
+    for n,x in enumerate(X,1):
+        if not isinstance(x,dict) or "candidate_id" not in x: fails.append(f"exclusion #{n}: missing candidate_id"); continue
         if x.get("candidate_id") not in cids: fails.append(f"exclusion {x.get('candidate_id')}: not a candidate")
         if x.get("kind") not in KINDS: fails.append(f"exclusion {x.get('candidate_id')}: kind {x.get('kind')} not predeclared")
         if x.get("candidate_id") in xids: fails.append(f"exclusion {x.get('candidate_id')}: duplicate")
