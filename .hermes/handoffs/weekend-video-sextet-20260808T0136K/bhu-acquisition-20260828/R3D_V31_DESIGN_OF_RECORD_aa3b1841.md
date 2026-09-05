@@ -1,9 +1,8 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 31 — FINAL, THE DESIGN OF RECORD (amendment to V30: class-token rename on Duho's ruling
-"rename the tokens", relay 12:34 KST; gated bytes `aa3b184192503205229ea2a7428f7145741757636fe6ccd7fd0d834ebb108e62`, C0 PASS,
-kimi SOUND, codex SOUND_WITH_REPAIRS cosmetic-only, declared 2026-09-05 13:42 KST). THE R3D RUN OF 2026-09-05 EXECUTED UNDER V30's BYTES
-AND FILED UNDER V30's TOKEN NAMES (§8x mapping): `DYM_NO_POSITIVE_FLOOR` ≡ `DYM_POSITIVE_FLOOR_UNREPRODUCED`.**
+**Tori, 2026-09-05. Version 31 — AMENDMENT TO V30 (class-token rename, Duho's ruling "rename the tokens", relay
+12:34 KST). V31 is NOT yet gated: it requires its own C0 and two-seat gate. Until it clears, V30 remains the design of
+record, and THE RUN IN PROGRESS EXECUTES UNDER V30's BYTES AND FILES UNDER V30's TOKEN NAMES (§8x mapping).**
 **Version 30 — FINAL, THE DESIGN OF RECORD, AUTHORISED TO RUN.** Gated bytes
 `a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b` (the file `R3D_V30_DESIGN_OF_RECORD_a99aad15.md`,
 which the run executes against and which is not edited). **C0 `C0_REACHABILITY=PASS` on those bytes; both engines
@@ -1697,16 +1696,4 @@ C0 brief and V31 gate brief carry the new names; the V30 run briefs are delibera
 kimi run seat must execute the same protocol as codex. `WHAT_IS_LEFT`, `OPEN_QUESTIONS_FOR_DUHO` and the STATUS sidecar
 record the ruling.
 
-**V31 GATED AND FINAL (2026-09-05 13:42 KST) — the design of record, as an amendment to V30.** C0 on V31's bytes `aa3b1841…`:
-`C0_REACHABILITY=PASS` (21 reachable rows under the new names, no blocking clause). kimi: `PREREG_SOUND`, zero repairs,
-the number 4, every section sound. codex: `PREREG_SOUND_WITH_REPAIRS` with ONE finding, §5a: the sentence
-"Reachable: 2. `DYM_FLOOR_COMPLETION_DEPENDENT` IS A DEAD CLASS", left from V13's retirement, still names a class V31
-does not declare and can be misread against the "4 terminal classes" count two paragraphs above. **Classified COSMETIC
-under the stopping criterion** — it changes no class a run files, no control's executability or passability, no
-reachability, no conclusion and no tested value — **answered here and knowingly not repaired; no new version.** The
-sentence is history left in an operative subsection; any future amendment sweeps it. **The R3D run of 2026-09-05 executed
-under V30 (`a99aad15…`) and filed under V30's names; V31 changes nothing about that filing.** V31's gated bytes are
-preserved as `R3D_V31_DESIGN_OF_RECORD_aa3b1841.md`; this file's own hash, carrying this note, is in
-`R3D_DESIGN_OF_RECORD.sha256`.
-
-R3D_PREREG_V31_FINAL_DESIGN_OF_RECORD
+R3D_PREREG_V31_READY_FOR_REEXHIBITION

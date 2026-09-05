@@ -14,3 +14,5 @@ NOT RUN: C0 must return PASS … before any freeze", which was true when written
 **2026-09-05 12:38 KST — the open ruling is RULED: Duho "rename the tokens" (relay 12:34 KST).** Applied as V31, an amendment on top of V30
 (sha256 aa3b184192503205229ea2a7428f7145741757636fe6ccd7fd0d834ebb108e62, NOT yet gated). This gated copy is still not edited; the run executes and files under V30's names:
 `DYM_NO_SIZE_MASS_RELATION` ≡ `DYM_SIZE_MASS_RELATION_UNREPRODUCED`, `DYM_NO_POSITIVE_FLOOR` ≡ `DYM_POSITIVE_FLOOR_UNREPRODUCED`.
+
+**2026-09-05 13:42 KST — V31 is FINAL** (C0 PASS; kimi SOUND; codex SOUND_WITH_REPAIRS cosmetic-only). The design of record is now V31 (`R3D_V31_DESIGN_OF_RECORD_aa3b1841.md`) for any FUTURE run; this V30 copy remains the protocol the 2026-09-05 run executed against, and that run's filing (`R3D_RUN_FILING_20260905.md`, class `DYM_NO_POSITIVE_FLOOR` ≡ `DYM_POSITIVE_FLOOR_UNREPRODUCED`) stands under V30's names.
