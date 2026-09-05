@@ -6,6 +6,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from astropy.io import fits
+
 try:
     from seal_gate import seal_gate
     from seal_gate.seal_gate import (EXPECTED_BLOB_ID, ZERO_DIGEST, canonical_bytes,
@@ -45,6 +47,13 @@ class SealGateTests(unittest.TestCase):
             self.payloads[checksum_url(brick)] = "".join(lines).encode()
         self.rows = self.rows_by_plane["image-r"]
         self._write_journals()
+        self.coverage = self.root / "survey-bricks-dr10-south.fits.gz"
+        self.coverage_rows = {
+            brick: {"nexp_r": (0 if index == 0 else 1),
+                    "nexphist_r": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            for index, brick in enumerate(self.names)
+        }
+        self._write_coverage()
         self.live = self.root / "fetch_bricks.py"
         self.pin = self.root / "fetch_bricks_pinned.py"
         self.live.write_bytes(b"same-script\n")
@@ -61,6 +70,27 @@ class SealGateTests(unittest.TestCase):
 
     def _write_journal(self):
         self.rows_by_plane["image-r"] = self.rows
+        self._write_journals()
+
+    def _write_coverage(self):
+        rows = [self.coverage_rows[brick] for brick in self.names]
+        table = fits.BinTableHDU.from_columns([
+            fits.Column(name="brickname", format="8A", array=self.names),
+            fits.Column(name="nexp_r", format="I", array=[row["nexp_r"] for row in rows]),
+            fits.Column(name="nexphist_r", format="11J",
+                        array=[row["nexphist_r"] for row in rows]),
+        ])
+        table.writeto(self.coverage, overwrite=True)
+
+    def _mark_release_absent(self, brick):
+        self.coverage_rows[brick]["nexphist_r"] = [123] + [0] * 10
+        self._write_coverage()
+        for plane in ("image-r", "nexp-r"):
+            (self.bricks / f"legacysurvey-{brick}-{plane}.fits.fz").unlink()
+            self.rows_by_plane[plane] = [row for row in self.rows_by_plane[plane]
+                                         if row["brick"] != brick]
+            self.rows_by_plane[plane].append(self.failed_row(brick))
+        self.rows = self.rows_by_plane["image-r"]
         self._write_journals()
 
     def failed_row(self, brick, verdict="FETCH-FAILED"):
@@ -87,7 +117,11 @@ class SealGateTests(unittest.TestCase):
         args = dict(manifest=self.root / "manifest.json", journals=journals,
                     bricks_dir=self.bricks, live_script=self.live, pinned_copy=self.pin,
                     seal_journal=self.seal_journal,
-                    expected_manifest_count=5, fetch=True, fetcher=self.fetcher,
+                    coverage_table=self.coverage,
+                    expected_coverage_table_sha256=seal_gate.sha256_file(self.coverage),
+                    expected_manifest_count=5, expected_plane_file_count=15,
+                    expected_release_absent_r_brick_count=0,
+                    fetch=True, fetcher=self.fetcher,
                     process_checker=lambda: False, git_runner=self.git,
                     timestamp="2026-09-02T00:00:00Z")
         args.update(changes)
@@ -111,6 +145,74 @@ class SealGateTests(unittest.TestCase):
         self.assertEqual(5, receipt["counts"]["files_checked"])
         self.assertEqual({"image-r": 5, "maskbits": 5, "nexp-r": 5},
                          receipt["counts"]["receipt_count_by_plane"])
+        self.assertEqual(0, receipt["counts"]["release_absent_r_brick_count"])
+
+    def test_release_absent_r_plane_is_conditionally_not_required(self):
+        brick = self.names[1]
+        self._mark_release_absent(brick)
+
+        receipt = self.run_fixture(expected_plane_file_count=13,
+                                   expected_release_absent_r_brick_count=1)
+
+        self.assertEqual("PASS", receipt["status"])
+        self.assertTrue(receipt["data_integrity_pass"])
+        self.assertEqual(1, receipt["counts"]["release_absent_r_brick_count"])
+        self.assertEqual({"image-r": 4, "maskbits": 5, "nexp-r": 4},
+                         receipt["counts"]["required_brick_count_by_plane"])
+        self.assertEqual({"image-r": 1, "maskbits": 0, "nexp-r": 1},
+                         receipt["counts"]["coverage_exempt_non_ok_receipt_count_by_plane"])
+        self.assertEqual(13, receipt["counts"]["plane_file_count"])
+        self.assertEqual(str(self.coverage), receipt["paths"]["coverage_table"])
+
+    def test_release_absent_r_brick_still_requires_maskbits(self):
+        brick = self.names[1]
+        self._mark_release_absent(brick)
+        (self.bricks / f"legacysurvey-{brick}-maskbits.fits.fz").unlink()
+        self.assert_refusal(
+            self.run_fixture(expected_plane_file_count=13,
+                             expected_release_absent_r_brick_count=1),
+            "missing_brick_file:maskbits",
+        )
+
+    def test_release_absent_count_mismatch_refuses(self):
+        self._mark_release_absent(self.names[1])
+        self.assert_refusal(
+            self.run_fixture(expected_plane_file_count=13),
+            "release_absent_r_brick_count_mismatch",
+        )
+
+    def test_conditional_plane_file_count_mismatch_refuses(self):
+        self._mark_release_absent(self.names[1])
+        self.assert_refusal(
+            self.run_fixture(expected_release_absent_r_brick_count=1),
+            "plane_file_count_mismatch",
+        )
+
+    def test_coverage_table_digest_mismatch_refuses(self):
+        self.assert_refusal(
+            self.run_fixture(expected_coverage_table_sha256="f" * 64),
+            "coverage_table_digest_mismatch",
+        )
+
+    def test_coverage_table_missing_manifest_brick_refuses(self):
+        self.names.pop()
+        self._write_coverage()
+        self.assert_refusal(
+            self.run_fixture(),
+            "coverage_table_missing_manifest_brick",
+        )
+
+    def test_non_integral_coverage_histogram_refuses(self):
+        self.coverage_rows[self.names[0]]["nexphist_r"][1] = 1.5
+        rows = [self.coverage_rows[brick] for brick in self.names]
+        table = fits.BinTableHDU.from_columns([
+            fits.Column(name="brickname", format="8A", array=self.names),
+            fits.Column(name="nexp_r", format="I", array=[row["nexp_r"] for row in rows]),
+            fits.Column(name="nexphist_r", format="11E",
+                        array=[row["nexphist_r"] for row in rows]),
+        ])
+        table.writeto(self.coverage, overwrite=True)
+        self.assert_refusal(self.run_fixture(), "malformed_coverage_table")
 
     def test_duplicate_ok_receipts_pass(self):
         self.rows.append(dict(self.rows[2]))

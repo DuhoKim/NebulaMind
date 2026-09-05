@@ -27,6 +27,8 @@ FETCH_FAILED_KEYS = {"brick", "error", "url", "utc", "verdict"}
 SEVEN_KEY_VERDICTS = {"OK", "OK-NO-PUBLISHED-SHA", "SHA-MISMATCH-QUARANTINED"}
 ACQUISITION_VERDICTS = SEVEN_KEY_VERDICTS | {"FETCH-FAILED"}
 BASE = "https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/coadd"
+EXPECTED_COVERAGE_TABLE_SHA256 = "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+EXPECTED_ASTROPY_VERSION = "6.0.1"
 
 
 class GateFailure(Exception):
@@ -65,6 +67,7 @@ def network_fetcher(url: str, timeout: float) -> bytes:
 
 
 PLANES = ("image-r", "maskbits", "nexp-r")
+R_COVERAGE_PLANES = frozenset(("image-r", "nexp-r"))
 
 
 def _manifest_entries(path: Path) -> list[tuple[str, dict[str, str]]]:
@@ -84,6 +87,43 @@ def _manifest_entries(path: Path) -> list[tuple[str, dict[str, str]]]:
     if len(set(bricks)) != len(bricks):
         raise GateFailure("duplicate_manifest_brick")
     return result
+
+
+def _release_absent_r_bricks(path: Path, expected_sha256: str,
+                             expected_astropy_version: str) -> tuple[set[str], set[str], str]:
+    actual_sha256 = sha256_file(path)
+    if actual_sha256 != expected_sha256:
+        raise GateFailure("coverage_table_digest_mismatch")
+    try:
+        import astropy
+        from astropy.io import fits
+    except ImportError as exc:
+        raise GateFailure("coverage_table_reader_unavailable") from exc
+    if astropy.__version__ != expected_astropy_version:
+        raise GateFailure("coverage_table_reader_version_mismatch")
+    try:
+        with fits.open(path, memmap=False) as hdus:
+            if len(hdus) <= 1 or hdus[1].data is None:
+                raise GateFailure("malformed_coverage_table")
+            names = hdus[1].columns.names or []
+            if "brickname" not in names or "nexphist_r" not in names:
+                raise GateFailure("malformed_coverage_table")
+            by_brick: dict[str, tuple[int, ...]] = {}
+            for row in hdus[1].data:
+                brick = str(row["brickname"]).strip()
+                raw_histogram = tuple(row["nexphist_r"])
+                histogram = tuple(int(value) for value in raw_histogram)
+                if (not brick or brick in by_brick or len(histogram) != 11
+                        or any(raw != value for raw, value in zip(raw_histogram, histogram))
+                        or any(value < 0 for value in histogram)):
+                    raise GateFailure("malformed_coverage_table")
+                by_brick[brick] = histogram
+    except GateFailure:
+        raise
+    except Exception as exc:
+        raise GateFailure("malformed_coverage_table") from exc
+    absent = {brick for brick, histogram in by_brick.items() if sum(histogram[1:]) == 0}
+    return absent, set(by_brick), actual_sha256
 
 
 def _journal(path: Path) -> tuple[list[dict], bytes]:
@@ -219,7 +259,11 @@ def _published_line(payload: bytes, wanted_filename: str) -> tuple[bytes, str]:
 
 
 def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, live_script: Path,
-             pinned_copy: Path, seal_journal: Path, expected_manifest_count: int = 17947,
+             pinned_copy: Path, seal_journal: Path, coverage_table: Path,
+             expected_coverage_table_sha256: str = EXPECTED_COVERAGE_TABLE_SHA256,
+             expected_astropy_version: str = EXPECTED_ASTROPY_VERSION,
+             expected_manifest_count: int = 20385, expected_plane_file_count: int = 61149,
+             expected_release_absent_r_brick_count: int = 3,
              known_extras_journal: Path | None = None,
              expected_blob_id: str = EXPECTED_BLOB_ID,
              fetch: bool = False, fetcher: Callable[[str, float], bytes] | None = None,
@@ -231,12 +275,20 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
     counts = {"manifest_count": 0, "plane_file_count": 0, "files_checked": 0, "mismatches": 0,
               "receipt_count": 0, "receipt_count_by_plane": {}, "published_checksum_disagreements": 0,
               "published_checksum_refetch_complete": False, "known_extras_tolerated": 0,
-              "known_extras_journal_line_count": 0}
+              "known_extras_journal_line_count": 0, "release_absent_r_brick_count": 0,
+              "required_brick_count_by_plane": {},
+              "coverage_exempt_non_ok_receipt_count_by_plane": {}}
     observed = {}
     expected = {"brick_file_sha256": "fresh NERSC published SHA-256",
                 "receipt_sha256_values": "fresh NERSC published SHA-256",
-                "git_blob_live_pin_sha256": "identical"}
+                "git_blob_live_pin_sha256": "identical",
+                "coverage_table_sha256": expected_coverage_table_sha256,
+                "coverage_field": "HDU 1 columns brickname/nexphist_r",
+                "release_absent_r_test": "sum(int(x) for x in nexphist_r[1:]) == 0",
+                "coverage_table_reader": f"astropy=={expected_astropy_version}"}
     expected_counts = {"manifest_count": expected_manifest_count, "mismatches": 0,
+                       "plane_file_count": expected_plane_file_count,
+                       "release_absent_r_brick_count": expected_release_absent_r_brick_count,
                        "published_checksum_disagreements": 0}
     status, verdict, failure = "PASS", "PASS", None
     acquisition_completion = False
@@ -251,6 +303,30 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
         if set(journals) != set(PLANES):
             raise GateFailure("three_plane_journals_required")
         manifest_bricks = {brick for brick, _ in entries}
+        release_absent_all, coverage_bricks, coverage_sha256 = _release_absent_r_bricks(
+            coverage_table, expected_coverage_table_sha256, expected_astropy_version
+        )
+        observed["coverage_table_sha256"] = coverage_sha256
+        if manifest_bricks - coverage_bricks:
+            raise GateFailure("coverage_table_missing_manifest_brick")
+        release_absent = manifest_bricks & release_absent_all
+        counts["release_absent_r_brick_count"] = len(release_absent)
+        if len(release_absent) != expected_release_absent_r_brick_count:
+            raise GateFailure("release_absent_r_brick_count_mismatch")
+        observed["release_absent_r_bricks_sha256"] = sha256_bytes(
+            "".join(f"{brick}\n" for brick in sorted(release_absent)).encode()
+        )
+        required_bricks_by_plane = {
+            plane: (manifest_bricks - release_absent if plane in R_COVERAGE_PLANES else manifest_bricks)
+            for plane in PLANES
+        }
+        counts["required_brick_count_by_plane"] = {
+            plane: len(required_bricks_by_plane[plane]) for plane in PLANES
+        }
+        required_plane_file_count = sum(counts["required_brick_count_by_plane"].values())
+        counts["plane_file_count"] = required_plane_file_count
+        if required_plane_file_count != expected_plane_file_count:
+            raise GateFailure("plane_file_count_mismatch")
         final_ok: dict[str, dict[str, dict]] = {}
         for plane in PLANES:
             records, journal_raw = _journal(journals[plane])
@@ -260,15 +336,21 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
             by_brick: dict[str, list[tuple[int, dict]]] = {}
             for index, record in enumerate(records):
                 by_brick.setdefault(record.get("brick"), []).append((index, record))
-            for rows in by_brick.values():
+            exempt_non_ok = 0
+            for brick, rows in by_brick.items():
+                if brick not in manifest_bricks:
+                    raise GateFailure(f"acquisition_journal_extra_brick:{plane}")
                 ok_indices = [i for i, row in rows if row["verdict"] == "OK"]
-                if any(row["verdict"] != "OK" and not any(j > i for j in ok_indices) for i, row in rows):
+                if brick not in required_bricks_by_plane[plane]:
+                    exempt_non_ok += sum(row["verdict"] != "OK" for _, row in rows)
+                elif any(row["verdict"] != "OK" and not any(j > i for j in ok_indices) for i, row in rows):
                     raise GateFailure(f"non_ok_without_later_ok:{plane}")
+            counts["coverage_exempt_non_ok_receipt_count_by_plane"][plane] = exempt_non_ok
             ok_bricks = {brick for brick, rows in by_brick.items() if any(r["verdict"] == "OK" for _, r in rows)}
-            if ok_bricks != manifest_bricks:
+            if ok_bricks != required_bricks_by_plane[plane]:
                 raise GateFailure(f"acquisition_set_incomplete:{plane}")
             final_ok[plane] = {brick: next(row for _, row in reversed(by_brick[brick]) if row["verdict"] == "OK")
-                               for brick in manifest_bricks}
+                               for brick in required_bricks_by_plane[plane]}
         if process_checker():
             raise GateFailure("acquisition_process_running")
         acquisition_completion = True
@@ -278,7 +360,12 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
         if not fetch:
             raise GateFailure("published_checksum_refetch_not_requested")
         fetcher = fetcher or network_fetcher
-        wanted_files = {filename for _, filenames in entries for filename in filenames.values()}
+        wanted_files = {
+            filenames[plane]
+            for brick, filenames in entries
+            for plane in PLANES
+            if brick in required_bricks_by_plane[plane]
+        }
         actual_files = {p.name for p in bricks_dir.iterdir() if p.is_file()}
         known_extras = set()
         if known_extras_journal is not None:
@@ -302,6 +389,8 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
                     f"published_checksum_fetch_failed: {type(exc).__name__}: {exc}"
                 ) from exc
             for plane in PLANES:
+                if brick not in required_bricks_by_plane[plane]:
+                    continue
                 filename = filenames[plane]
                 line, published = _published_line(payload, filename)
                 bound_lines.append(line)
@@ -320,7 +409,7 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
                 time.sleep(delay)
         counts["files_checked"] = len(entries)
         observed["published_checksum_lines_sha256"] = sha256_bytes(b"".join(bound_lines))
-        counts["plane_file_count"] = len(entries) * len(PLANES)
+        counts["plane_file_count"] = required_plane_file_count
         counts["published_checksum_refetch_complete"] = True
     except Exception as exc:
         status, verdict = "REFUSE", "DATA-INTEGRITY-FAIL"
@@ -329,7 +418,8 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
     data_integrity_pass = bool(
         status == "PASS" and counts["manifest_count"] == expected_manifest_count
         and counts["files_checked"] == counts["manifest_count"]
-        and counts["plane_file_count"] == expected_manifest_count * len(PLANES)
+        and counts["plane_file_count"] == expected_plane_file_count
+        and counts["release_absent_r_brick_count"] == expected_release_absent_r_brick_count
         and counts["mismatches"] == 0 and counts["published_checksum_refetch_complete"]
         and counts["published_checksum_disagreements"] == 0 and git_custody.get("passed")
         and acquisition_completion
@@ -339,6 +429,7 @@ def run_gate(*, manifest: Path, journals: dict[str, Path], bricks_dir: Path, liv
         "operation": "tier-c-freeze-time-seal-gate",
         "paths": {"manifest": str(manifest), "journals": {k: str(v) for k, v in sorted(journals.items())},
                   "seal_journal": str(seal_journal), "bricks_dir": str(bricks_dir),
+                  "coverage_table": str(coverage_table),
                   "known_extras_journal": (str(known_extras_journal) if known_extras_journal else None),
                   "live_acquisition_script": str(live_script), "pinned_acquisition_copy": str(pinned_copy)},
         "expected_digests": expected,
@@ -367,8 +458,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--live-script", type=Path, required=True)
     parser.add_argument("--pinned-copy", type=Path, required=True)
     parser.add_argument("--seal-journal", type=Path, required=True)
+    parser.add_argument("--coverage-table", type=Path, required=True)
+    parser.add_argument("--expected-coverage-table-sha256", default=EXPECTED_COVERAGE_TABLE_SHA256)
+    parser.add_argument("--expected-astropy-version", default=EXPECTED_ASTROPY_VERSION)
     parser.add_argument("--known-extras-journal", type=Path)
-    parser.add_argument("--expected-manifest-count", type=int, default=17947)
+    parser.add_argument("--expected-manifest-count", type=int, default=20385)
+    parser.add_argument("--expected-plane-file-count", type=int, default=61149)
+    parser.add_argument("--expected-release-absent-r-brick-count", type=int, default=3)
     parser.add_argument("--expected-blob-id", default=EXPECTED_BLOB_ID)
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--delay", type=float, default=0.5)
@@ -380,8 +476,14 @@ def main(argv: list[str] | None = None) -> int:
     receipt = run_gate(manifest=args.manifest, journals=journals, bricks_dir=args.bricks_dir,
                        live_script=args.live_script, pinned_copy=args.pinned_copy,
                        seal_journal=args.seal_journal,
+                       coverage_table=args.coverage_table,
+                       expected_coverage_table_sha256=args.expected_coverage_table_sha256,
+                       expected_astropy_version=args.expected_astropy_version,
                        known_extras_journal=args.known_extras_journal,
-                       expected_manifest_count=args.expected_manifest_count, fetch=args.fetch,
+                       expected_manifest_count=args.expected_manifest_count,
+                       expected_plane_file_count=args.expected_plane_file_count,
+                       expected_release_absent_r_brick_count=args.expected_release_absent_r_brick_count,
+                       fetch=args.fetch,
                        expected_blob_id=args.expected_blob_id,
                        timeout=args.timeout, delay=args.delay)
     encoded = canonical_bytes(receipt)
