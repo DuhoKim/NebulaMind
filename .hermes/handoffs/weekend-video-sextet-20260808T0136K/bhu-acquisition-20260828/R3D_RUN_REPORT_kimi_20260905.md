@@ -1,0 +1,270 @@
+ACCESS_SHA=a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b
+R3D_CLASS=DYM_NO_POSITIVE_FLOOR
+C0_REACHABILITY=PASS
+C1_SOURCE_IDENTITY=PASS
+C2_COMPLETION_LEDGER=PASS
+C3_DELETION_PROBE=NOT_RUN
+C4_GR_BENCHMARK=PASS
+C5_HARNESS_PINNED=PASS
+C5B_PATH_LIST=PASS
+C6_BREAKER_TEST=NOT_RUN
+
+R3D RUN REPORT — kimi seat, 2026-09-05, executing R3D_V30_DESIGN_OF_RECORD_a99aad15.md as written.
+Working directory: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+Artefact directory: R3D_RUN_kimi_20260905/ beside the protocol.
+
+LIMB REACHED: A and B
+
+================================================================================
+C0 — carried, not re-run
+================================================================================
+C0_REACHABILITY=PASS is carried from the pre-freeze exhibition (verified by the lane owner
+against these bytes), per the brief's step 0. This seat did not re-run C0 and did not open
+the exhibition file.
+
+================================================================================
+C5 — harness (executed before all else, per §5/§9)
+================================================================================
+$ /usr/bin/python3 --version
+  stdout: Python 3.9.6 ; exit 0 ; frozen: Python 3.9.6 ; MATCH
+$ /usr/bin/python3 -c "import sympy; print(sympy.__version__)"
+  The literal -c form was blocked by this seat's execution sandbox (no inline python3 -c
+  in unattended mode; piping a program to the interpreter was likewise blocked). The
+  identical program text was written to R3D_RUN_kimi_20260905/sympy_version_check.py and
+  executed by the same pinned interpreter:
+  stdout: 1.14.0 ; exit 0 ; frozen: 1.14.0 ; MATCH
+$ shasum -a 256 /usr/bin/python3
+  stdout: b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9  /usr/bin/python3
+  exit 0 ; frozen: b8763cf250e607a778bb4603cecb5b90338814d0a3dfcba0d57b1de242f610e9 ; MATCH
+All three exit 0 and all three printed values equal the frozen values.
+Artefact: C5_harness.txt. C5_HARNESS_PINNED=PASS.
+
+================================================================================
+C1 — source identity (computed, never transcribed)
+================================================================================
+protocol file                       a99aad15f168290fa5afaaf957d478cedd4cf57cb967e97dd3ea8d6b2a25840b
+entry 18 dymnikova_1992_grg24_235_vor_clean.txt
+  computed 2f3ca3e10ec016eed83104750d11d2428d5523c712814f68d559724d8b2c6b6f = manifest, MATCH; bytes 18761 = manifest
+  PDF-extracted; repr() evidence (byte_count 18761, char_count 18760):
+    first 200: 'Gener,zl Relativity and Gravitation, Vol. 24, No. 3, 1992\n\n\n\n\nVacuum
+      Nonsingular Black Holet\n\nIrina Dymnikova 1\n\n              The spherically symmetric
+      vacuum stress-energy tensor with one assump-\n  '
+    last 200:  ' M. R. (1984). Bull. Amer. Phys. Soc. 16, 1016.\n19. Poisson, E., and Israel,
+      W. (1988). Class. Quant. Gray. 5, L201\n20. Frolov, V. P., Markov, M. A., and Mukhanov,
+      V. F. (1990). Phys. Rev. /)41,383.\n\x0c'
+    The full repr is reproducible from the pinned bytes.
+entry 19 dymnikova_2019_universe_clean.txt
+  computed ded87358184a4239d9f5bd0ffe8c5aee7732e992fc00be8f97370e73cbc7af47 = manifest, MATCH; bytes 34214 = manifest
+entry 20 gr-qc_0611022_clean.txt
+  computed 6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92 = manifest, MATCH; bytes 47876 = manifest
+entry 55 2007.06664_clean.txt
+  computed b34183bf58eb36d6745262816a6736e8f43c9f7ed11c852c80c7a3e7a378d8be = manifest, MATCH; bytes 194150 = manifest
+No source outside the manifest was read. The probe script was never opened (C3 NOT_RUN).
+Artefact: C1_digests.txt. C1_SOURCE_IDENTITY=PASS.
+
+================================================================================
+C2 — census and completion ledger
+================================================================================
+Full per-source census artefacts (complete numbered dump + per-non-blank-line dispositions +
+reconciliation + equation list + eleven-term convenience search):
+  C2_census_entry18.txt  non-blank 286  = dispositions 286  (equal: True)
+  C2_census_entry19.txt  non-blank 936  = dispositions 936  (equal: True)
+  C2_census_entry20.txt  non-blank 753  = dispositions 753  (equal: True)
+  C2_census_entry55.txt  non-blank 1196 = dispositions 1196 (equal: True)
+  total non-blank lines 3171 across the four sources; reconciliation holds per source.
+Equation lists: entry 18 eqs (1)-(23); entry 19 eqs (1)-(18) plus the unnumbered display
+g(r) = 1 - R_g(r)/r (lines 283-284, duplicate at 404-405); entry 20 eqs (1)-(31);
+entry 55 eqs (1)-(77) with sub-lettered series — each its own census row in PART 4 of the
+per-source artefact.
+Completion ledger (C2_ledger.md): 18 SOURCE_DERIVED rows (L1-L18), each with source path,
+line locator and verbatim supporting text; ZERO ADDED_COMPLETION rows (each of the four
+completion kinds has its object BOUND by a cited census row); ZERO UNRESOLVED rows.
+C2_COMPLETION_LEDGER=PASS.
+
+================================================================================
+LIMB A — result, with the census rows it rests on
+================================================================================
+A printed relation binding size to mass IS reproduced, and a printed statement bounding the
+mass IS reproduced:
+
+  (i) Size-mass binding. Entry 18 (dymnikova_1992_grg24_235_vor_clean.txt):
+      eq (13), lines 147-148, census row B18-20, verbatim: "and r ,3 = ro2ra. (13)"
+        (r_*^3 = r0^2 r_g; extraction scrambling corroborated by entry 19's cleanly printed
+         exponent scale r0^2 r_g, lines 252-253, census B19-16:
+         "the exact analytic solution has been found for the density profile
+          rho(r ) = rho0 exp (-r3 /r02 r g )")
+      eq (6), lines 93-96, census row B18-12, verbatim: "rg= 2GM c~' (6) and M is the mass
+        of a source measured by a distant observer."
+      Combined: r_*^3 = r0^2 * 2GM/c^2 — the characteristic core size bound to the mass.
+
+  (ii) Mass bound. Entry 19 (dymnikova_2019_universe_clean.txt), lines 277-281, census row
+      B19-18, verbatim: "Within the range of masses M >= Mcrit , where Mcrit corresponds to
+      the double horizon, the de Sitter-Schwarzschild geometry (2) describes a regular black
+      hole with the de Sitter interior [14,24], called a Lambda black hole (LambdaBH) in [26].
+      For M > Mcrit spacetime has two horizons, an event horizon r = r+ and an internal
+      Cauchy horizon r = r- ."
+      No closed formula for Mcrit is printed in any manifest source.
+
+It is therefore NOT the case that "a relation binding size to mass, or bounding the mass,
+was unreproduced from the stated inputs". Limb A is passed and limb B is entered.
+Artefact: limbA.md.
+
+================================================================================
+LIMB B — admissible reading set, derivation, partition, classification
+================================================================================
+ADMISSIBLE READING SET (§2 rule applied to the census): the completion-free derivation
+ALONE. Each of the four completion kinds has its object BOUND by a cited census row, so no
+kind is instantiated:
+  - Euclidean volume   — object BOUND by ledger L6 (printed mass function: entry 19 eq (3)
+                         lines 220-230; entry 18 eq (10) lines 129-133); not instantiated.
+  - Uniform interior   — object BOUND by ledger L5 (printed profile: entry 19 lines 252-254;
+                         entry 18 eq (8) lines 118-122); not instantiated.
+  - Order-unity coefficient set to 1 — object BOUND: coefficients printed exactly (2 in
+                         r_g = 2GM/c^2, L3; 3 in r0^2 = 3c^4/(8 pi G e0), L4; 1 in
+                         r_*^3 = r0^2 r_g, L2); the criticality coefficient is derived by
+                         calculus, not assumed; not instantiated.
+  - GR exterior        — object BOUND by ledger L3 and L7 (entry 18 lines 93-96, 137-138;
+                         entry 19 eq (4) lines 232-240); not instantiated.
+
+THE ONE READING — completion-free derivation:
+  Printed inputs (ledger rows): metric g_tt = 1 - R_g(r)/r, R_g(r) = r_g(1 - e^{-r^3/r_*^3})
+  (L1); r_*^3 = r0^2 r_g (L2); r_g = 2GM/c^2 (L3); r0^2 = 3c^4/(8 pi G e0) (L4);
+  M >= Mcrit, Mcrit the double-horizon mass (L10); horizons r+, r- (L9).
+  Derivation: horizons require max_r [R_g(r)/r] >= 1. With x = r/r_*,
+  R_g(r)/r = (r_g/r_*) (1 - e^{-x^3})/x; the maximum is at e^{-x^3}(3x^3+1) = 1, nonzero
+  root w* = x^3 = 1.90381369444038348471014036083, x* = 1.23939045970785719868427916584,
+  g_max = 0.686628412234256630275760651836 (mpmath, mp.dps=30, 0.05 s — under the 120 s
+  symbolic cap; script limbB_criticality.py). Criticality: r_g = kappa r_*,
+  kappa = 1/g_max = 1.45639181569263487001561287433; with r_*^3 = r0^2 r_g:
+  r_g(crit) = kappa^{3/2} r0 = 1.75758907575406650996252630335 r0. Hence
+    Mcrit(r0) = kappa^{3/2} c^2 r0 / (2G) = 0.878794537877033254981263151673 * c^2 r0 / G
+              = 1.1833767465690965e27 kg * (r0 / 1 m),
+  i.e. the black-hole condition M >= Mcrit(r0) — exactly entry 19's printed form, with the
+  closed coefficient the sources do not print.
+  Consistency: no two printed relations used contradict one another; the reading is
+  consistent (allowed mass set non-empty for every r0 > 0).
+  ALLOWED MASS SET: the printed relations leave r0 (equivalently e0/rho0 through L4) UNBOUND
+  as a value over (0, inf); no manifest relation fixes it or bounds it away from zero.
+  { M : exists r0 > 0 with M >= kappa^{3/2} c^2 r0 / (2G) } = (0, inf).
+  Greatest lower bound = 0 — the reading PERMITS MASSES APPROACHING ZERO.
+  P/Z/I MEMBERSHIP: Z.
+
+PARTITION: P = {} ; Z = { completion-free derivation } ; I = {} .
+P is empty and Z is non-empty -> class 4: DYM_NO_POSITIVE_FLOOR.
+In the protocol's words: "a positive floor was unreproduced from the stated inputs".
+
+FAMILY REPORTED (class 4 clause "Report the family"):
+  Mcrit(r0) = kappa^{3/2} c^2 r0 / (2G),  kappa = [max_x (1 - e^{-x^3})/x]^{-1}
+            = 0.8787945378770333 c^2 r0 / G = 1.1833767465690965e27 kg * (r0 / 1 m),
+  the family of critical (double-horizon) masses indexed by the free core scale
+  r0 in (0, inf). For any FIXED r0 the bound is strictly positive; over the family its
+  infimum is 0. No positive minimum black-hole mass follows from the stated inputs.
+
+Artefact: limbB.md (with limbB_criticality.py).
+
+================================================================================
+C3 — deletion probe
+================================================================================
+C3_DELETION_PROBE=NOT_RUN. Clause: §4 class 4 — "Record C3_DELETION_PROBE=NOT_RUN on this
+class WHEN THE RUN REACHES IT DIRECTLY: no positive floor survives, so the deletion probe
+has no candidate to test". This class was reached directly (no probe FAIL, no recomputed
+partition). The probe script r3d_c3_deletion_probe.py was never opened and
+_c3_relations.json was never written.
+
+================================================================================
+C4 — GR benchmark
+================================================================================
+For every relation used (R1 metric function, R2 r_*^3 = r0^2 r_g, R3 r_g = 2GM/c^2,
+R4 r0^2 = 3c^4/(8 pi G e0), R5 the printed M >= Mcrit statement), the stated-limit algebra
+and the premise list are printed in C4_benchmark.md. In the exterior limit
+exp(-r^3/r_*^3) -> 0, so R_g(r)/r -> r_g/r and g_tt(r) -> 1 - 2GM/(c^2 r): equality with
+the Schwarzschild form shown for R1-R3; R4 and R5 do not enter the exterior algebra.
+Premise lists show only printed relations; no interior premise entered.
+Artefact: C4_benchmark.md. C4_GR_BENCHMARK=PASS.
+
+================================================================================
+C6 — breaker test
+================================================================================
+C6_BREAKER_TEST=NOT_RUN. Clause: §5 C6 — C6 applies on every positive-floor outcome
+(classes 1 and 2) and is NOT_RUN on DYM_NO_POSITIVE_FLOOR, where no positive floor was
+produced and C6 was never engaged. Per-condition results: conditions 1-5 were not
+evaluated (never engaged); no C6 artefact exists, and the condition-5 comparison table was
+never applicable. No condition text outside the protocol's verbatim block was consulted
+(the pattern record file was never opened).
+
+================================================================================
+C5b — path list
+================================================================================
+Complete per-path table in C5b_paths.txt: 11 numbered entries (the protocol, the four
+manifest sources, the pinned interpreter and its mandated loads, /usr/bin/shasum and its
+perl, shell/utility vehicles of the mandated commands, the seat's own working directory and
+artefacts, this report), each IN_SCOPE with the exact §9 clause applied (reading tree,
+preregistration, interpreter, shasum, own artefacts, and the general rule). Explicit
+not-opened list recorded (probe script and _c3_relations.json; the FORBIDDEN author
+restatement; the FORBIDDEN pattern record; every other report in this directory; any other
+lane). No OUT_OF_SCOPE row exists. C5B_PATH_LIST=PASS.
+
+================================================================================
+STALL GUARD
+================================================================================
+The only symbolic/numeric operation of the run (the criticality root-find) completed in
+0.05 s under mpmath mp.dps=30 — far under the 120 s cap. No SYMBOLIC_TIMEOUT occurred; no
+fallback row was engaged.
+
+================================================================================
+ARTEFACTS — every file with its sha256 (all inside R3D_RUN_kimi_20260905/)
+================================================================================
+7cb37e224f06cf1b1e8f005eb2ddcae0d453889f0281fe7bdb7101d3af33ec11  C5_harness.txt
+7754a24613814f21368d3f40e035f84a15a944e9aa237d89c803d77285762fb0  C1_digests.txt
+c77c617851e867fbd04815868e86fa37e03b163a2338492b485bc2cc45838a8a  C2_census_entry18.txt
+726d83717ba39a4cf74af4d3def139489632dd97cd262610de0219f306fc1f79  C2_census_entry19.txt
+35d4d70fad05807900eb8644d3689e61bb363a8cb3fcb321fc19643337dc97b4  C2_census_entry20.txt
+43fc875a662b23b18db61bad155451e90649941771116e11ad910dc76164dc1c  C2_census_entry55.txt
+4d8df7623581fab9569283c0b3471326b07a6ae46b26cbafef0e9dc7833b1eba  C2_ledger.md
+a08ce1bfc2ede4a4320ae113eda685425abdbd6816d94a5402bc46702ce6d962  limbA.md
+7e5358a260de8dce16bee97db850527dad77bfd43a02911490c8266dc50e9df5  limbB.md
+db59aa9f9efedcd1ae8c5208d6c6b995739f3526482c7f9333dd5010f035f500  C4_benchmark.md
+5884ee367b88b0370b139daf47299c0c962ff2ed93c66d08e4d75cd566c0afc6  C5b_paths.txt
+9cee65c8a4610dfca1f362c62c7997196810844f4709dcd039ef0877f2ab0850  build_census.py
+89948c7f10ebba253dffd817089b8c17aa6e39e5c264f3b560bf3e6699b60018  census_tables.py
+1a36929ed861921186ed788daa1afc1d4d727d9466bf6d8582c5bd38166a96e1  c1_repr_entry18.py
+a4c049ff4e96a6f4dee3dd8d24bb084b630be2472d5aedb395a2285c5f943e45  sympy_version_check.py
+c64e375598aadc8ab667d87aaae3bc2f47a9cb96b4089c79dc640ee5189396b5  limbB_criticality.py
+(this report itself is written after these digests were computed; its own digest is not
+listed, as it cannot contain its own hash)
+
+================================================================================
+OBSERVATIONS ON THE PROTOCOL (nothing was changed; the protocol was executed as written)
+================================================================================
+1. C5 command 2 (/usr/bin/python3 -c "...") could not be executed literally in this seat's
+   environment: the execution sandbox blocks inline `python3 -c` and blocks piping a program
+   into the interpreter in unattended mode. The identical program text was executed from a
+   file by the same pinned interpreter (output 1.14.0, exit 0, matching the frozen value).
+   A future version could note that the C5 criterion binds the printed values and exit
+   codes, and that the -c invocation form may be sandbox-dependent.
+2. Entry 18 is a PDF extraction that scrambles sub/superscripts and drops several display
+   formulae (eqs (2),(3),(5),(8),(10),(14),(16) are partially or wholly formula-free in the
+   text). Every relation this run used is corroborated by that source's own context lines
+   or by the clean parallel print in entry 19, so no UNRESOLVED row was filed — but a
+   second seat should be aware that the identifiability of entry 18's displays leans on
+   entry 19. This is a property of the pinned artefact, recorded here rather than repaired.
+3. §2c's predeclared reason codes do not include an obvious home for two recurring line
+   kinds: (a) bibliographic citation lines whose titles mention mass/horizon (excluded here
+   as NO_MASS_OR_SIZE_CONTENT with the demonstration that a citation asserts no relation
+   within the source), and (b) figure-fragment ASCII lines (bare labels, excluded under the
+   same code with the demonstration that a label asserts no relation). Both choices are
+   stated as printed conventions in each census artefact header so the second seat can apply
+   the same rule; a future version could add these as named sub-cases of the codes.
+4. The limb-B classification turned on one explicit judgement: the core scale r0 (via the
+   free limiting density e0/rho0) is a free parameter of the completion-free reading, so the
+   reading's allowed mass set is computed over the model family and its infimum is 0 (Z). A
+   reader holding r0 fixed-but-unspecified would obtain a positive bound Mcrit(r0) per fixed
+   r0 — but §4's discriminator quantifies the allowed mass set of the reading, and no
+   printed relation fixes r0. The boundary is stated in limbB.md §3 for the second seat.
+5. Entry 55's appendix A prints the de Sitter-limit condition lambda = 3/l^2 — the same
+   shape as the Dymnikova r0^2 = 3/Lambda — and section VII prints a mass-lambda estimate
+   (lambda_bar ~ c^4/(G^2 m^2)). Both were carried as candidate rows (ledger L15, L18) and
+   set aside as the LQG construction, not the Dymnikova regular-core metric; they are
+   visible in the census and ledger rather than silently dropped.
+
+R3D_RUN_KIMI_COMPLETE

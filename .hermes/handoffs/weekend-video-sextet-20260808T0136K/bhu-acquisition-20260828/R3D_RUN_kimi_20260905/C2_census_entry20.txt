@@ -1,0 +1,1599 @@
+C2 CENSUS — manifest entry 20: Bronnikov, Melnikov & Dehnen (2007), Regular black holes and black universes, GRG 39, 973
+source path (relative to protocol): bhu-reading-20260823/sources/gr-qc_0611022_clean.txt
+absolute path: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt
+sha256 of raw bytes (computed this run): 6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92
+pinned sha256 (§2a):                    6616e3115dbdabd3173656320b86a3ca8e32d320b34f7e39402946f8fb765c92
+match: True
+
+CONVENTIONS (stated so the second seat applies the same rule):
+ - Every non-blank line is assigned exactly one disposition. Blank lines are
+   printed in PART 1 marked BLANK and carry no disposition.
+ - An equation and its defining/context lines form one bounded block; the
+   block's line range is printed. Within a range, each non-blank line is
+   individually assigned that row's disposition (see PART 2).
+ - INCLUDED = the line asserts (or forms part of) a relation, condition or
+   property bearing on core scale, density, mass, mass function, radius,
+   horizon, matching surface, regularity, or the de Sitter limit.
+ - WRONG_BRANCH = the line asserts such a relation for a DIFFERENT
+   construction than the Dymnikova regular-core metrics (demonstrated by
+   the quoted branch marker in the source text).
+ - NO_MASS_OR_SIZE_CONTENT = the line asserts no such relation (headers,
+   furniture, history, motivation, roadmap, bibliographic citations — a
+   citation identifies an external work and asserts no relation here).
+ - DEFINITION_ONLY = pure notation/definition with no relational content.
+ - DUPLICATE = repeated text; the covering row is named.
+ - The eleven terms are printed as a convenience search only; no row is
+   justified by them.
+
+==============================================================================
+PART 1 — COMPLETE EXTRACTED TEXT WITH STABLE LINE NUMBERS
+==============================================================================
+    1|     [BLANK]
+    2|  [gr-qc/0611022] 1.Introduction 
+    3|  gr-qc/0611022 
+    4|  REGULAR BLACK HOLES AND BLACK UNIVERSES 
+    5|  K.A. Bronnikov 1 1 
+    6|  1 
+    7|  e-mail: kb20@yandex.ru and V.N. Melnikov 2 2 
+    8|  2 
+    9|  e-mail: melnikov@phys.msu.ru 
+   10|  Centre for Gravitation and Fundamental Metrology,
+   11| VNIIMS, 46 Ozyornaya St., Moscow 119361, Russia;
+   12|  Institute of Gravitation and Cosmology, PFUR,
+   13| 6 Miklukho-Maklaya St., Moscow 117198, Russia
+   14|  Heinz Dehnen 3 3 
+   15|  3 
+   16|  e-mail: Heinz.Dehnen@uni-konstanz.de 
+   17|  Fachbereich Physik, Universität Konstanz, Postfach M 677 78457
+   18| Konstanz, Germany
+   19|  We give a comparative description of different types of regular static, spherically symmetric black holes (BHs) and discuss in more detail their particular type, which we
+   20| suggest to call black universes. The latter have a Schwarzschild-like
+   21| causal structure, but inside the horizon there is an expanding Kantowski-Sachs universe and a de Sitter infinity instead of a singularity. Thus a
+   22| hypothetic BH explorer gets a chance to survive. Solutions of this kind
+   23| are naturally obtained if one considers static, spherically symmetric distributions of various
+   24| (but not all) kinds of phantom matter whose existence is favoured by
+   25| cosmological observations. It also looks possible that our Universe has
+   26| originated from phantom-dominated collapse in another universe and
+   27| underwent isotropization after crossing the horizon. An explicit example
+   28| of a black-universe solution with positive Schwarzschild mass is
+   29| discussed. 
+   30|  1. Introduction 
+   31|  One of the long-standing problems in black hole (BH) physics is the existence of
+   32| curvature singularities beyond the event horizon in the BH solutions
+   33| obtained under the simplest and the most natural physical conditions
+   34| (the Schwarzschild, Reissner-Nordström, Kerr and Kerr-Newman solutions of general relativity and their
+   35| counterparts in many alternative theories of gravity). Singularities are
+   36| places where general relativity (or another classical theory of gravity)
+   37| does not work. Therefore, a full understanding of BH physics requires
+   38| avoidance of singularities or/and modification of the corresponding
+   39| classical theory and addressing quantum effects. There have been numerous
+   40| attempts on this trend, many of them suggesting that a singularity
+   41| inside the event horizon should be replaced with a kind of regular core. 
+   42|  In this paper, we discuss the possible geometry of classical nonsingular
+   43| BHs, restricting ourselves to asymptotically flat static, spherically symmetric configurations. In Sec.  2. we enumerate and briefly describe different known types of
+   44| regular BHs. The rest of the paper is devoted to their particular type
+   45| which we suggest to call black universes, namely, those in which a
+   46| possible BH explorer, after crossing the event horizon, gets into an
+   47| expanding universe [ 1 ] . Such objects are naturally obtained if one
+   48| considers local concentrations of dark energy in the form of phantom
+   49| matter, favoured by modern cosmological observations [ 2 ] .
+   50| Among theoretical reasons for considering phantom matter one may mention
+   51| natural appearance of phantom fields in some models of string theory
+   52|  [ 3 ] , supergravities [ 4 ] and theories in more than 11
+   53| dimensions like F-theory [ 5 ] . To avoid the obvious quantum
+   54| instability, a phantom scalar may perhaps be regarded as an effective
+   55| field description following from an underlying theory with positive
+   56| energies [ 6 ] . Curiously, a classical massless phantom field
+   57| even shows a more stable behaviour than its usual counterpart
+   58|  [ 8 , 7 ] . 
+   59|  In Sec.  3. we demonstrate the existence of black-universe
+   60| solutions in general relativity with minimally coupled phantom fields, formulate the
+   61| requirements to the field potential needed for obtaining them and present
+   62| a specific example. In Sec.  4. we obtain similar requirements in
+   63| a more general framework, general k-essence, and show that many (though
+   64| not all) forms of phantom matter discussed in the recent cosmological
+   65| literature can also lead to black universes. Sec.  5. is a
+   66| conclusion. 
+   67|  2. Regular black hole geometries 
+   68|  We begin with the general static, spherically symmetric metric 
+   69|  d ​ s 2 = A ⁡ ( ρ ) ​ d ​ t 2 − d ​ ρ 2 A ⁡ ( ρ ) − r 2 ​ ( ρ ) ​ d ​ Ω 2 , ds^{2}=A(\rho)dt^{2}-\frac{d\rho^{2}}{A(\rho)}-r^{2}(\rho)d\Omega^{2}, 
+   70|  (1) 
+   71|  where d ​ Ω 2 = d ​ θ 2 + sin 2 ⁡ θ ​ d ​ φ 2 d\Omega^{2}=d\theta^{2}+\sin^{2}\theta d\varphi^{2} is the metric on
+   72| a unit sphere. Our sign conventions are as follows: the metric signature
+   73|  ( + − − − ) ({+}\ {-}\ {-}\ {-}) and the curvature tensor
+   74|  R σ μ ​ ρ ​ ν = ∂ ν Γ σ μ ​ ρ − … R^{\sigma}{}_{\mu\rho\nu}=\partial_{\nu}\Gamma^{\sigma}_{\mu\rho}-\ldots , so
+   75| that, e.g., the Ricci scalar R = R μ ​ ν μ ​ ν > 0 R=R^{\mu\nu}{}_{\mu\nu}>0 for de Sitter
+   76| space-time. 
+   77|  The metric ( 1 ) is written in terms of the “quasiglobal”
+   78| coordinate ρ \rho , which is particularly convenient for dealing with
+   79| Killing horizons where it behaves in the same way as the manifestly
+   80| well-behaved Kruskal-like null coordinates. For this reason, in terms of
+   81|  ρ \rho , one may consider regions on both sides of such a horizon
+   82| remaining in a formally static framework. 
+   83|  To discuss BHs in the comparatively simple case of static spherical
+   84| symmetry, we may leave aside more general and more rigorous definitions
+   85| of horizons and black holes (see, e.g., [ 9 ] ) and rely on the following
+   86| working definition. A black hole is a space-time containing (i) a static
+   87| region which may be regarded external (e.g., contains a flat
+   88| asymptotic), (ii) another region invisible to an observer at rest
+   89| residing in the static region, and (iii) a Killing horizon of nonzero
+   90| area that separates the two regions and admits an analytical extension
+   91| of the metric from one region to another. 
+   92|  The two functions, A ⁡ ( ρ ) A(\rho) (often called the redshift function) and
+   93|  r ⁡ ( ρ ) r(\rho) (the area function, equal to the radius of a coordinate sphere
+   94| at given ρ \rho ) entirely determine the geometry under consideration.
+   95| Asymptotic flatness is described, without loss of generality, by A → 1 A\to 1 and r ≈ ρ r\approx\rho as ρ → ∞ \rho\to\infty . A centre ρ = ρ c \rho=\rho_{c} (if
+   96| any) corresponds to r = 0 r=0 while Killing horizons (if any) are described
+   97| by zeros of the function A ⁡ ( ρ ) A(\rho) . Killing horizons, at which the
+   98| timelike Killing vector becomes null, divide the whole space-time
+   99| manifold into static (R) regions, in which A > 0 A>0 , and nonstatic,
+  100| homogeneous (T) regions whose geometry is that of a Kantowski-Sachs anisotropic
+  101| cosmological model. The number, order and disposition of such zeros
+  102| determine the global causal structure of space-time. 
+  103|  The following types of geometries of regular, 4-dimensional,
+  104| asymptotically flat, static, spherically symmetric BHs are known in the literature: 
+  105|  1. 
+  106|  BHs with a regular centre ( r ≈ const ⋅ ρ − ρ c r\approx{\rm const}\cdot\rho-\rho_{c} ,
+  107|  A → A c > 0 A\to A_{c}>0 , A ​ ( d ​ r / d ​ ρ ) 2 ≈ 1 + O ⁡ ( r 2 ) A(dr/d\rho)^{2}\approx 1+O(r^{2}) as
+  108|  ρ → ρ c \rho\to\rho_{c} ). Since a regular centre can only be located in an
+  109| R region, such a BH must have at least two simple horizons or one
+  110| double horizon, and its causal structure is then represented by the
+  111| same Carter-Penrose diagram as that of the non-extreme or extreme
+  112| Reissner-Nordström BH (diagrams 1b and 1c in Fig. 1),
+  113| respectively. A larger number of horizons is not excluded,
+  114| leading to more complex causal structures. 
+  115|  2. 
+  116|  BHs without a centre, having second-order horizons of infinite area
+  117| (so-called cold BHs because such horizons are always characterized
+  118| by zero Hawking temperature) [ 8 , 10 ] . They may have
+  119| different causal structures. In one case, the Carter-Penrose diagram
+  120| coincides with that of Kerr’s extreme BH, consisting of an infinite
+  121| tower of R regions but certainly without a ring singularity which
+  122| is present in Kerr’s solution (plots 2a and diagram 2b in Fig. 1).
+  123| In another case, there are only four R regions (plots 2c and diagram
+  124| 2d). 
+  125|  3. 
+  126|  BHs whose causal structure coincides with that of a non-extreme Kerr
+  127| BH, again without a singular ring [ 11 , 12 ] (diagram 3b). 
+  128|  4. 
+  129|  Regular BHs with a Schwarzschild-like causal structure [ 1 ] 
+  130| (diagram 4b) but with cosmological expansion instead of a singular
+  131| centre. 
+  132|  Figure 1: Plots showing the qualitative behaviour of the metric functions and
+  133| Carter-Penrose diagrams for the four different types of regular static, spherically symmetric black holes. Diagrams 1b and 1d (like those for the non-extreme and extreme Reissner-Nordström metrics) refer to curves A 1 A_{1} and A 2 A_{2} in plot 1a, respectively. Diagram
+  134| 2b, like that for the extreme Kerr metric, refers to plot 2a, diagram 2d
+  135| to plot 2c, 3b to 3a and 4b to 4a. The R and T letters in the diagrams
+  136| designate the R and T space-time regions. Diagrams 1b, 1c, 2b and 3b are
+  137| infinitely extendible upward and downward. In all diagrams, all inner
+  138| slanting lines depict horizons while all boundaries correspond to
+  139|  r = ∞ r=\infty , with the following exceptions: the verticals in diagrams 1b
+  140| and 1d describe a regular centre, r = 0 r=0 ; the horizontals in diagram 4b
+  141| correspond either to r = ∞ r=\infty or to r = r 0 > 0 r=r_{0}>0 , according to the
+  142| curves r 1 ​ ( ρ ) r_{1}(\rho) or r 2 ​ ( ρ ) r_{2}(\rho) at large negative ρ \rho . 
+  143|  Type 1 traces back to Bardeen’s work [ 13 ] which put forward
+  144| the very idea of regular BHs instead of singular ones and suggested, as
+  145| an example, a particular BH configuration with 
+  146|  r ≡ ρ , A ⁡ ( ρ ) = 1 − M ​ ρ 2 ( ρ 2 + q 2 ) 3 / 2 , r\equiv\rho,\hskip 28.45274ptA(\rho)=1-\frac{M\rho^{2}}{(\rho^{2}+q^{2})^{3/2}}, 
+  147|  (2) 
+  148|  where M , q = const M,\ q={\rm const} , and two horizons exist provided q 2 < ( 16 / 27 ) ​ M 2 q^{2}<(16/27)M^{2} . Later on there appeared numerous examples ( [ 14 , 15 , 16 ] 
+  149| and others) of regular BH solutions where, just as in Eq. ( 2 ),
+  150|  r ≡ ρ r\equiv\rho . This, by virtue of the Einstein equation, implies that
+  151| the stress-energy tensor of the matter source satisfies the condition
+  152|  T 0 0 ≡ T 1 1 T^{0}_{0}\equiv T^{1}_{1} , or, in other words, ε = − p r \varepsilon=-p_{r} ( ε = T 0 0 \varepsilon=T^{0}_{0} 
+  153| is the energy density and p r = − T 1 1 p_{r}=-T^{1}_{1} is the radial pressure). The
+  154| latter condition is invariant under radial boosts, making it possible to
+  155| ascribe the source to vacuum matter [ 14 ] , and at a regular
+  156| centre in this case the matter equation of state has necessarily the
+  157| form of a cosmological constant [ 17 ] , T μ ν ∝ δ μ ν T_{\mu}^{\nu}\propto\delta_{\mu}^{\nu} . 
+  158|  It was also shown [ 16 ] that regular BHs with r ≡ ρ r\equiv\rho and
+  159| any A ⁡ ( ρ ) A(\rho) satisfying the regular centre conditions may be obtained
+  160| as magnetic monopole solutions of general relativity coupled to gauge-invariant
+  161| nonlinear electrodynamics with the Lagrangian L ⁡ ( F ) L(F) , F := F μ ​ ν ​ F μ ​ ν F:=F_{\mu\nu}F^{\mu\nu} 
+  162| ( F μ ​ ν F_{\mu\nu} is the electromagnetic field tensor): the arbitrariness in
+  163|  A ⁡ ( ρ ) A(\rho) corresponds to the freedom of choosing the function L ⁡ ( F ) L(F) .
+  164| Solutions with an electric charge were shown [ 16 ] to be
+  165| impossible whatever be the choice of L ⁡ ( F ) L(F) if L ⁡ ( F ) L(F) is the same in
+  166| the whole space; this theorem, however, may be circumvented by assuming
+  167| different forms of L ⁡ ( F ) L(F) near the centre and at large r r [ 18 ] ,
+  168| i.e., by requiring a sort of phase transition(s) at some value(s) of the
+  169| radial coordinate. 
+  170|  Other examples of type 1 regular BHs have also been found and discussed,
+  171| see, e.g., [ 19 ] and references therein. 
+  172|  Type 2 regular BHs, with and without an electric charge, have been
+  173| obtained [ 8 , 10 ] in the framework of the Brans-Dicke
+  174| scalar-tensor theory (STT) with the coupling constant ω < − 3 / 2 \omega<-3/2 ,
+  175| when the theory is of anomalous, or phantom nature. Their existence
+  176| requires fine tuning in the form of specific relations between ω \omega 
+  177| and the integration constants of the corresponding exact solutions. It
+  178| is of interest to note that these regular cold Brans-Dicke BHs have singular
+  179| counterparts in the Einstein frame, in other words, in general relativity with a
+  180| minimally coupled phantom scalar field (the so-called anti-Fisher
+  181| solution) [ 20 ] . 
+  182|  Type 3 regular BHs have been found [ 11 , 12 ] as static, spherically symmetric solutions to the effective equations [ 21 ] describing 4D gravity
+  183| in an RS2 type brane world. It has been shown that such regular solutions are
+  184| generic in a certain range of the integration constants [ 12 ] and
+  185| that many of them are stable, at least under some kinds of
+  186| perturbations [ 22 ] . It should be stressed, however, that
+  187| these 4D equations do not form a closed set, to study the full 5D
+  188| geometry of the bulk one should solve the corresponding 5D equations,
+  189| and there are only tentative results in this direction [ 23 ] . 
+  190|  Type 4 configurations have been obtained [ 1 ] as generic
+  191| solutions to the Einstein-scalar equations for the case of minimally
+  192| coupled phantom scalar fields with certain potentials. Such scalar
+  193| fields have recently become popular in the cosmological context
+  194| since they are able to provide an equation of state with the pressure to
+  195| density ratio p / ε = w < − 1 p/\varepsilon=w<-1 . It is this kind of equation of state
+  196| that is probably required for the dark energy (DE) component of the
+  197| material content of the Universe to account for its accelerated
+  198| expansion (see, e.g., the reviews [ 24 , 25 ] and references
+  199| therein). Type 4 configurations (we suggest to call them black
+  200| universes) are, in our view, of particular interest, and in what follows
+  201| we will discuss them in some more detail. 
+  202|  3. Black universes with a minimally coupled scalar field 
+  203|  Consider the action for a self-gravitating phantom scalar field in general relativity 
+  204|  S = ∫ g ​ d 4 ​ x ​ [ R − ( ∂ ϕ ) 2 − 2 ​ V ​ ( ϕ ) ] , S=\int\sqrt{g}\,d^{4}x[R-(\partial\phi)^{2}-2V(\phi)], 
+  205|  (3) 
+  206|  where g = | det ( g μ ​ ν ) | g=|\det(g_{\mu\nu})| , ( d ​ ϕ ) 2 = g μ ​ ν ​ ∂ μ ϕ ​ ∂ ν ϕ (d\phi)^{2}=g^{\mu\nu}\partial_{\mu}\phi\partial_{\nu}\phi and
+  207|  V ⁡ ( ϕ ) V(\phi) is an arbitrary potential. With the metric ( 1 ) and
+  208|  ϕ = ϕ ⁡ ( ρ ) \phi=\phi(\rho) , the scalar field equation and three independent
+  209| combinations of the Einstein equations read 
+  210|  ( A ​ r 2 ​ ϕ ′ ) ′ \displaystyle(Ar^{2}\phi^{\prime})^{\prime} 
+  211|  = \displaystyle\hskip-5.0pt= 
+  212|  − r 2 d V / d ϕ , \displaystyle\hskip-5.0pt-r^{2}dV/d\phi, 
+  213|  (4) 
+  214|  ( A ′ ​ r 2 ) ′ \displaystyle(A^{\prime}r^{2})^{\prime} 
+  215|  = \displaystyle\hskip-5.0pt= 
+  216|  − 2 ​ r 2 ​ V ; \displaystyle\hskip-5.0pt-2r^{2}V; 
+  217|  (5) 
+  218|  2 ​ r ′′ / r \displaystyle 2r^{\prime\prime}/r 
+  219|  = \displaystyle\hskip-5.0pt= 
+  220|  ϕ ′ 2 ; \displaystyle\hskip-5.0pt{\phi^{\prime}}^{2}; 
+  221|  (6) 
+  222|  A ​ ( r 2 ) ′′ − r 2 ​ A ′′ \displaystyle A(r^{2})^{\prime\prime}-r^{2}A^{\prime\prime} 
+  223|  = \displaystyle\hskip-5.0pt= 
+  224|  2 , \displaystyle\hskip-5.0pt2, 
+  225|  (7) 
+  226|  where the prime denotes d / d ​ ρ d/d\rho . The scalar field equation ( 4 )
+  227| is a consequence of Eqs. ( 5 )–( 7 ), which, given a
+  228| potential V ⁡ ( ϕ ) V(\phi) , form a determined set of equations for the unknowns
+  229|  r ⁡ ( ρ ) , A ⁡ ( ρ ) , ϕ ⁡ ( ρ ) r(\rho),\ A(\rho),\ \phi(\rho) . Eq. ( 7 ) can be integrated giving 
+  230|  B ′ ≡ ( A / r 2 ) ′ = 2 ​ ( ρ 0 − ρ ) / r 4 , \displaystyle B^{\prime}\equiv(A/r^{2})^{\prime}=2(\rho_{0}-\rho)/r^{4}, 
+  231|  (8) 
+  232|  where B ⁡ ( ρ ) = A / r 2 B(\rho)=A/r^{2} and ρ 0 \rho_{0} is an integration constant. 
+  233|  Eq. ( 8 ) severely restricts the possible dispositions of zeros
+  234| of the function A ⁡ ( ρ ) A(\rho) and hence the global causal structure of
+  235| space-time [ 26 ] . 
+  236|  Indeed, horizons are regular zeros of A ⁡ ( ρ ) A(\rho) and hence B ⁡ ( ρ ) B(\rho) .
+  237| By ( 8 ), B ⁡ ( ρ ) B(\rho) increases at ρ < ρ 0 \rho<\rho_{0} , has a maximum at
+  238|  ρ = ρ 0 \rho=\rho_{0} and decreases at ρ > ρ 0 \rho>\rho_{0} . It can have at
+  239| most two simple zeros, bounding a range B > 0 B>0 (R region), or one
+  240| double zero and two T regions around. It can certainly have a single
+  241| simple zero or no zeros at all. 
+  242|  So the choice of possible types of global causal structure is precisely
+  243| the same as for the general Schwarzschild-de Sitter solution with
+  244| arbitrary mass and cosmological constant. This result ( the Global
+  245| Structure Theorem [ 26 ] ) equally applies to normal and phantom
+  246| fields since Eqs. ( 7 ), ( 8 ) are the same for them. It holds
+  247| for any sign and shape of V ⁡ ( ϕ ) V(\phi) and under any assumptions on the
+  248| asymptotics. BHs with scalar hair (respecting the existing no-hair
+  249| theorems) are not excluded. Examples of (singular) BHs with both normal
+  250| (e.g., [ 27 , 28 , 29 ] ) and phantom [ 30 ] scalar hair are
+  251| known. However, BHs with a regular centre (type 1 according to the
+  252| previous section) are ruled out for our system since their existence
+  253| requires a regular minimum of B ⁡ ( ρ ) B(\rho) . 
+  254|  As shown in Ref.  [ 1 ] , the system ( 4 )–( 7 )
+  255| has as many as 16 types of regular solutions with flat, de Sitter and
+  256| AdS asymptotic behaviour. Let us discuss asymptotically flat configurations, for
+  257| which A ⁡ ( ρ ) → 1 A(\rho)\to 1 and r ⁡ ( ρ ) ≈ ρ r(\rho)\approx\rho as ρ → ∞ \rho\to\infty .
+  258| Then, as ρ \rho decreases from infinity, the derivative r ′ r^{\prime} also
+  259| decreases according to Eq. ( 6 ), the decrease rate depending on
+  260| the details of the system. If the decrease is slow enough, r ⁡ ( ρ ) r(\rho) 
+  261| will reach zero at some finite ρ \rho , which means that the system has a
+  262| centre. The latter may be regular only if horizons are absent (otherwise
+  263| there would be a type 1 regular BH which is ruled out here), and a
+  264| particlelike solution is then obtained instead of a BH one. 
+  265|  Assuming the absence of singularities, other opportunities are r ⁡ ( ρ ) → r 0 = const r(\rho)\to r_{0}={\rm const} and r ⁡ ( ρ ) → ∞ r(\rho)\to\infty as ρ → − ∞ \rho\to-\infty . (Note
+  266| that any kind of oscillatory behaviour of r ⁡ ( ρ ) r(\rho) is ruled out by
+  267| ( 6 ) according to which r ′′ ≥ 0 r^{\prime\prime}\geq 0 .) 
+  268|  In the first case, according to ( 8 ), 
+  269|  A ′ ≈ − 2 ρ / r 0 2 → + ∞ , A ≈ − ρ 2 / r 0 2 as ρ → − ∞ . A^{\prime}\approx-2\rho/r_{0}^{2}\to+\infty,\hskip 28.45274ptA\approx-\rho^{2}/r_{0}^{2}\hskip 28.45274pt{\rm as}\hskip 10.00002pt\rho\to-\infty. 
+  270|  So this “ r 0 r_{0} asymptotic” is located in a T region. The radius r 0 r_{0} 
+  271| is related to the limiting value of the potential: V → − 1 / r 0 2 V\to-1/r_{0}^{2} .
+  272| Changing the notations − ρ → T -\rho\to T and t → x t\to x (since ρ \rho here
+  273| becomes a temporal coordinate and the former time t t a spatial one), we
+  274| can write the asymptotic form of the resulting Kantowski-Sachs metric as 
+  275|  d ​ s 2 ≈ r 0 2 T 2 ​ d ​ T 2 − T 2 r 0 2 ​ d ​ x 2 − r 0 2 ​ d ​ Ω 2 as T → ∞ . ds^{2}\approx\frac{r_{0}^{2}}{T^{2}}\,dT^{2}-\frac{T^{2}}{r_{0}^{2}}dx^{2}-r_{0}^{2}d\Omega^{2}\hskip 28.45274pt{\rm as}\hskip 10.00002ptT\to\infty. 
+  276|  (9) 
+  277|  It is a highly anisotropic universe, exhibiting no expansion in the two
+  278| angular directions and an exponential (in terms of the physical time
+  279|  τ ∼ log ⁡ T \tau\sim\log T ) expansion in the third direction x x . From the
+  280| viewpoint of an observer at large positive ρ \rho , this universe is
+  281| located beyond the event horizon of a BH. 
+  282|  In case r → ∞ r\to\infty , the most interesting opportunity is that
+  283|  r ∼ | ρ | r\sim|\rho| as ρ → − ∞ \rho\to-\infty . Assuming r ≈ − a ​ ρ r\approx-a\rho ,
+  284|  a = const > 0 a={\rm const}>0 , from ( 8 ) and ( 5 ) we obtain 
+  285|  A ≈ 1 / a 2 − C ​ a 2 ​ ρ 2 , V ≈ 3 ​ C ​ a 2 , C = const . A\approx 1/a^{2}-Ca^{2}\rho^{2},\hskip 28.45274ptV\approx 3Ca^{2},\hskip 28.45274ptC={\rm const}. 
+  286|  (10) 
+  287|  It is easy to verify that C = 0 C=0 leads to a Minkowski metric at large
+  288| negative ρ \rho (though the time rate will be different from that at
+  289| large positive ρ \rho if a ≠ 1 a\neq 1 ), an anti-de Sitter metric if C < 0 C<0 
+  290| and a de Sitter metric if C > 0 C>0 . In the cases C ≤ 0 C\leq 0 horizons are
+  291| absent since otherwise the function B ⁡ ( ρ ) B(\rho) would have a minimum at
+  292| some finite ρ \rho , which cannot happen due to ( 8 ). Thus
+  293| possible solutions with C ≤ 0 C\leq 0 describe traversable wormholes, and the
+  294| details of their geometry depend on the particular choice of V ⁡ ( ϕ ) V(\phi) . 
+  295|  Lastly, for C > 0 C>0 we obtain a de Sitter asymptotic behaviour of the
+  296| solution, describing (since we are now in a T region) isotropic
+  297| expansion or contraction. From the viewpoint of an external observer,
+  298| located at large positive ρ \rho , it is a BH, but a possible BH explorer
+  299| now has a chance to survive for a new life in an expanding, gradually
+  300| isotropizing Kantowski-Sachs universe. The specific BH profile and the
+  301| isotropization regime after crossing the horizon depend on the choice of
+  302|  V ⁡ ( ϕ ) V(\phi) . 
+  303|  Since, according to the Global Structure Theorem (see above), an
+  304| asymptotically flat configuration can have only one simple horizon, such a BH has a
+  305| Schwarzschild-like causal structure, but the singularity r = 0 r=0 in the
+  306| Carter-Penrose diagram is now replaced by the de Sitter infinity
+  307|  r = ∞ r=\infty . 
+  308|  A simple example may be obtained by putting [ 1 ] 
+  309|  r = ( ρ 2 + b 2 ) 1 / 2 , b = const > 0 . r=(\rho^{2}+b^{2})^{1/2},\hskip 28.45274ptb={\rm const}>0. 
+  310|  (11) 
+  311|  and using the inverse problem scheme. Eq. ( 8 ) gives 
+  312|  B ⁡ ( ρ ) = A ⁡ ( ρ ) r 2 ​ ( ρ ) = c b 2 + 1 b 2 + ρ 2 + ρ 0 b 3 ​ ( b ​ ρ b 2 + ρ 2 + tan − 1 ⁡ ρ b ) , \displaystyle\hskip-20.00003pt{}\hskip-10.00002ptB(\rho)=\frac{A(\rho)}{r^{2}(\rho)}=\frac{c}{b^{2}}+\frac{1}{b^{2}+\rho^{2}}+\frac{\rho_{0}}{b^{3}}\left(\frac{b\rho}{b^{2}+\rho^{2}}+\tan^{-1}\frac{\rho}{b}\right), 
+  313|  (12) 
+  314|  where c = const c={\rm const} . Eqs. ( 6 ) and ( 5 ) then lead to
+  315| expressions for ϕ ⁡ ( ρ ) \phi(\rho) and V ⁡ ( ρ ) V(\rho) : 
+  316|  ϕ \displaystyle\phi 
+  317|  = \displaystyle\hskip-5.0pt= 
+  318|  ± 2 ​ tan − 1 ⁡ ( ρ / b ) + ϕ 0 , \displaystyle\hskip-5.0pt\pm\sqrt{2}\tan^{-1}(\rho/b)+\phi_{0}, 
+  319|  (13) 
+  320|  V \displaystyle\hskip-5.0ptV 
+  321|  = \displaystyle\hskip-5.0pt= 
+  322|  − c b 2 ​ r 2 + 2 ​ ρ 2 r 2 − ρ 0 b 3 ​ ( 3 ​ b ​ ρ r 2 + r 2 + 2 ​ ρ 2 r 2 ​ tan − 1 ⁡ ρ b ) \displaystyle\hskip-5.0pt-\frac{c}{b^{2}}\frac{r^{2}+2\rho^{2}}{r^{2}}-\frac{\rho_{0}}{b^{3}}\left(\frac{3b\rho}{r^{2}}+\frac{r^{2}+2\rho^{2}}{r^{2}}\tan^{-1}\frac{\rho}{b}\right)\hskip 10.00002pt\ 
+  323|  (14) 
+  324|  with r = r ⁡ ( ρ ) r=r(\rho) given by ( 11 ). In particular, 
+  325|  B ⁡ ( ± ∞ ) = − 1 3 ​ V ​ ( ± ∞ ) = 2 ​ b ​ c ± π ​ ρ 0 2 ​ b 3 . B(\pm\infty)=-\frac{1}{3}V(\pm\infty)=\frac{2bc\pm\pi\rho_{0}}{2b^{3}}. 
+  326|  (15) 
+  327|  Choosing in ( 13 ), without loss of generality, the plus sign and
+  328|  ϕ 0 = 0 \phi_{0}=0 , we obtain for V ⁡ ( ϕ ) V(\phi) ( ψ := ϕ / 2 \psi:=\phi/\sqrt{2} ): 
+  329|  V ⁡ ( ϕ ) = − c b 2 ​ ( 3 − 2 ​ cos 2 ⁡ ψ ) − ρ 0 b 3 ​ [ 3 ​ sin ⁡ ψ ​ cos ⁡ ψ + ψ ⁡ ( 3 − 2 ​ cos 2 ⁡ ψ ) ] . \displaystyle\hskip-20.00003pt{}V(\phi)=-\frac{c}{b^{2}}(3-2\cos^{2}\psi)-\frac{\rho_{0}}{b^{3}}\left[3\sin\psi\cos\psi+\psi(3-2\cos^{2}\psi)\right]. 
+  330|  (16) 
+  331|  The solution behaviour is controlled by two integration constants: c c 
+  332| that moves B ⁡ ( ρ ) B(\rho) up and down, and ρ 0 \rho_{0} showing the maximum of
+  333|  B ⁡ ( ρ ) B(\rho) . Both r ⁡ ( ρ ) r(\rho) and B ⁡ ( ρ ) B(\rho) are even functions if
+  334|  ρ 0 = 0 \rho_{0}=0 , otherwise B ⁡ ( ρ ) B(\rho) loses this symmetry. Asymptotic flatness
+  335| at ρ = + ∞ \rho=+\infty implies 2 ​ b ​ c = − π ​ ρ 0 2bc=-\pi\rho_{0} while the Schwarzschild
+  336| mass, defined in the usual way, is m = ρ 0 / 3 m=\rho_{0}/3 . 
+  337|  Under this asymptotic flatness assumption, for ρ 0 = m = 0 \rho_{0}=m=0 we obtain
+  338| the simplest symmetric configuration, the
+  339| Ellis wormhole [ 31 ] : A ≡ 1 A\equiv 1 , V ≡ 0 V\equiv 0 . For ρ 0 < 0 \rho_{0}<0 ,
+  340| according to ( 15 ), we obtain a wormhole with m < 0 m<0 and an AdS
+  341| metric at the far end, corresponding to the cosmological constant V − < 0 V_{-}<0 . For ρ 0 > 0 \rho_{0}>0 , when V − > 0 V_{-}>0 , there is a regular BH with m > 0 m>0 and a de Sitter asymptotic far beyond the horizon, precisely
+  342| corresponding to the above description of a black universe. 
+  343|  The horizon radius r ⁡ ( ρ h ) r(\rho_{h}) may be obtained by solving the
+  344| transcendental equation A ⁡ ( ρ h ) = 0 A(\rho_{h})=0 , where A ⁡ ( ρ ) A(\rho) is given
+  345| by Eq. ( 12 ). It depends on both parameters m m and b = min ⁡ r ⁡ ( ρ ) b=\min r(\rho) and cannot be smaller than b b , which also plays the role of a
+  346| scalar charge: ψ ≈ π / 2 − b / ρ \psi\approx\pi/2-b/\rho at large ρ \rho . Since
+  347|  A ⁡ ( 0 ) = 1 + c A(0)=1+c , the throat ρ = 0 \rho=0 is located in the R region if c > − 1 c>-1 , i.e., if 3 ​ π ​ m < 2 ​ b 3\pi m<2b , at the horizon if 3 ​ π ​ m = 2 ​ b 3\pi m=2b and in the
+  348| T region beyond it if 3 ​ π ​ m > 2 ​ b 3\pi m>2b . The above relations between m m and
+  349|  b b show (and it is probably generically true) that if the BH mass
+  350| dominates over the scalar charge, the throat is invisible to a distant
+  351| observer, and the BH looks from the static region almost as usual in
+  352| general relativity. 
+  353|  As follows from Eqs. ( 4 ) and ( 5 ), the potential V V 
+  354| tends to a constant and, moreover, d ​ V / d ​ ϕ → 0 dV/d\phi\to 0 at each end of the
+  355|  ρ \rho range. It is a general property of all classes of regular
+  356| solutions indicated in [ 1 ] . More precisely, a regular
+  357| scalar field configuration requires a potential with at least two
+  358| zero-slope points (not necessarily extrema) at different values of
+  359|  ϕ \phi . 
+  360|  Suitable potentials are, e.g., V = V 0 ​ cos 2 ⁡ ( ϕ / ϕ 0 ) V=V_{0}\cos^{2}(\phi/\phi_{0}) 
+  361| and the Mexican hat potential V = ( λ / 4 ) ​ ( ϕ 2 − η 2 ) 2 V=(\lambda/4)(\phi^{2}-\eta^{2})^{2} where
+  362|  V 0 , ϕ 0 , λ , η V_{0},\ \phi_{0},\ \lambda,\ \eta are constants. A flat infinity at ρ = + ∞ \rho=+\infty certainly requires V + = 0 V_{+}=0 , while a de Sitter asymptotic
+  363| can correspond to a maximum of V V since phantom fields tend to climbing
+  364| up the slope of the potential rather than rolling down, as is evident
+  365| from Eq. ( 4 ). Accordingly, Faraoni [ 32 ] , considering
+  366| spatially flat isotropic phantom cosmologies, has shown that if
+  367|  V ⁡ ( ϕ ) V(\phi) is bounded above by V 0 = const > 0 V_{0}={\rm const}>0 , the de Sitter solution
+  368| is a global attractor. Very probably this conclusion extends to Kantowski-Sachs cosmologies after isotropization. 
+  369|  One more point may be stressed: the late-time de Sitter expansion rate
+  370| is entirely determined by the corresponding potential value V − > 0 V_{-}>0 
+  371| (which, in our notation according to ( 3 ), coincides with the
+  372| effective cosmological constant Λ \Lambda at late times) rather than
+  373| by the details of the solution such as the Schwarzschild mass defined at
+  374| the flat asymptotic. 
+  375|  We can conclude that black universes are a generic kind of solutions to
+  376| the Einstein-scalar equations in the case of phantom scalars with proper
+  377| potentials. 
+  378|  4. Black universes with other forms of phantom matter 
+  379|  Besided the minimally coupled scalar field ( 3 ), there are a
+  380| number of other suggestions for modelling the possible phantom
+  381| behaviour of dark energy, see, e.g., the review [ 24 ] and
+  382| references therein. 
+  383|  Let us show that type 4 regular BHs, or black universes, are, under
+  384| appropriate additional conditions, solutions to the field equations of
+  385| at least two large classes of such theories: scalar-tensor theories
+  386| (STT) of gravity, or theories with nonminimally coupled scalar fields,
+  387| and the class of models called k-essence. We will show that
+  388| black-universe solutions may be found in both these classes. 
+  389|  4.1. Scalar-tensor theories 
+  390|  Consider a general (Bergmann-Wagoner-Nordtvedt) STT, defined in a
+  391| space-time manifold with the metric g μ ​ ν g_{\mu\nu} (called the Jordan conformal
+  392| frame), for which the gravitational action is written of the form 
+  393|  S STT = ∫ d 4 ​ x ​ g ​ [ f ⁡ ( Φ ) ​ R + h ⁡ ( Φ ) ​ ( ∂ Φ ) 2 − 2 ​ U ​ ( Φ ) ] , S_{\rm STT}=\int d^{4}x\sqrt{g}[f(\Phi)R+h(\Phi)(\partial\Phi)^{2}-2U(\Phi)], 
+  394|  (17) 
+  395|  where g = | det ( g μ ​ ν ) | g=|\det(g_{\mu\nu})| , ( d ​ Φ ) 2 = g μ ​ ν ​ ∂ μ Φ ​ ∂ ν Φ (d\Phi)^{2}=g^{\mu\nu}\,\partial_{\mu}\Phi\partial_{\nu}\Phi 
+  396| and f , h , U f,\ h,\ U are arbitrary functions of the scalar field Φ \Phi . 
+  397|  The action ( 17 ) is simplified by the well-known
+  398| conformal mapping [ 33 ] 
+  399|  g μ ​ ν \displaystyle g_{\mu\nu} 
+  400|  = \displaystyle\hskip-5.0pt= 
+  401|  g ¯ μ ​ ν / | f ⁡ ( Φ ) | , \displaystyle\hskip-5.0pt\overline{g}_{\mu\nu}/|f(\Phi)|, 
+  402|  (18) 
+  403|  d ​ ϕ d ​ Φ \displaystyle\frac{d\phi}{d\Phi} 
+  404|  = \displaystyle\hskip-5.0pt= 
+  405|  ± | l ( Φ ) | f ⁡ ( Φ ) , l ⁡ ( Φ ) := f ​ h + 3 2 ​ ( d ​ f d ​ Φ ) 2 , \displaystyle\hskip-5.0pt\pm\frac{\sqrt{|l(\Phi)}|}{f(\Phi)},\hskip 28.45274ptl(\Phi):=fh+\frac{3}{2}\Bigl(\frac{df}{d\Phi}\Bigr)^{2}, 
+  406|  (19) 
+  407|  removing the nonminimal scalar-tensor coupling expressed in the
+  408| factor f ⁡ ( Φ ) f(\Phi) before R R . The action ( 17 ) is now
+  409| specified in a new manifold with the metric g ¯ μ ​ ν \overline{g}_{\mu\nu} 
+  410| (the Einstein frame) and the new scalar field ϕ \phi : 
+  411|  S E = ∫ d 4 ​ x ​ g ¯ ​ { sign f ⁡ [ R ¯ + ( sign l ) ​ ( ∂ ϕ ) 2 ] − 2 ​ V ​ ( ϕ ) } , \displaystyle\hskip-20.00003pt{}S_{\rm E}=\int d^{4}x\sqrt{\overline{g}}\Bigl\{\mathop{\rm sign}\nolimits f\bigl[\overline{R}+(\mathop{\rm sign}\nolimits l)(\partial\phi)^{2}\bigr]-2V(\phi)\Bigr\}, 
+  412|  (20) 
+  413|  where the determinant g ¯ \overline{g} , the scalar curvature R ¯ \overline{R} and
+  414|  ( ∂ ϕ ) 2 (\partial\phi)^{2} are calculated using g ¯ μ ​ ν \overline{g}_{\mu\nu} , and 
+  415|  V ⁡ ( ϕ ) = | f ⁡ ( Φ ) | − 2 ​ U ​ ( Φ ) . V(\phi)=|f(\Phi)|^{-2}\,U(\Phi). 
+  416|  (21) 
+  417|  The action ( 20 ) is similar to that of GR with a minimally
+  418| coupled scalar field ϕ \phi but contains two sign factors. The usual
+  419| sign of gravitational coupling corresponds to f > 0 f>0 , while l ⁡ ( Φ ) l(\Phi) 
+  420| distinguishes normal ( l > 0 l>0 ) and phantom ( l < 0 l<0 ) fields. Of interest
+  421| for us are phantom field theories with usual gravitational coupling,
+  422| i.e., we will suppose f > 0 f>0 , l < 0 l<0 . 
+  423|  Then the vacuum field equations have precisely the form
+  424| ( 4 )–( 7 ), with all the corresponding solutions. The main
+  425| properties of these solutions are preserved after transformation back
+  426| to the Jordan frame, provided the conformal factor 1 / f 1/f is everywhere
+  427| nonzero and regular. Indeed, in this case, a flat asymptotic transforms
+  428| to a flat asymptotic (although maybe with a different Schwarzschild
+  429| mass) and a horizon to a horizon of the same order. Thus one can
+  430| guarantee that a black universe solution in the Einstein frame
+  431| preserves its qualitative properties in the Jordan frame. However,
+  432| some remarks are in order. 
+  433|  First, the asymptotic regimes in the Einstein frame occur at values of
+  434|  ϕ \phi where V ⁡ ( ϕ ) V(\phi) has zero slope and, moreover, asymptotic
+  435| flatness requires V = 0 V=0 . Assuming f ≠ 0 f\neq 0 , we may reformulate these
+  436| requirements in terms of U ⁡ ( Φ ) U(\Phi) : evidently, U = 0 U=0 at the flat
+  437| asymptotic in the Jordan frame, and, at the other end, it is the
+  438| function V ⁡ ( ϕ ) V(\phi) given by Eq. ( 21 ) that must have zero slope,
+  439| while nothing certain may be said about U U at the corresponding value
+  440| of Φ \Phi . 
+  441|  Second, a de Sitter asymptotic behaviour at ρ → − ∞ \rho\to-\infty is not
+  442| necessarily preserved in Jordan’s frame even if it takes place in
+  443| Einstein’s. In general, the expansion law will be different but
+  444| izotropization must take place. Everything depends on the specific
+  445| properties of U U and f f . 
+  446|  In general, we see that black-universe solutions may be expected in a
+  447| generic STT with a phantom scalar field provided the potential function
+  448|  U ⁡ ( ϕ ) U(\phi) (or, as it is sometimes said, the scalar-dependent
+  449| “cosmological constant”) satisfies some natural conditions which are
+  450| best formulated in terms of the Einstein conformal frame. 
+  451|  4.2. k-essence 
+  452|  Another large class of scalar field ( ϕ \phi ) models invoked in order to
+  453| describe the modern cosmological acceleration is characterized by a
+  454| non-canonical dependence of the action on the derivatives ∂ μ ϕ \partial_{\mu}\phi .
+  455| The most general form of such actions for scalar fields minimally
+  456| coupled to space-time curvature may be written as 
+  457|  S = ∫ ∂ 4 x ​ g ​ [ R + F ⁡ ( ϕ , X ) ] , X := ( ∂ ϕ ) 2 S=\int\partial^{4}x\sqrt{g}[R+F(\phi,X)],\hskip 28.45274ptX:=(\partial\phi)^{2} 
+  458|  (22) 
+  459|  (see, e.g., [ 24 ] ; references to numerous papers discussing
+  460| particular cases of k-essence as well as other models of dark energy
+  461| can also be found in this comprehensive review). 
+  462|  The stress-energy tensor of ϕ \phi then has the form 
+  463|  T μ ν ​ [ ϕ ] = F X ​ ∂ μ ϕ ​ ∂ ν ϕ − 1 2 ​ F ​ δ μ ν , T_{\mu}^{\nu}[\phi]=F_{X}\,\partial_{\mu}\phi\partial^{\nu}\phi-{{\textstyle\frac{1}{2}}}F\delta_{\mu}^{\nu}, 
+  464|  (23) 
+  465|  where F X ≡ ∂ F / ∂ X F_{X}\equiv\partial F/\partial X . Obvious special cases of ( 22 )
+  466| are 
+  467|  (i) 
+  468|  normal and phantom scalar fields with the usual kinetic term
+  469| ( F = ϵ ​ X − 2 ​ V ​ ( ϕ ) F=\epsilon X-2V(\phi) , ϵ = 1 \epsilon=1 for a normal field and ϵ = − 1 \epsilon=-1 
+  470| for a phantom field); 
+  471|  (ii) 
+  472|  the most frequently used forms of k-essence, with
+  473|  F = V ⁡ ( ϕ ) ​ U ​ ( X ) F=V(\phi)U(X) , and, in particular, the so-called tachyonic
+  474| field, for which F = − V ⁡ ( ϕ ) ​ 1 − X F=-V(\phi)\sqrt{1-X} . 
+  475|  In the cosmological setting, the action ( 22 ) may also
+  476| describe such forms of dark energy as 
+  477|  (iii) 
+  478|  a perfect fluid with the barotropic equation of state w = ε / p = const < − 1 / 3 w=\varepsilon/p={\rm const}<-1/3 , for which one should put 
+  479|  F ⁡ ( ϕ , X ) = V ⁡ ( ϕ ) ​ X ( w + 1 ) / ( 2 ​ w ) , F(\phi,X)=V(\phi)X^{(w+1)/(2w)}, 
+  480|  (24) 
+  481|  with an arbitrary function V ⁡ ( ϕ ) V(\phi) ; 
+  482|  (iv) 
+  483|  a generalized Chaplygin gas, defined as a perfect fluid with the
+  484| equation of state p = − A / ε α p=-A/\varepsilon^{\alpha} , with A , α = const A,\alpha={\rm const} ,
+  485| for which one should choose F ⁡ ( ϕ , X ) F(\phi,X) satisfying the equation 
+  486|  2 X F X = F + [ − F / ( 2 A ) ] − 1 / α . 2X\,F_{X}=F+[-F/(2A)]^{-1/\alpha}. 
+  487|  (25) 
+  488|  In particular, to obtain a “simple” Chaplygin gas, with the
+  489| equation of state p = − A / ε p=-A/\varepsilon , one can put 
+  490|  F = ± 2 ​ A ​ 1 + X ​ f ​ ( ϕ ) F=\pm 2\sqrt{A}\,\sqrt{1+Xf(\phi)} 
+  491|  (26) 
+  492|  with an arbitrary function f ⁡ ( ϕ ) f(\phi) . 
+  493|  To verify this, it is sufficient to put ϕ = ϕ ⁡ ( t ) \phi=\phi(t) and g 00 = 1 g_{00}=1 ,
+  494| where x 0 = t x^{0}=t is the cosmological time, so that X = ( d ​ ϕ / d ​ t ) 2 X=(d\phi/dt)^{2} ; we
+  495| have then ε = X ​ F X − F / 2 \varepsilon=XF_{X}-F/2 and p = F / 2 p=F/2 . 
+  496|  Let us now return to static, spherically symmetric configurations with the metric ( 1 ).
+  497| It is then straightforward to check that the field equations for the
+  498| action ( 22 ) may be written in the following form similar to
+  499| ( 4 )–( 7 ): 
+  500|  2 ​ ( F X ​ A ​ r 2 ​ ϕ ′ ) ′ \displaystyle 2(F_{X}Ar^{2}\phi^{\prime})^{\prime} 
+  501|  = \displaystyle\hskip-5.0pt= 
+  502|  − r 2 ​ F ϕ ; \displaystyle\hskip-5.0pt-r^{2}F_{\phi}; 
+  503|  (27) 
+  504|  ( A ′ ​ r 2 ) ′ \displaystyle(A^{\prime}r^{2})^{\prime} 
+  505|  = \displaystyle\hskip-5.0pt= 
+  506|  r 2 ​ ( F − X ​ F X ) ; \displaystyle\hskip-5.0ptr^{2}(F-XF_{X}); 
+  507|  (28) 
+  508|  2 ​ r ′′ / r \displaystyle 2r^{\prime\prime}/r 
+  509|  = \displaystyle\hskip-5.0pt= 
+  510|  − ϕ ′ 2 ​ F X , \displaystyle\hskip-5.0pt-{\phi^{\prime}}^{2}\,F_{X}, 
+  511|  (29) 
+  512|  A ​ ( r 2 ) ′′ − r 2 ​ A ′′ \displaystyle A(r^{2})^{\prime\prime}-r^{2}A^{\prime\prime} 
+  513|  = \displaystyle\hskip-5.0pt= 
+  514|  2 . \displaystyle\hskip-5.0pt2. 
+  515|  (30) 
+  516|  Again the scalar field equation ( 27 ) may be obtained from the
+  517| Einstein equations ( 28 )–( 30 ), and so the latter three
+  518| may be considered as a determined set of equations for ϕ ⁡ ( ρ ) \phi(\rho) ,
+  519|  A ⁡ ( ρ ) A(\rho) and r ⁡ ( ρ ) r(\rho) if the function F ⁡ ( ϕ , X ) F(\phi,X) has been prescribed. 
+  520|  Eq. ( 30 ) is the same as ( 7 ) due to the relation
+  521|  T 0 0 = T 2 2 T_{0}^{0}=T^{2}_{2} valid for the tensor ( 23 ) just as for that of a
+  522| usual minimally coupled scalar. Therefore, we again obtain the integral
+  523| ( 8 ) and, as its consequence, the Global Structure Theorem
+  524|  [ 26 ] restricting the possible global properties of the solutions. 
+  525|  Since the action ( 22 ) is more general than ( 3 ), it is
+  526| reasonable to expect that the set of possible solutions will also be
+  527| richer. Let us try to formulate some necessary conditions for obtaining
+  528| solutions of interest for us here, namely, black universes. 
+  529|  Above all, to obtain r → ∞ r\to\infty as ρ → ± ∞ \rho\to\pm\infty it is
+  530| necessary to have r ′′ > 0 r^{\prime\prime}>0 at least in some range of ρ \rho , hence
+  531|  F X < 0 F_{X}<0 (the “phantom condition”). 
+  532|  Other conditions may be deduced by assuming r ∼ ρ r\sim\rho as ρ → ± ∞ \rho\to\pm\infty and requiring a Minkowski limit at large positive ρ \rho and
+  533| a de Sitter limit with some cosmological constant Λ − \Lambda_{-} at large
+  534| negative ρ \rho . Let us also assume that F F is a smooth function of
+  535| both arguments while ϕ \phi tends to finite limits ϕ ± \phi_{\pm} and
+  536| admits expansions in power series in 1 / ρ 1/\rho as ρ → ± ∞ \rho\to\pm\infty . 
+  537|  Substitution into the field equations then gives: 
+  538|  F , F ϕ , X ​ F X = O ⁡ ( ρ − 4 ) as ρ → ∞ , \displaystyle\hskip-20.00003pt{}F,\ F_{\phi},\ XF_{X}=O(\rho^{-4})\hskip 28.45274pt{\rm as}\hskip 10.00002pt\rho\to\infty, 
+  539|  F → Λ − / 3 , X ​ F X , F ϕ = O ⁡ ( ρ − 2 ) as ρ → − ∞ . \displaystyle\hskip-20.00003pt{}F\to\sqrt{\Lambda_{-}/3},\hskip 28.45274ptXF_{X},\ F_{\phi}=O(\rho^{-2})\hskip 28.45274pt{\rm as}\hskip 10.00002pt\rho\to-\infty. 
+  540|  (31) 
+  541|  The symbol O ⁡ ( x ) O(x) means here a quantity of order x x or smaller.
+  542| In all cases X → 0 X\to 0 at large | ρ | |\rho| , and so the function F ⁡ ( ϕ , 0 ) F(\phi,0) 
+  543| has zero slopes at ϕ = ϕ ± \phi=\phi_{\pm} , just as the potential V ⁡ ( ϕ ) V(\phi) 
+  544| of a minimally coupled scalar field in Sec.  3. . 
+  545|  The asymptotic regimes of F ⁡ ( ϕ , X ) F(\phi,X) are different in Minkowski and de
+  546| Sitter limits. Indeed, if we assume ϕ = ϕ + + const / ρ \phi=\phi_{+}+{\rm const}/\rho and
+  547|  ϕ ′ ∼ ρ − 2 \phi^{\prime}\sim\rho^{-2} as ρ → ∞ \rho\to\infty , which is characteristic of a
+  548| massless (long-range) scalar field, then ( 4.2. ) leads to
+  549|  F = O ⁡ ( ρ − 4 ) F=O(\rho^{-4}) , so that F ⁡ ( ϕ , 0 ) ∼ ( ϕ − ϕ + ) 4 F(\phi,0)\sim(\phi-\phi_{+})^{4} or is
+  550| even smaller. This is not surprising since F ⁡ ( ϕ , 0 ) F(\phi,0) behaves as a
+  551| potential which must be smaller than quadratic for a massless behaviour
+  552| of ϕ \phi . 
+  553|  On the other hand, at the de Sitter asymptotic, under similar
+  554| assumptions ( ϕ = ϕ − + const / ρ \phi=\phi_{-}+{\rm const}/\rho as ρ → − ∞ \rho\to-\infty ), we
+  555| obtain a generic quadratic behaviour of F F :
+  556|  F ⁡ ( ϕ , 0 ) ∼ ( ϕ − ϕ − ) 2 F(\phi,0)\sim(\phi-\phi_{-})^{2} , and the massless case is not
+  557| distinguished in the behaviour of the “potential” F F . 
+  558|  These observations are confirmed by the asymptotic behaviour of the
+  559| potential ( 16 ) in the above example ( 11 )–( 16 ):
+  560|  V ∼ ( ϕ − π / 2 ) 4 V\sim(\phi-\pi/\sqrt{2})^{4} as ρ → ∞ \rho\to\infty and
+  561|  V − V − ∼ ( ϕ + π / 2 ) 2 V-V_{-}\sim(\phi+\pi/\sqrt{2})^{2} as ρ → − ∞ \rho\to-\infty where
+  562|  V − = Λ − = V | ρ → − ∞ = 3 ​ π ​ ρ 0 / b 3 V_{-}=\Lambda_{-}=V\big|_{\rho\to-\infty}=3\pi\rho_{0}/b^{3} . 
+  563|  The conditions ( 4.2. ) are easily re-formulated for the
+  564| frequently used kinds of k-essence: F = f ⁡ ( X ) − 2 ​ V ​ ( ϕ ) F=f(X)-2V(\phi) and
+  565|  F = f ⁡ ( X ) ​ V ​ ( ϕ ) F=f(X)V(\phi) . 
+  566|  It, however, can be easily shown that black-universe solutions are
+  567| absent for the perfect fluid representations ( 24 ) and
+  568| ( 26 ). Indeed, X = − A ϕ ′ 2 X=-A\phi^{\prime}{}^{2} changes its sign at the
+  569| horizon, therefore F F must make sense for any sign of X X . Meanwhile,
+  570| in the function ( 24 ), the exponent ( w + 1 ) / ( 2 ​ w ) (w+1)/(2w) is fractional
+  571| for any w < − 1 w<-1 , and the whole expression loses its meaning at X < 0 X<0 .
+  572| As to the function ( 26 ), it is nonzero at X = 0 X=0 , which is
+  573| incompatible with asymptotic flatness. 
+  574|  Thus many, though not all, kinds of k-essence lead to black-universe
+  575| solutions, under necessary conditions similar to those formulated for
+  576| minimally coupled scalar fields. 
+  577|  5. Conclusion 
+  578|  In this paper, we have classified the possible geometries of static, spherically symmetric,
+  579| asymptotically flat BHs and discussed in more detail their particular type, the
+  580| black universes. Such hypothetical configurations combine the properties
+  581| of a wormhole (absence of a centre, a regular minimum of the area
+  582| function) and a black hole (a Killing horizon separating R and T regions). 
+  583|  Quite evidently, such unusual objects require unusual matter for their
+  584| existence. It turns out that they are naturally obtained if one
+  585| considers static, spherically symmetric distributions of phantom matter, which is a subject
+  586| of vast discussion in modern cosmology. We have considered a
+  587| sufficiently general frameworks for the description of phantom matter,
+  588| namely, STT of gravity and the so-called k-essence, and found necessary
+  589| conditions for the existence of black-universe solutions. A conclusion
+  590| is that a great number of reasonable phantom matter models produce such
+  591| solutions. 
+  592|  The latter lead to the idea that our Universe could appear from
+  593| phantom-dominated collapse in another, “mother” universe and undergo
+  594| isotropization (e.g., due to particle creation) soon after crossing the
+  595| horizon. It is known that a Kantowski-Sachs nature of our Universe is not
+  596| excluded observationally [ 34 ] if its isotropization had happened
+  597| early enough, before the last scattering epoch (at redshifts z ≳ 1000 z\gtrsim 1000 ). One can notice that we are thus facing one more mechanism of
+  598| universes multiplication, in addition to the well-known mechanism
+  599| existing in the chaotic inflation scenario. 
+  600|  Somewhat similar ideas on possible appearance of baby universes inside
+  601| BHs have already been discussed from different standpoints
+  602|  [ 35 , 36 ] (see also references therein), and some
+  603| examples of two-dimensional regular BH metrics with properties
+  604| more or less similar to ours are known [ 35 , 37 , 38 ] ,
+  605| It can be remarked, however, that in two dimensions, where space is
+  606| simply a line, the notion of a centre,
+  607| which plays an essential role in the four-dimensional picture, cannot
+  608| be properly introduced. So it seems that the black-universe solutions
+  609| considered here and in Ref.  [ 1 ] are qualitatively new and (if
+  610| certainly amended by adding realistic matter ingredients) may even
+  611| lead to viable alternatives to the existing cosmological scenarios. 
+  612|  Acknowledgments 
+  613|  The authors acknowledge partial financial support from DFG project
+  614| 436/RUS 113/807/0-1(R) and also (KB and VM) from RFBR Grant
+  615| 05-0217478n. KB and VM are thankful to the colleagues from the
+  616| University of Konstanz for kind hospitality. 
+  617|  References 
+  618|  [1] 
+  619| K.A. Bronnikov and J.C. Fabris,
+  620| “Regular phantom black holes”, Phys. Rev. Lett. 96 , 251101 (2006);
+  621| gr-qc/0511109.
+  622|  [2] 
+  623| A. Upadhye, M. Ishak and P.J. Steinhardt,
+  624|  Phys. Rev. D 72 , 063501 (2005); 
+  625|  Y. Wang and M. Tegmark,
+  626|  Phys. Rev. Lett. 92 , 241302 (2004); 
+  627|  U. Seljak et al., Phys. Rev. D 71 , 103515 (2005); 
+  628|  S. Hannestad and E. Mortsell, JCAP 0409 , 001 (2004); 
+  629|  U. Alam, V. Sahni, T.D. Saini and A.A. Starobinsky,
+  630|  Mon. Not. R. Astron. Soc. 354 , 275 (2004); 
+  631|  S.W. Allen et al.,
+  632|  Mon. Not. R. Astron. Soc. 353 , 457 (2004).
+  633|  [3] 
+  634| A. Sen, JHEP 0204 , 048 (2002); 0207 , 065 (2002).
+  635|  [4] 
+  636| H.P. Nilles, Phys. Rep. 110 , 1 (1984).
+  637|  [5] 
+  638| N. Khviengia, Z. Khviengia, H. Lü and C.N. Pope,
+  639|  Class. Quantum Grav. 15 , 759 (1998).
+  640|  [6] 
+  641| S. Nojiri and S.D. Odintsov, Phys. Lett. B 562 147
+  642| (2003); 
+  643|  S.M. Carroll, M. Hoffman and M. Trodden, Phys. Rev. D
+  644| 68 , 023509 (2003).
+  645|  [7] 
+  646| C. Armendáriz-Picon, Phys. Rev. D 65, 104010 (2002).
+  647|  [8] 
+  648| M. Campanelli and C.O. Lousto,
+  649|  Int. J. Mod. Phys. D2 , 451 (1993); 
+  650|  K.A. Bronnikov, G. Clément, C.P. Constantindis and J.C. Fabris,
+  651|  Grav. & Cosmol. 4 , 128 (1998);
+  652|  Phys. Lett. 243A , 121 (1998).
+  653|  [9] 
+  654| R.M. Wald, “General Relativity”,
+  655| The University of Chicago Press, Chicago (1984).
+  656|  [10] 
+  657| K.A. Bronnikov, C.P. Constantinidis, R.L. Evangelista and J.C. Fabris,
+  658|  Int. J. Mod. Phys. D 8 , 481 (1999).
+  659|  [11] 
+  660| R. Casadio, A. Fabbri and L. Mazzacurati,
+  661|  Phys. Rev. D 65 , 084040 (2002).
+  662|  [12] 
+  663| K.A. Bronnikov, H. Dehnen and V.N. Melnikov, Phys. Rev. D 68 , 024025 (2003).
+  664|  [13] 
+  665| J.M. Bardeen, “Non-singular general-relativistic gravitational
+  666| collapse”, Proc. Int. Conf. GR5, Tbilisi, 1968, p. 174.
+  667|  [14] 
+  668| I. Dymnikova, Gen. Rel. Gravit. 24 , 235 (1992).
+  669|  [15] 
+  670| E. Ayon-Beato and A. Garcia,
+  671|  Phys. Rev. Lett. 80 , 5056 (1998).
+  672|  [16] 
+  673| K.A. Bronnikov, Phys. Rev. D 63 , 044005 (2001); gr-qc/0006014.
+  674|  [17] 
+  675| K.A. Bronnikov, A. Dobosz and I.G. Dymnikova,
+  676|  Class. Quantum Grav. 20 , 3797 (2003).
+  677|  [18] 
+  678| A. Burinskii and S.R. Hildebrandt,
+  679|  Phys. Rev. D 65 , 104017 (2002);
+  680|  Grav. & Cosmol. 9 , 20 (2003);
+  681|  Czech. J. Phys. 53 B283 (2003).
+  682|  [19] 
+  683| W. Berej, J. Matyjasek, D. Tryniecki and M. Woronowicz,
+  684| “Regular black holes in quadratic gravity”, hep-th/0606185; 
+  685|  S.A. Hayward, Phys. Rev. Lett. 96 , 031103 (2006); 
+  686|  S. Shankaranarayanan and N. Dadhich,
+  687|  Int. J. Mod. Phys. D 13 , 1095 (2004), gr-qc/0306111.
+  688|  [20] 
+  689| K.A. Bronnikov, M.S. Chernakova, J.C. Fabris, N. Pinto-Neto,
+  690| and M.E. Rodrigues,
+  691| “Cold black holes and conformal continuations”, gr-qc/0609084.
+  692|  [21] 
+  693| T. Shiromizu, K. Maeda and M. Sasaki, Phys. Rev. D 62 , 024012 (2000).
+  694|  [22] 
+  695| E. Abdalla, B. Cuadros-Melgar, A.B. Pavan and C. Molina,
+  696| “Stability and thermodynamics of brane black holes”, gr-qc/0604033.
+  697|  [23] 
+  698| R. Casadio and L. Mazzacurati,
+  699|  Mod. Phys. Lett. A 18 , 651 (2003).
+  700|  [24] 
+  701| E.J. Copeland, M. Sami and S. Tsujikawa,
+  702| “Dynamics of dark energy”, hep-th/0603057.
+  703|  [25] 
+  704| V. Sahni and A. Starobinsky,
+  705| “Reconstructing dark energy”, astro-ph/0610026.
+  706|  [26] 
+  707| K.A. Bronnikov, Phys. Rev. D 64 , 064013 (2001).
+  708|  [27] 
+  709| K.A. Bronnikov and G.N. Shikin,
+  710|  Grav. & Cosmol 8 , 107 (2002), gr-qc/0109027.
+  711|  [28] 
+  712| K.C.K. Chan, J.H. Horne and R.B. Mann,
+  713|  Nucl. Phys. B 447, 441 (1995).
+  714|  [29] 
+  715| U. Nucamendi and M. Salgado, Phys. Rev. D 68 , 044026
+  716| (2003).
+  717|  [30] 
+  718| O. Bechmann and O. Lechtenfeld,
+  719|  Class. Quantum Grav. 12 , 1473 (1995); 
+  720|  H. Dennhardt and O. Lechtenfeld,
+  721|  Int. J. Mod. Phys. A 13 , 741 (1998).
+  722|  [31] 
+  723| H.G. Ellis, J. Math. Phys. 14 , 104 (1973).
+  724|  [32] 
+  725| V. Faraoni, Class. Quantum Grav. 22 , 3235 (2005).
+  726|  [33] 
+  727| R. Wagoner, Phys. Rev. D 1 , 3209 (1970).
+  728|  [34] 
+  729| P. Aguiar and P. Crawford,
+  730| “Dust-filled axially symmetric universes with cosmological
+  731| constant”, gr-qc/0009056.
+  732|  [35] 
+  733| A.A. Tseytlin and C. Vafa, Nucl. Phys. B 372 , 443 (1992).
+  734|  [36] 
+  735| D.A. Easson and R.H. Brandenberger,
+  736|  JHEP 0106 , 024 (2001), hep-th/0103019; 
+  737|  I.G. Dymnikova, A. Dobozh, M.L. Filchenkov and A. Gromov,
+  738|  Phys. Lett. 506B , 351 (2001); 
+  739|  S.D.H. Hsu, “Spacetime topology change and black hole information”,
+  740| hep-th/0608175.
+  741|  [37] 
+  742| A. Bogojevic and D. Stojkovic,
+  743|  Phys. Rev. D 61 , 084011 (2000); gr-qc/9804070.
+  744|  [38] 
+  745| D.A. Easson,
+  746|  JHEP 0302 , 037 (2003); hep-th/0210016.
+  747|  ◄ 
+  748|  Feeling lucky? 
+  749|  Conversion report 
+  750|  Report an issue 
+  751|  View original on arXiv ► 
+  752|  Copyright 
+  753|  Privacy Policy 
+  754|  Generated by L a T e XML oxide 
+
+==============================================================================
+PART 2 — DISPOSITION OF EVERY NON-BLANK LINE
+==============================================================================
+    2| X20-001   NO_MASS_OR_SIZE_CONTENT   <-- 
+    3| X20-001   NO_MASS_OR_SIZE_CONTENT   <-- 
+    4| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- row X20-002 [NO_MASS_OR_SIZE_CONTENT] (lines 4-18): title, authors, emails, affiliations.
+    5| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+    6| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+    7| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+    8| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+    9| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   10| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   11| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   12| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   13| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   14| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   15| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   16| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   17| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   18| X20-002   NO_MASS_OR_SIZE_CONTENT   <-- 
+   19| B20-01    INCLUDED                  <-- row B20-01 [INCLUDED] (lines 19-29): abstract: 'We give a comparative description of different types of regular static, spherically symmetric black holes (BHs) ... The latter have a Schwarzschild-like causal structure, but inside the horizon there is an expanding Kantowski-Sachs universe and a de Sitter infinity instead of a singularity. ... An explicit example of a black-universe solution with positive Schwarzschild mass is discussed.' — states the paper's branch (phantom black universes), distinct from the Dymnikova regular-core branch.
+   20| B20-01    INCLUDED                  <-- 
+   21| B20-01    INCLUDED                  <-- 
+   22| B20-01    INCLUDED                  <-- 
+   23| B20-01    INCLUDED                  <-- 
+   24| B20-01    INCLUDED                  <-- 
+   25| B20-01    INCLUDED                  <-- 
+   26| B20-01    INCLUDED                  <-- 
+   27| B20-01    INCLUDED                  <-- 
+   28| B20-01    INCLUDED                  <-- 
+   29| B20-01    INCLUDED                  <-- 
+   30| X20-003   NO_MASS_OR_SIZE_CONTENT   <-- row X20-003 [NO_MASS_OR_SIZE_CONTENT] (lines 30-30): section heading '1. Introduction'.
+   31| B20-02    INCLUDED                  <-- row B20-02 [INCLUDED] (lines 31-41): 'One of the long-standing problems in black hole (BH) physics is the existence of curvature singularities beyond the event horizon ... many of them suggesting that a singularity inside the event horizon should be replaced with a kind of regular core.'
+   32| B20-02    INCLUDED                  <-- 
+   33| B20-02    INCLUDED                  <-- 
+   34| B20-02    INCLUDED                  <-- 
+   35| B20-02    INCLUDED                  <-- 
+   36| B20-02    INCLUDED                  <-- 
+   37| B20-02    INCLUDED                  <-- 
+   38| B20-02    INCLUDED                  <-- 
+   39| B20-02    INCLUDED                  <-- 
+   40| B20-02    INCLUDED                  <-- 
+   41| B20-02    INCLUDED                  <-- 
+   42| B20-03    INCLUDED                  <-- row B20-03 [INCLUDED] (lines 42-49): 'we discuss the possible geometry of classical nonsingular BHs, restricting ourselves to asymptotically flat static, spherically symmetric configurations ... those in which a possible BH explorer, after crossing the event horizon, gets into an expanding universe [1]. Such objects are naturally obtained if one considers local concentrations of dark energy in the form of phantom matter'.
+   43| B20-03    INCLUDED                  <-- 
+   44| B20-03    INCLUDED                  <-- 
+   45| B20-03    INCLUDED                  <-- 
+   46| B20-03    INCLUDED                  <-- 
+   47| B20-03    INCLUDED                  <-- 
+   48| B20-03    INCLUDED                  <-- 
+   49| B20-03    INCLUDED                  <-- 
+   50| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- row X20-004 [NO_MASS_OR_SIZE_CONTENT] (lines 50-58): motivation for phantom fields (string theory, supergravities, F-theory, quantum instability); no relation among the census topics asserted.
+   51| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   52| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   53| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   54| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   55| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   56| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   57| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   58| X20-004   NO_MASS_OR_SIZE_CONTENT   <-- 
+   59| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- row X20-005 [NO_MASS_OR_SIZE_CONTENT] (lines 59-66): paper roadmap.
+   60| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   61| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   62| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   63| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   64| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   65| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   66| X20-005   NO_MASS_OR_SIZE_CONTENT   <-- 
+   67| X20-006   NO_MASS_OR_SIZE_CONTENT   <-- row X20-006 [NO_MASS_OR_SIZE_CONTENT] (lines 67-67): section heading '2. Regular black hole geometries'.
+   68| B20-04    INCLUDED                  <-- row B20-04 [INCLUDED] (lines 68-76): eq (1): 'We begin with the general static, spherically symmetric metric ds^2 = A(rho)dt^2 - drho^2/A(rho) - r^2(rho)dOmega^2' with sign conventions.
+   69| B20-04    INCLUDED                  <-- 
+   70| B20-04    INCLUDED                  <-- 
+   71| B20-04    INCLUDED                  <-- 
+   72| B20-04    INCLUDED                  <-- 
+   73| B20-04    INCLUDED                  <-- 
+   74| B20-04    INCLUDED                  <-- 
+   75| B20-04    INCLUDED                  <-- 
+   76| B20-04    INCLUDED                  <-- 
+   77| B20-05    INCLUDED                  <-- row B20-05 [INCLUDED] (lines 77-102): working definitions: 'A black hole is a space-time containing (i) a static region ... (ii) another region invisible to an observer at rest ... (iii) a Killing horizon of nonzero area that separates the two regions'; 'Asymptotic flatness ... A -> 1 and r ~ rho as rho -> inf. A centre rho = rho_c (if any) corresponds to r = 0 while Killing horizons (if any) are described by zeros of the function A(rho).'
+   78| B20-05    INCLUDED                  <-- 
+   79| B20-05    INCLUDED                  <-- 
+   80| B20-05    INCLUDED                  <-- 
+   81| B20-05    INCLUDED                  <-- 
+   82| B20-05    INCLUDED                  <-- 
+   83| B20-05    INCLUDED                  <-- 
+   84| B20-05    INCLUDED                  <-- 
+   85| B20-05    INCLUDED                  <-- 
+   86| B20-05    INCLUDED                  <-- 
+   87| B20-05    INCLUDED                  <-- 
+   88| B20-05    INCLUDED                  <-- 
+   89| B20-05    INCLUDED                  <-- 
+   90| B20-05    INCLUDED                  <-- 
+   91| B20-05    INCLUDED                  <-- 
+   92| B20-05    INCLUDED                  <-- 
+   93| B20-05    INCLUDED                  <-- 
+   94| B20-05    INCLUDED                  <-- 
+   95| B20-05    INCLUDED                  <-- 
+   96| B20-05    INCLUDED                  <-- 
+   97| B20-05    INCLUDED                  <-- 
+   98| B20-05    INCLUDED                  <-- 
+   99| B20-05    INCLUDED                  <-- 
+  100| B20-05    INCLUDED                  <-- 
+  101| B20-05    INCLUDED                  <-- 
+  102| B20-05    INCLUDED                  <-- 
+  103| B20-06    INCLUDED                  <-- row B20-06 [INCLUDED] (lines 103-114): type 1: 'BHs with a regular centre (r ~ const.rho - rho_c, A -> A_c > 0 ...) ... such a BH must have at least two simple horizons or one double horizon, and its causal structure is then represented by the same Carter-Penrose diagram as that of the non-extreme or extreme Reissner-Nordstrom BH' — the Dymnikova family type.
+  104| B20-06    INCLUDED                  <-- 
+  105| B20-06    INCLUDED                  <-- 
+  106| B20-06    INCLUDED                  <-- 
+  107| B20-06    INCLUDED                  <-- 
+  108| B20-06    INCLUDED                  <-- 
+  109| B20-06    INCLUDED                  <-- 
+  110| B20-06    INCLUDED                  <-- 
+  111| B20-06    INCLUDED                  <-- 
+  112| B20-06    INCLUDED                  <-- 
+  113| B20-06    INCLUDED                  <-- 
+  114| B20-06    INCLUDED                  <-- 
+  115| X20-007   WRONG_BRANCH              <-- row X20-007 [WRONG_BRANCH] (lines 115-124): type 2: 'BHs without a centre, having second-order horizons of infinite area (so-called cold BHs ...)' — Brans-Dicke cold-BH branch, not the Dymnikova regular-core metrics.
+  116| X20-007   WRONG_BRANCH              <-- 
+  117| X20-007   WRONG_BRANCH              <-- 
+  118| X20-007   WRONG_BRANCH              <-- 
+  119| X20-007   WRONG_BRANCH              <-- 
+  120| X20-007   WRONG_BRANCH              <-- 
+  121| X20-007   WRONG_BRANCH              <-- 
+  122| X20-007   WRONG_BRANCH              <-- 
+  123| X20-007   WRONG_BRANCH              <-- 
+  124| X20-007   WRONG_BRANCH              <-- 
+  125| X20-008   WRONG_BRANCH              <-- row X20-008 [WRONG_BRANCH] (lines 125-127): type 3: 'BHs whose causal structure coincides with that of a non-extreme Kerr BH, again without a singular ring [11,12]' — brane-world branch.
+  126| X20-008   WRONG_BRANCH              <-- 
+  127| X20-008   WRONG_BRANCH              <-- 
+  128| B20-07    INCLUDED                  <-- row B20-07 [INCLUDED] (lines 128-131): type 4: 'Regular BHs with a Schwarzschild-like causal structure [1] ... but with cosmological expansion instead of a singular centre' — the paper's own black-universe family.
+  129| B20-07    INCLUDED                  <-- 
+  130| B20-07    INCLUDED                  <-- 
+  131| B20-07    INCLUDED                  <-- 
+  132| B20-08    INCLUDED                  <-- row B20-08 [INCLUDED] (lines 132-142): 'Figure 1: Plots showing the qualitative behaviour of the metric functions and Carter-Penrose diagrams for the four different types of regular static, spherically symmetric black holes. ... the horizontals in diagram 4b correspond either to r = inf or to r = r0 > 0'.
+  133| B20-08    INCLUDED                  <-- 
+  134| B20-08    INCLUDED                  <-- 
+  135| B20-08    INCLUDED                  <-- 
+  136| B20-08    INCLUDED                  <-- 
+  137| B20-08    INCLUDED                  <-- 
+  138| B20-08    INCLUDED                  <-- 
+  139| B20-08    INCLUDED                  <-- 
+  140| B20-08    INCLUDED                  <-- 
+  141| B20-08    INCLUDED                  <-- 
+  142| B20-08    INCLUDED                  <-- 
+  143| B20-09    INCLUDED                  <-- row B20-09 [INCLUDED] (lines 143-157): 'Type 1 traces back to Bardeen's work [13] ... a particular BH configuration with r == rho, A(rho) = 1 - M rho^2/(rho^2 + q^2)^{3/2} (2), where M, q = const, and two horizons exist provided q^2 < (16/27) M^2. ... the stress-energy tensor of the matter source satisfies the condition T^0_0 == T^1_1, or, in other words, epsilon = - p_r ... at a regular centre in this case the matter equation of state has necessarily the form of a cosmological constant [17]' — the Bardeen example's horizon condition (a critical size-mass relation of a DIFFERENT type-1 model, recorded for completeness) and the Dymnikova algebraic condition epsilon = -p_r.
+  144| B20-09    INCLUDED                  <-- 
+  145| B20-09    INCLUDED                  <-- 
+  146| B20-09    INCLUDED                  <-- 
+  147| B20-09    INCLUDED                  <-- 
+  148| B20-09    INCLUDED                  <-- 
+  149| B20-09    INCLUDED                  <-- 
+  150| B20-09    INCLUDED                  <-- 
+  151| B20-09    INCLUDED                  <-- 
+  152| B20-09    INCLUDED                  <-- 
+  153| B20-09    INCLUDED                  <-- 
+  154| B20-09    INCLUDED                  <-- 
+  155| B20-09    INCLUDED                  <-- 
+  156| B20-09    INCLUDED                  <-- 
+  157| B20-09    INCLUDED                  <-- 
+  158| X20-009   WRONG_BRANCH              <-- row X20-009 [WRONG_BRANCH] (lines 158-169): nonlinear-electrodynamics magnetic monopole solutions and electric-charge impossibility — NED branch, not the Dymnikova metrics.
+  159| X20-009   WRONG_BRANCH              <-- 
+  160| X20-009   WRONG_BRANCH              <-- 
+  161| X20-009   WRONG_BRANCH              <-- 
+  162| X20-009   WRONG_BRANCH              <-- 
+  163| X20-009   WRONG_BRANCH              <-- 
+  164| X20-009   WRONG_BRANCH              <-- 
+  165| X20-009   WRONG_BRANCH              <-- 
+  166| X20-009   WRONG_BRANCH              <-- 
+  167| X20-009   WRONG_BRANCH              <-- 
+  168| X20-009   WRONG_BRANCH              <-- 
+  169| X20-009   WRONG_BRANCH              <-- 
+  170| X20-010   NO_MASS_OR_SIZE_CONTENT   <-- row X20-010 [NO_MASS_OR_SIZE_CONTENT] (lines 170-171): 'Other examples of type 1 regular BHs have also been found and discussed, see, e.g., [19]' — pointer sentence, asserts no relation.
+  171| X20-010   NO_MASS_OR_SIZE_CONTENT   <-- 
+  172| X20-011   WRONG_BRANCH              <-- row X20-011 [WRONG_BRANCH] (lines 172-181): type 2 detail: Brans-Dicke scalar-tensor theory with omega < -3/2, anti-Fisher solution — STT branch.
+  173| X20-011   WRONG_BRANCH              <-- 
+  174| X20-011   WRONG_BRANCH              <-- 
+  175| X20-011   WRONG_BRANCH              <-- 
+  176| X20-011   WRONG_BRANCH              <-- 
+  177| X20-011   WRONG_BRANCH              <-- 
+  178| X20-011   WRONG_BRANCH              <-- 
+  179| X20-011   WRONG_BRANCH              <-- 
+  180| X20-011   WRONG_BRANCH              <-- 
+  181| X20-011   WRONG_BRANCH              <-- 
+  182| X20-012   WRONG_BRANCH              <-- row X20-012 [WRONG_BRANCH] (lines 182-189): type 3 detail: RS2 brane-world effective equations — brane-world branch.
+  183| X20-012   WRONG_BRANCH              <-- 
+  184| X20-012   WRONG_BRANCH              <-- 
+  185| X20-012   WRONG_BRANCH              <-- 
+  186| X20-012   WRONG_BRANCH              <-- 
+  187| X20-012   WRONG_BRANCH              <-- 
+  188| X20-012   WRONG_BRANCH              <-- 
+  189| X20-012   WRONG_BRANCH              <-- 
+  190| X20-013   WRONG_BRANCH              <-- row X20-013 [WRONG_BRANCH] (lines 190-201): type 4 introduction: 'Type 4 configurations have been obtained [1] as generic solutions to the Einstein-scalar equations for the case of minimally coupled phantom scalar fields with certain potentials ... p/epsilon = w < -1' — phantom branch (the paper's own direction).
+  191| X20-013   WRONG_BRANCH              <-- 
+  192| X20-013   WRONG_BRANCH              <-- 
+  193| X20-013   WRONG_BRANCH              <-- 
+  194| X20-013   WRONG_BRANCH              <-- 
+  195| X20-013   WRONG_BRANCH              <-- 
+  196| X20-013   WRONG_BRANCH              <-- 
+  197| X20-013   WRONG_BRANCH              <-- 
+  198| X20-013   WRONG_BRANCH              <-- 
+  199| X20-013   WRONG_BRANCH              <-- 
+  200| X20-013   WRONG_BRANCH              <-- 
+  201| X20-013   WRONG_BRANCH              <-- 
+  202| X20-014   NO_MASS_OR_SIZE_CONTENT   <-- row X20-014 [NO_MASS_OR_SIZE_CONTENT] (lines 202-202): section heading '3. Black universes with a minimally coupled scalar field'.
+  203| X20-015   WRONG_BRANCH              <-- row X20-015 [WRONG_BRANCH] (lines 203-235): phantom-scalar action and field equations (3)-(8): 'Consider the action for a self-gravitating phantom scalar field in general relativity S = Integral sqrt(g)[R - (d phi)^2 - 2V(phi)]' — relations of the phantom model, not the Dymnikova regular-core metrics.
+  204| X20-015   WRONG_BRANCH              <-- 
+  205| X20-015   WRONG_BRANCH              <-- 
+  206| X20-015   WRONG_BRANCH              <-- 
+  207| X20-015   WRONG_BRANCH              <-- 
+  208| X20-015   WRONG_BRANCH              <-- 
+  209| X20-015   WRONG_BRANCH              <-- 
+  210| X20-015   WRONG_BRANCH              <-- 
+  211| X20-015   WRONG_BRANCH              <-- 
+  212| X20-015   WRONG_BRANCH              <-- 
+  213| X20-015   WRONG_BRANCH              <-- 
+  214| X20-015   WRONG_BRANCH              <-- 
+  215| X20-015   WRONG_BRANCH              <-- 
+  216| X20-015   WRONG_BRANCH              <-- 
+  217| X20-015   WRONG_BRANCH              <-- 
+  218| X20-015   WRONG_BRANCH              <-- 
+  219| X20-015   WRONG_BRANCH              <-- 
+  220| X20-015   WRONG_BRANCH              <-- 
+  221| X20-015   WRONG_BRANCH              <-- 
+  222| X20-015   WRONG_BRANCH              <-- 
+  223| X20-015   WRONG_BRANCH              <-- 
+  224| X20-015   WRONG_BRANCH              <-- 
+  225| X20-015   WRONG_BRANCH              <-- 
+  226| X20-015   WRONG_BRANCH              <-- 
+  227| X20-015   WRONG_BRANCH              <-- 
+  228| X20-015   WRONG_BRANCH              <-- 
+  229| X20-015   WRONG_BRANCH              <-- 
+  230| X20-015   WRONG_BRANCH              <-- 
+  231| X20-015   WRONG_BRANCH              <-- 
+  232| X20-015   WRONG_BRANCH              <-- 
+  233| X20-015   WRONG_BRANCH              <-- 
+  234| X20-015   WRONG_BRANCH              <-- 
+  235| X20-015   WRONG_BRANCH              <-- 
+  236| X20-016   WRONG_BRANCH              <-- row X20-016 [WRONG_BRANCH] (lines 236-253): 'horizons are regular zeros of A(rho) ... It can have at most two simple zeros ... the Global Structure Theorem [26]' applied to the phantom system; 'BHs with a regular centre (type 1 ...) are ruled out for our system' — explicitly a different branch from type 1.
+  237| X20-016   WRONG_BRANCH              <-- 
+  238| X20-016   WRONG_BRANCH              <-- 
+  239| X20-016   WRONG_BRANCH              <-- 
+  240| X20-016   WRONG_BRANCH              <-- 
+  241| X20-016   WRONG_BRANCH              <-- 
+  242| X20-016   WRONG_BRANCH              <-- 
+  243| X20-016   WRONG_BRANCH              <-- 
+  244| X20-016   WRONG_BRANCH              <-- 
+  245| X20-016   WRONG_BRANCH              <-- 
+  246| X20-016   WRONG_BRANCH              <-- 
+  247| X20-016   WRONG_BRANCH              <-- 
+  248| X20-016   WRONG_BRANCH              <-- 
+  249| X20-016   WRONG_BRANCH              <-- 
+  250| X20-016   WRONG_BRANCH              <-- 
+  251| X20-016   WRONG_BRANCH              <-- 
+  252| X20-016   WRONG_BRANCH              <-- 
+  253| X20-016   WRONG_BRANCH              <-- 
+  254| X20-017   WRONG_BRANCH              <-- row X20-017 [WRONG_BRANCH] (lines 254-307): asymptotic analysis of the phantom system: r0-asymptotic 'V -> -1/r0^2', Kantowski-Sachs metric (9), 'an asymptotically flat configuration can have only one simple horizon, such a BH has a Schwarzschild-like causal structure, but the singularity r = 0 ... is now replaced by the de Sitter infinity r = inf' — phantom branch.
+  255| X20-017   WRONG_BRANCH              <-- 
+  256| X20-017   WRONG_BRANCH              <-- 
+  257| X20-017   WRONG_BRANCH              <-- 
+  258| X20-017   WRONG_BRANCH              <-- 
+  259| X20-017   WRONG_BRANCH              <-- 
+  260| X20-017   WRONG_BRANCH              <-- 
+  261| X20-017   WRONG_BRANCH              <-- 
+  262| X20-017   WRONG_BRANCH              <-- 
+  263| X20-017   WRONG_BRANCH              <-- 
+  264| X20-017   WRONG_BRANCH              <-- 
+  265| X20-017   WRONG_BRANCH              <-- 
+  266| X20-017   WRONG_BRANCH              <-- 
+  267| X20-017   WRONG_BRANCH              <-- 
+  268| X20-017   WRONG_BRANCH              <-- 
+  269| X20-017   WRONG_BRANCH              <-- 
+  270| X20-017   WRONG_BRANCH              <-- 
+  271| X20-017   WRONG_BRANCH              <-- 
+  272| X20-017   WRONG_BRANCH              <-- 
+  273| X20-017   WRONG_BRANCH              <-- 
+  274| X20-017   WRONG_BRANCH              <-- 
+  275| X20-017   WRONG_BRANCH              <-- 
+  276| X20-017   WRONG_BRANCH              <-- 
+  277| X20-017   WRONG_BRANCH              <-- 
+  278| X20-017   WRONG_BRANCH              <-- 
+  279| X20-017   WRONG_BRANCH              <-- 
+  280| X20-017   WRONG_BRANCH              <-- 
+  281| X20-017   WRONG_BRANCH              <-- 
+  282| X20-017   WRONG_BRANCH              <-- 
+  283| X20-017   WRONG_BRANCH              <-- 
+  284| X20-017   WRONG_BRANCH              <-- 
+  285| X20-017   WRONG_BRANCH              <-- 
+  286| X20-017   WRONG_BRANCH              <-- 
+  287| X20-017   WRONG_BRANCH              <-- 
+  288| X20-017   WRONG_BRANCH              <-- 
+  289| X20-017   WRONG_BRANCH              <-- 
+  290| X20-017   WRONG_BRANCH              <-- 
+  291| X20-017   WRONG_BRANCH              <-- 
+  292| X20-017   WRONG_BRANCH              <-- 
+  293| X20-017   WRONG_BRANCH              <-- 
+  294| X20-017   WRONG_BRANCH              <-- 
+  295| X20-017   WRONG_BRANCH              <-- 
+  296| X20-017   WRONG_BRANCH              <-- 
+  297| X20-017   WRONG_BRANCH              <-- 
+  298| X20-017   WRONG_BRANCH              <-- 
+  299| X20-017   WRONG_BRANCH              <-- 
+  300| X20-017   WRONG_BRANCH              <-- 
+  301| X20-017   WRONG_BRANCH              <-- 
+  302| X20-017   WRONG_BRANCH              <-- 
+  303| X20-017   WRONG_BRANCH              <-- 
+  304| X20-017   WRONG_BRANCH              <-- 
+  305| X20-017   WRONG_BRANCH              <-- 
+  306| X20-017   WRONG_BRANCH              <-- 
+  307| X20-017   WRONG_BRANCH              <-- 
+  308| X20-018   WRONG_BRANCH              <-- row X20-018 [WRONG_BRANCH] (lines 308-352): explicit example (11)-(16) with 'the Schwarzschild mass, defined in the usual way, is m = rho0/3', throat conditions '3 pi m < 2b ... 3 pi m = 2b ... 3 pi m > 2b', horizon radius from A(rho_h) = 0 — relations of the phantom black-universe model.
+  309| X20-018   WRONG_BRANCH              <-- 
+  310| X20-018   WRONG_BRANCH              <-- 
+  311| X20-018   WRONG_BRANCH              <-- 
+  312| X20-018   WRONG_BRANCH              <-- 
+  313| X20-018   WRONG_BRANCH              <-- 
+  314| X20-018   WRONG_BRANCH              <-- 
+  315| X20-018   WRONG_BRANCH              <-- 
+  316| X20-018   WRONG_BRANCH              <-- 
+  317| X20-018   WRONG_BRANCH              <-- 
+  318| X20-018   WRONG_BRANCH              <-- 
+  319| X20-018   WRONG_BRANCH              <-- 
+  320| X20-018   WRONG_BRANCH              <-- 
+  321| X20-018   WRONG_BRANCH              <-- 
+  322| X20-018   WRONG_BRANCH              <-- 
+  323| X20-018   WRONG_BRANCH              <-- 
+  324| X20-018   WRONG_BRANCH              <-- 
+  325| X20-018   WRONG_BRANCH              <-- 
+  326| X20-018   WRONG_BRANCH              <-- 
+  327| X20-018   WRONG_BRANCH              <-- 
+  328| X20-018   WRONG_BRANCH              <-- 
+  329| X20-018   WRONG_BRANCH              <-- 
+  330| X20-018   WRONG_BRANCH              <-- 
+  331| X20-018   WRONG_BRANCH              <-- 
+  332| X20-018   WRONG_BRANCH              <-- 
+  333| X20-018   WRONG_BRANCH              <-- 
+  334| X20-018   WRONG_BRANCH              <-- 
+  335| X20-018   WRONG_BRANCH              <-- 
+  336| X20-018   WRONG_BRANCH              <-- 
+  337| X20-018   WRONG_BRANCH              <-- 
+  338| X20-018   WRONG_BRANCH              <-- 
+  339| X20-018   WRONG_BRANCH              <-- 
+  340| X20-018   WRONG_BRANCH              <-- 
+  341| X20-018   WRONG_BRANCH              <-- 
+  342| X20-018   WRONG_BRANCH              <-- 
+  343| X20-018   WRONG_BRANCH              <-- 
+  344| X20-018   WRONG_BRANCH              <-- 
+  345| X20-018   WRONG_BRANCH              <-- 
+  346| X20-018   WRONG_BRANCH              <-- 
+  347| X20-018   WRONG_BRANCH              <-- 
+  348| X20-018   WRONG_BRANCH              <-- 
+  349| X20-018   WRONG_BRANCH              <-- 
+  350| X20-018   WRONG_BRANCH              <-- 
+  351| X20-018   WRONG_BRANCH              <-- 
+  352| X20-018   WRONG_BRANCH              <-- 
+  353| X20-019   WRONG_BRANCH              <-- row X20-019 [WRONG_BRANCH] (lines 353-377): potential requirements and the remark 'the late-time de Sitter expansion rate is entirely determined by the corresponding potential value V_- > 0 ... rather than by the details of the solution such as the Schwarzschild mass' — phantom branch.
+  354| X20-019   WRONG_BRANCH              <-- 
+  355| X20-019   WRONG_BRANCH              <-- 
+  356| X20-019   WRONG_BRANCH              <-- 
+  357| X20-019   WRONG_BRANCH              <-- 
+  358| X20-019   WRONG_BRANCH              <-- 
+  359| X20-019   WRONG_BRANCH              <-- 
+  360| X20-019   WRONG_BRANCH              <-- 
+  361| X20-019   WRONG_BRANCH              <-- 
+  362| X20-019   WRONG_BRANCH              <-- 
+  363| X20-019   WRONG_BRANCH              <-- 
+  364| X20-019   WRONG_BRANCH              <-- 
+  365| X20-019   WRONG_BRANCH              <-- 
+  366| X20-019   WRONG_BRANCH              <-- 
+  367| X20-019   WRONG_BRANCH              <-- 
+  368| X20-019   WRONG_BRANCH              <-- 
+  369| X20-019   WRONG_BRANCH              <-- 
+  370| X20-019   WRONG_BRANCH              <-- 
+  371| X20-019   WRONG_BRANCH              <-- 
+  372| X20-019   WRONG_BRANCH              <-- 
+  373| X20-019   WRONG_BRANCH              <-- 
+  374| X20-019   WRONG_BRANCH              <-- 
+  375| X20-019   WRONG_BRANCH              <-- 
+  376| X20-019   WRONG_BRANCH              <-- 
+  377| X20-019   WRONG_BRANCH              <-- 
+  378| X20-020   NO_MASS_OR_SIZE_CONTENT   <-- row X20-020 [NO_MASS_OR_SIZE_CONTENT] (lines 378-378): section heading '4. Black universes with other forms of phantom matter'.
+  379| X20-021   WRONG_BRANCH              <-- row X20-021 [WRONG_BRANCH] (lines 379-388): overview: type-4 BHs as solutions 'of at least two large classes of such theories: scalar-tensor theories (STT) ... and the class of models called k-essence' — phantom branch.
+  380| X20-021   WRONG_BRANCH              <-- 
+  381| X20-021   WRONG_BRANCH              <-- 
+  382| X20-021   WRONG_BRANCH              <-- 
+  383| X20-021   WRONG_BRANCH              <-- 
+  384| X20-021   WRONG_BRANCH              <-- 
+  385| X20-021   WRONG_BRANCH              <-- 
+  386| X20-021   WRONG_BRANCH              <-- 
+  387| X20-021   WRONG_BRANCH              <-- 
+  388| X20-021   WRONG_BRANCH              <-- 
+  389| X20-022   WRONG_BRANCH              <-- row X20-022 [WRONG_BRANCH] (lines 389-450): subsection 4.1 scalar-tensor theories, eqs (17)-(21), Jordan/Einstein frames — phantom branch machinery.
+  390| X20-022   WRONG_BRANCH              <-- 
+  391| X20-022   WRONG_BRANCH              <-- 
+  392| X20-022   WRONG_BRANCH              <-- 
+  393| X20-022   WRONG_BRANCH              <-- 
+  394| X20-022   WRONG_BRANCH              <-- 
+  395| X20-022   WRONG_BRANCH              <-- 
+  396| X20-022   WRONG_BRANCH              <-- 
+  397| X20-022   WRONG_BRANCH              <-- 
+  398| X20-022   WRONG_BRANCH              <-- 
+  399| X20-022   WRONG_BRANCH              <-- 
+  400| X20-022   WRONG_BRANCH              <-- 
+  401| X20-022   WRONG_BRANCH              <-- 
+  402| X20-022   WRONG_BRANCH              <-- 
+  403| X20-022   WRONG_BRANCH              <-- 
+  404| X20-022   WRONG_BRANCH              <-- 
+  405| X20-022   WRONG_BRANCH              <-- 
+  406| X20-022   WRONG_BRANCH              <-- 
+  407| X20-022   WRONG_BRANCH              <-- 
+  408| X20-022   WRONG_BRANCH              <-- 
+  409| X20-022   WRONG_BRANCH              <-- 
+  410| X20-022   WRONG_BRANCH              <-- 
+  411| X20-022   WRONG_BRANCH              <-- 
+  412| X20-022   WRONG_BRANCH              <-- 
+  413| X20-022   WRONG_BRANCH              <-- 
+  414| X20-022   WRONG_BRANCH              <-- 
+  415| X20-022   WRONG_BRANCH              <-- 
+  416| X20-022   WRONG_BRANCH              <-- 
+  417| X20-022   WRONG_BRANCH              <-- 
+  418| X20-022   WRONG_BRANCH              <-- 
+  419| X20-022   WRONG_BRANCH              <-- 
+  420| X20-022   WRONG_BRANCH              <-- 
+  421| X20-022   WRONG_BRANCH              <-- 
+  422| X20-022   WRONG_BRANCH              <-- 
+  423| X20-022   WRONG_BRANCH              <-- 
+  424| X20-022   WRONG_BRANCH              <-- 
+  425| X20-022   WRONG_BRANCH              <-- 
+  426| X20-022   WRONG_BRANCH              <-- 
+  427| X20-022   WRONG_BRANCH              <-- 
+  428| X20-022   WRONG_BRANCH              <-- 
+  429| X20-022   WRONG_BRANCH              <-- 
+  430| X20-022   WRONG_BRANCH              <-- 
+  431| X20-022   WRONG_BRANCH              <-- 
+  432| X20-022   WRONG_BRANCH              <-- 
+  433| X20-022   WRONG_BRANCH              <-- 
+  434| X20-022   WRONG_BRANCH              <-- 
+  435| X20-022   WRONG_BRANCH              <-- 
+  436| X20-022   WRONG_BRANCH              <-- 
+  437| X20-022   WRONG_BRANCH              <-- 
+  438| X20-022   WRONG_BRANCH              <-- 
+  439| X20-022   WRONG_BRANCH              <-- 
+  440| X20-022   WRONG_BRANCH              <-- 
+  441| X20-022   WRONG_BRANCH              <-- 
+  442| X20-022   WRONG_BRANCH              <-- 
+  443| X20-022   WRONG_BRANCH              <-- 
+  444| X20-022   WRONG_BRANCH              <-- 
+  445| X20-022   WRONG_BRANCH              <-- 
+  446| X20-022   WRONG_BRANCH              <-- 
+  447| X20-022   WRONG_BRANCH              <-- 
+  448| X20-022   WRONG_BRANCH              <-- 
+  449| X20-022   WRONG_BRANCH              <-- 
+  450| X20-022   WRONG_BRANCH              <-- 
+  451| X20-023   WRONG_BRANCH              <-- row X20-023 [WRONG_BRANCH] (lines 451-576): subsection 4.2 k-essence, eqs (22)-(31), perfect-fluid and Chaplygin-gas cases — phantom branch machinery.
+  452| X20-023   WRONG_BRANCH              <-- 
+  453| X20-023   WRONG_BRANCH              <-- 
+  454| X20-023   WRONG_BRANCH              <-- 
+  455| X20-023   WRONG_BRANCH              <-- 
+  456| X20-023   WRONG_BRANCH              <-- 
+  457| X20-023   WRONG_BRANCH              <-- 
+  458| X20-023   WRONG_BRANCH              <-- 
+  459| X20-023   WRONG_BRANCH              <-- 
+  460| X20-023   WRONG_BRANCH              <-- 
+  461| X20-023   WRONG_BRANCH              <-- 
+  462| X20-023   WRONG_BRANCH              <-- 
+  463| X20-023   WRONG_BRANCH              <-- 
+  464| X20-023   WRONG_BRANCH              <-- 
+  465| X20-023   WRONG_BRANCH              <-- 
+  466| X20-023   WRONG_BRANCH              <-- 
+  467| X20-023   WRONG_BRANCH              <-- 
+  468| X20-023   WRONG_BRANCH              <-- 
+  469| X20-023   WRONG_BRANCH              <-- 
+  470| X20-023   WRONG_BRANCH              <-- 
+  471| X20-023   WRONG_BRANCH              <-- 
+  472| X20-023   WRONG_BRANCH              <-- 
+  473| X20-023   WRONG_BRANCH              <-- 
+  474| X20-023   WRONG_BRANCH              <-- 
+  475| X20-023   WRONG_BRANCH              <-- 
+  476| X20-023   WRONG_BRANCH              <-- 
+  477| X20-023   WRONG_BRANCH              <-- 
+  478| X20-023   WRONG_BRANCH              <-- 
+  479| X20-023   WRONG_BRANCH              <-- 
+  480| X20-023   WRONG_BRANCH              <-- 
+  481| X20-023   WRONG_BRANCH              <-- 
+  482| X20-023   WRONG_BRANCH              <-- 
+  483| X20-023   WRONG_BRANCH              <-- 
+  484| X20-023   WRONG_BRANCH              <-- 
+  485| X20-023   WRONG_BRANCH              <-- 
+  486| X20-023   WRONG_BRANCH              <-- 
+  487| X20-023   WRONG_BRANCH              <-- 
+  488| X20-023   WRONG_BRANCH              <-- 
+  489| X20-023   WRONG_BRANCH              <-- 
+  490| X20-023   WRONG_BRANCH              <-- 
+  491| X20-023   WRONG_BRANCH              <-- 
+  492| X20-023   WRONG_BRANCH              <-- 
+  493| X20-023   WRONG_BRANCH              <-- 
+  494| X20-023   WRONG_BRANCH              <-- 
+  495| X20-023   WRONG_BRANCH              <-- 
+  496| X20-023   WRONG_BRANCH              <-- 
+  497| X20-023   WRONG_BRANCH              <-- 
+  498| X20-023   WRONG_BRANCH              <-- 
+  499| X20-023   WRONG_BRANCH              <-- 
+  500| X20-023   WRONG_BRANCH              <-- 
+  501| X20-023   WRONG_BRANCH              <-- 
+  502| X20-023   WRONG_BRANCH              <-- 
+  503| X20-023   WRONG_BRANCH              <-- 
+  504| X20-023   WRONG_BRANCH              <-- 
+  505| X20-023   WRONG_BRANCH              <-- 
+  506| X20-023   WRONG_BRANCH              <-- 
+  507| X20-023   WRONG_BRANCH              <-- 
+  508| X20-023   WRONG_BRANCH              <-- 
+  509| X20-023   WRONG_BRANCH              <-- 
+  510| X20-023   WRONG_BRANCH              <-- 
+  511| X20-023   WRONG_BRANCH              <-- 
+  512| X20-023   WRONG_BRANCH              <-- 
+  513| X20-023   WRONG_BRANCH              <-- 
+  514| X20-023   WRONG_BRANCH              <-- 
+  515| X20-023   WRONG_BRANCH              <-- 
+  516| X20-023   WRONG_BRANCH              <-- 
+  517| X20-023   WRONG_BRANCH              <-- 
+  518| X20-023   WRONG_BRANCH              <-- 
+  519| X20-023   WRONG_BRANCH              <-- 
+  520| X20-023   WRONG_BRANCH              <-- 
+  521| X20-023   WRONG_BRANCH              <-- 
+  522| X20-023   WRONG_BRANCH              <-- 
+  523| X20-023   WRONG_BRANCH              <-- 
+  524| X20-023   WRONG_BRANCH              <-- 
+  525| X20-023   WRONG_BRANCH              <-- 
+  526| X20-023   WRONG_BRANCH              <-- 
+  527| X20-023   WRONG_BRANCH              <-- 
+  528| X20-023   WRONG_BRANCH              <-- 
+  529| X20-023   WRONG_BRANCH              <-- 
+  530| X20-023   WRONG_BRANCH              <-- 
+  531| X20-023   WRONG_BRANCH              <-- 
+  532| X20-023   WRONG_BRANCH              <-- 
+  533| X20-023   WRONG_BRANCH              <-- 
+  534| X20-023   WRONG_BRANCH              <-- 
+  535| X20-023   WRONG_BRANCH              <-- 
+  536| X20-023   WRONG_BRANCH              <-- 
+  537| X20-023   WRONG_BRANCH              <-- 
+  538| X20-023   WRONG_BRANCH              <-- 
+  539| X20-023   WRONG_BRANCH              <-- 
+  540| X20-023   WRONG_BRANCH              <-- 
+  541| X20-023   WRONG_BRANCH              <-- 
+  542| X20-023   WRONG_BRANCH              <-- 
+  543| X20-023   WRONG_BRANCH              <-- 
+  544| X20-023   WRONG_BRANCH              <-- 
+  545| X20-023   WRONG_BRANCH              <-- 
+  546| X20-023   WRONG_BRANCH              <-- 
+  547| X20-023   WRONG_BRANCH              <-- 
+  548| X20-023   WRONG_BRANCH              <-- 
+  549| X20-023   WRONG_BRANCH              <-- 
+  550| X20-023   WRONG_BRANCH              <-- 
+  551| X20-023   WRONG_BRANCH              <-- 
+  552| X20-023   WRONG_BRANCH              <-- 
+  553| X20-023   WRONG_BRANCH              <-- 
+  554| X20-023   WRONG_BRANCH              <-- 
+  555| X20-023   WRONG_BRANCH              <-- 
+  556| X20-023   WRONG_BRANCH              <-- 
+  557| X20-023   WRONG_BRANCH              <-- 
+  558| X20-023   WRONG_BRANCH              <-- 
+  559| X20-023   WRONG_BRANCH              <-- 
+  560| X20-023   WRONG_BRANCH              <-- 
+  561| X20-023   WRONG_BRANCH              <-- 
+  562| X20-023   WRONG_BRANCH              <-- 
+  563| X20-023   WRONG_BRANCH              <-- 
+  564| X20-023   WRONG_BRANCH              <-- 
+  565| X20-023   WRONG_BRANCH              <-- 
+  566| X20-023   WRONG_BRANCH              <-- 
+  567| X20-023   WRONG_BRANCH              <-- 
+  568| X20-023   WRONG_BRANCH              <-- 
+  569| X20-023   WRONG_BRANCH              <-- 
+  570| X20-023   WRONG_BRANCH              <-- 
+  571| X20-023   WRONG_BRANCH              <-- 
+  572| X20-023   WRONG_BRANCH              <-- 
+  573| X20-023   WRONG_BRANCH              <-- 
+  574| X20-023   WRONG_BRANCH              <-- 
+  575| X20-023   WRONG_BRANCH              <-- 
+  576| X20-023   WRONG_BRANCH              <-- 
+  577| X20-024   NO_MASS_OR_SIZE_CONTENT   <-- row X20-024 [NO_MASS_OR_SIZE_CONTENT] (lines 577-577): section heading '5. Conclusion'.
+  578| X20-025   WRONG_BRANCH              <-- row X20-025 [WRONG_BRANCH] (lines 578-611): conclusion of the phantom-branch study: 'such hypothetical configurations combine the properties of a wormhole ... and a black hole ... naturally obtained if one considers static, spherically symmetric distributions of phantom matter ... our Universe could appear from phantom-dominated collapse'.
+  579| X20-025   WRONG_BRANCH              <-- 
+  580| X20-025   WRONG_BRANCH              <-- 
+  581| X20-025   WRONG_BRANCH              <-- 
+  582| X20-025   WRONG_BRANCH              <-- 
+  583| X20-025   WRONG_BRANCH              <-- 
+  584| X20-025   WRONG_BRANCH              <-- 
+  585| X20-025   WRONG_BRANCH              <-- 
+  586| X20-025   WRONG_BRANCH              <-- 
+  587| X20-025   WRONG_BRANCH              <-- 
+  588| X20-025   WRONG_BRANCH              <-- 
+  589| X20-025   WRONG_BRANCH              <-- 
+  590| X20-025   WRONG_BRANCH              <-- 
+  591| X20-025   WRONG_BRANCH              <-- 
+  592| X20-025   WRONG_BRANCH              <-- 
+  593| X20-025   WRONG_BRANCH              <-- 
+  594| X20-025   WRONG_BRANCH              <-- 
+  595| X20-025   WRONG_BRANCH              <-- 
+  596| X20-025   WRONG_BRANCH              <-- 
+  597| X20-025   WRONG_BRANCH              <-- 
+  598| X20-025   WRONG_BRANCH              <-- 
+  599| X20-025   WRONG_BRANCH              <-- 
+  600| X20-025   WRONG_BRANCH              <-- 
+  601| X20-025   WRONG_BRANCH              <-- 
+  602| X20-025   WRONG_BRANCH              <-- 
+  603| X20-025   WRONG_BRANCH              <-- 
+  604| X20-025   WRONG_BRANCH              <-- 
+  605| X20-025   WRONG_BRANCH              <-- 
+  606| X20-025   WRONG_BRANCH              <-- 
+  607| X20-025   WRONG_BRANCH              <-- 
+  608| X20-025   WRONG_BRANCH              <-- 
+  609| X20-025   WRONG_BRANCH              <-- 
+  610| X20-025   WRONG_BRANCH              <-- 
+  611| X20-025   WRONG_BRANCH              <-- 
+  612| X20-026   NO_MASS_OR_SIZE_CONTENT   <-- row X20-026 [NO_MASS_OR_SIZE_CONTENT] (lines 612-616): acknowledgments.
+  613| X20-026   NO_MASS_OR_SIZE_CONTENT   <-- 
+  614| X20-026   NO_MASS_OR_SIZE_CONTENT   <-- 
+  615| X20-026   NO_MASS_OR_SIZE_CONTENT   <-- 
+  616| X20-026   NO_MASS_OR_SIZE_CONTENT   <-- 
+  617| X20-027   NO_MASS_OR_SIZE_CONTENT   <-- row X20-027 [NO_MASS_OR_SIZE_CONTENT] (lines 617-617): 'References' heading.
+  618| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- row X20-028 [NO_MASS_OR_SIZE_CONTENT] (lines 618-746): bibliographic reference entries; each line identifies an external work and asserts no relation within this source.
+  619| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  620| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  621| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  622| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  623| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  624| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  625| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  626| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  627| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  628| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  629| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  630| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  631| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  632| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  633| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  634| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  635| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  636| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  637| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  638| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  639| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  640| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  641| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  642| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  643| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  644| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  645| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  646| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  647| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  648| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  649| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  650| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  651| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  652| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  653| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  654| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  655| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  656| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  657| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  658| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  659| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  660| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  661| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  662| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  663| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  664| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  665| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  666| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  667| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  668| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  669| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  670| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  671| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  672| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  673| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  674| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  675| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  676| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  677| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  678| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  679| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  680| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  681| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  682| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  683| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  684| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  685| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  686| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  687| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  688| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  689| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  690| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  691| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  692| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  693| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  694| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  695| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  696| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  697| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  698| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  699| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  700| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  701| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  702| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  703| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  704| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  705| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  706| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  707| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  708| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  709| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  710| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  711| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  712| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  713| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  714| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  715| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  716| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  717| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  718| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  719| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  720| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  721| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  722| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  723| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  724| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  725| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  726| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  727| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  728| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  729| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  730| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  731| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  732| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  733| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  734| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  735| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  736| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  737| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  738| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  739| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  740| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  741| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  742| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  743| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  744| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  745| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  746| X20-028   NO_MASS_OR_SIZE_CONTENT   <-- 
+  747| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- row X20-029 [NO_MASS_OR_SIZE_CONTENT] (lines 747-754): arXiv/LaTeXML footer lines.
+  748| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+  749| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+  750| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+  751| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+  752| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+  753| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+  754| X20-029   NO_MASS_OR_SIZE_CONTENT   <-- 
+
+==============================================================================
+PART 3 — RECONCILIATION
+==============================================================================
+non-blank line count      : 753
+assigned disposition count: 753
+equal: True
+
+==============================================================================
+PART 4 — FULL EQUATION LIST (each numbered/displayed equation its own row)
+==============================================================================
+  eq (1)        lines 68-70        census row B20-04    general static spherically symmetric metric.
+  eq (2)        lines 143-147      census row B20-09    Bardeen configuration A(rho) = 1 - M rho^2/(rho^2+q^2)^{3/2}; horizon condition q^2 < (16/27)M^2.
+  eq (3)        lines 203-205      census row X20-015   phantom-scalar action.
+  eq (4)        lines 210-213      census row X20-015   scalar field equation.
+  eq (5)        lines 214-217      census row X20-015   Einstein equation combination.
+  eq (6)        lines 218-221      census row X20-015   2r''/r = phi'^2.
+  eq (7)        lines 222-225      census row X20-015   A(r^2)'' - r^2 A'' = 2.
+  eq (8)        lines 229-231      census row X20-015   B' = (A/r^2)' = 2(rho0 - rho)/r^4.
+  eq (9)        lines 268-276      census row X20-017   Kantowski-Sachs asymptotic metric.
+  eq (10)       lines 282-286      census row X20-017   A and V asymptotics.
+  eq (11)       lines 308-310      census row X20-018   r = (rho^2 + b^2)^{1/2} example.
+  eq (12)       lines 311-313      census row X20-018   B(rho) for the example.
+  eq (13)       lines 314-319      census row X20-018   phi(rho) for the example.
+  eq (14)       lines 320-323      census row X20-018   V(rho) for the example.
+  eq (15)       lines 324-326      census row X20-018   B(+/-inf) = -V(+/-inf)/3.
+  eq (16)       lines 327-330      census row X20-018   V(phi) for the example.
+  eq (17)       lines 390-394      census row X20-022   STT action.
+  eq (18)       lines 397-402      census row X20-022   conformal mapping.
+  eq (19)       lines 403-406      census row X20-022   d phi/d Phi relation.
+  eq (20)       lines 408-411      census row X20-022   Einstein-frame action.
+  eq (21)       lines 415-416      census row X20-022   V(phi) = |f|^-2 U(Phi).
+  eq (22)       lines 455-457      census row X20-023   k-essence action.
+  eq (23)       lines 462-464      census row X20-023   k-essence stress-energy tensor.
+  eq (24)       lines 475-480      census row X20-023   barotropic fluid F.
+  eq (25)       lines 483-486      census row X20-023   Chaplygin gas condition.
+  eq (26)       lines 488-491      census row X20-023   simple Chaplygin gas F.
+  eq (27)       lines 500-503      census row X20-023   k-essence scalar equation.
+  eq (28)       lines 504-507      census row X20-023   Einstein equation combination.
+  eq (29)       lines 508-511      census row X20-023   2r''/r = -phi'^2 F_X.
+  eq (30)       lines 512-515      census row X20-023   A(r^2)'' - r^2 A'' = 2.
+  eq (31)       lines 537-540      census row X20-023   asymptotic conditions on F.
+
+==============================================================================
+ELEVEN-TERM SEARCH (convenience only; not the enumeration key)
+==============================================================================
+  term 'core'          : 1 lines: [41]
+  term 'scale'         : 0 lines: []
+  term 'density'       : 2 lines: [153, 195]
+  term 'mass'          : 10 lines: [28, 56, 244, 336, 349, 373, 429, 548, 551, 556]
+  term 'mass function' : 0 lines: []
+  term 'radius'        : 3 lines: [93, 270, 343]
+  term 'horizon'       : 32 lines: [21, 27, 32, 41, 46, 79, 81, 85, 89, 96, 97, 109, 110, 113, 116, 117, 138, 140, 148, 236, 262, 281, 290, 301, 304, 341, 343, 347, 429, 569, 582, 595]
+  term 'matching'      : 0 lines: []
+  term 'surface'       : 0 lines: []
+  term 'regular'       : 36 lines: [4, 19, 41, 44, 67, 103, 106, 108, 129, 133, 140, 144, 149, 155, 158, 159, 170, 172, 178, 182, 183, 236, 251, 253, 255, 262, 263, 341, 355, 356, 383, 427, 581, 603, 620, 684]
+  term 'de Sitter'     : 15 lines: [21, 75, 243, 255, 289, 290, 295, 306, 341, 362, 367, 369, 441, 533, 553]
+

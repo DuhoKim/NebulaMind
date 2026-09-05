@@ -1,0 +1,80 @@
+C5B PATH LIST — R3D kimi seat, 2026-09-05
+==========================================
+Every path opened by this seat in this run, each marked IN_SCOPE or OUT_OF_SCOPE with the
+exact §9 scope-rule clause applied. §9 clause texts referred to below:
+  [READING TREE]  "this lane's own reading tree (`../bhu-reading-20260823/sources/`)"
+  [PREREG]        "this preregistration"
+  [PROBE]         "the committed script `r3d_c3_deletion_probe.py` and the JSON input the
+                   seat writes for it"
+  [INTERPRETER]   "the pinned interpreter `/usr/bin/python3`, executed and hashed under C5
+                   and invoked by C3, together with every file that interpreter loads while
+                   executing the mandated commands — its standard library, the installed
+                   sympy and mpmath packages, and their dependent shared libraries"
+  [SHASUM]        "`/usr/bin/shasum`, executed under C1, C3 and C5, together with the perl
+                   interpreter and libraries it loads"
+  [OWN]           "the seat's own working directory and artefacts"
+  [GENERAL RULE]  "a path opened as a necessary consequence of executing a command this
+                   document mandates is `IN_SCOPE` by that fact, printed and marked under
+                   this clause"
+
+1. /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_V30_DESIGN_OF_RECORD_a99aad15.md
+   IN_SCOPE — [PREREG]. Read in full (1,621 lines); hashed for the ACCESS proof and C1.
+
+2. /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_1992_grg24_235_vor_clean.txt
+   IN_SCOPE — [READING TREE]. Manifest entry 18. Read in full; hashed under C1.
+
+3. /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/dymnikova_2019_universe_clean.txt
+   IN_SCOPE — [READING TREE]. Manifest entry 19. Read in full; hashed under C1.
+
+4. /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/gr-qc_0611022_clean.txt
+   IN_SCOPE — [READING TREE]. Manifest entry 20. Read in full; hashed under C1.
+
+5. /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-reading-20260823/sources/2007.06664_clean.txt
+   IN_SCOPE — [READING TREE]. Manifest entry 55. Read in full; hashed under C1.
+
+6. /usr/bin/python3
+   IN_SCOPE — [INTERPRETER]. Executed and hashed under C5; used to run the seat's own
+   analysis/artefact scripts under [GENERAL RULE] (the study's mandated census, limb-B
+   derivation and artefact assembly are executed with it; §9's stall-guard table itself
+   names mpmath as the protocol's numeric tool).
+
+7. Files loaded by /usr/bin/python3 while executing the mandated and artefact commands:
+   its standard library, the installed sympy 1.14.0 and mpmath packages, and their
+   dependent shared libraries.
+   IN_SCOPE — [INTERPRETER] and [GENERAL RULE].
+
+8. /usr/bin/shasum (and the perl interpreter and libraries it loads)
+   IN_SCOPE — [SHASUM]. Executed under C1 (source digests) and C5 (interpreter digest)
+   and for the ACCESS proof of step 1 (the brief's mandatory first command, applying
+   §9's access-proof discipline).
+
+9. Shell and basic utilities (/bin/zsh, /usr/bin/wc, /usr/bin/grep, /usr/bin/awk,
+   /bin/mkdir, /usr/bin/time) opened only as vehicles of the mandated commands and of
+   artefact assembly/inspection inside the seat's own working directory.
+   IN_SCOPE — [GENERAL RULE].
+
+10. The seat's own working directory and every artefact in it:
+    /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_kimi_20260905/
+    containing: build_census.py, census_tables.py, c1_repr_entry18.py,
+    sympy_version_check.py, limbB_criticality.py, C5_harness.txt, C1_digests.txt,
+    C2_census_entry18.txt, C2_census_entry19.txt, C2_census_entry20.txt,
+    C2_census_entry55.txt, C2_ledger.md, limbA.md, limbB.md, C4_benchmark.md,
+    C5b_paths.txt
+    IN_SCOPE — [OWN].
+
+11. /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/R3D_RUN_REPORT_kimi_20260905.md
+    IN_SCOPE — [OWN] (the seat's own report artefact).
+
+PATHS EXPLICITLY NOT OPENED (recorded for audit):
+  - r3d_c3_deletion_probe.py and _c3_relations.json: C3 was NOT_RUN on the filed class
+    (§4 class 4 clause: no positive floor survives, so the probe has no candidate), so
+    the probe's [PROBE] scope was never engaged.
+  - ar5iv_gr-qc_0201058_dymnikova_restatement.html (the entry-18 author restatement):
+    FORBIDDEN by §2a.
+  - SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md: FORBIDDEN by the brief and §2; its five
+    conditions were never engaged (C6 NOT_RUN).
+  - every other file in this handoff directory (any R3*, K*, R3C*, R3D*, BHU*, WARRANT*,
+    TOPIC*, GATE* report): not opened.
+  - any other seat's run directory; any other lane's files: not opened.
+
+No OUT_OF_SCOPE row exists. C5B_PATH_LIST=PASS
