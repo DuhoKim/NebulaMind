@@ -1,0 +1,27 @@
+{
+ "target": "M",
+ "symbols": [
+  "M",
+  "hbar",
+  "c",
+  "G",
+  "r0"
+ ],
+ "relations": [
+  {
+   "id": "eq_src",
+   "origin": "SOURCE_PINNED",
+   "expr": "Eq(M, r0*c**2/(2*G))"
+  },
+  {
+   "id": "inj_ok",
+   "origin": "INJECTED",
+   "expr": "Eq(r0, 2*G*M/c**2)"
+  }
+ ],
+ "constants": [
+  "hbar",
+  "c",
+  "G"
+ ]
+}

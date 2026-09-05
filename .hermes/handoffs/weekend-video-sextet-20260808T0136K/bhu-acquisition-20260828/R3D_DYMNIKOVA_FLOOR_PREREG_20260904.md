@@ -1,6 +1,6 @@
 # ORDERED — R3-D pre-registration: does the Dymnikova regular-core branch fix a minimum black-hole mass?
 
-**Tori, 2026-09-05. Version 24 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
+**Tori, 2026-09-05. Version 25 (see §8). NOT FROZEN and NOT RUN: C0 must return `C0_REACHABILITY=PASS` from a
 fresh seat exhibition on this version's bytes, and the two-seat referee gate must follow, before any freeze. ORDERED by Duho, "run r3c and r3d", 2026-09-04 21:02 KST.**
 20:56 note. **Drafting is not starting. No derivation has been run.**
 
@@ -287,15 +287,18 @@ reading gives a floor and another permits zero, now lands in class 2 where the g
 - **C3 — deletion probe, K6's corrected form:** delete the **source-pinned field equations**; if a unique floor
   survives on an injected relation alone, that relation is circular and no derived-floor class may be filed.
   **The harness must execute the deleted state and print its captured output**; a claimed pass without that output
-  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script at the repository-root-relative path
-  `.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py`,
-  pinned by sha256 `7db669313568d08dc9be7bb18d142a956db3cc3ad62a87bff9e4724c47527874`.** A seat resolves it at
-  that path, not in its own working directory, verifies the digest before use, and writes `relations.json` in its
-  own working directory. **The literal command is:**
+  fails. This control emits `C3_DELETION_PROBE=PASS|FAIL|NOT_RUN` from the run actually executed; the token is a result to be recorded, not a claim this document makes about itself. **The probe is the committed script `r3d_c3_deletion_probe.py`, pinned by sha256
+  `7db669313568d08dc9be7bb18d142a956db3cc3ad62a87bff9e4724c47527874`.** The seat writes its relations file to the
+  absolute path named below, then runs the following line **verbatim — interpreter, script and argument all
+  absolute, no placeholders, no brackets, no shell metacharacters, no dependence on the seat's working directory**:
 
   ```
-  python3 .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py relations.json
+  /usr/bin/python3 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3d_c3_deletion_probe.py /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/_c3_relations.json
   ```
+
+  The interpreter is the one C5 pins by digest. **This line was executed verbatim, copied from this clause by
+  program rather than retyped, from two unrelated working directories, before it was written here as a control;
+  the transcripts are in §8q.**
 
   *(Two faults, one of them mine twice over. The probe was the **one unpinned run dependency** — sources are
   pinned by digest in §2a, the pattern record by digest in C6, the constants by value in §2b, the interpreter by
@@ -1353,4 +1356,63 @@ from reading other files, and said so and asked the lane to supply it. **It is `
 
 **V23 is NOT final.** V24 requires its own C0 and its own two-seat gate.
 
-R3D_PREREG_V24_READY_FOR_REEXHIBITION
+## 8q. V25 — C3's invocation, fixed by Duho's ruling and EXECUTED before being believed
+
+**ORDERED by Duho, 10:15 KST: "fix the invocation with an absolute path and test it."** This supersedes the stop
+filed in `R3D_C3_INVOCATION_DIAGNOSIS_20260905.md` (option 2 of the three costed there), and it adds the discipline
+every previous repair of this clause lacked: **the line is executed, verbatim, from unrelated directories, before it
+is written here as a control.**
+
+### A fact about this study's history that belongs in the record, not only in the fix
+
+**`C3_DELETION_PROBE` has never actually executed in any prior version.** V21's line redirected stdin. V22's
+resolved only from the lane directory. V23's reintroduced the brackets. V24's resolved only from the repository
+root. **Four versions of a circularity control that a conforming seat could not run.** It was reasoned about each
+time and run by a seat none of the times.
+
+### The test, done the way a seat would do it
+
+The line was **extracted from this clause by program** — not retyped, not adapted — and executed from three
+working directories that are not the lane and not the repository root.
+
+**Run 1, cwd `/`, positive control (injected relation alone fixes the floor):**
+```
+target            : M
+retained (all)    : ['eq_src', 'inj_bad']
+DELETED (pinned)  : ['eq_src']
+injected relations: [('inj_bad', 'Eq(M, 3*sqrt(hbar*c/G))')]
+§2b constants     : ['hbar', 'c', 'G']
+with everything   : None   (no solution for target)
+pinned DELETED    : 3*sqrt(c)*sqrt(hbar)/sqrt(G)   (determinate)
+VERDICT: a unique floor follows from the INJECTED relation alone -> CIRCULAR
+C3_DELETION_PROBE=FAIL
+```
+exit **1**.
+
+**Run 2, cwd = the session scratch directory, same control:** stdout **byte-identical** to run 1, exit **1**.
+
+**Run 3, cwd `$HOME`, NEGATIVE control (injected relation leaves `M` free in `r₀`):**
+```
+target            : M
+retained (all)    : ['eq_src', 'inj_ok']
+DELETED (pinned)  : ['eq_src']
+injected relations: [('inj_ok', 'Eq(r0, 2*G*M/c**2)')]
+§2b constants     : ['hbar', 'c', 'G']
+with everything   : c**2*r0/(2*G)   (indeterminate: free in ['r0'])
+pinned DELETED    : c**2*r0/(2*G)   (indeterminate: free in ['r0'])
+VERDICT: no unique floor without the source-pinned equations -> not circular
+C3_DELETION_PROBE=PASS
+```
+exit **0**.
+
+**The extracted line contains zero shell metacharacters** (checked against `< > | & ; $ \` * ? [ ] { } ( )`).
+**The result does not depend on where the seat happens to be.**
+
+### What the next gate must specifically confirm
+
+**Whether a seat REPORTS having run C3 successfully.** A clause that executes for me and not for them is the same
+defect wearing my shell environment. That check is added to the gate brief for V25.
+
+**R3D is NOT frozen and NOT run. V25 requires its own C0 and its own two-seat gate.**
+
+R3D_PREREG_V25_READY_FOR_REEXHIBITION
