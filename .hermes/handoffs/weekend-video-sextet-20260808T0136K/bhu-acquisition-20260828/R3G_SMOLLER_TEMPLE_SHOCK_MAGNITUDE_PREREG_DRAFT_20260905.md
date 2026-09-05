@@ -40,7 +40,14 @@ of the lane owner and is not claimed executable from the packet.
 
 **Control kit (Rule 4), committed tonight and executed:** `r3g_controls.py` (sha256 `4ff41825f7635ea7…`) over `r3_controls_lib.py` (`ca23604af06eaf39…`), pins in `R3_CONTROL_KITS.sha256`; every control is one printed command with an exact token and exit 1 on any FAIL; planted inputs in `_tmp_r3_ctl/`.
 **Kit result tonight:** `r3g_controls.py all <2000 text> <transcription.json>` → 9/10. C1 five anchors exact; C3, C4, NEG as designed; **C2 FAILS on the lane's own transcription**: reading eq. 7.31 from the extracted text as (2.62–2.65)×10⁻⁷ T0⁴/(h0²H0²)·ln²(1/R*) gives √(r²−r*²) = 0.0495–0.0498 Hubble lengths against the printed 0.019, while the same coefficients with ln(1/R*) unsquared give 0.0183 ≈ 0.019.
-**Consequence for the design:** the exact printed form of eq. 7.31 (the placement of the ½ and the power of the logarithm in the PDF layout) is a freeze-time task from the PDF, not the extracted text, and the negative control as drafted ("plant ln for ln²") is INVALID until it is settled — the planted form may be the true one. The kit keeps the transcription as an input file so the seat's reading, not the lane's, is what C2 tests. This is the strongest argument that R3G needs the PDF pinned beside the text.
+**SETTLED from the pinned PDF (page 58, 2026-09-06 00:45 KST):** eq. 7.31 reads (2.62–2.65)×10⁻⁷ T0⁴/(h0²H0²) · **ln(1/R*)**, the logarithm
+unsquared — the extracted text's stray "2"s are the exponents of h0 and H0. With the paper's own example values (h0 = 0.55,
+T0 = 2.736 K, R* = 2.7/4000) the kit now reproduces the printed 0.019 (C2 PASS), and the negative control is reversed (plant ln²).
+Two more printed facts from the PDF that the extracted text hid: **eq. 7.29 prints a floor, R* ≥ 2.2/4000 = 6.75×10⁻⁴**, and page 59
+prints the admissible interval **2.7/4000 ≤ R* ≤ 1**. So the start epoch is NOT free over decades: ln(1/R*) runs over [0, 7.3],
+and (S1) is bounded above by the worked value. The draft's stated expectation of `MAGNITUDE_TUNABLE` is therefore withdrawn;
+which of `MAGNITUDE_BOUNDED` and `INVARIANT_FIXED` files is exactly limb B's question and is not pre-computed here. The PDF is
+to be pinned beside the text at freeze (`smoller_temple_2000_shockwave_astroph9812063.pdf`).
 
 ## 1. Question
 
@@ -51,7 +58,7 @@ determined by any adjustable parameters in the problem other than the experiment
 and the background radiation temperature" (SOURCE lines 96–104), and prints (SOURCE lines 155–214, eq. 7.31 and the worked
 example):
 
-- (S1) `(2.62×10⁻⁷) T0⁴/(h0² H0²) · ln²(1/R*) ≤ r² − r*² ≤ (2.65×10⁻⁷) T0⁴/(h0² H0²) · ln²(1/R*)` — the squared distance the
+- (S1) `(2.62×10⁻⁷) T0⁴/(h0² H0²) · ln(1/R*) ≤ r² − r*² ≤ (2.65×10⁻⁷) T0⁴/(h0² H0²) · ln(1/R*)` (PDF-settled; the extracted text suggested ln²) — the squared distance the
   shock travels beyond free fall, as a function of the **start epoch `R*`**, with `r` in Hubble lengths;
 - (S2) the worked value `r² − r*² ≈ 0.019² H0⁻²` for `T0 = 2.7 K, h0 = 0.55, R* = 2.7/4000`;
 - (S3) upper and lower bounds on the present shock position `r` as functions of `T0, H0, R*` (eqs. 7.37–7.38, SOURCE lines
@@ -113,9 +120,8 @@ either of them.
 
 The threshold of 10 is chosen now, before any number is computed, as the line between "an order of magnitude" and "decades".
 
-**Stated before ordering:** (S1) shows the distance scales with `ln²(1/R*)`, so a bounded range depends entirely on the paper's
-printed floor for `R*`. If the paper prints no floor, class 4 is the likely outcome and the study's value is one line in the
-record: entry 36's "derived length scale" depends on an epoch the paper says it cannot set.
+**Stated before ordering (revised 2026-09-06 00:45 KST):** the PDF prints both the logarithm's power (unsquared) and a floor for `R*`, so the
+distance beyond free fall is bounded by the worked value; whether a dimensionless invariant survives is limb B's open question.
 
 ## 5. Controls
 
@@ -157,5 +163,6 @@ entry is re-run. Entries 37, 38, 57 are pinned as foundation only; no claim in t
 | DRAFT 1 | 2026-09-05 (this file) | written; not ordered, not frozen, not gated |
 | DRAFT 2 | 2026-09-05 | Blanc's 22:33 note: the five R3D/R3C2 lessons carried in as §0 design rules (C0 first; falsifier asymmetry with the error-landing rule; declared cap; executable controls with named commands; abort guards + enumerated read set); still not ordered, not frozen, not gated |
 | DRAFT 3 | 2026-09-06 | control kit written and executed (Rule 4); kit results and disclosures recorded in §0; only Duho's order is missing — plus, for R3G, the PDF-exact form of eq. 7.31 at freeze |
+| DRAFT 3a | 2026-09-06 | eq. 7.31 settled from the PDF (ln, not ln²); floor R* ≥ 2.2/4000 and interval 2.7/4000 ≤ R* ≤ 1 found; C2 reproduces 0.019; negative control reversed; expectation revised; kit `6d5a0c6675436913…` |
 
 R3G_PREREG_DRAFT_COMPLETE
