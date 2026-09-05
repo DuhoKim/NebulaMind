@@ -1,0 +1,140 @@
+{
+ "utc": "2026-09-05T10:21:27Z",
+ "n_per_condition": 300,
+ "pitch_deg": "U(10,40)",
+ "incl_deg": "U(0,65)",
+ "snr": "logU(2,50)",
+ "fourier_constants": {
+  "R_MIN": 6.0,
+  "R_MAX": 56.0,
+  "N_U": 64,
+  "N_T": 128,
+  "M_MODE": 2,
+  "P_MIN": 1.0,
+  "P_MAX": 40,
+  "Q_MIN": 0.35
+ },
+ "results": {
+  "clean": {
+   "fourier_deproj": {
+    "correct": 288,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.96
+   },
+   "fourier_nodeproj": {
+    "correct": 273,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.91
+   },
+   "ridge_w_chi": {
+    "correct": 258,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.86
+   }
+  },
+  "bulge": {
+   "fourier_deproj": {
+    "correct": 286,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.9533333333333334
+   },
+   "fourier_nodeproj": {
+    "correct": 273,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.91
+   },
+   "ridge_w_chi": {
+    "correct": 258,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.86
+   }
+  },
+  "bar": {
+   "fourier_deproj": {
+    "correct": 271,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.9033333333333333
+   },
+   "fourier_nodeproj": {
+    "correct": 253,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.8433333333333334
+   },
+   "ridge_w_chi": {
+    "correct": 239,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.7966666666666666
+   }
+  },
+  "gradient": {
+   "fourier_deproj": {
+    "correct": 258,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.86
+   },
+   "fourier_nodeproj": {
+    "correct": 273,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.91
+   },
+   "ridge_w_chi": {
+    "correct": 244,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.8133333333333334
+   }
+  },
+  "mask5pct": {
+   "fourier_deproj": {
+    "correct": 288,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.96
+   },
+   "fourier_nodeproj": {
+    "correct": 275,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.9166666666666666
+   },
+   "ridge_w_chi": {
+    "correct": 260,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.8666666666666667
+   }
+  },
+  "all": {
+   "fourier_deproj": {
+    "correct": 238,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.7933333333333333
+   },
+   "fourier_nodeproj": {
+    "correct": 255,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.85
+   },
+   "ridge_w_chi": {
+    "correct": 204,
+    "ties_or_nonfinite": 0,
+    "n": 300,
+    "accuracy": 0.68
+   }
+  }
+ },
+ "caveat": "synthetics only; not evidence of fitness on real galaxies"
+}

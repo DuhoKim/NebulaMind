@@ -1,0 +1,96 @@
+{
+ "utc": "2026-09-05T15:52:54Z",
+ "probes": [
+  {
+   "probe": "genuine NIST record from the fetcher (test-signed pulse)",
+   "fetch": "fetch rc=0",
+   "builder": "ACCEPTED"
+  },
+  {
+   "probe": "verification booleans set true, everything else genuine but pulse output replaced",
+   "fetch": "record altered",
+   "builder": "PULSE-BODY-MISMATCH"
+  },
+  {
+   "probe": "certificate_pem replaced by another self-signed certificate (digest updated)",
+   "fetch": "record altered",
+   "builder": "NIST-NOT-AUTHENTICATED"
+  },
+  {
+   "probe": "self-signed certificate + pulse signed under it (everything internally consistent)",
+   "fetch": "record altered",
+   "builder": "NIST-NOT-AUTHENTICATED"
+  },
+  {
+   "probe": "body replaced by a body whose pulse differs from record.pulse (digest updated)",
+   "fetch": "record altered",
+   "builder": "PULSE-BODY-MISMATCH"
+  },
+  {
+   "probe": "signatureValue altered in both record.pulse and body (digests updated)",
+   "fetch": "record altered",
+   "builder": "NIST-NOT-AUTHENTICATED"
+  },
+  {
+   "probe": "pulse timeStamp moved one minute (in record and body)",
+   "fetch": "record altered",
+   "builder": "NIST-TIMESTAMP-MISMATCH"
+  },
+  {
+   "probe": "rule_sha256 in the record changed",
+   "fetch": "record altered",
+   "builder": "RULE-DIGEST-MISMATCH"
+  },
+  {
+   "probe": "recorded precommitment FLAG removed \u2014 irrelevant: the link is recomputed from the retained next pulse, so ACCEPTED is the correct outcome",
+   "fetch": "record altered",
+   "builder": "ACCEPTED"
+  },
+  {
+   "probe": "fetcher: pulse whose signature does not verify under the served certificate",
+   "fetch": "fetch rc=4 (BEACON-RETRY: primary not retrievable or not authenticated y)",
+   "builder": "no record produced"
+  },
+  {
+   "probe": "fetcher: fallback with only ONE relay answering",
+   "fetch": "fetch rc=2 (BEACON-UNAVAILABLE)",
+   "builder": "no record produced"
+  },
+  {
+   "probe": "next_body altered so the precommitment link no longer holds (digest updated)",
+   "fetch": "record altered",
+   "builder": "NIST-PRECOMMITMENT-MISMATCH"
+  },
+  {
+   "probe": "genuine drand fallback record (four relays agree)",
+   "fetch": "fetch rc=0",
+   "builder": "ACCEPTED"
+  },
+  {
+   "probe": "drand: chosen seed with two invented relay hosts (all digests consistent)",
+   "fetch": "drand record altered",
+   "builder": "DRAND-RELAY-URL-NOT-PINNED"
+  },
+  {
+   "probe": "drand: retained relay bodies carry the wrong round (digests updated)",
+   "fetch": "drand record altered",
+   "builder": "DRAND-RELAY-AGREEMENT"
+  },
+  {
+   "probe": "drand: fetched_utc earlier than T_pulse + 24 h",
+   "fetch": "drand record altered",
+   "builder": "DRAND-FETCHED-TOO-EARLY"
+  },
+  {
+   "probe": "drand: genuine record, but NIST serves an authenticable pulse at build time",
+   "fetch": "primary authenticable now",
+   "builder": "DRAND-VOID-PRIMARY-AUTHENTICABLE"
+  }
+ ],
+ "files": {
+  "fetch_beacon.py": "020bd0c179a084795832b7aa0e7a164e514dc0f5b748a3a283124201891415f9",
+  "nist_signature.py": "1e27d036b99f90a18d0e4d20cd514f017900a014ea04dec9870cc57f8e2f6b50",
+  "test_support.py": "94228f1e1db933e387b91de610f24f13479c481fd5462b03b6ff2272411550db",
+  "build_corpus_identity.py": "89e4aaed4d4ea9078cf31fed2ce5b93ec0fd385a9665187ba6b73ef5ed1738ce"
+ }
+}

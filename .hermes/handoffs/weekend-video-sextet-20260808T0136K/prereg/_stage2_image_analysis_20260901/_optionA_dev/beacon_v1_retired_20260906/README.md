@@ -1,0 +1,1 @@
+Retired 2026-09-06 01:1x KST under Blanc's 00:49 cap after five consecutive beacon-boundary failures (V9–V13). Replaced by `_optionA_dev/beacon_v2/` (one shared verdict over evidence bytes). Kept for the record; not pinned by any version after V13; never delete.

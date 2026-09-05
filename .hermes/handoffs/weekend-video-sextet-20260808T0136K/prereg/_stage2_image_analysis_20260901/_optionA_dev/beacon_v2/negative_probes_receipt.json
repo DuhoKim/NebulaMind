@@ -1,0 +1,127 @@
+{
+ "deterministic": true,
+ "probes": [
+  {
+   "probe": "genuine NIST record (three-tier chain, signed pulse)",
+   "verdict": "ACCEPT-NIST",
+   "builder": "BUILT"
+  },
+  {
+   "probe": "schema field changed",
+   "verdict": "REFUSE-SCHEMA",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-SCHEMA)"
+  },
+  {
+   "probe": "T_pulse not derived from T_sign",
+   "verdict": "REFUSE-T-PULSE",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-T-PULSE)"
+  },
+  {
+   "probe": "rule digest supplied differs from the record's",
+   "verdict": "REFUSE-RULE-DIGEST",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-RULE-DIGEST)"
+  },
+  {
+   "probe": "statement supplied differs from the record's",
+   "verdict": "REFUSE-STATEMENT-BYTES",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-STATEMENT-BYTES)"
+  },
+  {
+   "probe": "statement lacks the binding",
+   "verdict": "REFUSE-STATEMENT-BINDING",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-STATEMENT-BINDING)"
+  },
+  {
+   "probe": "pulse outputValue replaced (seed of choice)",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "pulse timeStamp shifted one minute",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "pulse statusCode 1",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "intermediate certificates removed (chain cannot anchor)",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "self-signed leaf with a pulse signed under it (internally consistent)",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "retained intermediate certificate replaced (live issuer chain differs)",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "next pulse altered (precommitment link broken)",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "retained record genuine, but NIST now serves an unsigned pulse (live differs)",
+   "verdict": "REFUSE-NIST-LIVE-DIFFERS",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-NIST-LIVE-DIFFERS)"
+  },
+  {
+   "probe": "unsigned pulse before 24 h",
+   "verdict": "RETRY",
+   "builder": "BEACON-NOT-ACCEPTED (RETRY)"
+  },
+  {
+   "probe": "genuine drand fallback (NIST 404 for 25 h; four pinned relays agree)",
+   "verdict": "ACCEPT-DRAND",
+   "builder": "BUILT"
+  },
+  {
+   "probe": "fallback record, but NIST serves an AUTHENTICABLE pulse now (two-link chain)",
+   "verdict": "REFUSE-DRAND-VOID-PRIMARY-AUTHENTICABLE",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-DRAND-VOID-PRIMARY-AUTHENTICABLE)"
+  },
+  {
+   "probe": "fallback record, live relays report a different randomness",
+   "verdict": "UNAVAILABLE",
+   "builder": "BEACON-NOT-ACCEPTED (UNAVAILABLE)"
+  },
+  {
+   "probe": "fallback record with two invented relay hosts and a chosen seed",
+   "verdict": "UNAVAILABLE",
+   "builder": "BEACON-NOT-ACCEPTED (UNAVAILABLE)"
+  },
+  {
+   "probe": "fallback record whose relay bodies carry the wrong round",
+   "verdict": "UNAVAILABLE",
+   "builder": "BEACON-NOT-ACCEPTED (UNAVAILABLE)"
+  },
+  {
+   "probe": "fallback attempted before 24 h (relays present)",
+   "verdict": "RETRY",
+   "builder": "BEACON-NOT-ACCEPTED (RETRY)"
+  },
+  {
+   "probe": "builder: hand-made two-field record",
+   "verdict": "\u2014",
+   "builder": "BEACON-NOT-ACCEPTED (REFUSE-SCHEMA)"
+  },
+  {
+   "probe": "builder: bare seed without test flag",
+   "verdict": "\u2014",
+   "builder": "SEED-WITHOUT-BEACON-RECORD"
+  }
+ ],
+ "files": {
+  "beacon_record.py": "023c4d7dfd18d2d6818ea09d41e78b44835dc95d20ff4ba69f36c0afd61bbb73",
+  "nist_pulse.py": "c725dd6ab4830a2dc709e55195507c1739250851498f3384dfd10c8732b43cb9",
+  "drand_round.py": "3403aee0d5d8c57ba0878bc5b716000faf93eab7a0fba0c7613613a501300882",
+  "test_pki.py": "a7a9c85347db34e20f207380972a72703e322bad6790672df02fb3114b682c47",
+  "build_corpus_identity.py": "3090af770f0329beddb2d8b64acae6d4a1b1da06025e616b6fb145bff47ca46c"
+ }
+}
