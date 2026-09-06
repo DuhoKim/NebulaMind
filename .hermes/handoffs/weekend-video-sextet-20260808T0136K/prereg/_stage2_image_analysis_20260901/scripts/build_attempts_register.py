@@ -64,7 +64,17 @@ W(f"\nInstruments validated: **1**. Attempts under §9B: **1**. Candidates pinne
 import glob as _glob
 versions = sorted(int(re.search(r"_V(\d+)_", f).group(1)) for f in _glob.glob("OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V*_2026*.md"))
 W(f"## 2. PRE-COMMITMENT DRAFTS REFUSED (selection rule V1–V{max(versions)})\n")
-W("| draft | digest (recomputed) | seat A (agy) | seat B (codex) | access proofs | the fatal that killed it — first [FATAL] heading of a NOT-SIGNABLE report, VERBATIM with line number; the excerpt after it is a marked non-verbatim paraphrase | superseded by / record |"); W("|---|---|---|---|---|---|---|")
+W("| draft | digest (recomputed) | seat A (agy) | seat B (codex) | engines A / B (CLI, model) | access proofs | the fatal that killed it — first [FATAL] heading of a NOT-SIGNABLE report, VERBATIM with line number; the excerpt after it is a marked non-verbatim paraphrase | superseded by / record |"); W("|---|---|---|---|---|---|---|---|")
+def engine(report):
+    """Which engine produced a seat report: the <report>.engine stamp if the dispatch wrote one (from 2026-09-06 09:46 KST),
+    else the pre-stamp fact stated by Blanc's relay of that time (codex) or 'not recorded at run time' (agy)."""
+    if report is None: return "—"
+    import os
+    if os.path.isfile(report + ".engine"):
+        with open(report + ".engine") as fh: return fh.readline().strip().replace("ENGINE: ", "")
+    if report.startswith("CODEX"): return "codex-cli 0.146.0, pre-astra model (not stamped at run time; Blanc relay 09-06 09:46)"
+    if report.startswith("AGY"): return "agy (Gemini), version/model not stamped at run time"
+    return "unrecorded"
 def rep(seat, v):
     c = _glob.glob(f"{seat}_SELRULE_V{v}_SEAT?.md"); return c[0] if c else None
 def change_record(v):
@@ -74,14 +84,14 @@ for v in versions:
     f = (_glob.glob(f"OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V{v}_2026*.md") or [f"OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V{v}_MISSING.md"])[0]; d = sha(f); a, b = rep("AGY", v), rep("CODEX", v); cr = change_record(v)
     if a is None and b is None:
         note = ("GATE PENDING — no seat report filed yet" if v == max(versions) else "superseded before any gate") + (": SpArcFiRe (proposed primary) needs MATLAB Compiler Runtime R2017a — source OPTION_A_CANDIDATE_INSTRUMENT_SURVEY_20260905.md" if v == 1 else "")
-        W(f"| V{v} | {short(d)} | {'pending' if v == max(versions) else 'not gated'} | {'pending' if v == max(versions) else 'not gated'} | — | {note} | {('V'+str(v+1)+'; '+cr+' '+short(sha(cr))) if cr else ('—' if v == max(versions) else 'V'+str(v+1))} |"); continue
+        W(f"| V{v} | {short(d)} | {'pending' if v == max(versions) else 'not gated'} | {'pending' if v == max(versions) else 'not gated'} | — | — | {note} | {('V'+str(v+1)+'; '+cr+' '+short(sha(cr))) if cr else ('—' if v == max(versions) else 'V'+str(v+1))} |"); continue
     n_gated += 1; va, vb = (line2(a) if a else "no report"), (line2(b) if b else "no report")
     fatal_src = b if (b and "NOT-SIGNABLE" in vb) else (a if (a and "NOT-SIGNABLE" in va) else None)
     fat = first_fatal(fatal_src) if fatal_src else "no seat returned NOT-SIGNABLE"
     if "NOT-SIGNABLE" in va or "NOT-SIGNABLE" in vb: n_refused += 1
     stop = sorted(_glob.glob(f"V{v}_GATE_OUTCOME_*2026*.md"))
     sup = (f"V{v+1}; {cr} {short(sha(cr))}" if cr else "none yet") + (f"; {stop[0]} {short(sha(stop[0]))}" if stop else "")
-    W(f"| V{v} | {short(d)} | {va.replace('VERDICT: ','')} ({a}) | {vb.replace('VERDICT: ','')} ({b}) | A {access_ok(a, f) if a else '—'}; B {access_ok(b, f) if b else '—'} | {fat} | {sup} |")
+    W(f"| V{v} | {short(d)} | {va.replace('VERDICT: ','')} ({a}) | {vb.replace('VERDICT: ','')} ({b}) | {engine(a)} / {engine(b)} | A {access_ok(a, f) if a else '—'}; B {access_ok(b, f) if b else '—'} | {fat} | {sup} |")
 splits = [f"V{v}" for v in versions if rep("AGY", v) and rep("CODEX", v) and (("NOT-SIGNABLE" in line2(rep("AGY", v))) != ("NOT-SIGNABLE" in line2(rep("CODEX", v))))]
 W(f"\nDrafts written: **{len(versions)}**. Gated: **{n_gated}**. Refused (at least one seat NOT-SIGNABLE): **{n_refused}**. Signed: **0**. Split rounds: {', '.join(splits) or 'none'}.\n")
 
