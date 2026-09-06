@@ -1,0 +1,15 @@
+# Tier-C V39 — READY-FOR-APPROVAL (NOT APPROVED, NOT SIGNED) — 2026-09-06 12:55 KST
+
+**File:** `MINI_PREREG_GZ_TIERC_DRAFT_V39_20260906.md`
+**SHA-256 = §17.2 preimage (both signature lines blank):** `ddc0cfb4139b7e1706f852cb5cdd7cb14293256fee8254cc71623bded172b2d0`
+**Gate (one round, Blanc's 12:45 release):** agy 1.1.27 → SIGNABLE ("no scope creep", "nothing is missing"); codex-cli 0.153.4 / gpt-6-astra → SIGNABLE (no fatal, no major). Reports `AGY_TIERC_V39_SEATA.md`, `CODEX_TIERC_V39_SEATB.md` with engine stamps; access proofs equal the digest above; both seats exited before their reports were read.
+**Track history:** V36, V37, V38 refused (each by codex; agy passed all); pattern named in `MINI_PREREG_V39_CHANGE_RECORD_20260906.md` and `THIRD_FAILURE_DIAGNOSIS_TIERC_AMENDMENT_20260906.md`. V39 = V38 + exactly the four released reconciliation items.
+**Two choices inside it for Duho to confirm or reverse:** (1) the protected radius is computed in binary64 with no truncation, exactly the signed §8.14 formula (V35's pinned helper truncated it); (2) the §8.9d nearest-neighbour flag predicate is KEPT as the frozen identity and §8.14a is restated to say what it protects and what it does not (a full-stencil predicate would be a design change). Both are in `FINDING_SIGNED_V35_PROTECTED_REGION_DEFECTS_20260906.md`.
+
+## What approval would consist of (the adopted procedure, §17.1 of V39)
+The exact final bytes and the digest above are presented in the codex conversation; Duho approves THAT version there; the record says "approved by Duho in the codex conversation, attested by Codex, <UTC>"; Blanc independently recomputes the digest from the bytes on disk and refuses on any difference (the check proves the approved bytes are the bytes on disk, not who spoke). Both signature lines stay blank forever. Then the five-step installation protocol in the amendment paragraph runs before any pixel path opens: staged-tree check → install the staged initialiser with pixels blocked → lane check CONSISTENT → fresh interpreter confirms renderer_v4 and render_chain_v3 → enable.
+
+## Plain words for Duho
+This is the fourth and, under Blanc's release, final try at the "how we clean the pictures" amendment. Three earlier tries were each refused by one of the two reviewers, each time on something the previous fix had uncovered — including two mistakes that were already in the document you signed yesterday: the protected circle around each galaxy was rounded down to a whole pixel, and the text promised more protection than the code gave. This version fixes the rounding to your exact formula and rewrites the promise honestly; both are marked as my choice, which you can reverse. The last round fixed one leftover sentence that still described the old rounding, and a blind spot in the tool that checks nothing old is still wired in. Nothing runs until you approve the exact file whose fingerprint Blanc will show you, and a five-step install check runs before any picture is opened.
+
+**Nothing has been approved, signed, frozen, installed or run. V35 remains operative. A clear pair is not permission.**
