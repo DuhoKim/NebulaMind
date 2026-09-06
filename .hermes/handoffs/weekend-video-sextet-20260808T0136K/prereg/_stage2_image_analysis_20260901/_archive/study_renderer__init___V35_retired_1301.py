@@ -6,4 +6,4 @@ V33: this initialiser used to import from `.renderer`, the V13 renderer supersed
 by inspecting sys.modules. It now exports the pinned renderer's symbols and nothing else, and it
 is pinned like every other executed file.
 """
-from .renderer_v4 import Raster, RenderTarget, render_cutout  # noqa: F401  (V37: renderer_v4 supersedes renderer_v3)
+from .renderer_v3 import Raster, RenderTarget, render_cutout  # noqa: F401
