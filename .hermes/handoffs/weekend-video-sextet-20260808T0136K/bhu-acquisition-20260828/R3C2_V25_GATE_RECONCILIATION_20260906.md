@@ -38,3 +38,20 @@ reading of the corpus (or, under batching, of the sampled batches), so it inheri
 same way.
 
 ## Still Duho's, unchanged: D1, D7 (now with the stronger wording to rule on), the batch-reading choice, any V25 fingerprint, any restart.
+
+## kimi V25 (read after exit at 19:43:54 KST; ACCESS_SHA = the V25 digest) — topic map
+| report | topic | our identifier | approval status | disposition |
+|---|---|---|---|---|
+| kimi **F1** | §1's prose list of excluded kinds still names five kinds; the sixth is in the table and the tool but not in that sentence | consistency inside the **approved D2** | approved item, lane's to keep consistent | NOT applied in this round (cap: no V25b); one sentence, to be folded into the next version that carries any of Duho's rulings; flagged to Blanc |
+| kimi **F2** | the master's description of the sandbox profile overclaims it (wording) | cosmetic, V24i confinement sentence | lane's | not applied; noted |
+| kimi **F3** | the brief's step-1 digest prints are not enumerated in C4(iii) | = kimi V24i COSMETIC-1 | lane's | not applied; noted |
+| kimi **F4** | C5's "the one site-packages directory it loads from" is loose on this host's sys.path | cosmetic | lane's | not applied; noted |
+| kimi **(g)** | hardest case for `AUTHOR_SPECIFIED_INPUT`: a passage that both sets and asserts ("Setting Ω_m = 0.3153, our model yields Ω_m = 0.3153") files INCLUDE — the same reading as codex's | approved D2 | — | recorded as the kind's boundary; both engines agree |
+| kimi **(h)** | three census runs on the delivered pinned tool: positive PASS, two negatives FAIL with named lines | approved D2 | — | recorded |
+**Verdict lines:** GATE=PREREG_SOUND_WITH_REPAIRS; **C5_EXECUTABLE_UNDER_SCOPE=YES; NO_MASKED_STAGE=YES**; CONSEQUENCE_VISIBLE=NO; ORIGIN_PURPOSE statable only as an integrity check; leak content-level only.
+
+## State of V25 after both reviews
+- **The approved item (D2) executes and is judged consistently by both engines**; its one consistency seam (kimi F1, the §1 prose list) is recorded, not applied.
+- **Both engines: executability YES, no masked stage YES** — the fourth consecutive round.
+- **Everything substantive that remains is Duho's:** D1 (imported-choice evidence), D7 (auditor exposure — now with the stronger source-only-first procedure to rule on), the batch-reading choice; D4 and D8 can wait.
+- **No V25 fingerprint is claimed as approved; no review is claimed as "passed" beyond what the two verdict files say; the census is stopped; V23 is the signed design of record.**
