@@ -383,7 +383,8 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         alt_ev_full=sev2 if sr.get("origin_alt") else sev
         alt_par_full=s_par_alt if s_par_alt is not None else s_par
         matches_primary=same_origin and ev_ok and par_ok
-        matches_alt=has_alt and str(ar.get("origin"))==alt_origin_full and all(str(aev.get(f2))==str(alt_ev_full.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim")) and a_par==alt_par_full
+        matches_alt=has_alt and str(ar.get("origin"))==alt_origin_full and all(str(aev.get(f2))==str(alt_ev_full.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim")) and a_par==alt_par_full and (alt_ev_full.get("reason_code")!="ORIG_SILENT" or ar.get("origin_search")==(sr.get("origin_search_alt") if sr.get("origin_alt") else sr.get("origin_search")))
+        matches_primary=matches_primary and (sev.get("reason_code")!="ORIG_SILENT" or ar.get("origin_search")==sr.get("origin_search"))
         if matches_primary: branch="primary"
         elif matches_alt: branch="alt"
         else:
@@ -396,7 +397,9 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
                 for f2 in ("reason_code","source_file","source_line","verbatim"):
                     if str(aev.get(f2))!=str(sev2.get(f2)): diffs.append(f"origin_evidence.{f2} {aev.get(f2)} vs sealed alternative {sev2.get(f2)}")
             if not par_ok: diffs.append(f"derived_from {a_par} vs sealed {s_par}"+(f" (alternative {s_par_alt})" if s_par_alt is not None else ""))  # PROBE:C6_EDGES
-        if aev.get("reason_code")=="ORIG_SILENT" and str(ar.get("origin_search"))!=str(sr.get("origin_search")): diffs.append("origin_search differs")
+        if aev.get("reason_code")=="ORIG_SILENT":
+            expected_search = sr.get("origin_search_alt") if (branch=="alt" and sr.get("origin_alt")) else sr.get("origin_search")
+            if ar.get("origin_search")!=expected_search: diffs.append("origin_search differs (structural comparison against the matched branch's search)")  # PROBE:C6_SEARCH_BRANCH
         return diffs, branch
     def closure_of(iid, graph, seen=None):
         seen=seen if seen is not None else set()

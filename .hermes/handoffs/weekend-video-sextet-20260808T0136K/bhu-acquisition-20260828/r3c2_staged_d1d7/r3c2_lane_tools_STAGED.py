@@ -96,9 +96,10 @@ def cmd_merge(a,b,out):
     for k in sorted(A):
         for fld in ("status","value","source_file","source_line","symbol"):
             if str(A[k].get(fld))!=str(Bm[k].get(fld)): fails.append(f"{k}: seats disagree on {fld} ({A[k].get(fld)!r} vs {Bm[k].get(fld)!r}) — a value/status/coordinate disagreement is not silently resolved")  # PROBE:MERGE_FIELDS
-        r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None); r.pop("derived_from_alt",None); r.pop("PARENTS_DISPUTED",None)
+        r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None); r.pop("origin_search_alt",None); r.pop("derived_from_alt",None); r.pop("PARENTS_DISPUTED",None)
         if Bm[k]["origin"]!=A[k]["origin"]:
             r["origin_alt"]=Bm[k]["origin"]; r["origin_evidence_alt"]=Bm[k]["origin_evidence"]; ndis+=1
+            if (Bm[k].get("origin_evidence") or {}).get("reason_code")=="ORIG_SILENT" and "origin_search" in Bm[k]: r["origin_search_alt"]=Bm[k]["origin_search"]  # PROBE:MERGE_SEARCH_ALT
         if sorted(A[k].get("derived_from") or []) != sorted(Bm[k].get("derived_from") or []):
             r["derived_from_alt"]=Bm[k].get("derived_from") or []; r["PARENTS_DISPUTED"]=True; npar+=1
         out_recs.append(r)

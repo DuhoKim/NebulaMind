@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `7c661ac0c6157bff51062bf1a578a972e65986de7c3d9434e9a8419c0621aa35` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `849483185cfbac11d1dd548204cc3d70396ca417d80aa3837fe3f2bdf17f7da6` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -66,7 +66,7 @@ is seat judgement; the second seat and C6 may detect an error, but can share it,
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `65b570bea5f451ad57fb88ba575428030de8d1e5aa4e333c8802919ea9a3a72e` (`validate` takes the candidate file as its third argument), pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `eb479feb9351092a444ebd455379aac4b7a4dfaa0aa217f1ade41532c5268ef7` (`validate` takes the candidate file as its third argument), pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
