@@ -27,7 +27,16 @@ and the lane's `compute` can follow `derived_from` across papers where the seats
 "this paper's number rests on a choice" when the choice was made by a different paper — unless he takes the "change" route: an
 inherited origin (`IMPORTED_CHOSEN` / `IMPORTED_FITTED` / …), which is a taxonomy expansion and a second pass over every import.
 
-**Line for Duho:** accept / change (inherited provenance) / defer. Blocks a first run: without it such records are BLOCKED or split.
+**Second wording for the same rule, from the V25 codex review, put beside mine because it is at least as clean:** the import is
+evidenced at the BORROWER'S own citing sentence ("we take a from Smith (2020)"), quoted verbatim as `ORIG_CITATION`, while `source_file`
+and `source_line` point at the external value line where the number machine-matches; the origin records the claiming paper's import
+regardless of how the source obtained the value. Under it the "we choose" conflict never arises, because the quotation is a genuine
+citation and the source's line is only the match target. My clause reaches the same filings by declaring the source's line the
+citation; the review's reaches them by quoting the borrower's sentence. **Recommendation between the two, my judgement:** the review's
+wording — it needs no rule about what the source's line says.
+
+**Line for Duho:** accept (review's wording) / accept (Tori's wording) / change (inherited provenance) / defer. Blocks a first run:
+without one of them such records are BLOCKED or split.
 
 ---
 
