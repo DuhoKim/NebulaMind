@@ -46,6 +46,11 @@ class T(unittest.TestCase):
         with self.assertRaises(ValueError): V2.rejection_mask(mb, nexp[:4])
         bad = nexp.copy(); bad[0, 0] = -1
         with self.assertRaises(ValueError): V2.zero_exposure_mask(bad)
+        badm = mb.copy(); badm[0, 0] = -32768                                # codex V36: a negative bit field must refuse, not pass silently
+        with self.assertRaises(ValueError): V2.rejection_mask(badm, nexp)
+        with self.assertRaises(ValueError): V2.clean_source(img[:4], mb, nexp)          # image shape differs from the planes
+        nanimg = img.copy(); nanimg[2, 2] = np.nan
+        with self.assertRaises(ValueError): V2.clean_source(nanimg, mb, nexp)           # non-finite image value
         img4, mb4, n4 = planes(4); n4[:] = 0; n4[0, :3] = 1                # 3 accepted < 16
         with self.assertRaises(ValueError) as c: V2.clean_source(img4, mb4, n4)
         self.assertEqual(str(c.exception), V2.NO_ACCEPTED_PIXELS)

@@ -27,7 +27,18 @@ def _integer(plane: np.ndarray, name: str) -> np.ndarray:
     a = np.asarray(plane)
     if not np.issubdtype(a.dtype, np.integer):
         raise ValueError(f"{name} must be integer; a resampled {name} plane is not admissible")
+    if a.size and a.min() < 0:
+        raise ValueError(f"{name} plane carries a negative value; a bit field or exposure count cannot be negative")
     return a
+
+
+def validate_planes(image: np.ndarray, maskbits: np.ndarray, nexp: np.ndarray) -> None:
+    """§8.12 (V37): the three source planes must share one shape; the image must be finite everywhere. Refuses otherwise."""
+    im = np.asarray(image); mb = _integer(maskbits, "maskbits"); ne = _integer(nexp, "nexp")
+    if not (im.shape == mb.shape == ne.shape):
+        raise ValueError("image, maskbits and nexp planes differ in shape")
+    if not np.isfinite(im).all():
+        raise ValueError("image plane carries a non-finite value")
 
 
 def bit_rejection_mask(maskbits: np.ndarray) -> np.ndarray:
@@ -36,11 +47,8 @@ def bit_rejection_mask(maskbits: np.ndarray) -> np.ndarray:
 
 
 def zero_exposure_mask(nexp: np.ndarray) -> np.ndarray:
-    """Boolean rejection from the INTEGER nexp-r plane: exposure count == 0 (negative counts are refused as corrupt)."""
-    n = _integer(nexp, "nexp")
-    if (n < 0).any():
-        raise ValueError("nexp plane carries a negative exposure count")
-    return n == 0
+    """Boolean rejection from the INTEGER nexp-r plane: exposure count == 0 (negative counts are refused by _integer)."""
+    return _integer(nexp, "nexp") == 0
 
 
 def rejection_mask(maskbits: np.ndarray, nexp: np.ndarray) -> np.ndarray:
@@ -67,6 +75,7 @@ def replacement_value(image: np.ndarray, reject: np.ndarray) -> float:
 
 def clean_source(image: np.ndarray, maskbits: np.ndarray, nexp: np.ndarray):
     """Replace rejected source pixels BEFORE reprojection. Returns (cleaned, fill, n_rejected, n_zero_exposure, n_medium)."""
+    validate_planes(image, maskbits, nexp)
     reject = rejection_mask(maskbits, nexp)
     fill = replacement_value(image, reject)
     cleaned = np.array(image, dtype=np.float64, copy=True)
