@@ -19,3 +19,5 @@
 
 ## Timeline (KST)
 V36 refused 11:26 → renderer_v4 11:30 → helper hardening + fixtures 11:33 → render_chain_v2 + integration fixture 11:38 → V37 text 11:41 → §2.15 cascade (harness v5, spec v2, checker v2, initialiser staged) 11:45–11:52 → this record 2026-09-06 11:53 KST → two-seat gate (engines stamped) → approval on final bytes → install the staged initialiser → operative.
+
+**Seat A (agy 1.1.27, engine-stamped), 11:59 KST: SIGNABLE** (AGY_TIERC_V37_SEATA.md; ACCESS_SHA = target; process exited before read). Every V36 finding REPAIRED with clause and code line; no FATAL, no MAJOR. Awaiting seat B (codex-cli 0.153.4 / gpt-6-astra).
