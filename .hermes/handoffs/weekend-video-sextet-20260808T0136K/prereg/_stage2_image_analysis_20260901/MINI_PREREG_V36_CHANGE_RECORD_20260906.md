@@ -26,3 +26,5 @@ finding 11:01 → Blanc dispatch 11:06 → Duho's confirmation 11:08 → code + 
 
 ## Consequence for option A
 Step 3 of `OPTION_A_RUN_SEQUENCE_AFTER_BRANCH_PROTECTION_20260906.md` stays BLOCKED until V36 is approved; the development render adapter (gap 2) will import `pixel_rejection_v2` and nothing else for rejection.
+
+**Seat A (agy 1.1.27, engine-stamped), 11:24 KST: SIGNABLE** (AGY_TIERC_V36_SEATA.md; ACCESS_SHA = target; process exited before read). Items 1–6 all MINOR. Awaiting seat B (codex-cli 0.153.4 / gpt-6-astra).
