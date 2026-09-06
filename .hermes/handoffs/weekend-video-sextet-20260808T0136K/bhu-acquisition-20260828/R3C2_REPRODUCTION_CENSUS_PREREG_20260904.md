@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 23 (see §10; §10.17 — V22 gate: both seats SOUND_WITH_REPAIRS, three cosmetics, two in the document/tool applied here; no ruling pending; SIGNABLE if V23's C0 and gate hold — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 24 — LIVING DRAFT; the signed design of record remains V23 (`R3C2_V23_DESIGN_OF_RECORD_55b466fa.md`, frozen 2026-09-06 00:00:22Z) until Duho signs V24 (see §10; §10.18 — the narrow scope correction after the 10:17 run abort; nothing else changed — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -339,7 +339,8 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`.
+  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The system binaries C5 names — `/usr/bin/python3`, `/usr/bin/shasum` — and whatever they load while executing the mandated
+  commands are IN SCOPE and are not "outside paths" under this control; every other path outside the working directory is.**
 
 <!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
@@ -399,7 +400,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   non-zero exit, missing output, or a transcribed value in place of live output is FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete.** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
+  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum` and what they load are `IN_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*<!--/SEAT-REDACT-->
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
@@ -535,7 +536,8 @@ Two defects were found in the previous table and are corrected here, rather than
 | V20 | `e8ba4a7438d61f02…` | C0 two seats AGREE on V19; `R3C2_GATE_V19_codex_20260905.md` (UNSOUND: the escalated items + 2.1 final command + 7.1 dispatch list; LEAK=NONE), `R3C2_GATE_V19_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE) | seven repairs applied incl. `PARENTS_DISPUTED` in the lane tool; escalated items unchanged (§10.14) | C0 by two seats, then gate — pending; a further round of NEW non-escalated findings stops the lane and files a diagnosis |
 | V21 | `b146c8c45ad2dd9a…` | C0 two seats AGREE on V20; `R3C2_GATE_V20_codex_20260905.md` (UNSOUND on the escalated items + 2 small; LEAK=NONE), `R3C2_GATE_V20_kimi_20260905.md` (SOUND_WITH_REPAIRS; LEAK=NONE; ORIGIN_PURPOSE=CANNOT_STATE); lane STOPPED by its cap; Duho ruled "1a rename" 22:53 KST | ruling applied + four small repairs + zero-denominator clause (§10.15) | C0 by two seats, then gate — then freezable |
 | V22 | `5cd4e6da543d2c0d…` | C0 two seats AGREE on V21 (both exhibit `CENSUS_OUTCOME_DISPUTED`); `R3C2_GATE_V21_codex_20260905.md` (SOUND_WITH_REPAIRS: one cosmetic; LEAK=NONE; rename verified, 0 governing old-token references), `R3C2_GATE_V21_kimi_20260905.md` (SOUND; LEAK=NONE) | the one cosmetic applied: `CENSUS_PARTIAL`'s definition names the zero-denominator case (§10.16) | C0 by two seats, then gate — then SIGNABLE for Duho |
-| V23 | *this version* | C0 two seats AGREE on V22; `R3C2_GATE_V22_codex_20260905.md` (SOUND_WITH_REPAIRS: one brief artefact; LEAK=NONE), `R3C2_GATE_V22_kimi_20260905.md` (SOUND_WITH_REPAIRS: two cosmetics; leak = the accepted content-level floor; ORIGIN_PURPOSE=CANNOT_STATE) | kimi F1 (parenthetical on the right limb) and F2 (lane tool duplicate write removed, re-pinned) applied (§10.17) | C0 by two seats, then gate — then SIGNABLE for Duho |
+| V23 | `55b466fadf8ca75f…` — **SIGNED 2026-09-06T00:00:22Z, the design of record** | C0 two seats AGREE on V22; `R3C2_GATE_V22_codex_20260905.md` (SOUND_WITH_REPAIRS: one brief artefact; LEAK=NONE), `R3C2_GATE_V22_kimi_20260905.md` (SOUND_WITH_REPAIRS: two cosmetics; leak = the accepted content-level floor; ORIGIN_PURPOSE=CANNOT_STATE) | kimi F1 (parenthetical on the right limb) and F2 (lane tool duplicate write removed, re-pinned) applied (§10.17) | C0 by two seats, then gate — then SIGNABLE for Duho |
+| V24 | *living draft, unsigned* | run of 2026-09-06 aborted twice under V23 (`R3C2_RUN_ABORT_20260906.md`: lane copy layout; `R3C2_RUN_ABORT_20260906_1017.md`: the signed C4/brief scope rule forbids the path C5's harness requires) | C4 and C5b name the two system binaries as in scope; the frozen brief gets the same sentence (§10.18); NOTHING else | C0 by two seats, then gate — then to Duho for signature; V23 stays frozen and unsuperseded until then |
 
 **Predecessor design, kept unchanged as the record of the failed design:**
 
@@ -1021,3 +1023,24 @@ file twice (a V20 insertion of mine); the duplicate removed, controls re-run (on
 pair still computed), re-pinned. Nothing else changed. NOT FROZEN, NOT RUN: C0 by two seats and one two-seat gate on V23; if both
 hold with no finding above cosmetic, V23 is SIGNABLE and the freeze is Duho's chat signature on its digest. Running remains his
 separate word.
+
+## 10.18 V24 (living draft) — the narrow scope correction after the run's second abort (2026-09-06 11:02 KST)
+
+**What happened under the signed V23.** Duho said "run the census" at 09:07 KST. The first dispatch aborted on the lane's copy layout
+(A3, lane-side, `R3C2_RUN_ABORT_20260906.md`). The resumed dispatch, from a clean flat tree under a kernel sandbox with codex-cli
+0.153.4 / gpt-6-astra, aborted at 10:17 KST because the seat obeyed the signed text to the letter: C4 ("do not construct a path
+outside [the working directory] … any path outside the working directory is FAIL") and the brief ("do not open any other path")
+forbid the path C5 requires (`shasum -a 256 /usr/bin/python3`). The seat stopped at C5, filed `R3C2_NO_CLASS` for itself, and read no
+source (`R3C2_RUN_ABORT_20260906_1017.md`). The signed design's harness is not executable under its own scope rule; the gates
+read C5, they did not run it under a live scope instruction. **This is a defect in the text Duho signed at 09:00, stated in those
+words.**
+
+**The correction, and nothing else.** One clause in C4 and its echo in C5b: the two system binaries C5 names, and what they load
+while executing the mandated commands, are in scope and are not "outside paths"; every other outside path still fails. The
+frozen brief receives the same sentence. No class, control code, threshold, precedence, taxonomy or rule of interpretation
+changes. The `DERIVED_ONLY` rename and kimi's V23 F1 are NOT in this version; they stay pending §10 amendments as before.
+
+**Authority.** Preparation of this draft was authorised to the lane only as reversible drafting: Blanc's 11:01 KST note ("drafting and
+testing an amendment changes nothing signed"). A "Codex relay" instruction of 10:59 and a ghost line "amend C4, V24, re-gate" were
+NOT treated as Duho's authority (`GHOST_RELAY_AUDIT_20260906.md`). V23 remains the signed design of record; V24 supersedes it only
+when Duho signs its digest in chat to Blanc. The census stays stopped until then and until his separate run word.

@@ -2,7 +2,9 @@
 
 You are one of two independent seats. Work only from the files in this directory: `R3C2_SEAT_PACKET.md` (the rules),
 this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_timeout.py` (the pinned wrapper), and the source texts listed
-in `R3C2_CORPUS_MANIFEST.md`. Do not open any other path. Print the working directory and every path you open.
+in `R3C2_CORPUS_MANIFEST.md`. The system binaries the packet's C5 names — `/usr/bin/python3`, `/usr/bin/shasum` — and what they
+load while executing the mandated commands are in scope. Do not open any other path. Print the working directory and every path
+you open.
 
 Order of work:
 1. Print `shasum -a 256` of the packet, this brief, both tools and every source text you read; compare each source
