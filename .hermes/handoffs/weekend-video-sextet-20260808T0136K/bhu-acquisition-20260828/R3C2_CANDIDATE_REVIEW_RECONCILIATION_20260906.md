@@ -100,7 +100,10 @@ Kit after revision-3 repairs: `controls=102 passed=102 failed=0`, `deletion_prob
 ## Round 3 (bounded verification of revision 3, digest `cd126c26…`; codex report written 21:22 KST, wrapper absent at the lane's 21:25
 check; kimi report written 21:39 KST, process count 0 at the lane's 21:40 check; both access lines verified)
 Tokens: codex ROUND2_RESIDUALS=PARTLY, NEW_DEFECTS=3, STAGED_TESTS=PASS, READY_FOR_PRINCIPAL=NO; kimi ROUND2_RESIDUALS=PARTLY,
-NEW_DEFECTS=2, STAGED_TESTS=PASS, READY_FOR_PRINCIPAL=YES. Rows: every round-2 repair found PRESENT by both; PARTLY rows and new
+NEW_DEFECTS=2, STAGED_TESTS=PASS, READY_FOR_PRINCIPAL=YES. **Unique new defects: THREE** (N1 and N2 found by both; N3 by codex alone) — not five;
+Blanc's 21:53 correction of his own earlier count is recorded here. The readiness split (codex NO / kimi YES) was recorded on
+revision 3; whether it survives revision 4 is not settled — no readiness token exists on revision 4; Codex's targeted replay
+(`.hermes/CODEX_TORI_R4_TARGETED_CLOSURE_20260906.json`) closed its own round-3 counterexamples, which is narrower than a review. Rows: every round-2 repair found PRESENT by both; PARTLY rows and new
 defects, all routine and all REPAIRED in revision 4 under Blanc's 21:26 order (which withdrew the "residuals are listed, not repaired"
 rule: routine, mechanical and wording residuals are repaired under preparation scope; only what changes what the census can conclude
 goes to Duho — nothing in this round does):
@@ -113,6 +116,11 @@ goes to Duho — nothing in this round does):
 | omission results emitted as `OMISSION_<direction>`; per-input origin agreement aggregated in `why` | codex T3, kimi (iv) | vocabulary | `result` ∈ {MATCH, OMISSION (+`direction`), AUDIT_INCLUSION_DISPUTED}; per-input rows with MATCH/MISMATCH |
 | stale `controls=84` inside the candidate | both | stale count | printed from the kit's tally: `controls=111`, `deletion_probes=38` |
 | codex sentence 1 and 4 inaccurate (closure overclaimed) | codex | wording | rewritten to name round 3's findings and their repair |
+
+**Packaging defect and its fix (2026-09-06 21:53 KST).** The README was edited (revision-4 counts) AFTER the pin sheet had been generated, so the
+sheet's README row failed (expected `1333de06…`). Fix chosen: the pin sheet was REGENERATED from the current bytes, not the README
+restored, because the current README is the intended one (its counts are the kit's own tally) and the recorded digest was of the
+superseded text; 7/7 verify from the lane directory after all document writes. Rule from here: pin last, after every document write.
 
 Kit after revision 4: `controls=111 passed=111 failed=0`, `deletion_probes=38`, `STAGED_TESTS=PASS` (2026-09-06 21:45 KST).
 

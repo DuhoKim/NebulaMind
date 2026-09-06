@@ -4,11 +4,17 @@
 adopted. This brief is a lane preparation relayed by Blanc; it approves nothing by itself. V23 stays the signed design of record,
 V25 (with the approved AUTHOR_SPECIFIED_INPUT) stays the living draft, the census stays stopped.
 
-**What was examined, honestly.** Revisions 1, 2 and 3 of the candidate were each reviewed independently by two engines (codex, kimi),
-seven identical tokens per round, every finding either repaired or stated as a limit. Revision 4 carries the round-3 repairs (all
-routine, all with fail-first controls); it was NOT re-reviewed by two engines — Codex replayed its own round-3 counterexamples against
-it and found them closed (receipt `.hermes/CODEX_TORI_R4_TARGETED_CLOSURE_20260906.json`). Full record:
-`R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`.
+**Review history, honestly.** Three rounds. Revisions 1 and 2 were each reviewed independently by two engines (codex, kimi) with
+seven identical tokens per round: round 1 found the batch proposal UNSOUND (a session holding only its own texts cannot serve the
+import rule — repaired by partitioning ownership, not access); round 2 found the mechanism sound with executable tool gaps, repaired.
+Round 3 was a bounded verification of revision 3: both engines found every round-2 repair present and, between them, THREE unique
+new defects (both found the unknown-claim binding gap and the seed-contract gap; codex alone found the root-seal gap). **Readiness on
+revision 3 was split: codex READY_FOR_PRINCIPAL=NO, kimi YES.** Revision 4 repaired the three defects and the wording residues with
+fail-first controls (111 controls, 38 deletion probes). Whether the split survives revision 4 is NOT settled: no reviewer has issued a
+readiness token on revision 4. The evidence that exists is narrower — Codex replayed its own round-3 counterexamples against revision 4
+in a fresh directory and found them closed (`.hermes/CODEX_TORI_R4_TARGETED_CLOSURE_20260906.json`); that is a targeted replay, not a
+review, and codex's NO rested on exactly those counterexamples plus the vocabulary and count residues also repaired. A fourth review
+round would settle it and runs only on order. Full record: `R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`.
 
 ---
 
@@ -25,6 +31,25 @@ it and found them closed (receipt `.hermes/CODEX_TORI_R4_TARGETED_CLOSURE_202609
   expansion and a second pass over every import; not prepared.
 - (Defer) — then such records stay BLOCKED or split, and a first run cannot file them.
 
+**Exact recommended D1 clause (wording B), verbatim from the candidate:**
+
+> **A value the claiming paper does not print but traces to a named source is classified `PRINTED` with `origin` `IMPORTED` only when
+> that source is an enumerable text of `R3C2_CORPUS_MANIFEST.md` whose bytes verify against its manifest row, and the value machine-matches
+> as a numeric token at the cited source line.** The record's `source_file`/`source_line` name that external value line; `origin_evidence`
+> carries `ORIG_CITATION` with a non-empty verbatim quotation of the CLAIMING paper's sentence naming the source, at the claiming paper's
+> own file and line (the claiming file is the file of the candidate row the record's `claim_id` names). The origin records the claiming
+> paper's import regardless of how the external source obtained the value; no reason code is applied to the source's line. **Where the
+> value machine-matches at more than one line of the named source, the seat files the first line carrying both the symbol and the
+> numeral; `validate` fails any other line.** If the named source is not enumerable or the value does not match there, file `REPRO_BLOCKED`
+> under §3. C3's pair rule: `ORIG_CITATION` is satisfied by that quotation at the claiming paper.
+>
+> **Machine floor, stated.** For EVERY `PRINTED` record `validate` first binds the claim to its claiming file through the candidate file;
+> a record whose value line lies in another file must be `IMPORTED` with `ORIG_CITATION`, whatever reason code was submitted. For an
+> import it then checks: the citing file is the claiming file; the two files differ; the source is an exact manifest row with verified
+> bytes; the quotation is non-empty and present at the cited claiming line; the value is a numeric token at the cited source line; some
+> line of the source carries both symbol and numeral, and the cited line is the first such line. Whether the quotation cites THAT value
+> is seat judgement; the second seat and C6 may detect an error, but can share it, and C6 re-classifies inputs only for selected claims.
+
 **Consequence of (B) in plain words.** The census will say "this paper's number rests on an import" and will NOT say "rests on a
 choice" when the choice was another paper's; the choice shows on the source paper's own record. Machine checks now bind every
 printed value to its claiming paper, match numeric tokens not substrings, verify the source's bytes against the manifest, and take
@@ -40,6 +65,35 @@ seat and by the audit for selected claims.
   either direction fails the audit; a mere disagreement is counted under a 10% rule.
 - (Weaker) the auditor sees the seats' lists with outcomes blanked, then re-derives. Anchoring on those lists makes discovery of a
   passage both seats missed less likely (direction only; no magnitude measured).
+
+**Exact recommended D7 clause (stronger), verbatim from the candidate:**
+
+> **C6 — audit, with a frozen sampling frame and an independent enumeration.** A third independent seat, on a different engine from both
+> census seats, **first** enumerates and classifies candidate passages itself from EVERY pinned source — all 89 enumerable texts of
+> `R3C2_CORPUS_MANIFEST.md`, a complete independent enumeration, never a sample of texts — under §1's rule, with no seat candidate,
+> exclusion, input or outcome ledger in its dispatch inventory, and writes its own candidate and exclusion ledgers. The custodian runs
+> `census` over them and, only on PASS, records their digests in a first-write stage-1 seal (`audit seal-enumeration`). **Second**, after
+> receipt T and the supply of the external seed, the custodian computes the selection (`audit select`, which refuses without the stage-1
+> seal) — every arithmetic-group claim plus `k = min(max(1, ceil(0.20 × N)), R)` of the remaining included claims, drawn as already
+> defined — and hands the auditor claim identifiers with source file and line ONLY (`audit handout`); the auditor re-derives each
+> assigned claim and re-classifies each of its inputs' `origin` from the pinned sources, and the custodian seals those re-derivations by
+> digest (`audit seal-rederivation`) BEFORE any sealed ledger is released. **Only then** are the sealed (merged) candidate, exclusion and
+> input ledgers opened to the comparison (`audit compare`), which recomputes the selection from the sealed candidates and seed and fails
+> on any disagreement, and writes and prints `C6_AUDIT.json` with (i) one completeness row per passage key (file, line, numeral) in the
+> UNION of the sealed and the auditor's enumerations — both presences, both dispositions, both exclusion kinds, and a result: `MATCH`,
+> `OMISSION`, or `AUDIT_INCLUSION_DISPUTED` — and (ii) `MATCH`/`MISMATCH` per audited claim (outcome; printed and reproduced values for
+> arithmetic outcomes) and per re-classified input origin. **Omissions:** a sealed INCLUDED passage absent from the auditor's enumeration;
+> a passage the auditor lists (included OR excluded) that the sealed ledgers omit — each is ledger incompleteness and files
+> `CENSUS_AUDIT_FAILED`. **Disputes:** a passage both sides list but dispose differently, and a sealed EXCLUDED passage absent from the
+> auditor's enumeration, are `AUDIT_INCLUSION_DISPUTED`, listed with both dispositions and counted; above 10% of the sealed included
+> denominator the audit files `CENSUS_AUDIT_FAILED`; at or below it the count is reported. A sealed denominator of zero with any passage
+> on either side fails. `C6_AUDIT_SAMPLE=PASS` only if the artefact exists and is printed, both seals match, the recomputed selection
+> matches, no row is an omission, the dispute rate is at or below 10%, and no audited claim or origin is `MISMATCH`. **What PASS means:**
+> the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record (the seals fix
+> WHAT was committed, the dispatch record — inventoried and access-proven like the seats' — fixes WHEN, relative to release) and by
+> shared reader error; prior exposure cannot be excluded — the same floor C4 states for the seats. Its enumeration reads the corpus
+> under the same reading discipline as the census seats, batch for batch if the census is batched, including the same cross-batch
+> source access for re-classifying imports.
 
 **Consequence and cost.** Under the stronger version `CENSUS_COMPLETE` requires a run record showing the auditor's enumeration
 preceded any exposure and its re-derivations were committed before release — the tools commit bytes, the custodian's dispatch record
