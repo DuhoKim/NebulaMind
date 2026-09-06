@@ -64,6 +64,7 @@ def cmd_join(part,seat_dir,seals,manifest,prefix):
         bad=False; sk=S[str(k)]
         if sk.get("owned_files")!=b["files"] or sk.get("owned_sha256")!=b["sha256"]: fails.append(f"batch {k}: sealed ownership differs from the partition"); bad=True  # PROBE:SEAL_OWNERSHIP
         exp_pred=(hashlib.sha256(json.dumps(S[str(k-1)],sort_keys=True).encode()).hexdigest() if str(k-1) in S else None)
+        if k==1 and sk.get("predecessor_seal_sha256") is not None: fails.append("batch 1: the chain's root seal claims a predecessor"); bad=True  # PROBE:SEAL_ROOT
         if k>1 and (str(k-1) not in S or sk.get("predecessor_seal_sha256")!=exp_pred): fails.append(f"batch {k}: predecessor chain broken (seal does not bind batch {k-1}'s seal)"); bad=True  # PROBE:SEAL_CHAIN
         for f in ART(k):
             if not (d/f).exists(): fails.append(f"batch {k}: missing {f}"); bad=True; continue

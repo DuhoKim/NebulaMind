@@ -2,7 +2,9 @@
 
 Reviewed object: `R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md` at digest `cb78eef0f4167759a415b5381b73fd075bb5475172e5290afa24d9a1c3820cfe`,
 with `R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md` and the staged kit (pin sheet `r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256`).
-Reviews: codex (`R3C2_CANDIDATE_REVIEW_codex_20260906.md`, access proven by the wrapper, exited 20:14 KST); kimi (pending at the time of
+Reviews: codex (`R3C2_CANDIDATE_REVIEW_codex_20260906.md`, access proven by the wrapper; report written 20:14 KST; exit not observed by
+the lane — Blanc observed the wrapper and children alive at 20:17:11 and gone by 20:27:10; the lane read the report after its own
+process check showed the wrapper absent); kimi (pending at the time of
 writing; added below when it exits and its access line is verified). Nothing here adopts anything; all repairs listed are STAGED
 preparation of an unadopted candidate. Findings are reconciled BY TOPIC; report numbering is the reviewer's and is not relied on.
 
@@ -33,7 +35,8 @@ not be read as TOOLING_MATCHES_CLAUSE=YES." Agreed.
 | T12 | **D7 / batch overclaims** ("strongest statement", "guaranteed", cost "roughly equals", drift "measured", "nothing about the claims", feasibility of 12 batches) | WORDING | ACCEPTED, replacements applied; 12 batches restated as a workload hypothesis with per-batch line/byte counts printed. |
 | T13 | **Stale pins in the batch document** (cites the pre-repin tool digest and 37 controls) | STALE | ACCEPTED, corrected. |
 
-## Kimi tokens (verbatim; access line verified by hand against the candidate digest; exited 20:26 KST)
+## Kimi tokens (verbatim; access line verified by hand against the candidate digest; report written 20:26 KST; exit not observed —
+Blanc observed the process alive at 20:27:10 and absent by 20:32–20:35; the lane read the report after a process check showed count 0)
 CANDIDATE_D1=SOUND_WITH_REPAIRS · CANDIDATE_D7=SOUND_WITH_REPAIRS · BATCH_PREP=UNSOUND · TOOLING_MATCHES_CLAUSE=NO ·
 COUNTEREXAMPLE_HANDLED=YES · IMPORTED_RULE_BREAKS_PARTITION=YES · STAGED_TESTS=PASS — identical to codex's seven.
 Kimi's own counterexample (its `paperY.txt:4` numeral `17.4`, "We obtain w = 17.4 from the fit.", omitted by both of its seat files,
@@ -71,7 +74,9 @@ Candidate revision 2 (`R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md`), batch prepara
 (`r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256`): `controls=84 passed=84 failed=0`, `STAGED_TESTS=PASS`, 29 deletion probes.
 A second independent review round is dispatched on revision 2; its verdicts are filed beside the first when they exist.
 
-## Round 2 (revision 2, digest `53fa3ab5…`; codex exited 20:49 KST access proven by the wrapper; kimi exited 21:11 KST, access line verified by hand)
+## Round 2 (revision 2, digest `53fa3ab5…`; codex: wrapper access proven, report written 20:46 KST, lane check at 20:49 showed the wrapper absent;
+kimi: report written 21:11 KST, the lane's process check printed count 0 at 21:12 while Blanc observed it alive at 21:12:10 and absent
+by 21:13:40 — the lane's read followed that check; access line verified by hand)
 Tokens, identical from both: CANDIDATE_D1=SOUND_WITH_REPAIRS · CANDIDATE_D7=SOUND_WITH_REPAIRS · **BATCH_PREP=SOUND_WITH_REPAIRS** ·
 TOOLING_MATCHES_CLAUSE=NO · COUNTEREXAMPLE_HANDLED=YES · **IMPORTED_RULE_BREAKS_PARTITION=NO** · STAGED_TESTS=PASS.
 Both re-ran the kit (84/84), rebuilt their own counterexamples, and checked T1–T13: T1, T4, T5, T9, T10 REPAIRED by both; the rest
@@ -92,10 +97,33 @@ PARTLY, for the residuals below. No finding rejected.
 
 Kit after revision-3 repairs: `controls=102 passed=102 failed=0`, `deletion_probes=36`, `STAGED_TESTS=PASS` (2026-09-06 21:16 KST).
 
-## Round 3 (bounded)
-Revision 3 is dispatched to both engines for a bounded verification round confined to the table above (each row REPAIRED / PARTLY /
-NOT with executed evidence) plus any NEW executable defect; it is the last review round the lane runs on this candidate unless Blanc
-or Duho orders another. Findings from it are filed beside the others; residuals after it are LISTED for Duho, not repaired.
+## Round 3 (bounded verification of revision 3, digest `cd126c26…`; codex report written 21:22 KST, wrapper absent at the lane's 21:25
+check; kimi report written 21:39 KST, process count 0 at the lane's 21:40 check; both access lines verified)
+Tokens: codex ROUND2_RESIDUALS=PARTLY, NEW_DEFECTS=3, STAGED_TESTS=PASS, READY_FOR_PRINCIPAL=NO; kimi ROUND2_RESIDUALS=PARTLY,
+NEW_DEFECTS=2, STAGED_TESTS=PASS, READY_FOR_PRINCIPAL=YES. Rows: every round-2 repair found PRESENT by both; PARTLY rows and new
+defects, all routine and all REPAIRED in revision 4 under Blanc's 21:26 order (which withdrew the "residuals are listed, not repaired"
+rule: routine, mechanical and wording residuals are repaired under preparation scope; only what changes what the census can conclude
+goes to Duho — nothing in this round does):
+
+| finding | by | class | repair in revision 4 (each with a control asserting its exact failure and a deletion probe) |
+|---|---|---|---|
+| N1 — the claiming-file binding ran only when a candidate file was given AND the claim was known; an unknown-claim non-import PRINTED record with a cross-file value line passed | codex N1, kimi N1 | mechanical | every PRINTED record now requires the candidate file and a known claim before anything else |
+| N2 — `compare` accepted an uppercase seed `select` refuses; a non-hex seed crashed with a traceback and no artefact | codex N2, kimi N2 | mechanical | `compare` applies `select`'s contract; a FAIL token and an artefact are always written |
+| N3 — join never checked that the root seal (batch 1) has no predecessor | codex N3 | mechanical | root check added |
+| omission results emitted as `OMISSION_<direction>`; per-input origin agreement aggregated in `why` | codex T3, kimi (iv) | vocabulary | `result` ∈ {MATCH, OMISSION (+`direction`), AUDIT_INCLUSION_DISPUTED}; per-input rows with MATCH/MISMATCH |
+| stale `controls=84` inside the candidate | both | stale count | printed from the kit's tally: `controls=111`, `deletion_probes=38` |
+| codex sentence 1 and 4 inaccurate (closure overclaimed) | codex | wording | rewritten to name round 3's findings and their repair |
+
+Kit after revision 4: `controls=111 passed=111 failed=0`, `deletion_probes=38`, `STAGED_TESTS=PASS` (2026-09-06 21:45 KST).
+
+**Timing errata (Blanc 21:26).** A report's write time is not its author's exit time. Every "exited HH:MM" above is now stated as a
+write time plus an observed process absence (whose, when) or "exit not observed". The discipline the lane applies is unchanged: a
+report is read only after a process check shows the reviewer absent; the record now says what was observed rather than a time.
+
+**What goes to Duho from these three rounds.** Nothing new. D1 (wording B recommended; A needs the tool re-staged), D7 (stronger
+recommended), the batch choice (ownership-partitioned; row-order vs line-balanced partition), the inherited-provenance "change" route —
+each with its cost and the lane's recommendation, already in the candidate and batch documents. Custody limits are stated as limits,
+not as decisions.
 
 ## What stays Duho's after these repairs
 D1 (which wording; or the inherited-provenance change), D7 (stronger / weaker), the batch choice (now: ownership-partition, with the

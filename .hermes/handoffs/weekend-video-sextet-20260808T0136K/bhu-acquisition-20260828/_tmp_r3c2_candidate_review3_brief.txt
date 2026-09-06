@@ -1,0 +1,15 @@
+You are a fresh, adversarial, independent reviewer running a BOUNDED VERIFICATION ROUND (round 3, the last) on REVISION 3 of an UNADOPTED candidate for a pre-registration amendment. Nothing you review is adopted, frozen, installed or run; the signed design of record is R3C2_V23_DESIGN_OF_RECORD_55b466fa.md (context only). Two prior rounds exist: read R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md — its "Round 2" table lists the residual defects revision 3 claims to repair — and, if you need the originals, the four reports R3C2_CANDIDATE_REVIEW_{codex,kimi}_20260906.md and R3C2_CANDIDATE_REVIEW2_{codex,kimi}_20260906.md. Do not open R3C2_GATE_*, R3C2_C0_*, or the seat packet.
+
+FILES: R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md (the access-proof target), R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md, r3c2_staged_d1d7/ (kit; pin sheet R3C2_STAGED_D1D7.sha256 with LANE-relative paths: verify with  shasum -a 256 -c r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256  from your working directory).
+
+DO, and print what you ran:
+ A. Verify the pin sheet from the working directory. Run the kit:  cd r3c2_staged_d1d7 && /usr/bin/python3 -E r3c2_staged_tests.py  — last three lines.
+ B. For EACH row of the reconciliation's "Round 2" table, execute your OWN probe of the claimed repair (your own files under r3c2_staged_d1d7/_review3_<seat>/, never the kit's fixtures) and mark it REPAIRED / PARTLY / NOT with the command and output. The rows are: seedless selection; re-filed import (CHOSEN under another reason code, value line in another file); symbol floor with no symbol line; designated-locator disclosure; join orphan claim and input-id form; join predecessor chain, sealed ownership vs partition, extra seals; result vocabulary and study_files; pin-sheet path form and printed counts (count the probe() calls yourself); the sixteen sentence replacements (quote each replaced sentence as it now stands and say whether it is accurate); custody floor wording.
+ C. Report any NEW executable defect you find in the staged code, with its counterexample. Do not re-litigate design choices already recorded as Duho's (D1 wording A vs B, D7 stronger vs weaker, batching); do not propose new scope.
+
+WRITE your report to the file named in the access proof (a NEW file; overwrite nothing else) and print it. Lines 1–2: the access proof and SEAT=<seat>. Lines 3–6, exactly:
+  ROUND2_RESIDUALS=ALL_REPAIRED|PARTLY|NOT   (your judgement over the whole table)
+  NEW_DEFECTS=<integer>
+  STAGED_TESTS=<the token the kit printed for you>
+  READY_FOR_PRINCIPAL=YES|NO   (YES means: a principal reading this candidate rules on an examined, repaired object whose remaining limits are stated as limits)
+Then the per-row table and the new defects. Nothing you write adopts anything.

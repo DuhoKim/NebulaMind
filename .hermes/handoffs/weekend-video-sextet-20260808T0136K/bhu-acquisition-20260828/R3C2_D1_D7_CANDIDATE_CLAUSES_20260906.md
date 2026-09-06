@@ -1,4 +1,4 @@
-# R3C2 — D1 and D7 clause CANDIDATES (UNADOPTED; Blanc's orders 19:49 / 19:51 / 20:01 KST; revision 3 after two rounds of independent review, 2026-09-06 20:38 KST)
+# R3C2 — D1 and D7 clause CANDIDATES (UNADOPTED; Blanc's orders 19:49 / 19:51 / 20:01 KST; revision 4 after three rounds of independent review, 2026-09-06 20:38 KST)
 
 **Status.** Nothing here is adopted, in V25, gated for approval, installed or run. V23 (`55b466fa…`) is the signed design of record; the
 V25 living draft (`ab6352d3…`) carries only the approved D2. This file holds the exact texts that would be dropped into the operative
@@ -12,11 +12,13 @@ COUNTEREXAMPLE_HANDLED=YES, IMPORTED_RULE_BREAKS_PARTITION=YES, STAGED_TESTS=PAS
 same two engines (`R3C2_CANDIDATE_REVIEW2_codex_20260906.md`, `R3C2_CANDIDATE_REVIEW2_kimi_20260906.md`), again with identical tokens:
 D1 and D7 SOUND_WITH_REPAIRS, BATCH_PREP=SOUND_WITH_REPAIRS, TOOLING_MATCHES_CLAUSE=NO, COUNTEREXAMPLE_HANDLED=YES,
 IMPORTED_RULE_BREAKS_PARTITION=NO, STAGED_TESTS=PASS. The reconciliation (`R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`) lists the
-intended repairs by topic; revision 2 implemented many of them and this revision 3 implements the round-2 residuals (a seedless
-selection bypass, an import re-filed under another reason code, a symbol floor that failed open, join not checking orphan claims,
-input-id form or the predecessor chain, pin-sheet path form, counts, and the sentence replacements both reviewers required). Remaining
-limits are custody matters the clauses state as such. Revision 3 is dispatched for a bounded third round confined to verifying those
-repairs; that is the last review round the lane runs on this candidate unless ordered otherwise.
+intended repairs by topic; revision 2 implemented many of them; revision 3 implemented the round-2 residuals; round 3 (bounded
+verification, `R3C2_CANDIDATE_REVIEW3_{codex,kimi}_20260906.md`, both ROUND2_RESIDUALS=PARTLY) then found three further executable gaps
+— the claiming-file binding skipped for a PRINTED record whose claim was not a candidate row, `compare` accepting a seed `select` would
+refuse and crashing on a non-hex one, join not checking that the chain's root seal has no predecessor — plus the `OMISSION` result
+vocabulary, per-input origin rows and one stale count; this revision 4 repairs each of those with a control that asserts its exact
+failure and a deletion probe. What remains after that are custody matters, stated as such in the clauses. Review of revision 4 is not
+dispatched: the round-3 repairs are mechanical and fail-first tested; a further verification round runs only on order.
 
 ---
 
@@ -112,7 +114,10 @@ are printed.
 narrower than the words (excluded-only passages vanished; zero denominator passed; auditor census not enforced; selection trusted, not
 recomputed; re-derivations unsealed; "both sealed ledgers" when the object is the merged file). Revision 2 added controls for these
 cases; round 2 found a seedless-selection bypass (a selection without a seed skipped recomputation and a zero-claim audit passed) and
-a vocabulary gap, repaired in revision 3 with their controls; census and seal authenticity also depend on custody. Kimi's reading of the excluded-only cases is adopted (a passage
+a vocabulary gap; round 3 found the seed contract looser than `select`'s and the omission results still outside the clause's vocabulary;
+all repaired by revision 4 with their controls (`result` is now `MATCH`, `OMISSION` with a `direction` field, or
+`AUDIT_INCLUSION_DISPUTED`; every audited claim carries a row per input with MATCH/MISMATCH); census and seal authenticity also depend
+on custody. Kimi's reading of the excluded-only cases is adopted (a passage
 the seats never enumerated is incompleteness whatever the auditor's disposition; a sealed exclusion the auditor never listed is a
 dispute) because it is the stricter one that still lets a mere disagreement follow a stop rule instead of vanishing.
 
@@ -145,20 +150,20 @@ hash of its own (kimi F10: the stale-copy family). The pinned seat tool, packet,
   Controls: positive ("we choose" source line, borrower's citing sentence); negatives, each asserting exactly its failure: no candidate
   file; citing sentence quoted from a third text; verbatim at the wrong sentence; empty quotation; value a substring of another numeral
   ("2" in "b = 20"); a second matching line filed instead of the first; no line carrying symbol and numeral; an import re-filed
-  CHOSEN under another reason code; source not a manifest row; source bytes tampered; no manifest; record naming its own file. A
+  CHOSEN under another reason code; a PRINTED record whose claim is not a candidate row; a PRINTED record with no candidate file; source not a manifest row; source bytes tampered; no manifest; record naming its own file. A
   deletion probe for each load-bearing check.
 - **D7 in code** (`audit seal-enumeration | select | handout | seal-rederivation | compare`): implements the clause's stages; the
   exposure chronology itself is custody, verified by the dispatch and release record, not by these commands (`handout` reads the sealed
   candidates and therefore runs only in the custodian's hands). Controls: the
   stage-ordered positive; first-write refusals; select before any seal refused; bad seed; census-failing auditor enumeration not sealed;
   enumeration changed after its seal; re-derivations changed after their seal; selection emptied with the digest retained (recomputation
-  fails it); selection without a seed (fails, never skipped); the four completeness asymmetries (the Codex/Blanc both-seats-omit case from two seat ledgers, its reverse, an auditor-excluded
+  fails it); selection without a seed, with an uppercase seed, with a non-hex seed (each a FAIL token and an artefact, never skipped, never a traceback); the four completeness asymmetries (the Codex/Blanc both-seats-omit case from two seat ledgers, its reverse, an auditor-excluded
   passage the seats never listed, a sealed exclusion the auditor never listed); disputes at 10% (PASS, counted) and 15% (FAIL); zero
   denominator; outcome, origin and missing re-derivation mismatches; disputed rows carry both dispositions; the handout carries ids,
   file and line only. Emitted completeness results: `C6_COUNTEREXAMPLE_EXHIBIT.txt`.
 - **Batch tooling** is described in `R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md`.
 - **Test run** (`/usr/bin/python3 -E r3c2_staged_tests.py` from inside `r3c2_staged_d1d7/`; the pin sheet verifies with
-  `shasum -a 256 -c r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256` from the lane directory, 2026-09-06 20:38 KST): `controls=84 passed=84 failed=0`, `STAGED_TESTS=PASS`; 36 deletion
+  `shasum -a 256 -c r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256` from the lane directory, 2026-09-06 20:38 KST): `controls=111 passed=111 failed=0`, `STAGED_TESTS=PASS`; 38 deletion
   probes, each showing the matching negative turns to PASS when its check is neutralised.
 
 **What installing would take** (not done): a version carrying Duho's ruling → the seat tool re-pinned in the packet's pin sheet and the
@@ -168,4 +173,4 @@ master's §2/C3/C6 text → packet rebuild → C0 by two seats → two-seat gate
 D2 (adopted "for now", already in the V25 draft); D4 and D8 (can wait); the batch-reading choice (own file); the cosmetics from the V25
 reviews (recorded in `R3C2_V25_GATE_RECONCILIATION_20260906.md`).
 
-R3C2_D1_D7_CANDIDATE_CLAUSES — UNADOPTED — revision 3
+R3C2_D1_D7_CANDIDATE_CLAUSES — UNADOPTED — revision 4

@@ -122,17 +122,17 @@ def cmd_validate(ledger,srcdir,candidates=None):
             if r.get("value") not in (None,""): fails.append(f"{r['input_id']}: BLOCKED record carries a value")
             if r["origin"]!="IMPORTED" or rc!="ORIG_CITATION": fails.append(f"{r['input_id']}: BLOCKED record must carry origin IMPORTED with ORIG_CITATION evidence from the claiming paper")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
-        if r["status"]=="PRINTED" and candidates:
+        if r["status"]=="PRINTED":
+            if not candidates: fails.append(f"{r['input_id']}: PRINTED record needs the candidate file to bind claim {r['claim_id']} to its claiming paper"); continue  # PROBE:D1_NEEDS_CANDIDATES_ALL
             cf0=claim_file.get(r["claim_id"])
-            if cf0 is not None and r["source_file"]!=cf0 and not (r["origin"]=="IMPORTED" and rc=="ORIG_CITATION"):
+            if cf0 is None: fails.append(f"{r['input_id']}: claim {r['claim_id']} is not a candidate row"); continue  # PROBE:D1_UNKNOWN_CLAIM_ALL
+            if r["source_file"]!=cf0 and not (r["origin"]=="IMPORTED" and rc=="ORIG_CITATION"):
                 fails.append(f"{r['input_id']}: value line is in {r['source_file']} but claim {r['claim_id']} belongs to {cf0}: such a record must be IMPORTED with ORIG_CITATION (submitted {r['origin']}/{rc})")  # PROBE:D1_IMPORT_REFILED
                 continue
         if r["status"]=="PRINTED" and rc=="ORIG_CITATION":
             # STAGED D1 (review's wording): verbatim at the claiming paper's citing sentence, numeric token at the external value line
             ef=str(ev.get("source_file","")); el=ev.get("source_line"); cf=claim_file.get(r["claim_id"])
-            if not candidates: fails.append(f"{r['input_id']}: IMPORTED PRINTED record needs the candidate file to bind claim {r['claim_id']} to its claiming paper")  # PROBE:D1_NEEDS_CANDIDATES
-            elif cf is None: fails.append(f"{r['input_id']}: claim {r['claim_id']} is not a candidate row")
-            elif ef!=cf: fails.append(f"{r['input_id']}: citing sentence is in {ef}, but claim {r['claim_id']} belongs to {cf}")  # PROBE:D1_CLAIMING_FILE
+            if ef!=cf: fails.append(f"{r['input_id']}: citing sentence is in {ef}, but claim {r['claim_id']} belongs to {cf}")  # PROBE:D1_CLAIMING_FILE
             if ef==r["source_file"]: fails.append(f"{r['input_id']}: IMPORTED PRINTED record names its own file as the external source")  # PROBE:D1_SELF_FILE
             ok,why=enumerable_verified(srcdir, r["source_file"])
             if not ok: fails.append(f"{r['input_id']}: external source not an enumerable verified text: {why}")  # PROBE:D1_ENUMERABLE
@@ -267,7 +267,7 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     S=json.loads(pathlib.Path(sel).read_text())
     if S.get("sealed_candidates_sha256")!=sha(sc): fails.append("C6_SELECTION: selection was computed over a different sealed candidate file")
     if S.get("stage1_seal_sha256")!=sha(seal1): fails.append("C6_SELECTION: selection does not name this stage-1 seal")
-    if not (isinstance(S.get("seed_hex"),str) and len(S["seed_hex"])==64): fails.append("C6_SELECTION: selection carries no 64-hex seed; nothing to recompute against")  # PROBE:C6_SEED_PRESENT
+    if not (isinstance(S.get("seed_hex"),str) and len(S["seed_hex"])==64 and all(ch in "0123456789abcdef" for ch in S["seed_hex"])): fails.append("C6_SELECTION: selection carries no seed of 64 lowercase hexadecimal characters; nothing to recompute against")  # PROBE:C6_SEED_PRESENT
     else:
         R=selection_of(sc, S["seed_hex"])
         for k in ("N","R","k","arithmetic_group_ids","remaining_ids","sampled_ids","audited_ids"):
@@ -282,11 +282,11 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         a=a_all.get(k); s=s_all.get(k)
         row={"key":list(k),"in_sealed":s is not None,"in_audit":a is not None,"sealed_included":(None if s is None else bool(s.get("included"))),"audit_included":(None if a is None else bool(a.get("included"))),"sealed_kind":skind.get(k),"audit_kind":akind.get(k)}
         if s is not None and a is None:
-            if s.get("included"): row["result"]="OMISSION_SEALED_INCLUDED_ABSENT_FROM_AUDIT"; fails.append(f"COMPLETENESS sealed_included_absent_from_audit_enumeration: {list(k)}")  # PROBE:C6_SEALED_MISSING
+            if s.get("included"): row["result"]="OMISSION"; row["direction"]="sealed_included_absent_from_audit_enumeration"; fails.append(f"COMPLETENESS sealed_included_absent_from_audit_enumeration: {list(k)}")  # PROBE:C6_SEALED_MISSING
             else: row["result"]="AUDIT_INCLUSION_DISPUTED"; row["note"]="sealed excluded, not in the auditor's enumeration: listed, counted as a dispute"; disputes+=1
         elif a is not None and s is None:
-            if a.get("included"): row["result"]="OMISSION_AUDIT_INCLUDED_ABSENT_FROM_SEALED"; fails.append(f"COMPLETENESS audit_included_absent_from_sealed: {list(k)}")  # PROBE:C6_BOTH_SEATS_MISSED
-            else: row["result"]="OMISSION_AUDIT_EXCLUDED_ABSENT_FROM_SEALED"; fails.append(f"COMPLETENESS audit_excluded_absent_from_sealed: {list(k)} (a passage the seats never enumerated is incompleteness whatever the auditor's disposition)")  # PROBE:C6_EXCLUDED_MISSING
+            if a.get("included"): row["result"]="OMISSION"; row["direction"]="audit_included_absent_from_sealed"; fails.append(f"COMPLETENESS audit_included_absent_from_sealed: {list(k)}")  # PROBE:C6_BOTH_SEATS_MISSED
+            else: row["result"]="OMISSION"; row["direction"]="audit_excluded_absent_from_sealed"; fails.append(f"COMPLETENESS audit_excluded_absent_from_sealed: {list(k)} (a passage the seats never enumerated is incompleteness whatever the auditor's disposition)")  # PROBE:C6_EXCLUDED_MISSING
         else:
             if bool(a.get("included"))!=bool(s.get("included")): row["result"]="AUDIT_INCLUSION_DISPUTED"; disputes+=1
             else: row["result"]="MATCH"
@@ -300,14 +300,15 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     for cid in S.get("audited_ids",[]):
         r=RD.get(cid); s=s_by.get(cid)
         if r is None or s is None: audited[cid]={"result":"MISMATCH","why":["no re-derivation supplied" if r is None else "not a sealed claim"]}; fails.append(f"AUDIT {cid}: MISMATCH (missing)"); continue
-        why=[]
+        why=[]; inputs_res={}
         if r.get("outcome")!=s.get("outcome"): why.append(f"outcome {r.get('outcome')} vs sealed {s.get('outcome')}")
         if s.get("outcome") in ARITH and (str(r.get("printed_value"))!=str(s.get("printed_value")) or str(r.get("reproduced_value"))!=str(s.get("reproduced_value"))): why.append("printed/reproduced values differ")
         for iid,og in (r.get("inputs") or {}).items():
-            if l_by.get(cid,{}).get(iid)!=og: why.append(f"origin {iid}: {og} vs sealed {l_by.get(cid,{}).get(iid)}")
+            ok_=(l_by.get(cid,{}).get(iid)==og); inputs_res[iid]={"audit_origin":og,"sealed_origin":l_by.get(cid,{}).get(iid),"result":"MATCH" if ok_ else "MISMATCH"}
+            if not ok_: why.append(f"origin {iid}: {og} vs sealed {l_by.get(cid,{}).get(iid)}")
         for iid in l_by.get(cid,{}):
-            if iid not in (r.get("inputs") or {}): why.append(f"origin {iid}: not re-classified")
-        audited[cid]={"result":"MATCH" if not why else "MISMATCH","why":why}
+            if iid not in (r.get("inputs") or {}): inputs_res[iid]={"audit_origin":None,"sealed_origin":l_by[cid][iid],"result":"MISMATCH"}; why.append(f"origin {iid}: not re-classified")
+        audited[cid]={"result":"MATCH" if not why else "MISMATCH","why":why,"inputs":inputs_res}
         if why: fails.append(f"AUDIT {cid}: MISMATCH ({'; '.join(why)})")
     tok="PASS" if not fails else "FAIL"
     res={"sealed_denominator":n_inc_sealed,"sealed_candidates_sha256":sha(sc),"sealed_exclusions_sha256":sha(sx),"sealed_ledger_sha256":sha(sl),"seed_hex":S.get("seed_hex"),"selection":{k:S.get(k) for k in ("arithmetic_group_ids","remaining_ids","k","sampled_ids","audited_ids")},"stage1_seal":s1,"rederivation_seal":s2,"completeness_rows":rows,"inclusion_disputed_count":disputes,"inclusion_disputed_rate":rate,"audited":audited,"C6_AUDIT_SAMPLE":tok,"study_files":("none" if tok=="PASS" else "CENSUS_AUDIT_FAILED"),"scope":"PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness"}

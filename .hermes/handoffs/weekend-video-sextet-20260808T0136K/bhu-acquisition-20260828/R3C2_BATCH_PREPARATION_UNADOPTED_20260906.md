@@ -1,4 +1,4 @@
-# R3C2 — batch reading for the limb-B corpus problem: PREPARATION, UNADOPTED (revision 3 after two rounds of independent review, 2026-09-06 20:38 KST)
+# R3C2 — batch reading for the limb-B corpus problem: PREPARATION, UNADOPTED (revision 4 after three rounds of independent review, 2026-09-06 20:38 KST)
 
 **Status.** An execution question, kept out of the clause candidate so Duho can rule on it separately. Nothing adopted, frozen,
 dispatched or run. Revision 1 was judged BATCH_PREP=UNSOUND by both reviewers for one decisive reason, accepted and repaired here:
@@ -109,10 +109,10 @@ join allows a batch-1 claim whose IMPORT evidence is a batch-2 line and the join
 same record CANNOT validate in a directory holding only batch 1's texts (the reviewers' finding, reproduced); join deterministic;
 `census` PASSES over the joined files; coverage positive. Negatives, each asserting exactly one failure, each with a deletion probe: a
 batch-2 candidate claiming ownership of a batch-1 text; a non-global id; a candidate-id collision; a ledger record naming a claim that is
-not an included candidate; an input id not of the claim-file form; a broken predecessor chain; sealed ownership differing from the
+not an included candidate; an input id not of the claim-file form; a broken predecessor chain; a root seal claiming a predecessor; sealed ownership differing from the
 partition; a seal for a batch not in the partition; a cross-batch `derived_from` that resolves to nothing; evidence
 cited from a non-manifest text; an artefact changed after its seal; a text owned by two batches; a manifest text owned by none; an owned
-text whose bytes differ from the manifest; a batch report without the packet's `ACCESS_SHA`. Whole kit: `controls=102 passed=102 failed=0`,
+text whose bytes differ from the manifest; a batch report without the packet's `ACCESS_SHA`. Whole kit: `controls=111 passed=111 failed=0`,
 `STAGED_TESTS=PASS`.
 
 ## 8. What accepting it changes about what the census can conclude
@@ -136,4 +136,4 @@ the 11:11 approval procedure.
 whether batch 1 must confirm size before batch 2) / defer. (Blocks a first run on the evidence of the limb-B death finding: the unbatched seat died; whether this batching is the remedy is what
 batch 1 tests; the principal may choose another workable execution design.)
 
-R3C2_BATCH_PREPARATION — UNADOPTED — revision 3
+R3C2_BATCH_PREPARATION — UNADOPTED — revision 4
