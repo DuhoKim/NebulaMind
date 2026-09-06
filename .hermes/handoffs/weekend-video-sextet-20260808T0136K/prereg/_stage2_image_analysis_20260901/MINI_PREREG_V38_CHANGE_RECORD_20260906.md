@@ -17,3 +17,6 @@ Unchanged from V37 and still pinned: renderer_v4 (19/19), pixel_rejection_v2 (6/
 
 ## Timeline (KST)
 V37 refused 12:07 → finding filed 12:09 → protected_region_v2 + render_chain_v3 12:14 → checker v3 12:20 → V38 text 12:26–12:29 → this record 2026-09-06 12:30 KST → two-seat gate → READY-FOR-APPROVAL (if clear) → held for Duho.
+
+## Plain-words summary for Duho (used only if both seats clear; then this package is READY-FOR-APPROVAL and Blanc holds it)
+This is the third try at the "how we clean the pictures" amendment. It makes the code do what you already signed in the selection rule: the MEDIUM flag no longer throws pixels away, and a pixel with no exposures is replaced and flagged instead of throwing the whole picture away. Reviewers found two problems that were already in the signed Tier-C document itself: the protected circle around each galaxy was being rounded down to a whole pixel, and the text promised a wider protection than the code ever gave. This version fixes the rounding to match your formula exactly, and rewrites the promise to say honestly what the code protects. Both are marked as my choice; you can reverse either. Nothing runs until you approve the exact file whose fingerprint Blanc will show you, and even then a five-step install check runs before any picture is opened.
