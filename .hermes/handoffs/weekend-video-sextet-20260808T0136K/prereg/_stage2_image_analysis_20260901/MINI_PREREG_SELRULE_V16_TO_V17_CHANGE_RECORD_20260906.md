@@ -22,3 +22,5 @@ The signed V15's `beacon_record.py` accepts a NIST pulse when the live re-fetch 
 
 ## Timeline (KST)
 V16 refused 11:28 → expedited module V17 fixes + counterexample tests 11:33–11:36 → approval_witness + builder v17 + 7-test fixture 11:40–11:42 → V17 text 11:41 → this record 2026-09-06 11:53 KST → two-seat gate → approval → witnessed record → T_pulse → collect → identity.
+
+**Seat A (agy 1.1.27, engine-stamped), 11:59 KST: SIGNABLE-AS-PRECOMMITMENT** (AGY_SELRULE_V17_SEATA.md; ACCESS_SHA = target). C1–C5 all MET; every V16 finding REPAIRED with clause and line; no FATAL, no MAJOR. Awaiting seat B (codex-cli 0.153.4 / gpt-6-astra).
