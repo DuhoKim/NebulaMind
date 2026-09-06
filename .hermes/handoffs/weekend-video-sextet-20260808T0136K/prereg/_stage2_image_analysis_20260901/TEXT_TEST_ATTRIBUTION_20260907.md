@@ -27,3 +27,16 @@ test file ed882a918e1ec34b  V25 d29aabac28d6d7de  V26 9a13afd1b496a7da
 ```
 
 Correction of my own earlier phrasing: 'text tests green against V26' was true for the version-agnostic and V26-written tests and FALSE for track 5's label test; the V26 text's §3c note ('run with RULE_TEXT = the V25 text it was written for') describes a rerun that says nothing about V26. This file, the preserved log and the new test are the record; the V26 text itself (under active review) is not edited — the next permitted candidate carries the new test as a pin.
+
+## Addendum for the V27 candidate — 2026-09-07 01:42 KST
+| test | written against | run against (V27 aggregate run 2) | result |
+|---|---|---|---|
+| track1 C7/C8/C10 | V22 wording (version-agnostic absences/presences) | V27 text | OK |
+| track3 F questions | 09-06 questions file | current questions file | OK |
+| track4 M3 / M6 | V24 wording (mostly version-agnostic; one historical-mention presence) | V27 text, design doc, driver v8 | OK |
+| track5 N1 / N5 | V25 wording (labels) | V25 text | OK — establishes nothing about V27 |
+| track6 P3 / P4 | V26 sweep (version-agnostic absences) | V27 text, design doc, driver v10, inspection v26 | OK |
+| track6 text_v26 | V26 labels | V26 text | OK — establishes nothing about V27 |
+| track7 V26_3 sweep | V27 wording (absences) | V27 text, design doc, questions, provenance v7, driver v11 | OK |
+| track7 text_v27 (NEW) | V27 labels and sentences | V27 text (fail-first: FAILS against V26) | OK |
+Aggregate run 1 (`_tmp_v27_all_suites_aggregate_RUN1_PRESERVED.txt`) had one failure in the v11 composed test (a fixture that became a contradiction under v7's predicate); run 2 after the fixture correction is all green. Both logs are preserved; neither replaces the other.

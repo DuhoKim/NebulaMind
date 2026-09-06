@@ -117,3 +117,6 @@ Same authority. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/
 
 ## V26 REVIEW RESULT — 2026-09-07 01:19 KST
 Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex V26-1 (same-event contradiction with a different `before` classified INCOMPLETE — the contradiction predicate too narrow), V26-2 (missing git objects make `delivers` False → FORGED — undetermined delivery must be a retry), V26-3 (text remnants incl. my over-broad rename of historical driver lines). P1/P4 and all earlier items confirmed repaired or covenant. Classified in `V26_REVIEW_OUTCOME_20260907.md`. Register 26/25/24/0. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## TRACK 7 — codex V26-1/2/3 answered (standing preparation) — 2026-09-07 01:42 KST
+`TRACK7_STAGING_RECORD_20260907.md`, `TRACK7_FAIL_FIRST_RECEIPT_20260907.md` (4 fail → 4 OK; run 1b = V26 functions' old behaviour), `V27_CANDIDATE_ATTACK_INSPECTION_20260907.md` (rows 9s–9u), attribution addendum, both aggregate logs preserved. V27 text 154a680c…; 124 tests OK (run 2). Review dispatch follows.
