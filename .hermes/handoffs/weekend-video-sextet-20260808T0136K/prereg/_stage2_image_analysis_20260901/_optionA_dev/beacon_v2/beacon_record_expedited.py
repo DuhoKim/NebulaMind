@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""THE ONE VERDICT — EXPEDITED (option A V18 draft, 2026-09-06; Duho, via codex voice, confirmed in chat 2026-09-06 11:08 KST).
+"""THE ONE VERDICT — EXPEDITED (option A V19 draft, 2026-09-06; Duho, via codex voice, confirmed in chat 2026-09-06 11:08 KST).
+THE PROPERTY (V19, stated before any mechanism): the source decision is f(archived public bytes for the fixed T_pulse, pinned root) —
+the NIST pulse body served for T_pulse, its certificate (fixed by the certificateId = SHA-512 of its DER), the issuer chain anchored to
+the pinned root, the next pulse (chained), and the drand round round_for(T_pulse) — and is recomputable by anyone at any later time to
+the same verdict and the same seed. WHEN a verdict is asked changes only whether it is available yet (RETRY), never what it is.
+Exhibited, not asserted: exhibit_property.py runs the decision twice at different wall-clock times from the same archived inputs.
 Derived from beacon_record.py (V15, pinned); the removed lines are FROZEN in its fixture. Changes: FALLBACK_AFTER_H = 0 (drand permitted
 from T_pulse itself); MIN_T_SIGN and EXCLUDED_T_PULSE (order made visible; the public 2026-09-06T00:15:00Z pulse — NIST 1928801 /
 drand round 6440756 — refused by name); the CLOCK is checked before any evidence (V17); ANY exception raised by a live NIST fetch —
@@ -15,11 +20,12 @@ outcome from evidence and the clock; the fetcher that creates a record and the i
 With `fetch` given, every piece of evidence is also RE-FETCHED live and must equal the retained bytes (the builder's provenance check —
 the only proof available that a record's bytes are what the public sources serve).
 Outcomes: ACCEPT-NIST | ACCEPT-DRAND | RETRY (no seed yet) | UNAVAILABLE (fallback also failed) | REFUSE-<token> (record itself invalid).
-Rule (V17): T_pulse = first whole minute >= T_sign + 600 s. A verdict asked before T_pulse is RETRY, first of all. NIST is binding
-whenever its pulse authenticates AND (with fetch) the live re-fetch EQUALS the retained bytes; a live re-fetch that raises is RETRY —
-never a seed and never evidence of NIST failure. From T_pulse itself (FALLBACK_AFTER_H = 0): drand round_for(T_pulse) is used ONLY if the
-primary is not authenticable at the time of the verdict (recomputed live, not recorded) AND >= 2 pinned hosts agree retained and live. VOID: if NIST later serves an
-authenticable T_pulse pulse, any fallback identity is void (a later verdict with fetch would say ACCEPT-NIST, not ACCEPT-DRAND)."""
+Rule (V19): T_pulse = first whole minute >= T_sign + 600 s. A verdict asked before T_pulse is RETRY, first of all. NIST is binding
+whenever its T_pulse pulse authenticates AND (with fetch) the live re-fetch EQUALS the retained bytes; ANY exception raised by a live fetch
+is RETRY — never a seed and never evidence of NIST failure. From T_pulse itself (FALLBACK_AFTER_H = 0): drand round_for(T_pulse) is used
+ONLY when the retained pulse IS the T_pulse pulse of chain 2 (timestamp_is_t_pulse and uri_is_nist_chain2 hold), the live copy EQUALS it,
+and its signature/anchor checks fail, AND >= 2 pinned hosts agree retained and live. A different served pulse, an absent pulse or a
+raising fetch is RETRY. A sealed identity is final (rule §3c); by the property above, nothing later can change the verdict for T_pulse."""
 import json, hashlib, re, base64, urllib.error
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -100,6 +106,7 @@ def verdict(rec, now, roots, fetch=None, rule_sha256=None, statement_bytes=None)
     # V18: the fallback opens ONLY on positive public evidence — the record holds a NIST pulse served for T_pulse, the live copy equals it
     # (checked above when fetch is given), and it fails authentication. An absent, erroring or never-collected NIST is RETRY, never a seed.
     if ev is None: out.update(outcome="RETRY", seed_hex=None, source=None, why="no NIST pulse retained for T_pulse; fallback needs a served, unauthenticable pulse — never a seed"); return out
+    if not (c.get("timestamp_is_t_pulse") and c.get("uri_is_nist_chain2")): out.update(outcome="RETRY", seed_hex=None, source=None, why="the retained pulse is not the T_pulse pulse of chain 2; a different served pulse is not evidence of primary failure — never a seed"); return out   # V19 (codex V18 item 2)
     if fetch is not None and not live_ok: out.update(outcome="RETRY", seed_hex=None, source=None, why="live NIST copy not confirmed equal; fallback needs public evidence — never a seed"); return out
     dev, rnd = _drand_evidence(rec); exp = drand_round.round_for(t_pulse)
     if rnd != exp or not dev: out.update(outcome="UNAVAILABLE", seed_hex=None, source=None, why=f"no fallback evidence for round {exp}"); return out
@@ -115,13 +122,16 @@ def main(argv=None):
     def fetch(url, timeout=30):
         with urllib.request.urlopen(url, timeout=timeout) as r: return r.read()
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest="mode", required=True)
-    c = sub.add_parser("collect"); c.add_argument("--t-sign", required=True); c.add_argument("--rule-sha256", required=True); c.add_argument("--signature-statement", required=True); c.add_argument("--out", required=True)
-    v = sub.add_parser("verify"); v.add_argument("--record", required=True); v.add_argument("--rule-sha256", required=True); v.add_argument("--signature-statement", required=True); v.add_argument("--no-live", action="store_true")
+    c = sub.add_parser("collect"); c.add_argument("--t-sign", required=True); c.add_argument("--rule-sha256", required=True); c.add_argument("--signature-statement", required=True); c.add_argument("--out", required=True); c.add_argument("--log", default=None)
+    v = sub.add_parser("verify"); v.add_argument("--record", required=True); v.add_argument("--rule-sha256", required=True); v.add_argument("--signature-statement", required=True); v.add_argument("--no-live", action="store_true"); v.add_argument("--log", default=None)
     a = ap.parse_args(argv); now = datetime.now(timezone.utc); roots = nist_pulse.pinned_roots()
+    def log(stage, rec_bytes, r):                       # V19: the collector appends EVERY attempt to the same append-only history the builder uses
+        if a.log:
+            with open(a.log, "a") as fh: fh.write(json.dumps({"utc": fmt(now), "stage": stage, "record_sha256": hashlib.sha256(rec_bytes).hexdigest(), "outcome": r["outcome"], "source": r.get("source"), "seed_hex": r.get("seed_hex"), "why": r.get("why")}, sort_keys=True) + "\n")
     if a.mode == "collect":
         stmt = Path(a.signature_statement).read_bytes(); rec = collect(fetch, a.t_sign, a.rule_sha256, stmt, now)
-        Path(a.out).write_text(json.dumps(rec, indent=1, sort_keys=True)); r = verdict(rec, now, roots)
+        Path(a.out).write_text(json.dumps(rec, indent=1, sort_keys=True)); r = verdict(rec, now, roots); log("collector-collect", Path(a.out).read_bytes(), r)
         print(json.dumps({"outcome": r["outcome"], "seed_hex": r.get("seed_hex"), "source": r.get("source")})); return 0 if r["outcome"].startswith("ACCEPT") else (4 if r["outcome"] == "RETRY" else 2)
-    rec = json.loads(Path(a.record).read_text()); stmt = Path(a.signature_statement).read_bytes(); r = verdict(rec, now, roots, fetch=None if a.no_live else fetch, rule_sha256=a.rule_sha256, statement_bytes=stmt)
+    rec = json.loads(Path(a.record).read_text()); stmt = Path(a.signature_statement).read_bytes(); r = verdict(rec, now, roots, fetch=None if a.no_live else fetch, rule_sha256=a.rule_sha256, statement_bytes=stmt); log("collector-verify", Path(a.record).read_bytes(), r)
     print(json.dumps({"outcome": r["outcome"], "seed_hex": r.get("seed_hex"), "source": r.get("source"), "why": r.get("why")})); return 0 if r["outcome"].startswith("ACCEPT") else 2
 if __name__ == "__main__": sys.exit(main())
