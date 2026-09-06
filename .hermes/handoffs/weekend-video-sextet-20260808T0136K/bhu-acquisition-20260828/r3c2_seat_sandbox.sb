@@ -10,4 +10,8 @@
 (allow file-ioctl)
 (allow file-read* (subpath "/usr") (subpath "/bin") (subpath "/sbin") (subpath "/System") (subpath "/Library") (subpath "/private/etc") (subpath "/dev") (subpath "/private/var/folders") (subpath "/private/tmp") (subpath "/var/folders") (subpath "/Users/duhokim/.local") (subpath "/Users/duhokim/.codex") (subpath "/Users/duhokim/.nvm") (subpath "/Users/duhokim/.hermes") (subpath "/opt/homebrew") (literal "/Users/duhokim") (literal "/Users") (literal "/"))
 (allow file-read* (subpath (param "WORKDIR")))
+(allow file-read* (subpath "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"))
+(deny file-read* (subpath "/usr/local"))
+(deny file-read* (subpath "/private/tmp"))
+(deny file-write* (subpath "/private/tmp"))
 (allow file-write* (subpath (param "WORKDIR")) (subpath "/private/var/folders") (subpath "/private/tmp") (subpath "/dev") (subpath "/Users/duhokim/.codex") (subpath "/Users/duhokim/.hermes"))

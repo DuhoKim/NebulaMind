@@ -339,11 +339,13 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — and the files they load from the system runtime
-  locations only (`/usr`, `/System`, `/Library`, `/private/var/folders`, `/dev`) while executing the exact mandated commands are IN SCOPE and
-  are not "outside paths" under this control; a startup, configuration or import file loaded from any other location — the working
-  directory's parents, the lane, `/tmp`, or any user-writable path — is an outside path and `FAIL`; every other path outside the
-  working directory is `FAIL`.**
+  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
+  from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
+  SymPy package at the single path C5 prints, pinned by the digest C5 prints and recorded in the dispatch record before launch —
+  while executing the commands this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness
+  commands, and the §9 wrapper invocations). A startup, configuration or import file loaded from any other location — `/usr/local`,
+  `/tmp`, the working directory's parents, the lane, or any other user-writable path — is an outside path and `FAIL`; every other
+  path outside the working directory is `FAIL`.**
 
 <!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
@@ -398,12 +400,14 @@ before audit — which is codex's order; kimi's differed only in placing the den
   
 <!--/SEAT-REDACT-->`C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print `/usr/bin/python3 --version`,
-  `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"`, and `/usr/bin/shasum -a 256 /usr/bin/python3` — the interpreter
-  every ledger command runs under. **PASS requires all three commands to exit 0 and their full stdout to be printed; any
+  `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"`, `/usr/bin/shasum -a 256 /usr/bin/python3`,
+  `/usr/bin/python3 -c "import sympy; print(sympy.__file__)"`, and `/usr/bin/shasum -a 256 <the path the previous command printed>` — the
+  interpreter every ledger command runs under and the one SymPy package it loads, whose path and digest the dispatch record pins
+  before launch (a host whose printed path or digest differs from the dispatch record files `C5_HARNESS_PINNED=FAIL`). **PASS requires all five commands to exit 0 and their full stdout to be printed; any
   non-zero exit, missing output, or a transcribed value in place of live output is FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum` and the files they load from the system runtime locations C4 lists are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
+  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum`, the files they load from the system runtime locations C4 lists, and the pinned SymPy package at the path C5 prints, while executing those same mandated commands, are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*<!--/SEAT-REDACT-->
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
@@ -1060,3 +1064,15 @@ codex D1 — an imported value whose named source's line states a *choice* ("we 
 C3's pair rule while §2 requires `IMPORTED`/`ORIG_CITATION` for it; a pre-existing V23 evidence-rule seam, not a scope matter;
 a repair would change the reason-code pairing, which is a rule change he must approve. codex D3 = the `DERIVED_ONLY` label, already
 pending. Rebuilt and sent to a second C0 + gate.
+
+**V24 gate round 2 (12:23 KST).** C0: two seats PASS. codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`; both LEAK at or
+below the floor; **both answer C5_EXECUTABLE_UNDER_SCOPE=NO for one and the same reason, verified by the lane on disk and under the
+kernel sandbox: on this host `/usr/bin/python3` resolves `sympy` from the user site `/Users/duhokim/Library/Python/3.9/lib/python/
+site-packages`, which the runtime-locations bound excludes.** Both seats offered the same two remedies: provision SymPy into a system
+root (an install the principal has not authorised), or admit the package by its printed, digest-pinned path. **Applied (V24c):** the
+second — C4 admits the SymPy package only at the single path C5 prints, pinned by digest in the dispatch record; C5 gains the two
+printed lines that establish that pin and FAILs on a mismatch; `/usr/local` is excluded by name (codex Q7(b)(i)); the antecedent of
+"mandated commands" is spelled out (kimi F1); C5b and the brief echo the clause. The kernel profile `r3c2_seat_sandbox.sb` permits
+exactly this set (the user-site path read-only, `/usr/local` and `/private/tmp` denied) and was exhibited: sandboxed `import sympy`
+succeeds from the working directory, the lane and `/usr/local` stay unreadable, a write into the user site is refused. **Not applied,
+pending for the principal:** codex D1 / kimi F3 (the imported-choice evidence seam; a C3 rule matter), codex D3 (`DERIVED_ONLY`).
