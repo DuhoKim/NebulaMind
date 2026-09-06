@@ -1,4 +1,4 @@
-# Seat brief — reproduction census (V34: one session per ownership batch)
+# Seat brief — reproduction census (V35: one session per ownership batch)
 
 You are one of two independent seats, and this session is ONE of your batch sessions. Work only from the files in this directory:
 `R3C2_SEAT_PACKET.md` (the rules), this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_manifest.py` (the pinned manifest

@@ -444,8 +444,12 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         try:
             ra=set(); [ra.update(roots(a_graph,i)) for i in own if i in a_graph]
             rs=set(); [rs.update(roots(sealed_view,i)) for i in l_by.get(cid,{})]
-            audited_rests={"audit":sorted(ra),"sealed_under_matching_branch":sorted(rs),"sealed_primary":sorted(set().union(*[roots(full_by,i) for i in l_by.get(cid,{})]) if l_by.get(cid) else set()),"alt_branch_records":sorted(k for k in clos if branch_of.get(k)=="alt")}
+            audited_rests={"audit":sorted(ra),"sealed_under_matching_branch":sorted(rs),"alt_branch_records":sorted(k for k in clos if branch_of.get(k)=="alt")}
             if ra!=rs: why.append(f"root_origins differ: audit {sorted(ra)} vs sealed {sorted(rs)}")
+            # V35: the unmatched PRIMARY view is a DIAGNOSTIC only — it is no graph a seat supplied; if its roots cannot be computed the report
+            # records that fact and the verdict is unchanged (codex V34 F1). Only the MATCHED graph above decides.
+            try: audited_rests["sealed_primary"]=sorted(set().union(*[roots(full_by,i) for i in l_by.get(cid,{})]) if l_by.get(cid) else set())
+            except Exception as e: audited_rests["sealed_primary"]=None; audited_rests["sealed_primary_diagnostic_error"]=str(e)
         except ValueError as e: audited_rests={"error":str(e)}; why.append(f"dependency not reconstructed by the auditor or cyclic: {e}")  # PROBE:C6_NO_BORROW
         except Exception as e: audited_rests={"error":str(e)}; why.append(f"root recomputation failed: {e}")
         inputs_res["_roots"]=audited_rests
