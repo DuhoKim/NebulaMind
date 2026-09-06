@@ -108,3 +108,9 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex P1–P4: batch classi
 
 ## TRACK 6 — codex V25 P1–P4 answered (standing preparation) — 2026-09-07 01:01 KST
 `TRACK6_STAGING_RECORD_20260907.md`, `TRACK6_FAIL_FIRST_RECEIPT_20260907.md` (5 fail → 5 OK; run 1b = V25 functions' old behaviour), `V26_CANDIDATE_ATTACK_INSPECTION_20260907.md` (rows 9p–9r). V26 text 9a13afd1…; 118 tests OK. Review dispatch follows under the same authority.
+
+## V26 COMPLETE-PACKAGE REVIEW DISPATCHED — 2026-09-07 01:02 KST
+Same authority. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v26_gate_d748yp0s/_stage2_image_analysis_20260901` (136 MB, 4,587 files; all historical digest lists and the preserved failed log included); V26 digest 9a13afd1… verified in place. Both seats dispatched 01:02 KST (PIDs recorded); waiter reports TIMEOUT-STILL-RUNNING on timeout. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## BLANC 01:05 ORDER — text-test attribution — 2026-09-07 01:05 KST
+`TEXT_TEST_ATTRIBUTION_20260907.md`: every text test's written-against / run-against versions and what each pass establishes; the 15-suite aggregate log (track 5 FAILED against V26) PRESERVED as `_tmp_v26_all_suites_aggregate_PRESERVED.txt`; a NEW V26-specific text test (`track6/test_track6_text_v26.py`) fails against the V25 text and passes against V26 — lane-only; the active V26 review sandbox untouched.
