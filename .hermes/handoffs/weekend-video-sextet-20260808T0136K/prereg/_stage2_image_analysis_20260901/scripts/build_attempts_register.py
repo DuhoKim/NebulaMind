@@ -3,7 +3,7 @@
 INSTRUMENTS VALIDATED, PRE-COMMITMENT DRAFTS REFUSED, CONTROLS RUN. Every row names its source file; every digest is
 recomputed from the file on disk (never copied from prose); a row whose source cannot be read prints UNSOURCED.
 Usage: build_attempts_register.py  -> writes ATTEMPTS_REGISTER_20260905.md beside the lane's other records."""
-import json, re, hashlib, subprocess, sys, time, os
+import re, json, re, hashlib, subprocess, sys, time, os
 from pathlib import Path
 LANE = Path(__file__).resolve().parent.parent; os.chdir(LANE); PREREG = LANE.parent
 def sha(p):
@@ -18,8 +18,14 @@ def jload(p):
     try: return json.loads(Path(p).read_text())
     except Exception: return None
 def line2(p):
-    try: return Path(p).read_text().split("\n")[1].strip()
-    except Exception: return "UNSOURCED"
+    """The seat's verdict: the first line that IS a verdict token (V16 agy put it on line 31, after a bold heading)."""
+    try:
+        with open(p) as fh:
+            for l in fh:
+                m = re.match(r"^\s*(VERDICT:\s*(SIGNABLE-AS-PRECOMMITMENT|NOT-SIGNABLE|SIGNABLE))\s*$", l)
+                if m: return m.group(1)
+    except FileNotFoundError: pass
+    return "no verdict line"
 def access_ok(report, target):
     try: first = Path(report).read_text().split("\n")[0]
     except Exception: return "UNSOURCED"

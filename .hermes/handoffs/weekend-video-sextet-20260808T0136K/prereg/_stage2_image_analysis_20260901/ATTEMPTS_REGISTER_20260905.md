@@ -1,4 +1,4 @@
-# ATTEMPTS REGISTER — generated 2026-09-06 11:20 KST by scripts/build_attempts_register.py from lane bytes
+# ATTEMPTS REGISTER — generated 2026-09-06 11:23 KST by scripts/build_attempts_register.py from lane bytes
 Rules: every row carries its source file; every digest is recomputed from disk at generation time; unreadable sources print UNSOURCED. This file is derived, not maintained — regenerate, do not edit.
 
 ## 1. INSTRUMENTS VALIDATED
@@ -29,9 +29,9 @@ Instruments validated: **1**. Attempts under §9B: **1**. Candidates pinned in a
 | V13 | 569fdf30c7c05cb9… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V13_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V13_SEATB.md) | agy (Gemini), version/model not stamped at run time / codex-cli 0.146.0, pre-astra model (not stamped at run time; Blanc relay 09-06 09:46) | A verifies; B verifies | verbatim line 6: `1. ACCEPTANCE SET` · next line (verbatim): `[FATAL] **[CODEX-AUTHORED DEPENDENCY]** Yes: the drand path can accept a fallback even when NIST serves an authenticable primary at build time. V13 §3b requires` | V14; MINI_PREREG_SELRULE_V13_TO_V14_CHANGE_RECORD_20260906.md 24d7b1f16f47eab0…; V13_GATE_OUTCOME_AND_BEACON_STOP_20260906.md 894d6e84e1b288f1… |
 | V14 | 2965111cca6d6b13… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V14_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V14_SEATB.md) | agy (Gemini), version/model not stamped at run time / codex-cli 0.146.0, pre-astra model (not stamped at run time; Blanc relay 09-06 09:46) | A verifies; B verifies | verbatim line 6: `1. ACCEPTANCE SET` · next line (verbatim): `[FATAL] The stated acceptance set is wider than the code actually enforces. V14 §3b says, “With `fetch` supplied, `verdict` re-fetches every public input live a` | V15; MINI_PREREG_SELRULE_V14_TO_V15_CHANGE_RECORD_20260906.md ebc72c6641c08ee8…; V14_GATE_OUTCOME_AND_STOP_20260906.md 2d615621b511d74e… |
 | V15 | fdd9eedd9938c2ba… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V15_SEATA.md) | SIGNABLE-AS-PRECOMMITMENT (CODEX_SELRULE_V15_SEATB.md) | agy (Gemini), version/model not stamped at run time / codex-cli 0.146.0, pre-astra model (not stamped at run time; Blanc relay 09-06 09:46) | A verifies; B verifies | no seat returned NOT-SIGNABLE | V16; MINI_PREREG_SELRULE_V15_TO_V16_CHANGE_RECORD_20260906.md 3cac3b33e02d286f…; V15_GATE_OUTCOME_SIGNABLE_NOT_SIGNED_20260906.md a31f3aa82ab928c3… |
-| V16 | fe1487bd1be7dcd3… | pending | pending | — | — | GATE PENDING — no seat report filed yet | — |
+| V16 | fe1487bd1be7dcd3… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V16_SEATA.md) | no report (None) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T02:20:09Z / — | A verifies; B — | no seat returned NOT-SIGNABLE | none yet |
 
-Drafts written: **16**. Gated: **14**. Refused (at least one seat NOT-SIGNABLE): **13**. Signed: **0**. Split rounds: V3, V10, V13, V14.
+Drafts written: **16**. Gated: **15**. Refused (at least one seat NOT-SIGNABLE): **13**. Signed: **0**. Split rounds: V3, V10, V13, V14.
 
 ## 3. CONTROLS RUN
 
@@ -51,5 +51,5 @@ Drafts written: **16**. Gated: **14**. Refused (at least one seat NOT-SIGNABLE):
 
 ## 4. Counts a methods section must carry (derived above)
 - Instruments validated under a signed preregistration: 1 (CE-ResNet) — FAILED. Candidates developed but not validated: 1 family, 0 attempts.
-- Pre-commitment drafts for a replacement: 16 written, 14 gated by two blind seats on different engines, 13 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
+- Pre-commitment drafts for a replacement: 16 written, 15 gated by two blind seats on different engines, 13 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
 - Frozen-sample access, as far as the journals show: no render or inference event for any frozen-sample object exists in the render journal (0 rows) or the 62-record seal journal; at generation time, in the lane, the only tensor files outside the validation directory number 1 (the synthetic smoke tensor under _scratch/synth_smoke, if present). This is what the records show; it is not a proof that no person viewed a frozen pixel by a route the journals do not see — that limit is stated in CUSTODIAN_QUESTION_FOR_DUHO_20260905.md.
