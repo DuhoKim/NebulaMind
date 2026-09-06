@@ -59,6 +59,13 @@ class T(unittest.TestCase):
         image, mb, nexp, w = source(); r = rc.render_object(image, mb.astype(np.float64), nexp, w, 40.0, 10.0, "tile", R_T)
         self.assertEqual(r["status"], "REFUSED"); self.assertIn("integer", r["reason"])
         nexp2 = nexp.copy(); nexp2[0, 0] = -1; self.assertEqual(rc.render_object(image, mb, nexp2, w, 40.0, 10.0, "tile", R_T)["status"], "REFUSED")
+    def test_fractional_wcs_stencil_case_scores_as_8_14a_now_states(self):
+        # codex V37/V38: CRPIX shifted by −0.25 on both axes; a zero-exposure source pixel whose nearest-neighbour flag lies OUTSIDE T while
+        # bilinear image values inside T draw on its replacement — §8.14a (V38) states this SCORES; the receipt shows one flag, in the band.
+        image, mb, nexp, w = source(); w.wcs.crpix = [w.wcs.crpix[0] - 0.25, w.wcs.crpix[1] - 0.25]; w.wcs.set(); nexp[67, 82] = 0
+        r = rc.render_object(image, mb, nexp, w, 40.0, 10.0, "tile", 23.0)
+        self.assertEqual(r["status"], "SCORED"); self.assertEqual(r["F"], 1); self.assertEqual(len(r["flagged_coords"]), 1)
+        (i, j), = r["flagged_coords"]; self.assertGreater(((i - 63.5) ** 2 + (j - 63.5) ** 2) ** 0.5, 23.0)
     def test_binary64_radius_codex_counterexample(self):
         image, mb, nexp, w = source(); nexp[OFF + 40, OFF + 63] = 0                     # output (40,63): distance 23.505 from the centre
         r = rc.render_object(image, mb, nexp, w, 40.0, 10.0, "tile", pr.r_t_main(3.1309))   # prescribed r_T = 23.9 → inside T → REFUSED
