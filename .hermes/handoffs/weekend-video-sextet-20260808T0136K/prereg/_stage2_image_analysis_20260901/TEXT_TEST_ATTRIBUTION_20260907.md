@@ -97,3 +97,7 @@ A label test passing against its own version proves nothing about the next; the 
 | track12/test_track12_text_v32 | V32 | V31 (fail-first: FAILED) and V32 (OK) | as stated |
 | track12 fail-first V31_Text | V32 | V31 (FAILED) and V32 (OK) | as stated |
 | tracks 1/3/4, track-6 sweep, track-7 and track-9 fail-first (version-agnostic / hold) | — | V32 | OK |
+
+
+## Addendum 2026-09-07 07:27 KST — track 13
+`track13/test_track13_text_v33.py` (31bc5c1dfa41d974…) is written against V33 and run against V33 (1dd8856d83c298e6…): OK (run 4). Fail-first against V32: FAILED (two runs retained). Track 12's fail-first and its V32-specific text test keep running against V32 in the aggregate (their assertions name the V32 labels); tracks 1/4/6/7/9 (version-agnostic) run against V33; tracks 5/8/10/11 against V25/V28/V30/V31 as before. Corrected expectations: the test had asserted Blanc's withdrawn line "agy's first refusal" and was changed to the corrected wording (Blanc 07:21) — the test changed, not the text's truth.

@@ -85,3 +85,18 @@ UNREPAIRED as of V32 staging: none known.
 | agy FATAL 2 / codex V32-1 | the INDEPENDENCE table is not true (stage of approval-delivery; the conjunction's codes; 71 pairs not 66) and the controls do not assert independently expected sets | OPEN — track 13 (table verified against the code by a test) |
 | codex V32-2 | absence from a partial prefix decides FORGED | OPEN — track 13 |
 | codex V32-3 | later exceptions erase history findings; provenance at the wrong boundary | OPEN — track 13 |
+
+
+## L. V33 (2026-09-07 07:27 KST) — column C closed again; column A unchanged
+| item | column | disposition at V33 |
+|---|---|---|
+| V32-1 (the identity read gating the open sweep and repository discovery; S3's approval gate hiding the open same-id check; the conjunction hiding the nonce check; S0c's first failure hiding the next; the helper import deciding; degraded S4 not checking the committed blob against the witness digest; the table inexact, its controls exempting identity-file pairs) | C → REPAIRED | v17 stages S0a–S0h / S3a / S3b / S4 at input granularity; table verified against the code; 116 differential controls, no exemption |
+| V32-2 (absence from a partial prefix deciding FORGED) | C → REPAIRED | `authenticate_event(..., complete=False)` decides only affirmative predicates; per-entry states its undecided negative half |
+| V32-3 (later exceptions erasing history findings; provenance too coarse; standalone path not contributing malformed evidence) | C → REPAIRED | `history_findings_v13` durable collector; classification at each input boundary; `validate_continuation_v13` |
+| V32-4 (aggregate gate v1) | C → REPAIRED at V32 (gate v2), carried | — |
+| V32-5 (dynamic refusal names; blob-equality wording; counts) | C → REPAIRED | declared family in the allowlist; wording; counts corrected |
+| seat A's two FATAL OBSERVATIONS (timed-out review, not a verdict) | informed the repair | the table's truth and NSD at input granularity — covered by the rows above |
+| the adoption check's identity half declared independent of the identity (found by controls v3, run 2d) | C → REPAIRED | `adoption-identity` its own check, blocked by name |
+| partial-snapshot deciders declared independent of the later page; per-entry silent (found by controls v3, run 2d) | C → REPAIRED | needs declared; per-entry contributes under its own name |
+| offline candidate loads counter-cases 1, 2, A (rows 1, 2, 6, 10b–10d of the inspection) | A (disclosed limit) | unchanged since V27 |
+UNREPAIRED CONTRADICTIONS at V33: none known.

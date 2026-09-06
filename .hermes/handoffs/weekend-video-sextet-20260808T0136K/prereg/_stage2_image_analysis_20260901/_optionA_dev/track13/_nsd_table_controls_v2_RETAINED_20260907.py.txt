@@ -1,0 +1,129 @@
+"""TRACK 13 — the table-derived controls, v2 (Blanc 05:02 item 2; codex V32-1): generated from run_configurations_v17.INDEPENDENCE / PREREQUISITES with NO exemption
+(identity-file pairs included), one method per (prerequisite, check) pair with the check independent of the prerequisite, plus two-prerequisite variants. Each asserts
+the WHOLE outcome against an INDEPENDENTLY EXPECTED set computed from the table, not from the survivors: the planted defect's code attributed to ITS check; the
+prerequisite's failure code attributed to the check that meets it; every other check that needs the prerequisite recorded BLOCKED by name (or contributing unavailability
+under its own name); no other check contributing anything; the winner equal to the resolver over the expected set. Every method is one subcase."""
+import json, os, re, sys, tempfile, unittest, hashlib, subprocess, base64
+from pathlib import Path
+from unittest import mock
+HERE = Path(__file__).resolve().parent; D = HERE.parent
+for p in ("beacon_v2", "drand_only", "corpus_identity", "fourier_chirality", "track2", "track13"): sys.path.insert(0, str(D / p))
+import provenance_designs_v13 as P, precedence_core as PC
+import run_configurations_v17 as rc, test_run_configurations_v17 as TF, history_v2 as H
+from test_track13_regressions import H13, feed, canon, REF, REPO
+# ---- defect recipes: ONE planted defect per check, with the code the check must contribute (independent of the implementation's output)
+DEFECTS = {
+    "open-local":         {"code": "HISTORY-CONTINUATION: OPEN-EVENT-INCONSISTENT-INPUT", "plant": "open-wrong-repo"},
+    "approval-local":     {"code": "EVENT-INCONSISTENT",                                  "plant": "approval-wrong-repo"},
+    "approval-delivery":  {"code": "EVENT-INCONSISTENT",                                  "plant": "approval-non-delivery"},
+    "lists":              {"code": "IDENTITY-tuning_objids-SIZE-OR-TYPE",                 "plant": "five-ids"},
+    "identity-local":     {"code": "IDENTITY-POOL-DIGEST",                                "plant": "pool-digest"},
+    "nonce":              {"code": "NONCE-UNAUTHENTICATED",                               "plant": "nonce-bad"},
+    "adoption":           {"code": "ADOPTION-MISMATCH",                                   "plant": "adoption-mismatch"},
+    "conjunction":        {"code": "IDENTITY-LOCK-MISMATCH",                              "plant": "lock"},
+    "approval-live":      {"code": "EVENT-FORGED",                                        "plant": "same-id-approval"},
+    "open-same-id":       {"code": "HISTORY-CONTINUATION: OPEN-EVENT-FORGED",             "plant": "same-id-open"},
+    "seed":               {"code": "REDERIVE-RETRY",                                      "plant": "seed-bodies"},
+    "history-remote":     {"code": "HISTORY-CONTINUATION",                                "plant": "rewrite", "reason": "NOT-AN-EXTENSION"},
+    "open-delivery-auth": {"code": "HISTORY-CONTINUATION",                                "plant": "open-non-delivery", "reason": "OPEN-EVENT-INCONSISTENT-INPUT"},
+    "per-entry":          {"code": "HISTORY-CONTINUATION",                                "plant": "batch", "reason": "HISTORY-PUBLICATION-BATCH"},
+}
+def build_with(h, plant):
+    kw = {}; mutate_ev = None; mutate_I = None; rebuild = False; nonce_ok = True
+    if plant == "five-ids": kw["_ids5"] = True
+    if plant == "approval-wrong-repo": mutate_ev = lambda ev, evs: ev.update({"repo": {"name": "wrong/repo"}})
+    if plant == "approval-non-delivery": mutate_ev = lambda ev, evs: ev["payload"].update({"before": TF.git(Path(h._wk), "rev-parse", ev["payload"]["head"] + "^"), "head": TF.git(Path(h._wk), "rev-parse", ev["payload"]["head"] + "^"), "commits": []})
+    if plant == "pool-digest": mutate_I = lambda I: I.update({"pool_sha256": "q" * 64})
+    if plant == "adoption-mismatch": pass   # planted after the build: the adoption file rewritten to a different digest (restored per test)
+    if plant == "lock": kw["lock_ok"] = False
+    if plant == "nonce-bad": nonce_ok = False
+    if plant == "rewrite": rebuild = True
+    if plant == "seed-bodies": kw["_seed_bodies"] = True
+    env = h.build_plant(rebuild_after=rebuild, mutate_ev=mutate_ev, mutate_I=mutate_I, nonce_ok=nonce_ok, **kw)
+    live = env["live"]
+    if plant == "open-wrong-repo": env["of"].write_text(json.dumps({**env["evs"][0], "repo": {"name": "wrong/repo"}}))
+    if plant == "open-non-delivery": gp = TF.git(env["wk"], "rev-parse", env["evs"][0]["payload"]["before"] + "^"); env["of"].write_text(json.dumps({**env["evs"][0], "payload": {**env["evs"][0]["payload"], "before": gp, "head": gp, "commits": []}}))
+    if plant == "same-id-approval": live = [{**env["genuine"], "payload": {**env["genuine"]["payload"], "before": "0" * 40}}] + env["evs"]
+    if plant == "same-id-open": live = [env["ev"], {**env["evs"][0], "payload": {**env["evs"][0]["payload"], "before": "0" * 40}}] + env["evs"][1:]
+    if plant == "batch": live = [env["ev"], env["evs"][0], {"type": "PushEvent", "id": "batch", "created_at": "2026-09-06T09:59:00Z", "repo": {"name": REPO}, "payload": {"ref": REF, "before": env["evs"][1]["payload"]["head"], "head": env["evs"][-1]["payload"]["head"]}}]
+    if plant == "adoption-mismatch": env["_adoption_backup"] = Path(rc.ADOPTION_FILE).read_bytes(); Path(rc.ADOPTION_FILE).write_text("a" * 64 + "\n")
+    env["live"] = live; return env
+def fail_prereqs(Ps, env):
+    ctxs = []; runner = feed(env["live"]); live = env["live"]
+    for P_ in Ps:
+        if P_ == "identity-file": Path(env["ident"]).unlink()
+        elif P_ == "open-file": env["of"].write_text("null")
+        elif P_ == "adoption-file": env.setdefault("_adoption_backup", Path(rc.ADOPTION_FILE).read_bytes()); Path(rc.ADOPTION_FILE).unlink()
+        elif P_ == "witness-fetch": ctxs.append(mock.patch.object(rc, "verify_witness", side_effect=rc.DataIntegrityFail("WITNESS-FETCH-FAILED fixture transport unavailable")))
+        elif P_ == "verifier-import": ctxs.append(mock.patch.object(rc, "_drand_modules", side_effect=rc.DataIntegrityFail("VERIFIER-UNAVAILABLE: fixture — py_ecc unavailable")))
+        elif P_ == "helpers-import": ctxs.append(mock.patch.object(rc, "_P", side_effect=ImportError("fixture: provenance helpers unavailable")))
+        elif P_ == "events-page1": runner = feed(live, page1_fail=True)
+        elif P_ == "events-later-page":
+            filler = [{"type": "IssuesEvent", "id": f"f{i}", "created_at": "2026-09-06T09:40:00Z", "repo": {"name": REPO}, "payload": {}} for i in range(100 - len(live))]
+            runner = feed(live + filler, page2=lambda cmd: (1, "", "gh: HTTP 503"))
+        elif P_ == "remote-head": ctxs.append(mock.patch.object(P, "remote_head", lambda url, ref: None))
+        elif P_ == "git-launch":
+            real = subprocess.run
+            def failing(args, *a, **k):
+                if args and args[0] == "git": raise OSError("fixture: git cannot launch")
+                return real(args, *a, **k)
+            ctxs.append(mock.patch("subprocess.run", side_effect=failing))
+        else: raise ValueError(P_)
+    return ctxs, runner
+class NSD2(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls): cls.t = TF.T("test_composed_mode_on_the_production_call_path"); cls.t.setUp(); cls.h = H13(cls.t)
+    @classmethod
+    def tearDownClass(cls): cls.t.tearDown()
+def expected(Ps, C):
+    """the whole outcome the TABLE predicts: codes per check, blocked checks — independent of the implementation's survivors"""
+    exp_codes = {C: {DEFECTS[C]["code"]}}; exp_blocked = set(); pre_reporters = {}
+    for P_ in Ps:
+        pre = rc.PREREQUISITES[P_]; needers = {k for k, v in rc.INDEPENDENCE.items() if P_ in v["needs"]}
+        reporter = {"identity-file": "approval-local", "open-file": "open-local", "git-launch": "history-remote", "witness-fetch": "conjunction", "verifier-import": None, "helpers-import": "helpers", "events-page1": "snapshot", "events-later-page": "snapshot", "remote-head": "history-remote", "adoption-file": "adoption"}[P_]
+        if reporter: exp_codes.setdefault(reporter, set()).add(pre["failure_code"])
+        for n in needers:
+            if n == reporter and P_ not in ("git-launch", "remote-head"): continue
+            exp_blocked.add(n)
+    return exp_codes, exp_blocked
+def _make(Ps, C):
+    def test(self):
+        self.h._wk = None; env = build_with(self.h, DEFECTS[C]["plant"]); self.h._wk = str(env["wk"]); ctxs, runner = fail_prereqs(Ps, env)
+        from contextlib import ExitStack
+        try:
+            with ExitStack() as st:
+                for c in ctxs: st.enter_context(c)
+                with self.assertRaises(rc.DataIntegrityFail) as cm: rc.load_identity(env["ident"], rc.Protocol(**{**env["cTP"].__dict__, "events_runner": runner}))
+        finally:
+            if "_adoption_backup" in env: Path(rc.ADOPTION_FILE).write_bytes(env["_adoption_backup"])                       # the adoption file is shared by the class: restore it (a deleted file cascaded into every later test in the first run 2)
+        msg = str(cm.exception); out = rc.LAST_OUTCOME; self.assertIsNotNone(out)
+        fs = out["findings"]; exp_codes, exp_blocked = expected(Ps, C)
+        self.assertTrue(msg.startswith(DEFECTS[C]["code"]) or DEFECTS[C]["code"] in {f["code"] for f in fs}, f"[{Ps} fail; defect {C}] the defect {DEFECTS[C]['code']} must be contributed at all (behavioural, before attribution): winner {msg[:100]!r}; codes {sorted({f['code'] for f in fs})}")
+        by_check = {}
+        for f in fs: by_check.setdefault(f["check"], set()).add(f["code"])
+        self.assertIn(DEFECTS[C]["code"], by_check.get(C, set()), f"[{Ps} fail; defect {C}] the defect must be contributed by ITS check: got {by_check}")
+        if "reason" in DEFECTS[C]: self.assertTrue(any(DEFECTS[C]["reason"] in f["why"] for f in fs if f["check"] == C), f"reason {DEFECTS[C]['reason']}: {[f['why'][:60] for f in fs if f['check'] == C]}")
+        for chk, codes_ in exp_codes.items():
+            if chk == C: continue
+            self.assertTrue(codes_ & by_check.get(chk, set()) or (chk == "helpers" and any(f["code"] == "VERIFIER-UNAVAILABLE" for f in fs)), f"the prerequisite failure {codes_} must be contributed by {chk}: got {by_check}")
+        pcodes = {rc.PREREQUISITES[P_]["failure_code"] for P_ in Ps} | {"IDENTITY-SCHEMA", "HISTORY-OPEN-EVENT-MISSING", "ADOPTION-MALFORMED"}
+        retry_prereq = any(rc.PREREQUISITES[P_]["class"] == "RETRY-UNAVAILABLE" for P_ in Ps)
+        for n in exp_blocked:                                                                            # a check that needs a failed prerequisite: BLOCKED by name, or it CONTRIBUTED (unavailability, the prerequisite's code, or its own refusal reached first)
+            ok = n in out["blocked"] or n in by_check or (n == C)
+            self.assertTrue(ok, f"check {n} needs {Ps}: it must be BLOCKED by name or have contributed under its own name: blocked={sorted(out['blocked'])}, by_check={by_check}")
+        # WHOLE OUTCOME: a check that needs none of the failed prerequisites and carries no planted defect may contribute ONLY (i) the same defect (every check that reads the same input detects it — NSD wants exactly that), (ii) a prerequisite's failure code, or (iii) unavailability when a RETRY-class prerequisite failed
+        allowed_codes = {DEFECTS[C]["code"]} | pcodes | ({"RETRY-EVENTS-UNAVAILABLE", "RETRY-HISTORY-CONTINUATION", "RETRY-EVENTS-INCOMPLETE", "STAGE-BLOCKED", "MALFORMED-REMOTE-EVIDENCE"} if retry_prereq or "events-later-page" in Ps else set())
+        stray = {}
+        for k, v in by_check.items():
+            if k in exp_blocked or k in ("helpers", "resolver", C): continue
+            extra = {c for c in v if c not in allowed_codes and not (c == "HISTORY-CONTINUATION" and any(("reason" in DEFECTS[C] and DEFECTS[C]["reason"] in f["why"]) or f["class"] == "LOCAL-TERMINAL" for f in fs if f["check"] == k))}
+            if extra: stray[k] = extra
+        self.assertEqual(stray, {}, f"checks that need none of {Ps} and carry no defect contributed something other than the defect / a prerequisite code / unavailability: {stray}")
+        self.assertTrue(all(f.get("why") for f in fs))
+        w = PC.resolve([PC.finding(f["class"], f["code"], f["why"], f["stage"], i, f["check"]) for i, f in enumerate(fs)]); self.assertTrue(msg.startswith(w["code"]), f"{msg[:80]!r} vs {w['code']}")
+    return test
+PAIRS = [([P_], C) for P_ in rc.PREREQUISITES for C, spec in rc.INDEPENDENCE.items() if P_ not in spec["needs"] and C in DEFECTS and C != "snapshot"]
+for Ps, C in PAIRS: setattr(NSD2, f"test_{Ps[0].replace('-', '_')}_fails__{C.replace('-', '_')}", _make(Ps, C))
+DOUBLES = [(["witness-fetch", "events-page1"], "identity-local"), (["witness-fetch", "remote-head"], "open-local"), (["helpers-import", "witness-fetch"], "lists"), (["identity-file", "remote-head"], "open-local"), (["verifier-import", "events-later-page"], "adoption"), (["git-launch", "events-page1"], "identity-local")]
+for Ps, C in DOUBLES: setattr(NSD2, f"test_{'_and_'.join(p.replace('-', '_') for p in Ps)}_fail__{C.replace('-', '_')}", _make(Ps, C))
+if __name__ == "__main__": unittest.main()
