@@ -12,9 +12,10 @@ new defects (both found the unknown-claim binding gap and the seed-contract gap;
 revision 3 was split: codex READY_FOR_PRINCIPAL=NO, kimi YES.** Revision 4 repaired the three defects and the wording residues with
 fail-first controls (111 controls, 38 deletion probes). Whether the split survives revision 4 is NOT settled: no reviewer has issued a
 readiness token on revision 4. The evidence that exists is narrower — Codex replayed its own round-3 counterexamples against revision 4
-in a fresh directory and found them closed (`.hermes/CODEX_TORI_R4_TARGETED_CLOSURE_20260906.json`); that is a targeted replay, not a
-review, and codex's NO rested on exactly those counterexamples plus the vocabulary and count residues also repaired. A fourth review
-round would settle it and runs only on order. Full record: `R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`.
+in a fresh directory and found them closed (`.hermes/CODEX_TORI_R4_TARGETED_CLOSURE_20260906.json`); those were Codex's own
+reproductions of the reviewer fixtures, not the reviewer issuing a new verdict, and they closed the three unique executable findings
+only. Codex's NO had rested on those findings plus the vocabulary and count residues, also repaired. A fourth round, on order, would
+give revision 4 a verdict of its own; it is not guaranteed to settle every issue. Full record: `R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`.
 
 ---
 
@@ -109,9 +110,10 @@ then means: bounded evidence, not proof of completeness; shared reader error and
   file, one ledger per seat; the pinned census and full-corpus validation then run over the joined files.
 - (Change) a line-balanced partition instead of manifest row order — the row-order batches range from about 3,300 to about 18,000
   non-blank lines; a balanced one is a different pure function of the same manifest, not prepared.
-- (Change) require batch 1 to confirm session capacity before batch 2 is dispatched — recommended as part of the run plan.
-- (Defer) — no seat completes the corpus on the evidence of the limb-B death finding; whether batching is the remedy is what batch 1
-  tests.
+- (Defer) — the one observed single-session attempt died at eleven texts; that motivates batching without proving no engine could
+  ever complete the corpus. Whether this batching is the remedy is what batch 1 tests.
+
+Already part of the prepared plan, not a choice: batch 1 confirms session capacity before batch 2 is dispatched.
 
 **Consequence in plain words.** One denominator, mechanically; two independent readers, each across twelve sessions. Lost and
 stated: cross-batch consistency of one reader's judgement — the report gives between-seat disagreement by batch, which does not
@@ -119,18 +121,21 @@ measure within-reader drift. Cost: 12 sessions × 2 seats (+12 for the auditor u
 
 ---
 
-## Fingerprints of what was tested
+## Fingerprints of what was tested (recomputed after the last edit of every file named, 2026-09-06 22:00 KST)
 - Candidate (D1, D7 clause text): `R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md` sha256 `3b959684e2262e5fd27fca5c122880992d12553a6fc10daeac256269bda8144c`
 - Batch preparation: `R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md` sha256 `1f7206e40f9150fbb295928ba7baf7dcfd096e28da25e61067f1f5553dda3204`
 - Staged kit pin sheet (7 files; 111 controls, 38 deletion probes, PASS): `r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256` sha256 `62eafdfa5fb94aa7cef9714b63475d3562cd416469a050483c7baf7b272070ef`
-- Review reconciliation: sha256 `08f36942fa0757470173e35aed528040912fe9db03130ae8f644bdc9cb55eb85`
+- Review reconciliation: sha256 `f12870245912d9dde04eee9f8ca71031335edd0b02c60d7008ac0804ef0dda66`
 
-## What his approval would and would not authorize
-**Would:** the three method choices as design decisions, in his words, recorded by the lane under §10's record form.
-**Would NOT:** any of the following, each a separate step with its own gate — writing the integrated draft (V26) that carries the
-choices; re-pinning the seat tool and rebuilding the packet; C0 reachability by two seats; the two-seat gate; the approval procedure
-of 11:11 (bytes and digest presented in the codex conversation, Blanc recomputing); the run word; and the run plan additions the
-reviews named (per-dispatch inventory and probes, fresh auditor context, custodian-only selection, release events recorded).
+## What his decision covers, and what follows without asking again
+**His decision:** the three method choices, in his words, recorded by the lane under §10's record form.
+**Follows as routine preparation, already authorized, no further asking:** writing the integrated draft that carries his choices
+(Blanc's standing instruction of 15:07 — no new version except to carry rulings — is why it is written only once they exist);
+re-pinning the seat tool and rebuilding the packet; C0 reachability by two seats; the two-seat gate; independent review; the run-plan
+additions the reviews named (per-dispatch inventory and probes, fresh auditor context, custodian-only selection, release events
+recorded). These are technical checks the lane runs, not permissions it asks for.
+**Remains his, later and separately:** approval of the final version's bytes and digest by the procedure of 11:11 (presented in the
+codex conversation, attested by Codex, Blanc recomputing the digest), and his approval to run, recorded as given in conversation.
 
 **The line for Duho, in plain words:** D1 — B / A / change / defer. D7 — stronger / weaker / defer. Batching — ownership batches as
 prepared / line-balanced / defer. Anything not chosen stays exactly as it is.
