@@ -6,7 +6,7 @@ This sheet is filled after the census runs, from printed artefacts only; every b
 | # | Question a human can check in five minutes | Where to look | Answer |
 |---|---|---|---|
 | 1 | Which bytes ran? Master digest at freeze = digest Duho signed = digest in every seat's ACCESS_SHA line? | `R3C2_V23_SIGNABLE_20260906.md`; Duho's chat words; first line of each `SEAT_REPORT.md` | ☑ freeze digest = signed = disk = HEAD (step 0a, run log); seats' ACCESS_SHA pending step 5 |
-| 2 | Did both seats see only the packet? Packet digest in each report = pin file; path lists carry no OUT_OF_SCOPE row | `R3C2_SEAT_PACKET.sha256`; each report's path list | ☐ copies inventoried CLEAN before launch (`R3C2_DISPATCH_RECORD_20260906.md`); reports pending |
+| 2 | Did both seats see only the packet? Packet digest in each report = pin file; path lists carry no OUT_OF_SCOPE row | `R3C2_SEAT_PACKET.sha256`; each report's path list | ☐ 09:38 copies VOID (A3); RESUMED copies inventoried CLEAN before launch (`R3C2_DISPATCH_RECORD_20260906r.md`, tooling pinned, kernel sandbox); reports pending |
 | 3 | Receipt P exists BEFORE limb A began (protocol hash + commit id, Blanc's timestamp) | Blanc's receipt P; run log line for limb A start | ☑ `R3C2_RECEIPT_P_BLANC_20260906.md` 09:36:08 KST; limb A dispatched after (run log step 4) |
 | 4 | Denominator: both seats' candidate counts agree; `census` PASS in both; exclusions all carry a kind | both `candidates.json` / `exclusions.json`; printed `census` runs | ☐ ___ / ___ claims |
 | 5 | Inputs: `validate` PASS in both seats; every input carries a machine-matched quotation for its origin | printed `validate` runs (C3 artefact) | ☐ |
