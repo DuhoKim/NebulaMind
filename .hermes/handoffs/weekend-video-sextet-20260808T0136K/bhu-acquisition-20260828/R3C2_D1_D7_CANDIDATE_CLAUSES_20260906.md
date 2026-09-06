@@ -1,4 +1,4 @@
-# R3C2 — D1 and D7 clause CANDIDATES (UNADOPTED; Blanc's orders 19:49 / 19:51 / 20:01 KST; revision 2 after two independent reviews, 2026-09-06 20:38 KST)
+# R3C2 — D1 and D7 clause CANDIDATES (UNADOPTED; Blanc's orders 19:49 / 19:51 / 20:01 KST; revision 3 after two rounds of independent review, 2026-09-06 20:38 KST)
 
 **Status.** Nothing here is adopted, in V25, gated for approval, installed or run. V23 (`55b466fa…`) is the signed design of record; the
 V25 living draft (`ab6352d3…`) carries only the approved D2. This file holds the exact texts that would be dropped into the operative
@@ -8,18 +8,27 @@ draft if Duho accepts them, each marked TORI'S RECOMMENDATION, UNADOPTED. The ba
 **Review record.** Revision 1 (digest `cb78eef0…`) was reviewed independently by codex (`R3C2_CANDIDATE_REVIEW_codex_20260906.md`, access
 proven by the wrapper) and kimi-k3 (`R3C2_CANDIDATE_REVIEW_kimi_20260906.md`, access line verified by hand). Both returned the same seven
 tokens: CANDIDATE_D1=SOUND_WITH_REPAIRS, CANDIDATE_D7=SOUND_WITH_REPAIRS, BATCH_PREP=UNSOUND, TOOLING_MATCHES_CLAUSE=NO,
-COUNTEREXAMPLE_HANDLED=YES, IMPORTED_RULE_BREAKS_PARTITION=YES, STAGED_TESTS=PASS. Their findings are reconciled BY TOPIC in
-`R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`; every accepted repair is in this revision and in the staged kit. This revision has
-NOT yet been reviewed; a second round is dispatched on it and its verdicts will be filed beside the first.
+COUNTEREXAMPLE_HANDLED=YES, IMPORTED_RULE_BREAKS_PARTITION=YES, STAGED_TESTS=PASS. Revision 2 (digest `53fa3ab5…`) was reviewed by the
+same two engines (`R3C2_CANDIDATE_REVIEW2_codex_20260906.md`, `R3C2_CANDIDATE_REVIEW2_kimi_20260906.md`), again with identical tokens:
+D1 and D7 SOUND_WITH_REPAIRS, BATCH_PREP=SOUND_WITH_REPAIRS, TOOLING_MATCHES_CLAUSE=NO, COUNTEREXAMPLE_HANDLED=YES,
+IMPORTED_RULE_BREAKS_PARTITION=NO, STAGED_TESTS=PASS. The reconciliation (`R3C2_CANDIDATE_REVIEW_RECONCILIATION_20260906.md`) lists the
+intended repairs by topic; revision 2 implemented many of them and this revision 3 implements the round-2 residuals (a seedless
+selection bypass, an import re-filed under another reason code, a symbol floor that failed open, join not checking orphan claims,
+input-id form or the predecessor chain, pin-sheet path form, counts, and the sentence replacements both reviewers required). Remaining
+limits are custody matters the clauses state as such. Revision 3 is dispatched for a bounded third round confined to verifying those
+repairs; that is the last review round the lane runs on this candidate unless ordered otherwise.
 
 ---
 
 ## D1 — a borrowed number whose named source's own line states a choice — TORI'S RECOMMENDATION, UNADOPTED
 
 **Two wordings of one rule.** Both assign `origin` `IMPORTED` at the borrower whatever the source's line says about how the source
-obtained the value ("we choose", "we fit", "we measure", "we adopt from X"). They assign the same classification (status, origin,
-value); their EVIDENCE RECORDS differ (which file and line `origin_evidence` names). The staged tool implements the SECOND wording
-only; accepting the first would require re-staging the validate rule (both reviews).
+obtained the value ("we choose", "we fit", "we measure", "we adopt from X"). For eligible imports the intended status, origin and
+value agree; the evidence records differ (which file and line `origin_evidence` names), and wording A needs the same explicit
+eligibility and locator rules before equivalence beyond these examples can be claimed. The staged tool implements the SECOND wording
+only; accepting the first would require re-staging the validate rule (both reviews). **Disclosure (kimi round 2):** the reconciliation
+described a designated-locator tie-break with an `ORIGIN_DISPUTED` fallback; what landed is the deterministic first-line rule — no
+seat discretion, no `ORIGIN_DISPUTED` case, no others-listed requirement — a stricter rule, substituted here knowingly.
 
 **Wording A (Tori's, first draft):** the named source's own line is the citation — `ORIG_CITATION` quotes that line, with its file and line.
 
@@ -36,11 +45,12 @@ the operative evidence at the borrower):** exact clause, replacing the last sent
 > numeral; `validate` fails any other line.** If the named source is not enumerable or the value does not match there, file `REPRO_BLOCKED`
 > under §3. C3's pair rule: `ORIG_CITATION` is satisfied by that quotation at the claiming paper.
 >
-> **Machine floor, stated.** `validate` checks: the citing file is the claiming file bound through the candidate file; the two files differ;
-> the source is an exact manifest row with verified bytes; the quotation is non-empty and present at the cited claiming line; the value
-> is a numeric token at the cited source line and that line is the first carrying symbol and numeral. That the quoting sentence is a
-> genuine citation of THAT value — not a sentence naming the source for something else — is seat judgement, caught by the second seat
-> and by C6's re-classification, never by the machine.
+> **Machine floor, stated.** For EVERY `PRINTED` record `validate` first binds the claim to its claiming file through the candidate file;
+> a record whose value line lies in another file must be `IMPORTED` with `ORIG_CITATION`, whatever reason code was submitted. For an
+> import it then checks: the citing file is the claiming file; the two files differ; the source is an exact manifest row with verified
+> bytes; the quotation is non-empty and present at the cited claiming line; the value is a numeric token at the cited source line; some
+> line of the source carries both symbol and numeral, and the cited line is the first such line. Whether the quotation cites THAT value
+> is seat judgement; the second seat and C6 may detect an error, but can share it, and C6 re-classifies inputs only for selected claims.
 
 **What accepting it changes about what the census can conclude.** A borrower's claim whose input was chosen or fitted by another paper
 in the corpus is ATTEMPTED with that input (an arithmetic-group outcome follows only if the rest of the recipe and the numbers hold;
@@ -100,15 +110,16 @@ are printed.
 **Repair history on this clause.** Revision 1's PASS predicate excluded only a sealed candidate missing from the auditor's enumeration
 (Codex's probe, relayed by Blanc 20:01): repaired to both directions. The two reviews of revision 1 then found the comparison
 narrower than the words (excluded-only passages vanished; zero denominator passed; auditor census not enforced; selection trusted, not
-recomputed; re-derivations unsealed; "both sealed ledgers" when the object is the merged file): all repaired above and in the kit,
-each with a control that asserts its exact failure and a deletion probe. Kimi's reading of the excluded-only cases is adopted (a passage
+recomputed; re-derivations unsealed; "both sealed ledgers" when the object is the merged file). Revision 2 added controls for these
+cases; round 2 found a seedless-selection bypass (a selection without a seed skipped recomputation and a zero-claim audit passed) and
+a vocabulary gap, repaired in revision 3 with their controls; census and seal authenticity also depend on custody. Kimi's reading of the excluded-only cases is adopted (a passage
 the seats never enumerated is incompleteness whatever the auditor's disposition; a sealed exclusion the auditor never listed is a
 dispute) because it is the stricter one that still lets a mere disagreement follow a stop rule instead of vanishing.
 
-**What accepting the stronger version changes about what the census can conclude.** `CENSUS_COMPLETE` and `CENSUS_PARTIAL` then rest on
-an audit whose enumeration was produced without sight of the seats' lists and whose re-derivations were sealed before the seats'
-numbers were released. The audit's PASS then rests on an independent enumeration and blind re-derivation rather than on an anchored
-review of the seats' lists; it is bounded evidence, not proof of corpus completeness. Cost: a third full enumeration plus the assigned
+**What accepting the stronger version changes about what the census can conclude.** `CENSUS_COMPLETE` and `CENSUS_PARTIAL` then require
+a run record supporting enumeration before ledger exposure and re-derivation commitment before release, in addition to the repaired
+machine checks. A PASS accompanied by satisfactory dispatch and release evidence supports the intended independent enumeration and
+blind re-derivation; shared error and prior exposure remain possible; it is bounded evidence, not proof of corpus completeness. Cost: a third full enumeration plus the assigned
 re-derivations and the comparison; runtime is unmeasured; an auditor `census` PASS is enforced as a precondition of the stage-1 seal.
 
 **Line for Duho:** accept the stronger / accept the weaker / change / defer. Blocks a first run: the sealed artefacts the auditor
@@ -133,17 +144,21 @@ hash of its own (kimi F10: the stale-copy family). The pinned seat tool, packet,
 - **D1 in code** (`validate <ledger> <sources_dir> <candidates.json>`): implements Wording B only — see the machine floor above.
   Controls: positive ("we choose" source line, borrower's citing sentence); negatives, each asserting exactly its failure: no candidate
   file; citing sentence quoted from a third text; verbatim at the wrong sentence; empty quotation; value a substring of another numeral
-  ("2" in "b = 20"); a second matching line filed instead of the first; source not a manifest row; source bytes tampered; no manifest;
-  record naming its own file. Deletion probes for each of the eight load-bearing checks.
-- **D7 in code** (`audit seal-enumeration | select | handout | seal-rederivation | compare`): as the clause states. Controls: the
+  ("2" in "b = 20"); a second matching line filed instead of the first; no line carrying symbol and numeral; an import re-filed
+  CHOSEN under another reason code; source not a manifest row; source bytes tampered; no manifest; record naming its own file. A
+  deletion probe for each load-bearing check.
+- **D7 in code** (`audit seal-enumeration | select | handout | seal-rederivation | compare`): implements the clause's stages; the
+  exposure chronology itself is custody, verified by the dispatch and release record, not by these commands (`handout` reads the sealed
+  candidates and therefore runs only in the custodian's hands). Controls: the
   stage-ordered positive; first-write refusals; select before any seal refused; bad seed; census-failing auditor enumeration not sealed;
   enumeration changed after its seal; re-derivations changed after their seal; selection emptied with the digest retained (recomputation
-  fails it); the four completeness asymmetries (the Codex/Blanc both-seats-omit case from two seat ledgers, its reverse, an auditor-excluded
+  fails it); selection without a seed (fails, never skipped); the four completeness asymmetries (the Codex/Blanc both-seats-omit case from two seat ledgers, its reverse, an auditor-excluded
   passage the seats never listed, a sealed exclusion the auditor never listed); disputes at 10% (PASS, counted) and 15% (FAIL); zero
   denominator; outcome, origin and missing re-derivation mismatches; disputed rows carry both dispositions; the handout carries ids,
   file and line only. Emitted completeness results: `C6_COUNTEREXAMPLE_EXHIBIT.txt`.
 - **Batch tooling** is described in `R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md`.
-- **Test run** (`/usr/bin/python3 -E r3c2_staged_tests.py`, 2026-09-06 20:38 KST): `controls=84 passed=84 failed=0`, `STAGED_TESTS=PASS`; 29 deletion
+- **Test run** (`/usr/bin/python3 -E r3c2_staged_tests.py` from inside `r3c2_staged_d1d7/`; the pin sheet verifies with
+  `shasum -a 256 -c r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256` from the lane directory, 2026-09-06 20:38 KST): `controls=84 passed=84 failed=0`, `STAGED_TESTS=PASS`; 36 deletion
   probes, each showing the matching negative turns to PASS when its check is neutralised.
 
 **What installing would take** (not done): a version carrying Duho's ruling → the seat tool re-pinned in the packet's pin sheet and the
@@ -153,4 +168,4 @@ master's §2/C3/C6 text → packet rebuild → C0 by two seats → two-seat gate
 D2 (adopted "for now", already in the V25 draft); D4 and D8 (can wait); the batch-reading choice (own file); the cosmetics from the V25
 reviews (recorded in `R3C2_V25_GATE_RECONCILIATION_20260906.md`).
 
-R3C2_D1_D7_CANDIDATE_CLAUSES — UNADOPTED — revision 2
+R3C2_D1_D7_CANDIDATE_CLAUSES — UNADOPTED — revision 3

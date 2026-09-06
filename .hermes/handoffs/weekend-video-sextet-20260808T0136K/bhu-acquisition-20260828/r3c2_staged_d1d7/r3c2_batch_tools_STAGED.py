@@ -56,10 +56,15 @@ def cmd_join(part,seat_dir,seals,manifest,prefix):
     mf={r[1] for r in manifest_rows(manifest)}
     if P["manifest_sha256"]!=sha(manifest): fails.append("partition was computed over a different manifest")
     S=Sd.get("seals",{}); C=[]; X=[]; Lr=[]
+    extra=sorted(set(S)-{str(b["batch"]) for b in P["batches"]})
+    if extra: fails.append(f"seals for batches not in the partition: {extra}")
     for b in P["batches"]:
         k=b["batch"]; owned=set(b["files"])
         if str(k) not in S: fails.append(f"batch {k}: not sealed"); continue
-        bad=False
+        bad=False; sk=S[str(k)]
+        if sk.get("owned_files")!=b["files"] or sk.get("owned_sha256")!=b["sha256"]: fails.append(f"batch {k}: sealed ownership differs from the partition"); bad=True  # PROBE:SEAL_OWNERSHIP
+        exp_pred=(hashlib.sha256(json.dumps(S[str(k-1)],sort_keys=True).encode()).hexdigest() if str(k-1) in S else None)
+        if k>1 and (str(k-1) not in S or sk.get("predecessor_seal_sha256")!=exp_pred): fails.append(f"batch {k}: predecessor chain broken (seal does not bind batch {k-1}'s seal)"); bad=True  # PROBE:SEAL_CHAIN
         for f in ART(k):
             if not (d/f).exists(): fails.append(f"batch {k}: missing {f}"); bad=True; continue
             if sha(d/f)!=S[str(k)]["artefacts"][f]: fails.append(f"batch {k}: {f} differs from its seal"); bad=True  # PROBE:SEAL_MISMATCH
@@ -70,7 +75,10 @@ def cmd_join(part,seat_dir,seals,manifest,prefix):
             if owner_of(c.get("candidate_id"))!=c.get("source_file"): fails.append(f"batch {k}: candidate_id {c.get('candidate_id')} is not of the form <source_file>#<local>")  # PROBE:GLOBAL_ID
             C.append(dict(c))
         for x in xd["exclusions"]: X.append(dict(x))
+        inc_ids={c.get("candidate_id") for c in cd["candidates"] if c.get("included")}
         for r in ld:
+            if r.get("claim_id") not in inc_ids: fails.append(f"batch {k}: ledger record {r.get('input_id')} names claim {r.get('claim_id')}, not an included candidate of this batch")  # PROBE:ORPHAN_CLAIM
+            elif not str(r.get("input_id","")).startswith(str(r.get("claim_id")).split("#",1)[0]+"#"): fails.append(f"batch {k}: input_id {r.get('input_id')} does not begin with its claim's file followed by #")  # PROBE:INPUT_ID_FORM
             if owner_of(r.get("claim_id")) not in owned: fails.append(f"batch {k}: ledger record {r.get('input_id')} belongs to claim {r.get('claim_id')} not owned by this batch")
             if r.get("source_file") and r.get("source_file") not in mf: fails.append(f"batch {k}: record {r.get('input_id')} cites {r.get('source_file')}, not a manifest text")  # PROBE:EVIDENCE_MANIFEST
             ev=r.get("origin_evidence") or {}

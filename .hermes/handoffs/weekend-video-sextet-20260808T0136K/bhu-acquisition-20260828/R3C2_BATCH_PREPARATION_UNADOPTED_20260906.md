@@ -1,4 +1,4 @@
-# R3C2 — batch reading for the limb-B corpus problem: PREPARATION, UNADOPTED (revision 2 after two independent reviews, 2026-09-06 20:38 KST)
+# R3C2 — batch reading for the limb-B corpus problem: PREPARATION, UNADOPTED (revision 3 after two rounds of independent review, 2026-09-06 20:38 KST)
 
 **Status.** An execution question, kept out of the clause candidate so Duho can rule on it separately. Nothing adopted, frozen,
 dispatched or run. Revision 1 was judged BATCH_PREP=UNSOUND by both reviewers for one decisive reason, accepted and repaired here:
@@ -39,8 +39,10 @@ batch 12: rows 83-89 (7 texts, 338821 bytes, 15814 non-blank lines)
 or eight texts per batch is below the observed failure and itself untested. The per-batch bytes and non-blank lines above are the
 workload measure; batch 1's report confirms the size before batch 2 is dispatched, so a failure at eight is cheap, not fatal. **Equal text counts do not bound lines:** by manifest row order the batches range from 3321 to 17938 non-blank lines, so the row-order partition is
 the simplest, not the most even; a line-balanced partition (a different pure function of the same manifest) is the obvious alternative and is
-listed in the line for Duho. Batch 1, the lightest, therefore confirms less about capacity than a heavy batch would. The
-partition is a function of the manifest and the number 12 alone; anyone can recompute it and must get the same bytes (kimi did).
+listed in the line for Duho. Batch 1 is light but not the lightest (batches 9 and 11 are smaller on both measures); a light first batch confirms less about
+capacity than a heavy one would — a heavier first batch is the stronger pilot, at a higher risk of the failure it is testing for. The
+pinned partition implementation deterministically computes these bytes from this manifest and 12; identical serialization and
+implementation are required for byte equality (kimi recomputed it byte-identical with the pinned code).
 
 ## 3. What a session is
 
@@ -65,9 +67,12 @@ any session's write authority, with the custodian.
 
 ## 5. The join, as a pure function of fixed inputs
 
-`join <partition> <seat_dir> <seals> <manifest> <prefix>` verifies every seal; verifies that every candidate and every ledger claim is
-OWNED by its batch (a candidate citing another batch's text as its own passage fails); verifies that every evidence `source_file` is a
-manifest row (any text, any batch); checks id uniqueness across batches and that every `derived_from` resolves and the graph is acyclic;
+`join <partition> <seat_dir> <seals> <manifest> <prefix>` verifies the partition and manifest binding, each seal's owned-file and digest
+lists against the partition, every artefact digest, the complete ordered predecessor chain, and the absence of missing or extra batch
+seals; verifies that every candidate and every ledger claim is OWNED by its batch (a candidate citing another batch's text as its own
+passage fails), that every ledger claim names an INCLUDED candidate of its batch and every input id begins with that claim's file and
+`#`; verifies that every evidence `source_file` is a manifest row (any text, any batch); checks id uniqueness across batches and that
+every `derived_from` resolves and the graph is acyclic;
 concatenates in batch order without renaming; recomputes the declared counts; writes one candidate file, one exclusion file and one
 ledger per seat with sorted keys. For fixed inputs and fixed code it is deterministic (a control checks identical bytes twice); it
 performs no scholarly classification, and it does implement two policies — ownership and global identifiers — which are the ones stated
@@ -78,8 +83,10 @@ FULL corpus and must PASS (that is where a cross-batch import machine-matches).
 
 - **One denominator, mechanically.** §1's inclusion rule is per passage; enumeration ownership is disjoint and exhaustive by
   `C1B_BATCH_COVERAGE` (every manifest text owned exactly once, owned bytes verified, every batch report access-proven), and the joined
-  count is what `census` prints. §2's arithmetic is per claim and its IMPORTED lookups are served under §1 of this file, so no claim is
-  split or blocked by the partition. What the mechanism establishes is one joined denominator; calling it one independently completed
+  count is what `census` prints. Whole-text ownership preserves a claim's local context; cross-batch imports are not blocked by withheld
+  evidence if each dispatch supplies and verifies all manifest texts as required — a dispatch check recording the availability and byte
+  verification of all 89 texts per session is part of the run plan, since final ownership coverage alone does not verify earlier
+  reference access, and neither coverage nor join verifies the lookup logs. What the mechanism establishes is one joined denominator; calling it one independently completed
   census additionally needs the reading, source-access and reconciliation evidence of the run record.
 - **Two independent readers.** Each seat's joined files come from one engine under one packet across twelve sessions that never see the
   other seat's directories; the two joined files are reconciled claim by claim as V23 §2/§4 prescribe. Independence BETWEEN seats is
@@ -90,8 +97,8 @@ FULL corpus and must PASS (that is where a cross-batch import machine-matches).
   establishes cross-batch consistency.
 - **The audit under the same partition (D7).** The auditor's enumeration is owned and sealed batch for batch under the same partition;
   its re-derivation stage reads cross-batch import sources under §1 of this file; `audit compare` then runs over the auditor's joined
-  files against the sealed joined files. The comparison code is unchanged; preserving its meaning additionally requires the same
-  evidence access and valid global identifiers under batching, which §1 and §3 supply.
+  files against the sealed joined files. The comparison code is unchanged; sections 1 and 3 require equivalent evidence access and
+  global identifiers; dispatch checks and the repaired join must verify their implementation.
 
 ## 7. Staged tooling and controls — STAGED, NOT INSTALLED
 
@@ -101,19 +108,22 @@ partition in manifest order with bytes and lines; seal order enforced (batch 2 b
 join allows a batch-1 claim whose IMPORT evidence is a batch-2 line and the joined ledger validates against the full corpus, while the
 same record CANNOT validate in a directory holding only batch 1's texts (the reviewers' finding, reproduced); join deterministic;
 `census` PASSES over the joined files; coverage positive. Negatives, each asserting exactly one failure, each with a deletion probe: a
-batch-2 candidate claiming ownership of a batch-1 text; a non-global id; a cross-batch `derived_from` that resolves to nothing; evidence
+batch-2 candidate claiming ownership of a batch-1 text; a non-global id; a candidate-id collision; a ledger record naming a claim that is
+not an included candidate; an input id not of the claim-file form; a broken predecessor chain; sealed ownership differing from the
+partition; a seal for a batch not in the partition; a cross-batch `derived_from` that resolves to nothing; evidence
 cited from a non-manifest text; an artefact changed after its seal; a text owned by two batches; a manifest text owned by none; an owned
-text whose bytes differ from the manifest; a batch report without the packet's `ACCESS_SHA`. Whole kit: `controls=84 passed=84 failed=0`,
+text whose bytes differ from the manifest; a batch report without the packet's `ACCESS_SHA`. Whole kit: `controls=102 passed=102 failed=0`,
 `STAGED_TESTS=PASS`.
 
 ## 8. What accepting it changes about what the census can conclude
 
-Per-claim outcomes and classes are computed exactly as V23 states, over the joined files. The report gains: the caveat that enumeration
+Per-claim outcomes and classes use the operative rules explicitly accepted for this run, including any accepted D1/D2 changes, over
+the validated joined files. The report gains: the caveat that enumeration
 was performed per preregistered ownership batch with all texts furnished; the between-seat disagreement by batch, descriptively; two
 structural controls (`C1B_BATCH_COVERAGE`, `JOIN`); and the honest statement that within-reader consistency across batches is not
 measured. Cost: 12 sessions × 2 seats (+12 for the auditor under D7), sequential per seat, parallel across seats; runtime unmeasured.
-It is the difference between a census that can run and one that cannot — a necessity established by one observed failure, not by a
-demonstrated successful session, which batch 1 will be.
+It is the difference between a census that could not run (one observed failure) and one that might — whether it can run is what
+batch 1 is designed to test.
 
 ## 9. What adopting would take (not done)
 
@@ -123,6 +133,7 @@ not; identifiers are global; the join is mechanical and pinned"; the batch tool 
 the 11:11 approval procedure.
 
 **Line for Duho:** accept / change (number of batches; row-order vs line-balanced partition; whether disagreement per batch is reported;
-whether batch 1 must confirm size before batch 2) / defer. (Blocks a first run: without it, no seat completes.)
+whether batch 1 must confirm size before batch 2) / defer. (Blocks a first run on the evidence of the limb-B death finding: the unbatched seat died; whether this batching is the remedy is what
+batch 1 tests; the principal may choose another workable execution design.)
 
-R3C2_BATCH_PREPARATION — UNADOPTED — revision 2
+R3C2_BATCH_PREPARATION — UNADOPTED — revision 3

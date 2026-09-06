@@ -8,12 +8,13 @@ W=H/"_ctl"; shutil.rmtree(W,ignore_errors=True); W.mkdir()
 def w(p,obj): p=W/p; p.write_text(json.dumps(obj,indent=1,sort_keys=True) if not isinstance(obj,str) else obj); return str(p)
 def run(tool,*a): r=subprocess.run([PY,"-E",str(tool),*[str(x) for x in a]],capture_output=True,text=True); return r.returncode, r.stdout+r.stderr
 def sha_s(s): return hashlib.sha256(s.encode()).hexdigest()
-results=[]; EX=[]
+results=[]; EX=[]; NPROBES=0
 def check(name, rc, out, want_rc, want_fails, token=None):
     fails=[l for l in out.splitlines() if l.startswith("FAIL:")]
     ok = rc==want_rc and len(fails)==len(want_fails) and all(sum(1 for f in fails if s in f)==1 for s in want_fails) and (token is None or token in out)
     results.append((name,ok)); print(("ok  " if ok else "BAD ")+name+("" if ok else f"\n   rc={rc} fails={fails}\n{out[-700:]}")); return ok
 def probe(name, tool, marker, *args, token, want_rc=0):
+    global NPROBES; NPROBES+=1
     src=tool.read_text().splitlines(); hits=[l for l in src if marker in l]; assert len(hits)==1, f"marker {marker} must occur exactly once"
     # the check on the marked line is neutralised in place (its failure call becomes a no-op; its early return is dropped) so the surrounding if/elif structure survives
     kept=["_probe_noop=lambda *a,**k: None  # PROBE-DELETED"]+[(l.replace("fails.append(","_probe_noop(").replace("; return 1","; pass").replace("PROBE:","PROBE-DELETED:")) if marker in l else l for l in src]
@@ -56,6 +57,13 @@ rc,out=run(SEAT,"validate",W/"d1_pos.json",S2,CANDS); check("D1 neg: external so
 S3=W/"src_nomanifest"; shutil.copytree(S,S3); (S3/"R3C2_CORPUS_MANIFEST.md").unlink()
 rc,out=run(SEAT,"validate",W/"d1_pos.json",S3,CANDS); check("D1 neg: no manifest in the sources directory (codex absent-manifest probe)",rc,out,1,["no R3C2_CORPUS_MANIFEST.md in the sources directory"])
 rc,out=run(SEAT,"validate",w("d1_n_self.json",{"records":[rec(ev_source_file="paperB.txt",ev_source_line=5,ev_verbatim="we choose a = 2")]}),S,CANDS); check("D1 neg: record names its own file as the external source (two failures: claiming-file and self-file)",rc,out,1,["citing sentence is in paperB.txt, but claim paperA.txt#1 belongs to paperA.txt","names its own file as the external source"])
+rc,out=run(SEAT,"validate",w("d1_n_refiled.json",{"records":[rec(origin="CHOSEN",ev_reason_code="ORIG_CHOICE_STATED",ev_source_file="paperB.txt",ev_source_line=5,ev_verbatim="we choose a = 2")]}),S,CANDS); check("D1 neg (codex F4): an import re-filed CHOSEN quoting the source's choice sentence — value line in another file must be IMPORTED/ORIG_CITATION",rc,out,1,["value line is in paperB.txt but claim paperA.txt#1 belongs to paperA.txt: such a record must be IMPORTED with ORIG_CITATION (submitted CHOSEN/ORIG_CHOICE_STATED)"])
+probe("D1 probe: deleting the refiled-import check turns that negative into PASS",SEAT,"PROBE:D1_IMPORT_REFILED","validate",W/"d1_n_refiled.json",S,CANDS,token="C3_NO_SUBSTITUTION=PASS")
+(S/"paperD.txt").write_text("Title D\nThe total is 9 on the ninth page.\n"); manifest(S/"R3C2_CORPUS_MANIFEST.md", S, ["paperA.txt","paperB.txt","paperD.txt"])
+rc,out=run(SEAT,"validate",w("d1_n_nosym.json",{"records":[rec(symbol="g",value="9",source_file="paperD.txt",source_line=2,ev_verbatim="We adopt")]}),S,CANDS); check("D1 neg (codex F5 / kimi F3): no line of the source carries both symbol and numeral — the floor no longer fails open",rc,out,1,["no line of paperD.txt carries both g and 9"])
+probe("D1 probe: deleting the no-symbol-line check turns that negative into PASS",SEAT,"PROBE:D1_NO_SYMBOL_LINE","validate",W/"d1_n_nosym.json",S,CANDS,token="C3_NO_SUBSTITUTION=PASS")
+manifest(S/"R3C2_CORPUS_MANIFEST.md", S, ["paperA.txt","paperB.txt"])
+probe("D1 probe: deleting the self-file check leaves only the claiming-file failure on that negative",SEAT,"PROBE:D1_SELF_FILE","validate",W/"d1_n_self.json",S,CANDS,token="citing sentence is in paperB.txt, but claim paperA.txt#1 belongs to paperA.txt",want_rc=1)
 rc,out=run(SEAT,"validate",w("d1_old_style.json",{"records":[rec(origin="CHOSEN",ev_reason_code="ORIG_CHOICE_STATED",ev_source_file="paperB.txt",ev_source_line=5,ev_verbatim="we choose a = 2",claim_id="paperB.txt#1")]}),S); check("D1 unchanged path: a non-import PRINTED record still validates at one line",rc,out,0,[],"C3_NO_SUBSTITUTION=PASS")
 # ================= D7 fixtures
 def cand(cid,f,ln,num,inc,outc=None,att=1,pv=None,rv=None):
@@ -98,6 +106,9 @@ rc,out=run(SEAT,"audit","compare",s1,ac,ax,sc,sx,sl,sel,s2,rd2,W/"n_red.json"); 
 probe("D7 probe: deleting the re-derivation seal check turns that negative into PASS",SEAT,"PROBE:C6_REDERIV_SEAL","audit","compare",s1,ac,ax,sc,sx,sl,sel,s2,rd2,W/"n_red_p.json",token="C6_AUDIT_SAMPLE=PASS")
 selx=json.loads(sel.read_text()); selx["audited_ids"]=[]; selx["sampled_ids"]=[]; selx["k"]=0; selx_p=w("sel_emptied.json",selx)
 rc,out=run(SEAT,"audit","compare",s1,ac,ax,sc,sx,sl,selx_p,s2,rd,W/"n_selx.json"); check("D7 neg: selection edited to audit nothing, candidate digest retained (codex) → recomputation fails it",rc,out,1,["C6_SELECTION: supplied k differs","C6_SELECTION: supplied sampled_ids differs","C6_SELECTION: supplied audited_ids differs"])
+selns=json.loads(sel.read_text()); selns.pop("seed_hex"); selns["audited_ids"]=[]; selns["sampled_ids"]=[]; selns["k"]=0; selns_p=w("sel_noseed.json",selns)
+rc,out=run(SEAT,"audit","compare",s1,ac,ax,sc,sx,sl,selns_p,s2,rd,W/"n_noseed.json"); check("D7 neg (codex F1 / kimi F2): selection without a seed, ids emptied, digests retained → FAIL, not skipped",rc,out,1,["C6_SELECTION: selection carries no 64-hex seed; nothing to recompute against"])
+probe("D7 probe: deleting the seed-presence check lets the seedless empty audit PASS",SEAT,"PROBE:C6_SEED_PRESENT","audit","compare",s1,ac,ax,sc,sx,sl,selns_p,s2,rd,W/"n_noseed_p.json",token="C6_AUDIT_SAMPLE=PASS")
 probe("D7 probe: deleting the recomputation lets the emptied selection PASS",SEAT,"PROBE:C6_RECOMPUTE","audit","compare",s1,ac,ax,sc,sx,sl,selx_p,s2,rd,W/"n_selx_p.json",token="C6_AUDIT_SAMPLE=PASS")
 # completeness, four asymmetries
 def full_case(tag, aud_cands, aud_x, sealed_cands, sealed_x, rdfn=rd_ok):
@@ -179,6 +190,26 @@ D7=W/"seatA_offcorpus"; shutil.copytree(D,D7); l1=json.loads((D7/"ledger_b1.json
 s7=W/"seals_off.json"; run(BATCH,"seal",W/"part.json",1,D7,CD,s7); run(BATCH,"seal",W/"part.json",2,D7,CD,s7)
 rc,out=run(BATCH,"join",W/"part.json",D7,s7,M,str(W/"joinO_")); check("batch neg: evidence cited from a non-manifest text",rc,out,1,["record t1.txt#1.a cites elsewhere.txt, not a manifest text"])
 probe("batch probe: deleting the manifest-evidence check turns that negative into PASS",BATCH,"PROBE:EVIDENCE_MANIFEST","join",W/"part.json",D7,s7,M,str(W/"joinOp_"),token="JOIN=PASS")
+D8=W/"seatA_orphan"; shutil.copytree(D,D8); l1=json.loads((D8/"ledger_b1.json").read_text()); l1["records"][0]["claim_id"]="t1.txt#77"; l1["records"][1]["claim_id"]="t1.txt#77"; (D8/"ledger_b1.json").write_text(json.dumps(l1,indent=1,sort_keys=True))
+s8=W/"seals_orphan.json"; run(BATCH,"seal",W/"part.json",1,D8,CD,s8); run(BATCH,"seal",W/"part.json",2,D8,CD,s8)
+rc,out=run(BATCH,"join",W/"part.json",D8,s8,M,str(W/"joinR_")); check("batch neg (codex F6): ledger records naming a claim that is not an included candidate",rc,out,1,["ledger record t1.txt#1.a names claim t1.txt#77, not an included candidate","ledger record t1.txt#1.r names claim t1.txt#77, not an included candidate"])
+probe("batch probe: deleting the orphan-claim check turns that negative into PASS",BATCH,"PROBE:ORPHAN_CLAIM","join",W/"part.json",D8,s8,M,str(W/"joinRp_"),token="JOIN=PASS")
+D9=W/"seatA_inputid"; shutil.copytree(D,D9); l1=json.loads((D9/"ledger_b1.json").read_text()); l1["records"][0]["input_id"]="i1"; l1["records"][1]["derived_from"]=["i1"]; (D9/"ledger_b1.json").write_text(json.dumps(l1,indent=1,sort_keys=True))
+s9=W/"seals_inputid.json"; run(BATCH,"seal",W/"part.json",1,D9,CD,s9); run(BATCH,"seal",W/"part.json",2,D9,CD,s9)
+rc,out=run(BATCH,"join",W/"part.json",D9,s9,M,str(W/"joinQ_")); check("batch neg (codex F6): an input_id not of the form <claim file>#…",rc,out,1,["input_id i1 does not begin with its claim's file followed by #"])
+probe("batch probe: deleting the input-id form check turns that negative into PASS",BATCH,"PROBE:INPUT_ID_FORM","join",W/"part.json",D9,s9,M,str(W/"joinQp_"),token="JOIN=PASS")
+sj=json.loads((W/"seals.json").read_text()); sj2=json.loads(json.dumps(sj)); sj2["seals"]["2"]["predecessor_seal_sha256"]="0"*64; w("seals_chain.json",sj2)
+rc,out=run(BATCH,"join",W/"part.json",D,W/"seals_chain.json",M,str(W/"joinC_")); check("batch neg (codex F7): batch 2's predecessor digest replaced by zeros → chain broken",rc,out,1,["batch 2: predecessor chain broken (seal does not bind batch 1's seal)"])
+probe("batch probe: deleting the chain check turns that negative into PASS",BATCH,"PROBE:SEAL_CHAIN","join",W/"part.json",D,W/"seals_chain.json",M,str(W/"joinCp_"),token="JOIN=PASS")
+sj3=json.loads(json.dumps(sj)); sj3["seals"]["1"]["owned_files"]=["t1.txt","t2.txt"]; w("seals_own.json",sj3)
+rc,out=run(BATCH,"join",W/"part.json",D,W/"seals_own.json",M,str(W/"joinW_")); check("batch neg (codex F7): sealed ownership list differs from the partition (chain of batch 2 also breaks, as it must)",rc,out,1,["batch 1: sealed ownership differs from the partition","batch 2: predecessor chain broken"])
+probe("batch probe: deleting the ownership-binding check leaves only the chain failure",BATCH,"PROBE:SEAL_OWNERSHIP","join",W/"part.json",D,W/"seals_own.json",M,str(W/"joinWp_"),token="batch 2: predecessor chain broken",want_rc=1)
+sj4=json.loads(json.dumps(sj)); sj4["seals"]["3"]=sj4["seals"]["2"]; w("seals_extra.json",sj4)
+rc,out=run(BATCH,"join",W/"part.json",D,W/"seals_extra.json",M,str(W/"joinX_")); check("batch neg (codex F7): a seal for a batch not in the partition",rc,out,1,["seals for batches not in the partition: ['3']"])
+D10=W/"seatA_collide"; shutil.copytree(D,D10); c2=json.loads((D10/"candidates_b2.json").read_text()); c2["candidates"][0]["candidate_id"]="t4.txt#1"; c2["candidates"].append(dict(c2["candidates"][0])); c2["declared_candidate_count"]=2; c2["declared_included_count"]=2; c2["declared_attempt_count"]=0; (D10/"candidates_b2.json").write_text(json.dumps(c2,indent=1,sort_keys=True))
+s10=W/"seals_collide.json"; run(BATCH,"seal",W/"part.json",1,D10,CD,s10); run(BATCH,"seal",W/"part.json",2,D10,CD,s10)
+rc,out=run(BATCH,"join",W/"part.json",D10,s10,M,str(W/"joinK_")); check("batch neg (kimi F4): a candidate_id collision",rc,out,1,["candidate_id collision across batches: t4.txt#1"])
+probe("batch probe: deleting the collision check turns that negative into PASS",BATCH,"PROBE:ID_COLLISION","join",W/"part.json",D10,s10,M,str(W/"joinKp_"),token="JOIN=PASS")
 D3=W/"seatA_tamper"; shutil.copytree(D,D3); (D3/"candidates_b1.json").write_text((D3/"candidates_b1.json").read_text()+"\n")
 rc,out=run(BATCH,"join",W/"part.json",D3,W/"seals.json",M,str(W/"joinT_")); check("batch neg: a sealed artefact changed after its seal",rc,out,1,["batch 1: candidates_b1.json differs from its seal"])
 probe("batch probe: deleting the seal check turns that negative into PASS",BATCH,"PROBE:SEAL_MISMATCH","join",W/"part.json",D3,W/"seals.json",M,str(W/"joinTp_"),token="JOIN=PASS")
@@ -195,4 +226,4 @@ D4=W/"seatA_noaccess"; shutil.copytree(D,D4); (D4/"SEAT_REPORT_b2.md").write_tex
 rc,out=run(BATCH,"coverage",W/"part.json",M,D4,CD,PK); check("batch neg: a batch report without the packet's ACCESS_SHA",rc,out,1,["batch 2: SEAT_REPORT does not print ACCESS_SHA"])
 probe("batch probe: deleting the ACCESS_SHA check turns that negative into PASS",BATCH,"PROBE:C1B_ACCESS","coverage",W/"part.json",M,D4,CD,PK,token="C1B_BATCH_COVERAGE=PASS")
 ex=H/"C6_COUNTEREXAMPLE_EXHIBIT.txt"; ex.write_text("C6 counterexample exhibit — emitted by r3c2_staged_tests.py (STAGED, UNADOPTED, repaired after two independent reviews). Each block: the synthetic input in one line, then the tool's full stdout.\n\n"+"\n\n".join(f"=== {t} ===\n{o}" for t,o in EX)); print("exhibit written:",ex)
-n_ok=sum(1 for _,o in results if o); print(f"controls={len(results)} passed={n_ok} failed={len(results)-n_ok}"); print("STAGED_TESTS="+("PASS" if n_ok==len(results) else "FAIL")); sys.exit(0 if n_ok==len(results) else 1)
+n_ok=sum(1 for _,o in results if o); print(f"deletion_probes={NPROBES}"); print(f"controls={len(results)} passed={n_ok} failed={len(results)-n_ok}"); print("STAGED_TESTS="+("PASS" if n_ok==len(results) else "FAIL")); sys.exit(0 if n_ok==len(results) else 1)

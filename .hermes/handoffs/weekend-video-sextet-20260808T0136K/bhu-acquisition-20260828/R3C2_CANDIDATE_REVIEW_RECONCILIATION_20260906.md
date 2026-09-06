@@ -71,6 +71,32 @@ Candidate revision 2 (`R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md`), batch prepara
 (`r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256`): `controls=84 passed=84 failed=0`, `STAGED_TESTS=PASS`, 29 deletion probes.
 A second independent review round is dispatched on revision 2; its verdicts are filed beside the first when they exist.
 
+## Round 2 (revision 2, digest `53fa3ab5…`; codex exited 20:49 KST access proven by the wrapper; kimi exited 21:11 KST, access line verified by hand)
+Tokens, identical from both: CANDIDATE_D1=SOUND_WITH_REPAIRS · CANDIDATE_D7=SOUND_WITH_REPAIRS · **BATCH_PREP=SOUND_WITH_REPAIRS** ·
+TOOLING_MATCHES_CLAUSE=NO · COUNTEREXAMPLE_HANDLED=YES · **IMPORTED_RULE_BREAKS_PARTITION=NO** · STAGED_TESTS=PASS.
+Both re-ran the kit (84/84), rebuilt their own counterexamples, and checked T1–T13: T1, T4, T5, T9, T10 REPAIRED by both; the rest
+PARTLY, for the residuals below. No finding rejected.
+
+| topic | residual (round 2) | found by | repair in revision 3 |
+|---|---|---|---|
+| T6 | a selection WITHOUT `seed_hex` skipped recomputation; a zero-claim audit PASSED (executed by both) | codex F1, kimi F2 | compare fails a seedless selection; control + probe |
+| T8 | an import re-filed CHOSEN under `ORIG_CHOICE_STATED` quoting the source's line bypassed every D1 check | codex F4 | for every PRINTED record the claim is bound first; a value line in another file must be IMPORTED/ORIG_CITATION; control + probe |
+| T8 | the symbol floor failed OPEN when no line carried symbol and numeral | codex F5, kimi F3 | fails when no such line exists; control + probe |
+| T8 | reconciliation described a designated-locator tie-break; the deterministic first-line rule landed undisclosed | kimi F8 | disclosed in the candidate's D1 section |
+| T2 | join never checked `input_id` form or that a ledger claim names an included candidate | codex F6 | both checked; controls + probes |
+| T11 | join did not verify the predecessor chain or the sealed ownership fields against the partition; extra seals unnoticed | codex F7 | all three verified; controls + probes |
+| T3 | result vocabulary: code emitted `MATCH_KIND_DIFFERS`, unnamed by the clause; `study_files` absent from the artefact | kimi F5, codex F2 | code emits MATCH with both kind fields; artefact states what the study files |
+| T13 | pin sheet regressed to kit-relative paths while the brief said lane-relative; probe counts wrong (27 not 29; "eight" checks = seven; id-collision check had no control) | codex A, kimi F1/F4 | lane-relative sheet; counts printed from the kit's own tally; id-collision control + probe |
+| T12 | fourteen sentence replacements (codex) and two (kimi F6/F7) — "every accepted repair is in this revision", "caught by the second seat", "as the clause states", "Batch 1, the lightest", "a census that can run … which batch 1 will be", "no seat completes", "exactly as V23 states", "must get the same bytes", "which §1 and §3 supply" | codex F.1–14, kimi F6/F7 | all applied verbatim or merged where both addressed one sentence |
+| T7 | exposure chronology is custody: the tools commit bytes, the dispatch/release record fixes WHEN; `handout` reads the sealed candidates so it runs only in custody | codex D, kimi D | stated in the candidate; run-plan additions listed (inventory + probes per dispatch, fresh auditor context, custodian-only selection, release events recorded against both commitments) — for the run plan, not the clause |
+
+Kit after revision-3 repairs: `controls=102 passed=102 failed=0`, `deletion_probes=36`, `STAGED_TESTS=PASS` (2026-09-06 21:16 KST).
+
+## Round 3 (bounded)
+Revision 3 is dispatched to both engines for a bounded verification round confined to the table above (each row REPAIRED / PARTLY /
+NOT with executed evidence) plus any NEW executable defect; it is the last review round the lane runs on this candidate unless Blanc
+or Duho orders another. Findings from it are filed beside the others; residuals after it are LISTED for Duho, not repaired.
+
 ## What stays Duho's after these repairs
 D1 (which wording; or the inherited-provenance change), D7 (stronger / weaker), the batch choice (now: ownership-partition, with the
 T1 repair), any version fingerprint, the run word. The repairs above change the CANDIDATE and the STAGED kit only.
