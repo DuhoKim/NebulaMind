@@ -51,3 +51,14 @@ Aggregate run 1 (`_tmp_v27_all_suites_aggregate_RUN1_PRESERVED.txt`) had one fai
 | track8/test_track8_fail_first.V27_3_Text | V28 + design doc revision 8 | V27 (FAILED) and V28 (OK) | as stated |
 | tracks 1/3/4, track-6 sweep, track-7 fail-first (version-agnostic) | — | V28 | OK |
 A label test passing against its own version proves nothing about the next; the V28-specific test is the only one that speaks for the V28 text.
+
+## V29 addendum (2026-09-07 02:57 KST)
+| text test | written against | run against | result |
+|---|---|---|---|
+| track5 (label) | V25 | V25 | OK (6) |
+| track6/test_track6_text_v26 | V26 | V26 | OK (1) |
+| track7/test_track7_text_v27 | V27 | V27 | OK (1) |
+| track8/test_track8_fail_first.V27_3_Text (asserts the V28 counts) + track8/test_track8_text_v28 | V28 | V28 | OK (7 + 1) |
+| track9/test_track9_text_v29 | V29 | V28 (fail-first: FAILED) and V29 (OK) | as stated |
+| track9/test_track9_fail_first.V28_3_Text | V29 + Q (revised) + T2 (revision 9) | V28 (FAILED) and V29 (OK) | as stated |
+| tracks 1/3/4, track-6 sweep, track-7 fail-first (version-agnostic) | — | V29 | OK |

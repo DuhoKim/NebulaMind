@@ -26,3 +26,10 @@ Earlier contradictions of the same kind (V20 fatal … V26-1/2) were repaired in
 | V28-1 (codex) | the text promises same-id contradictions and locally decidable mismatches are decided before any retry; driver v12's witness-commit precheck returns RETRY-EVENTS-UNAVAILABLE on UNDETERMINED delivery before composed provenance can run local_precheck, retrieval and the same-id check | OPEN — track 9 |
 | V28-2 (codex) | the same on the history-open stage: validate_continuation_v8 reclassifies v3's Boolean refusal as EVIDENCE-UNAVAILABLE without consulting the feed | OPEN — track 9 |
 Column A qualifications accepted from codex: L-INH is a default-mode implementation limit (verify_split staged, unadopted), not irreducible; L-AVAIL combines an external availability limit with stateless closure enforcement. Both restated with their mode qualifications in the next candidate. Column A never absorbs a column-C entry.
+
+## D. Section C resolved in the V29 candidate (2026-09-07 02:57 KST)
+| finding | repair (track 9, successors) | status |
+|---|---|---|
+| V28-1 | driver v13's witness precheck defers an undetermined delivery, in composed mode, to composed provenance (local_precheck → retrieval → same-id contradictions → only then the retry); codex's clause (1) in force | REPAIRED in V29 — moves to column B; the V29 reviewers test it on the complete path |
+| V28-2 | validate_continuation_v9 consults the feed before returning EVIDENCE-UNAVAILABLE / EVIDENCE-INCOMPLETE | REPAIRED in V29 — moves to column B |
+Column A re-qualified (codex V28): L-INH = a default-mode implementation limit (verify_split staged, unadopted), not irreducible; L-AVAIL = external availability + stateless closure enforcement, never covering a decidable mismatch. UNREPAIRED as of V29 staging: none known.
