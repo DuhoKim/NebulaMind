@@ -4,8 +4,9 @@ You are one of two independent seats. Work only from the files in this directory
 this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_timeout.py` (the pinned wrapper), and the source texts listed
 in `R3C2_CORPUS_MANIFEST.md`. The two system binaries the packet's C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are in scope, with the files they
 load from the system runtime locations `/usr` (not `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and the
-SymPy package at the single path C5 prints, while executing the commands the packet mandates you to run (census, validate, the C5
-harness, the wrapper); anything loaded from elsewhere is an outside path. Do not open any other path. Print the working directory and every path
+interpreter's user site-packages directory at the single path C5 prints, taken whole and pinned by the manifest digest C5 prints,
+while executing the commands the packet mandates you to run (census, validate, the C5 harness, the wrapper), each interpreter
+call with `-E`; anything loaded from elsewhere is an outside path. Do not open any other path. Print the working directory and every path
 you open.
 
 Order of work:

@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `4609d97973bb28f9740ac1d6a48f9443c33d08de3673c131ec806451a9f1ec6b` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `e5f0821c180a84e26549980382d98a603aee7f2284a236c5d08b319b23a4da14` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -239,22 +239,27 @@ is hidden by being excluded.
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
   makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
   from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
-  SymPy package at the single path C5 prints, pinned by the digest C5 prints and recorded in the dispatch record before launch —
-  while executing the commands this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness
-  commands, and the §9 wrapper invocations). A startup, configuration or import file loaded from any other location — `/usr/local`,
-  `/tmp`, the working directory's parents, the lane, or any other user-writable path — is an outside path and `FAIL`; every other
-  path outside the working directory is `FAIL`.**
+  interpreter's user site-packages directory at the single path C5 prints, taken WHOLE — every file under it, including SymPy, its
+  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the sorted
+  sha256 list of every file under that directory) and recorded in the dispatch record before launch — while executing the commands
+  this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness commands, and the §9 wrapper
+  invocations), every one of which invokes the interpreter with `-E` so that no `PYTHON*` environment variable can redirect a load.
+  A startup, configuration or import file loaded from any other location — `/usr/local`, `/tmp`, the working directory's parents,
+  the lane, or any other user-writable path — is an outside path and `FAIL`; every other path outside the working directory is
+  `FAIL`. That directory is user-writable on the host: the seat's confinement makes it read-only to the seat, and the manifest digest
+  binds its bytes at dispatch; a change by another writer between the dispatch record and C5 is what the C5 comparison detects.**
 
 `C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
-- **C5 — harness, LIVE.** Execute and print `/usr/bin/python3 --version`,
-  `/usr/bin/python3 -c "import sympy; print(sympy.__version__)"`, `/usr/bin/shasum -a 256 /usr/bin/python3`,
-  `/usr/bin/python3 -c "import sympy; print(sympy.__file__)"`, and `/usr/bin/shasum -a 256 <the path the previous command printed>` — the
-  interpreter every ledger command runs under and the one SymPy package it loads, whose path and digest the dispatch record pins
-  before launch (a host whose printed path or digest differs from the dispatch record files `C5_HARNESS_PINNED=FAIL`). **PASS requires all five commands to exit 0 and their full stdout to be printed; any
-  non-zero exit, missing output, or a transcribed value in place of live output is FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
+- **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
+  print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
+  (5) `cd <the directory (4) printed> && find . -type f | sort | xargs /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
+  every ledger command runs under, and the one user site-packages directory it loads from, whose path and manifest digest the dispatch
+  record pins before launch. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
+  (5) equal to the dispatch record's; a mismatch, a non-zero exit, missing output, or a transcribed value in place of live output is
+  FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum`, the files they load from the system runtime locations C4 lists, and the pinned SymPy package at the path C5 prints, while executing those same mandated commands, are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
+  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum`, the files they load from the system runtime locations C4 lists, and the pinned user site-packages directory at the path C5 prints, while executing those same mandated commands (each with `-E`), are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
   group** — no sampling discount — and **(ii) a sample of `min(max(1, ceil(0.20 × N)), R)` of the remaining included
