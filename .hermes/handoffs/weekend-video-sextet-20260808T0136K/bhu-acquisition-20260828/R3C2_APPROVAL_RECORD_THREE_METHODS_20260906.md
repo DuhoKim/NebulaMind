@@ -20,7 +20,17 @@ execution. The integrated candidate (`R3C2_V26_INTEGRATED_CANDIDATE_UNADOPTED_20
 C0 passed by both seats; the two-seat gate is running on it at the time of this record. The final-adoption checkpoint (bytes and
 digest of the reviewed integrated plan, presented in the codex conversation, Blanc recomputing) remains ahead.
 
-**Lane status of this approval:** RECORDED AS ATTESTED BY CODEX; treated as Duho's decision for all preparation (the lane will not ask
+**Blanc's relay (2026-09-06 22:29 KST entry):** Blanc relayed the same words and UTC at 22:28 KST ("approve all three", recorded 2026-09-06T13:12:32Z),
+with the same three approvals as the brief put them and the same three exclusions (no completed review, no signature on the
+integrated plan, no census run), and four instructions: adopt the three into the living draft (historical UNADOPTED files kept as
+they are); update state, open questions and rationale to APPROVED with his words and UTC; finish the technical review of the
+integrated plan (C0 both seats, then the gate) and bring Blanc the completed plan and its digest; then Duho decides on the run — the
+09:07 "run the census" order is CONSUMED by the run that aborted twice and lost its limb, Blanc will ask for a fresh word, and NO limb
+is dispatched. Headed relay file at the time of this entry: ./_tmp_relay_duho_three_approved.txt. The relay arrived while the two-seat gate was running on the
+integrated candidate, whose diff reference is the V25 master; adoption into the living draft is therefore written AFTER both gate
+seats are observed absent (a seat-visible file is never edited during a review).
+
+**Lane status of this approval:** RECORDED AS ATTESTED BY CODEX AND RELAYED BY BLANC (22:28 KST): APPROVED — Duho's decision (the lane will not ask
 him for these choices again). Under the lane's authority rule (rulings reach the lane through Blanc's headed relay, or stage approvals
 in the codex conversation as relayed by Blanc), the adoption entry in the master's §10 record is written when Blanc's relay of this
 approval exists; until then the candidate keeps its UNADOPTED label and every file keeps its provenance name.
