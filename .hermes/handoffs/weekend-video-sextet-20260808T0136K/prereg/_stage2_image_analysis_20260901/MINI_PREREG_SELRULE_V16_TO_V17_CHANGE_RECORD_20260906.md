@@ -1,0 +1,24 @@
+# CHANGE RECORD — option A V16 DRAFT (REFUSED) → V17 DRAFT — prospective sampling amendment, second draft — 2026-09-06 11:53 KST
+
+**Authority:** Duho, via codex voice, confirmed in chat 2026-09-06 11:08 KST; Blanc's dispatch 11:06 with the five hard constraints. **Not approved. V15 as signed remains operative — with the inherited defect below now on record, no identity will be built under it.**
+**Target:** `OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V17_20260906.md` SHA-256 `ef222a1e298f2787e9cc6f1937dc646a453b0d263ddd427cc8324353c2ca4108` (= preimage). **Diffs:** `V15_TO_V17.diff` `4ca47731ea5df4d591e1c4cefed0a35903b013d0dd80d9009649032c336c6045` (19 lines) and `V16_TO_V17.diff` `e6a32a889efa18fee280aa7340212fa144c6b4bc3293de5196da713ae0c58382` (18 lines).
+
+## V16's gate (11:28 KST) and what V17 does about each finding
+| codex V16 finding | V17 repair |
+|---|---|
+| [FATAL 1a] ACCEPT-NIST on a RAISING live re-fetch (inherited from the SIGNED V15 `beacon_record.py`) | `beacon_record_expedited.py` `dd52cbeb5e65c5cef995cd69bb92ecacbfc1e69f1a1aadde79e98576e6df133b`: a raising live fetch → RETRY (never a seed, never "NIST failed"); ACCEPT-NIST requires `nist_live_equal` when fetch is given; the fallback path's live NIST re-check raising → RETRY. Fixture `test_beacon_record_expedited.py` `c37fa6add3972a717e05db2fbe8b34df06f88d76d529f76e9ebd14e23460fae6` (Ran 14 tests in 0.033s OK ) runs codex's counterexample against BOTH modules: V15's accepts, V17's refuses. |
+| [FATAL 1b] ACCEPT-NIST before the clock check | clock check FIRST, right after the binding checks; counterexample test against both modules |
+| [C5 NOT MET / MAJOR 2] chronology asserted, not witnessed; no first-approval-final rule | `approval_witness.py` `62622c22bca7d6caa81ec562ddc8864517ebdc222bc4b37ac87a8c79f41e733c` + `build_corpus_identity_v17.py` `61e80ff6847ce07f8d35c140019fd7e30f915ed1df73315948f926afd4f2534f`: the approval record is committed once and never modified, pushed to the protected branch (pinned URL, ancestry after fetch), committer time before T_pulse (operator-set; ordering only — stated), exactly one record per version (first approval is final), and carries a drand FRESHNESS NONCE (round at/after MIN_T_SIGN and before the seed round, confirmed live by ≥ 2 pinned relays). Fixture `test_build_corpus_identity_v17.py` `18a9a3db88b6498335e6d27aadae23a4fe6a62be202f490cdf53fb5d7dd2dbe2` (Ran 7 tests in 2.554s OK ) over a real git clone with a bare origin. |
+| [MAJOR 3a] "ten minutes" overstated; no source-decision procedure | §3b LIMIT (i) and §3c: NIST evaluated live at build time; the identity is built ONCE at the first ACCEPT at/after T_pulse, sealed and witnessed; later NIST recovery does not reopen it |
+| [MAJOR 3b] §3b sentences contradicted by the counterexamples | §3b order step (4) and the outcomes sentence rewritten from the executed behaviour |
+| [MINOR] stale 24 h docstring/comment; "both refuse" test; "18 tests"; MIN_T_SIGN wording | docstring/comment rewritten (the removed lines of the pinned module are FROZEN in the fixture); V16 fixture retained as history with codex's note; "19 tests"; MIN_T_SIGN described exactly (02:20:00Z, chosen after the code at 02:12–02:14Z and before the first dispatch at 02:20:09Z) |
+Blanc's constraints C1–C5: each now MET in code and named in text (V17 §3b (1a)); C5 by witness + nonce rather than assertion.
+
+## Disclosure for Duho (from codex's V16 report, confirmed by the author)
+The signed V15's `beacon_record.py` accepts a NIST pulse when the live re-fetch raises, and before the clock check. V15's already-filed beacon read (RETRY) accepted nothing. No identity will be built under V15 as signed. V17 carries the fix; V15 is not edited.
+
+## Approval mechanics under V17 (so it is one sequence when approved)
+1. Final bytes + digest presented in the codex conversation; Duho approves; Codex attests with UTC = T_sign. 2. Blanc recomputes the digest; refuses on any difference. 3. Hwao writes `APPROVAL_RECORD_SELRULE_V17_<date>.md` (digest, T_sign, attestation verbatim, `DRAND_AT_APPROVAL: round R randomness <hex>` for the latest closed round), commits and pushes it BEFORE T_pulse = first whole minute ≥ T_sign + 600 s. 4. At/after T_pulse: `beacon_record_expedited.py collect` with that record as the statement; `verify`. 5. `build_corpus_identity_v17.py` — refuses without the witness — builds the identity ONCE; seal, commit, push, witness pointer. Step 3 of the run sequence (development pixels) still waits for Tier-C V37's approval (pipeline identity).
+
+## Timeline (KST)
+V16 refused 11:28 → expedited module V17 fixes + counterexample tests 11:33–11:36 → approval_witness + builder v17 + 7-test fixture 11:40–11:42 → V17 text 11:41 → this record 2026-09-06 11:53 KST → two-seat gate → approval → witnessed record → T_pulse → collect → identity.
