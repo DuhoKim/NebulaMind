@@ -1,0 +1,85 @@
+You are a fresh adversarial referee gating a pre-registration for a reproduction census. Judge the DESIGN only. No
+derivation has been run. You have seen no prior verdict on this document and there is none to infer; section 10 of
+the master is history and BINDS NOTHING — do not report its narrated findings as yours, do not look for gate files,
+and do not open any file other than the two named below.
+
+STEP 0 (already done by the access proof above): print ACCESS_SHA of the master.
+
+STEP 1 — PACKET FIRST, BEFORE ANYTHING ELSE. Open ONLY the seat packet:
+  r3c2_seat_packet/R3C2_SEAT_PACKET.md
+Print its sha256 as PACKET_SHA=<64 hex>. Then answer, from the packet ALONE and before you have read the master:
+  Q5. CAN YOU TELL, FROM THE PACKET ALONE, THAT ANY OUTCOME IS MORE CONSEQUENTIAL THAN ANY OTHER — to the lane, to
+      anyone? Quote the sentence that tells you, or state that no sentence does. Answer before Q3.
+  Q6. CAN YOU STATE, FROM THE PACKET ALONE, WHAT THE RECORDED `origin` OF AN INPUT IS FOR — what the study does with
+      it after you record it? Quote the sentence that tells you, or state that you cannot. Answer before Q3.
+  Q3. WHAT CAN YOU INFER ABOUT WHAT THE LANE EXPECTS OR HOPES THE CENSUS WILL SHOW? State every inference you can
+      draw about a hypothesis, a comparison model, a preferred outcome, or a "pattern" — with the packet sentence
+      that leaks it. If you can infer nothing, say so and say why the packet gives you nothing. This is the
+      hypothesis-reachability test; six leak findings preceded it. Be adversarial: try to reconstruct the stake.
+STEP 2 — then read the master in full: R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md (Version 29, the living draft; not signed). Judge the operative sections
+  (1, 2, 3, 4, 5, 6, 7, 9, 11). Section 3's core definition is SETTLED by the principal's ruling (option (c): one
+  pass, two tallies — reproduce mechanically from every input the paper states, record provenance, a script
+  computes each claim's rests_on; REPRO_AFTER_CHOICE retired). Judge it as written.
+
+JUDGE, each explicitly and in order:
+1. OUTCOME CLASSES. Exhaustive and mutually exclusive? Construct a real claim fitting two per-claim outcomes, or
+   none; a real tally fitting two study-level classes, or none. Is INCONCLUSIVE genuinely reachable?
+   Q1 (ask directly): DOES SECTION 3's DEFINITION, AS WRITTEN UNDER OPTION (c), MAKE EVERY DECLARED OUTCOME REACHABLE
+   AND KEEP THE REPRODUCTION QUESTION DECIDABLE? Those two pull against each other and four earlier rounds failed on
+   that tension. Construct the hardest case you can — a printed-but-chosen input, a fitted parameter the paper
+   states, an imported value — and trace it to exactly one outcome and one rests_on value, or show it cannot be.
+2. CONTROLS. Can any control be passed by assertion rather than a printed artefact? Does each name an exact code
+   with PASS/FAIL/NOT_RUN? Are unreached controls handled?
+   Q2 (ask directly): IS THE PROVENANCE FIELD CHECKABLE RATHER THAN ASSERTED? origin must be cited with a
+   machine-matched quotation; root_origins and rests_on are computed by script; the audit re-classifies origin from
+   the sources. TEST IT: write a ledger record whose origin is wrong but plausible, and say which mechanism catches
+   it and how. If the mechanism as written cannot catch it, that is the answer — say so.
+3. CIRCULARITY. Can the lane's expectation reach the evidence — through inclusion, exclusion, origin classification,
+   or the interpretation step? Can a contrary claim be quietly excluded?
+4. THE BLIND. Is the packet's redaction machine-asserted as claimed? Does the C4 mechanism as described actually
+   prevent what it claims to prevent, and does the document state its limit honestly?
+5. THE SEAL (section 7). Does the receipted relay bind what it claims to bind, before the step it must precede?
+6. FAIRNESS. Every negative outcome worded "unreproduced from the stated inputs", never "error"? Any class name or
+   clause that asserts more than its definition?
+7. STALL / EXECUTABILITY.
+   Q4 (ask directly): CAN ANYTHING THE DOCUMENT DESCRIBES NOT BE EXECUTED AS DELIVERED? Every literal command, every
+   named script, every file the document says exists, every field a script is said to compute, every path a seat is
+   told to use. Name each thing you checked and how. A described artefact that does not exist as delivered is a
+   finding.
+
+For every defect: QUOTE the verbatim sentence, state the defect, give an EXACT replacement. Mark COSMETIC anything
+that changes no class filed, no control's passability, no reachability, no conclusion and no tested value.
+
+REPORT — write R3C2_GATE_V29_<seat>_20260907.md beside the master AND print it as your final answer:
+  line 1: ACCESS_SHA=<64 hex of the master>
+  line 2: PACKET_SHA=<64 hex of the packet>
+  line 3: GATE=PREREG_SOUND | PREREG_SOUND_WITH_REPAIRS | PREREG_UNSOUND
+  line 4: LEAK=NONE | LEAK=<one line: what the packet alone let you infer>
+  line 5: CONSEQUENCE_VISIBLE=NO | CONSEQUENCE_VISIBLE=<one line: which outcome, from which sentence>
+  line 6: ORIGIN_PURPOSE=CANNOT_STATE | ORIGIN_PURPOSE=<one line: what it is for, from which sentence>
+  then sections 1-7 with Q1-Q4 answered where placed.
+  final line: R3C2_V29_GATE_COMPLETE
+
+
+Q7 (V29): this version carries the repairs from the two-seat gate on V28 (§10.24) — you may open R3C2_GATE_V28_codex_20260907.md and
+R3C2_GATE_V28_kimi_20260907.md AFTER the master to check each. Operative changes versus V28: `audit compare` validates and compares
+every reconstructed record in each selected claim's complete dependency closure, records assigned to claims outside audited_ids
+included, and reports an unsupported difference as MISMATCH on every selected claim that depends on it; a declared alternative — origin
+and/or parent list (derived_from_alt with PARENTS_DISPUTED) — is matched over the whole closure once, one consistent matched-branch
+graph is built and used for every dependent claim's sealed-root comparison (§3's disputed-input sentences); a STANDARD value line
+outside the claiming file is an import, not STANDARD (§2); `merge` prints every value/status/symbol/coordinate disagreement between the
+seats, reports FIELD_DISAGREEMENTS, exits 1 and writes no merged file (C3); the builder prints byte counts; the corpus manifest's
+informational line-count column states its convention (newline-delimited) and the manifest is re-pinned (§2) with the partition
+regenerated (C1) — every source digest and byte count unchanged; the delivered tools carry no staging labels; the seat tool's usage
+synopsis names the third argument. Kit: r3c2_staged_d1d7/ (pin sheet lane-relative); packet pin sheet R3C2_SEAT_PACKET.sha256 (eight
+files); the packet's line 9 names the master it was built from.
+  Answer: (a) verify both pin sheets from the working directory and that the packet's "Built from master" digest equals the ACCESS_SHA;
+  verify the corpus manifest's digest against §2 and that its 89 rows' sha256/bytes equal the files at its declared source location
+  (metadata and digest only); run the kit (last three lines); then, with your OWN fixtures: an off-sample dependency record with a
+  fabricated quotation (MISMATCH on the dependent selected claim); a parent-only declared alternative matched by the auditor (PASS); an
+  inherited alternative through another claim's record (PASS); a STANDARD value line in another file (FAIL); two seat ledgers disagreeing
+  on a value (merge exits 1, nothing written); print tokens. (b) C5_EXECUTABLE_UNDER_SCOPE=YES|NO and NO_MASKED_STAGE=YES|NO for THIS
+  text. (c) PRIOR_FINDINGS_CLOSED=YES|NO over the V28 gate's findings (codex F1–F3, C2; kimi N1–N5): each CLOSED / PARTLY / NOT with your
+  evidence. (d) Any NEW executable defect, with its counterexample. Add line 7: C5_EXECUTABLE_UNDER_SCOPE=…, line 8: NO_MASKED_STAGE=…,
+  line 9: PRIOR_FINDINGS_CLOSED=….
+  Nothing you write adopts, signs or runs anything.

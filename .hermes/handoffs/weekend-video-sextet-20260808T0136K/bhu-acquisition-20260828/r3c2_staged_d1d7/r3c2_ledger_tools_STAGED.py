@@ -37,7 +37,6 @@ ORIGIN={"CHOSEN","DERIVED","FITTED","IMPORTED","MEASURED","STANDARD","UNDECLARED
 PAIRS={"ORIG_EQUATION":"DERIVED","ORIG_CONSTANT":"STANDARD","ORIG_MEASURED":"MEASURED","ORIG_CHOICE_STATED":"CHOSEN","ORIG_FIT_STATED":"FITTED","ORIG_CITATION":"IMPORTED","ORIG_SILENT":"UNDECLARED"}
 # when more than one reason code matches the cited sentence, the first applicable in this order is filed (a sentence
 # naming an external source for the value is a citation whatever else it says):
-# external source for the value is a citation whatever else it says):
 CODE_PRECEDENCE=["ORIG_CITATION","ORIG_FIT_STATED","ORIG_CHOICE_STATED","ORIG_MEASURED","ORIG_EQUATION","ORIG_CONSTANT","ORIG_SILENT"]
 STANDARD_LIST={"G":"6.67430e-11","c":"2.99792458e8","hbar":"1.054571817e-34","k_B":"1.380649e-23","H0":"67.36","Omega_m":"0.3153","Omega_L":"0.6847","Omega_b_h2":"0.02237","Omega_c_h2":"0.1200","n_s":"0.9649","sigma8":"0.8111","tau":"0.0544","ln1e10As":"3.044","age_Gyr":"13.797"}
 FIELDS=["claim_id","input_id","symbol","status","origin","origin_evidence","derived_from","value","source_file","source_line"]
@@ -289,11 +288,15 @@ def cmd_audit_handout(sel, sc, out):
 RECON_FIELDS=("symbol","status","value","source_file","source_line","origin","origin_evidence","derived_from")
 def recon_schema_fails(RD):
     """every reconstructed input carries every C3 field (origin_search when ORIG_SILENT); returns the list of failures"""
-    out=[]
+    out=[]; seen_ids={}
     for cid,r in RD.items():
         if not isinstance(r,dict) or "outcome" not in r: out.append(f"{cid}: re-derivation lacks outcome"); continue
         for iid,ar in (r.get("inputs") or {}).items():
             if not isinstance(ar,dict): out.append(f"{cid}/{iid}: input reconstruction must be a full record, not a label"); continue
+            if iid in seen_ids: out.append(f"{cid}/{iid}: input_id already reconstructed under {seen_ids[iid]} — every input_id occurs exactly once across the reconstruction")  # PROBE:C6_DUP_INPUT
+            seen_ids[iid]=cid
+            if "input_id" in ar and str(ar["input_id"])!=str(iid): out.append(f"{cid}/{iid}: explicit input_id {ar['input_id']!r} conflicts with its key")
+            if "claim_id" in ar and str(ar["claim_id"])!=str(cid): out.append(f"{cid}/{iid}: explicit claim_id {ar['claim_id']!r} conflicts with its enclosing claim {cid}")  # PROBE:C6_CLAIM_KEY
             miss=[f for f in RECON_FIELDS if f not in ar]
             if miss: out.append(f"{cid}/{iid}: reconstruction missing {miss}")
             ev=ar.get("origin_evidence")
@@ -350,6 +353,10 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     s_by={c["candidate_id"]:c for c in SC}; l_by={}; full_by={}
     for r in SL: l_by.setdefault(r["claim_id"],{})[r["input_id"]]=r.get("origin"); full_by[r["input_id"]]=r
     for x in recon_schema_fails(RD): fails.append("C6_RECONSTRUCTION: "+x)  # PROBE:C6_RECON_COMPLETE
+    for cid0,r0 in RD.items():
+        for iid0,ar0 in (r0.get("inputs") or {}).items():
+            sr0=full_by.get(iid0)
+            if sr0 is not None and str(sr0.get("claim_id"))!=str(cid0): fails.append(f"C6_IDENTITY: {iid0} reconstructed under claim {cid0}, but the sealed record belongs to claim {sr0.get('claim_id')}")  # PROBE:C6_IDENTITY
     # the auditor's OWN graph, across every audited claim; a dependency it did not reconstruct is never borrowed from the sealed side
     a_graph={}
     for cid0,r0 in RD.items():
@@ -369,9 +376,15 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         ev_ok=all(str(aev.get(f2))==str(sev.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim"))
         ev_alt_ok=bool(sev2) and all(str(aev.get(f2))==str(sev2.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim"))
         par_ok=(a_par==s_par); par_alt_ok=(s_par_alt is not None and a_par==s_par_alt)
-        if same_origin and (ev_ok or (alt_origin and ev_alt_ok)) and par_ok: branch="primary"
-        elif same_origin and ev_ok and par_alt_ok: branch="alt"          # parent-only declared alternative (PARENTS_DISPUTED), origin unchanged
-        elif alt_origin and ev_alt_ok and (par_alt_ok or (s_par_alt is None and par_ok)): branch="alt"   # declared origin alternative with its own evidence
+        has_alt=bool(sr.get("origin_alt")) or (s_par_alt is not None)
+        # the complete alternative branch: every declared alternative field applied together; undeclared fields stay primary
+        alt_origin_full=str(sr.get("origin_alt")) if sr.get("origin_alt") else str(sr.get("origin"))
+        alt_ev_full=sev2 if sr.get("origin_alt") else sev
+        alt_par_full=s_par_alt if s_par_alt is not None else s_par
+        matches_primary=same_origin and ev_ok and par_ok
+        matches_alt=has_alt and str(ar.get("origin"))==alt_origin_full and all(str(aev.get(f2))==str(alt_ev_full.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim")) and a_par==alt_par_full
+        if matches_primary: branch="primary"
+        elif matches_alt: branch="alt"   # PROBE:C6_COMPLETE_BRANCH
         else:
             if not same_origin and not alt_origin: diffs.append(f"origin {ar.get('origin')} vs sealed {sr.get('origin')}")
             if same_origin and not ev_ok:
@@ -380,7 +393,7 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
             if alt_origin and not ev_alt_ok:
                 for f2 in ("reason_code","source_file","source_line","verbatim"):
                     if str(aev.get(f2))!=str(sev2.get(f2)): diffs.append(f"origin_evidence.{f2} {aev.get(f2)} vs sealed alternative {sev2.get(f2)}")
-            if not par_ok and not par_alt_ok: diffs.append(f"derived_from {a_par} vs sealed {s_par}"+(f" (alternative {s_par_alt})" if s_par_alt is not None else ""))  # PROBE:C6_EDGES
+            if not par_ok: diffs.append(f"derived_from {a_par} vs sealed {s_par}"+(f" (alternative {s_par_alt})" if s_par_alt is not None else ""))  # PROBE:C6_EDGES
         if aev.get("reason_code")=="ORIG_SILENT" and str(ar.get("origin_search"))!=str(sr.get("origin_search")): diffs.append("origin_search differs")
         return diffs, branch
     def closure_of(iid, graph, seen=None):
