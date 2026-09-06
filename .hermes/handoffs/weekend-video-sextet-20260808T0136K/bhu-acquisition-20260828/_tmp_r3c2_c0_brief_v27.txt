@@ -1,0 +1,51 @@
+You are producing the C0 REACHABILITY EXHIBITION for a pre-registration. You are NOT gating it and
+NOT judging its physics. Read it from disk, in full:
+  R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md
+Do not read or look for any other file in this directory.
+
+The study is a reproduction census: for every quantitative claim in a corpus of papers, does the
+paper's own printed number follow from the inputs it states?
+
+C0 requires: for EVERY per-claim outcome in section 3, and EVERY study-level class in section 4,
+EXHIBIT A CONCRETE INPUT THAT PRODUCES IT -- a specific claim with specific inputs, plus the clause
+path through the document that routes it to that verdict.
+
+Do this for:
+(A) Every per-claim outcome in section 3.
+(B) Every study-level class in section 4.
+(C) Say explicitly, for each, whether it is reachable.
+
+PAY PARTICULAR ATTENTION TO ONE SUSPICION and answer it directly: CENSUS_COMPLETE requires every
+included claim to carry an outcome from the arithmetic group. In a real corpus of many papers, is
+there any input under which CENSUS_COMPLETE can actually be filed -- or does a single blocked,
+absent-input, or no-derivation-stated claim anywhere in the corpus force CENSUS_PARTIAL, making
+CENSUS_COMPLETE unreachable in practice? State your answer as reachable or unreachable and show the
+routing.
+
+NOTE: section 3's definition was settled by a ruling (option (c): one pass, two tallies; REPRO_AFTER_CHOICE
+retired into a script-computed rests_on field). Treat the wording as it stands; there is no held clause.
+
+RULES:
+- A verdict you cannot exhibit is the important result. Mark it UNREACHABLE and quote the clause that
+  blocks every path. Do not invent a path the text does not license.
+- Do not judge whether the design is good. Only whether each declared verdict CAN OCCUR.
+
+OUTPUT:
+Line 1: ACCESS_SHA=12daf4f5aa9eb89d5411089c1d7120d153caa4f81cb3bf6549c3805bda06f62a
+Line 2: C0_REACHABILITY=PASS  (only if every outcome and class is exhibited)
+     or C0_REACHABILITY=FAIL  (if any is UNREACHABLE)
+Then a table: verdict | concrete input | clause path | reachable yes/no.
+Then, for every UNREACHABLE verdict, the blocking clause quoted verbatim.
+Final line: R3C2_C0_EXHIBITION_COMPLETE
+
+THIS VERSION (V27) is the living draft: V26 (the three method texts adopted on the principal's word) plus the repairs from the two-seat
+gate on V26 — the audit compares reconstructed input records and dependency edges and recomputes root origins; limb B in a separate
+directory under canonical names; per-session validation NOT_RUN and joined validation before limb-A agreement; the evidence check for
+every non-silent record before any status branch (an ABSENT input keeps the origin its evidence supports); compute requires the
+candidate file; the manifest refuses a symlinked root; the rests_on label DERIVED_STANDARD_OR_MEASURED_ONLY (formerly DERIVED_ONLY,
+identical membership). §3's per-claim outcomes and §4's classes are as before. Exhibit against the text as it stands, and in addition:
+CENSUS_AUDIT_FAILED through each C6 path (sealed-included absent from the auditor; auditor-listed absent from the sealed ledgers;
+dispute rate above 10%; seedless selection; zero denominator; a reconstructed dependency edge differing from the sealed ledger); a seat
+tally stopped by C1B_BATCH_COVERAGE=FAIL, JOIN=FAIL and C5C_NO_FALLBACK=FAIL with their §4 filings; a claim with rests_on NOT_COMPUTED;
+a dependent claim DISPUTED through another claim's input; a claim with rests_on DERIVED_STANDARD_OR_MEASURED_ONLY; and state whether any
+§3 outcome or §4 class is UNREACHABLE. Section 10 is history and binds nothing.

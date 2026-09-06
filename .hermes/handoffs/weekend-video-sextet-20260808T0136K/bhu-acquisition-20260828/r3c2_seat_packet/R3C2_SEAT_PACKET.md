@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `d2df83bfa9c1ba50dc6a337c79e6f2415dd834a836330d0f38c1c99edc7f31f0` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `12daf4f5aa9eb89d5411089c1d7120d153caa4f81cb3bf6549c3805bda06f62a` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
