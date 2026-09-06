@@ -102,3 +102,6 @@ Option C now says ALL required events (approval, history-open, one push event pe
 
 ## V25 COMPLETE-PACKAGE REVIEW DISPATCHED — 2026-09-07 00:32 KST
 Same authority as V23/V24. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v25_gate_msmudiql/_stage2_image_analysis_20260901` (134 MB, 4,569 files; the historical digest lists _tmp_v22/v23/v24_gate_COPIED_DIGESTS.txt and the preserved failed aggregate log INCLUDED this time); V25 digest d29aabac… verified in place; the aligned questions file (e676c865…) inside. Both seats dispatched 00:32 KST (PIDs recorded); waiter reports TIMEOUT-STILL-RUNNING on timeout. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## V25 REVIEW RESULT — 2026-09-07 00:49 KST
+Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex P1–P4: batch classification ignores before..head ancestry when payload.commits is absent (proven batch → retry); absence from a non-empty feed still called FORGED for the approval/open events; text remnants; the covenant absent from Q1. Classified in `V25_REVIEW_OUTCOME_20260907.md`; all preparation. Register 25/24/23/0. Nothing adopted; no beacon read, draw, fetch, render, pixel.
