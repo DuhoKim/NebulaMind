@@ -477,8 +477,8 @@ before audit — which is codex's order; kimi's differed only in placing the den
   on either side fails. `C6_AUDIT_SAMPLE=PASS` only if the artefact exists and is printed, both seals match, the recomputed selection
   matches, no row is an omission, the dispute rate is at or below 10%, and no audited claim or origin is `MISMATCH`. **What PASS means:**
   the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record (the seals fix
-  WHAT was committed, the dispatch record — inventoried and access-proven like the seats' — fixes WHEN, relative to release) and by
-  shared reader error; prior exposure cannot be excluded — the same floor C4 states for the seats. Its enumeration reads the corpus
+  WHAT was committed, the dispatch record — listed and access-proven like the seats' — fixes WHEN, relative to release) and by
+  shared reader error; exposure before dispatch cannot be excluded — the same floor C4 states for the seats. Its enumeration reads the corpus
   under the same reading discipline as the census seats, batch for batch if the census is batched, including the same cross-batch
   source access for re-classifying imports.
 
