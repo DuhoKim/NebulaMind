@@ -1,0 +1,48 @@
+== fourier_chirality/test_run_configurations_v16  []
+NameError: name 'load_manifest' is not defined
+NameError: name 'load_manifest' is not defined
+NameError: name 'load_manifest' is not defined
+NameError: name 'load_manifest' is not defined
+NameError: name 'load_manifest' is not defined
+NameError: name 'load_manifest' is not defined
+    with self.assertRaises(rc.DataIntegrityFail): rc.tune(m, self.tens, self.tmp / "w", wrong, self.TP)          # valid-looking 6 objects, not the prescribed ones
+NameError: name 'load_manifest' is not defined
+    mk_manifest(m, self.rows(5));                        self.assertRaises(rc.DataIntegrityFail, rc.load_manifest, m, self.tens, 6)
+AttributeError: module 'run_configurations_v16' has no attribute 'load_manifest'
+    with self.assertRaises(rc.DataIntegrityFail) as cm: rc.tune(m, self.tens, self.tmp / "sent0", ident, self.TP)                  # v5: a sentinel without a render journal is refused
+NameError: name 'load_manifest' is not defined
+NameError: name 'load_manifest' is not defined
+    s = rc.tune(m, self.tens, self.tmp / "v4ok", ident, self.TP); self.assertEqual(s["mode"], "tune")
+NameError: name 'load_manifest' is not defined
+    s = rc.tune(m, self.tens, Path(self.TP.seal_journal).parent / "p", ident, self.TP); self.assertEqual(s["identity_witness"]["remote_ref"], "origin/main")
+NameError: name 'load_manifest' is not defined
+Ran 23 tests in 75.363s
+FAILED (errors=12)
+== fourier_chirality/test_run_configurations  []
+Ran 17 tests in 11.818s
+OK
+== corpus_identity/test_history_v2  []
+Ran 4 tests in 0.003s
+OK
+== corpus_identity/test_approval_witness_v4  []
+Ran 3 tests in 4.468s
+OK
+== corpus_identity/test_build_corpus_identity_v32  []
+Ran 8 tests in 30.409s
+OK
+== corpus_identity/test_build_corpus_identity  []
+Ran 4 tests in 2.330s
+OK
+== beacon_v2/test_beacon_record_drand_v32  []
+Ran 7 tests in 11.332s
+OK
+== drand_only/test_verify_drand_v2  []
+Ran 4 tests in 2.823s
+OK
+== track2/test_track2_fail_first  []
+Ran 8 tests in 3.004s
+OK
+== track2/test_provenance_designs  []
+Ran 2 tests in 0.380s
+OK
+== DONE 05:28:44

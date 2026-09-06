@@ -508,6 +508,30 @@ def load_identity_composed(identity_path, proto):
     I["_composed"] = {"event": ctx.get("ev_outcome"), "events_provenance": prov, "history": (ctx.get("hinfo") or {}).get("why"), "remote_head": (ctx.get("hinfo") or {}).get("remote_head"), "precedence": list(P.PRECEDENCE), "stages": {k: v["state"] for k, v in stages.items()}}
     return I, ctx["d"]
 
+def load_manifest(path, tensors, n_required, required_objids=None, render_journal=None):
+    if not Path(path).is_file(): raise DataIntegrityFail(f"MANIFEST-MISSING {path}")
+    if not Path(tensors).is_dir(): raise DataIntegrityFail(f"TENSOR-DIR-MISSING {tensors}")
+    with open(path, newline="") as fh: rows = list(csv.DictReader(fh))
+    if len(rows) != n_required: raise DataIntegrityFail(f"MANIFEST-SIZE {len(rows)} != {n_required}")
+    if set(rows[0].keys()) != {"objid", "g", "tensor_sha256"}: raise DataIntegrityFail("MANIFEST-COLUMNS")
+    ids = [r["objid"] for r in rows]
+    if len(set(ids)) != len(ids): raise DataIntegrityFail("MANIFEST-DUPLICATE-OBJID")
+    if required_objids is not None and [str(x) for x in ids] != [str(x) for x in required_objids]: raise DataIntegrityFail("MANIFEST-IDENTITY-MISMATCH: ordered objids differ from the sealed corpus identity")
+    objs = []
+    for r in rows:
+        g = int(r["g"])
+        if g not in (1, -1): raise DataIntegrityFail(f"LABEL-NOT-PM1 {r['objid']}")
+        p = Path(tensors) / f"{r['objid']}.ic6"
+        if not p.exists(): raise DataIntegrityFail(f"TENSOR-MISSING {r['objid']}")
+        if sha_file(p) != r["tensor_sha256"]: raise DataIntegrityFail(f"TENSOR-SHA-MISMATCH {r['objid']}")
+        b = p.read_bytes()
+        if len(b) != 65536: raise DataIntegrityFail(f"TENSOR-SIZE {r['objid']}")
+        objs.append((r["objid"], g, np.frombuffer(b, dtype="<f4").reshape(128, 128)))
+    sentinel = sum(1 for r in rows if r["tensor_sha256"] == SENTINEL_SHA256)                             # v2: render-refused objects, present in the denominator, UNSCORED
+    reconcile_sentinels(rows, render_journal)                                                          # v5: every sentinel is a journalled refusal, and vice versa
+    return objs, {"manifest_sha256": sha_file(path), "n": len(objs), "tensor_set_sha256": hashlib.sha256("".join(sorted(r["tensor_sha256"] for r in rows)).encode()).hexdigest(), "sentinel_count": sentinel}
+
+
 def verify_split_from_catalogue(I, proto):
     """UNADOPTED (v6; inherited limitation C11 of the V15 driver): recompute the §3b split from the pinned catalogue files and the identity's seed —
     guarded pool (digest must equal proto.pool_sha256), exclusion file (proto.exclusion_sha256), the failed set = ranks 1–2000 of the unseeded order,

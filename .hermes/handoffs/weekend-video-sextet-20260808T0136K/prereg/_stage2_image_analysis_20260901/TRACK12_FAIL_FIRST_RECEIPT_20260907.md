@@ -411,3 +411,38 @@ a0043ca3ae5da19ad6ff210a3607a4d26f3daa49d61a6a0ceb182beadb37963e  V32_CANDIDATE_
 ```
 
 Closed 2026-09-07 05:35 KST. Nothing gated, adopted, signed or drawn.
+
+## CORRECTION (Blanc's order of 05:30 KST) — run 4 above was NOT a passing aggregate, and this receipt's closing was filed on a partial read
+Run 4's totals line said '232 tests in 28 suites, OK blocks 27': the driver v16 suite had 12 ERRORS (`NameError: load_manifest`) — my driver v16 edit had cut the region between the stage list and the split verifier and swallowed `load_manifest` with it (v15 line 424); the tuning and holdout modes still call it. The coordinating Codex and Blanc found it by AST diff (codex's capture of the failed run: `CODEX_V32_CODE_AGGREGATE_RUN1_OBSERVED_20260907.txt`, sha256 8ceed6129b99…). I had the NameError lines and '27 of 28' in my own output at 05:2x and filed anyway — the lapse is mine. The failed RUN1 logs are preserved unaltered (`_tmp_v32_all_suites_aggregate_RUN1*.txt`).
+REPAIR: `load_manifest` restored VERBATIM from v15 into v16 (the callers are correct for v16's design; the removal was an editing accident, not a design decision); v16's top-level definitions now equal v15's set exactly (AST). Driver v16 suite re-run to a NEW file `_tmp_v32_driver_suite_RUN2_post_repair.txt`: 23 tests, OK, zero NameError. The repaired driver's digest is 61e894567142a695861f4b46c7d7683050df6d19bdc9fc48999ca405439a9a12; the V32 text is regenerated with it (the first V32 filing, pinned to the broken driver, is kept as `_tmp_v32_text_FIRST_FILING_broken_driver_pin.md`).
+GATE: `scripts/aggregate_gate.py <log> --suites N --tests M` now stands between an aggregate and any filing — it reads the WHOLE log and fails on any non-OK block, any exception line, or a suite/test count mismatch; it FAILS on RUN1 (shown) and must PASS on RUN2 before the staging record, the commit and the dispatch.
+```
+AGGREGATE GATE: FAIL — an exception line appears in the log; fourier_chirality/test_run_configurations_v16  []: not OK
+```
+
+## Run 3 (repeat, after the driver repair changed the V32 pins) — text tests
+```
+[test_track12_text_v32 vs V31]
+Ran 1 test in 0.001s
+FAILED (failures=1)
+[test_track12_text_v32 vs V32]
+Ran 1 test in 0.001s
+OK
+[V31_Text vs V32]
+Ran 1 test in 0.000s
+OK
+```
+
+## Run 5 — the complete aggregate on the V32 candidate AFTER the driver repair (`_tmp_v32_all_suites_aggregate_RUN2.txt`, new files; RUN1 preserved): 232 tests in 28 suites, OK blocks 28, warning-strict — GATE: AGGREGATE GATE: PASS — 28 suites, 232 tests, every block OK, no exception lines
+
+## Digests (final, after the repair)
+```
+eef1a42e661ed9c91ef3416600969f1181db0b9a43751c2e6346dbe6ebc11db3  _optionA_dev/track2/provenance_designs_v12.py
+61e894567142a695861f4b46c7d7683050df6d19bdc9fc48999ca405439a9a12  _optionA_dev/fourier_chirality/run_configurations_v16.py
+5787a93e781bbd9ff81526447800db6f6dcc43c1f1aa6442ab1a8e61d14760cf  _optionA_dev/fourier_chirality/test_run_configurations_v16.py
+bed683a981b9f26f59ccbd428ace4defa5caafbfad483cb1d42bc136eadd5c95  _optionA_dev/track12/test_track12_fail_first.py
+fd1701287caa383ed46333101c90b2c78fd2e337f395517b9fa9372d96714fed  _optionA_dev/track12/test_track12_text_v32.py
+7620673b90562ccf262c84aed0838b2cc31638d2de73224125accbdb9b87aa32  OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V32_20260907.md
+9a0813f3c4bd3a2a93e1f0d02f07f04262b2866724934d74d5faedba44bb7395  scripts/aggregate_gate.py
+```
+Closed 2026-09-07 05:45 KST. Nothing gated, adopted, signed or drawn.

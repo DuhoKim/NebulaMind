@@ -1,0 +1,37 @@
+test_adoption_binding_fails_closed (test_run_configurations_v16.T) ... ok
+test_cli_entry_point_runs_under_PRODUCTION (test_run_configurations_v16.T) ... ok
+test_composed_mode_on_the_production_call_path (test_run_configurations_v16.T) ... ok
+test_environment_enforced (test_run_configurations_v16.T) ... ok
+test_environment_records_fft_and_threads (test_run_configurations_v16.T) ... ok
+test_estimator_rejects_extra_keys (test_run_configurations_v16.T) ... ok
+test_holdout_floor_overlap_and_identity (test_run_configurations_v16.T) ... ok
+test_holdout_once_prepared_not_adopted (test_run_configurations_v16.T) ... ok
+test_holdout_pass_reachable (test_run_configurations_v16.T) ... ok
+test_holdout_reconstructs_winner_and_refuses_coherent_substitution (test_run_configurations_v16.T) ... ok
+test_holdout_refuses_receipts_fabricated_against_the_journal (test_run_configurations_v16.T) ... ok
+test_holdout_strength_closed_deterministic (test_run_configurations_v16.T) ... ok
+test_identity_must_be_sealed_and_match (test_run_configurations_v16.T) ... ok
+test_manifest_size_duplicate_missing_sha_refused (test_run_configurations_v16.T) ... ok
+test_no_floor_override_on_cli (test_run_configurations_v16.T) ... usage: python3 -m unittest [-h] {tune,holdout} ...
+python3 -m unittest: error: unrecognized arguments: --floor-frac 0
+usage: python3 -m unittest tune [-h] --manifest MANIFEST --tensors TENSORS
+                                --out OUT --identity IDENTITY
+python3 -m unittest tune: error: the following arguments are required: --identity
+ok
+test_production_constants (test_run_configurations_v16.T) ... ok
+test_real_builder_output_loads_through_load_identity (test_run_configurations_v16.T) ... ok
+test_sentinel_tensor_is_counted_and_unscored (test_run_configurations_v16.T) ... /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/fourier_chirality/fourier_chirality.py:87: RuntimeWarning: invalid value encountered in cast
+  return v[np.clip(np.rint(Y).astype(np.int64), 0, N - 1), np.clip(np.rint(X).astype(np.int64), 0, N - 1)]
+ok
+test_tiebreak_levels (test_run_configurations_v16.T) ... ok
+test_unscored_counts_as_miss_and_floor_both_sides (test_run_configurations_v16.T) ... ok
+test_v4_semantic_conjunction (test_run_configurations_v16.T) ... ok
+test_witness_refuses_redirected_remote (test_run_configurations_v16.T) ... ok
+test_witness_requires_pushed_commit_containing_record (test_run_configurations_v16.T) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 116.256s
+
+OK
+{"outcome": "ACCEPT-DRAND", "seed_hex": "68547455ba7d5000cb4b0b7fcd48c1ab36b6881d55e3ef464989659833ef3834", "round": 6441924}
+validation ranks 1-2000 match the failed set as a set with equal labels: 2000
