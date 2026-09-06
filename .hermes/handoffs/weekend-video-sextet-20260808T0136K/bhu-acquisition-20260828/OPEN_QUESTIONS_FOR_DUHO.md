@@ -2524,3 +2524,6 @@ separate word.
 ## RESOLVED 2026-09-06 09:01:35 KST — V23 FROZEN by Duho's chat signature ("V23 signed: 55b466fa…3c6f", 09:00 KST via Blanc; UTC 2026-09-06T00:00:22Z). Not the rename. **Still yours:** the run word (nothing has started); "frame" or "census first".
 
 ## PENDING 2026-09-06 11:35 KST — R3C2 items outside V24's narrow scope (for a later §10 amendment, your word): (1) `DERIVED_ONLY` → `DERIVED_STANDARD_OR_MEASURED_ONLY` (both engines, every round); (2) kimi V23 F1 (sealed-file non-dispositive field rule); (3) **codex V24 D1:** an imported value whose source line says "we choose a = 2" cannot carry `ORIG_CITATION` under C3's pair rule while §2 requires `IMPORTED`/`ORIG_CITATION` — a pre-existing V23 evidence seam; the repair changes the reason-code pairing. None blocks V24, which changes only the scope clause.
+
+## 2026-09-06 21:55 KST — R3C2: three method choices, brief with Blanc
+See R3C2_DECISION_BRIEF_FOR_DUHO_20260906.md (exact clauses, consequences, fingerprints). D1: B (recommended) / A / change / defer. D7: stronger (recommended) / weaker / defer. Batching: ownership batches (recommended) / line-balanced partition / defer. Nothing adopted until his words; approval of the choices does not authorize the draft, packet, C0, gate, or run.
