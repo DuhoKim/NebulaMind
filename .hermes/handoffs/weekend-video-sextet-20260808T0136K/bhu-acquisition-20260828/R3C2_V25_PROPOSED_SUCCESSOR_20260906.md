@@ -51,6 +51,14 @@ beside the denominator; tool re-pinned with controls. Recorded as a decision to 
 > are printed** are the sealed outcomes revealed to it, and it writes `C6_AUDIT.json` with `MATCH`/`MISMATCH` per audited claim.
 > The lane prepares the blanked files with a pinned `blank` subcommand and prints their digests in the dispatch record.
 
+**UPDATED 19:3x KST after the V25 codex review (reconciled by topic, `R3C2_V25_GATE_RECONCILIATION_20260906.md`): the review's
+procedure is STRONGER than the clause above and is now the RECOMMENDED version —** the auditor first enumerates the pinned sources
+itself and records its own inclusion decisions with NO ledger in view, then receives only claim identifiers to re-derive and
+re-classify, and only after both are printed sees any sealed ledger; completeness is then a comparison of two independent
+enumerations rather than a check of the seats' list. The clause above (blanked ledgers first) is the weaker alternative. Cost: a
+third full reading of the corpus (or of the sampled batches under item 4), so it inherits the corpus-size problem and must be
+batched the same way. **Line for Duho:** accept the stronger / accept the weaker / change / defer.
+
 **What accepting it changes about what the census can conclude.** The audit's PASS becomes a genuine independent replication of
 the sampled claims, so `CENSUS_COMPLETE` and `CENSUS_PARTIAL` carry the weight the text already claims for them. Cost: the
 auditor's work is two passes and roughly doubles; one more pinned subcommand.
