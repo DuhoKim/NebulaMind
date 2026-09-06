@@ -60,9 +60,12 @@ class T(unittest.TestCase):
         with contextlib.redirect_stderr(io.StringIO()):
             with self.assertRaises(SystemExit): BD.main(["collect", "--log", str(logp)])                    # required arguments missing
         self.assertTrue(side.is_file(), "argparse failure must reach the sidecar named by --log"); self.assertEqual(json.loads(side.read_text().splitlines()[-1])["stage"], "collector-args-refusal")
-        with contextlib.redirect_stderr(io.StringIO()):
-            with self.assertRaises(SystemExit): BD.main(["collect"])                                        # no --log at all: the module-level sidecar
-        self.assertTrue(BD.ARGPARSE_SIDECAR.is_file())
+        saved = BD.ARGPARSE_SIDECAR; BD.ARGPARSE_SIDECAR = tmp / "collector_argparse_failures.jsonl"        # a TEMP sidecar: the test must not write into the lane (codex V22)
+        try:
+            with contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit): BD.main(["collect"])                                    # no --log at all: the module-level sidecar
+            self.assertTrue(BD.ARGPARSE_SIDECAR.is_file())
+        finally: BD.ARGPARSE_SIDECAR = saved
     def test_C2_driver_reproduces_W4_first_approval_is_final(self):               # codex V21 C2: a second pushed approval-record path passed load_identity
         t = TF.T("test_v4_semantic_conjunction"); t.setUp()
         try:

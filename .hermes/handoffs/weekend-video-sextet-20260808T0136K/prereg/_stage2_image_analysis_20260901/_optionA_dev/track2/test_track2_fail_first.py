@@ -1,6 +1,7 @@
 """TRACK 2 FAIL-FIRST tests (Blanc 21:02 + 21:04 KST; codex probe 21:00). Target: provenance_designs_v2 — run FIRST against a byte-copy of
-provenance_designs.py (6ff0f7dc…): the history tests reproduce codex's two counterexamples and FAIL; the event-path tests FAIL because the
-mechanisms do not exist; then against the repaired v2. Remotes are LOCAL BARE repositories with non-fast-forward receives denied (labelled: a
+provenance_designs.py (6ff0f7dc…): ALL EIGHT fail there as MISSING-INTERFACE (AttributeError — the v2 functions did not exist), which proves the
+mechanisms were missing, not that the old code behaved wrongly; the OLD behaviour (codex's two counterexamples: True/True) is established by the
+receipt's run 1b, which executes them against the old `validate_continuation`; then all eight pass against the repaired v2. Remotes are LOCAL BARE repositories with non-fast-forward receives denied (labelled: a
 stand-in for the protected GitHub branch; `git ls-remote` against a path is the same command as against https://github.com/…, minus TLS).
 Event feeds and the `gh` runner are FIXTURE-SUPPLIED (labelled)."""
 import json, unittest, tempfile, subprocess, sys, hashlib

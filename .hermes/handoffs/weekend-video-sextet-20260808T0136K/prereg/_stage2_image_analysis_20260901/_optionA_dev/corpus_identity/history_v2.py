@@ -11,7 +11,7 @@ from __future__ import annotations
 import fcntl, hashlib, json, os, time
 from pathlib import Path
 STAGES = {"genesis", "collector-collect", "collector-verify", "collector-refusal", "collector-error", "witness-pending", "witness-closed",
-          "builder-pre-parse-refusal", "builder-verdict", "builder-witness-or-adoption", "builder-error", "builder-accept", "builder-conflict"}
+          "builder-pre-parse-refusal", "builder-verdict", "builder-witness-or-adoption", "builder-error", "builder-accept", "builder-conflict", "builder-control-refusal", "builder-args-refusal"}   # + v3 stages (codex V22 D)
 def utc(): return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 def _line(entry: dict) -> bytes: return (json.dumps(entry, sort_keys=True, separators=(",", ":")) + "\n").encode()
 def _sha(b: bytes) -> str: return hashlib.sha256(b).hexdigest()
