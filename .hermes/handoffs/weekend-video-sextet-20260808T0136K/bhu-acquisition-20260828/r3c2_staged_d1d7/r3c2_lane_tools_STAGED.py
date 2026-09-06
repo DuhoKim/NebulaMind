@@ -118,7 +118,7 @@ def cmd_merge(a,b,out):
     for x in fails: print("FAIL:",x)
     print(f"PARENTS_DISPUTED={npar}"); print(f"FIELD_DISAGREEMENTS={len(fails)}")
     if fails: print("MERGE=FAIL"); return 1
-    pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); return 0
+    pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1,sort_keys=True)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); return 0  # PROBE:SPI_SORTED_BYTES (V34)
 
 
 if __name__=="__main__":
