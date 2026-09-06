@@ -4,7 +4,7 @@ Written after the V33 dispatch of 08:11:31 / 08:12:05 KST, on Blanc's note of 08
 ## 1. WHAT THE STAGED MANIFEST'S 104 ENTRIES ACTUALLY ESTABLISH
 `STAGED_EVIDENCE_MANIFEST.txt` (sha256 cab551ea0df6a52b151155d2eac335c35b98633a68830e600d4389f614f04450) has 104 entries, every one labelled VERIFIED. That single label covers TWO DIFFERENT RELATIONSHIPS, and the record must say which is which:
 
-- **103 BYTE-IDENTICAL entries.** 40 named evidence files (all V33 run logs including the preserved failed ones, the V32 aggregates, the defective runner `_tmp_v33_aggregate_all.sh`, the alias script) plus 64 RUN2 per-suite raw outputs (32 × stdout + stderr) in the verified portable copy: each file's sha256 was recomputed on the staged copy and compared with the source, and each matched exactly.
+- **103 BYTE-IDENTICAL entries = 39 named evidence files + 64 RUN2 raw outputs.** The 39 are the V33 run logs including the preserved failed ones, the V32 aggregates, the defective runner `_tmp_v33_aggregate_all.sh` and the alias script; the 64 are the RUN2 per-suite raw outputs (32 × stdout + stderr) in the verified portable copy. Each file's sha256 was recomputed on the staged copy and compared with the source, and each matched exactly. ARITHMETIC, against the manifest itself: 104 rows total = 64 rows under the RUN2 portable directory + 40 other rows, and `_tmp_v33_suites_spec.tsv` is ONE OF THOSE 40 — so the unchanged count among the named files is 40 − 1 = 39, and 39 + 64 = 103. (CORRECTED 2026-09-07 08:27 KST: this bullet first said "40 named evidence files plus 64 raw outputs", which sums to 104; the headline 103 + 1 was right and unchanged. The slip was mine, in the wording beneath the headline; the coordinating Codex caught it. No hash, no file and no relationship changed.)
 - **1 VERIFIED PATH TRANSFORMATION — the suite spec.** The staged file is NOT byte-identical to the source and its manifest line records the SOURCE hash:
 
 | | sha256 |
@@ -16,7 +16,7 @@ Written after the V33 dispatch of 08:11:31 / 08:12:05 KST, on Blanc's note of 08
 
   MECHANISM OF THE MISLABEL: the dispatch script copies the spec byte-identically in the evidence loop (line 16, where the manifest line is written) and then OVERWRITES it with the relocated version (line 44). The manifest therefore holds the pre-relocation hash under a label that elsewhere means "these bytes are identical".
 
-**THE CLAIM THIS RECORD MAKES: 103 byte-identical entries PLUS 1 verified path transformation. NOT 104 final-byte hash matches.** No raw-output discrepancy exists; every one of the 64 RUN2 outputs and all 40 logs are byte-identical. The defect is in the labelling, and a label that covers two relationships is exactly the ambiguity that hides a real difference later.
+**THE CLAIM THIS RECORD MAKES: 103 byte-identical entries PLUS 1 verified path transformation. NOT 104 final-byte hash matches.** No raw-output discrepancy exists; every one of the 64 RUN2 outputs is byte-identical, as are the other 39 named files (the 40th named file being the transformed spec itself). The defect is in the labelling, and a label that covers two relationships is exactly the ambiguity that hides a real difference later.
 
 REPAIR FOR FUTURE DISPATCHES (applied to `_tmp_v33_dispatch.sh`, a lane tool, not a reviewed input): the manifest now carries an explicit RELATIONSHIP column — `BYTE-IDENTICAL` or `TRANSFORMED <rule>` with BOTH hashes — and every relocated file is recorded after its relocation, never before.
 
