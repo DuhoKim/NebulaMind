@@ -1,0 +1,28 @@
+# V33 — STAGED EVIDENCE PROVENANCE (post-dispatch record; the reviewed snapshot is NOT touched) — 2026-09-07 08:20 KST
+Written after the V33 dispatch of 08:11:31 / 08:12:05 KST, on Blanc's note of 08:19. The staged snapshot `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v33_gate_KEOe1Zay/_stage2_image_analysis_20260901` and every file in it are the two live reviews' PINNED INPUT and are not modified by this record; this is a successor document, not an edit. Nothing here is approved, signed, frozen, adopted or run.
+
+## 1. WHAT THE STAGED MANIFEST'S 104 ENTRIES ACTUALLY ESTABLISH
+`STAGED_EVIDENCE_MANIFEST.txt` (sha256 cab551ea0df6a52b151155d2eac335c35b98633a68830e600d4389f614f04450) has 104 entries, every one labelled VERIFIED. That single label covers TWO DIFFERENT RELATIONSHIPS, and the record must say which is which:
+
+- **103 BYTE-IDENTICAL entries.** 40 named evidence files (all V33 run logs including the preserved failed ones, the V32 aggregates, the defective runner `_tmp_v33_aggregate_all.sh`, the alias script) plus 64 RUN2 per-suite raw outputs (32 × stdout + stderr) in the verified portable copy: each file's sha256 was recomputed on the staged copy and compared with the source, and each matched exactly.
+- **1 VERIFIED PATH TRANSFORMATION — the suite spec.** The staged file is NOT byte-identical to the source and its manifest line records the SOURCE hash:
+
+| | sha256 |
+|---|---|
+| source `_tmp_v33_suites_spec.tsv` (live lane; the hash the manifest records) | a513bf3f5cc50431293ad6e1b2fde1540a1579eac96c589c64c5773ff981139e |
+| staged `_tmp_v33_suites_spec.tsv` (the bytes the reviewers read) | 88449e3636171a70e69c60eefa7772eb066418747f17e873cf6a6c2eb43c8f36 |
+
+  TRANSFORMATION RULE, exactly: `staged == source.replace("<live lane path>/", "<sandbox path>/")` — every occurrence of the live lane prefix replaced by the sandbox prefix, and NO other change (`sed "s|$L/|$S/|g"`, line 44 of `_tmp_v33_dispatch.sh`). Independently verified by the coordinating Codex: exactly that substitution reproduces the staged bytes. The transformation is what Blanc's 07:49 item 3 required — the reviewers must run the STAGED texts, not the live lane — and the dispatcher additionally refuses to proceed if any live path survives (it did not) or any named text is missing.
+
+  MECHANISM OF THE MISLABEL: the dispatch script copies the spec byte-identically in the evidence loop (line 16, where the manifest line is written) and then OVERWRITES it with the relocated version (line 44). The manifest therefore holds the pre-relocation hash under a label that elsewhere means "these bytes are identical".
+
+**THE CLAIM THIS RECORD MAKES: 103 byte-identical entries PLUS 1 verified path transformation. NOT 104 final-byte hash matches.** No raw-output discrepancy exists; every one of the 64 RUN2 outputs and all 40 logs are byte-identical. The defect is in the labelling, and a label that covers two relationships is exactly the ambiguity that hides a real difference later.
+
+REPAIR FOR FUTURE DISPATCHES (applied to `_tmp_v33_dispatch.sh`, a lane tool, not a reviewed input): the manifest now carries an explicit RELATIONSHIP column — `BYTE-IDENTICAL` or `TRANSFORMED <rule>` with BOTH hashes — and every relocated file is recorded after its relocation, never before.
+
+## 2. RUNNER ATTRIBUTION FOR RUN2 — v2, not v2.1
+RUN2 (07:40:34 → `## DONE 07:55:29`) was executed by `scripts/run_suites.sh` **v2**, which recorded ABSOLUTE suite dirs — which is why its status file cannot be read by gate v3.1 and why the verified portable copy exists. **v2.1** (relative suite dirs; lane root resolved from the script's own location) is the LATER portable successor, written at ~08:05 under Blanc's 07:49 order, after RUN2 had finished. The gate that judged RUN2 was v3.1, through the portable copy.
+DRIFT, recorded and NOT retro-edited (pin-immutability): §7 of `TRACK13_FAIL_FIRST_RECEIPT_20260907.md` — a file inside the reviewed snapshot — says "RUN2 ran under `scripts/run_suites.sh` v2.1". That attribution is wrong for the reason above; the receipt stays exactly as the reviewers have it, and this correction is carried into `V33_REVIEW_OUTCOME_20260907.md` when the verdicts are filed. `TRACK13_STAGING_RECORD_20260907.md` states it correctly ("RUN2 UNDER RUNNER v2"). A chat summary of mine also said v2.1; it is corrected here and left uncorrected in history.
+
+## 3. WHAT IS UNCHANGED
+The staging repairs Blanc verified independently stand: 32 portable status rows preserving the original first five columns; all 64 output digests matching; directories resolving inside the portable run; 35 staged text paths inside the sandbox with zero live-lane paths; runner root from its own location; staged gate v3.1 PASS 32/369; portable status sha256 4008fae6ea6cddd66c8c397c5a486b91a6d04171a29e4281673a2769fe4cca4d. RUN1 remains preserved and certifies nothing. The historical regression gap (the claimed "run 2 = 16/16" with no retained log) remains OPEN.
