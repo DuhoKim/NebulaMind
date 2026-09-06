@@ -83,6 +83,22 @@ def load(p):
     return d,recs
 
 
+def graph_integrity(graph, starts):
+    """V36: every derived_from edge reachable from `starts` is checked for a missing record and for a cycle, INDEPENDENTLY of origin
+    (a cycle through a CHOSEN/FITTED/IMPORTED/MEASURED/STANDARD/UNDECLARED record is still a cycle). Traversal is sorted, so the
+    reported problems are identical in every process. Returns a sorted list of problem strings; empty = intact."""
+    problems=set(); done=set()
+    def walk(n, path):
+        if n in path: problems.add(f"cycle at {n}"); return
+        if n in done: return
+        if n not in graph: return
+        for p in sorted(graph[n].get("derived_from") or []):
+            if p not in graph: problems.add(f"missing dependency {p} of {n}"); continue
+            walk(p, path+[n])
+        done.add(n)
+    for s in sorted(starts): walk(s, [])
+    return sorted(problems)
+
 def roots(rec_by_id, rid, seen=None):
     seen=seen or set()
     if rid in seen: raise ValueError(f"cycle at {rid}")
@@ -90,7 +106,7 @@ def roots(rec_by_id, rid, seen=None):
     if r["origin"]=="DERIVED" and not r.get("derived_from"): raise ValueError(f"{rid}: DERIVED record with no derived_from (a derived input must name what it was derived from)")
     if r["origin"]!="DERIVED": return {r["origin"]}
     out=set()
-    for d in r["derived_from"]:
+    for d in sorted(r["derived_from"]):   # V36: sorted — deterministic diagnostics
         if d not in rec_by_id: raise ValueError(f"{rid}: derived_from {d} not in ledger")
         out|=roots(rec_by_id,d,seen)
     return out
@@ -225,11 +241,11 @@ def cmd_census(candidates,exclusions,final=False):
         if x.get("kind") not in KINDS: fails.append(f"exclusion {x.get('candidate_id')}: kind {x.get('kind')} not predeclared")
         if x.get("candidate_id") in xids: fails.append(f"exclusion {x.get('candidate_id')}: duplicate")
         xids.add(x.get("candidate_id"))
-    for cid,c in cids.items():
+    for cid,c in sorted(cids.items(),key=lambda kv:str(kv[0])):   # V36 canon
         if c.get("included") and cid in xids: fails.append(f"candidate {cid}: included AND excluded")
         if not c.get("included") and cid not in xids: fails.append(f"candidate {cid}: excluded with no exclusion row")
     xrows={x.get("candidate_id"): x for x in Xd.get("exclusions",[]) if isinstance(x,dict)}
-    for cid,x in xrows.items():
+    for cid,x in sorted(xrows.items(),key=lambda kv:str(kv[0])):   # V36 canon
         c=cids.get(cid)
         for f in ("source_file","source_line","numeral"):
             if f not in x: fails.append(f"exclusion {cid}: missing {f} (the excluded numeral and its line are retained in the exclusion ledger)")
@@ -289,9 +305,9 @@ RECON_FIELDS=("symbol","status","value","source_file","source_line","origin","or
 def recon_schema_fails(RD):
     """every reconstructed input carries every C3 field (origin_search when ORIG_SILENT); returns the list of failures"""
     out=[]; seen_ids={}
-    for cid,r in RD.items():
+    for cid,r in sorted(RD.items(),key=lambda kv:str(kv[0])):   # V36 canon: the auditor's file member order carries no meaning
         if not isinstance(r,dict) or "outcome" not in r: out.append(f"{cid}: re-derivation lacks outcome"); continue
-        for iid,ar in (r.get("inputs") or {}).items():
+        for iid,ar in sorted((r.get("inputs") or {}).items(),key=lambda kv:str(kv[0])):   # V36 canon
             if not isinstance(ar,dict): out.append(f"{cid}/{iid}: input reconstruction must be a full record, not a label"); continue
             if iid in seen_ids: out.append(f"{cid}/{iid}: input_id already reconstructed under {seen_ids[iid]} — every input_id occurs exactly once across the reconstruction")  # PROBE:C6_DUP_INPUT
             seen_ids[iid]=cid
@@ -354,14 +370,14 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     for r in SL: l_by.setdefault(r["claim_id"],{})[r["input_id"]]=r.get("origin"); full_by[r["input_id"]]=r
     for x in recon_schema_fails(RD): fails.append("C6_RECONSTRUCTION: "+x)  # PROBE:C6_RECON_COMPLETE
     identity_conflict={}
-    for cid0,r0 in RD.items():
-        for iid0,ar0 in (r0.get("inputs") or {}).items():
+    for cid0,r0 in sorted(RD.items(),key=lambda kv:str(kv[0])):   # V36 canon
+        for iid0,ar0 in sorted((r0.get("inputs") or {}).items(),key=lambda kv:str(kv[0])):
             sr0=full_by.get(iid0)
             if sr0 is not None and str(sr0.get("claim_id"))!=str(cid0): identity_conflict[iid0]=f"reconstructed under claim {cid0}, but the sealed record belongs to claim {sr0.get('claim_id')}"; fails.append(f"C6_IDENTITY: {iid0} {identity_conflict[iid0]}")  # PROBE:C6_IDENTITY
     # the auditor's OWN graph, across every audited claim; a dependency it did not reconstruct is never borrowed from the sealed side
     a_graph={}
-    for cid0,r0 in RD.items():
-        for iid0,ar0 in (r0.get("inputs") or {}).items():
+    for cid0,r0 in sorted(RD.items(),key=lambda kv:str(kv[0])):   # V36 canon
+        for iid0,ar0 in sorted((r0.get("inputs") or {}).items(),key=lambda kv:str(kv[0])):
             if isinstance(ar0,dict): a_graph[iid0]=dict(ar0,input_id=iid0,origin=ar0.get("origin","UNDECLARED"),derived_from=list(ar0.get("derived_from") or []))
     # ---- V29: every reconstructed record in a selected claim's complete dependency closure is compared (records of other claims included);
     #      a declared alternative — origin and/or parent list — is matched over the whole closure, once, and the sealed roots are recomputed under that graph
@@ -405,13 +421,13 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         seen=seen if seen is not None else set()
         if iid in seen or iid not in graph: return seen
         seen.add(iid)
-        for p_ in graph[iid].get("derived_from") or []: closure_of(p_, graph, seen)
+        for p_ in sorted(graph[iid].get("derived_from") or []): closure_of(p_, graph, seen)   # V36: sorted
         return seen
     # one comparison per reconstructed record over the union of the selected claims' closures
     record_cmp={}; branch_of={}
     sel_closure=set()
     for cid in S.get("audited_ids",[]):
-        for iid in (RD.get(cid,{}).get("inputs") or {}): sel_closure|=closure_of(iid, a_graph)
+        for iid in sorted(RD.get(cid,{}).get("inputs") or {}): sel_closure|=closure_of(iid, a_graph)   # V36 canon
     for iid in sorted(sel_closure):
         ar=a_graph.get(iid); sr=full_by.get(iid)
         if sr is None: record_cmp[iid]=(["unsupported by the sealed ledger"],"primary"); continue
@@ -434,21 +450,27 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         if r.get("outcome")!=s.get("outcome"): why.append(f"outcome {r.get('outcome')} vs sealed {s.get('outcome')}")
         if s.get("outcome") in ARITH and (str(r.get("printed_value"))!=str(s.get("printed_value")) or str(r.get("reproduced_value"))!=str(s.get("reproduced_value"))): why.append("printed/reproduced values differ")
         own=set(r.get("inputs") or {}); clos=set()
-        for iid in own: clos|=closure_of(iid, a_graph)
+        for iid in sorted(own): clos|=closure_of(iid, a_graph)   # V36: sorted
         for iid in sorted(clos):
             d,b=record_cmp.get(iid,(["not reconstructed"],"primary"))
             inputs_res[iid]={"result":"MATCH" if not d else "MISMATCH","why":d,"branch":b,"own_input":iid in own}
             if d: why.append(f"input {iid}: "+"; ".join(d))  # PROBE:C6_CLOSURE
-        for iid in l_by.get(cid,{}):
+        for iid in sorted(l_by.get(cid,{})):
             if iid not in own: inputs_res[iid]={"result":"MISMATCH","why":["not reconstructed by the auditor"]}; why.append(f"input {iid}: not reconstructed")
+        # V36 (codex V35 F1): GRAPH INTEGRITY — every derived_from edge of the auditor's closure and of the matched sealed closure is checked for
+        # a missing record or a cycle, independently of origin, BEFORE root classification. Stopping at a non-DERIVED origin never substitutes for it.
+        gi_a=graph_integrity(a_graph, [i for i in own if i in a_graph]); gi_s=graph_integrity(sealed_view, list(l_by.get(cid,{})))
+        for g in gi_a: why.append(f"graph integrity (auditor closure): {g}")  # PROBE:C6_GRAPH_INTEGRITY
+        for g in gi_s: why.append(f"graph integrity (matched sealed closure): {g}")
+        inputs_res["_graph_integrity"]={"auditor":gi_a,"matched_sealed":gi_s}
         try:
-            ra=set(); [ra.update(roots(a_graph,i)) for i in own if i in a_graph]
-            rs=set(); [rs.update(roots(sealed_view,i)) for i in l_by.get(cid,{})]
+            ra=set(); [ra.update(roots(a_graph,i)) for i in sorted(own) if i in a_graph]   # V36: sorted
+            rs=set(); [rs.update(roots(sealed_view,i)) for i in sorted(l_by.get(cid,{}))]
             audited_rests={"audit":sorted(ra),"sealed_under_matching_branch":sorted(rs),"alt_branch_records":sorted(k for k in clos if branch_of.get(k)=="alt")}
             if ra!=rs: why.append(f"root_origins differ: audit {sorted(ra)} vs sealed {sorted(rs)}")
             # V35: the unmatched PRIMARY view is a DIAGNOSTIC only — it is no graph a seat supplied; if its roots cannot be computed the report
             # records that fact and the verdict is unchanged (codex V34 F1). Only the MATCHED graph above decides.
-            try: audited_rests["sealed_primary"]=sorted(set().union(*[roots(full_by,i) for i in l_by.get(cid,{})]) if l_by.get(cid) else set())
+            try: audited_rests["sealed_primary"]=sorted(set().union(*[roots(full_by,i) for i in sorted(l_by.get(cid,{}))]) if l_by.get(cid) else set())
             except Exception as e: audited_rests["sealed_primary"]=None; audited_rests["sealed_primary_diagnostic_error"]=str(e)
         except ValueError as e: audited_rests={"error":str(e)}; why.append(f"dependency not reconstructed by the auditor or cyclic: {e}")  # PROBE:C6_NO_BORROW
         except Exception as e: audited_rests={"error":str(e)}; why.append(f"root recomputation failed: {e}")

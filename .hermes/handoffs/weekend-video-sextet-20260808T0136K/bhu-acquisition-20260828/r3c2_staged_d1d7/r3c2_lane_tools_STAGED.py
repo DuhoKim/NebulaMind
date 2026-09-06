@@ -80,7 +80,7 @@ def cmd_compute(ledger,out,candidates=None):
         for i,rs in enumerate(per): claims[i].setdefault(r["claim_id"],set()).update(rs)
         if disputed_reach(by, r["input_id"]): disputed_claims.add(r["claim_id"])  # PROBE:DISPUTE_PROPAGATES  (ONE resolver: every graph difference merge preserves is reachable as an alternative branch)
     out_claims={}
-    for c in claims[0]:
+    for c in sorted(claims[0],key=str):   # V36 canon
         per=[cl[c] for cl in claims]
         if c in disputed_claims:
             pair=[rests_on(per[0]),rests_on(per[-1])]   # equal classifications are retained as a pair when the claim is disputed
@@ -95,8 +95,8 @@ def cmd_compute(ledger,out,candidates=None):
         if extra: print("FAIL: ledger claims that are not included candidates:",extra); return 1
         if len(out_claims)!=len(inc): print(f"FAIL: rests_on rows {len(out_claims)} != included denominator {len(inc)}"); return 1
     result={"records":recs,"claims":out_claims}
-    pathlib.Path(out).write_text(json.dumps(result,indent=1))
-    for c,v in out_claims.items(): print(f"{c}\trests_on={v['rests_on']}\troot_origins={v['root_origins']}"+("\tDISPUTED" if v.get("DISPUTED") else ""))
+    pathlib.Path(out).write_text(json.dumps(result,indent=1,sort_keys=True))   # V36 canon: JSON member order is one more meaningless ordering
+    for c,v in sorted(out_claims.items(),key=lambda kv:str(kv[0])): print(f"{c}\trests_on={v['rests_on']}\troot_origins={v['root_origins']}"+("\tDISPUTED" if v.get("DISPUTED") else ""))
     return 0
 
 
