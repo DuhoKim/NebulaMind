@@ -54,3 +54,11 @@ UNREPAIRED as of V30 staging: none known.
 | V30-2 (codex) | verify_witness's fetch failure and the verifier import raise retries BEFORE the local sweep; list shape / disjointness / split checks run AFTER the resolver; unnormalized exceptions bypass it | OPEN — track 11 |
 | V30-3 (codex) | the history helper suppresses a higher finding (rewrite) behind a lower one (open retrieval empty); authenticate_event returns UNAVAILABLE before evaluating EXPIRED; three retrievals, evidence not shared, so retrieval order can hide an obtained contradiction | OPEN — track 11 |
 Column A unchanged (codex: the mode qualifications make them honest; none licenses V30-1/2/3 into this column).
+
+## H. Section G resolved in the V31 candidate (2026-09-07 04:30 KST)
+| finding | repair (track 11) | status |
+|---|---|---|
+| V30-1 (FATAL, the lane's own) | reproduced in executed output first; the open-event file must hold a PushEvent object; ACCEPT only when every required stage ran and contributed nothing | REPAIRED in V31 — moves to column B; the V31 reviewers test it |
+| V30-2 | the whole composed path as a staged finding collector; list checks before anything remote; witness fetch / verifier import as contributed retries after the local sweep; exceptions classified; an explicit code→class table with unknown codes flagged | REPAIRED in V31 — column B |
+| V30-3 | the history stage as a collector; one evidence snapshot; expiry before unavailability | REPAIRED in V31 — column B |
+UNREPAIRED as of V31 staging: none known.
