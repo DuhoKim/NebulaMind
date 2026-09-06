@@ -13,7 +13,7 @@ Reports: `R3C2_GATE_V26cand_codex_20260906.md` (PREREG_UNSOUND; report written 2
 | dispute not propagated across claims | F4 | — | tool + text | graph-wide propagation |
 | JOIN / C1B / C5C result contracts | F5 | F3 (cosmetic) | text | tokens and §4 filing rules stated |
 | confinement profile overclaimed | F6 | — | text (+ run plan) | paragraph states what the profile permits; two denied-read probes required before dispatch |
-| DERIVED_ONLY name | F7 | noted as the principal's pending item | **DUHO'S** | held; recommendation recorded in §10.21 |
+| DERIVED_ONLY name | F7 | noted as the principal's pending item | label-only, routine (was held for Duho in V26) | held in V26; then confirmed label-only by both V26 reviewers and implemented as routine in V27 (2026-09-06 23:45 KST) | ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 | builder arguments; candidate pin sheet; flat assembly | F8 | — | tool + text | builder takes --master/--out/--brief; packet pin sheet regenerated for V26; assembly verified at dispatch |
 | manifest skips symlinks | F9 | — | tool + text | fails closed |
 | §3 parenthetical names five kinds | — | F2 (cosmetic) | text | six |

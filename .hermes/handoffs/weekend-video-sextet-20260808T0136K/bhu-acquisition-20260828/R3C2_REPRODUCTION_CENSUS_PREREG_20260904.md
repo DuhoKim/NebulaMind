@@ -784,7 +784,7 @@ NO on one class — `REPRO_BLOCKED`'s exclusive domain was empty as written — 
 
 **The leak, first (Duho 14:31: strip consequence, not just content).** codex from the packet alone: the lane has an
 expectation; an unreproduced result is consequential; a favourable audit sample is possible. kimi from the packet
-alone: the conclusion rides on `rests_on`; `DERIVED_ONLY` is the clean pole of a graded order; the corpus is cosmology;
+alone: the conclusion rides on `rests_on`; `DERIVED_ONLY` is the clean pole of a graded order; the corpus is cosmology; ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 the lane has an expectation; a comparison exists. **Applied:** C0's "refute this lane's own expectation" → "every
 declared condition"; C6's "consequential and invisible" → "every claim in the arithmetic group"; the "favourable
 sample" rationale, the `rests_on` severity order, the "interpretation reads `rests_on`" sentence, the retired-class
@@ -949,7 +949,7 @@ names input-list disagreement (F1). **Applied from codex:** the 120-second cap h
 and exit 124 on the deadline; controls: a fast command passes, a five-second sleep under a one-second cap times out at
 1.003 s, a failing child's status is carried. **Cosmetic, adopted:** the script's usage line names `BLOCKED`; script
 re-pinned `bb5f1fc578fa79f0…` after both seats exited. **Escalated, unchanged:** the `REPRO_EXACT` rename; kimi adds that
-`DERIVED_ONLY` also covers standard- and measured-only roots — a label question, the principal's with the other.
+`DERIVED_ONLY` also covers standard- and measured-only roots — a label question, the principal's with the other. ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **V16 has NOT had its own C0 or gate. R3C2 is NOT frozen and NOT run.**
 
@@ -977,7 +977,7 @@ seat can tell provenance matters is the accepted floor, recorded in C4 with the 
 claim, `declared_attempt_count` compared by the script); the blind's claim cut to what the dispatch record supports;
 `r3c2_timeout.py` in the dispatch-copy list. kimi: the STANDARD table carries a ledger-key column and the value is the
 exact printed string, so a seat filing the table's own rows passes the delivered membership test (nine of fourteen rows
-failed under the printed symbols). **Escalated, unchanged:** `REPRO_EXACT` and `DERIVED_ONLY` names — the principal's.
+failed under the printed symbols). **Escalated, unchanged:** `REPRO_EXACT` and `DERIVED_ONLY` names — the principal's. ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **Both V16 verdicts: CONSEQUENCE_VISIBLE=NO.** The V17 gate asks a sixth question — can the seat state what the recorded
 origin is FOR? — as the test of the removable half.
@@ -1043,7 +1043,7 @@ the second is this lane's): **(1a)** the class for a surviving per-claim outcome
 kimi's V18 wording, between `CENSUS_DENOMINATOR_DISPUTED` and `CENSUS_ORIGIN_DISPUTED` in the §4 precedence; the two open-decision
 notes of V18–V20 are replaced by the class. **(rename)** `REPRO_EXACT` becomes `REPRO_WITHIN_STATED_PRECISION` in every operative
 section (§0–§9, §11) and in the seat tool's outcome set (re-pinned); §10's records keep the old name verbatim as history. Not
-authorized and therefore NOT done: the `DERIVED_ONLY` rename (Blanc's relay reads Duho's single "rename" as `REPRO_EXACT` only).
+authorized and therefore NOT done: the `DERIVED_ONLY` rename (Blanc's relay reads Duho's single "rename" as `REPRO_EXACT` only). ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **Lane repairs, mine, under Blanc's instruction to fold in what I had triaged:** codex V20 D2 (the five declared counts named in
 the print step); codex V20 D4 (the third-seat dispatcher is stated as an administrative action of the lane owner, not claimed
@@ -1094,7 +1094,7 @@ words.**
 **The correction, and nothing else.** One clause in C4 and its echo in C5b: the two system binaries C5 names, and what they load
 while executing the mandated commands, are in scope and are not "outside paths"; every other outside path still fails. The
 brief receives the same clause in its own wording (kimi V24 F1: it is the same clause, not the same sentence). No class, control code, threshold, precedence, taxonomy or rule of interpretation
-changes. The `DERIVED_ONLY` rename and kimi's V23 F1 are NOT in this version; they stay pending §10 amendments as before.
+changes. The `DERIVED_ONLY` rename and kimi's V23 F1 are NOT in this version; they stay pending §10 amendments as before. ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **Authority.** Preparation of this draft was authorised to the lane only as reversible drafting: Blanc's 11:01 KST note ("drafting and
 testing an amendment changes nothing signed"). A "Codex relay" instruction of 10:59 and a ghost line "amend C4, V24, re-gate" were
@@ -1108,10 +1108,10 @@ import file from `/tmp` or a user-writable path would have been licensed); the c
 only (`/usr`, `/System`, `/Library`, `/private/var/folders`, `/dev`) — the same prefixes the kernel sandbox profile
 `r3c2_seat_sandbox.sb` permits — and makes any other load an outside path; C5b and the brief carry the same bound. kimi F2 —
 C5's third command is now `/usr/bin/shasum -a 256 /usr/bin/python3` (path-qualified, as the clause names it). kimi F1 — this
-record's wording corrected. **Not applied, outside the narrow scope, pending for Duho with the `DERIVED_ONLY` rename and V23 F1:**
+record's wording corrected. **Not applied, outside the narrow scope, pending for Duho with the `DERIVED_ONLY` rename and V23 F1:** ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 codex D1 — an imported value whose named source's line states a *choice* ("we choose a = 2") cannot carry `ORIG_CITATION` under
 C3's pair rule while §2 requires `IMPORTED`/`ORIG_CITATION` for it; a pre-existing V23 evidence-rule seam, not a scope matter;
-a repair would change the reason-code pairing, which is a rule change he must approve. codex D3 = the `DERIVED_ONLY` label, already
+a repair would change the reason-code pairing, which is a rule change he must approve. codex D3 = the `DERIVED_ONLY` label, already ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 pending. Rebuilt and sent to a second C0 + gate.
 
 **V24 gate round 2 (12:23 KST).** C0: two seats PASS. codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`; both LEAK at or
@@ -1124,7 +1124,7 @@ printed lines that establish that pin and FAILs on a mismatch; `/usr/local` is e
 "mandated commands" is spelled out (kimi F1); C5b and the brief echo the clause. The kernel profile `r3c2_seat_sandbox.sb` permits
 exactly this set (the user-site path read-only, `/usr/local` and `/private/tmp` denied) and was exhibited: sandboxed `import sympy`
 succeeds from the working directory, the lane and `/usr/local` stay unreadable, a write into the user site is refused. **Not applied,
-pending for the principal:** codex D1 / kimi F3 (the imported-choice evidence seam; a C3 rule matter), codex D3 (`DERIVED_ONLY`).
+pending for the principal:** codex D1 / kimi F3 (the imported-choice evidence seam; a C3 rule matter), codex D3 (`DERIVED_ONLY`). ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **V24 gate round 3 (12:49 KST).** C0: two seats PASS. codex `PREREG_UNSOUND`, kimi `PREREG_SOUND_WITH_REPAIRS`; LEAK=NONE both;
 **both C5_EXECUTABLE_UNDER_SCOPE=NO, same reason:** `import sympy` also loads mpmath and SymPy's own submodules from the user site, which
@@ -1136,7 +1136,7 @@ interpreter call carries `-E` (no `PYTHON*` variable can redirect a load — cod
 directory is user-writable on the host, that the seat's confinement makes it read-only to the seat, and what the digest comparison
 can and cannot detect. Manifest on this host at 12:49 KST: path `/Users/duhokim/Library/Python/3.9/lib/python/site-packages`. **Not applied, pending for the principal:** codex D2 (C6's
 auditor reads the full candidate ledger, outcomes included, before its "without sight of earlier work" re-derivation — a V23 design
-matter outside the narrow scope; its repair reshapes C6's inputs), codex D1 / kimi F3 (imported-choice evidence seam), D4 (`DERIVED_ONLY`).
+matter outside the narrow scope; its repair reshapes C6's inputs), codex D1 / kimi F3 (imported-choice evidence seam), D4 (`DERIVED_ONLY`). ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **V24d → V24e (12:51 KST), before any seat read V24d.** The lane's own run of C5's fifth command on this host showed two things:
 the user site holds 20637 files from many unrelated packages (astroquery, scipy, setuptools, an editable-install finder …), and several
@@ -1159,7 +1159,7 @@ and under the seat sandbox) and the document now states that no mandated command
 interpreter command so the claim is true by the text; **D9** the digest described as what the script prints. **Pending for the
 principal, assembled separately with cost and urgency (`R3C2_INHERITED_ITEMS_FOR_DUHO_20260906.md`):** D1 (imported-choice evidence),
 D2 (no exclusion kind for author-specified inputs), D4 (no result code on the lane-side no-fallback control), D7 (C6 auditor sees
-outcomes before re-deriving), D8 (`DERIVED_ONLY`). Cap: one C0, one gate; a sixth NO on executability stops the lane.
+outcomes before re-deriving), D8 (`DERIVED_ONLY`). Cap: one C0, one gate; a sixth NO on executability stops the lane. ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 **V24h — closure after the V24g gate (14:05 KST).** V24g gate: codex `PREREG_UNSOUND` with **C5_EXECUTABLE_UNDER_SCOPE=YES** and
 **NO_MASKED_STAGE=YES** (its substantive items are the five inherited questions already assembled for the principal, plus D5 and D7
@@ -1171,7 +1171,7 @@ kimi F2 — the seat tool's usage text shows `-E` (tool re-pinned, controls re-r
 wrapper. Nothing else changed. Pending for the principal, unchanged: D1, D2, D4, D7, D8 (`R3C2_INHERITED_ITEMS_FOR_DUHO_20260906.md`).
 
 **V24i — consistency closure after the V24h gate (14:40 KST).** V24h gate: codex `PREREG_UNSOUND` (D1–D4 = the five inherited items,
-already assembled for the principal; D5 = the text both relied on and denied filesystem confinement; C1 cosmetic; C2 = `DERIVED_ONLY`),
+already assembled for the principal; D5 = the text both relied on and denied filesystem confinement; C1 cosmetic; C2 = `DERIVED_ONLY`), ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 kimi `PREREG_SOUND_WITH_REPAIRS` (cosmetics only); **both seats: C5_EXECUTABLE_UNDER_SCOPE=YES, NO_MASKED_STAGE=YES.** Applied: D5 —
 the V23 sentence "procedural, not enforced by the filesystem" is replaced by the truth as of V24: each seat runs inside the pinned
 kernel sandbox profile whose digest and live probes the dispatch record prints, while C4/C5b stay the seat's self-reported account;
@@ -1234,7 +1234,7 @@ control asserting its exact failure and a deletion probe (kit: 131 controls, 45 
 (codex F1); empty ledgers and `NOT_COMPUTED` (codex F2); evidence for every status (codex F3); dispute propagation across claims (codex
 F4); the JOIN/C1B/C5C result contracts (codex F5 / kimi F3); the confinement paragraph (codex F6); builder arguments and the candidate
 pin sheet (codex F8); the manifest's symlink refusal (codex F9); §3's parenthetical (kimi F2); the diff sentence (codex Q7c).
-**Not repaired, Duho's:** the name `DERIVED_ONLY` for "every root origin DERIVED, STANDARD or MEASURED" (codex F7; kimi: the principal's
+**Not repaired in V26; recorded label-only by both V26 reviewers and implemented as routine in V27 (§10.22; Blanc's order 2026-09-06 23:45 KST):** the name `DERIVED_ONLY` for "every root origin DERIVED, STANDARD or MEASURED" (codex F7; kimi: the principal's ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 pending item) — a class-name change; cost: rename the emitted token and its consumers, membership unchanged; the lane's
 recommendation: rename to `DERIVED_STANDARD_OR_MEASURED_ONLY`. Held for his word; nothing in this version depends on it.
 **Next:** C0 by two seats and the two-seat gate on THIS version; then the completed plan and its digest go to Blanc for the

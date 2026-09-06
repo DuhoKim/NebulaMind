@@ -2475,7 +2475,7 @@ Options: **(a) fold**, **(b) keep** the two classes as the design of record has 
 **Q-RUN — RULED 12:26 "run r3d"; RUN COMPLETE and FILED 2026-09-05 13:39:27 KST: DYM_NO_POSITIVE_FLOOR (see R3D_RUN_FILING_20260905.md, R3D_CHECK_SHEET_20260905.md).** Original question: R3D's design is closed (V30 FINAL). Does it **run**? Options: **(a) run now** as designed, **(b) run
 after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
 
-- 2026-09-05 19:14 KST — **Q-R3C2 settled by ruling:** "hide the comparison, keep the taxonomy" (18:52) is applied in V17; the residual "provenance matters" finding, if the gate returns it, is the accepted floor by that ruling. **Still open, his:** (a) run R3C2 or not once the gate settles; (b) the REPRO_EXACT and DERIVED_ONLY renames (both engines asked; neither blocks).
+- 2026-09-05 19:14 KST — **Q-R3C2 settled by ruling:** "hide the comparison, keep the taxonomy" (18:52) is applied in V17; the residual "provenance matters" finding, if the gate returns it, is the accepted floor by that ruling. **Still open, his:** (a) run R3C2 or not once the gate settles; (b) the REPRO_EXACT and DERIVED_ONLY renames (both engines asked; neither blocks). ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 ## YOUR CALL 2026-09-05 19:48 KST — R3C2 V18: the leak floor HELD on both seats; one class ruling and one rename are yours
 
@@ -2488,7 +2488,7 @@ after Q-R3D-1/2 are settled**, **(c) hold**. R3C2 cannot run before Q-R3C2.
    - **(b) fold it into `CENSUS_DENOMINATOR_DISPUTED`** (widen that class's definition; one fewer class, less precise);
    - **(c) file it as `CENSUS_PARTIAL`** with the split claim listed (weakest: it calls a disagreement an incompleteness).
    Until you rule, V18 cannot be frozen; C0 and the gate can still run.
-2. **`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`** (both engines, every round since V10). A rename, not a redefinition; say **"rename"** or **"keep"**. Same for `DERIVED_ONLY` → codex's earlier suggestion; say **"rename both"** if you want both.
+2. **`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`** (both engines, every round since V10). A rename, not a redefinition; say **"rename"** or **"keep"**. Same for `DERIVED_ONLY` → codex's earlier suggestion; say **"rename both"** if you want both. ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 Still yours, unchanged: whether R3C2 RUNS at all.
 
@@ -2504,18 +2504,18 @@ it did, so I stopped. Diagnosis: `R3C2_V20_STOP_DIAGNOSIS_20260905.md`.
 **What I need from you, in one message if you like:**
 1. **Split class:** "a" (add `CENSUS_OUTCOME_DISPUTED` — recommended), "b" (widen DENOMINATOR_DISPUTED), or "c" (file as
    PARTIAL); add "and zero → PARTIAL" if you want the zero-denominator clause.
-2. **Names:** "rename", "rename both", or "keep" (`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`; `DERIVED_ONLY`).
+2. **Names:** "rename", "rename both", or "keep" (`REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`; `DERIVED_ONLY`). ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 3. **Dispatcher:** "pin it" or "disclaim it" (I recommend disclaim: it is infrastructure, not a study command).
 
 Then one final V21 with those and the five small items, one C0, one gate, and the document is freezable. **Whether it runs stays
 yours.** If you would rather I apply the small items now without waiting, say "V21 now" and I will, leaving your three open.
 
-## RESOLVED 2026-09-05 22:58 KST — Duho "1a rename" (22:53 KST via Blanc): `CENSUS_OUTCOME_DISPUTED` added, `REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`. V21 written with the ruling plus my four small repairs and the zero-denominator clause (labelled as mine in §10.15). `DERIVED_ONLY` NOT renamed (not in the ruling). C0 two seats now, then the gate; after that the document is freezable. **Still yours:** whether R3C2 runs.
+## RESOLVED 2026-09-05 22:58 KST — Duho "1a rename" (22:53 KST via Blanc): `CENSUS_OUTCOME_DISPUTED` added, `REPRO_EXACT` → `REPRO_WITHIN_STATED_PRECISION`. V21 written with the ruling plus my four small repairs and the zero-denominator clause (labelled as mine in §10.15). `DERIVED_ONLY` NOT renamed (not in the ruling). C0 two seats now, then the gate; after that the document is freezable. **Still yours:** whether R3C2 runs. ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 
 ## FOR YOUR MORNING 2026-09-06 00:38 KST — R3C2 V23 is SIGNABLE; nothing is signed
 Both seats cleared V23 with the blind intact (LEAK=NONE both; kimi cannot state what origin is for). The only non-cosmetic item left is
 `DERIVED_ONLY` → `DERIVED_STANDARD_OR_MEASURED_ONLY`, which your "rename" did not cover, so it is yours. Freeze statement, digest and
-blanks: `R3C2_V23_SIGNABLE_20260906.md`. **Say the digest to freeze**, or **"rename DERIVED_ONLY too"** for a V24 first. Running stays a
+blanks: `R3C2_V23_SIGNABLE_20260906.md`. **Say the digest to freeze**, or **"rename DERIVED_ONLY too"** for a V24 first. Running stays a ⟨historical token `DERIVED_ONLY`; renamed `DERIVED_STANDARD_OR_MEASURED_ONLY` as routine on both V26 reviewers' label-only finding, 2026-09-06 23:45 KST, §10.22⟩
 separate word.
 
 ## FOR YOUR MORNING 2026-09-06 01:28 KST — the synthesis exists; one question is yours
@@ -2530,3 +2530,6 @@ See R3C2_DECISION_BRIEF_FOR_DUHO_20260906.md (exact clauses, consequences, finge
 
 ## 2026-09-06 22:28 KST — R3C2 three method choices: APPROVED — "approve all three", 2026-09-06T13:12:32Z (22:12:32 KST), attested by Codex, relayed by Blanc 22:28 KST; adoption into the living draft follows the running gate's exit
 Not to be asked again. See R3C2_APPROVAL_RECORD_THREE_METHODS_20260906.md. Remaining for him later: the final-adoption checkpoint of the reviewed integrated plan, and the run.
+
+
+## RESOLVED 2026-09-06 23:54 KST — the `DERIVED_ONLY` rename is no longer a question for Duho: both V26 gate reviewers found it label-only; implemented as routine in V27 (`DERIVED_STANDARD_OR_MEASURED_ONLY`) under Blanc's order of 23:45 KST; historical mentions above are marked.
