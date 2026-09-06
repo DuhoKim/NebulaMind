@@ -62,3 +62,12 @@ Column A unchanged (codex: the mode qualifications make them honest; none licens
 | V30-2 | the whole composed path as a staged finding collector; list checks before anything remote; witness fetch / verifier import as contributed retries after the local sweep; exceptions classified; an explicit code→class table with unknown codes flagged | REPAIRED in V31 — column B |
 | V30-3 | the history stage as a collector; one evidence snapshot; expiry before unavailability | REPAIRED in V31 — column B |
 UNREPAIRED as of V31 staging: none known.
+
+## I. Column C reopened at the V31 review (2026-09-07 05:00 KST) — section H's "none known" superseded
+| finding | the contradiction | status |
+|---|---|---|
+| V31-1 (codex) | the text promises independent stages; a failed S1 (witness fetch) leaves S2–S5 not run, so obtainable contradictions and local defects are never contributed; S0's git launch precedes its local precheck; the helper import is outside the wrapper | OPEN — track 12 |
+| V31-2 (codex) | the snapshot clause promises every obtained event evaluated; a later page's failure discards page one's obtained contradiction | OPEN — track 12 |
+| V31-3 (codex) | the collector clause promises every derivable finding; the per-entry / extension loops break at the first defect; the same-commit arm is not evaluated for an undetermined retained delivery; the standalone path returns on remote failure before the local open-event check | OPEN — track 12 |
+| V31-4 (codex) | the class table is not total (SPLIT-*), a family prefix silently classes unknown codes, malformed REMOTE evidence is classed as retained input, receipt exceptions escape the receipt policy | OPEN — track 12 |
+Column A unchanged. The FATAL (V30-1) stays REPAIRED (codex confirmed).

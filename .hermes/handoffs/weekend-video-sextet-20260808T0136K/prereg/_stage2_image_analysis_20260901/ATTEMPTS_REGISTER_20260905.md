@@ -1,4 +1,4 @@
-# ATTEMPTS REGISTER — generated 2026-09-07 04:30 KST by scripts/build_attempts_register.py from lane bytes
+# ATTEMPTS REGISTER — generated 2026-09-07 05:00 KST by scripts/build_attempts_register.py from lane bytes
 Rules: every row carries its source file; every digest is recomputed from disk at generation time; unreadable sources print UNSOURCED. This file is derived, not maintained — regenerate, do not edit.
 
 ## 1. INSTRUMENTS VALIDATED
@@ -44,9 +44,9 @@ Instruments validated: **1**. Attempts under §9B: **1**. Candidates pinned in a
 | V28 | c9e65f1bfc2bdac1… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V28_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V28_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T17:27:28Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T17:27:28Z | A verifies; B verifies | no [FATAL] item in report | none yet |
 | V29 | 4458b821e3a1249c… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V29_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V29_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T18:01:29Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T18:01:29Z | A verifies; B verifies | no [FATAL] item in report | none yet |
 | V30 | 98881c7ecba0ac3b… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V30_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V30_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T18:40:51Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T18:49:34Z | A verifies; B verifies | no [FATAL] item in report | none yet |
-| V31 | f94b45e626ec95f1… | pending | pending | — | — | GATE PENDING — no seat report filed yet | — |
+| V31 | f94b45e626ec95f1… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V31_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V31_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T19:32:49Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T19:32:49Z | A verifies; B verifies | no [FATAL] item in report | none yet |
 
-Drafts written: **31**. Gated: **29**. Refused (at least one seat NOT-SIGNABLE): **28**. Signed: **0**. Split rounds: V3, V10, V13, V14, V16, V17, V18, V19, V20, V21, V22, V23, V24, V25, V26, V27, V28, V29, V30.
+Drafts written: **31**. Gated: **30**. Refused (at least one seat NOT-SIGNABLE): **29**. Signed: **0**. Split rounds: V3, V10, V13, V14, V16, V17, V18, V19, V20, V21, V22, V23, V24, V25, V26, V27, V28, V29, V30, V31.
 
 ## 3. CONTROLS RUN
 
@@ -66,5 +66,5 @@ Drafts written: **31**. Gated: **29**. Refused (at least one seat NOT-SIGNABLE):
 
 ## 4. Counts a methods section must carry (derived above)
 - Instruments validated under a signed preregistration: 1 (CE-ResNet) — FAILED. Candidates developed but not validated: 1 family, 0 attempts.
-- Pre-commitment drafts for a replacement: 31 written, 29 gated by two blind seats on different engines, 28 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
+- Pre-commitment drafts for a replacement: 31 written, 30 gated by two blind seats on different engines, 29 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
 - Frozen-sample access, as far as the journals show: no render or inference event for any frozen-sample object exists in the render journal (0 rows) or the 62-record seal journal; at generation time, in the lane, the only tensor files outside the validation directory number 1 (the synthetic smoke tensor under _scratch/synth_smoke, if present). This is what the records show; it is not a proof that no person viewed a frozen pixel by a route the journals do not see — that limit is stated in CUSTODIAN_QUESTION_FOR_DUHO_20260905.md.
