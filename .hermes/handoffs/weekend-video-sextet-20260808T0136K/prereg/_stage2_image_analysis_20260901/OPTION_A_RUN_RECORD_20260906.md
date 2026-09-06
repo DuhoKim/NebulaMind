@@ -78,3 +78,6 @@ agy: SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V23_SEATA.md, access proven). codex:
 
 ## V23 REVIEW RESULT — 2026-09-06 22:57 KST
 Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal; re-run after the provider-filter block). Codex M1–M6: per-entry acknowledgment not proven (single-entry commits pushed together pass); collector error/restart recovery incomplete; the "cannot hide CLOSED" residual overclaimed (absence-based CLOSED erasable pre-publication); Q1 Option A cannot carry past open-event expiry; four V22-pinned files edited in place (RESTORED under `_optionA_dev/_archive_v22_pins/`, hash-verified); text remnants. Classified in `V23_REVIEW_OUTCOME_20260906.md`; all preparation, none for Duho. Register: 23 written, 22 gated, 21 refused, 0 signed. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## BLANC M5/M4 ORDER (22:58) EXECUTED — 2026-09-06 23:01 KST
+`PIN_DRIFT_RECORD_V22_M5_20260906.md` (per file: V22 pin, current digest, presence in the V22 sandbox digest list, what changed; V22 verdicts rendered on the earlier bytes — labelled as about superseded code at those paths); `PIN_IMMUTABILITY_RULE_20260906.md` adopted; Q1 corrected for M4 (A → A′ partly built / not built for the history-open event; C the only working option; Q1 not presented). M1/M2/M3/M6 → next preparation round.
