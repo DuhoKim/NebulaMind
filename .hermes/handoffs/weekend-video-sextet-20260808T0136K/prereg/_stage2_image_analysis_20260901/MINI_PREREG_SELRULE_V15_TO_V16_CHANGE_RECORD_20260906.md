@@ -29,3 +29,6 @@ The V16 file was created as an unedited copy of V15 at 11:13 KST and was byte-id
 
 ## Timeline (KST)
 V15 signed 09:04 (T_sign 00:04:07Z) → RETRY beacon read 10:56 (T_pulse 00:15Z public) → finding 11:01 → Codex-recorded voice instruction 11:05 → Blanc dispatch 11:06 → Duho's chat confirmation 11:08 → approval procedure adopted 11:11 → code + fixtures 11:12–11:14 → V16 copy 11:13 (identical, defect) → V16 edits 11:16 → this record 2026-09-06 11:17 KST → two-seat gate → approval on final bytes (T_sign') → T_pulse' = first whole minute ≥ T_sign' + 600 s → collect → identity.
+
+## Imprecision noticed by the author after dispatch (11:21 KST), not corrected in the file under review
+V16 §3b (1a) calls `MIN_T_SIGN` = 2026-09-06T02:20:00Z "the instant this amendment's code was drafted". Exactly: the expedited module was written 02:12–02:14Z; 02:20:00Z is a round instant chosen AFTER the code was written and BEFORE the seats were dispatched (02:20:09Z). The floor is therefore stricter than the wording claims, never looser. If either seat flags the wording, it is corrected in the next version with a re-gate; it is recorded here so the record does not depend on the seats catching it.
