@@ -2527,3 +2527,6 @@ separate word.
 
 ## 2026-09-06 21:55 KST — R3C2: three method choices, brief with Blanc
 See R3C2_DECISION_BRIEF_FOR_DUHO_20260906.md (exact clauses, consequences, fingerprints). D1: B (recommended) / A / change / defer. D7: stronger (recommended) / weaker / defer. Batching: ownership batches (recommended) / line-balanced partition / defer. Nothing adopted until his words; approval of the choices does not authorize the draft, packet, C0, gate, or run.
+
+## 2026-09-06 22:28 KST — R3C2 three method choices: APPROVED (attested by Codex, 22:12:32 KST, "approve all three"); Blanc's relay pending for the §10 adoption entry
+Not to be asked again. See R3C2_APPROVAL_RECORD_THREE_METHODS_20260906.md. Remaining for him later: the final-adoption checkpoint of the reviewed integrated plan, and the run.
