@@ -81,3 +81,6 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal; re-run after the provider-fi
 
 ## BLANC M5/M4 ORDER (22:58) EXECUTED — 2026-09-06 23:01 KST
 `PIN_DRIFT_RECORD_V22_M5_20260906.md` (per file: V22 pin, current digest, presence in the V22 sandbox digest list, what changed; V22 verdicts rendered on the earlier bytes — labelled as about superseded code at those paths); `PIN_IMMUTABILITY_RULE_20260906.md` adopted; Q1 corrected for M4 (A → A′ partly built / not built for the history-open event; C the only working option; Q1 not presented). M1/M2/M3/M6 → next preparation round.
+
+## TRACK 4 — codex V23 M1/M2/M3/M6 repaired (standing preparation; no review dispatched) — 2026-09-06 23:50 KST
+`TRACK4_STAGING_RECORD_20260906.md`, `TRACK4_FAIL_FIRST_RECEIPT_20260906.md` (7 fail → 7 OK; run 1b = the V23 validator accepting codex's late push), `V24_CANDIDATE_ATTACK_INSPECTION_20260906.md` (9l: v3 OK / v4 REFUSED). V24 text f3987cbe…; 107 tests OK. Blanc decides whether to dispatch the V24 review. Nothing adopted; no beacon read, draw, fetch, render, pixel.
