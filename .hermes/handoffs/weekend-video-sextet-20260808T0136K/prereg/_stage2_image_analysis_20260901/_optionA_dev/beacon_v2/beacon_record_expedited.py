@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""THE ONE VERDICT — EXPEDITED (option A V16 draft, 2026-09-06; Duho, via codex voice, confirmed in chat 2026-09-06 11:08 KST).
-IDENTICAL to beacon_record.py (V15, pinned) except: FALLBACK_AFTER_H = 0 (the drand fallback is permitted from T_pulse itself, not
-T_pulse + 24 h); MIN_T_SIGN (a T_sign earlier than this amendment's drafting is refused — signature first, seed second, visibly); and
-EXCLUDED_T_PULSE (the already-public 2026-09-06T00:15:00Z pulse — NIST 1928801 / drand round 6440756 — is INELIGIBLE by name).
+"""THE ONE VERDICT — EXPEDITED (option A V18 draft, 2026-09-06; Duho, via codex voice, confirmed in chat 2026-09-06 11:08 KST).
+Derived from beacon_record.py (V15, pinned); the removed lines are FROZEN in its fixture. Changes: FALLBACK_AFTER_H = 0 (drand permitted
+from T_pulse itself); MIN_T_SIGN and EXCLUDED_T_PULSE (order made visible; the public 2026-09-06T00:15:00Z pulse — NIST 1928801 /
+drand round 6440756 — refused by name); the CLOCK is checked before any evidence (V17); ANY exception raised by a live NIST fetch —
+HTTPError included, from any step of the collection — is RETRY, never a seed and never evidence of NIST failure (V18, codex V17);
+ACCEPT-NIST requires live equality when fetch is given (V17); the FALLBACK opens only on POSITIVE public evidence: the record holds a
+NIST pulse served for T_pulse, the live copy EQUALS it, and it fails authentication (V18) — an absent or erroring NIST is RETRY. With
+live equality required first, a separate VOID re-check is unreachable and is removed: a live authenticable pulse is either EQUAL to the
+retained one (then ACCEPT-NIST above) or DIFFERENT (then REFUSE-NIST-LIVE-DIFFERS). A sealed identity is final (rule §3c).
 ORIGINAL TEXT OF THE PINNED MODULE FOLLOWS.
 THE ONE VERDICT (rebuilt once, 2026-09-06). A beacon record holds INPUTS (T_sign, rule digest, the retained signature statement) and
 EVIDENCE BYTES (NIST pulse/leaf/chain/next; drand relay bodies) — nothing else. `verdict(record, now, roots, fetch=None)` recomputes the
@@ -85,23 +90,17 @@ def verdict(rec, now, roots, fetch=None, rule_sha256=None, statement_bytes=None)
                     lc = nist_pulse.authenticate(live, t_pulse, roots); out["checks"]["nist_live_authenticates"] = lc["accepted"]
                     if lc["accepted"]: return refuse("NIST-LIVE-DIFFERS", "NIST now serves an authenticable pulse different from the retained one")
                     return refuse("NIST-LIVE-DIFFERS", "retained NIST evidence differs from what NIST serves now")
-            except urllib.error.HTTPError as e: out["checks"]["nist_live_http"] = e.code; live_ok = False
-            except Exception as e:
+            except Exception as e:                                                                       # V18: HTTPError included (codex V17)
                 out["checks"]["nist_live_error"] = repr(e)[:120]
-                out.update(outcome="RETRY", seed_hex=None, source=None, why="live re-fetch of the NIST pulse raised; the primary's status cannot be established now — never a seed"); return out   # V17 (codex V16 FATAL 1a)
+                out.update(outcome="RETRY", seed_hex=None, source=None, why="live re-fetch of the NIST pulse raised; the primary's status cannot be established now — never a seed"); return out
         nist_ok = c["accepted"] and live_ok
     if nist_ok: out.update(outcome="ACCEPT-NIST", seed_hex=out["checks"]["nist"]["seed_hex"], source="NIST-beacon-2.0", t_pulse=fmt(t_pulse)); return out
     # primary not accepted: RETRY before the fallback time
     if now < t_pulse + timedelta(hours=FALLBACK_AFTER_H): out.update(outcome="RETRY", seed_hex=None, source=None, why="primary not authenticable/retrievable yet; fallback not permitted before T_pulse"); return out
-    # V17: from T_pulse itself, primary still not authenticable NOW — with fetch, re-check live; a live authenticable primary is binding (VOID)
-    if fetch is not None:
-        try:
-            live = nist_pulse.collect(fetch, t_pulse); lc = nist_pulse.authenticate(live, t_pulse, roots); out["checks"]["nist_live_now"] = lc["accepted"]
-            if lc["accepted"]: return refuse("DRAND-VOID-PRIMARY-AUTHENTICABLE", "NIST now serves an authenticable T_pulse pulse: the primary is binding")
-        except urllib.error.HTTPError as e: out["checks"]["nist_live_now_http"] = e.code          # an HTTP error IS a public answer (pulse absent/unauthenticable)
-        except Exception as e:
-            out["checks"]["nist_live_now_error"] = repr(e)[:120]
-            out.update(outcome="RETRY", seed_hex=None, source=None, why="live NIST re-check raised; a local failure is not a public NIST failure — never a seed"); return out   # V17 (codex V16 item 1)
+    # V18: the fallback opens ONLY on positive public evidence — the record holds a NIST pulse served for T_pulse, the live copy equals it
+    # (checked above when fetch is given), and it fails authentication. An absent, erroring or never-collected NIST is RETRY, never a seed.
+    if ev is None: out.update(outcome="RETRY", seed_hex=None, source=None, why="no NIST pulse retained for T_pulse; fallback needs a served, unauthenticable pulse — never a seed"); return out
+    if fetch is not None and not live_ok: out.update(outcome="RETRY", seed_hex=None, source=None, why="live NIST copy not confirmed equal; fallback needs public evidence — never a seed"); return out
     dev, rnd = _drand_evidence(rec); exp = drand_round.round_for(t_pulse)
     if rnd != exp or not dev: out.update(outcome="UNAVAILABLE", seed_hex=None, source=None, why=f"no fallback evidence for round {exp}"); return out
     ag = drand_round.agreement(dev, exp); out["checks"]["drand"] = ag

@@ -16,17 +16,17 @@ def V(mod, rec, now, fetch=None):
     if mod is X: EXERCISED.add(r["outcome"])
     return r
 class T(unittest.TestCase):
-    REMOVED_FROM_PINNED = ['"""THE ONE VERDICT (rebuilt once, 2026-09-06). A beacon record holds INPUTS (T_sign, rule digest, the retained signature statement) and', 'Rule: T_pulse = first whole minute >= T_sign + 600 s. NIST is binding whenever its pulse authenticates. Before T_pulse + 24 h: an', 'unauthenticated or unretrievable primary is RETRY. From T_pulse + 24 h: drand round_for(T_pulse) is used ONLY if the primary is still not', 'authenticable at the time of the verdict (recomputed, not recorded) AND >= 2 pinned hosts agree. VOID: if NIST later serves an', 'DELAY_S = 600; FALLBACK_AFTER_H = 24', '    ev = _nist_evidence(rec); nist_ok = False', '                out["checks"]["nist_live_equal"] = same', '            except urllib.error.HTTPError as e: out["checks"]["nist_live_http"] = e.code', '            except Exception as e: out["checks"]["nist_live_error"] = repr(e)[:120]', '        nist_ok = c["accepted"]', '    if now < t_pulse + timedelta(hours=FALLBACK_AFTER_H): out.update(outcome="RETRY", seed_hex=None, source=None, why="primary not authenticable/retrievable yet; fallback not permitted before T_pulse + 24 h"); return out', '    # at/after 24 h: primary still not authenticable NOW — if fetch is given, re-check live (a live authenticable primary is binding -> RETRY... i.e. ACCEPT-NIST path above would have fired if evidence were live-equal; so re-collect and authenticate)', '        except urllib.error.HTTPError as e: out["checks"]["nist_live_now_http"] = e.code', '        except Exception as e: out["checks"]["nist_live_now_error"] = repr(e)[:120]']
+    REMOVED_FROM_PINNED = ['"""THE ONE VERDICT (rebuilt once, 2026-09-06). A beacon record holds INPUTS (T_sign, rule digest, the retained signature statement) and', 'Rule: T_pulse = first whole minute >= T_sign + 600 s. NIST is binding whenever its pulse authenticates. Before T_pulse + 24 h: an', 'unauthenticated or unretrievable primary is RETRY. From T_pulse + 24 h: drand round_for(T_pulse) is used ONLY if the primary is still not', 'authenticable at the time of the verdict (recomputed, not recorded) AND >= 2 pinned hosts agree. VOID: if NIST later serves an', 'DELAY_S = 600; FALLBACK_AFTER_H = 24', '    ev = _nist_evidence(rec); nist_ok = False', '                out["checks"]["nist_live_equal"] = same', '            except urllib.error.HTTPError as e: out["checks"]["nist_live_http"] = e.code', '            except Exception as e: out["checks"]["nist_live_error"] = repr(e)[:120]', '        nist_ok = c["accepted"]', '    if now < t_pulse + timedelta(hours=FALLBACK_AFTER_H): out.update(outcome="RETRY", seed_hex=None, source=None, why="primary not authenticable/retrievable yet; fallback not permitted before T_pulse + 24 h"); return out', '    # at/after 24 h: primary still not authenticable NOW — if fetch is given, re-check live (a live authenticable primary is binding -> RETRY... i.e. ACCEPT-NIST path above would have fired if evidence were live-equal; so re-collect and authenticate)', '    if fetch is not None:', '        try:', '            live = nist_pulse.collect(fetch, t_pulse); lc = nist_pulse.authenticate(live, t_pulse, roots); out["checks"]["nist_live_now"] = lc["accepted"]', '            if lc["accepted"]: return refuse("DRAND-VOID-PRIMARY-AUTHENTICABLE", "NIST now serves an authenticable T_pulse pulse: the primary is binding")', '        except urllib.error.HTTPError as e: out["checks"]["nist_live_now_http"] = e.code', '        except Exception as e: out["checks"]["nist_live_now_error"] = repr(e)[:120]']
     def test_differs_from_pinned_only_in_disclosed_lines(self):
         """The disclosed diff, frozen: exactly these lines of the pinned module are removed, and every added line belongs to one of the
         disclosed changes (fallback constant, order-visibility refusals, clock-first RETRY, live-equality requirement, docstring)."""
         a = (HERE / "beacon_record.py").read_text().splitlines(); b = (HERE / "beacon_record_expedited.py").read_text().splitlines()
         ch = [l for l in difflib.unified_diff(a, b, n=0, lineterm="") if l[:1] in "+-" and l[:3] not in ("+++", "---")]
         self.assertEqual([l[1:] for l in ch if l[0] == "-"], self.REMOVED_FROM_PINNED)
-        allowed = ("FALLBACK_AFTER_H", "MIN_T_SIGN", "EXCLUDED_T_PULSE", "T-SIGN-PREDATES-AMENDMENT", "T-PULSE-EXCLUDED", "THE ONE VERDICT", "IDENTICAL to beacon_record.py", "ORIGINAL TEXT OF THE PINNED", "Rule (V17)", "RETRY", "live_ok", "nist_live", "never a seed", "V17", "NIST is binding", "authenticable at the time of the verdict", "from T_pulse itself", "ev = _nist_evidence(rec)", "T_pulse + 24 h); MIN_T_SIGN", "EXCLUDED_T_PULSE (the", "except Exception as e:", "except urllib.error.HTTPError as e:", "out[\"checks\"]")
+        allowed = ("FALLBACK_AFTER_H", "MIN_T_SIGN", "EXCLUDED_T_PULSE", "T-SIGN-PREDATES-AMENDMENT", "T-PULSE-EXCLUDED", "THE ONE VERDICT", "IDENTICAL to beacon_record.py", "ORIGINAL TEXT OF THE PINNED", "Rule (V17)", "RETRY", "live_ok", "nist_live", "never a seed", "V17", "NIST is binding", "authenticable at the time of the verdict", "from T_pulse itself", "ev = _nist_evidence(rec)", "T_pulse + 24 h); MIN_T_SIGN", "EXCLUDED_T_PULSE (the", "except Exception as e:", "except urllib.error.HTTPError as e:", "out[\"checks\"]", "Derived from beacon_record.py", "positive public evidence", "fallback needs", "ev is None", "A sealed", "identity is final", "live copy", "HTTPError included", "the CLOCK is checked", "ACCEPT-NIST requires", "NIST pulse served", "drand round 6440756", "MIN_T_SIGN and EXCLUDED_T_PULSE", "VOID", "retained one", "V18", "Derived from")
         for l in ch:
             if l[0] == "+": self.assertTrue(any(k in l for k in allowed), l)
-        self.assertTrue(20 <= len(ch) <= 50, len(ch))
+        self.assertTrue(20 <= len(ch) <= 70, len(ch))
     def test_pulse_time_formula_unchanged(self):
         self.assertEqual(X.pulse_time(T_SIGN), V15.pulse_time(T_SIGN)); self.assertEqual(X.fmt(TP), "2026-09-06T03:11:00Z"); self.assertEqual(X.DELAY_S, 600)
     def test_same_inputs__pinned_RETRY__expedited_ACCEPT_DRAND(self):
@@ -39,8 +39,11 @@ class T(unittest.TestCase):
     def test_nist_authenticable_is_binding_and_voids_drand(self):
         n = pki.network(TP, drand=(RND, "c" * 64)); rec = X.collect(n, X.fmt(T_SIGN), D, STMT, now=SOON)
         self.assertEqual(V(X, rec, SOON, fetch=n)["outcome"], "ACCEPT-NIST")
-        n2 = pki.network(TP, nist_404=True, drand=(RND, "c" * 64)); rec2 = X.collect(n2, X.fmt(T_SIGN), D, STMT, now=SOON)   # NIST absent at collection
-        self.assertEqual(V(X, rec2, SOON, fetch=pki.network(TP, drand=(RND, "c" * 64)))["outcome"], "REFUSE-DRAND-VOID-PRIMARY-AUTHENTICABLE")  # authenticable at build time → binding
+        n2 = pki.network(TP, sign=False, drand=(RND, "c" * 64)); rec2 = X.collect(n2, X.fmt(T_SIGN), D, STMT, now=SOON)   # served, unauthenticable at collection
+        r2 = V(X, rec2, SOON, fetch=pki.network(TP, drand=(RND, "c" * 64)))                                                  # live now differs (signed) and authenticates
+        self.assertEqual(r2["outcome"], "REFUSE-NIST-LIVE-DIFFERS")
+        n4 = pki.network(TP, nist_404=True, drand=(RND, "c" * 64)); rec4 = X.collect(n4, X.fmt(T_SIGN), D, STMT, now=SOON)   # NIST ABSENT at collection: V18 → RETRY, never drand
+        self.assertEqual(V(X, rec4, SOON, fetch=n4)["outcome"], "RETRY"); self.assertEqual(V(X, rec4, SOON)["outcome"], "RETRY")
         n3 = pki.network(TP, sign=False, drand=(RND, "c" * 64)); rec3 = X.collect(n3, X.fmt(T_SIGN), D, STMT, now=SOON)          # NIST retained unsigned, live signed
         self.assertEqual(V(X, rec3, SOON, fetch=pki.network(TP, drand=(RND, "c" * 64)))["outcome"], "REFUSE-NIST-LIVE-DIFFERS")
     def test_unavailable_when_relays_disagree_or_too_few(self):
@@ -87,6 +90,19 @@ class T(unittest.TestCase):
             with self.assertRaises(SystemExit) as cm: X.collect(pki.network(tp, sign=False, drand=(drand_round.round_for(tp), "c" * 64)), ts, D, f"x {D} {ts}".encode(), now=tp + timedelta(minutes=1))
             self.assertIn("T-PULSE-EXCLUDED", str(cm.exception))
         finally: X.MIN_T_SIGN = old
+    def test_v18_http_error_is_retry_and_absent_nist_never_seeds(self):
+        n = pki.network(TP, sign=False, drand=(RND, "c" * 64)); rec = X.collect(n, X.fmt(T_SIGN), D, STMT, now=SOON)          # served, unauthenticable, relays agree
+        import urllib.error
+        def http500(url, timeout=30):
+            if "nist" in url or "beacon" in url: raise urllib.error.HTTPError(url, 500, "boom", None, None)
+            return n(url, timeout)
+        def http404(url, timeout=30):
+            if "nist" in url or "beacon" in url: raise urllib.error.HTTPError(url, 404, "gone", None, None)
+            return n(url, timeout)
+        for f in (http500, http404):
+            r = V(X, rec, SOON, fetch=f); self.assertEqual(r["outcome"], "RETRY", f.__name__); self.assertIsNone(r["seed_hex"])
+        self.assertEqual(V(X, rec, SOON, fetch=n)["outcome"], "ACCEPT-DRAND")                                               # the positive-evidence path still works
+        self.assertEqual(V15.verdict(rec, SOON + timedelta(hours=25), pki.roots(), fetch=http404, rule_sha256=D, statement_bytes=STMT)["outcome"], "ACCEPT-DRAND")   # V15/V17 behaviour on record
     def test_record_holds_bytes_only(self):
         n = pki.network(TP, sign=False, drand=(RND, "c" * 64)); rec = X.collect(n, X.fmt(T_SIGN), D, STMT, now=SOON); flat = json.dumps(rec)
         for banned in ("accepted", "verified", "outcome", "seed_hex", "anchored", "true", "false"): self.assertNotIn(f'"{banned}"', flat)
