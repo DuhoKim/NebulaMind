@@ -88,3 +88,12 @@ A label test passing against its own version proves nothing about the next; the 
 | track11/test_track11_text_v31 | V31 | V30 (fail-first: FAILED) and V31 (OK) | as stated |
 | track11 fail-first V30_4_Text (current-text scope) | V31 | V30 (FAILED) and V31 (OK) | as stated |
 | tracks 1/3/4, track-6 sweep, track-7 fail-first, track-9 fail-first (version-agnostic / holds) | — | V31 | OK |
+
+## V32 addendum (2026-09-07 05:35 KST)
+| text test | written against | run against | result |
+|---|---|---|---|
+| tracks 5/6/7/8/9/10/11 version-specific text tests | V25/V26/V27/V28/V29/V30/V31 | their own versions | OK |
+| track11 fail-first (its V30-4 case) | V31 | V31 | OK (5) |
+| track12/test_track12_text_v32 | V32 | V31 (fail-first: FAILED) and V32 (OK) | as stated |
+| track12 fail-first V31_Text | V32 | V31 (FAILED) and V32 (OK) | as stated |
+| tracks 1/3/4, track-6 sweep, track-7 and track-9 fail-first (version-agnostic / hold) | — | V32 | OK |

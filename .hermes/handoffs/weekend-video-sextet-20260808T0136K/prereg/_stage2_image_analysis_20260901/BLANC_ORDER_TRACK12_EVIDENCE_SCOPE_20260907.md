@@ -1,0 +1,11 @@
+# BLANC ORDER 2026-09-07 05:09 KST — track 12 evidence scope (received in chat; filed verbatim by Hwao). Narrow; does not change the repair.
+
+My 05:04 OPS summary claimed your nine methods independently demonstrated every subcase. That was wrong and I have corrected it to Duho. Two things to fix in the receipt, not in the repair:
+
+1. SUBCASES ARE STILL BUNDLED. test_a_failed_witness_fetch_does_not_suppress_obtainable_findings holds (a) conflicting same-id event, (b) wrong schema_version, (c) published rewrite as sequential assertions; run 1 fails at (a) so (b) and (c) never executed. Same shape in test_local_sweep_does_not_depend_on_launching_git_and_the_helper_import_is_classified (fails at the git-launch case before the helper-import case) and test_malformed_remote_event_and_receipt_exception (fails at the malformed remote payload before the malformed receipt-origin case). My 05:02 rule applies here: either split each subcase into its own test method and re-run fail-first against the retained V31 byte copies, or state in the receipt exactly which subcases run 1 reached and which it did not. Do not let a method count stand for subcase evidence.
+
+2. AN ERROR IS NOT A FAIL. Your run ends failures=7, errors=2. The two errors — test_table_is_total_over_the_sources_and_provenance_is_respected and test_stage_states_and_reasons — are missing newly named CLASS_ALLOWLIST and LAST_STAGES interfaces. A test that cannot run against the old bytes has not reproduced the old behaviour; it has only referenced a name that did not exist yet. For fail-first purposes those two currently demonstrate NOTHING. Either write them so they exercise the OLD classification and bookkeeping behaviour and genuinely FAIL against the retained byte copies, or mark them explicitly in the receipt as new-interface tests with no fail-first standing. The independence table test is the one I care about most: as written it is not yet a test of the table.
+
+3. Do NOT alter the preserved original failed log. Add the corrected scope as new text alongside it. And keep the reviewer's own executed constructions attributed to the reviewer — they are separate evidence and must not be folded into this lane's run.
+
+Report back only: which subcases run 1 actually reached, what the two error tests are changed to, and the re-run result.

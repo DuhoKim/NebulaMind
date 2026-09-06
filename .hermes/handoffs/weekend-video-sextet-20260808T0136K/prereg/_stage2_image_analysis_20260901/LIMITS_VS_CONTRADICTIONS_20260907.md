@@ -71,3 +71,9 @@ UNREPAIRED as of V31 staging: none known.
 | V31-3 (codex) | the collector clause promises every derivable finding; the per-entry / extension loops break at the first defect; the same-commit arm is not evaluated for an undetermined retained delivery; the standalone path returns on remote failure before the local open-event check | OPEN — track 12 |
 | V31-4 (codex) | the class table is not total (SPLIT-*), a family prefix silently classes unknown codes, malformed REMOTE evidence is classed as retained input, receipt exceptions escape the receipt policy | OPEN — track 12 |
 Column A unchanged. The FATAL (V30-1) stays REPAIRED (codex confirmed).
+
+## J. Section I resolved in the V32 candidate — under ONE property, NSD (2026-09-07 05:35 KST; Blanc 05:02)
+| finding | repair (track 12) | status |
+|---|---|---|
+| V31-1, V31-2, V31-3, V31-4 | the contribution half of NSD: independent stages on the locally readable context, page-keeping snapshot, no-stop loops and both arms before availability, allowlist classification by provenance; controls derived from the INDEPENDENCE table (66 pairs) | REPAIRED in V32 — column B; the V32 reviewers test it |
+UNREPAIRED as of V32 staging: none known.
