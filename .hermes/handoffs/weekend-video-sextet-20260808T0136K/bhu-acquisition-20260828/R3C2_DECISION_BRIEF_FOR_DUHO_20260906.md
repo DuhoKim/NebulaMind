@@ -129,9 +129,11 @@ measure within-reader drift. Cost: 12 sessions × 2 seats (+12 for the auditor u
 
 ## What his decision covers, and what follows without asking again
 **His decision:** the three method choices, in his words, recorded by the lane under §10's record form.
-**Follows as routine preparation, already authorized, no further asking:** writing the integrated draft that carries his choices
-(Blanc's standing instruction of 15:07 — no new version except to carry rulings — is why it is written only once they exist);
-re-pinning the seat tool and rebuilding the packet; C0 reachability by two seats; the two-seat gate; independent review; the run-plan
+**Follows as routine preparation, already authorized, no further asking:** the integrated draft that carries his choices (an
+UNADOPTED integrated candidate already exists as a separate file and is adjusted to whatever he chooses; the earlier pause on new
+numbered versions was the coordinator's own anti-churn measure, Blanc's, not a limit of Duho's — his limits are the one holdout, the
+sample sizes, the exclusions, custody, blindness and the frozen V23); re-pinning the seat tool and rebuilding the packet; C0
+reachability by two seats; the two-seat gate; independent review; the run-plan
 additions the reviews named (per-dispatch inventory and probes, fresh auditor context, custodian-only selection, release events
 recorded). These are technical checks the lane runs, not permissions it asks for.
 **Remains his, later and separately:** approval of the final version's bytes and digest by the procedure of 11:11 (presented in the
