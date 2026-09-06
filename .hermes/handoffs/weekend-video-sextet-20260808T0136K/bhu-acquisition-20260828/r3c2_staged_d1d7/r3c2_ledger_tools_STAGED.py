@@ -80,7 +80,7 @@ def first_line_with(srcdir, f, symbol, value):
 def load(p):
     d=json.loads(pathlib.Path(p).read_text())
     recs=d["records"] if isinstance(d,dict) else d
-    assert isinstance(recs,list) and recs, "ledger has no records"
+    assert isinstance(recs,list), "ledger records must be a list (an empty list is valid: a claim may state no derivation)"
     return d,recs
 
 
@@ -122,6 +122,15 @@ def cmd_validate(ledger,srcdir,candidates=None):
             if r.get("value") not in (None,""): fails.append(f"{r['input_id']}: BLOCKED record carries a value")
             if r["origin"]!="IMPORTED" or rc!="ORIG_CITATION": fails.append(f"{r['input_id']}: BLOCKED record must carry origin IMPORTED with ORIG_CITATION evidence from the claiming paper")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
+        if rc!="ORIG_SILENT" and r["status"] in ("STANDARD","BLOCKED"):
+            # gate F3: the promised byte-level evidence check applies to every status, not only PRINTED
+            ef=str(ev.get("source_file","")); el=ev.get("source_line"); cl=read_line(srcdir, ef, el)
+            if not str(ev.get("verbatim","")).strip(): fails.append(f"{r['input_id']}: {r['status']} record with an empty quotation")  # PROBE:EV_EMPTY_ANY
+            elif cl is None: fails.append(f"{r['input_id']}: cannot read evidence line {ef}:{el}")  # PROBE:EV_LINE_ANY
+            elif ev.get("verbatim","") not in cl: fails.append(f"{r['input_id']}: quotation not found at evidence line {ef}:{el}")  # PROBE:EV_VERBATIM_ANY
+            if r["status"]=="STANDARD" and r.get("source_file"):
+                vl=read_line(srcdir, r["source_file"], r["source_line"])
+                if vl is None or not token_in(r.get("value"), vl): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} is not a numeric token at {r['source_file']}:{r['source_line']}")  # PROBE:STD_VALUE_LINE
         if r["status"]=="PRINTED":
             if not candidates: fails.append(f"{r['input_id']}: PRINTED record needs the candidate file to bind claim {r['claim_id']} to its claiming paper"); continue  # PROBE:D1_NEEDS_CANDIDATES_ALL
             cf0=claim_file.get(r["claim_id"])
@@ -129,8 +138,20 @@ def cmd_validate(ledger,srcdir,candidates=None):
             if r["source_file"]!=cf0 and not (r["origin"]=="IMPORTED" and rc=="ORIG_CITATION"):
                 fails.append(f"{r['input_id']}: value line is in {r['source_file']} but claim {r['claim_id']} belongs to {cf0}: such a record must be IMPORTED with ORIG_CITATION (submitted {r['origin']}/{rc})")  # PROBE:D1_IMPORT_REFILED
                 continue
+        if r["status"]=="PRINTED" and rc=="ORIG_CITATION" and r["source_file"]==claim_file.get(r["claim_id"]):
+            # gate F1: a LOCALLY printed cited value ("We adopt a = 3 from X" printed by the claiming paper): IMPORTED at its own line; no external checks
+            ef=str(ev.get("source_file","")); el=ev.get("source_line")
+            if ef!=r["source_file"]: fails.append(f"{r['input_id']}: locally printed import quotes a sentence in {ef}, not its own file")  # PROBE:D1_LOCAL_SAME_FILE
+            if not str(ev.get("verbatim","")).strip(): fails.append(f"{r['input_id']}: empty verbatim quotation")
+            cl=read_line(srcdir, ef, el)
+            if cl is None: fails.append(f"{r['input_id']}: cannot read citing sentence {ef}:{el}")
+            elif ev.get("verbatim","") not in cl: fails.append(f"{r['input_id']}: verbatim not found at citing sentence {ef}:{el}")
+            vl=read_line(srcdir, r["source_file"], r["source_line"])
+            if vl is None: fails.append(f"{r['input_id']}: cannot read value line {r['source_file']}:{r['source_line']}")
+            elif not token_in(r.get("value"), vl): fails.append(f"{r['input_id']}: value {r.get('value')} is not a numeric token at {r['source_file']}:{r['source_line']}")  # PROBE:D1_LOCAL_VALUE_TOKEN
+            continue
         if r["status"]=="PRINTED" and rc=="ORIG_CITATION":
-            # STAGED D1 (review's wording): verbatim at the claiming paper's citing sentence, numeric token at the external value line
+            # STAGED D1 (review's wording): verbatim at the claiming paper's citing sentence, numeric token at the EXTERNAL value line
             ef=str(ev.get("source_file","")); el=ev.get("source_line"); cf=claim_file.get(r["claim_id"])
             if ef!=cf: fails.append(f"{r['input_id']}: citing sentence is in {ef}, but claim {r['claim_id']} belongs to {cf}")  # PROBE:D1_CLAIMING_FILE
             if ef==r["source_file"]: fails.append(f"{r['input_id']}: IMPORTED PRINTED record names its own file as the external source")  # PROBE:D1_SELF_FILE

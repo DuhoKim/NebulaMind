@@ -17,7 +17,8 @@ def probe(name, tool, marker, *args, token, want_rc=0):
     global NPROBES; NPROBES+=1
     src=tool.read_text().splitlines(); hits=[l for l in src if marker in l]; assert len(hits)==1, f"marker {marker} must occur exactly once"
     # the check on the marked line is neutralised in place (its failure call becomes a no-op; its early return is dropped) so the surrounding if/elif structure survives
-    kept=["_probe_noop=lambda *a,**k: None  # PROBE-DELETED"]+[(l.replace("fails.append(","_probe_noop(").replace("; return 1","; pass").replace("PROBE:","PROBE-DELETED:")) if marker in l else l for l in src]
+    def neut(l): return l.replace("fails.append(","_probe_noop(").replace("out_claims.update(","_probe_noop(").replace("disputed_claims.add(","_probe_noop(").replace("; sys.exit(1)","; pass").replace("; return 1","; pass").replace("PROBE:","PROBE-DELETED:")
+    kept=["_probe_noop=lambda *a,**k: None  # PROBE-DELETED"]+[neut(l) if marker in l else l for l in src]
     t=W/(tool.stem+"_minus_"+marker.split(":")[1]+".py"); t.write_text("\n".join(kept)+"\n"); rc,out=run(t,*args)
     ok=(token in out) and rc==want_rc; results.append((name,ok)); print(("ok  " if ok else "BAD ")+name+("" if ok else f"\n   rc={rc}\n{out[-500:]}"))
 def manifest(path, files_dir, files):
@@ -67,6 +68,34 @@ rc,out=run(SEAT,"validate",w("d1_n_nosym.json",{"records":[rec(symbol="g",value=
 probe("D1 probe: deleting the no-symbol-line check turns that negative into PASS",SEAT,"PROBE:D1_NO_SYMBOL_LINE","validate",W/"d1_n_nosym.json",S,CANDS,token="C3_NO_SUBSTITUTION=PASS")
 manifest(S/"R3C2_CORPUS_MANIFEST.md", S, ["paperA.txt","paperB.txt"])
 probe("D1 probe: deleting the self-file check leaves only the claiming-file failure on that negative",SEAT,"PROBE:D1_SELF_FILE","validate",W/"d1_n_self.json",S,CANDS,token="citing sentence is in paperB.txt, but claim paperA.txt#1 belongs to paperA.txt",want_rc=1)
+# ---- gate V26cand: codex F1 local import, F3 evidence for every status, F2 empty ledgers / NOT_COMPUTED, F4 dispute propagation
+(S/"paperE.txt").write_text("Title E\nWe adopt a = 3 from paperB (2020).\nThen z = 3.\n"); manifest(S/"R3C2_CORPUS_MANIFEST.md", S, ["paperA.txt","paperB.txt","paperE.txt"])
+CANDS3=w("d1_cands3.json",{"declared_candidate_count":1,"declared_included_count":1,"declared_excluded_count":0,"declared_attempt_count":1,"candidates":[{"candidate_id":"paperE.txt#1","source_file":"paperE.txt","source_line":3,"numeral":"3","included":True,"attempts":1,"outcome":"REPRO_NOT_EVALUABLE"}]})
+loc=rec(claim_id="paperE.txt#1",input_id="paperE.txt#1.a",value="3",source_file="paperE.txt",source_line=2,ev_source_file="paperE.txt",ev_source_line=2,ev_verbatim="We adopt a = 3 from paperB (2020)")
+rc,out=run(SEAT,"validate",w("d1_local_pos.json",{"records":[loc]}),S,CANDS3); check("gate F1 (codex): a LOCALLY printed cited value ('We adopt a = 3 from paperB' printed by the claiming paper) validates as IMPORTED at its own line",rc,out,0,[],"C3_NO_SUBSTITUTION=PASS")
+rc,out=run(SEAT,"validate",w("d1_local_neg.json",{"records":[dict(loc,value="4")]}),S,CANDS3); check("gate F1 neg: local import whose value is not a token at its own line",rc,out,1,["value 4 is not a numeric token at paperE.txt:2"])
+probe("gate F1 probe: deleting the local value check turns that negative into PASS",SEAT,"PROBE:D1_LOCAL_VALUE_TOKEN","validate",W/"d1_local_neg.json",S,CANDS3,token="C3_NO_SUBSTITUTION=PASS")
+std=lambda **k: dict({"claim_id":"paperE.txt#1","input_id":"paperE.txt#1.c","symbol":"c","status":"STANDARD","origin":"STANDARD","origin_evidence":{"reason_code":"ORIG_CONSTANT","source_file":"paperE.txt","source_line":99,"verbatim":"fabricated quotation"},"derived_from":[],"value":"2.99792458e8","source_file":"paperE.txt","source_line":99},**k)
+rc,out=run(SEAT,"validate",w("std_fab.json",{"records":[std()]}),S,CANDS3); check("gate F3 (codex): a STANDARD record citing a nonexistent line with a fabricated quotation FAILS",rc,out,1,["cannot read evidence line paperE.txt:99","STANDARD value 2.99792458e8 is not a numeric token at paperE.txt:99"])
+probe("gate F3 probe: deleting the evidence-line check leaves only the value-line failure",SEAT,"PROBE:EV_LINE_ANY","validate",W/"std_fab.json",S,CANDS3,token="STANDARD value 2.99792458e8 is not a numeric token",want_rc=1)
+(S/"paperE.txt").write_text("Title E\nWe adopt a = 3 from paperB (2020).\nThen z = 3.\nWe use c = 2.99792458e8 throughout.\n"); manifest(S/"R3C2_CORPUS_MANIFEST.md", S, ["paperA.txt","paperB.txt","paperE.txt"])
+rc,out=run(SEAT,"validate",w("std_ok.json",{"records":[std(source_line=4,**{"origin_evidence":{"reason_code":"ORIG_CONSTANT","source_file":"paperE.txt","source_line":4,"verbatim":"c = 2.99792458e8"}})]}),S,CANDS3); check("gate F3 positive: a STANDARD record with a real quotation at a real line validates",rc,out,0,[],"C3_NO_SUBSTITUTION=PASS")
+rc,out=run(SEAT,"validate",w("empty_ledger.json",{"records":[]}),S,CANDS3); check("gate F2 (codex): an EMPTY ledger validates (a paper may state no derivation)",rc,out,0,[],"C3_NO_SUBSTITUTION=PASS")
+LANE=H/"r3c2_lane_tools_STAGED.py"
+rc,out=run(LANE,"compute",W/"empty_ledger.json",W/"compute_empty.json",CANDS3); check("gate F2: compute over an empty ledger with the candidate file emits rests_on=NOT_COMPUTED for the included claim",rc,out,0,[],"rests_on=NOT_COMPUTED")
+probe("gate F2 probe: deleting the NOT_COMPUTED fill makes the row count fail",LANE,"PROBE:NOT_COMPUTED","compute",W/"empty_ledger.json",W/"compute_empty_p.json",CANDS3,token="rests_on rows 0 != included denominator 1",want_rc=1)
+merged=w("merged_dispute.json",{"records":[
+ {"claim_id":"t12.txt#1","input_id":"t12.txt#1.p","symbol":"p","status":"PRINTED","origin":"CHOSEN","origin_alt":"MEASURED","origin_evidence":{"reason_code":"ORIG_CHOICE_STATED","source_file":"t12.txt","source_line":1,"verbatim":"x"},"origin_evidence_alt":{"reason_code":"ORIG_MEASURED","source_file":"t12.txt","source_line":1,"verbatim":"x"},"derived_from":[],"value":"1","source_file":"t12.txt","source_line":1},
+ {"claim_id":"t01.txt#1","input_id":"t01.txt#1.d","symbol":"d","status":"PRINTED","origin":"DERIVED","origin_evidence":{"reason_code":"ORIG_EQUATION","source_file":"t01.txt","source_line":2,"verbatim":"y"},"derived_from":["t12.txt#1.p"],"value":"2","source_file":"t01.txt","source_line":2}]})
+CANDS4=w("cands_dispute.json",{"declared_candidate_count":2,"declared_included_count":2,"declared_excluded_count":0,"declared_attempt_count":0,"candidates":[{"candidate_id":"t12.txt#1","source_file":"t12.txt","source_line":1,"numeral":"1","included":True,"attempts":0,"outcome":"REPRO_NOT_EVALUABLE"},{"candidate_id":"t01.txt#1","source_file":"t01.txt","source_line":2,"numeral":"2","included":True,"attempts":0,"outcome":"REPRO_NOT_EVALUABLE"}]})
+rc,out=run(LANE,"compute",merged,W/"compute_dispute.json",CANDS4); cd_=json.loads((W/"compute_dispute.json").read_text())["claims"]; results.append(("gate F4 (codex): a claim depending on ANOTHER claim's disputed input is itself DISPUTED with both rests_on values",rc==0 and cd_["t01.txt#1"].get("DISPUTED") is True and isinstance(cd_["t01.txt#1"]["rests_on"],list))); print(("ok  " if results[-1][1] else "BAD ")+results[-1][0]+("" if results[-1][1] else "\n"+out[-300:]))
+probe("gate F4 probe: deleting the propagation leaves the dependent claim undisputed",LANE,"PROBE:DISPUTE_PROPAGATES","compute",merged,W/"compute_dispute_p.json",CANDS4,token="t01.txt#1\trests_on=USES_CHOSEN")
+MAN=H/"r3c2_manifest_STAGED.py"; MD=W/"manifest_dir"; MD.mkdir(); (MD/"real.py").write_text("x=1\n"); (MD/"link.py").symlink_to(MD/"real.py")
+rc,out=run(MAN,MD); check("gate F9 (codex): the manifest refuses a symlinked file instead of skipping it",rc,out,1,[],"ERROR=link.py: symlink")
+probe("gate F9 probe: deleting the refusal makes the manifest hash past the symlink without an error",MAN,"PROBE:MANIFEST_SYMLINK",MD,token="MANIFEST_SHA256=")
+BLD=H/"r3c2_build_seat_packet_STAGED.py"; BD=W/"builddir"; BD.mkdir(); shutil.copy(H.parent/"r3c2_seat_packet"/"SEAT_BRIEF.md",BD/"SEAT_BRIEF.md"); shutil.copy(H.parent/"R3C2_V26_INTEGRATED_CANDIDATE_UNADOPTED_20260906.md",BD/"m.md")
+rc,out=run(BLD,"--master",BD/"m.md","--out",BD/"pk.md","--brief",BD/"SEAT_BRIEF.md"); check("gate F8 (codex): the staged builder builds from explicit --master/--out/--brief",rc,out,0,[],"C4_PACKET_REDACTED=PASS")
+manifest(S/"R3C2_CORPUS_MANIFEST.md", S, ["paperA.txt","paperB.txt"])
 rc,out=run(SEAT,"validate",w("d1_old_style.json",{"records":[rec(origin="CHOSEN",ev_reason_code="ORIG_CHOICE_STATED",ev_source_file="paperB.txt",ev_source_line=5,ev_verbatim="we choose a = 2",claim_id="paperB.txt#1",input_id="paperB.txt#1.a")]}),S,CANDS2); check("D1 unchanged path: a non-import PRINTED record (claim bound to its own file) still validates at one line",rc,out,0,[],"C3_NO_SUBSTITUTION=PASS")
 # ================= D7 fixtures
 def cand(cid,f,ln,num,inc,outc=None,att=1,pv=None,rv=None):
@@ -178,6 +207,13 @@ rc,out=run(BATCH,"seal",W/"part.json",1,D,CD,W/"seals.json"); check("batch neg: 
 rc,out=run(BATCH,"join",W/"part.json",D,W/"seals.json",M,str(W/"joinA_")); check("batch: join — cross-batch IMPORT evidence (t1 claim cites t4's line) is ALLOWED, ids kept, graph resolved",rc,out,0,[],"joined: batches=2 candidates=3 included=2 excluded=1 exclusions=1 records=2")
 j1=(W/"joinA_candidates.json").read_bytes(); run(BATCH,"join",W/"part.json",D,W/"seals.json",M,str(W/"joinB_")); results.append(("batch: join is deterministic (same bytes twice)",j1==(W/"joinB_candidates.json").read_bytes())); print(("ok  " if results[-1][1] else "BAD ")+results[-1][0])
 rc,out=run(SEAT,"census",W/"joinA_candidates.json",W/"joinA_exclusions.json","final"); check("batch: census PASSES over the joined files (one denominator)",rc,out,0,[],"C1_DENOMINATOR_PRINTED=PASS")
+rc,out=run(BATCH,"seal",W/"part.json",1,D,CD,W/"sealsB_unbound.json","B"); check("gate F10 neg: a limb-B chain not bound to the agreed limb-A seals is refused",rc,out,1,["a limb-B chain must be bound to the agreed limb-A seals file at its first seal"])
+probe("gate F10 probe: deleting the binding requirement seals an unbound limb-B chain",BATCH,"PROBE:CHAIN_B_BOUND","seal",W/"part.json",1,D,CD,W/"sealsB_unbound_p.json","B",token="sealed batch 1")
+rc,out=run(BATCH,"seal",W/"part.json",1,D,CD,W/"sealsB.json","B",W/"seals.json"); check("gate F10: limb-B chain bound to the limb-A seals at its first seal",rc,out,0,[],"sealed batch 1")
+run(BATCH,"seal",W/"part.json",2,D,CD,W/"sealsB.json","B")
+rc,out=run(BATCH,"join",W/"part.json",D,W/"sealsB.json",M,str(W/"joinBB_"),W/"seals.json"); check("gate F10: join of a limb-B chain verifies its binding to the supplied limb-A seals",rc,out,0,[],"JOIN=PASS")
+rc,out=run(BATCH,"join",W/"part.json",D,W/"sealsB.json",M,str(W/"joinBX_"),W/"seals_scope.json"); check("gate F10 neg: join of a limb-B chain against a DIFFERENT limb-A seals file fails",rc,out,1,["limb-B chain is not bound to the supplied agreed limb-A seals file"])
+probe("gate F10 probe: deleting the binding check joins the mismatched chain",BATCH,"PROBE:JOIN_CHAIN_B","join",W/"part.json",D,W/"sealsB.json",M,str(W/"joinBXp_"),W/"seals_scope.json",token="JOIN=PASS")
 manifest(CD/"R3C2_CORPUS_MANIFEST.md",CD,T)
 rc,out=run(SEAT,"validate",W/"joinA_ledger.json",CD,W/"joinA_candidates.json"); check("batch: the joined ledger validates against the FULL corpus (the cross-batch import machine-matches at t4:2)",rc,out,0,[],"C3_NO_SUBSTITUTION=PASS")
 CD1=W/"corpus_batch1_only"; CD1.mkdir(); [shutil.copy(CD/f,CD1/f) for f in T[:3]]; shutil.copy(CD/"R3C2_CORPUS_MANIFEST.md",CD1/"R3C2_CORPUS_MANIFEST.md")

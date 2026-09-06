@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 25 — LIVING DRAFT (V24i + D2, approved "for now" 19:06 KST); the signed design of record remains V23 (`R3C2_V23_DESIGN_OF_RECORD_55b466fa.md`, frozen 2026-09-06 00:00:22Z) until Duho signs V24 (see §10; §10.18 — the narrow scope correction after the 10:17 run abort; nothing else changed — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 26 — LIVING DRAFT: V25 + D1 wording B + the stronger D7 + ownership batching, the three APPROVED by Duho ("approve all three", 2026-09-06T13:12:32Z, attested by Codex, relayed by Blanc 22:28 KST; §10.20) + the repairs from the two-seat gate on the integrated candidate (§10.21); NOT signed, NOT run; the signed design of record remains V23 (`R3C2_V23_DESIGN_OF_RECORD_55b466fa.md`, frozen 2026-09-06 00:00:22Z) until Duho signs V24 (see §10; §10.18 — the narrow scope correction after the 10:17 run abort; nothing else changed — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -45,7 +45,8 @@ reproduction verdict; the second is the ledger's `rests_on` field.<!--/SEAT-REDA
 **Operational definition, so the enumeration is not a judgement:** a *quantitative claim* is a passage in a pinned
 source that **prints a numeral the paper asserts as a result of its own** — with units, or dimensionless and stated
 as a value. Excluded, by definition and not by taste: numerals that are equation numbers, reference numbers, page or
-line numbers, dates, or values the paper attributes to another work without deriving. **Every candidate passage is
+line numbers, dates, values the paper attributes to another work without deriving, or numerals the paper sets as inputs to its own
+calculation rather than asserts as results of its own (`AUTHOR_SPECIFIED_INPUT`, §3). **Every candidate passage is
 listed with file and line; inclusion and exclusion are both recorded.**
 **Inclusion is assigned independently by the two independent seats from the §1 rule alone; disagreement on any
 candidate that survives two reconciliation attempts stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4): the
@@ -82,12 +83,21 @@ and are outside the census, visibly.** <!--SEAT-REDACT-->*(V11: no version befor
    the printed numeral and the stated-precision rule of §3; a disagreement surviving that reconciliation files
    `CENSUS_OUTCOME_DISPUTED` (§4)<!--SEAT-REDACT-->, **and let the script record the claim's `rests_on`** from the ledger<!--/SEAT-REDACT-->.
 
-**A value the paper does not print but traces to a named source that is itself an enumerable text in `R3C2_CORPUS_MANIFEST.md` is
-classified `PRINTED` from that source, with `origin` `IMPORTED`, `origin_evidence` `ORIG_CITATION` cited to the named
-source's file and line, and the value machine-matched there — **only when such a match exists; a cited value that does
-not machine-match at the named source's cited line, or whose named source is not an enumerable text of the manifest,
-files `REPRO_BLOCKED` under §3.** **A seat may not supply a value for an `ABSENT` or `BLOCKED` input.**
-Encountering one ends that claim's attempt.
+**A value the claiming paper does not print but traces to a named source is classified `PRINTED` with `origin` `IMPORTED` only when
+that source is an enumerable text of `R3C2_CORPUS_MANIFEST.md` whose bytes verify against its manifest row, and the value machine-matches
+as a numeric token at the cited source line.** The record's `source_file`/`source_line` name that external value line; `origin_evidence`
+carries `ORIG_CITATION` with a non-empty verbatim quotation of the CLAIMING paper's sentence naming the source, at the claiming paper's
+own file and line (the claiming file is the file of the candidate row the record's `claim_id` names). A locally printed value may have origin `IMPORTED`: when `source_file` equals the claiming file (the paper itself prints "we adopt a = 3 from X"), `validate` checks the locally printed value and the claiming paper's citation quotation without requiring a different source file; the external-source manifest, numeric-token and first-line checks apply only when `source_file` differs from the claiming file. In that external case the origin records the claiming paper's import regardless of how the external source obtained the value; no reason code is applied to the source's line. **Where the
+value machine-matches at more than one line of the named source, the seat files the first line carrying both the symbol and the
+numeral; `validate` fails any other line.** If the named source is not enumerable or the value does not match there, file `REPRO_BLOCKED`
+under §3. C3's pair rule: `ORIG_CITATION` is satisfied by that quotation at the claiming paper.
+
+**Machine floor, stated.** For EVERY `PRINTED` record `validate` first binds the claim to its claiming file through the candidate file;
+a record whose value line lies in another file must be `IMPORTED` with `ORIG_CITATION`, whatever reason code was submitted. For an
+import it then checks: the citing file is the claiming file; the two files differ; the source is an exact manifest row with verified
+bytes; the quotation is non-empty and present at the cited claiming line; the value is a numeric token at the cited source line; some
+line of the source carries both symbol and numeral, and the cited line is the first such line. Whether the quotation cites THAT value
+is seat judgement; the second seat and C6 may detect an error, but can share it, and C6 re-classifies inputs only for selected claims. **A seat may not supply a value for an `ABSENT` or `BLOCKED` input.** Encountering one ends that claim's attempt.
 
 ## 3. Per-claim outcomes — declared now
 
@@ -99,11 +109,12 @@ The ledger answers *"what did it rest on?"* So:<!--/SEAT-REDACT-->
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `230359ebd15a408714b965daa1b4a67b0c6445cca1c18c7cc6985d75cc581c44`, pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `16ae91a21fb2e039244c551b808b4b7f98b9e8fb25eaca5f858df0cc58a19642` (`validate` takes the candidate file as its third argument), pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 <!--SEAT-REDACT-->
 > *(Lane side: `root_origins` and the per-claim field `rests_on` are computed from the merged ledger by `r3c2_lane_tools.py`,
-> which no seat is given.)*
+> which no seat is given; an empty ledger is valid and every included candidate without a record carries `rests_on` `NOT_COMPUTED`;
+> a claim whose dependency graph reaches a disputed record — in any claim — is itself `DISPUTED` with both values.)*
 <!--/SEAT-REDACT-->
 <!--SEAT-REDACT-->
 > *(Master only — the rule the script implements: `DERIVED_ONLY` when every root origin is `DERIVED`, `STANDARD` or
@@ -164,7 +175,7 @@ tally reports a `NOT_COMPUTED` row.**<!--/SEAT-REDACT-->
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
-is (equation number, reference number, page/line number, date, or attributed-not-derived). **The exclusion ledger's `kind` is one of `AUTHOR_SPECIFIED_INPUT`, `ATTRIBUTED_NOT_DERIVED`, `DATE`, `EQUATION_NUMBER`,
+is (equation number, reference number, page/line number, date, attributed-not-derived, or author-specified input). **The exclusion ledger's `kind` is one of `AUTHOR_SPECIFIED_INPUT`, `ATTRIBUTED_NOT_DERIVED`, `DATE`, `EQUATION_NUMBER`,
 `PAGE_OR_LINE_NUMBER`, `REFERENCE_NUMBER` (alphabetical). `AUTHOR_SPECIFIED_INPUT` — a numeral the paper sets rather than derives and does not
 assert as a result of its own: a grid size, a cutoff, a parameter adopted "for this calculation", a range chosen for a plot. Every exclusion
 row carries the candidate's `source_file`, `source_line` and `numeral` — excluded from judgement, retained in the record, never discarded —
@@ -244,7 +255,11 @@ before audit — which is codex's order; kimi's differed only in placing the den
   definition is settled.)*<!--/SEAT-REDACT-->
 
 - **C1 — denominator.** Claims **included**, claims **excluded** (with the exclusion ledger of §3), and the attempts
-  made, all printed before any tally. <!--SEAT-REDACT-->*(This control previously referenced a class §3 abolished — a gate finding; the
+  made, all printed before any tally. **A seat is a sequence of sessions under one packet: the manifest's texts are partitioned into
+  ownership batches (the pinned partition of `R3C2_CORPUS_MANIFEST.md` into 12 batches in row order); every session holds ALL pinned texts
+  and enumerates ONLY its owned texts; §2's named-source lookups may read any manifest text and are logged with file and line. Every
+  candidate id, claim id and input id begins with `<owned file>#`. Each session writes `candidates_b<k>.json`, `exclusions_b<k>.json`,
+  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `eeafc482e6902eaec48ae0f5b74373de52ed1f9303cd553923cf3f6d26496e8e`; partition `15b69217a35dbc6f…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B resumes the same ownership batches in separate sessions, writing final outcomes into separate limb-B copies of the four files, sealed in a separate ordered LIMB-B chain bound to the agreed limb-A seals; a sealed limb-A file is never overwritten; `join` of the limb-B chain verifies that binding. The files named below are the joined files of the applicable limb.** <!--SEAT-REDACT-->*(This control previously referenced a class §3 abolished — a gate finding; the
   document has been swept for every other occurrence.)*<!--/SEAT-REDACT-->
   **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
@@ -262,9 +277,13 @@ before audit — which is codex's order; kimi's differed only in placing the den
   all placeholders resolved, and prints its output; that run verifies that every included candidate carries exactly one §3
   outcome, none is `PENDING`, and arithmetic-group outcomes carry both values;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
+- **C1B — batch coverage.** `C1B_BATCH_COVERAGE=PASS` iff every manifest text is owned by exactly one batch, every owned text's bytes
+  verify against its manifest row, and every batch report prints the packet's `ACCESS_SHA`; `JOIN=PASS` iff every seal matches, the
+  ordered predecessor chain is intact from a root with no predecessor, every candidate and ledger claim is owned by its batch, every
+  evidence source is a manifest text, identifiers are unique and every `derived_from` resolves acyclically. Either FAIL stops the seat's
+  tally. `C1B_BATCH_COVERAGE=PASS|FAIL|NOT_RUN`. `JOIN=PASS|FAIL|NOT_RUN`. Both are C1B controls for §4: a FAIL in every seat that tries it, after two tries, files `R3C2_NO_CLASS`; a surviving fail/pass split files `CENSUS_CONTROL_SPLIT`; an unreached check is `NOT_RUN`.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
-  line, in the JSON schema of C3, validated by `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
-  directory (`.` is the sole allowed `sources_dir`); before execution the seat prints the fully resolved command with
+  line, in the JSON schema of C3, validated by `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> . <candidates.json>` run from the printed seat working directory (`.` is the sole allowed `sources_dir`; the third argument is the seat's candidate file of C1 — per session its batch file, over the joined ledger the joined file); before execution the seat prints the fully resolved command with
   every angle-bracket placeholder replaced by the actual in-scope path
   (exit 0 = PASS; every failure printed; the printed C3 run — command, stdout, stderr, exit status — is this control's
   artefact). `C2_INPUT_LEDGER=PASS|FAIL|NOT_RUN`.
@@ -283,11 +302,12 @@ before audit — which is codex's order; kimi's differed only in placing the den
   `ORIG_CHOICE_STATED`→`CHOSEN`, `ORIG_EQUATION`→`DERIVED`, `ORIG_FIT_STATED`→`FITTED`, `ORIG_CITATION`→`IMPORTED`,
   `ORIG_MEASURED`→`MEASURED` (a quantity the paper reports as its own measurement, with the measurement described),
   `ORIG_CONSTANT`→`STANDARD`, `ORIG_SILENT`→`UNDECLARED` (listed alphabetically by origin; the list carries no order of its own) — and, except for `ORIG_SILENT`, a **verbatim quotation
-  machine-matched to the cited line**. **Every input's `origin` is classified independently by both seats.** **Where
+  machine-matched to the cited line** — for EVERY record whatever its status: `validate` requires a non-empty quotation and matches it at `origin_evidence.source_file`/`source_line`; for `STANDARD` it additionally requires the value as a numeric token at the record's own cited line and closed-list membership; for `BLOCKED` it checks the claiming paper's naming quotation while requiring an empty value. **Every input's `origin` is classified independently by both seats.** **Where
   more than one reason code matches the cited sentence, file the first in this order: `ORIG_CITATION`,
   `ORIG_FIT_STATED`, `ORIG_CHOICE_STATED`, `ORIG_MEASURED`, `ORIG_EQUATION`, `ORIG_CONSTANT`, `ORIG_SILENT` — a sentence
   that names an external source for the value is a citation whatever else it says — the order is a tie-break by the
-  specificity of the evidence, not a ranking of the values.** <!--SEAT-REDACT-->*(kimi V10's
+  specificity of the evidence, not a ranking of the values.** **For an imported value (§2) `ORIG_CITATION` is satisfied by the non-empty verbatim quotation of the
+  claiming paper's naming sentence at the claiming paper's own file and line; no reason code is applied to the source's line.** <!--SEAT-REDACT-->*(kimi V10's
   attack: "We adopt H₀ = 67.4 from Planck (2018)" filed CHOSEN passed every machine check and reported a less severe
   root; the code precedence makes the citation win. A reason code that matches its quotation but misapplies the
   precedence is caught only by the second seat's independent classification and the C6 re-classification, never by the
@@ -329,8 +349,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   string printed in the value column; `validate` compares strings.** <!--SEAT-REDACT-->*(The list was previously "fixed here" by naming four symbols and citing a
   paper whose baseline runs to dozens of base, derived and nuisance parameters across several tables, none printed
   — so a machine membership test was impossible and "standard" was in practice a selectable family. kimi found it.)*<!--/SEAT-REDACT-->
-  Each seat runs `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
-  resolved and prints the working directory, the resolved command, complete stdout and stderr, and the exit status; the
+  Each seat runs `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir> <candidates.json>` with the placeholders resolved and prints the working directory, the resolved command, complete stdout and stderr, and the exit status; the
   control's printed artefact is that run.<!--SEAT-REDACT--> The lane's `merge` and `compute` runs are printed the same way and are
   part of the same artefact.<!--/SEAT-REDACT--> `C3_NO_SUBSTITUTION=PASS` only on exit 0 from every printed run in the artefact; a
   token asserted without the printed run is FAIL.
@@ -365,15 +384,13 @@ before audit — which is codex's order; kimi's differed only in placing the den
   asserted against the same forbidden list by the builder, and pinned in `R3C2_SEAT_PACKET.sha256`), `R3C2_SEAT_PACKET.sha256` itself, `R3C2_CORPUS_MANIFEST.md`, the script
   `r3c2_ledger_tools.py`, the manifest script `r3c2_manifest.py`, the wrapper `r3c2_timeout.py`, and every pinned source listed in `R3C2_CORPUS_MANIFEST.md`, with the wrapper pointed at that directory and **not** at the lane. **The
   lane owner lists that directory's contents and their digests in the dispatch record before launch; a copy missing any
-  of them is not dispatched.** **Confinement, as of V24:** each seat is dispatched inside a kernel sandbox profile (`r3c2_seat_sandbox.sb`, sha256 `6978d590bf2acc519f00f38e8bc71b0e9ef476b95eeb6afa38443dbaef731fa6`) that
-  denies reads outside the working directory and the pinned environment and denies all writes outside the working directory; the
-  profile's digest and its live positive and negative probes (a pinned source read; the lane master, an outside file and a listing
+  of them is not dispatched.** **Confinement, as of V24:** each seat is dispatched inside a kernel sandbox profile (`r3c2_seat_sandbox.sb`, sha256 `6978d590bf2acc519f00f38e8bc71b0e9ef476b95eeb6afa38443dbaef731fa6`) whose complete effective read, write and network exceptions the dispatch record prints: the profile permits runtime and temporary-directory access beyond the seat working directory, including configuration-directory exceptions, and network access; it does not deny all outside reads or writes; its positive and negative probes establish only the tested accesses; C4 and C5b additionally prohibit seat-chosen data access outside the working directory and pinned environment, enforced through self-report; the lane master and the withheld interpretation material each have a recorded denied-read probe before dispatch; the profile's digest and its live positive and negative probes (a pinned source read; the lane master, an outside file and a listing
   of the lane refused with "Operation not permitted") are printed in the dispatch record before launch. That profile is the
   mechanism; `C4_SEAT_ISOLATION` and `C5B_NO_CROSS_LANE` remain the seat's self-reported account of what it opened, and PASS on
   them means what the printed list shows, no more. A dispatch without the recorded profile and probes is not a V24 dispatch.
 
   **The seat packet is built mechanically, by `r3c2_build_seat_packet.py`, and its redaction is asserted.** **The builder is pinned beside
-  this document, sha256 `4ed52d4b638562f72a604e42c8073d2ea77ff834eb5a6b07e2a46ca32694fbe3`; a dispatch built by any other bytes files `C4_PACKET_REDACTED=FAIL`.** The
+  this document, sha256 `b1f2cce11c5ffdde5edb914b5c3b25bdaea079edd3d9fd285f2125d9122c619a` (it accepts explicit `--master`, `--out` and `--brief` arguments; the printed build command names them); a dispatch built by any other bytes files `C4_PACKET_REDACTED=FAIL`.** The
   builder drops §0, §7, §8 and §10 whole, strips every span marked `SEAT-REDACT` in this document, and then
   **asserts that no string on the forbidden list survives anywhere in the output — the list blocks the enumerated
   strings and does not establish that every consequence-bearing word is gone; procedural consequences of stop outcomes
@@ -421,8 +438,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is one invocation whose
   exit status is the control's (the §9 wrapper counts as one invocation that prints its child's exit status); no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
   an upstream failure can be masked.** The five commands establish the interpreter every ledger command runs under and the one
-  site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest
-  covers every file under that directory, everything the mandated imports can load from it, not one initializer. **PASS requires
+  site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest covers every regular file under that directory; the manifest command fails with `ERROR=<path>` and exit 1 on any symlink or non-regular entry, including a symlinked directory, rather than skipping it; importable content outside that tree is listed separately in the dispatch's pinned environment. **PASS requires
   all five commands to exit 0, their full stdout printed, the path of (4) and the `MANIFEST_SHA256` of (5) equal to the dispatch
   record's; a mismatch, a non-zero exit, an `ERROR=` line, missing output, or a transcribed value in place of live output is
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
@@ -430,13 +446,34 @@ before audit — which is codex's order; kimi's differed only in placing the den
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
   list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii), including through a placeholder or a wrapped `<command>`. The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*<!--/SEAT-REDACT-->
-- **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
-  exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
-  group** — no sampling discount — and **(ii) a sample of `min(max(1, ceil(0.20 × N)), R)` of the remaining included
-  claims**, `N` being the sealed denominator and `R` the number of remaining claims (when `R` is zero the sample is empty
-  and every included claim is already audited under (i)), drawn by `random.Random(seed_int).sample(remaining_ids, k)`
-  where **`remaining_ids = sorted(set(included_ids) − set(arithmetic_group_ids))` and `seed_int = int(seed_hex, 16)`,
-  the custodian's seed being 64 lowercase hexadecimal characters**.
+- **C6 — audit, with a frozen sampling frame and an independent enumeration.** A third independent seat, on a different engine from both
+  census seats, **first** enumerates and classifies candidate passages itself from EVERY pinned source — all 89 enumerable texts of
+  `R3C2_CORPUS_MANIFEST.md`, a complete independent enumeration, never a sample of texts — under §1's rule, with no seat candidate,
+  exclusion, input or outcome ledger in its dispatch inventory, and writes its own candidate and exclusion ledgers. The custodian runs
+  `census` over them and, only on PASS, records their digests in a first-write stage-1 seal (`audit seal-enumeration`). **Second**, after
+  receipt T and the supply of the external seed, the custodian computes the selection (`audit select`, which refuses without the stage-1
+  seal) — every arithmetic-group claim plus `k = min(max(1, ceil(0.20 × N)), R)` of the remaining included claims, `N` being the sealed denominator and `R` the number of remaining claims (when `R` is zero the
+  sample is empty), drawn by `random.Random(seed_int).sample(remaining_ids, k)` where
+  `remaining_ids = sorted(set(included_ids) − set(arithmetic_group_ids))` and `seed_int = int(seed_hex, 16)`, the custodian's seed being
+  64 lowercase hexadecimal characters — and hands the auditor claim identifiers with source file and line ONLY (`audit handout`); the auditor re-derives each
+  assigned claim and re-classifies each of its inputs' `origin` from the pinned sources, and the custodian seals those re-derivations by
+  digest (`audit seal-rederivation`) BEFORE any sealed ledger is released. **Only then** are the sealed (merged) candidate, exclusion and
+  input ledgers opened to the comparison (`audit compare`), which recomputes the selection from the sealed candidates and seed and fails
+  on any disagreement, and writes and prints `C6_AUDIT.json` with (i) one completeness row per passage key (file, line, numeral) in the
+  UNION of the sealed and the auditor's enumerations — both presences, both dispositions, both exclusion kinds, and a result: `MATCH`,
+  `OMISSION`, or `AUDIT_INCLUSION_DISPUTED` — and (ii) `MATCH`/`MISMATCH` per audited claim (outcome; printed and reproduced values for
+  arithmetic outcomes) and per re-classified input origin. **Omissions:** a sealed INCLUDED passage absent from the auditor's enumeration;
+  a passage the auditor lists (included OR excluded) that the sealed ledgers omit — each is ledger incompleteness and files
+  `CENSUS_AUDIT_FAILED`. **Disputes:** a passage both sides list but dispose differently, and a sealed EXCLUDED passage absent from the
+  auditor's enumeration, are `AUDIT_INCLUSION_DISPUTED`, listed with both dispositions and counted; above 10% of the sealed included
+  denominator the audit files `CENSUS_AUDIT_FAILED`; at or below it the count is reported. A sealed denominator of zero with any passage
+  on either side fails. `C6_AUDIT_SAMPLE=PASS` only if the artefact exists and is printed, both seals match, the recomputed selection
+  matches, no row is an omission, the dispute rate is at or below 10%, and no audited claim or origin is `MISMATCH`. **What PASS means:**
+  the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record (the seals fix
+  WHAT was committed, the dispatch record — listed and access-proven like the seats' — fixes WHEN, relative to release) and by
+  shared reader error; exposure before dispatch cannot be excluded — the same floor C4 states for the seats. Its enumeration reads the corpus
+  under the same reading discipline as the census seats, batch for batch if the census is batched, including the same cross-batch
+  source access for re-classifying imports.
 
   **The seed comes from outside this lane.** After the tally digests are receipted<!--SEAT-REDACT--> (§7)<!--/SEAT-REDACT-->, **an external custodian
   outside this lane supplies a seed generated independently and unavailable to the lane before that receipt**, and it
@@ -451,11 +488,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   `CENSUS_ORIGIN_DISPUTED`. Any outcome the audit cannot reproduce, or any ledger incompleteness, files
   `CENSUS_AUDIT_FAILED`.<!--SEAT-REDACT--> **A claim whose root-origin set contains an `ORIGIN_DISPUTED` input carries `rests_on` computed
   under both classifications, printed as a pair and marked `DISPUTED`; the `rests_on` tally reports a `DISPUTED` row.**<!--/SEAT-REDACT-->
-  The auditor writes and prints `C6_AUDIT.json` containing: the sealed denominator, receipt T and the seed; the sorted
-  arithmetic-group ids and the sorted remaining ids; the computed k and the sampled ids; a completeness disposition for every
-  candidate and every exclusion; and, for every audited claim, the auditor's independently re-derived per-claim outcome, the
-  re-classified `origin` of each of its inputs, and `MATCH` or `MISMATCH` against the sealed record. `C6_AUDIT_SAMPLE=PASS` only if
-  that artefact exists, is printed, and carries no `MISMATCH` and no incompleteness; a token without the artefact is FAIL.
+  *(The audit artefact and its PASS predicate are stated in the opening of this control.)*
   **Classes are cited by name, never by number**. `C6_AUDIT_SAMPLE=PASS|FAIL|NOT_RUN`.
 
 Controls in an unreached limb are `NOT_RUN`, never passes.
@@ -513,11 +546,12 @@ Live harness (C5); `ACCESS_SHA` proof for any pinned source audited, verified by
 on the seat's claim; path lists (C5b); every symbolic operation launched through the committed wrapper `r3c2_timeout.py` (sha256
 `fbb9bef7d6622a17b4dc2e856791e3166b60394c187286ea5581b2f39003f331`) as `/usr/bin/python3 -E r3c2_timeout.py 120.0 -- <command>`, which enforces a 120.0-second wall-clock
 deadline on the monotonic clock, prints the wrapper command, the child's stdout and stderr and its exit status, and on
-the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome; unreached controls `NOT_RUN`. Two independent seats. <!--SEAT-REDACT-->On a split, a third seat is dispatched by the lane owner through the lane's referee dispatcher with its
+the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome; unreached controls `NOT_RUN`. Two independent seats, each
+a sequence of sessions under one packet (C1); the dispatch record carries one `ACCESS_SHA` per session, the ownership list, and the
+verified availability of every pinned text in that session's directory. <!--SEAT-REDACT-->On a split, a third seat is dispatched by the lane owner through the lane's referee dispatcher with its
 `ACCESS_SHA` proof; third-seat dispatch is an administrative action of the lane owner and is not claimed executable from
-the packet. Lane-side procedure, not the seat's: the no-fallback control is the provider log showing
-no fallback line for the seat's session, checked by the lane owner; a one-page check sheet `R3C2_CHECK_SHEET_<date>.md`
-in plain words with source lines is written by the lane owner after the tally; the lane owner runs `r3c2_lane_tools.py` (sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`; merge, then compute) after both seats exit and re-runs every script; a
+the packet. Lane-side procedure, not the seat's: the no-fallback control `C5C_NO_FALLBACK=PASS|FAIL|NOT_RUN` requires a printed, session-identified provider log for every session — a missing log or any fallback entry is FAIL, an unreached check NOT_RUN — a pre-tally control under the `R3C2_NO_CLASS` and `CENSUS_CONTROL_SPLIT` rules, checked by the lane owner; a one-page check sheet `R3C2_CHECK_SHEET_<date>.md`
+in plain words with source lines is written by the lane owner after the tally; the lane owner runs `r3c2_lane_tools.py` (sha256 `da39212e26f9cb5733c9e580d37d1499167c078d5911013dfb7c9a1ddb44e862`; merge, then `compute <merged.json> <out.json> <candidates.json>`, which emits `rests_on` `NOT_COMPUTED` for every included candidate with no ledger record, propagates a dispute through the whole dependency graph across claims, and fails unless its rows equal the included denominator) after both seats exit and re-runs every script; a
 critic note precedes any ruling.<!--/SEAT-REDACT-->
 
 <!--SEAT-REDACT-->**Amendments get a new version number and hash in §10 rather than an in-place rewrite** — the discipline failure that
@@ -1173,3 +1207,41 @@ exists.
 batch-reading approach for the corpus problem, any V25 fingerprint, any claim that a review passed, any restart. V23 remains the
 signed design of record; V24i remains unapproved; this living draft goes to C0 and a two-seat gate as the required independent review
 and then waits.
+
+## 10.20 V26 — the three method choices ADOPTED on Duho's word; V25 + D1 wording B + the stronger D7 + ownership batching (2026-09-06 23:02 KST)
+
+**Human direction, verbatim:** "approve all three" — Duho, 2026-09-06T13:12:32Z (22:12:32 KST), in the codex conversation, answering the
+decision brief's three questions (brief as presented: sha256 `4826f0b2ed13d1fec76684093d10d71b323a9ef8f728fa0f030d66f6cb0b3499`;
+candidate clauses revision 4 `3b959684…`; batch preparation `1f7206e4…`); attested by Codex
+(`.hermes/CODEX_DUHO_TORI_THREE_METHODS_APPROVED_20260906.md`); relayed by Blanc 22:28 KST (`_tmp_relay_duho_three_approved.txt`).
+Approval record: `R3C2_APPROVAL_RECORD_THREE_METHODS_20260906.md`. What the approval does NOT do, in his relay's words: it does not
+complete the review of the integrated plan, does not sign it, does not authorise a census run; his 09:07 run order is consumed and a
+fresh word is needed before any limb.
+
+**What changed versus V25 (operative):** §1's excluded-kinds sentence names the sixth kind; §2's import rule is wording B (evidence at the
+claiming paper's naming sentence; external value machine-matched as a numeric token in a verified manifest text at the first line
+carrying symbol and numeral; a locally printed cited value is an import at its own line); C3 gains the import sentence and the
+every-status evidence check; C6 is the stronger audit; C1, C1B and §9 carry ownership batching with limb-A and limb-B seal chains; the
+seat tool (`16ae91a21fb2e039…`), lane tool (`da39212e26f9cb57…`), manifest script (`974458f3ec3d530e…`), builder (`b1f2cce11c5ffdde…`) and batch tool
+(`eeafc482e6902eae…`) are the staged kit's tools under their pinned names, their previous bytes remaining in git. Non-operative: the status
+header and this record. Alternatives he did not choose are not carried.
+
+**Sources:** the integrated candidate `R3C2_V26_INTEGRATED_CANDIDATE_UNADOPTED_20260906.md` (`f4edb514…`, kept unchanged for provenance),
+`R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md`, `R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md`, `R3C2_DECISION_BRIEF_FOR_DUHO_20260906.md`.
+
+## 10.21 V26 — the two-seat gate on the integrated candidate, reconciled and repaired here (2026-09-06 23:02 KST)
+
+C0 on the candidate: codex PASS, kimi PASS (every new C6 and C1B path exhibited; nothing made unreachable). Gate: codex
+`PREREG_UNSOUND` (ten findings), kimi `PREREG_SOUND_WITH_REPAIRS` (one non-cosmetic, two cosmetic); both: blind intact (LEAK none
+directional; CONSEQUENCE_VISIBLE procedural or NO; ORIGIN_PURPOSE cannot be stated), C5_EXECUTABLE_UNDER_SCOPE=YES, NO_MASKED_STAGE=YES.
+Reconciled BY TOPIC (`R3C2_V26CAND_GATE_RECONCILIATION_20260906.md`); every routine item repaired in this version and in the kit with a
+control asserting its exact failure and a deletion probe (kit: 131 controls, 45 probes, PASS): the validate command's third argument
+(codex F8 / kimi F1); the batch-session seat brief and the limb-A / limb-B chains (codex F10 / kimi F4); a locally printed cited value
+(codex F1); empty ledgers and `NOT_COMPUTED` (codex F2); evidence for every status (codex F3); dispute propagation across claims (codex
+F4); the JOIN/C1B/C5C result contracts (codex F5 / kimi F3); the confinement paragraph (codex F6); builder arguments and the candidate
+pin sheet (codex F8); the manifest's symlink refusal (codex F9); §3's parenthetical (kimi F2); the diff sentence (codex Q7c).
+**Not repaired, Duho's:** the name `DERIVED_ONLY` for "every root origin DERIVED, STANDARD or MEASURED" (codex F7; kimi: the principal's
+pending item) — a class-name change; cost: rename the emitted token and its consumers, membership unchanged; the lane's
+recommendation: rename to `DERIVED_STANDARD_OR_MEASURED_ONLY`. Held for his word; nothing in this version depends on it.
+**Next:** C0 by two seats and the two-seat gate on THIS version; then the completed plan and its digest go to Blanc for the
+final-adoption checkpoint (the 11:11 form); the run only on his fresh word.
