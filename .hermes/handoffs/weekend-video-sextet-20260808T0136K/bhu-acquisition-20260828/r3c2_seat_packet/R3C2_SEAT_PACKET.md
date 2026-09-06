@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `57de1252d5f9d4592181517e70d0bca1c715830ccbb595f4bc9622a18e4779fd` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `7c661ac0c6157bff51062bf1a578a972e65986de7c3d9434e9a8419c0621aa35` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -26,7 +26,7 @@ disputed candidates are listed and the complete candidate and exclusion ledgers 
 
 ## 2. Method — per claim, in order
 
-**The corpus is pinned: `R3C2_CORPUS_MANIFEST.md` (sha256 `7f97591b5fd4a138971cb2a6737ee500908ba551c04d08678abf3307a16b4d77`) lists every enumerable text by
+**The corpus is pinned: `R3C2_CORPUS_MANIFEST.md` (sha256 `26dabe7cd94d3f2a1501c347ec1193b83528325905dc417c85e28a4a2fe84096`) lists every enumerable text by
 digest and byte count; a seat enumerates claims from those files and no other. Files listed there as RAW are not enumerable
 and are outside the census, visibly.** 
 
@@ -66,7 +66,7 @@ is seat judgement; the second seat and C6 may detect an error, but can share it,
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `730003358a7c39ee9f82d66eadf74838f6ab832b53c5497483c7eeacb9ad5702` (`validate` takes the candidate file as its third argument), pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `65b570bea5f451ad57fb88ba575428030de8d1e5aa4e333c8802919ea9a3a72e` (`validate` takes the candidate file as its third argument), pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -169,7 +169,7 @@ is hidden by being excluded.
   ownership batches (the pinned partition of `R3C2_CORPUS_MANIFEST.md` into 12 batches in row order); every session holds ALL pinned texts
   and enumerates ONLY its owned texts; §2's named-source lookups may read any manifest text and are logged with file and line. Every
   candidate id, claim id and input id begins with `<owned file>#`. Each session writes `candidates_b<k>.json`, `exclusions_b<k>.json`,
-  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `3822f12c282aaf4b5c850bef08fbfbe3bce81ac09d5f9e3c578459239439f79e`; partition `778de7a2adf1f03e…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B uses a separate directory from limb A: the custodian copies the agreed limb-A batch artefacts into that directory under the canonical names `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`; the seat updates only these limb-B copies, records final outcomes, and runs `census … final` on them; the custodian seals and joins that directory in a separate ordered LIMB-B chain bound to the agreed limb-A seals file; the limb-A directory and seals remain unchanged; no `_limbB` filename suffix is used; `join` of the limb-B chain verifies the binding. The ownership list `OWNERSHIP_b<k>.txt` a session reads is the custodian's extract of the pinned partition, listed with its digest in the dispatch record. The files named below are the joined files of the applicable limb.** 
+  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `3822f12c282aaf4b5c850bef08fbfbe3bce81ac09d5f9e3c578459239439f79e`; partition `39b8d9bf199265ab…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B uses a separate directory from limb A: the custodian copies the agreed limb-A batch artefacts into that directory under the canonical names `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`; the seat updates only these limb-B copies, records final outcomes, and runs `census … final` on them; the custodian seals and joins that directory in a separate ordered LIMB-B chain bound to the agreed limb-A seals file; the limb-A directory and seals remain unchanged; no `_limbB` filename suffix is used; `join` of the limb-B chain verifies the binding. The ownership list `OWNERSHIP_b<k>.txt` a session reads is the custodian's extract of the pinned partition, listed with its digest in the dispatch record. The files named below are the joined files of the applicable limb.** 
   **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
   on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print these five declared counts verbatim from the files — `declared_candidate_count`,

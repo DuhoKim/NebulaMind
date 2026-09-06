@@ -353,10 +353,11 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     s_by={c["candidate_id"]:c for c in SC}; l_by={}; full_by={}
     for r in SL: l_by.setdefault(r["claim_id"],{})[r["input_id"]]=r.get("origin"); full_by[r["input_id"]]=r
     for x in recon_schema_fails(RD): fails.append("C6_RECONSTRUCTION: "+x)  # PROBE:C6_RECON_COMPLETE
+    identity_conflict={}
     for cid0,r0 in RD.items():
         for iid0,ar0 in (r0.get("inputs") or {}).items():
             sr0=full_by.get(iid0)
-            if sr0 is not None and str(sr0.get("claim_id"))!=str(cid0): fails.append(f"C6_IDENTITY: {iid0} reconstructed under claim {cid0}, but the sealed record belongs to claim {sr0.get('claim_id')}")  # PROBE:C6_IDENTITY
+            if sr0 is not None and str(sr0.get("claim_id"))!=str(cid0): identity_conflict[iid0]=f"reconstructed under claim {cid0}, but the sealed record belongs to claim {sr0.get('claim_id')}"; fails.append(f"C6_IDENTITY: {iid0} {identity_conflict[iid0]}")  # PROBE:C6_IDENTITY
     # the auditor's OWN graph, across every audited claim; a dependency it did not reconstruct is never borrowed from the sealed side
     a_graph={}
     for cid0,r0 in RD.items():
@@ -384,8 +385,9 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         matches_primary=same_origin and ev_ok and par_ok
         matches_alt=has_alt and str(ar.get("origin"))==alt_origin_full and all(str(aev.get(f2))==str(alt_ev_full.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim")) and a_par==alt_par_full
         if matches_primary: branch="primary"
-        elif matches_alt: branch="alt"   # PROBE:C6_COMPLETE_BRANCH
+        elif matches_alt: branch="alt"
         else:
+            diffs.append("record matches neither complete declared branch")  # AUTHORITATIVE: the full-record predicate decides the verdict; the per-field lines below only explain it (Blanc 03:03: never removed to satisfy a probe)
             if not same_origin and not alt_origin: diffs.append(f"origin {ar.get('origin')} vs sealed {sr.get('origin')}")
             if same_origin and not ev_ok:
                 for f2 in ("reason_code","source_file","source_line","verbatim"):
@@ -410,7 +412,9 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     for iid in sorted(sel_closure):
         ar=a_graph.get(iid); sr=full_by.get(iid)
         if sr is None: record_cmp[iid]=(["unsupported by the sealed ledger"],"primary"); continue
-        d,b=compare_record(iid, ar, sr); record_cmp[iid]=(d,b)
+        d,b=compare_record(iid, ar, sr)
+        if iid in identity_conflict: d=[f"identity: {identity_conflict[iid]}"]+d   # F1: the conflict is a MISMATCH of this record, carried into every dependent selected claim's rows
+        record_cmp[iid]=(d,b)
         if b=="alt": branch_of[iid]="alt"
     sealed_view={}
     for k2,v2 in full_by.items():
