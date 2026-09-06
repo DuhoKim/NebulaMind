@@ -2,8 +2,12 @@
 
 **What died.** Seat B of the 10:14:56 KST dispatch (kimi-k3 via moonshot, kernel-sandboxed, working directory with the 89 pinned
 texts flat; pid 31872), the limb-B seat of the run that had already been voided by the 10:17 design abort. It ran for about 3 h 45 min
-and was gone by ~14:01 KST. **No `SEAT_REPORT.md`, no ledger, no census artefact of any kind was written; nothing was filed as a
-result; nothing from it enters any tally.** Its tree is archived unread (`/Users/duhokim/HermesOps/r3c2_run_20260906r_VOID_1017`, inventory `_tmp_VOID_20260906_1017_inventory.md`).
+and was gone by ~14:01 KST. **No `SEAT_REPORT.md` was written and nothing was filed as a result; nothing from it enters any tally.** CORRECTION (14:07 KST, from the
+archived tree's listing, not from reading the files): the seat DID write `candidates.json` (1.5 MB), `exclusions.json` (211 KB) and
+`ledger.json` (2.4 MB) at 13:24 KST, a 7 MB numeral index at 10:18, and about fifty helper scripts (`_seat_*.py`, `_frag11_*`) between
+10:16 and 13:43 — it reached limb A's enumeration and was building and repairing the input ledger, and had begun attempting arithmetic
+(`_seat_attempt.py`, 13:34), when a later pass that re-read texts "COMPLETELY" in sets exhausted the session. These artefacts are void
+under the 10:17 abort and stay unread; their existence is recorded because it bears on the options below. Its tree is archived unread (`/Users/duhokim/HermesOps/r3c2_run_20260906r_VOID_1017`, inventory `_tmp_VOID_20260906_1017_inventory.md`).
 
 **The seat's own log, verbatim (`_tmp_r3c2_run_Br_kimi.stdout`):**
 ```
@@ -27,6 +31,11 @@ result; nothing from it enters any tally.** Its tree is archived unread (`/Users
 Context compression timed out without reducing this conversation. No messages were dropped. Start a fresh session with /new, or check auxiliary.compression before retrying /compress.
 ```
 
+**How the seat worked, from its own log.** It did not read linearly: it delegated "Extract every candidate quantitative claim" to two or
+three parallel subagents per set of texts (sets 1–3), two of which were interrupted during API calls in set 1, then in set 4 switched to
+"Read these 11 source files COMPLETELY" — the pass that killed the session. So the seat itself invented a chunked, delegated reading
+with no sealed intermediate state and no preregistered join; the design gave it no such structure.
+
 **How far it got.** The seat organised the 89 texts into sets of 11 and read them "COMPLETELY" set by set; the log shows set 4's
 second batch completing (1346 s) and its first batch interrupted (1218 s) during an API call, then the engine's own message that
 context compression timed out without reducing the conversation and that a fresh session would be needed. Reading roughly a third to
@@ -36,7 +45,10 @@ a half of the corpus consumed the session. It never reached limb B's arithmetic.
 uncertainty (§2 of `R3C2_RUN_PLAN_20260906.md`) and abort A4 was written for it. This seat belonged to a run already voided, so no
 limb is lost; but the evidence is real and applies to any re-run.
 
-**Would a straight re-run hit the same wall? My judgement: yes.** The corpus is 89 texts, 106,676 non-blank lines, several million
+**Would a straight re-run hit the same wall? My judgement: yes, though not necessarily at the same point.** The seat got through
+enumeration by improvising subagent chunks and died on a whole-corpus re-read; a re-run might improvise differently and die elsewhere,
+or produce an unrepeatable path to a report. Either way the design would be relying on an unrecorded, unpinned reading strategy the
+seat made up — which is the finding. The corpus is 89 texts, 106,676 non-blank lines, several million
 tokens of source text before any reasoning. No session of kimi-k3 will hold it. Seat A (codex-cli 0.153.4, gpt-6-astra) has NOT been
 tested on it — both of its runs today stopped in the first two minutes on scope, before reading a source — so its capacity is
 unknown, but the arithmetic of the corpus size against any advertised context window I know of says the same. The plan's A4 rule
