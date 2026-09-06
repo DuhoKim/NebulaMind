@@ -1,0 +1,21 @@
+Codex independent narrow negative-control observation at 2026-09-06T17:25:22.416312+00:00
+Test source SHA256 05710cb371138a34825c53aa9c80e9370be935a5a428201c4366329eaa4cc494
+Old module SHA256 8c20a5d3370b4c9123beceb5217f7ce2ca7a4779e6eba1ef8585b6f1acf4b507
+Loaded module /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/track2/provenance_designs_v7.py
+Only compatibility changes in memory: import the actual v7 module and alias validate_continuation_v8 to validate_continuation_v7. No production or test file changed. Local temporary Git repositories only.
+test_open_event_stage_is_tri_state (codex_track8_old_open_probe.V27_2_TriStatePropagation) ... FAIL
+
+======================================================================
+FAIL: test_open_event_stage_is_tri_state (codex_track8_old_open_probe.V27_2_TriStatePropagation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/track8/test_track8_fail_first.py", line 54, in test_open_event_stage_is_tri_state
+    gp = git(self.work, "rev-parse", oc + "^^"); nd = {"type": "PushEvent", "id": "open-nd", "created_at": "2026-09-07T01:06:00Z", "repo": {"name": REPO}, "payload": {"ref": REF, "before": gp, "head": gp}}   # ancestry ESTABLISHED false → positive non-delivery, terminal
+AssertionError: 'DOES-NOT-DELIVER' unexpectedly found in 'OPEN-EVENT-DOES-NOT-DELIVER: the retained history-open event does not deliver the first history commit 1676c0ee725b'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.660s
+
+FAILED (failures=1)
+
+EXPECTED_BEHAVIOR_FAILURE=True
