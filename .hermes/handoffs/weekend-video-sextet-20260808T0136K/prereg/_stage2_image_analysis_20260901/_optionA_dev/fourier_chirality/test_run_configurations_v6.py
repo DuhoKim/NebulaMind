@@ -338,5 +338,44 @@ class T(unittest.TestCase):
         buf = io.StringIO()
         with contextlib.redirect_stdout(buf): code = rc.main(["tune", "--manifest", "x", "--tensors", "x", "--out", str(self.tmp / "cli"), "--identity", str(self.tmp / "absent.json")])
         self.assertEqual(code, 2); self.assertIn("IDENTITY-MISSING", buf.getvalue()); self.assertNotIn("NO-REDERIVER", buf.getvalue())
+    def test_composed_mode_on_the_production_call_path(self):                  # UNADOPTED composed mode: track-2 v2 helpers inside load_identity (Blanc 21:14: not in isolation)
+        rows = self.rows(6); ids = [r[0] for r in rows]; hold = [str(500000 + i) for i in range(60)]
+        work = Path(self.TP.seal_journal).parent; git(self.TP.witness_remote_url, "config", "receive.denyNonFastforwards", "true"); open_file = work / "HISTORY_OPEN_COMMIT.txt"
+        composed_TP = rc.Protocol(**{**self.TP.__dict__, "provenance_mode": "composed", "events_repo": "DuhoKim/NebulaMind", "history_open_commit_file": str(open_file)})
+        def canon(e): return hashlib.sha256(json.dumps(e, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        def publish(I, ctx):
+            """the fixture's event gets the pinned repo name; the history is PUBLISHED the way design (b) requires: genesis alone = history-open commit (pushed, recorded), then the attempts (pushed)."""
+            ev = I["approval_witness"]["push_event"]; ev["repo"] = {"name": "DuhoKim/NebulaMind"}; I["approval_witness"]["push_event_sha256"] = canon(ev)
+            log = ctx["log"]; full = log.read_bytes(); log.write_bytes(full.split(b"\n")[0] + b"\n")
+            git(work, "add", log.name); git(work, "commit", "-q", "-m", "history-open"); oc = git(work, "rev-parse", "HEAD"); git(work, "push", "-q", "origin", "HEAD:refs/heads/main")
+            open_file.write_text(oc + "\n"); git(work, "add", open_file.name); log.write_bytes(full); git(work, "add", log.name); git(work, "commit", "-q", "-m", "attempts"); git(work, "push", "-q", "origin", "HEAD:refs/heads/main")
+        def feed(events):                                                         # FIXTURE-SUPPLIED `gh api` runner (labelled): one page, then the end
+            return lambda cmd: (0, json.dumps(events if cmd[-1].endswith("page=1") else []), "")
+        ident = identity(self.tmp, composed_TP, ids, hold, mutate=publish); ev = json.loads(ident.read_text())["approval_witness"]["push_event"]
+        rc.load_identity(ident, self.TP)                                                                  # (1) the OFFLINE candidate loads it
+        Iw, d = rc.load_identity(ident, rc.Protocol(**{**composed_TP.__dict__, "events_runner": feed([ev])})); self.assertEqual(Iw["_composed"]["event"], "AUTHENTIC")   # COMPOSED: genuine event in the live feed, history published → loads
+        with self.assertRaises(rc.DataIntegrityFail) as cm: rc.load_identity(ident, rc.Protocol(**{**composed_TP.__dict__, "events_runner": feed([{**ev, "id": "other", "created_at": "2026-09-06T00:00:00Z"}])}))   # (2) the retained event is not in the live feed
+        self.assertIn("EVENT-FORGED", str(cm.exception))
+        with self.assertRaises(rc.DataIntegrityFail) as cm: rc.load_identity(ident, rc.Protocol(**{**composed_TP.__dict__, "events_runner": (lambda cmd: (1, "", "gh: HTTP 502: Bad Gateway"))}))   # (3) live feed unavailable → RETRY
+        self.assertIn("RETRY-EVENTS-UNAVAILABLE", str(cm.exception))
+        with self.assertRaises(rc.DataIntegrityFail) as cm: rc.load_identity(ident, rc.Protocol(**{**composed_TP.__dict__, "events_runner": feed([{**ev, "id": "z", "created_at": "2027-01-01T00:00:00Z"}])}))   # expired, no receipt path configured (Q1/Q2 unanswered)
+        self.assertIn("EVENT-EXPIRED-NO-RECEIPT-PATH", str(cm.exception))
+        # (4) codex's attack 2: history rebuilt before the freeze, coherently sealed AND pushed as a fast-forward
+        tmp2 = Path(tempfile.mkdtemp()); TP2 = TPJ(tmp2); rc.ADOPTION_FILE = Path(self.TP.adoption_file); work2 = Path(TP2.seal_journal).parent; git(TP2.witness_remote_url, "config", "receive.denyNonFastforwards", "true")   # a FRESH repository, so the only history commits are this identity's
+        open2 = work2 / "HISTORY_OPEN_COMMIT.txt"; composed2 = rc.Protocol(**{**TP2.__dict__, "provenance_mode": "composed", "events_repo": "DuhoKim/NebulaMind", "history_open_commit_file": str(open2)})
+        def publish2(I, ctx):
+            ev = I["approval_witness"]["push_event"]; ev["repo"] = {"name": "DuhoKim/NebulaMind"}; I["approval_witness"]["push_event_sha256"] = canon(ev)
+            log = ctx["log"]; full = log.read_bytes(); log.write_bytes(full.split(b"\n")[0] + b"\n")
+            git(work2, "add", log.name); git(work2, "commit", "-q", "-m", "history-open"); oc = git(work2, "rev-parse", "HEAD"); git(work2, "push", "-q", "origin", "HEAD:refs/heads/main")
+            open2.write_text(oc + "\n"); git(work2, "add", open2.name); log.write_bytes(full); git(work2, "add", log.name); git(work2, "commit", "-q", "-m", "attempts"); git(work2, "push", "-q", "origin", "HEAD:refs/heads/main")
+        def rebuild2(I, ctx):
+            publish2(I, ctx); ctx["log"].unlink(); H.genesis(ctx["log"], I["approval_witness"]["record_sha256"], I["T_pulse"], I["rule_sha256"], I["beacon_round"])
+            e = H.append(ctx["log"], {"stage": "builder-accept", "record_sha256": I["beacon_record_sha256"], "outcome": "ACCEPT-DRAND", "seed_hex": I["seed_hex"], "source": "drand-mainnet-default"})
+            I["collection_lock"] = {"first_accept": e, "log_sha256": rc.sha_file(ctx["log"]), "entries": 2}
+        ident2 = identity(tmp2, composed2, ids, hold, mutate=rebuild2); ev2 = json.loads(ident2.read_text())["approval_witness"]["push_event"]
+        rc.load_identity(ident2, TP2)                                                                     # OFFLINE accepts the rebuild (disclosed boundary)
+        with self.assertRaises(rc.DataIntegrityFail) as cm: rc.load_identity(ident2, rc.Protocol(**{**composed2.__dict__, "events_runner": feed([ev2])}))
+        self.assertIn("HISTORY-CONTINUATION", str(cm.exception)); self.assertIn("NOT-AN-EXTENSION", str(cm.exception))   # COMPOSED: the remote's own history shows the rebuild
+        self.assertEqual(rc.PRODUCTION.provenance_mode, "offline")                # the default is the offline candidate; composed is UNADOPTED
 if __name__ == "__main__":
     unittest.main()

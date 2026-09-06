@@ -1,6 +1,6 @@
 # TRACK 2 FAIL-FIRST RECEIPT — 2026-09-06 21:05 KST
 
-## Run 1: the tests against a BYTE-COPY of provenance_designs.py (the module codex probed, 6ff0f7dc…) renamed provenance_designs_v2.py, BEFORE any repair
+## Run 1 — MISSING-INTERFACE run: the tests against a BYTE-COPY of provenance_designs.py (the module codex probed, 6ff0f7dc…) renamed provenance_designs_v2.py, BEFORE any repair. READ CORRECTLY (Blanc 21:14): the eight results below are AttributeErrors — the v2 interfaces (`validate_continuation_v2`, `retrieve_events`, `authenticate_event_live`, `EventsUnavailable`, the receipt functions) did not exist — so they establish that the MECHANISMS WERE MISSING, not that the old code BEHAVED wrongly. The old code's wrong BEHAVIOUR is established separately by run 1b below (codex's two counterexamples executed against the old `validate_continuation`: True, True) and by codex's own probe (`.hermes/CODEX_TRACK2_HISTORY_PROBE_20260906.json`).
 ```
 6ff0f7dcb4c7a417  provenance_designs_v2.py (copy of 6ff0f7dc…)
 test_error_handling_each_failure_takes_its_path (test_track2_fail_first.Events) ... ERROR

@@ -10,10 +10,12 @@ provenance_designs.py. NOTHING here is wired into the production driver.
     oldest event the feed still serves). EXPIRED path: `write_events_receipt` (taken INSIDE the window by an independent party — the OPS session —
     naming its origin) and `verify_events_receipt`: the receipt file must be added ONCE by one commit and never touched (like the approval record),
     that commit must be an ancestor of the LIVE remote head (ls-remote, not local refs), its events digest recomputes, its origin equals the
-    expected origin Duho names, and the retained event is in it verbatim. RESIDUAL TRUST, stated: with a single GitHub account the receipt's
-    pusher cannot be distinguished by GitHub from the lane; the receipt's independence rests on the OPS session being a different process/agent
-    (Blanc) and on Duho's chat confirmation of the receipt's digest; a lane that REPLACES a receipt is caught (RECEIPT-NOT-FIRST); a lane that
-    FORGES the first receipt in Blanc's name is not caught by this code — only by Blanc's own retained copy/digest. Stated, not hidden.
+    EXPECTED ORIGIN — the label {actor: ops-witness, session: OPS}, PROPOSED BY THE LANE for the OPS session's receipts, unadopted, not a user
+    decision (QUESTIONS_FOR_DUHO_TRACK2_ORIGIN_AND_RECEIPTS_20260906.md) — and the retained event is in it verbatim. RESIDUAL TRUST, stated:
+    with a single GitHub account the receipt's pusher cannot be distinguished by GitHub from the lane; a lane that REPLACES a receipt is caught
+    (RECEIPT-NOT-FIRST); a lane that FORGES the first receipt in the named party's name is NOT caught by this code — it is caught only by OPS's own retained
+    copy (outside the code); closing it BY CODE needs an expected-receipt identity the driver can check (a second GitHub identity's PushEvent actor,
+    or a key the lane cannot read) — the ONE step only Duho can provide; no per-receipt human confirmation is proposed. Stated, not hidden.
 (b) HISTORY — `validate_continuation_v2(root, rel, open_commit, remote_url, ref)`: (1) the CURRENT remote head is obtained INDEPENDENTLY with
     `git ls-remote <pinned url> <ref>` (production: https://github.com/DuhoKim/NebulaMind.git over TLS; the tests use a local bare repository
     with non-fast-forward receives denied, labelled); an operator-supplied `expected_head` that differs from the live head is refused as STALE;

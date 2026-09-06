@@ -86,14 +86,14 @@ class Events(unittest.TestCase):
         live = self.runner_ok([newer])                                                                       # the feed no longer reaches back to the approval
         self.assertEqual(P.authenticate_event_live(genuine, "DuhoKim/NebulaMind", live, REF, C)[0], "EXPIRED")
         bare, work = scaffold()                                                                               # the OPS receipt: taken inside the window, committed and pushed
-        receipt = P.write_events_receipt(work / "EVENTS_RECEIPT_T.json", [genuine, newer[0]], {"endpoints": ["e1"], "retrieved_utc": "2026-09-07T02:00:00Z", "gh_version": "gh test"}, origin={"actor": "blanc-ops", "session": "OPS", "note": "independent retrieval"})
+        receipt = P.write_events_receipt(work / "EVENTS_RECEIPT_T.json", [genuine, newer[0]], {"endpoints": ["e1"], "retrieved_utc": "2026-09-07T02:00:00Z", "gh_version": "gh test"}, origin={"actor": "ops-witness", "session": "OPS", "note": "independent retrieval"})
         git(work, "add", receipt.name); git(work, "commit", "-q", "-m", "events receipt"); git(work, "push", "-q", "origin", "HEAD:" + REF)
-        ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, genuine, expected_origin={"actor": "blanc-ops", "session": "OPS"}); self.assertTrue(ok, why)
+        ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, genuine, expected_origin={"actor": "ops-witness", "session": "OPS"}); self.assertTrue(ok, why)
         forged = dict(genuine); forged["created_at"] = "2000-01-01T00:00:00Z"                                # the lane forges a receipt naming a different event, digests recomputed
-        P.write_events_receipt(receipt, [forged], {"endpoints": ["e1"], "retrieved_utc": "x", "gh_version": "gh test"}, origin={"actor": "blanc-ops", "session": "OPS"}); git(work, "commit", "-q", "-am", "replaced receipt")
-        ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, forged, expected_origin={"actor": "blanc-ops", "session": "OPS"}); self.assertFalse(ok); self.assertIn("RECEIPT-NOT-FIRST", why)   # the receipt path was rewritten after its first commit
+        P.write_events_receipt(receipt, [forged], {"endpoints": ["e1"], "retrieved_utc": "x", "gh_version": "gh test"}, origin={"actor": "ops-witness", "session": "OPS"}); git(work, "commit", "-q", "-am", "replaced receipt")
+        ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, forged, expected_origin={"actor": "ops-witness", "session": "OPS"}); self.assertFalse(ok); self.assertIn("RECEIPT-NOT-FIRST", why)   # the receipt path was rewritten after its first commit
         git(work, "push", "-q", "origin", "HEAD:" + REF)                                                      # even pushed, a second version of the receipt is refused
-        ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, forged, expected_origin={"actor": "blanc-ops", "session": "OPS"}); self.assertFalse(ok)
+        ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, forged, expected_origin={"actor": "ops-witness", "session": "OPS"}); self.assertFalse(ok)
         ok, why = P.verify_events_receipt(receipt, work, str(bare), REF, genuine, expected_origin={"actor": "someone-else", "session": "OPS"}); self.assertFalse(ok)   # wrong origin
-        (work / "EVENTS_RECEIPT_U.json").write_text("x"); ok, why = P.verify_events_receipt(work / "EVENTS_RECEIPT_U.json", work, str(bare), REF, genuine, expected_origin={"actor": "blanc-ops", "session": "OPS"}); self.assertFalse(ok)   # unpushed / malformed
+        (work / "EVENTS_RECEIPT_U.json").write_text("x"); ok, why = P.verify_events_receipt(work / "EVENTS_RECEIPT_U.json", work, str(bare), REF, genuine, expected_origin={"actor": "ops-witness", "session": "OPS"}); self.assertFalse(ok)   # unpushed / malformed
 if __name__ == "__main__": unittest.main()

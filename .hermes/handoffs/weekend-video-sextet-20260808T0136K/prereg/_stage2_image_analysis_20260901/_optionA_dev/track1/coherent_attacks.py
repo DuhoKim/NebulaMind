@@ -99,5 +99,34 @@ git(w, "commit", "-q", "-am", "accept unpushed"); rows.append(("9e track 2(b) v2
 git(w, "reset", "-q", "--hard", oc); H.append(log, {"stage": "builder-accept", "record_sha256": "c" * 64, "outcome": "ACCEPT-DRAND", "seed_hex": "d" * 64}); git(w, "commit", "-q", "-am", "replacement"); rows.append(("9f track 2(b) v2: codex counterexample 2 — local reset to history-open, RETRY replaced by ACCEPT, remote unchanged", vc(), "v1 said True"))
 r = subprocess.run(["git", "push", "-q", "origin", "HEAD:refs/heads/main"], cwd=w, capture_output=True); rows.append(("9g track 2(b) v2: the rewrite pushed to the protected remote", ("push REJECTED (non-fast-forward); " if r.returncode else "push accepted?!; ") + vc(), ""))
 rows.append(("9h track 2(b) v2: remote unreachable", "REFUSED " + P.validate_continuation_v2(w, log.name, oc, str(bare) + ".missing", "refs/heads/main")[1].split(":")[0], "RETRY, never a pass"))
+# 10: THE THREE STATES on the PRODUCTION CALL PATH — attacks 1 and 2 under the OFFLINE candidate (default) and under the UNADOPTED COMPOSED mode (load_identity itself)
+import hashlib
+def canon(e): return hashlib.sha256(json.dumps(e, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+def feed(events): return lambda cmd: (0, json.dumps(events if cmd[-1].endswith("page=1") else []), "")     # FIXTURE-SUPPLIED gh runner (labelled)
+def composed_case(name, extra_mutate, forge_feed=False):
+    tmpc = Path(tempfile.mkdtemp()); TPc = TF.TPJ(tmpc); rc.ADOPTION_FILE = Path(TPc.adoption_file); workc = Path(TPc.seal_journal).parent; git(TPc.witness_remote_url, "config", "receive.denyNonFastforwards", "true"); openf = workc / "HISTORY_OPEN_COMMIT.txt"
+    comp = rc.Protocol(**{**TPc.__dict__, "provenance_mode": "composed", "events_repo": "DuhoKim/NebulaMind", "history_open_commit_file": str(openf)})
+    def publish(I, ctx):
+        ev = I["approval_witness"]["push_event"]; ev["repo"] = {"name": "DuhoKim/NebulaMind"}; I["approval_witness"]["push_event_sha256"] = canon(ev)
+        log = ctx["log"]; full = log.read_bytes(); log.write_bytes(full.split(b"\n")[0] + b"\n"); git(workc, "add", log.name); git(workc, "commit", "-q", "-m", "history-open"); oc = git(workc, "rev-parse", "HEAD"); git(workc, "push", "-q", "origin", "HEAD:refs/heads/main")
+        openf.write_text(oc + "\n"); git(workc, "add", openf.name); log.write_bytes(full); git(workc, "add", log.name); git(workc, "commit", "-q", "-m", "attempts"); git(workc, "push", "-q", "origin", "HEAD:refs/heads/main")
+        if extra_mutate: extra_mutate(I, ctx)
+    ident = TF.identity(tmpc, comp, [str(500000 + i) for i in range(6)], [str(500000 + i) for i in range(6, 66)], mutate=publish); ev = json.loads(ident.read_text())["approval_witness"]["push_event"]
+    try: rc.load_identity(ident, TPc); off = "ACCEPTED"
+    except rc.DataIntegrityFail as e: off = "REFUSED " + str(e).split(":")[0]
+    live = [] if forge_feed else [ev]
+    try: rc.load_identity(ident, rc.Protocol(**{**comp.__dict__, "events_runner": feed(live if live else [{**ev, "id": "genuine-other", "created_at": "2026-09-06T00:00:00Z"}])})); comp_r = "ACCEPTED"
+    except rc.DataIntegrityFail as e: comp_r = "REFUSED " + str(e).split(":")[0] + (" (" + str(e).split(":")[1].strip()[:40] + ")" if ":" in str(e) else "")
+    rows.append((name, f"offline: {off} / composed: {comp_r}", "same identity, same load_identity call; composed = UNADOPTED"))
+composed_case("10a genuine identity, history published per design (b), genuine event in the live feed", None)
+def forge2(I, ctx):
+    ev = {"type": "PushEvent", "id": "invented", "created_at": "2000-01-01T00:00:00Z", "repo": {"name": "DuhoKim/NebulaMind"}, "payload": {"ref": "refs/heads/main", "head": ctx["commit"], "commits": [{"sha": ctx["commit"]}]}}
+    I["approval_witness"]["push_event"] = ev; I["approval_witness"]["push_event_sha256"] = canon(ev); I["approval_witness"]["events_provenance"] = {"endpoints": ["https://attacker.invalid/events"], "retrieved_utc": "not-a-time"}
+composed_case("10b attack 1 again: forged event (coherent digest; names the pinned repo), live feed does not contain it", forge2, forge_feed=True)
+def rebuild2(I, ctx):
+    ctx["log"].unlink(); H.genesis(ctx["log"], I["approval_witness"]["record_sha256"], I["T_pulse"], I["rule_sha256"], I["beacon_round"])
+    e = H.append(ctx["log"], {"stage": "builder-accept", "record_sha256": I["beacon_record_sha256"], "outcome": "ACCEPT-DRAND", "seed_hex": I["seed_hex"], "source": "drand-mainnet-default"})
+    I["collection_lock"] = {"first_accept": e, "log_sha256": rc.sha_file(ctx["log"]), "entries": 2}
+composed_case("10c attack 2 again: history rebuilt after history-open, coherently sealed and pushed fast-forward", rebuild2)
 print("| attack | staged V22 candidate (driver v6 / verdict v22) | note |"); print("|---|---|---|")
 for n, r, note in rows: print(f"| {n} | {r} | {note} |")

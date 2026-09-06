@@ -104,6 +104,12 @@ class Protocol:
     holdout_once: bool = False                                                  # INHERITED — PREPARED, NOT ADOPTED (V15 §7 one holdout is text only): True refuses a second holdout invocation
     holdout_marker: str = str(HERE.parents[0] / "HOLDOUT_INVOKED.marker")       # persisted marker for holdout_once
     approval_glob: str = "APPROVAL_RECORD_SELRULE_V22*"                          # v6: W4 in the driver — exactly one record path for this glob in all history
+    provenance_mode: str = "offline"                                            # v6, UNADOPTED: "offline" (the candidate as reviewed at V21: retained bytes only) | "composed" (track-2 v2 helpers on this call path)
+    events_runner: object = None                                                # composed mode: the `gh api` runner (production: provenance_designs_v2.gh_runner; tests inject a labelled fixture runner)
+    events_repo: str = "DuhoKim/NebulaMind"                                     # composed mode: the pinned repository whose live events are queried
+    history_open_commit_file: str = str(HERE.parents[0] / "HISTORY_OPEN_COMMIT.txt")   # composed mode: the witnessed history-open commit (40 hex + newline), committed with the genesis
+    events_receipt: str = ""                                                    # composed mode, EXPIRED path: the independent receipt path ("" = no expired path; Q1/Q2 for Duho unanswered)
+    expected_receipt_origin: object = None                                      # composed mode: the origin Duho names — NOBODY HAS NAMED ONE (QUESTIONS_FOR_DUHO_TRACK2_ORIGIN_AND_RECEIPTS_20260906.md)
     verify_split: bool = False                                                  # v6, UNADOPTED (inherited limitation C11): recompute the split from catalogue bytes
     pool_csv: str = str(HERE.parents[0] / "corpus_identity" / "guarded_pool.csv")
     exclusion_file: str = str(HERE.parents[0] / "corpus_identity" / "dryrun_identities_to_exclude_20260905.txt")
@@ -309,6 +315,7 @@ def load_identity(identity_path, proto):
         seed, rv = proto.rederive_seed(rp, adopted, ap_bytes)
         if seed != I["seed_hex"] or rv.get("round") != rnd: raise DataIntegrityFail("IDENTITY-SEED-NOT-REDERIVED: the seed does not follow from the retained beacon evidence")
         if proto.verify_split: verify_split_from_catalogue(I, proto)                                  # v6, UNADOPTED: off by default
+        if proto.provenance_mode == "composed": composed_provenance(I, proto, w_root, ev, commit, lp)   # v6, UNADOPTED: the track-2 v2 helpers ON THIS CALL PATH (default "offline")
     for k, n in (("tuning_objids", proto.n_tune), ("holdout_objids", proto.n_hold), ("fresh_validation_objids", proto.n_fresh)):
         if len(I.get(k, [])) != n or len(set(I[k])) != n or not all(isinstance(x, int) for x in I[k]): raise DataIntegrityFail(f"IDENTITY-{k}-SIZE-OR-TYPE")
     a, b, c = set(I["tuning_objids"]), set(I["holdout_objids"]), set(I["fresh_validation_objids"])
@@ -337,6 +344,29 @@ def load_manifest(path, tensors, n_required, required_objids=None, render_journa
     sentinel = sum(1 for r in rows if r["tensor_sha256"] == SENTINEL_SHA256)                             # v2: render-refused objects, present in the denominator, UNSCORED
     reconcile_sentinels(rows, render_journal)                                                          # v5: every sentinel is a journalled refusal, and vice versa
     return objs, {"manifest_sha256": sha_file(path), "n": len(objs), "tensor_set_sha256": hashlib.sha256("".join(sorted(r["tensor_sha256"] for r in rows)).encode()).hexdigest(), "sentinel_count": sentinel}
+
+def composed_provenance(I, proto, w_root, ev, commit, log_path):
+    """UNADOPTED COMPOSED MODE (v6; Blanc 21:14 — the recommended mode exercised on the production call path, not in isolation). After every offline
+    check has passed: (a) the retained PushEvent is authenticated against a LIVE retrieval of the pinned repository's events through the runner
+    (production: `gh api`; fixtures inject a labelled runner) — AUTHENTIC loads; FORGED refuses; UNAVAILABLE refuses as RETRY; EXPIRED refuses unless
+    an independent receipt is configured AND verifies (`events_receipt`; its expected origin is UNNAMED until Duho answers Q1 — with no origin configured
+    the EXPIRED path is closed, i.e. Q1 Option C); (b) the collection history's continuation is validated against the LIVE remote head
+    (`validate_continuation_v2`: ls-remote on the pinned URL, push-acknowledgement boundary) from the witnessed history-open commit."""
+    sys.path.insert(0, str(HERE.parents[0] / "track2")); import provenance_designs_v2 as P
+    runner = proto.events_runner or P.gh_runner
+    o, why, prov = P.authenticate_event_live(ev, proto.events_repo, runner, proto.witness_branch_ref, commit)
+    if o == "AUTHENTIC": pass
+    elif o == "UNAVAILABLE": raise DataIntegrityFail(f"RETRY-EVENTS-UNAVAILABLE: {why}")
+    elif o == "EXPIRED":
+        if not proto.events_receipt or proto.expected_receipt_origin is None: raise DataIntegrityFail(f"EVENT-EXPIRED-NO-RECEIPT-PATH: {why}; no independent receipt path is configured (Q1/Q2 unanswered)")
+        ok, rwhy = P.verify_events_receipt(proto.events_receipt, w_root, proto.witness_remote_url, proto.witness_branch_ref, ev, proto.expected_receipt_origin)
+        if not ok: raise DataIntegrityFail(f"EVENT-EXPIRED-RECEIPT-REFUSED: {rwhy}")
+    else: raise DataIntegrityFail(f"EVENT-FORGED: {why}")
+    try: open_commit = Path(proto.history_open_commit_file).read_text().strip()
+    except FileNotFoundError: raise DataIntegrityFail("HISTORY-OPEN-COMMIT-MISSING: the witnessed history-open commit file is absent")
+    ok, hwhy, info = P.validate_continuation_v2(w_root, Path(log_path).resolve().relative_to(Path(w_root).resolve()).as_posix(), open_commit, proto.witness_remote_url, proto.witness_branch_ref)
+    if not ok: raise DataIntegrityFail(f"HISTORY-CONTINUATION: {hwhy}")
+    I["_composed"] = {"event": o, "events_provenance": prov, "history": hwhy, "remote_head": info.get("remote_head")}
 
 def verify_split_from_catalogue(I, proto):
     """UNADOPTED (v6; inherited limitation C11 of the V15 driver): recompute the §3b split from the pinned catalogue files and the identity's seed —
