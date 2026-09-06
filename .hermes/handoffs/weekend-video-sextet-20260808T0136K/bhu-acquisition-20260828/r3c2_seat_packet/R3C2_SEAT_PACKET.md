@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `a12791ced815ed9f10981f41eec5440ba6dc61f4868c82bdc906ddeefe0f0c4e` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `9c4b873d4281419a93b8aac9208e5a5de22481217fdd124b1dcfa6a7ae4d88be` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -237,7 +237,8 @@ is hidden by being excluded.
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
+  makes no claim that the list is complete. Any seat-chosen path outside (i)–(ii) below is `FAIL`; the execution of mandated
+  commands is governed by (iii). **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
   the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
   dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
   `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
@@ -246,10 +247,10 @@ is hidden by being excluded.
   §9 wrapper, every import and every data path the seat selects is a seat CHOICE and is subject to (i)–(ii). Any path the seat
   CHOOSES to open that is not (i) or (ii) — including through a placeholder or a wrapped command — is an outside path and `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
   listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
-  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
-  environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
-  seat's confinement (read-only to the seat, no reach beyond (i)–(ii)) bounds what such code could touch, and the dispatch record
-  says what was pinned.
+  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** matching manifest digests establish matching snapshots of the pinned directory at pinning and at C5, not
+  continuous immutability between them and not the absence of startup code; no inference about trusted content follows from the
+  pin alone. What bounds such code is the confinement recorded in the dispatch record (the kernel profile and its printed probes),
+  not this clause; C4 and C5b are self-report controls and do not themselves bound automatic code access.
 
 `C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;

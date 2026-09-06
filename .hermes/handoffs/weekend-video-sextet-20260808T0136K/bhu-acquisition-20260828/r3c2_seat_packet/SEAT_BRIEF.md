@@ -10,7 +10,7 @@ you CHOOSE to open beyond those is an outside path. Do not open any other path. 
 you open.
 
 Order of work:
-1. Print `shasum -a 256` of the packet, this brief, both tools and every source text you read; compare each source
+1. Print `shasum -a 256` of the packet, this brief, all three pinned scripts and every source text you read; compare each source
    digest to the manifest row.
 2. Execute the C5 harness commands exactly as printed in the packet; print stdout and exit codes.
 3. Limb A: enumerate every candidate passage under the packet's section 1 rule; record inclusion or exclusion for

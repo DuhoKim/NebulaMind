@@ -339,7 +339,8 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
+  makes no claim that the list is complete. Any seat-chosen path outside (i)–(ii) below is `FAIL`; the execution of mandated
+  commands is governed by (iii). **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
   the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
   dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
   `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
@@ -348,10 +349,10 @@ before audit — which is codex's order; kimi's differed only in placing the den
   §9 wrapper, every import and every data path the seat selects is a seat CHOICE and is subject to (i)–(ii). Any path the seat
   CHOOSES to open that is not (i) or (ii) — including through a placeholder or a wrapped command — is an outside path and `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
   listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
-  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
-  environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
-  seat's confinement (read-only to the seat, no reach beyond (i)–(ii)) bounds what such code could touch, and the dispatch record
-  says what was pinned.
+  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** matching manifest digests establish matching snapshots of the pinned directory at pinning and at C5, not
+  continuous immutability between them and not the absence of startup code; no inference about trusted content follows from the
+  pin alone. What bounds such code is the confinement recorded in the dispatch record (the kernel profile and its printed probes),
+  not this clause; C4 and C5b are self-report controls and do not themselves bound automatic code access.
 
 <!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
@@ -359,9 +360,12 @@ before audit — which is codex's order; kimi's differed only in placing the den
   asserted against the same forbidden list by the builder, and pinned in `R3C2_SEAT_PACKET.sha256`), `R3C2_SEAT_PACKET.sha256` itself, `R3C2_CORPUS_MANIFEST.md`, the script
   `r3c2_ledger_tools.py`, the manifest script `r3c2_manifest.py`, the wrapper `r3c2_timeout.py`, and every pinned source listed in `R3C2_CORPUS_MANIFEST.md`, with the wrapper pointed at that directory and **not** at the lane. **The
   lane owner lists that directory's contents and their digests in the dispatch record before launch; a copy missing any
-  of them is not dispatched.** **This is procedural, not enforced by the filesystem**: nothing here denies a seat an
-  absolute path into the lane, so the seat's printed path list is the detection, and `C4_SEAT_ISOLATION` is a
-  self-reported control with a structural aid, and is labelled so.
+  of them is not dispatched.** **Confinement, as of V24:** each seat is dispatched inside a kernel sandbox profile (`r3c2_seat_sandbox.sb`, sha256 `6978d590bf2acc519f00f38e8bc71b0e9ef476b95eeb6afa38443dbaef731fa6`) that
+  denies reads outside the working directory and the pinned environment and denies all writes outside the working directory; the
+  profile's digest and its live positive and negative probes (a pinned source read; the lane master, an outside file and a listing
+  of the lane refused with "Operation not permitted") are printed in the dispatch record before launch. That profile is the
+  mechanism; `C4_SEAT_ISOLATION` and `C5B_NO_CROSS_LANE` remain the seat's self-reported account of what it opened, and PASS on
+  them means what the printed list shows, no more. A dispatch without the recorded profile and probes is not a V24 dispatch.
 
   **The seat packet is built mechanically, by `r3c2_build_seat_packet.py`, and its redaction is asserted.** **The builder is pinned beside
   this document, sha256 `4ed52d4b638562f72a604e42c8073d2ea77ff834eb5a6b07e2a46ca32694fbe3`; a dispatch built by any other bytes files `C4_PACKET_REDACTED=FAIL`.** The
@@ -399,9 +403,8 @@ before audit — which is codex's order; kimi's differed only in placing the den
   is the accepted floor under that ruling, not a defect; the argument is in `R3C2_LEAK_FLOOR_JUDGEMENT_20260905.md`.
   **What the blind supports and does not:** the dispatch record proves that the seat was not furnished the pattern
   record in its working directory. The self-reported path list is secondary evidence and, because it is not complete
-  and filesystem access is not denied, this design does not prove that the seat did not read an absolute path into the
-  lane; `C4_SEAT_ISOLATION=PASS` certifies the contents of the printed list and of the dispatch copy, not actual
-  non-access. **It cannot prove a seat has no prior exposure from training or an earlier session** —
+  and the seat's own account is self-reported, this design does not prove more than the recorded confinement profile and its probes
+  establish about what the seat could read. **It cannot prove a seat has no prior exposure from training or an earlier session** —
   nothing available here can. The record states that limit rather than implying a stronger blind.
   
 <!--/SEAT-REDACT-->`C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
@@ -1133,3 +1136,13 @@ codex D5 — executing a printed command does not authorise arbitrary data acces
 data path the seat selects is a seat choice under (i)–(ii) (C4, C5b, brief); codex D7 / kimi F1 — the build command carries `-E`;
 kimi F2 — the seat tool's usage text shows `-E` (tool re-pinned, controls re-run); codex C1 — "one invocation" wording for the
 wrapper. Nothing else changed. Pending for the principal, unchanged: D1, D2, D4, D7, D8 (`R3C2_INHERITED_ITEMS_FOR_DUHO_20260906.md`).
+
+**V24i — consistency closure after the V24h gate (14:40 KST).** V24h gate: codex `PREREG_UNSOUND` (D1–D4 = the five inherited items,
+already assembled for the principal; D5 = the text both relied on and denied filesystem confinement; C1 cosmetic; C2 = `DERIVED_ONLY`),
+kimi `PREREG_SOUND_WITH_REPAIRS` (cosmetics only); **both seats: C5_EXECUTABLE_UNDER_SCOPE=YES, NO_MASKED_STAGE=YES.** Applied: D5 —
+the V23 sentence "procedural, not enforced by the filesystem" is replaced by the truth as of V24: each seat runs inside the pinned
+kernel sandbox profile whose digest and live probes the dispatch record prints, while C4/C5b stay the seat's self-reported account;
+the residual now says what matching manifests establish (matching snapshots, not immutability, no inference about trusted content);
+codex C1 / kimi F1 — the flat prohibition no longer precedes its exceptions; kimi F2 — the brief says "all three pinned scripts".
+Not applied (cosmetic, noted): kimi F4 (an empty-ledger message in the tool), F5 (§11's physical position). Pending for the
+principal, unchanged: D1, D2, D4, D7, D8.
