@@ -144,7 +144,7 @@ def main():
     print(f"master        sha256 {master_sha}")
     print(f"seat packet   sha256 {hashlib.sha256(out.encode()).hexdigest()}")
     print(f"sections kept {[h for h,_ in kept]}   dropped {DROP_SECTIONS}   inline spans redacted {n_spans}")
-    print(f"written       {OUT}  ({len(out)} bytes, master {len(text)} bytes)")
+    print(f"written       {OUT}  ({len(out.encode('utf-8'))} bytes, master {len(text.encode('utf-8'))} bytes)")
     return 0
 
 if __name__ == "__main__":

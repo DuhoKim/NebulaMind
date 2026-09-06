@@ -6,19 +6,19 @@
       declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2} and outcome (a section-3 token or PENDING; `census ... final` rejects PENDING and requires printed_value/reproduced_value on arithmetic outcomes); exclusions.json =
       {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; every exclusion row carries source_file, source_line and numeral equal to its candidate row (retained, not discarded); the AUTHOR_SPECIFIED_INPUT count is printed beside the denominator; the declared counts are
       compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
-  V26 D1 — validate <ledger.json> <sources_dir> <candidates.json>: a PRINTED record with reason_code ORIG_CITATION is
+  V28 D1 — validate <ledger.json> <sources_dir> <candidates.json>: a PRINTED record with reason_code ORIG_CITATION is
       an imported value: its non-empty verbatim is matched at the CLAIMING paper's citing sentence (origin_evidence.source_file/
       source_line), and the claiming file is the file of the candidate row whose candidate_id equals the record's claim_id; its
       value is matched as a numeric TOKEN (not a substring) at the EXTERNAL value line (source_file/source_line), which must be an
       exact row of R3C2_CORPUS_MANIFEST.md in <sources_dir> whose bytes verify against that row's sha256, must differ from the claiming
       file, and must be the FIRST line of the source carrying both the symbol and the numeral (the tie-break); no reason-code test
       is applied to the external line's wording. The kit implements the review's wording only (evidence at the borrower).
-  V26 D7 — audit seal-enumeration <aud_c> <aud_x> <seal.txt>   census-gated, first-write
+  V28 D7 — audit seal-enumeration <aud_c> <aud_x> <seal.txt>   census-gated, first-write
                             audit select <sealed_c> <seed_hex> <stage1_seal> <selection.json>   refuses without the stage-1 seal
                             audit handout <selection.json> <sealed_c> <handout.json>              ids + file + line ONLY
                             audit seal-rederivation <rederiv.json> <seal2.txt>                    first-write, before any release
                             audit compare <seal1> <aud_c> <aud_x> <sealed_c> <sealed_x> <sealed_l> <selection> <seal2> <rederiv> <C6_AUDIT.json>
-  /usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
+  /usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir> <candidates.json>
       asserts: every record has the schema fields and no field outside the schema; status in
       {PRINTED,STANDARD,ABSENT,BLOCKED}; origin in {CHOSEN,DERIVED,FITTED,IMPORTED,MEASURED,STANDARD,UNDECLARED};
       reason_code/origin pair is one of the allowed pairs; no ABSENT or BLOCKED record carries a value; a BLOCKED record
@@ -135,6 +135,9 @@ def cmd_validate(ledger,srcdir,candidates=None):
             if r["origin"]!="IMPORTED" or rc!="ORIG_CITATION": fails.append(f"{r['input_id']}: BLOCKED record must carry origin IMPORTED with ORIG_CITATION evidence from the claiming paper")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
         if r["status"]=="STANDARD":
+            cfs=claim_file.get(r["claim_id"]) if candidates else None
+            if not candidates or cfs is None: fails.append(f"{r['input_id']}: STANDARD record needs the candidate file to bind claim {r['claim_id']} to its claiming paper")  # PROBE:STD_NEEDS_CANDIDATES
+            elif r.get("source_file") and r.get("source_file")!=cfs: fails.append(f"{r['input_id']}: STANDARD value line is in {r.get('source_file')}, outside the claiming file {cfs}: a value outside the claiming paper follows the named-source rule (PRINTED/IMPORTED with ORIG_CITATION), even when it is on the closed list")  # PROBE:STD_CLAIMING_FILE
             if not r.get("source_file") or not isinstance(r.get("source_line"),int) or r.get("source_line",0)<1: fails.append(f"{r['input_id']}: STANDARD record needs its own source_file and a positive source_line (absence of origin evidence never waives value evidence)")  # PROBE:STD_COORDS
             else:
                 vl=read_line(srcdir, r["source_file"], r["source_line"])
@@ -159,7 +162,7 @@ def cmd_validate(ledger,srcdir,candidates=None):
             elif not token_in(r.get("value"), vl): fails.append(f"{r['input_id']}: value {r.get('value')} is not a numeric token at {r['source_file']}:{r['source_line']}")  # PROBE:D1_LOCAL_VALUE_TOKEN
             continue
         if r["status"]=="PRINTED" and rc=="ORIG_CITATION":
-            # STAGED D1 (review's wording): verbatim at the claiming paper's citing sentence, numeric token at the EXTERNAL value line
+            # V28 D1 (review's wording): verbatim at the claiming paper's citing sentence, numeric token at the EXTERNAL value line
             ef=str(ev.get("source_file","")); el=ev.get("source_line"); cf=claim_file.get(r["claim_id"])
             if ef!=cf: fails.append(f"{r['input_id']}: citing sentence is in {ef}, but claim {r['claim_id']} belongs to {cf}")  # PROBE:D1_CLAIMING_FILE
             if ef==r["source_file"]: fails.append(f"{r['input_id']}: IMPORTED PRINTED record names its own file as the external source")  # PROBE:D1_SELF_FILE
@@ -257,7 +260,7 @@ def first_write(p, text):
     p.write_text(text); print(text, end=""); return 0
 
 def cmd_audit_seal(ac, ax, out):
-    """STAGED D7 stage 1 (custodian): census-gated, first-write seal of the auditor's OWN enumeration, before any sealed ledger is revealed."""
+    """V28 D7 stage 1 (custodian): census-gated, first-write seal of the auditor's OWN enumeration, before any sealed ledger is revealed."""
     r=subprocess.run([sys.executable,"-E",__file__,"census",ac,ax],capture_output=True,text=True)
     if r.returncode!=0 or "C1_DENOMINATOR_PRINTED=PASS" not in r.stdout:
         print(r.stdout,end=""); print("FAIL: auditor enumeration does not pass census; not sealed"); return 1  # PROBE:C6_AUDITOR_CENSUS
@@ -271,14 +274,14 @@ def selection_of(sc, seed_hex):
     return {"sealed_candidates_sha256":sha(sc),"seed_hex":seed_hex,"N":N,"R":R,"k":k,"arithmetic_group_ids":arith,"remaining_ids":rem,"sampled_ids":samp,"audited_ids":sorted(set(arith)|set(samp))}
 
 def cmd_audit_select(sc, seed_hex, seal1, out):
-    """STAGED D7 stage 2 (custodian): refuses without the stage-1 seal; every arithmetic-group claim + k of the remaining, seeded from outside."""
+    """V28 D7 stage 2 (custodian): refuses without the stage-1 seal; every arithmetic-group claim + k of the remaining, seeded from outside."""
     if not pathlib.Path(seal1).exists() or "AUDITOR_CANDIDATES_SHA256=" not in pathlib.Path(seal1).read_text(): print("FAIL: no stage-1 seal of the auditor's enumeration; selection refused"); return 1  # PROBE:C6_SELECT_NEEDS_SEAL
     if not (isinstance(seed_hex,str) and len(seed_hex)==64 and all(ch in "0123456789abcdef" for ch in seed_hex)): print("FAIL: seed must be 64 lowercase hexadecimal characters"); return 1
     sel=selection_of(sc, seed_hex); sel["stage1_seal_sha256"]=(sha(seal1) if pathlib.Path(seal1).exists() else None)
     pathlib.Path(out).write_text(json.dumps(sel,indent=1,sort_keys=True)); print(f"N={sel['N']} R={sel['R']} k={sel['k']} audited={len(sel['audited_ids'])}"); return 0
 
 def cmd_audit_handout(sel, sc, out):
-    """STAGED D7: what the auditor receives for re-derivation — claim identifiers with source file and line ONLY."""
+    """V28 D7: what the auditor receives for re-derivation — claim identifiers with source file and line ONLY."""
     S=json.loads(pathlib.Path(sel).read_text()); by={c["candidate_id"]:c for c in json.loads(pathlib.Path(sc).read_text())["candidates"]}
     H=[{"claim_id":cid,"source_file":by[cid]["source_file"],"source_line":by[cid]["source_line"]} for cid in S["audited_ids"]]
     pathlib.Path(out).write_text(json.dumps(H,indent=1,sort_keys=True)); print(f"handout: {len(H)} claims, fields claim_id/source_file/source_line only"); return 0
@@ -302,7 +305,7 @@ def recon_schema_fails(RD):
     return out
 
 def cmd_audit_seal_rederivation(red, out):
-    """STAGED D7 stage 2b (custodian): validates the reconstruction schema, then first-write seals the auditor's re-derivations BEFORE any sealed ledger is released."""
+    """V28 D7 stage 2b (custodian): validates the reconstruction schema, then first-write seals the auditor's re-derivations BEFORE any sealed ledger is released."""
     RD=json.loads(pathlib.Path(red).read_text()); sf=recon_schema_fails(RD)
     if sf:
         for x in sf: print("FAIL:",x)
@@ -310,7 +313,7 @@ def cmd_audit_seal_rederivation(red, out):
     return first_write(out, f"AUDITOR_REDERIVATIONS_SHA256={sha(red)}\n")
 
 def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
-    """STAGED D7 stage 3: compare the auditor's sealed enumeration and sealed re-derivations with the sealed (merged) ledgers."""
+    """V28 D7 stage 3: compare the auditor's sealed enumeration and sealed re-derivations with the sealed (merged) ledgers."""
     fails=[]; s1=pathlib.Path(seal1).read_text(); s2=pathlib.Path(seal2).read_text()
     if f"AUDITOR_CANDIDATES_SHA256={sha(ac)}" not in s1 or f"AUDITOR_EXCLUSIONS_SHA256={sha(ax)}" not in s1: fails.append("C6_STAGE_ORDER: the auditor's enumeration differs from its stage-1 seal")  # PROBE:C6_STAGE_ORDER
     if f"AUDITOR_REDERIVATIONS_SHA256={sha(red)}" not in s2: fails.append("C6_STAGE_ORDER: the auditor's re-derivations differ from their seal (re-derivations must be sealed before any sealed ledger is released)")  # PROBE:C6_REDERIV_SEAL
@@ -352,6 +355,57 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     for cid0,r0 in RD.items():
         for iid0,ar0 in (r0.get("inputs") or {}).items():
             if isinstance(ar0,dict): a_graph[iid0]=dict(ar0,input_id=iid0,origin=ar0.get("origin","UNDECLARED"),derived_from=list(ar0.get("derived_from") or []))
+    # ---- V29: every reconstructed record in a selected claim's complete dependency closure is compared (records of other claims included);
+    #      a declared alternative — origin and/or parent list — is matched over the whole closure, once, and the sealed roots are recomputed under that graph
+    def compare_record(iid, ar, sr):
+        """returns (diffs, branch) where branch is 'primary' or 'alt'"""
+        diffs=[]; branch="primary"
+        for fld in ("symbol","status","value","source_file"):
+            if str(ar.get(fld))!=str(sr.get(fld)): diffs.append(f"{fld} {ar.get(fld)} vs sealed {sr.get(fld)}")  # PROBE:C6_FIELDS
+        if int(ar.get("source_line") or -1)!=int(sr.get("source_line") or -2): diffs.append(f"source_line {ar.get('source_line')} vs sealed {sr.get('source_line')}")
+        aev=ar.get("origin_evidence") or {}; sev=sr.get("origin_evidence") or {}; sev2=sr.get("origin_evidence_alt") or {}
+        a_par=sorted(ar.get("derived_from") or []); s_par=sorted(sr.get("derived_from") or []); s_par_alt=sorted(sr.get("derived_from_alt") or []) if sr.get("derived_from_alt") is not None else None
+        same_origin=str(ar.get("origin"))==str(sr.get("origin")); alt_origin=bool(sr.get("origin_alt")) and str(ar.get("origin"))==str(sr.get("origin_alt"))
+        ev_ok=all(str(aev.get(f2))==str(sev.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim"))
+        ev_alt_ok=bool(sev2) and all(str(aev.get(f2))==str(sev2.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim"))
+        par_ok=(a_par==s_par); par_alt_ok=(s_par_alt is not None and a_par==s_par_alt)
+        if same_origin and (ev_ok or (alt_origin and ev_alt_ok)) and par_ok: branch="primary"
+        elif same_origin and ev_ok and par_alt_ok: branch="alt"          # parent-only declared alternative (PARENTS_DISPUTED), origin unchanged
+        elif alt_origin and ev_alt_ok and (par_alt_ok or (s_par_alt is None and par_ok)): branch="alt"   # declared origin alternative with its own evidence
+        else:
+            if not same_origin and not alt_origin: diffs.append(f"origin {ar.get('origin')} vs sealed {sr.get('origin')}")
+            if same_origin and not ev_ok:
+                for f2 in ("reason_code","source_file","source_line","verbatim"):
+                    if str(aev.get(f2))!=str(sev.get(f2)): diffs.append(f"origin_evidence.{f2} {aev.get(f2)} vs sealed {sev.get(f2)}")  # PROBE:C6_EVIDENCE
+            if alt_origin and not ev_alt_ok:
+                for f2 in ("reason_code","source_file","source_line","verbatim"):
+                    if str(aev.get(f2))!=str(sev2.get(f2)): diffs.append(f"origin_evidence.{f2} {aev.get(f2)} vs sealed alternative {sev2.get(f2)}")
+            if not par_ok and not par_alt_ok: diffs.append(f"derived_from {a_par} vs sealed {s_par}"+(f" (alternative {s_par_alt})" if s_par_alt is not None else ""))  # PROBE:C6_EDGES
+        if aev.get("reason_code")=="ORIG_SILENT" and str(ar.get("origin_search"))!=str(sr.get("origin_search")): diffs.append("origin_search differs")
+        return diffs, branch
+    def closure_of(iid, graph, seen=None):
+        seen=seen if seen is not None else set()
+        if iid in seen or iid not in graph: return seen
+        seen.add(iid)
+        for p_ in graph[iid].get("derived_from") or []: closure_of(p_, graph, seen)
+        return seen
+    # one comparison per reconstructed record over the union of the selected claims' closures
+    record_cmp={}; branch_of={}
+    sel_closure=set()
+    for cid in S.get("audited_ids",[]):
+        for iid in (RD.get(cid,{}).get("inputs") or {}): sel_closure|=closure_of(iid, a_graph)
+    for iid in sorted(sel_closure):
+        ar=a_graph.get(iid); sr=full_by.get(iid)
+        if sr is None: record_cmp[iid]=(["unsupported by the sealed ledger"],"primary"); continue
+        d,b=compare_record(iid, ar, sr); record_cmp[iid]=(d,b)
+        if b=="alt": branch_of[iid]="alt"
+    sealed_view={}
+    for k2,v2 in full_by.items():
+        v3=dict(v2)
+        if branch_of.get(k2)=="alt":
+            if v2.get("origin_alt"): v3["origin"]=v2["origin_alt"]
+            if v2.get("derived_from_alt") is not None: v3["derived_from"]=v2["derived_from_alt"]
+        sealed_view[k2]=v3
     audited={}
     for cid in S.get("audited_ids",[]):
         r=RD.get(cid); s=s_by.get(cid)
@@ -359,46 +413,18 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         why=[]; inputs_res={}
         if r.get("outcome")!=s.get("outcome"): why.append(f"outcome {r.get('outcome')} vs sealed {s.get('outcome')}")
         if s.get("outcome") in ARITH and (str(r.get("printed_value"))!=str(s.get("printed_value")) or str(r.get("reproduced_value"))!=str(s.get("reproduced_value"))): why.append("printed/reproduced values differ")
-        # gate-2 F2: the auditor's inputs are full reconstructed records; every field and every dependency edge is compared
-        for iid,ar in (r.get("inputs") or {}).items():
-            ar=ar if isinstance(ar,dict) else {"origin":ar}
-            sr=full_by.get(iid)
-            if sr is None: inputs_res[iid]={"result":"MISMATCH","why":"auditor reconstructed an input the sealed ledger lacks"}; why.append(f"input {iid}: unsupported by the sealed ledger"); continue
-            diffs=[]; alt_branch=False
-            for fld in ("symbol","status","value","source_file"):
-                if str(ar.get(fld))!=str(sr.get(fld)): diffs.append(f"{fld} {ar.get(fld)} vs sealed {sr.get(fld)}")  # PROBE:C6_FIELDS
-            if int(ar.get("source_line") or -1)!=int(sr.get("source_line") or -2): diffs.append(f"source_line {ar.get('source_line')} vs sealed {sr.get('source_line')}")
-            aev=ar.get("origin_evidence") or {}; sev=sr.get("origin_evidence") or {}
-            if str(ar.get("origin"))==str(sr.get("origin")):
-                for f2 in ("reason_code","source_file","source_line","verbatim"):
-                    if str(aev.get(f2))!=str(sev.get(f2)): diffs.append(f"origin_evidence.{f2} {aev.get(f2)} vs sealed {sev.get(f2)}")  # PROBE:C6_EVIDENCE
-            elif sr.get("origin_alt") and str(ar.get("origin"))==str(sr.get("origin_alt")):
-                alt_branch=True; sev2=sr.get("origin_evidence_alt") or {}
-                for f2 in ("reason_code","source_file","source_line","verbatim"):
-                    if str(aev.get(f2))!=str(sev2.get(f2)): diffs.append(f"origin_evidence.{f2} {aev.get(f2)} vs sealed alternative {sev2.get(f2)}")
-            else: diffs.append(f"origin {ar.get('origin')} vs sealed {sr.get('origin')}")
-            s_parents=sorted(sr.get("derived_from_alt") or []) if (alt_branch and sr.get("derived_from_alt") is not None) else sorted(sr.get("derived_from") or [])
-            if sorted(ar.get("derived_from") or [])!=s_parents: diffs.append(f"derived_from {sorted(ar.get('derived_from') or [])} vs sealed {s_parents}")  # PROBE:C6_EDGES
-            if ar.get("origin_evidence",{}).get("reason_code")=="ORIG_SILENT" and str(ar.get("origin_search"))!=str(sr.get("origin_search")): diffs.append("origin_search differs")
-            if alt_branch: inputs_res.setdefault("_branches",{})[iid]="sealed alternative classification (ORIGIN_DISPUTED carried, compared like with like)"
-            inputs_res[iid]={"result":"MATCH" if not diffs else "MISMATCH","why":diffs}
-            if diffs: why.append(f"input {iid}: "+"; ".join(diffs))
+        own=set(r.get("inputs") or {}); clos=set()
+        for iid in own: clos|=closure_of(iid, a_graph)
+        for iid in sorted(clos):
+            d,b=record_cmp.get(iid,(["not reconstructed"],"primary"))
+            inputs_res[iid]={"result":"MATCH" if not d else "MISMATCH","why":d,"branch":b,"own_input":iid in own}
+            if d: why.append(f"input {iid}: "+"; ".join(d))  # PROBE:C6_CLOSURE
         for iid in l_by.get(cid,{}):
-            if iid not in (r.get("inputs") or {}): inputs_res[iid]={"result":"MISMATCH","why":"not reconstructed by the auditor"}; why.append(f"input {iid}: not reconstructed")
-        # rests_on recomputed from both reconstructions (seat tool's roots over the auditor's records vs the sealed ledger)
+            if iid not in own: inputs_res[iid]={"result":"MISMATCH","why":["not reconstructed by the auditor"]}; why.append(f"input {iid}: not reconstructed")
         try:
-            # F1: roots from the auditor's OWN graph only (a missing dependency is a MISMATCH, never borrowed); F2: sealed roots under the matching branch
-            ra=set(); [ra.update(roots(a_graph,i)) for i in (r.get("inputs") or {}) if i in a_graph]
-            branches=(inputs_res.get("_branches") or {})
-            sealed_view={}
-            for k2,v2 in full_by.items():
-                v3=dict(v2)
-                if k2 in branches:
-                    if v2.get("origin_alt"): v3["origin"]=v2["origin_alt"]
-                    if v2.get("derived_from_alt") is not None: v3["derived_from"]=v2["derived_from_alt"]
-                sealed_view[k2]=v3
+            ra=set(); [ra.update(roots(a_graph,i)) for i in own if i in a_graph]
             rs=set(); [rs.update(roots(sealed_view,i)) for i in l_by.get(cid,{})]
-            audited_rests={"audit":sorted(ra),"sealed_under_matching_branch":sorted(rs),"sealed_primary":sorted(set().union(*[roots(full_by,i) for i in l_by.get(cid,{})]) if l_by.get(cid) else set())}
+            audited_rests={"audit":sorted(ra),"sealed_under_matching_branch":sorted(rs),"sealed_primary":sorted(set().union(*[roots(full_by,i) for i in l_by.get(cid,{})]) if l_by.get(cid) else set()),"alt_branch_records":sorted(k for k in clos if branch_of.get(k)=="alt")}
             if ra!=rs: why.append(f"root_origins differ: audit {sorted(ra)} vs sealed {sorted(rs)}")
         except ValueError as e: audited_rests={"error":str(e)}; why.append(f"dependency not reconstructed by the auditor or cyclic: {e}")  # PROBE:C6_NO_BORROW
         except Exception as e: audited_rests={"error":str(e)}; why.append(f"root recomputation failed: {e}")

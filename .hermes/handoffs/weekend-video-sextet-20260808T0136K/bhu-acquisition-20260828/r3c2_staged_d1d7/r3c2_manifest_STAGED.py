@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""r3c2_manifest_STAGED.py <directory> — STAGED, UNADOPTED copy (V26cand gate F9: symlinks and non-regular entries fail closed) — the pinned-environment manifest as ONE process (codex V24e D3: a shell pipeline can mask an
+"""r3c2_manifest.py <directory> — V28: symlinks and non-regular entries fail closed — the pinned-environment manifest as ONE process (codex V24e D3: a shell pipeline can mask an
 upstream failure). Walks every regular file under <directory> (symlinks not followed), reads each fully, and prints:
   FILES=<n>
   MANIFEST_SHA256=<sha256 over the lines "<sha256>  <relative path>\n", sorted by relative path, UTF-8>

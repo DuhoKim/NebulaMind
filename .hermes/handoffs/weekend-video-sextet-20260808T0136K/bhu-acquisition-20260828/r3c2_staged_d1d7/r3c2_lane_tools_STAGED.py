@@ -92,15 +92,19 @@ def cmd_merge(a,b,out):
     da,ra=load(a); db,rb=load(b); A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
     if set(A)!=set(Bm):
         print("FAIL: input_id sets differ:", sorted(set(A)^set(Bm))); return 1
-    out_recs=[]; ndis=0; npar=0
+    out_recs=[]; ndis=0; npar=0; fails=[]
     for k in sorted(A):
+        for fld in ("status","value","source_file","source_line","symbol"):
+            if str(A[k].get(fld))!=str(Bm[k].get(fld)): fails.append(f"{k}: seats disagree on {fld} ({A[k].get(fld)!r} vs {Bm[k].get(fld)!r}) — a value/status/coordinate disagreement is not silently resolved")  # PROBE:MERGE_FIELDS
         r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None); r.pop("derived_from_alt",None); r.pop("PARENTS_DISPUTED",None)
         if Bm[k]["origin"]!=A[k]["origin"]:
             r["origin_alt"]=Bm[k]["origin"]; r["origin_evidence_alt"]=Bm[k]["origin_evidence"]; ndis+=1
         if sorted(A[k].get("derived_from") or []) != sorted(Bm[k].get("derived_from") or []):
             r["derived_from_alt"]=Bm[k].get("derived_from") or []; r["PARENTS_DISPUTED"]=True; npar+=1
         out_recs.append(r)
-    print(f"PARENTS_DISPUTED={npar}")
+    for x in fails: print("FAIL:",x)
+    print(f"PARENTS_DISPUTED={npar}"); print(f"FIELD_DISAGREEMENTS={len(fails)}")
+    if fails: print("MERGE=FAIL"); return 1
     pathlib.Path(out).write_text(json.dumps({"records":out_recs},indent=1)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}"); return 0
 
 

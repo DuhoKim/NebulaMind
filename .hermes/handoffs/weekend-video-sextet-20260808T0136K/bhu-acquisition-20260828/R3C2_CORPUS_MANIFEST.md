@@ -3,7 +3,7 @@
 **Definition (mechanical, V11 §2):** the census corpus is the set of clean-text extractions (`*_clean.txt` and other `.txt`) present in `../bhu-reading-20260823/sources/` at freeze, pinned below by SHA-256 of the raw bytes. A seat enumerates claims from these files and no other. Raw PDFs/HTML/JSON in the same tree are the sources the texts were extracted from; they are listed as RAW and are NOT enumerable by the census (a PDF has no stable line numbers). A published entry whose only file is RAW is therefore outside the census, and that exclusion is visible here rather than silent.
 
 ## Enumerable texts
-| # | file | sha256 | bytes | non-blank lines |
+| # | file | sha256 | bytes | non-blank lines (convention, stated V29: the pinned bytes split on the newline character `\n` only — a form feed or other Unicode line separator does not start a line — counting lines with any non-whitespace character; informational, consumed by no tool) |
 |---|---|---|---|---|
 | 1 | `0210105_clean.txt` | `82fd83229be202847a4e0d5d37953f4aa41b06931fdf8eba151771fb45118242` | 23613 | 281 |
 | 2 | `0902.1994_clean.txt` | `6c22823e60a67959f63c795a20d8d9137f728dce5c9b3d03e6859815ce740258` | 27244 | 229 |

@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `c9a43610be7451aacee491d1ab3e16d4ba658dc368663f884a6da657625de206` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `37ba58918ec6f6b09775808041acc370aff3dd3dfd561e63407829255080e64d` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -26,7 +26,7 @@ disputed candidates are listed and the complete candidate and exclusion ledgers 
 
 ## 2. Method — per claim, in order
 
-**The corpus is pinned: `R3C2_CORPUS_MANIFEST.md` (sha256 `300d4da144d96ae9f1390c9018e919ae1ba6cf00be9f45ad36fdccfdcfbf9b24`) lists every enumerable text by
+**The corpus is pinned: `R3C2_CORPUS_MANIFEST.md` (sha256 `2d8f29656dc86bbcea86ba649388f2c6d37e03655985fdc23a849e1c9e162c2f`) lists every enumerable text by
 digest and byte count; a seat enumerates claims from those files and no other. Files listed there as RAW are not enumerable
 and are outside the census, visibly.** 
 
@@ -34,9 +34,7 @@ and are outside the census, visibly.**
 2. **List the inputs** that equation needs.
 3. **Classify each input** as `PRINTED` (given in the paper), `STANDARD` (a measured constant **on C3's closed
    list — that list, verbatim, and no other value**), `BLOCKED` (traced to a named source but carrying no
-   machine-matchable value, §3), or `ABSENT`. **`STANDARD` applies only when the value appears in the claiming paper (or
-   in a pinned enumerable text under the `IMPORTED` rule below): a value the paper does not print is classified by the
-   named-source rule alone and is never `STANDARD`. Where a value the paper prints is on the closed list verbatim, file
+   machine-matchable value, §3), or `ABSENT`. **`STANDARD` applies to a closed-list value printed in the claiming paper: for every `STANDARD` record `validate` binds `claim_id` to the claiming file through the candidate file and checks its own positive value coordinates and numeric token; a value outside the claiming file follows the named-source rule and is recorded `PRINTED`/`IMPORTED` with `ORIG_CITATION`, a verified enumerable source and the first symbol-and-value line, even when the value is on the closed list; a missing candidate binding or a `STANDARD` value line outside the claiming file fails `validate`. Where a value the paper prints is on the closed list verbatim, file
    `STANDARD`; otherwise `PRINTED` — the two routes are outcome-identical, and this rule keeps both seats on the same
    one.** Record its `origin` with the evidence C3 requires.
 4. **Attempt the arithmetic MECHANICALLY — follow the paper's own recipe, using every value it directs you to use,
@@ -68,7 +66,7 @@ is seat judgement; the second seat and C6 may detect an error, but can share it,
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `f19303d1105d7e7ea94888cdc8f0f2520ec3bbacb49bf2db711cfd2a01e78853` (`validate` takes the candidate file as its third argument), pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `a68ad2b259719d762ec6fdfaaeeda379f433cc4b3891f7f5ce7f415c4f52a28b` (`validate` takes the candidate file as its third argument), pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -171,7 +169,7 @@ is hidden by being excluded.
   ownership batches (the pinned partition of `R3C2_CORPUS_MANIFEST.md` into 12 batches in row order); every session holds ALL pinned texts
   and enumerates ONLY its owned texts; §2's named-source lookups may read any manifest text and are logged with file and line. Every
   candidate id, claim id and input id begins with `<owned file>#`. Each session writes `candidates_b<k>.json`, `exclusions_b<k>.json`,
-  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `3822f12c282aaf4b5c850bef08fbfbe3bce81ac09d5f9e3c578459239439f79e`; partition `15b69217a35dbc6f…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B uses a separate directory from limb A: the custodian copies the agreed limb-A batch artefacts into that directory under the canonical names `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`; the seat updates only these limb-B copies, records final outcomes, and runs `census … final` on them; the custodian seals and joins that directory in a separate ordered LIMB-B chain bound to the agreed limb-A seals file; the limb-A directory and seals remain unchanged; no `_limbB` filename suffix is used; `join` of the limb-B chain verifies the binding. The ownership list `OWNERSHIP_b<k>.txt` a session reads is the custodian's extract of the pinned partition, listed with its digest in the dispatch record. The files named below are the joined files of the applicable limb.** 
+  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `3822f12c282aaf4b5c850bef08fbfbe3bce81ac09d5f9e3c578459239439f79e`; partition `1a4c30909f17f3b7…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B uses a separate directory from limb A: the custodian copies the agreed limb-A batch artefacts into that directory under the canonical names `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`; the seat updates only these limb-B copies, records final outcomes, and runs `census … final` on them; the custodian seals and joins that directory in a separate ordered LIMB-B chain bound to the agreed limb-A seals file; the limb-A directory and seals remain unchanged; no `_limbB` filename suffix is used; `join` of the limb-B chain verifies the binding. The ownership list `OWNERSHIP_b<k>.txt` a session reads is the custodian's extract of the pinned partition, listed with its digest in the dispatch record. The files named below are the joined files of the applicable limb.** 
   **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
   on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print these five declared counts verbatim from the files — `declared_candidate_count`,
@@ -272,7 +270,7 @@ is hidden by being excluded.
 `C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
-  (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256 `afa2dee798a8802ff3a17e71675fe5ae94dbc8447211bfd6e26fdeff7d493cc1`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
+  (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256 `6b6e4bce1136448b2cb223225a8710f493c469aef82a0379b3f47e066260019a`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
   the directory itself, reads every file, prints `FILES=<n>` and `MANIFEST_SHA256=<digest>`, and on any unreadable file prints
   `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is one invocation whose
   exit status is the control's (the §9 wrapper counts as one invocation that prints its child's exit status); no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
