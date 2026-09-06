@@ -123,3 +123,6 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex V26-1 (same-event con
 
 ## V27 COMPLETE-PACKAGE REVIEW DISPATCHED — 2026-09-07 01:44 KST
 Same authority. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v27_gate_f2387btc/_stage2_image_analysis_20260901` (137 MB, 4,613 files; all historical digest lists and all preserved aggregate logs included); V27 digest 154a680c… verified in place. Both seats dispatched 01:44 KST (PIDs recorded); waiter reports TIMEOUT-STILL-RUNNING on timeout. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## V27 REVIEW RESULT — 2026-09-07 02:00 KST
+Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex V27-1 (precedence: locally decidable mismatches and same-id contradictions must be decided before a retry is declared; same-commit arm scoped to the protected ref), V27-2 (tri-state delivery not propagated through the driver's witness-commit precheck and the open-event stage; git launch exceptions), V27-3 (names: lineage-table error, v6 comments, 18 suites not 17). V26-1/2 targeted cases confirmed repaired; honest re-delivery never reaches FORGED. Classified in `V27_REVIEW_OUTCOME_20260907.md`. Register 27/26/25/0. Nothing adopted; no beacon read, draw, fetch, render, pixel.
