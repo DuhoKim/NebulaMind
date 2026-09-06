@@ -40,3 +40,9 @@ Column A re-qualified (codex V28): L-INH = a default-mode implementation limit (
 | V29-1 (codex) | clause (1) promises local mismatches and obtainable same-id authentication before ANY retry; the seed re-deriver's REDERIVE-RETRY (D:303) precedes composed provenance, so an undetermined + wrong-repo / same-id-contradicted approval event is kept pending with zero retrievals | OPEN — track 10 |
 | V29-2 (codex) | the history stage's RETRY-REMOTE-UNAVAILABLE and the approval stage's RETRY-EVENTS-UNAVAILABLE precede the local check of the retained open event (type / repository / ref) and its same-id authentication | OPEN — track 10 |
 Section D's "none known" is superseded by this section. Column A unchanged (codex: qualifications necessary and now substantially honest).
+
+## F. Section E resolved in the V30 candidate — by ONE resolver, not a point fix (2026-09-07 03:39 KST; Blanc 03:20)
+| finding | repair (track 10) | status |
+|---|---|---|
+| V29-1, V29-2 (and the whole pattern V27-1 / V27-2 / V28-1 / V28-2) | the precedence order stated once (`PRECEDENCE`), enforced in one resolver (`resolve`) to which every composed stage contributes (driver v14 `composed_resolver`), exhibited pairwise (`V30_PRECEDENCE_EXHIBIT_20260907.md`) | REPAIRED in V30 — moves to column B; the V30 reviewers test it |
+UNREPAIRED as of V30 staging: none known.

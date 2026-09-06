@@ -62,3 +62,16 @@ A label test passing against its own version proves nothing about the next; the 
 | track9/test_track9_text_v29 | V29 | V28 (fail-first: FAILED) and V29 (OK) | as stated |
 | track9/test_track9_fail_first.V28_3_Text | V29 + Q (revised) + T2 (revision 9) | V28 (FAILED) and V29 (OK) | as stated |
 | tracks 1/3/4, track-6 sweep, track-7 fail-first (version-agnostic) | — | V29 | OK |
+
+## V30 addendum (2026-09-07 03:39 KST)
+| text test | written against | run against | result |
+|---|---|---|---|
+| track5 (label) | V25 | V25 | OK (6) |
+| track6/test_track6_text_v26 | V26 | V26 | OK (1) |
+| track7/test_track7_text_v27 | V27 | V27 | OK (1) |
+| track8 fail-first (V27-3 text case asserts the V28 counts) + track8/test_track8_text_v28 | V28 | V28 | OK (7 + 1) |
+| track9/test_track9_text_v29 | V29 | V29 | OK (1) |
+| track9 fail-first (V28-3 text case) | V29 | V30 (holds; asserts the V28-3 repairs, which V30 retains) | OK (3) |
+| track10/test_track10_text_v30 | V30 | V29 (fail-first: FAILED) and V30 (OK) | as stated |
+| track10 fail-first V29_3_Text | V30 | V29 (FAILED) and V30 (OK) | as stated |
+| tracks 1/3/4, track-6 sweep, track-7 fail-first (version-agnostic) | — | V30 | OK |
