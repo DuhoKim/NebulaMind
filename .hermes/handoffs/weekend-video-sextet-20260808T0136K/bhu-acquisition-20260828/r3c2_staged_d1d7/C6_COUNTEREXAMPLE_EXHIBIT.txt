@@ -1,0 +1,255 @@
+C6 counterexample exhibit — emitted by r3c2_staged_tests.py (STAGED, UNADOPTED). Each block: the synthetic input in one line, then the tool's full stdout.
+
+=== PROBE 1 — both seats omit paperB.txt:7 '3.1'; auditor includes it ===
+FAIL: COMPLETENESS audit_included_absent_from_sealed: ['paperB.txt', 7, '3.1']
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "arithmetic_group_ids": [
+  "c1"
+ ],
+ "audited": {
+  "c1": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c2": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness": {
+  "audit_included_absent_from_sealed": [
+   [
+    "paperB.txt",
+    7,
+    "3.1"
+   ]
+  ],
+  "exclusion_kind_differs": [],
+  "inclusion_disputed": [],
+  "inclusion_disputed_count": 0,
+  "inclusion_disputed_rate": 0.0,
+  "sealed_included_absent_from_audit_enumeration": []
+ },
+ "k": 1,
+ "receipt_T_sealed_candidates_sha256": "05ec2605b867f9ee4b4c1deb0730a8d6e2c227fb1b0d9177918c18092f5b750c",
+ "remaining_ids": [
+  "c2"
+ ],
+ "sampled_ids": [
+  "c2"
+ ],
+ "sealed_denominator": 2,
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2850c752f802921e4e76820c153e0b6dabe72bdbf849e41f217f494000804e2\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\n"
+}
+C6_AUDIT_SAMPLE=FAIL
+
+
+=== PROBE 2 — sealed includes paperB.txt:7 '3.1'; auditor's enumeration lacks it ===
+FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['paperB.txt', 7, '3.1']
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "arithmetic_group_ids": [
+  "c1"
+ ],
+ "audited": {
+  "c1": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c3": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness": {
+  "audit_included_absent_from_sealed": [],
+  "exclusion_kind_differs": [],
+  "inclusion_disputed": [],
+  "inclusion_disputed_count": 0,
+  "inclusion_disputed_rate": 0.0,
+  "sealed_included_absent_from_audit_enumeration": [
+   [
+    "paperB.txt",
+    7,
+    "3.1"
+   ]
+  ]
+ },
+ "k": 1,
+ "receipt_T_sealed_candidates_sha256": "050a4a477f0c7cb557e74ab2b7d938541f776e0a1225300686a1c75fd7cd5dc7",
+ "remaining_ids": [
+  "c2",
+  "c3"
+ ],
+ "sampled_ids": [
+  "c3"
+ ],
+ "sealed_denominator": 3,
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=2a995a6c3098b1e1834ae787f3aecd9278f4cbd5bd8c4d9311600d7d198eb72e\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\n"
+}
+C6_AUDIT_SAMPLE=FAIL
+
+
+=== PROBE 3: inclusion disputed on 2 of 20 (10%) → listed, counted, PASS ===
+{
+ "C6_AUDIT_SAMPLE": "PASS",
+ "arithmetic_group_ids": [],
+ "audited": {
+  "c16": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c3": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c4": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c6": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness": {
+  "audit_included_absent_from_sealed": [],
+  "exclusion_kind_differs": [],
+  "inclusion_disputed": [
+   [
+    "paperA.txt",
+    101,
+    "1"
+   ],
+   [
+    "paperA.txt",
+    102,
+    "2"
+   ]
+  ],
+  "inclusion_disputed_count": 2,
+  "inclusion_disputed_rate": 0.1,
+  "sealed_included_absent_from_audit_enumeration": []
+ },
+ "k": 4,
+ "receipt_T_sealed_candidates_sha256": "3f4cf9e52d089d036c777a65bef97fc556d594e569abd8c4a6209064a8c10ca1",
+ "remaining_ids": [
+  "c1",
+  "c10",
+  "c11",
+  "c12",
+  "c13",
+  "c14",
+  "c15",
+  "c16",
+  "c17",
+  "c18",
+  "c19",
+  "c2",
+  "c20",
+  "c3",
+  "c4",
+  "c5",
+  "c6",
+  "c7",
+  "c8",
+  "c9"
+ ],
+ "sampled_ids": [
+  "c16",
+  "c3",
+  "c4",
+  "c6"
+ ],
+ "sealed_denominator": 20,
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2ef741a9a1c8a32edcbf54f5cfd1fc1ab79423aadc5373594d24a41b59b7764\nAUDITOR_EXCLUSIONS_SHA256=b1445bfab4b904995629e8d8073ea412905eaf9e1df883a60bb3fbdf99599211\n"
+}
+C6_AUDIT_SAMPLE=PASS
+
+
+=== PROBE 4: inclusion disputed on 3 of 20 (15%) → FAIL under the 10% rule ===
+FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "arithmetic_group_ids": [],
+ "audited": {
+  "c16": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c3": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c4": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c6": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness": {
+  "audit_included_absent_from_sealed": [],
+  "exclusion_kind_differs": [],
+  "inclusion_disputed": [
+   [
+    "paperA.txt",
+    101,
+    "1"
+   ],
+   [
+    "paperA.txt",
+    102,
+    "2"
+   ],
+   [
+    "paperA.txt",
+    103,
+    "3"
+   ]
+  ],
+  "inclusion_disputed_count": 3,
+  "inclusion_disputed_rate": 0.15,
+  "sealed_included_absent_from_audit_enumeration": []
+ },
+ "k": 4,
+ "receipt_T_sealed_candidates_sha256": "3f4cf9e52d089d036c777a65bef97fc556d594e569abd8c4a6209064a8c10ca1",
+ "remaining_ids": [
+  "c1",
+  "c10",
+  "c11",
+  "c12",
+  "c13",
+  "c14",
+  "c15",
+  "c16",
+  "c17",
+  "c18",
+  "c19",
+  "c2",
+  "c20",
+  "c3",
+  "c4",
+  "c5",
+  "c6",
+  "c7",
+  "c8",
+  "c9"
+ ],
+ "sampled_ids": [
+  "c16",
+  "c3",
+  "c4",
+  "c6"
+ ],
+ "sealed_denominator": 20,
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=cc9efb994fd6fea9fc09be07b9159aec86a8011631679515a953e84a452ec6e0\nAUDITOR_EXCLUSIONS_SHA256=2e6d229ef315a9c637551490829e4eeee72bab8fd61a7cd76c83efe953de9257\n"
+}
+C6_AUDIT_SAMPLE=FAIL
