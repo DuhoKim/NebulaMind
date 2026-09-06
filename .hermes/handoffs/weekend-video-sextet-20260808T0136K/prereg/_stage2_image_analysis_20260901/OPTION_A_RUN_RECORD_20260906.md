@@ -93,3 +93,6 @@ The aggregate log (12 suites OK, then track 4 FAILED errors=2) is PRESERVED unmo
 
 ## V24 REVIEW RESULT — 2026-09-07 00:11 KST
 Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex N1–N5: publication order ≠ operation order (post-genesis unpublished decisions also erasable — a structural limit, to be a covenant); V24's live contract needs every per-commit event and Q1 must say so, v4's second retrieval misclassifies an empty feed; the producer can push an entry alongside an unrelated commit that the validator then refuses, §7 names v23 modules; fail-first classification 3+4 not 4+3; text remnants and the V22 digest list absent from the sandbox (excluded by the _tmp_ rule). Classified in `V24_REVIEW_OUTCOME_20260907.md`; all preparation. Register 24/23/22/0. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## TRACK 5 — codex V24 N1–N5 answered (standing preparation) — 2026-09-07 00:27 KST
+`TRACK5_STAGING_RECORD_20260907.md`, `TRACK5_FAIL_FIRST_RECEIPT_20260907.md` (6 fail → 6 OK; run 1b = V24 functions' old behaviour), `V25_CANDIDATE_ATTACK_INSPECTION_20260907.md` (rows 9m–9o), `TRACK_RECEIPTS_CLASSIFICATION_CORRECTION_20260907.md`. THE COVENANT replaces the residual. V25 text d29aabac…; 113 tests OK. Review dispatch follows under the same authority, with the historical digest lists in the sandbox.
