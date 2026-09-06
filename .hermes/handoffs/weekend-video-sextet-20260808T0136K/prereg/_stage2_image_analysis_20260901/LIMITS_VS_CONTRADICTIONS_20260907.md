@@ -19,3 +19,10 @@ A rule that documents what it cannot prove is honest. A rule that documents a co
 | V27-3 names/count | the driver lineage table, comments, an inspection header and a suite count said things the bytes do not | swept with per-item assertions |
 
 Earlier contradictions of the same kind (V20 fatal … V26-1/2) were repaired in tracks 1–7; they are listed in the outcomes, not here, because they are closed. Any proportionality argument put to Duho later must carry: (1) the exact rule text to sign; (2) the enumerated remaining failure modes; (3) what each means for the actual run; (4) which are limits (column A) and which would be unrepaired contradictions (column B — none may remain).
+
+## C. UNREPAIRED CONTRADICTIONS as of the V28 review (2026-09-07 02:44 KST) — column two, open
+| finding | the contradiction | status |
+|---|---|---|
+| V28-1 (codex) | the text promises same-id contradictions and locally decidable mismatches are decided before any retry; driver v12's witness-commit precheck returns RETRY-EVENTS-UNAVAILABLE on UNDETERMINED delivery before composed provenance can run local_precheck, retrieval and the same-id check | OPEN — track 9 |
+| V28-2 (codex) | the same on the history-open stage: validate_continuation_v8 reclassifies v3's Boolean refusal as EVIDENCE-UNAVAILABLE without consulting the feed | OPEN — track 9 |
+Column A qualifications accepted from codex: L-INH is a default-mode implementation limit (verify_split staged, unadopted), not irreducible; L-AVAIL combines an external availability limit with stateless closure enforcement. Both restated with their mode qualifications in the next candidate. Column A never absorbs a column-C entry.
