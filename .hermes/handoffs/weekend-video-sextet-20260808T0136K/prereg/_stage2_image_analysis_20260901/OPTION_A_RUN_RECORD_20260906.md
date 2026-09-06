@@ -105,3 +105,6 @@ Same authority as V23/V24. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b
 
 ## V25 REVIEW RESULT — 2026-09-07 00:49 KST
 Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex P1–P4: batch classification ignores before..head ancestry when payload.commits is absent (proven batch → retry); absence from a non-empty feed still called FORGED for the approval/open events; text remnants; the covenant absent from Q1. Classified in `V25_REVIEW_OUTCOME_20260907.md`; all preparation. Register 25/24/23/0. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## TRACK 6 — codex V25 P1–P4 answered (standing preparation) — 2026-09-07 01:01 KST
+`TRACK6_STAGING_RECORD_20260907.md`, `TRACK6_FAIL_FIRST_RECEIPT_20260907.md` (5 fail → 5 OK; run 1b = V25 functions' old behaviour), `V26_CANDIDATE_ATTACK_INSPECTION_20260907.md` (rows 9p–9r). V26 text 9a13afd1…; 118 tests OK. Review dispatch follows under the same authority.
