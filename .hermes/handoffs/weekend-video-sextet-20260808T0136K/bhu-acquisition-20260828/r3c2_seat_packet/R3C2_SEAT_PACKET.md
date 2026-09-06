@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `9c4b873d4281419a93b8aac9208e5a5de22481217fdd124b1dcfa6a7ae4d88be` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `ab6352d35a0e02fbc92173971ada554230ad5fb0578440a9728fc0f1494942e7` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -61,7 +61,7 @@ Encountering one ends that claim's attempt.
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `ea63fda52113a7b9d0f9e94a21745dc68870d049cb50b09fec1e16ffb81a8054`, pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `230359ebd15a408714b965daa1b4a67b0c6445cca1c18c7cc6985d75cc581c44`, pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -100,8 +100,12 @@ order:** `REPRO_NO_DERIVATION_STATED`, `REPRO_BLOCKED`, `REPRO_INPUT_ABSENT`, `R
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
-is (equation number, reference number, page/line number, date, or attributed-not-derived). **The exclusion ledger's
-`kind` is one of `EQUATION_NUMBER`, `REFERENCE_NUMBER`, `PAGE_OR_LINE_NUMBER`, `DATE`, `ATTRIBUTED_NOT_DERIVED`.** The census denominator
+is (equation number, reference number, page/line number, date, or attributed-not-derived). **The exclusion ledger's `kind` is one of `AUTHOR_SPECIFIED_INPUT`, `ATTRIBUTED_NOT_DERIVED`, `DATE`, `EQUATION_NUMBER`,
+`PAGE_OR_LINE_NUMBER`, `REFERENCE_NUMBER` (alphabetical). `AUTHOR_SPECIFIED_INPUT` — a numeral the paper sets rather than derives and does not
+assert as a result of its own: a grid size, a cutoff, a parameter adopted "for this calculation", a range chosen for a plot. Every exclusion
+row carries the candidate's `source_file`, `source_line` and `numeral` — excluded from judgement, retained in the record, never discarded —
+and `census` fails a row that lacks them or differs from its candidate row; `census` prints the `AUTHOR_SPECIFIED_INPUT` count as its own
+line beside the denominator.**  The census denominator
 is the count of **included** claims; the exclusion ledger is reported alongside it and audited under C6, so nothing
 is hidden by being excluded. 
 

@@ -4,7 +4,7 @@
   /usr/bin/python3 -E r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
       C1: candidates.json = {declared_candidate_count, declared_included_count, declared_excluded_count,
       declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2} and outcome (a section-3 token or PENDING; `census ... final` rejects PENDING and requires printed_value/reproduced_value on arithmetic outcomes); exclusions.json =
-      {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; the declared counts are
+      {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; every exclusion row carries source_file, source_line and numeral equal to its candidate row (retained, not discarded); the AUTHOR_SPECIFIED_INPUT count is printed beside the denominator; the declared counts are
       compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
   /usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
       asserts: every record has the schema fields and no field outside the schema; status in
@@ -90,7 +90,7 @@ def cmd_validate(ledger,srcdir):
 def cmd_census(candidates,exclusions,final=False):
     """C1: every candidate passage has exactly one disposition (included or excluded with a reason kind); counts recomputed."""
     Cd=json.loads(pathlib.Path(candidates).read_text()); Xd=json.loads(pathlib.Path(exclusions).read_text())
-    fails=[]; KINDS={"EQUATION_NUMBER","REFERENCE_NUMBER","PAGE_OR_LINE_NUMBER","DATE","ATTRIBUTED_NOT_DERIVED"}
+    fails=[]; KINDS={"AUTHOR_SPECIFIED_INPUT","ATTRIBUTED_NOT_DERIVED","DATE","EQUATION_NUMBER","PAGE_OR_LINE_NUMBER","REFERENCE_NUMBER"}
     if not isinstance(Cd,dict) or "candidates" not in Cd: print("FAIL: candidates file must be an object {declared_candidate_count, declared_included_count, declared_excluded_count, candidates:[...]}"); print("C1_DENOMINATOR_PRINTED=FAIL"); return 1
     if not isinstance(Xd,dict) or "exclusions" not in Xd: print("FAIL: exclusions file must be an object {declared_exclusion_count, exclusions:[...]}"); print("C1_DENOMINATOR_PRINTED=FAIL"); return 1
     C=Cd["candidates"]; X=Xd["exclusions"]
@@ -122,6 +122,12 @@ def cmd_census(candidates,exclusions,final=False):
     for cid,c in cids.items():
         if c.get("included") and cid in xids: fails.append(f"candidate {cid}: included AND excluded")
         if not c.get("included") and cid not in xids: fails.append(f"candidate {cid}: excluded with no exclusion row")
+    xrows={x.get("candidate_id"): x for x in Xd.get("exclusions",[]) if isinstance(x,dict)}
+    for cid,x in xrows.items():
+        c=cids.get(cid)
+        for f in ("source_file","source_line","numeral"):
+            if f not in x: fails.append(f"exclusion {cid}: missing {f} (the excluded numeral and its line are retained in the exclusion ledger)")
+            elif c is not None and x.get(f)!=c.get(f): fails.append(f"exclusion {cid}: {f} differs from the candidate row")
     inc=sum(1 for c in cids.values() if c.get("included")); exc=len(xids)
     att=sum(int(c.get("attempts",0)) for c in cids.values() if c.get("included"))
     for k,v in (("declared_candidate_count",len(cids)),("declared_included_count",inc),("declared_excluded_count",exc),("declared_attempt_count",att)):
@@ -133,6 +139,8 @@ def cmd_census(candidates,exclusions,final=False):
     for c in cids.values():
         if c.get("included"): oc_t[c.get("outcome")]=oc_t.get(c.get("outcome"),0)+1
     print("outcomes:", " ".join(f"{k}={v}" for k,v in sorted(oc_t.items(), key=lambda kv: str(kv[0]))))
+    asi=sum(1 for x in Xd.get("exclusions",[]) if isinstance(x,dict) and x.get("kind")=="AUTHOR_SPECIFIED_INPUT")
+    print(f"author_specified_input={asi}")
     print(f"recomputed: candidates={len(cids)} included={inc} excluded={exc} attempts={att} reconciled={'YES' if not fails and inc+exc==len(cids) else 'NO'}")
     print("C1_DENOMINATOR_PRINTED=" + ("PASS" if not fails and inc+exc==len(cids) else "FAIL")); return 0 if not fails and inc+exc==len(cids) else 1
 

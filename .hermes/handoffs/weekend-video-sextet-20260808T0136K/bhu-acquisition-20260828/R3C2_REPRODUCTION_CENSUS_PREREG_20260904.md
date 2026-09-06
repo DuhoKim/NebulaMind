@@ -1,6 +1,6 @@
 # R3-C2 — REDESIGNED pre-registration: a reproduction census of the corpus's quantitative claims
 
-**Tori, 2026-09-05. Version 24 — LIVING DRAFT; the signed design of record remains V23 (`R3C2_V23_DESIGN_OF_RECORD_55b466fa.md`, frozen 2026-09-06 00:00:22Z) until Duho signs V24 (see §10; §10.18 — the narrow scope correction after the 10:17 run abort; nothing else changed — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
+**Tori, 2026-09-05. Version 25 — LIVING DRAFT (V24i + D2, approved "for now" 19:06 KST); the signed design of record remains V23 (`R3C2_V23_DESIGN_OF_RECORD_55b466fa.md`, frozen 2026-09-06 00:00:22Z) until Duho signs V24 (see §10; §10.18 — the narrow scope correction after the 10:17 run abort; nothing else changed — Duho's ruling "hide the comparison, keep the taxonomy"). OPTION (c) ADOPTED — Duho's ruling "Q-R3C2 c", 2026-09-05 14:08 KST: one pass,
 two tallies. NOT FROZEN and NOT RUN: C0 by two independent seats who must agree, then the two-seat gate, before any
 freeze.** Originally ORDERED by Duho, "redesign r3c", 2026-09-04 21:30 KST. *(The header read "Version 1" through V9 while §10
 listed every version — a scar found and fixed here.)*
@@ -99,7 +99,7 @@ The ledger answers *"what did it rest on?"* So:<!--/SEAT-REDACT-->
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `ea63fda52113a7b9d0f9e94a21745dc68870d049cb50b09fec1e16ffb81a8054`, pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `230359ebd15a408714b965daa1b4a67b0c6445cca1c18c7cc6985d75cc581c44`, pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 <!--SEAT-REDACT-->
 > *(Lane side: `root_origins` and the per-claim field `rests_on` are computed from the merged ledger by `r3c2_lane_tools.py`,
@@ -164,8 +164,13 @@ tally reports a `NOT_COMPUTED` row.**<!--/SEAT-REDACT-->
 
 **Candidate exclusions are not per-claim outcomes.** Every enumerated candidate passage that fails the §1
 definition is recorded in a **separate exclusion ledger** with file, line, the numeral, and which excluded kind it
-is (equation number, reference number, page/line number, date, or attributed-not-derived). **The exclusion ledger's
-`kind` is one of `EQUATION_NUMBER`, `REFERENCE_NUMBER`, `PAGE_OR_LINE_NUMBER`, `DATE`, `ATTRIBUTED_NOT_DERIVED`.** The census denominator
+is (equation number, reference number, page/line number, date, or attributed-not-derived). **The exclusion ledger's `kind` is one of `AUTHOR_SPECIFIED_INPUT`, `ATTRIBUTED_NOT_DERIVED`, `DATE`, `EQUATION_NUMBER`,
+`PAGE_OR_LINE_NUMBER`, `REFERENCE_NUMBER` (alphabetical). `AUTHOR_SPECIFIED_INPUT` — a numeral the paper sets rather than derives and does not
+assert as a result of its own: a grid size, a cutoff, a parameter adopted "for this calculation", a range chosen for a plot. Every exclusion
+row carries the candidate's `source_file`, `source_line` and `numeral` — excluded from judgement, retained in the record, never discarded —
+and `census` fails a row that lacks them or differs from its candidate row; `census` prints the `AUTHOR_SPECIFIED_INPUT` count as its own
+line beside the denominator.** <!--SEAT-REDACT-->*(Adopted at V25 on the principal's word "일단 해" — "go ahead for now" — relayed 19:06 KST; a
+decision to build on, not a settled taxonomy: a case the category mis-sorts during a run is a finding to bring back, not a widening.)*<!--/SEAT-REDACT--> The census denominator
 is the count of **included** claims; the exclusion ledger is reported alongside it and audited under C6, so nothing
 is hidden by being excluded. <!--SEAT-REDACT-->*(The old `NOT_ATTEMPTED` class was incoherent: §1 defines a claim by the presence of
 a printed number, so an included claim could never satisfy it — a gate finding.)*<!--/SEAT-REDACT-->
@@ -932,7 +937,7 @@ classification by both seats, disagreements carried not reconciled. (2) *Compari
 asks one question; "two tallies", every `rests_on`, the severity order, "what the number rests on", the `rests_on`
 tally and its membership rule, the DISPUTED pair, and "what the interpretation reads" live only in `SEAT-REDACT` spans;
 `origin` is one recorded attribute of a ledger record. (3) *The tool split*: the seat's `r3c2_ledger_tools.py` (sha256
-`ea63fda52113a7b9d0f9e94a21745dc68870d049cb50b09fec1e16ffb81a8054`) now has `validate` and `census` only and no word of the comparison in its text; `merge` and
+`230359ebd15a408714b965daa1b4a67b0c6445cca1c18c7cc6985d75cc581c44`) now has `validate` and `census` only and no word of the comparison in its text; `merge` and
 `compute` are the lane's `r3c2_lane_tools.py` (sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`), never given to a seat — because a tool that
 names `rests_on` in its usage text tells the seat what origin is for. (4) *Taxonomy order*: the origin values and the
 reason-code list are now alphabetical wherever a seat sees them; the previous order (DERIVED, STANDARD, MEASURED,
@@ -1146,3 +1151,25 @@ the residual now says what matching manifests establish (matching snapshots, not
 codex C1 / kimi F1 — the flat prohibition no longer precedes its exceptions; kimi F2 — the brief says "all three pinned scripts".
 Not applied (cosmetic, noted): kimi F4 (an empty-ledger message in the tool), F5 (§11's physical position). Pending for the
 principal, unchanged: D1, D2, D4, D7, D8.
+
+## 10.19 V25 (living draft) — D2 adopted on the principal's word; nothing else from the proposal (2026-09-06 19:07 KST)
+
+**Duho's decision** (codex voice channel, relayed by Blanc 19:06 KST), verbatim: **"일단 해"** ("Go ahead for now"), to the question
+whether numbers an author SETS as calculation inputs, rather than asserts as results, should be excluded from the set judged for
+reproduction. **Adopted:** the exclusion kind `AUTHOR_SPECIFIED_INPUT`, with the numeral and source line RETAINED in the exclusion
+ledger (excluded from judgement, not discarded from the record); the seat tool enforces the retained fields and prints the kind's
+count beside the denominator; positive and negative controls added and run (`_tmp_r3c2_ledger_ctl/cand_asi.json`,
+`excl_asi*.json`); the tool re-pinned. Recorded as "for now": if the category mis-sorts real cases during a run, that is a finding
+to bring back, not something to widen quietly.
+
+**What accepting D2 changes about what the census can conclude.** Numerals the papers set by hand leave the reproduction denominator:
+they are no longer forced into `ATTRIBUTED_NOT_DERIVED` or into the claim set where they would file as "unreproduced" for lack of any
+derivation. They go to the exclusion ledger under their own kind, with numeral and line kept, and their count is printed beside the
+denominator, so the report says both how many claims the papers make and how many numbers they simply set. The denominator is
+smaller and cleaner; no reproduction outcome changes; the seats' agreement on the denominator is more likely because the category
+exists.
+
+**Not adopted by this decision, stated by the principal's record and by Blanc:** D1 and D7 (still block a first run; still his), the
+batch-reading approach for the corpus problem, any V25 fingerprint, any claim that a review passed, any restart. V23 remains the
+signed design of record; V24i remains unapproved; this living draft goes to C0 and a two-seat gate as the required independent review
+and then waits.
