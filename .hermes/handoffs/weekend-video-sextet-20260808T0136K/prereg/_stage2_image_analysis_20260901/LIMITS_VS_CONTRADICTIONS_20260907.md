@@ -46,3 +46,11 @@ Section D's "none known" is superseded by this section. Column A unchanged (code
 |---|---|---|
 | V29-1, V29-2 (and the whole pattern V27-1 / V27-2 / V28-1 / V28-2) | the precedence order stated once (`PRECEDENCE`), enforced in one resolver (`resolve`) to which every composed stage contributes (driver v14 `composed_resolver`), exhibited pairwise (`V30_PRECEDENCE_EXHIBIT_20260907.md`) | REPAIRED in V30 — moves to column B; the V30 reviewers test it |
 UNREPAIRED as of V30 staging: none known.
+
+## G. Column C reopened at the V30 review (2026-09-07 04:13 KST) — UNREPAIRED CONTRADICTIONS, open; section F's "none known" superseded
+| finding | the contradiction | status |
+|---|---|---|
+| V30-1 (codex, FATAL) | a JSON `null` open-event file is treated as "nothing to check" by the track-10 resolver and the composed load ACCEPTS, even over a published history rewrite — §3c and Q1 Option C promise every required event authenticated | OPEN — track 11; the lane's own regression, to be reproduced in executed output first |
+| V30-2 (codex) | verify_witness's fetch failure and the verifier import raise retries BEFORE the local sweep; list shape / disjointness / split checks run AFTER the resolver; unnormalized exceptions bypass it | OPEN — track 11 |
+| V30-3 (codex) | the history helper suppresses a higher finding (rewrite) behind a lower one (open retrieval empty); authenticate_event returns UNAVAILABLE before evaluating EXPIRED; three retrievals, evidence not shared, so retrieval order can hide an obtained contradiction | OPEN — track 11 |
+Column A unchanged (codex: the mode qualifications make them honest; none licenses V30-1/2/3 into this column).
