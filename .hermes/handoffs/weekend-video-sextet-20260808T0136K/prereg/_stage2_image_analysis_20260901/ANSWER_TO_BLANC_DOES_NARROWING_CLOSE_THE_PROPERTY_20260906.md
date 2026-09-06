@@ -1,0 +1,17 @@
+# Answer to Blanc's question (13:29 KST, step 2): does narrowing the fallback predicate to self-authenticating failures ALONE make the property true?
+
+**No.** Narrowing closes the next-link and AIA cases codex executed, and it is the right narrowing. It does not close the claim, and the report says why (item P: "Neither a timestamp nor a certificateId authenticates a FAILING pulse"; item 6: the missing rule must select immutable public inputs "including unauthenticated failure evidence").
+
+## What narrowing does close
+Under a narrowed predicate the fallback opens ONLY when the T_pulse pulse's signature does not verify under the certificate whose bytes are fixed by its `certificateId` (SHA-512 of its DER), anchored to the pinned root. A next-link mismatch, an unresolvable issuer chain, an outage or any exception becomes RETRY. Codex's counterexample (same signed pulse, different next body) then yields RETRY at the early collection and ACCEPT-NIST at the later one — no source flip. The AIA case likewise.
+
+## What remains open — the failing pulse response itself
+A pulse whose signature FAILS is, by definition, not self-authenticating. Nothing binds NIST (or anything between NIST and us) to serve the SAME failing body for T_pulse at every instant. Two served bodies for the same T_pulse can differ — an early one that fails and a later one that verifies (a corrected certificateId, a re-signed body) — and each is "the pulse served for T_pulse" when fetched. Under the narrowed predicate: early first collection → signature fails → drand; later first collection → verifies → NIST. The first-collection time still selects the source. The only immutable anchor available in this design is a VERIFYING pulse; "NIST fails for T_pulse" can never be established as a property of public bytes, because failure leaves no authenticator behind. That is exactly the "failing pulse response" the reviewer flags, and narrowing does not touch it.
+
+## What WOULD close it (each a design decision, none drafted under the cap)
+1. **Remove the source choice.** DRAND-ONLY: round_for(T_pulse) is fixed; its randomness is a deterministic BLS signature of the round by the network's threshold key, verifiable by anyone against the chain's public key (this lane would add BLS verification, or state that a third party performs it); an unavailable relay is RETRY. The decision is then f(round number, chain public key) — genuinely a function of immutable public inputs, with no first-collection lever. Cost: NIST is abandoned; this reverses Duho's decision 4(a) of 09:33. NIST-ONLY: no fallback; with today's certificate mismatch the run waits indefinitely. Both are Duho's to choose.
+2. **Keep the choice but make gaming self-defeating.** A drand-sourced identity carries a STANDING VOID CONDITION: if NIST's archive is ever observed to serve a verifying pulse for T_pulse, the identity is void and the attempt closes — checkable by anyone, forever. This does not remove the lever; it makes using it fatal to the run and detectable later. It is weaker than (1) and must be stated as such.
+3. **Abandon the expedite** and amend V15's 24-hour design only for its inherited beacon defect.
+
+## Consequence under the conditional release
+The answer is "does not close." Per step 3: STOP. No V20 is drafted. The choice — (1) drand-only / NIST-only, (2) keep the choice with a standing void condition, (3) abandon the expedite — goes to Duho.
