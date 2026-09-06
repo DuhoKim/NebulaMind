@@ -33,3 +33,10 @@ Column A qualifications accepted from codex: L-INH is a default-mode implementat
 | V28-1 | driver v13's witness precheck defers an undetermined delivery, in composed mode, to composed provenance (local_precheck → retrieval → same-id contradictions → only then the retry); codex's clause (1) in force | REPAIRED in V29 — moves to column B; the V29 reviewers test it on the complete path |
 | V28-2 | validate_continuation_v9 consults the feed before returning EVIDENCE-UNAVAILABLE / EVIDENCE-INCOMPLETE | REPAIRED in V29 — moves to column B |
 Column A re-qualified (codex V28): L-INH = a default-mode implementation limit (verify_split staged, unadopted), not irreducible; L-AVAIL = external availability + stateless closure enforcement, never covering a decidable mismatch. UNREPAIRED as of V29 staging: none known.
+
+## E. Column C reopened at the V29 review (2026-09-07 03:17 KST) — UNREPAIRED CONTRADICTIONS, open
+| finding | the contradiction | status |
+|---|---|---|
+| V29-1 (codex) | clause (1) promises local mismatches and obtainable same-id authentication before ANY retry; the seed re-deriver's REDERIVE-RETRY (D:303) precedes composed provenance, so an undetermined + wrong-repo / same-id-contradicted approval event is kept pending with zero retrievals | OPEN — track 10 |
+| V29-2 (codex) | the history stage's RETRY-REMOTE-UNAVAILABLE and the approval stage's RETRY-EVENTS-UNAVAILABLE precede the local check of the retained open event (type / repository / ref) and its same-id authentication | OPEN — track 10 |
+Section D's "none known" is superseded by this section. Column A unchanged (codex: qualifications necessary and now substantially honest).
