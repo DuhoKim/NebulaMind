@@ -96,3 +96,6 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex N1–N5: publication 
 
 ## TRACK 5 — codex V24 N1–N5 answered (standing preparation) — 2026-09-07 00:27 KST
 `TRACK5_STAGING_RECORD_20260907.md`, `TRACK5_FAIL_FIRST_RECEIPT_20260907.md` (6 fail → 6 OK; run 1b = V24 functions' old behaviour), `V25_CANDIDATE_ATTACK_INSPECTION_20260907.md` (rows 9m–9o), `TRACK_RECEIPTS_CLASSIFICATION_CORRECTION_20260907.md`. THE COVENANT replaces the residual. V25 text d29aabac…; 113 tests OK. Review dispatch follows under the same authority, with the historical digest lists in the sandbox.
+
+## BLANC 00:30 ORDER — Q1 options aligned to the FULL contract — 2026-09-07 00:30 KST
+Option C now says ALL required events (approval, history-open, one push event per history commit); Option A′ describes what it would actually require (receipts covering every required event, refreshed per published entry, inside the window; RETRY vs terminal preserved; only the approval-event receipt exists). No review was reading the file (V25 not yet dispatched), so the edit is permitted under the immutability rule. Q1 stays unpresented.
