@@ -339,17 +339,18 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
-  from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
-  interpreter's user site-packages directory at the single path C5 prints, taken WHOLE — every file under it, including SymPy, its
-  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the null-separated,
-  sorted sha256 list of every file under that directory, exactly as C5's fifth command computes it) and recorded in the dispatch record before launch — while executing the commands
-  this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness commands, and the §9 wrapper
-  invocations), every one of which invokes the interpreter with `-E` so that no `PYTHON*` environment variable can redirect a load.
-  A startup, configuration or import file loaded from any other location — `/usr/local`, `/tmp`, the working directory's parents,
-  the lane, or any other user-writable path — is an outside path and `FAIL`; every other path outside the working directory is
-  `FAIL`. That directory is user-writable on the host: the seat's confinement makes it read-only to the seat, and the manifest digest
-  binds its bytes at dispatch; a change by another writer between the dispatch record and C5 is what the C5 comparison detects.**
+  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
+  the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
+  dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
+  `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
+  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Any path
+  the seat CHOOSES to open that is not (i) or (ii) — anything not opened by a printed command under (iii) — is an outside path and
+  `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
+  listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
+  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
+  environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
+  seat's confinement (read-only to the seat, no reach beyond (i)–(ii)) bounds what such code could touch, and the dispatch record
+  says what was pinned.
 
 <!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
@@ -407,12 +408,13 @@ before audit — which is codex's order; kimi's differed only in placing the den
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
   (5) `cd <the directory (4) printed> && find . -type f -print0 | sort -z | xargs -0 /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
   every ledger command runs under, and the one user site-packages directory it loads from, whose path and manifest digest the dispatch
-  record pins before launch. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
+  record pins before launch. The digest covers every file under that directory — everything the mandated imports can load from it — not one
+  initializer. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
   (5) equal to the dispatch record's; a mismatch, a non-zero exit, missing output, or a transcribed value in place of live output is
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum`, the files they load from the system runtime locations C4 lists, and the pinned user site-packages directory at the path C5 prints, while executing those same mandated commands (each with `-E`), are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
+  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii). The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*<!--/SEAT-REDACT-->
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
@@ -1102,3 +1104,15 @@ of their names contain spaces, so the manifest command as first written failed h
 text-only fix and is what this version does, but it admits a large unrelated surface, read-only to the seat and digest-pinned. The
 cleaner fix is a dedicated read-only runtime for the seats holding only SymPy and mpmath, pinned the same way, which is an install
 the lane may not perform without his word; if he gives it, V25 replaces (b) with that runtime's path and nothing else changes.
+
+**V24f — the scope rule restated as a principle (Blanc's 13:10 KST note, 13:12 KST).** Four gate rounds repaired one clause by
+enumeration and each refusal moved one layer out: the interpreter (V24), SymPy in the user site (V24b), mpmath pulled in by SymPy
+(V24c), the whole user site by manifest (V24d), then the tools that compute the manifest (V24e). Blanc: the pattern will not
+terminate by listing, because the verification machinery is itself made of tools to admit. **V24f replaces the enumeration with a
+three-part principle:** (i) the working directory; (ii) the pinned environment identified by the manifest digest; (iii) whatever the
+packet's printed commands themselves invoke — told-versus-chose: what the seat is told to run cannot leak content, because the
+packet's text is already reviewed and blinded; what the seat chooses to open can. C5's digest is stated to cover everything the
+mandated imports can load from the pinned directory, and the residual is stated (the manifest proves no change between pinning and
+use, not minimality). The V24e gate seats, reviewing the enumeration, were stopped and archived unread (`_tmp_ABORTED_gate_v24e/`).
+**Cap for this version, set by Blanc:** one C0, one gate, both seats, the executability question asked again; a NO on the same surface
+stops the lane and files that the boundary cannot be stated in this shape — a finding for the principal, not a sixth patch.
