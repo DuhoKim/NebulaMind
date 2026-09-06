@@ -24,7 +24,7 @@ The second assertion is the one that matters. It is what a human sweep keeps
 missing, and it fails loudly rather than producing a plausible-looking receipt
 that names the wrong artefact.
 
-Usage: python3 check_pin_consistency_v2.py <preregistration.md>
+Usage: python3 check_pin_consistency_v3.py <preregistration.md>
 Exit 0 = consistent, 1 = defects found (listed on stdout).
 """
 from __future__ import annotations
@@ -79,7 +79,11 @@ def pinned(doc_text: str) -> dict[str, str]:
             out.setdefault(name, digest)
     for m in BARE_RE.finditer(doc_text):
         if "/" not in m.group(1):
-            out.setdefault(m.group(1), m.group(2))
+            name = m.group(1)
+            # v3: a bare historical pin names a file by basename only; resolve it to the UNIQUE file of that name under the
+            # lane's pinned directories so it is hashed rather than silently missing (codex V37: three bare pins were uncovered)
+            hits = sorted(p.relative_to(ROOT).as_posix() for d in ("anchor_gate", "miniprereg_pins", "study_renderer", "seal_gate", "completeness_gate", "scripts") for p in (ROOT / d).glob(name)) if (ROOT / "miniprereg_pins").is_dir() else []
+            out.setdefault(hits[0] if len(hits) == 1 else name, m.group(2))
     return out
 
 
@@ -191,7 +195,7 @@ def acknowledges(text: str, name: str) -> bool:
 
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
-        print("usage: check_pin_consistency_v2.py <preregistration.md>")
+        print("usage: check_pin_consistency_v3.py <preregistration.md>")
         return 2
     doc = Path(argv[1])
     pins = pinned(doc.read_text(encoding="utf-8"))

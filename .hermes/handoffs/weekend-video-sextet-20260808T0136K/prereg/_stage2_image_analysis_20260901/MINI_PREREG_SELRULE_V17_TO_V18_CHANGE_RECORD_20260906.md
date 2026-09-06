@@ -1,0 +1,18 @@
+# CHANGE RECORD — option A V17 DRAFT (REFUSED) → V18 DRAFT — prospective sampling amendment, third draft — 2026-09-06 12:30 KST
+
+**Authority:** Duho, via codex voice, confirmed in chat 2026-09-06 11:08 KST; Blanc's dispatch 11:06 with the five constraints; Duho's away-window instruction 12:04 — drafting and gating only; **nothing approved. V15 as signed operative (no identity built under it: inherited beacon defect on record).**
+**Target:** `OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V18_20260906.md` SHA-256 `121b1e0e4a8af6d82e12d02cbb433c80f6ea10d781d781d1330ba2c1ac90d866` (= preimage). **Diffs:** `V15_TO_V18.diff` `675f809ceffba56dabc151e17e679533fbee9e65755ca9a79fae1a1b5a675e7e` (21 lines), `V17_TO_V18.diff` `d43e52662563c7892afbbbfaec74263c9e11dddcdcb542340d74655e6e425718` (14 lines).
+
+## V17's gate (12:09 KST) → V18 repairs, code first
+| codex V17 finding | repair |
+|---|---|
+| [FATAL 1 / C5] witness had no wall-clock upper bound (late writer + backdated commit passed; old nonce passed) | `approval_witness_v2.py` `d52b594665e8d773615d76dce69175088d0da24a60e65dd2a5c1a8bc3461af04`: GitHub's server-side PushEvent `created_at` for the approval commit must be < T_pulse (retained verbatim; re-queryable 90 days) else the commitment is CLOSED; nonce must be the round current at T_sign; strict schema (one RULE_SHA256, one APPROVAL_UTC = T_sign, one nonce); first approval final. Fixture `test_approval_witness_v2.py` `98e10e8b53876a7f5b473c0c711064397b0411bea7c54259d4b605c2b17b7c47` (Ran 8 tests in 2.344s OK ): the late-writer/backdated probe is REFUSED by the server time. Feasibility verified live 12:11 KST: this repo's PushEvents carry server timestamps. |
+| [MAJOR] HTTPError counted as public NIST failure → fallback | `beacon_record_expedited.py` `570f50721c28098034da2e7eb2ef249845c8333e9e05c051be8153d741147b00`: ANY exception on a live NIST fetch → RETRY; fallback only on positive evidence (served, live-equal, unauthenticable pulse); the unreachable VOID re-check removed. Fixture `test_beacon_record_expedited.py` `ff38dafc995a419a2d9f9f061aea8f0438308b61f093db55729442952d7824b7` (Ran 15 tests in 0.035s OK ): HTTP 404/500 → RETRY under V18, ACCEPT-DRAND under V15's module (on record). |
+| [MAJOR] no first-ACCEPT lock | `build_corpus_identity_v18.py` `705319a53a2f65f24475dc7862583581f54500fd9d80596eeb855d29493f3c56`: append-only `collection_log.jsonl`; first ACCEPT binding (`COLLECTION-LOCKED`); fixture `test_build_corpus_identity_v18.py` `86b2ac9b17504383fc5340147c14c5af83b16b6d747c832c1a1e6ed2424e9e33` (Ran 5 tests in 1.651s OK ): a second, different ACCEPT is locked out |
+| [MAJOR carried] no adoption binding | `_optionA_dev/ADOPTED_RULE_SHA256.txt` (committed at approval) read by the builder and by `run_configurations_v2.py` `32815edf7792452e855d2b186ff30ae1d67f904c3c0d274673c58a9b990ecffe` (fails closed; fixture `test_run_configurations_v2.py` `77c9b62d5e7d4b03f6b8a7c376d79c9d3d351acf8e206058b7792d89fd0f8cd5`, Ran 17 tests in 11.451s OK ) |
+| [MAJOR prerequisite] render-refused objects | §7 clause: canonical float32-NaN SENTINEL tensor (SHA-256 d5568f5091ec8295…), in the denominator, UNSCORED, counted per manifest, refusal journalled per object |
+| [MINOR] docstrings, counts, authorship wording, §3c ORDER, "24 h" | all rewritten from executed behaviour |
+Blanc's constraints C1–C5: C5 now by server-side witness. Third-failure rule: V16 and V17 refused; a refused V18 engages it — filed for Blanc/Duho either way.
+
+## Timeline (KST)
+V17 refused 12:09 → GitHub PushEvent feasibility 12:11 → expedited V18 policy 12:13–12:17 → witness v2 12:19 → builder v18 12:21 → driver v2 12:23 → V18 text 12:24–12:26 → this record 2026-09-06 12:30 KST → two-seat gate → READY-FOR-APPROVAL (if clear) → held for Duho.

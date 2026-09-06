@@ -208,5 +208,11 @@ class V3Additions(unittest.TestCase):
         doc = "`x.py` `" + "a" * 64 + "` and `y.py`, SHA-256 `" + "b" * 64 + "`"            # bare names (no directory) in both tight forms
         found = {m.group(1): m.group(2) for m in cpc.BARE_RE.finditer(doc)}
         self.assertEqual(found, {"x.py": "a" * 64, "y.py": "b" * 64})
+class V3BareResolution(unittest.TestCase):
+    def test_bare_pin_resolves_to_unique_basename_under_pinned_dirs(self):
+        doc = "`renderer_v4.py` `" + "a" * 64 + "` and `no_such_file_xyz.py` `" + "b" * 64 + "`"
+        pins = cpc.pinned(doc)
+        self.assertIn("study_renderer/renderer_v4.py", pins); self.assertEqual(pins["study_renderer/renderer_v4.py"], "a" * 64)
+        self.assertIn("no_such_file_xyz.py", pins)                                          # unresolvable stays bare → reported MISSING
 if __name__ == "__main__":
     unittest.main()
