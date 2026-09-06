@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""r3c2_lane_tools_STAGED.py — STAGED, UNADOPTED copy (V26cand gate F2/F4 repairs) of the LANE-SIDE tool, never given to a seat: merge two validated seat ledgers; compute root_origins and
+"""r3c2_lane_tools.py — the V27 lane-side tool, never given to a seat: merge two validated seat ledgers; compute root_origins and
 per-claim rests_on from the merged ledger. Usage:
   /usr/bin/python3 r3c2_lane_tools.py merge   <ledger_seatA.json> <ledger_seatB.json> <merged.json>
   /usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json> <candidates.json>   (candidate file mandatory)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""r3c2_batch_tools_STAGED.py — STAGED, UNADOPTED (batch-reading candidate, repaired 2026-09-06 after two independent reviews). LANE-SIDE.
+"""r3c2_batch_tools.py — the V27 lane-side ownership partition, batch seal, join and coverage tool.
 A batch partitions OWNERSHIP of candidate passages, not ACCESS to evidence: every session holds all pinned texts and enumerates only
 its owned texts; §2/D1 lookups may read any manifest text. Identifiers are source-based and global: candidate_id / claim_id / input_id
 begin with "<owned file>#"; join never renames anything.
