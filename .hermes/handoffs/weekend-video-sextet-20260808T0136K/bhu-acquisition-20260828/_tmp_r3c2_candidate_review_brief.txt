@@ -1,0 +1,24 @@
+You are a fresh, adversarial, independent reviewer of an UNADOPTED CANDIDATE for a pre-registration amendment. Nothing you review is adopted, frozen or run; the signed design of record is R3C2_V23_DESIGN_OF_RECORD_55b466fa.md and the reviewed living draft is R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md (read those for context only; do NOT review them, do NOT report their section-10 history as your findings, and open no other lane document). The principal will rule on the candidate after reading your review, so review the candidate as the thing to be judged, and say plainly what is wrong with it.
+
+FILES (all relative to your working directory):
+  1. R3C2_D1_D7_CANDIDATE_CLAUSES_20260906.md  — the candidate: exact clause text for D1 (an imported value whose source line states a choice; two wordings) and D7 (the C6 auditor's independence; stronger and weaker versions; a C6 PASS-predicate repair staged on a reviewer's counterexample), errata, and a "staged tooling and tests" section.
+  2. R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md — the batch-reading preparation (kept separate: an execution question).
+  3. r3c2_staged_d1d7/ — the STAGED tooling: r3c2_ledger_tools_STAGED.py (seat tool + D1 rule + D7 audit subcommands), r3c2_batch_tools_STAGED.py, r3c2_staged_tests.py (44 controls), C6_COUNTEREXAMPLE_EXHIBIT.txt, partition_12_of_89.json, README, pin sheet R3C2_STAGED_D1D7.sha256.
+
+DO, in order, and print what you did:
+ A. Verify the pin sheet: run  shasum -a 256 -c r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256  from the working directory (paths in the sheet are relative to it) and print the result.
+ B. Run the kit yourself:  cd r3c2_staged_d1d7 && /usr/bin/python3 -E r3c2_staged_tests.py  — print the last three lines. Then construct YOUR OWN unambiguous synthetic counterexample for C6 completeness (a passage that §1 clearly requires, omitted by BOTH seat ledgers, present in the auditor's enumeration) with files you write yourself in a temporary sub-directory you create under r3c2_staged_d1d7/_review_kimi/, run  audit seal-enumeration, audit select, audit compare  on it, and print the emitted completeness result and the final C6_AUDIT_SAMPLE token. Test the reverse omission too. State whether the tool's behaviour matches the candidate's clause text WORD FOR WORD (the PASS predicate, the both-directions rule, the AUDIT_INCLUSION_DISPUTED 10% rule) — any gap between clause and code is a finding.
+ C. For D1: state whether the two wordings (Tori's; the V25 review's) reach identical filings on every case you can construct, including a source line that says "we choose", "we fit", "we measure", "we adopt from X", and a value that machine-matches at TWO lines of the source. Which wording is safer against a seat filing CHOSEN for an import, and why.
+ D. For D7: is source-only enumeration before ANY ledger exposure actually enforced by the staged procedure (stage-1 seal, selection, compare) or only by the dispatch layout? Name every way an auditor could see a sealed ledger before its stage-1 seal that the design does not close, and whether it is a clause defect or a custody matter.
+ E. For the batch preparation: does the partition + seal + join + coverage argument actually make it ONE census with ONE denominator read by TWO independent readers? Attack the "per-passage rule, therefore union of partition = whole" argument: name any §1/§2 rule that consults ANOTHER text (cross-text consistency, the IMPORTED rule that reads a named source's line in ANOTHER paper — which may be in a DIFFERENT batch). If the IMPORTED rule breaks the partition argument, say exactly how and what the candidate must add.
+ F. Overclaims: quote every sentence in the two documents that claims more than its evidence supports (e.g. "cannot", "guarantees", "proves", "validated"), with the exact replacement you would require.
+
+WRITE your report to the file named in the access proof (overwrite), and print it. Lines 1–2 of the report are the access proof and PACKET-free (there is no seat packet in this review). Then, as lines 3–9, exactly these tokens:
+  CANDIDATE_D1=SOUND|SOUND_WITH_REPAIRS|UNSOUND
+  CANDIDATE_D7=SOUND|SOUND_WITH_REPAIRS|UNSOUND
+  BATCH_PREP=SOUND|SOUND_WITH_REPAIRS|UNSOUND
+  TOOLING_MATCHES_CLAUSE=YES|NO
+  COUNTEREXAMPLE_HANDLED=YES|NO   (your own both-seats-omit case → C6_AUDIT_SAMPLE=FAIL and listed)
+  IMPORTED_RULE_BREAKS_PARTITION=YES|NO
+  STAGED_TESTS=<the token the kit printed for you>
+Then the findings, each with: verbatim quote, the defect, the exact replacement, and the consequence for what the census could conclude. Do not modify any file outside your _review_kimi/ sub-directory. Do not read any file whose name starts with R3C2_GATE_, R3C2_C0_, or R3C2_CANDIDATE_REVIEW_. Nothing you write adopts anything.

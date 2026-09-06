@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
-"""r3c2_ledger_tools_STAGED.py — STAGED, UNADOPTED (D1 + D7 candidates, 2026-09-06); NOT the pinned seat tool. The seat's ledger tool for the R3-C2 census.
+"""r3c2_ledger_tools_STAGED.py — STAGED, UNADOPTED (D1 + D7 candidates, repaired 2026-09-06 after two independent reviews); NOT the pinned seat tool. The seat's ledger tool for the R3-C2 census.
 
   /usr/bin/python3 -E r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
       C1: candidates.json = {declared_candidate_count, declared_included_count, declared_excluded_count,
       declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2} and outcome (a section-3 token or PENDING; `census ... final` rejects PENDING and requires printed_value/reproduced_value on arithmetic outcomes); exclusions.json =
       {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; every exclusion row carries source_file, source_line and numeral equal to its candidate row (retained, not discarded); the AUTHOR_SPECIFIED_INPUT count is printed beside the denominator; the declared counts are
       compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
-  STAGED (D1, UNADOPTED): a PRINTED record with reason_code ORIG_CITATION is an imported value — its verbatim is matched at the
-      CLAIMING paper's citing sentence (origin_evidence.source_file/source_line) and its value at the EXTERNAL value line
-      (record source_file/source_line), which must be an enumerable text of R3C2_CORPUS_MANIFEST.md in <sources_dir>; no
-      reason-code test is applied to the external line's own wording.
-  STAGED (D7, UNADOPTED): audit subcommands — see cmd_audit_*: `audit seal-enumeration`, `audit select`, `audit compare`.
+  STAGED (D1, UNADOPTED) — validate <ledger.json> <sources_dir> <candidates.json>: a PRINTED record with reason_code ORIG_CITATION is
+      an imported value: its non-empty verbatim is matched at the CLAIMING paper's citing sentence (origin_evidence.source_file/
+      source_line), and the claiming file is the file of the candidate row whose candidate_id equals the record's claim_id; its
+      value is matched as a numeric TOKEN (not a substring) at the EXTERNAL value line (source_file/source_line), which must be an
+      exact row of R3C2_CORPUS_MANIFEST.md in <sources_dir> whose bytes verify against that row's sha256, must differ from the claiming
+      file, and must be the FIRST line of the source carrying both the symbol and the numeral (the tie-break); no reason-code test
+      is applied to the external line's wording. The kit implements the review's wording only (evidence at the borrower).
+  STAGED (D7, UNADOPTED) — audit seal-enumeration <aud_c> <aud_x> <seal.txt>   census-gated, first-write
+                            audit select <sealed_c> <seed_hex> <stage1_seal> <selection.json>   refuses without the stage-1 seal
+                            audit handout <selection.json> <sealed_c> <handout.json>              ids + file + line ONLY
+                            audit seal-rederivation <rederiv.json> <seal2.txt>                    first-write, before any release
+                            audit compare <seal1> <aud_c> <aud_x> <sealed_c> <sealed_x> <sealed_l> <selection> <seal2> <rederiv> <C6_AUDIT.json>
   /usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
       asserts: every record has the schema fields and no field outside the schema; status in
       {PRINTED,STANDARD,ABSENT,BLOCKED}; origin in {CHOSEN,DERIVED,FITTED,IMPORTED,MEASURED,STANDARD,UNDECLARED};
@@ -21,7 +28,7 @@
       an ORIG_SILENT record carries origin_search {query, files, matches}. Exit 0 = PASS, 1 = FAIL (every failure
       printed), 2 = usage/schema error.
 """
-import json, sys, pathlib, hashlib, random, math
+import json, sys, pathlib, hashlib, random, math, re, subprocess
 
 STATUS={"PRINTED","STANDARD","ABSENT","BLOCKED"}
 OUTCOMES={"REPRO_WITHIN_STATED_PRECISION","REPRO_FAILED","REPRO_BLOCKED","REPRO_INPUT_ABSENT","REPRO_NOT_EVALUABLE","REPRO_NO_DERIVATION_STATED"}
@@ -35,14 +42,40 @@ CODE_PRECEDENCE=["ORIG_CITATION","ORIG_FIT_STATED","ORIG_CHOICE_STATED","ORIG_ME
 STANDARD_LIST={"G":"6.67430e-11","c":"2.99792458e8","hbar":"1.054571817e-34","k_B":"1.380649e-23","H0":"67.36","Omega_m":"0.3153","Omega_L":"0.6847","Omega_b_h2":"0.02237","Omega_c_h2":"0.1200","n_s":"0.9649","sigma8":"0.8111","tau":"0.0544","ln1e10As":"3.044","age_Gyr":"13.797"}
 FIELDS=["claim_id","input_id","symbol","status","origin","origin_evidence","derived_from","value","source_file","source_line"]
 
+NUMTOK=re.compile(r"[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?")
 def read_line(srcdir, f, n):
     try: return (pathlib.Path(srcdir)/str(f)).read_text(errors="replace").splitlines()[int(n)-1]
     except Exception: return None
 
-def enumerable(srcdir, f):
+def manifest_rows(srcdir):
     m=pathlib.Path(srcdir)/"R3C2_CORPUS_MANIFEST.md"
-    if m.exists(): return ("`"+str(f)+"`") in m.read_text(errors="replace")
-    return (pathlib.Path(srcdir)/str(f)).exists()
+    if not m.exists(): return None
+    rows={}
+    for line in m.read_text(errors="replace").splitlines():
+        mm=re.match(r"\|\s*\d+\s*\|\s*`([^`]+)`\s*\|\s*`([0-9a-f]{64})`",line)
+        if mm: rows[mm.group(1)]=mm.group(2)
+    return rows
+
+def enumerable_verified(srcdir, f):
+    """exact manifest row AND the file's bytes hash to that row's sha256; (ok, why)"""
+    rows=manifest_rows(srcdir)
+    if rows is None: return False,"no R3C2_CORPUS_MANIFEST.md in the sources directory"
+    if f not in rows: return False,f"{f} is not a row of the manifest"
+    p=pathlib.Path(srcdir)/f
+    if not p.exists(): return False,f"{f} absent from the sources directory"
+    h=hashlib.sha256(p.read_bytes()).hexdigest()
+    if h!=rows[f]: return False,f"{f} bytes ({h[:16]}) differ from the manifest row ({rows[f][:16]})"
+    return True,""
+
+def token_in(value, line):
+    return str(value) in NUMTOK.findall(line or "")
+
+def first_line_with(srcdir, f, symbol, value):
+    try: lines=(pathlib.Path(srcdir)/str(f)).read_text(errors="replace").splitlines()
+    except Exception: return None
+    for i,l in enumerate(lines,1):
+        if token_in(value,l) and re.search(r"(?<![A-Za-z0-9_])"+re.escape(str(symbol))+r"(?![A-Za-z0-9_])", l): return i
+    return None
 
 def load(p):
     d=json.loads(pathlib.Path(p).read_text())
@@ -65,8 +98,11 @@ def roots(rec_by_id, rid, seen=None):
 
 
 
-def cmd_validate(ledger,srcdir):
+def cmd_validate(ledger,srcdir,candidates=None):
     d,recs=load(ledger); fails=[]; ids=set()
+    claim_file={}
+    if candidates:
+        for c in json.loads(pathlib.Path(candidates).read_text())["candidates"]: claim_file[c["candidate_id"]]=c["source_file"]
     for r in recs:
         missing=[f for f in FIELDS if f not in r]
         if missing: fails.append(f"{r.get('input_id')}: missing {missing}"); continue
@@ -87,16 +123,24 @@ def cmd_validate(ledger,srcdir):
             if r["origin"]!="IMPORTED" or rc!="ORIG_CITATION": fails.append(f"{r['input_id']}: BLOCKED record must carry origin IMPORTED with ORIG_CITATION evidence from the claiming paper")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
         if r["status"]=="PRINTED" and rc=="ORIG_CITATION":
-            # STAGED D1 — an imported value: verbatim at the claiming paper's citing sentence, value at the external value line
-            ef=str(ev.get("source_file","")); el=ev.get("source_line")
+            # STAGED D1 (review's wording): verbatim at the claiming paper's citing sentence, numeric token at the external value line
+            ef=str(ev.get("source_file","")); el=ev.get("source_line"); cf=claim_file.get(r["claim_id"])
+            if not candidates: fails.append(f"{r['input_id']}: IMPORTED PRINTED record needs the candidate file to bind claim {r['claim_id']} to its claiming paper")  # PROBE:D1_NEEDS_CANDIDATES
+            elif cf is None: fails.append(f"{r['input_id']}: claim {r['claim_id']} is not a candidate row")
+            elif ef!=cf: fails.append(f"{r['input_id']}: citing sentence is in {ef}, but claim {r['claim_id']} belongs to {cf}")  # PROBE:D1_CLAIMING_FILE
             if ef==r["source_file"]: fails.append(f"{r['input_id']}: IMPORTED PRINTED record names its own file as the external source")
-            if not enumerable(srcdir, r["source_file"]): fails.append(f"{r['input_id']}: external source {r['source_file']} is not an enumerable text of the manifest")
+            ok,why=enumerable_verified(srcdir, r["source_file"])
+            if not ok: fails.append(f"{r['input_id']}: external source not an enumerable verified text: {why}")  # PROBE:D1_ENUMERABLE
+            if not str(ev.get("verbatim","")).strip(): fails.append(f"{r['input_id']}: empty verbatim quotation")  # PROBE:D1_EMPTY_VERBATIM
             cl=read_line(srcdir, ef, el)
             if cl is None: fails.append(f"{r['input_id']}: cannot read citing sentence {ef}:{el}")
             elif ev.get("verbatim","") not in cl: fails.append(f"{r['input_id']}: verbatim not found at citing sentence {ef}:{el}")  # PROBE:D1_VERBATIM_SITE
             vl=read_line(srcdir, r["source_file"], r["source_line"])
             if vl is None: fails.append(f"{r['input_id']}: cannot read external value line {r['source_file']}:{r['source_line']}")
-            elif str(r.get("value")) not in vl: fails.append(f"{r['input_id']}: value {r.get('value')} not at external value line {r['source_file']}:{r['source_line']}")  # PROBE:D1_VALUE_SITE
+            elif not token_in(r.get("value"), vl): fails.append(f"{r['input_id']}: value {r.get('value')} is not a numeric token at external value line {r['source_file']}:{r['source_line']}")  # PROBE:D1_VALUE_TOKEN
+            else:
+                first=first_line_with(srcdir, r["source_file"], r["symbol"], r.get("value"))
+                if first is not None and first!=int(r["source_line"]): fails.append(f"{r['input_id']}: external value line {r['source_line']} is not the first line of {r['source_file']} carrying both {r['symbol']} and {r.get('value')} (that is line {first})")  # PROBE:D1_FIRST_LINE
             continue
         if r["status"]=="PRINTED":
             f=pathlib.Path(srcdir)/r["source_file"]
@@ -173,54 +217,83 @@ def cmd_census(candidates,exclusions,final=False):
 
 def sha(p): return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
 def ckey(c): return (str(c.get("source_file")), int(c.get("source_line")), str(c.get("numeral")))
+def first_write(p, text):
+    p=pathlib.Path(p)
+    if p.exists(): print(f"FAIL: {p.name} already exists (first-write seal; a seal is never replaced)"); return 1
+    p.write_text(text); print(text, end=""); return 0
 
 def cmd_audit_seal(ac, ax, out):
-    """STAGED D7 stage-1 seal: the custodian records the auditor's OWN enumeration digests BEFORE any sealed ledger is revealed."""
-    pathlib.Path(out).write_text(f"AUDITOR_CANDIDATES_SHA256={sha(ac)}\nAUDITOR_EXCLUSIONS_SHA256={sha(ax)}\n"); print(pathlib.Path(out).read_text(), end=""); return 0
+    """STAGED D7 stage 1 (custodian): census-gated, first-write seal of the auditor's OWN enumeration, before any sealed ledger is revealed."""
+    r=subprocess.run([sys.executable,"-E",__file__,"census",ac,ax],capture_output=True,text=True)
+    if r.returncode!=0 or "C1_DENOMINATOR_PRINTED=PASS" not in r.stdout:
+        print(r.stdout,end=""); print("FAIL: auditor enumeration does not pass census; not sealed"); return 1  # PROBE:C6_AUDITOR_CENSUS
+    return first_write(out, f"AUDITOR_CANDIDATES_SHA256={sha(ac)}\nAUDITOR_EXCLUSIONS_SHA256={sha(ax)}\nAUDITOR_CENSUS_STDOUT_SHA256={hashlib.sha256(r.stdout.encode()).hexdigest()}\n")
 
-def cmd_audit_select(sc, seed_hex, out):
-    """STAGED D7 stage-2 selection (custodian): every arithmetic-group claim + k of the remaining, seeded from outside."""
-    if not (isinstance(seed_hex,str) and len(seed_hex)==64 and all(ch in "0123456789abcdef" for ch in seed_hex)): print("FAIL: seed must be 64 lowercase hexadecimal characters"); return 1
+def selection_of(sc, seed_hex):
     C=json.loads(pathlib.Path(sc).read_text())["candidates"]
     inc=sorted(c["candidate_id"] for c in C if c.get("included")); arith=sorted(c["candidate_id"] for c in C if c.get("included") and c.get("outcome") in ARITH)
     rem=sorted(set(inc)-set(arith)); N=len(inc); R=len(rem); k=min(max(1,math.ceil(0.20*N)),R)
     samp=sorted(random.Random(int(seed_hex,16)).sample(rem,k)) if k>0 else []
-    sel={"sealed_candidates_sha256":sha(sc),"seed_hex":seed_hex,"N":N,"R":R,"k":k,"arithmetic_group_ids":arith,"remaining_ids":rem,"sampled_ids":samp,"audited_ids":sorted(set(arith)|set(samp))}
-    pathlib.Path(out).write_text(json.dumps(sel,indent=1,sort_keys=True)); print(f"N={N} R={R} k={k} audited={len(sel['audited_ids'])}"); return 0
+    return {"sealed_candidates_sha256":sha(sc),"seed_hex":seed_hex,"N":N,"R":R,"k":k,"arithmetic_group_ids":arith,"remaining_ids":rem,"sampled_ids":samp,"audited_ids":sorted(set(arith)|set(samp))}
 
-def cmd_audit_compare(seal, ac, ax, sc, sx, sl, sel, red, out):
-    """STAGED D7 stage-3: only after the stage-1 seal and the selection exist are the sealed ledgers compared with the auditor's."""
-    fails=[]; sealtxt=pathlib.Path(seal).read_text()
-    if f"AUDITOR_CANDIDATES_SHA256={sha(ac)}" not in sealtxt or f"AUDITOR_EXCLUSIONS_SHA256={sha(ax)}" not in sealtxt: fails.append("C6_STAGE_ORDER: the auditor's enumeration differs from its stage-1 seal (enumeration must be sealed before any sealed ledger is revealed)")  # PROBE:C6_STAGE_ORDER
+def cmd_audit_select(sc, seed_hex, seal1, out):
+    """STAGED D7 stage 2 (custodian): refuses without the stage-1 seal; every arithmetic-group claim + k of the remaining, seeded from outside."""
+    if not pathlib.Path(seal1).exists() or "AUDITOR_CANDIDATES_SHA256=" not in pathlib.Path(seal1).read_text(): print("FAIL: no stage-1 seal of the auditor's enumeration; selection refused"); return 1  # PROBE:C6_SELECT_NEEDS_SEAL
+    if not (isinstance(seed_hex,str) and len(seed_hex)==64 and all(ch in "0123456789abcdef" for ch in seed_hex)): print("FAIL: seed must be 64 lowercase hexadecimal characters"); return 1
+    sel=selection_of(sc, seed_hex); sel["stage1_seal_sha256"]=(sha(seal1) if pathlib.Path(seal1).exists() else None)
+    pathlib.Path(out).write_text(json.dumps(sel,indent=1,sort_keys=True)); print(f"N={sel['N']} R={sel['R']} k={sel['k']} audited={len(sel['audited_ids'])}"); return 0
+
+def cmd_audit_handout(sel, sc, out):
+    """STAGED D7: what the auditor receives for re-derivation — claim identifiers with source file and line ONLY."""
+    S=json.loads(pathlib.Path(sel).read_text()); by={c["candidate_id"]:c for c in json.loads(pathlib.Path(sc).read_text())["candidates"]}
+    H=[{"claim_id":cid,"source_file":by[cid]["source_file"],"source_line":by[cid]["source_line"]} for cid in S["audited_ids"]]
+    pathlib.Path(out).write_text(json.dumps(H,indent=1,sort_keys=True)); print(f"handout: {len(H)} claims, fields claim_id/source_file/source_line only"); return 0
+
+def cmd_audit_seal_rederivation(red, out):
+    """STAGED D7 stage 2b (custodian): first-write seal of the auditor's re-derivations BEFORE any sealed ledger is released."""
+    return first_write(out, f"AUDITOR_REDERIVATIONS_SHA256={sha(red)}\n")
+
+def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
+    """STAGED D7 stage 3: compare the auditor's sealed enumeration and sealed re-derivations with the sealed (merged) ledgers."""
+    fails=[]; s1=pathlib.Path(seal1).read_text(); s2=pathlib.Path(seal2).read_text()
+    if f"AUDITOR_CANDIDATES_SHA256={sha(ac)}" not in s1 or f"AUDITOR_EXCLUSIONS_SHA256={sha(ax)}" not in s1: fails.append("C6_STAGE_ORDER: the auditor's enumeration differs from its stage-1 seal")  # PROBE:C6_STAGE_ORDER
+    if f"AUDITOR_REDERIVATIONS_SHA256={sha(red)}" not in s2: fails.append("C6_STAGE_ORDER: the auditor's re-derivations differ from their seal (re-derivations must be sealed before any sealed ledger is released)")  # PROBE:C6_REDERIV_SEAL
     S=json.loads(pathlib.Path(sel).read_text())
     if S.get("sealed_candidates_sha256")!=sha(sc): fails.append("C6_SELECTION: selection was computed over a different sealed candidate file")
+    if S.get("stage1_seal_sha256")!=sha(seal1): fails.append("C6_SELECTION: selection does not name this stage-1 seal")
+    if all(k in S for k in ("seed_hex",)):
+        R=selection_of(sc, S["seed_hex"])
+        for k in ("N","R","k","arithmetic_group_ids","remaining_ids","sampled_ids","audited_ids"):
+            if S.get(k)!=R[k]: fails.append(f"C6_SELECTION: supplied {k} differs from the recomputed selection")  # PROBE:C6_RECOMPUTE
     AC=json.loads(pathlib.Path(ac).read_text())["candidates"]; AX=json.loads(pathlib.Path(ax).read_text())["exclusions"]
     SC=json.loads(pathlib.Path(sc).read_text())["candidates"]; SX=json.loads(pathlib.Path(sx).read_text())["exclusions"]
     SL=json.loads(pathlib.Path(sl).read_text()); SL=SL["records"] if isinstance(SL,dict) else SL
     RD=json.loads(pathlib.Path(red).read_text())
-    a_inc={ckey(c) for c in AC if c.get("included")}; a_all={ckey(c):c for c in AC}
-    s_inc={ckey(c):c for c in SC if c.get("included")}; s_all={ckey(c):c for c in SC}
-    comp={"sealed_included_absent_from_audit_enumeration":[], "audit_included_absent_from_sealed":[], "inclusion_disputed":[], "exclusion_kind_differs":[]}
-    for k,c in s_inc.items():
-        if k not in a_all: comp["sealed_included_absent_from_audit_enumeration"].append(list(k))
-        elif k not in a_inc: comp["inclusion_disputed"].append(list(k))
-    for k in a_inc:
-        if k not in s_all: comp["audit_included_absent_from_sealed"].append(list(k))
-        elif k not in s_inc: comp["inclusion_disputed"].append(list(k))
-    akind={ckey(x):x.get("kind") for x in AX}; skind={ckey(x):x.get("kind") for x in SX}
-    for k in set(akind)&set(skind):
-        if akind[k]!=skind[k]: comp["exclusion_kind_differs"].append([list(k),skind[k],akind[k]])
-    for k in comp["sealed_included_absent_from_audit_enumeration"]: fails.append(f"COMPLETENESS sealed_included_absent_from_audit_enumeration: {k}")  # PROBE:C6_SEALED_MISSING
-    for k in comp["audit_included_absent_from_sealed"]: fails.append(f"COMPLETENESS audit_included_absent_from_sealed: {k}")  # PROBE:C6_BOTH_SEATS_MISSED
-    # an inclusion disagreement on a passage BOTH sides list is a dispute, not an omission: listed and counted; above 10% of the sealed denominator it fails
-    comp["inclusion_disputed_count"]=len(comp["inclusion_disputed"]); comp["inclusion_disputed_rate"]=(len(comp["inclusion_disputed"])/len(s_inc)) if s_inc else 0.0
-    if s_inc and len(comp["inclusion_disputed"])/len(s_inc)>0.10: fails.append(f"AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: {len(comp['inclusion_disputed'])}/{len(s_inc)}")  # PROBE:C6_DISPUTE_RATE
+    a_all={ckey(c):c for c in AC}; s_all={ckey(c):c for c in SC}; akind={ckey(x):x.get("kind") for x in AX}; skind={ckey(x):x.get("kind") for x in SX}
+    rows=[]; n_inc_sealed=sum(1 for c in SC if c.get("included")); disputes=0
+    for k in sorted(set(a_all)|set(s_all)):
+        a=a_all.get(k); s=s_all.get(k)
+        row={"key":list(k),"in_sealed":s is not None,"in_audit":a is not None,"sealed_included":(None if s is None else bool(s.get("included"))),"audit_included":(None if a is None else bool(a.get("included"))),"sealed_kind":skind.get(k),"audit_kind":akind.get(k)}
+        if s is not None and a is None:
+            if s.get("included"): row["result"]="OMISSION_SEALED_INCLUDED_ABSENT_FROM_AUDIT"; fails.append(f"COMPLETENESS sealed_included_absent_from_audit_enumeration: {list(k)}")  # PROBE:C6_SEALED_MISSING
+            else: row["result"]="AUDIT_INCLUSION_DISPUTED"; row["note"]="sealed excluded, not in the auditor's enumeration: listed, counted as a dispute"; disputes+=1
+        elif a is not None and s is None:
+            if a.get("included"): row["result"]="OMISSION_AUDIT_INCLUDED_ABSENT_FROM_SEALED"; fails.append(f"COMPLETENESS audit_included_absent_from_sealed: {list(k)}")  # PROBE:C6_BOTH_SEATS_MISSED
+            else: row["result"]="OMISSION_AUDIT_EXCLUDED_ABSENT_FROM_SEALED"; fails.append(f"COMPLETENESS audit_excluded_absent_from_sealed: {list(k)} (a passage the seats never enumerated is incompleteness whatever the auditor's disposition)")  # PROBE:C6_EXCLUDED_MISSING
+        else:
+            if bool(a.get("included"))!=bool(s.get("included")): row["result"]="AUDIT_INCLUSION_DISPUTED"; disputes+=1
+            elif not a.get("included") and akind.get(k)!=skind.get(k): row["result"]="MATCH_KIND_DIFFERS"
+            else: row["result"]="MATCH"
+        rows.append(row)
+    if n_inc_sealed==0 and rows: fails.append("AUDIT denominator is zero while candidates exist on either side")  # PROBE:C6_ZERO_DENOM
+    rate=(disputes/n_inc_sealed) if n_inc_sealed else None
+    if n_inc_sealed and disputes/n_inc_sealed>0.10: fails.append(f"AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: {disputes}/{n_inc_sealed}")  # PROBE:C6_DISPUTE_RATE
     s_by={c["candidate_id"]:c for c in SC}; l_by={}
     for r in SL: l_by.setdefault(r["claim_id"],{})[r["input_id"]]=r.get("origin")
     audited={}
-    for cid in S["audited_ids"]:
+    for cid in S.get("audited_ids",[]):
         r=RD.get(cid); s=s_by.get(cid)
-        if r is None or s is None: audited[cid]={"result":"MISMATCH","why":"no re-derivation supplied" if r is None else "not a sealed claim"}; fails.append(f"AUDIT {cid}: MISMATCH (missing)"); continue
+        if r is None or s is None: audited[cid]={"result":"MISMATCH","why":["no re-derivation supplied" if r is None else "not a sealed claim"]}; fails.append(f"AUDIT {cid}: MISMATCH (missing)"); continue
         why=[]
         if r.get("outcome")!=s.get("outcome"): why.append(f"outcome {r.get('outcome')} vs sealed {s.get('outcome')}")
         if s.get("outcome") in ARITH and (str(r.get("printed_value"))!=str(s.get("printed_value")) or str(r.get("reproduced_value"))!=str(s.get("reproduced_value"))): why.append("printed/reproduced values differ")
@@ -231,7 +304,7 @@ def cmd_audit_compare(seal, ac, ax, sc, sx, sl, sel, red, out):
         audited[cid]={"result":"MATCH" if not why else "MISMATCH","why":why}
         if why: fails.append(f"AUDIT {cid}: MISMATCH ({'; '.join(why)})")
     tok="PASS" if not fails else "FAIL"
-    res={"sealed_denominator":S["N"],"receipt_T_sealed_candidates_sha256":S["sealed_candidates_sha256"],"seed_hex":S["seed_hex"],"arithmetic_group_ids":S["arithmetic_group_ids"],"remaining_ids":S["remaining_ids"],"k":S["k"],"sampled_ids":S["sampled_ids"],"stage1_seal":sealtxt,"completeness":comp,"audited":audited,"C6_AUDIT_SAMPLE":tok}
+    res={"sealed_denominator":n_inc_sealed,"sealed_candidates_sha256":sha(sc),"sealed_exclusions_sha256":sha(sx),"sealed_ledger_sha256":sha(sl),"seed_hex":S.get("seed_hex"),"selection":{k:S.get(k) for k in ("arithmetic_group_ids","remaining_ids","k","sampled_ids","audited_ids")},"stage1_seal":s1,"rederivation_seal":s2,"completeness_rows":rows,"inclusion_disputed_count":disputes,"inclusion_disputed_rate":rate,"audited":audited,"C6_AUDIT_SAMPLE":tok,"scope":"PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness"}
     pathlib.Path(out).write_text(json.dumps(res,indent=1,sort_keys=True))
     for x in fails: print("FAIL:",x)
     print(json.dumps(res,indent=1,sort_keys=True)); print("C6_AUDIT_SAMPLE="+tok); return 0 if tok=="PASS" else 1
@@ -240,8 +313,11 @@ def cmd_audit_compare(seal, ac, ax, sc, sx, sl, sel, red, out):
 if __name__=="__main__":
     a=sys.argv[1:]
     if len(a)==3 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2]))
+    if len(a)==4 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2],a[3]))
     if len(a)==5 and a[0]=="audit" and a[1]=="seal-enumeration": sys.exit(cmd_audit_seal(a[2],a[3],a[4]))
-    if len(a)==5 and a[0]=="audit" and a[1]=="select": sys.exit(cmd_audit_select(a[2],a[3],a[4]))
-    if len(a)==11 and a[0]=="audit" and a[1]=="compare": sys.exit(cmd_audit_compare(*a[2:]))
+    if len(a)==6 and a[0]=="audit" and a[1]=="select": sys.exit(cmd_audit_select(a[2],a[3],a[4],a[5]))
+    if len(a)==5 and a[0]=="audit" and a[1]=="handout": sys.exit(cmd_audit_handout(a[2],a[3],a[4]))
+    if len(a)==4 and a[0]=="audit" and a[1]=="seal-rederivation": sys.exit(cmd_audit_seal_rederivation(a[2],a[3]))
+    if len(a)==12 and a[0]=="audit" and a[1]=="compare": sys.exit(cmd_audit_compare(*a[2:]))
     if len(a) in (3,4) and a[0]=="census" and (len(a)==3 or a[3]=="final"): sys.exit(cmd_census(a[1],a[2],final=(len(a)==4)))
     print(__doc__); sys.exit(2)

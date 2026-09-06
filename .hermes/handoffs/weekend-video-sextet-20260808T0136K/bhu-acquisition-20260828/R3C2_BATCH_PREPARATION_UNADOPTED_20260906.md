@@ -1,99 +1,128 @@
-# R3C2 — batch reading for the limb-B corpus problem: PREPARATION, UNADOPTED (2026-09-06 20:01 KST)
+# R3C2 — batch reading for the limb-B corpus problem: PREPARATION, UNADOPTED (revision 2 after two independent reviews, 2026-09-06 20:38 KST)
 
 **Status.** An execution question, kept out of the clause candidate so Duho can rule on it separately. Nothing adopted, frozen,
-dispatched or run. The finding it answers: `R3C2_LIMB_B_DEATH_FINDING_20260906.md` (one seat cannot hold 89 texts / 106,676 non-blank
-lines in one session; the void seat B died after 3 h 45 min improvising subagent chunks). Option A of that finding, specified here
-well enough to judge, with staged tooling and controls.
+dispatched or run. Revision 1 was judged BATCH_PREP=UNSOUND by both reviewers for one decisive reason, accepted and repaired here:
+**§2's IMPORTED rule reads a named source's value line in ANOTHER paper, which may sit in another batch; a session holding only its own
+batch's texts cannot file that record** (both reviewers executed it: the same D1 record validates with both texts present and fails
+with one batch's texts only — reproduced in the kit). The finding it answers: `R3C2_LIMB_B_DEATH_FINDING_20260906.md`.
 
-## 1. What a batch is — concrete, computed from the real manifest
+## 1. The principle: a batch partitions OWNERSHIP of candidate passages, not ACCESS to evidence
 
-The 89 enumerable texts of `R3C2_CORPUS_MANIFEST.md` (sha256 `300d4da144d96ae9f1390c9018e919ae1ba6cf00be9f45ad36fdccfdcfbf9b24`), in manifest row order, partitioned into 12
-batches whose sizes differ by at most one (five of 8, seven of 7). Computed by the staged tool, printed, pinned
-(`r3c2_staged_d1d7/partition_12_of_89.json`, sha256 `e8ca431c9066aea5ab9c5accd05bb691f72ff5847dea24747991fd8e9bc9510a`):
+Every session's working directory holds ALL 89 pinned texts (they are the pinned corpus; nothing is withheld) and an ownership list.
+The seat ENUMERATES only its owned texts — reads them completely, applies §1, attempts the arithmetic — which is what bounds the reading
+load; for §2/D1 it may look up the named source's line in ANY manifest text, and every such lookup is logged with manifest digest,
+file and line. Reference-only access creates no ownership and no denominator entry. No input is classified BLOCKED because a text was
+withheld, because none is. The same rule applies to both census seats and, under D7, to the auditor's enumeration and re-derivations.
+
+## 2. What a batch is — concrete, computed from the real manifest
+
+The 89 texts of `R3C2_CORPUS_MANIFEST.md` (sha256 `300d4da144d96ae9f1390c9018e919ae1ba6cf00be9f45ad36fdccfdcfbf9b24`), in manifest row order, partitioned into 12 ownership
+batches whose sizes differ by at most one. Computed by the staged tool and pinned (`r3c2_staged_d1d7/partition_12_of_89.json`, its
+printed form `partition_12_of_89.txt`, both in the pin sheet):
 
 ```
-batch 1: rows 1-8 (8 texts)
-batch 2: rows 9-16 (8 texts)
-batch 3: rows 17-24 (8 texts)
-batch 4: rows 25-32 (8 texts)
-batch 5: rows 33-40 (8 texts)
-batch 6: rows 41-47 (7 texts)
-batch 7: rows 48-54 (7 texts)
-batch 8: rows 55-61 (7 texts)
-batch 9: rows 62-68 (7 texts)
-batch 10: rows 69-75 (7 texts)
-batch 11: rows 76-82 (7 texts)
-batch 12: rows 83-89 (7 texts)
+batch 1: rows 1-8 (8 texts, 278483 bytes, 4030 non-blank lines)
+batch 2: rows 9-16 (8 texts, 1244397 bytes, 17938 non-blank lines)
+batch 3: rows 17-24 (8 texts, 1573014 bytes, 16038 non-blank lines)
+batch 4: rows 25-32 (8 texts, 745198 bytes, 8148 non-blank lines)
+batch 5: rows 33-40 (8 texts, 1266439 bytes, 11819 non-blank lines)
+batch 6: rows 41-47 (7 texts, 577720 bytes, 4319 non-blank lines)
+batch 7: rows 48-54 (7 texts, 693384 bytes, 7628 non-blank lines)
+batch 8: rows 55-61 (7 texts, 438168 bytes, 8692 non-blank lines)
+batch 9: rows 62-68 (7 texts, 198317 bytes, 3799 non-blank lines)
+batch 10: rows 69-75 (7 texts, 363253 bytes, 5130 non-blank lines)
+batch 11: rows 76-82 (7 texts, 197654 bytes, 3321 non-blank lines)
+batch 12: rows 83-89 (7 texts, 338821 bytes, 15814 non-blank lines)
 ```
 
-Twelve, not eight: the seat that died was handling sets of eleven; seven or eight texts (roughly 8–10 thousand non-blank lines) is
-what one session can read completely and still do the arithmetic. The partition is a function of the manifest and the number 12
-alone; anyone can recompute it and must get the same bytes.
+**Twelve is a workload hypothesis, not a demonstrated capacity** (both reviewers): the seat that died was handling sets of eleven; seven
+or eight texts per batch is below the observed failure and itself untested. The per-batch bytes and non-blank lines above are the
+workload measure; batch 1's report confirms the size before batch 2 is dispatched, so a failure at eight is cheap, not fatal. **Equal text counts do not bound lines:** by manifest row order the batches range from 3321 to 17938 non-blank lines, so the row-order partition is
+the simplest, not the most even; a line-balanced partition (a different pure function of the same manifest) is the obvious alternative and is
+listed in the line for Duho. Batch 1, the lightest, therefore confirms less about capacity than a heavy batch would. The
+partition is a function of the manifest and the number 12 alone; anyone can recompute it and must get the same bytes (kimi did).
 
-## 2. What a session is
+## 3. What a session is
 
-For each batch k, each seat is a fresh process of the same engine under the same kernel profile, in a working directory holding the
-packet, the brief, the pinned scripts, the manifest and ONLY batch k's texts. It prints its own `ACCESS_SHA` (= the packet digest), runs
-the brief's steps over its texts, and writes `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json`, `SEAT_REPORT_b<k>.md`.
-A seat's sessions run in batch order; the two seats' sessions never share a directory. The seat itself never joins anything.
+For batch k, each seat is a fresh process; each seat's twelve sessions run one engine and one kernel profile; the two seats are as V23
+specifies (two engines), and the auditor is on a third. The working directory holds the packet, the brief, the pinned scripts, the
+manifest, all 89 texts and the ownership list for k. The session prints its own `ACCESS_SHA` (= the packet digest) and writes
+`candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json`, `SEAT_REPORT_b<k>.md`. **Identifiers are global and source-based:**
+every candidate id, claim id and input id begins with `<owned file>#`, so nothing is renumbered at join and a cross-batch
+`derived_from` reference resolves by its own name. Sessions of one seat run in batch order; the two seats never share a directory;
+independence between seats is asserted per dispatch (same custody, same confinement, no other seat's output in the inventory), not
+inherited from the first.
 
-## 3. What the seal between batches preserves
+## 4. What the seal between batches preserves — and what it does not
 
-After a session exits, the custodian runs `seal` for batch k, which records the digests of its four artefacts in `seals.json` BEFORE
-batch k+1 is dispatched, and refuses to re-seal a batch. The seal preserves: the batch's text list (fixed by the partition), the bytes
-of its four artefacts, its `ACCESS_SHA`, and the dispatch order. A later session cannot alter an earlier batch's files because they are
-not in its directory; the lane never edits them; `join` refuses any artefact whose digest differs from its seal. The seal does not
-preserve, and does not claim to, the reader's memory across sessions.
+After a session exits, the custodian runs `seal` for batch k. The seal binds: the partition digest; the owned texts' digests, verified
+against the manifest at sealing; the four artefacts' digests; and the digest of the predecessor seal (k−1). It refuses to seal batch k
+before k−1, and refuses to re-seal. It preserves the bytes of what was committed and the order of commitment. **It does not prove that
+all owned texts were read, that the nominated reader produced the work, or that a later session could not reach an earlier batch's
+files** — a later session is not FURNISHED them; an out-of-directory alteration is DETECTED at join, which refuses any artefact whose
+digest differs from its seal: detection, not prevention, the same floor C4 states for the seats. The seals file itself lives outside
+any session's write authority, with the custodian.
 
-## 4. The join, as a pure function
+## 5. The join, as a pure function of fixed inputs
 
-`join <partition> <seat_dir> <seals> <prefix>` verifies every seal, verifies that every candidate in batch k cites a text OF batch k
-(a candidate citing another batch's text fails `JOIN`), prefixes every candidate id, claim id, input id and `derived_from` entry with
-`b<k>_`, concatenates in batch order, recomputes the declared counts, and writes one candidate file, one exclusion file and one input
-ledger per seat, with sorted keys — the same inputs give the same bytes (a control checks it). It has no parameters and no judgement.
-The pinned `census` then runs over the joined files and must PASS: that is the seat's denominator.
+`join <partition> <seat_dir> <seals> <manifest> <prefix>` verifies every seal; verifies that every candidate and every ledger claim is
+OWNED by its batch (a candidate citing another batch's text as its own passage fails); verifies that every evidence `source_file` is a
+manifest row (any text, any batch); checks id uniqueness across batches and that every `derived_from` resolves and the graph is acyclic;
+concatenates in batch order without renaming; recomputes the declared counts; writes one candidate file, one exclusion file and one
+ledger per seat with sorted keys. For fixed inputs and fixed code it is deterministic (a control checks identical bytes twice); it
+performs no scholarly classification, and it does implement two policies — ownership and global identifiers — which are the ones stated
+here. The pinned `census` then runs over the joined files and must PASS; the lane's `validate` runs over the joined ledger against the
+FULL corpus and must PASS (that is where a cross-batch import machine-matches).
 
-## 5. Why it is still ONE census with ONE denominator read by TWO independent readers — checkable, not asserted
+## 6. Why it is ONE census with ONE denominator read by TWO independent readers — what is checkable, what is not
 
-- **One census, one denominator.** §1's inclusion rule is per passage and §2's arithmetic is per claim; neither consults any other
-  text. Therefore the enumeration of the whole corpus equals the union of the enumerations of any partition of it, PROVIDED every text
-  is in exactly one batch and no batch cites outside itself. Both provisos are controls, not assumptions: `C1B_BATCH_COVERAGE=PASS` iff
-  the union of the batch text lists equals the manifest with no duplicate and every batch report prints the packet's `ACCESS_SHA`;
-  `JOIN=PASS` iff every seal matches and every candidate cites its own batch's text. The denominator is the count `census` prints over
-  the joined file; every §4 class, the 10% dispute rule and C6's selection are computed over the joined files exactly as V23 states.
-- **Two independent readers.** Each seat's joined files are produced by one engine under one packet across its 12 sessions; seat A's
-  sessions and seat B's never see each other's directories; the two joined files are then reconciled claim by claim as V23 §2/§4
-  already prescribe. Independence BETWEEN seats is unchanged; what is new is that a seat's reading is not one memory.
-- **What is lost, stated.** Cross-batch consistency of one reader's judgement. It is measured, not assumed: the run log reports the
-  seat-A/seat-B disagreement rate per batch, so drift shows as a rising rate in later batches; the existing dispute stops apply over
-  the union. The two-seat reconciliation and the C6 audit are already the design's answer to inconsistency.
-- **The audit (D7) under the same partition.** If the stronger D7 is accepted, the auditor's own enumeration is read under the same
-  12-batch partition and the same seals; `audit compare` then runs over the auditor's joined files against the sealed joined files.
-  The partition changes nothing about what the audit compares.
+- **One denominator, mechanically.** §1's inclusion rule is per passage; enumeration ownership is disjoint and exhaustive by
+  `C1B_BATCH_COVERAGE` (every manifest text owned exactly once, owned bytes verified, every batch report access-proven), and the joined
+  count is what `census` prints. §2's arithmetic is per claim and its IMPORTED lookups are served under §1 of this file, so no claim is
+  split or blocked by the partition. What the mechanism establishes is one joined denominator; calling it one independently completed
+  census additionally needs the reading, source-access and reconciliation evidence of the run record.
+- **Two independent readers.** Each seat's joined files come from one engine under one packet across twelve sessions that never see the
+  other seat's directories; the two joined files are reconciled claim by claim as V23 §2/§4 prescribe. Independence BETWEEN seats is
+  retained per dispatch on the conditions in §3; what is new is that a seat's reading is not one memory.
+- **What is lost, stated plainly.** Cross-batch consistency of one reader's judgement. The run log reports between-seat disagreement by
+  batch, descriptively, with counts and denominators; **that rate does not identify within-reader drift** (both seats can drift together;
+  batches differ in content). Reconciliation and C6 address the disagreements and failures their procedures detect; neither
+  establishes cross-batch consistency.
+- **The audit under the same partition (D7).** The auditor's enumeration is owned and sealed batch for batch under the same partition;
+  its re-derivation stage reads cross-batch import sources under §1 of this file; `audit compare` then runs over the auditor's joined
+  files against the sealed joined files. The comparison code is unchanged; preserving its meaning additionally requires the same
+  evidence access and valid global identifiers under batching, which §1 and §3 supply.
 
-## 6. Staged tooling and controls — STAGED, NOT INSTALLED
+## 7. Staged tooling and controls — STAGED, NOT INSTALLED
 
-`r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py` (sha256 `bf3a3524884c44b6a41fb9bc62f59b39b0df5042b5b26cf1048f1f7b542f1581`), lane-side, never given to a seat: `partition`, `seal`, `join`,
-`coverage`. Controls in `r3c2_staged_tests.py` (sha256 `89c0202fc9283233ad349025a67959dad7b532234825ac7db343a69bdfbb165a`), run 2026-09-06 20:01 KST: partition 5→2 in manifest order; seal; re-seal
-refused; join verifies seals and scope, renumbers, recomputes; join deterministic (identical bytes twice); the pinned-form `census`
-(staged copy, sha256 `60a191f36a757c6c15e01f3e778518c8e20935bde464deab3e0d9e65fac082ff`) PASSES over the joined files; `C1B_BATCH_COVERAGE` positive. Negatives, each asserting EXACTLY one
-failure: a batch-2 candidate citing a batch-1 text; an artefact changed after its seal; a text in two batches; a manifest text in no
-batch; a batch report without the packet's `ACCESS_SHA`. Deletion probes: removing the scope, seal, duplicate, missing-text or
-ACCESS_SHA check turns the matching negative into PASS. `STAGED_TESTS=PASS` (37/37 over the whole staged kit).
+`r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py` (lane-side, never given to a seat): `partition`, `seal`, `join`, `coverage`; pins in
+`r3c2_staged_d1d7/R3C2_STAGED_D1D7.sha256` (this document prints no hash of its own). Controls in `r3c2_staged_tests.py`, run 2026-09-06 20:38 KST:
+partition in manifest order with bytes and lines; seal order enforced (batch 2 before 1 refused), predecessor bound, re-seal refused;
+join allows a batch-1 claim whose IMPORT evidence is a batch-2 line and the joined ledger validates against the full corpus, while the
+same record CANNOT validate in a directory holding only batch 1's texts (the reviewers' finding, reproduced); join deterministic;
+`census` PASSES over the joined files; coverage positive. Negatives, each asserting exactly one failure, each with a deletion probe: a
+batch-2 candidate claiming ownership of a batch-1 text; a non-global id; a cross-batch `derived_from` that resolves to nothing; evidence
+cited from a non-manifest text; an artefact changed after its seal; a text owned by two batches; a manifest text owned by none; an owned
+text whose bytes differ from the manifest; a batch report without the packet's `ACCESS_SHA`. Whole kit: `controls=84 passed=84 failed=0`,
+`STAGED_TESTS=PASS`.
 
-## 7. What accepting it changes about what the census can conclude
+## 8. What accepting it changes about what the census can conclude
 
-Nothing about the claims. The report gains one caveat ("enumeration was performed per preregistered batch; per-batch seat
-disagreement rates: …") and two controls (`C1B_BATCH_COVERAGE`, `JOIN`). It is the difference between a census that can run and one
-that cannot. Cost: 12 sessions × 2 seats (+12 for the auditor under D7), sequential per seat, parallel across seats.
+Per-claim outcomes and classes are computed exactly as V23 states, over the joined files. The report gains: the caveat that enumeration
+was performed per preregistered ownership batch with all texts furnished; the between-seat disagreement by batch, descriptively; two
+structural controls (`C1B_BATCH_COVERAGE`, `JOIN`); and the honest statement that within-reader consistency across batches is not
+measured. Cost: 12 sessions × 2 seats (+12 for the auditor under D7), sequential per seat, parallel across seats; runtime unmeasured.
+It is the difference between a census that can run and one that cannot — a necessity established by one observed failure, not by a
+demonstrated successful session, which batch 1 will be.
 
-## 8. What adopting would take (not done)
+## 9. What adopting would take (not done)
 
-A version amending C1's single-file schema, the dispatch record (one `ACCESS_SHA` per session), §9's split rule and C6's frame with
-"a seat is a sequence of sessions under one packet; the join is mechanical and pinned"; the batch tool pinned lane-side; packet
-rebuild; C0; two-seat gate; the 11:11 approval procedure.
+A version amending C1's single-file schema, the dispatch record (one `ACCESS_SHA` per session, all texts furnished, ownership list
+stated), §9's split rule and C6's frame with "a seat is a sequence of sessions under one packet; ownership is partitioned, access is
+not; identifiers are global; the join is mechanical and pinned"; the batch tool pinned lane-side; packet rebuild; C0; two-seat gate;
+the 11:11 approval procedure.
 
-**Line for Duho:** accept / change (batch size; number of batches; whether disagreement per batch is reported) / defer.
-(Blocks a first run: without it, no seat completes.)
+**Line for Duho:** accept / change (number of batches; row-order vs line-balanced partition; whether disagreement per batch is reported;
+whether batch 1 must confirm size before batch 2) / defer. (Blocks a first run: without it, no seat completes.)
 
-R3C2_BATCH_PREPARATION — UNADOPTED
+R3C2_BATCH_PREPARATION — UNADOPTED — revision 2
