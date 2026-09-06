@@ -15,3 +15,6 @@ Nothing in this list touches sample sizes, floors, the bar, exclusions, the one 
 
 ## What is NOT affected
 Tier-C V39 is under its own released gate. V15 and V35 remain operative on paper; no identity, draw, fetch, render or pixel under any of them.
+
+## Filing defect, recorded (Blanc 12:51 KST)
+The first filing of this document (commit 0b0742ddf, 12:49 KST) was POLLUTED: it was written through an unquoted shell heredoc, so two backticked words in item 1 and item 3 were executed as commands — `gh` printed its help text into item 1 ("Work seamlessly with GitHub from the command line. USAGE / CORE COMMANDS …") and two words were lost. Blanc caught it. The polluted copy is archived unchanged at `_archive/THIRD_FAILURE_DIAGNOSIS_OPTIONA_SAMPLING_AMENDMENT_20260906_POLLUTED_1249.md`; this file is the clean regeneration through a quoted heredoc (commit 437cbf9c4). The other files written in the same batch (the V18 change record, the run record, the lane state, and the Tier-C V39/V38 records) were checked for the same signature: nothing else.
