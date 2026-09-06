@@ -342,8 +342,8 @@ before audit — which is codex's order; kimi's differed only in placing the den
   makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
   from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
   interpreter's user site-packages directory at the single path C5 prints, taken WHOLE — every file under it, including SymPy, its
-  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the sorted
-  sha256 list of every file under that directory) and recorded in the dispatch record before launch — while executing the commands
+  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the null-separated,
+  sorted sha256 list of every file under that directory, exactly as C5's fifth command computes it) and recorded in the dispatch record before launch — while executing the commands
   this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness commands, and the §9 wrapper
   invocations), every one of which invokes the interpreter with `-E` so that no `PYTHON*` environment variable can redirect a load.
   A startup, configuration or import file loaded from any other location — `/usr/local`, `/tmp`, the working directory's parents,
@@ -405,7 +405,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
 <!--/SEAT-REDACT-->`C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
-  (5) `cd <the directory (4) printed> && find . -type f | sort | xargs /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
+  (5) `cd <the directory (4) printed> && find . -type f -print0 | sort -z | xargs -0 /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
   every ledger command runs under, and the one user site-packages directory it loads from, whose path and manifest digest the dispatch
   record pins before launch. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
   (5) equal to the dispatch record's; a mismatch, a non-zero exit, missing output, or a transcribed value in place of live output is
@@ -1093,3 +1093,12 @@ directory is user-writable on the host, that the seat's confinement makes it rea
 can and cannot detect. Manifest on this host at 12:49 KST: path `/Users/duhokim/Library/Python/3.9/lib/python/site-packages`. **Not applied, pending for the principal:** codex D2 (C6's
 auditor reads the full candidate ledger, outcomes included, before its "without sight of earlier work" re-derivation — a V23 design
 matter outside the narrow scope; its repair reshapes C6's inputs), codex D1 / kimi F3 (imported-choice evidence seam), D4 (`DERIVED_ONLY`).
+
+**V24d → V24e (12:51 KST), before any seat read V24d.** The lane's own run of C5's fifth command on this host showed two things:
+the user site holds 20637 files from many unrelated packages (astroquery, scipy, setuptools, an editable-install finder …), and several
+of their names contain spaces, so the manifest command as first written failed here. The command is now null-safe (`-print0`,
+`sort -z`, `xargs -0`). The V24d C0 seats, launched a minute earlier, were stopped and their output archived unread
+(`_tmp_ABORTED_c0_v24d/`). **Stated for the principal, not decided by the lane:** admitting the whole user site is the honest
+text-only fix and is what this version does, but it admits a large unrelated surface, read-only to the seat and digest-pinned. The
+cleaner fix is a dedicated read-only runtime for the seats holding only SymPy and mpmath, pinned the same way, which is an install
+the lane may not perform without his word; if he gives it, V25 replaces (b) with that runtime's path and nothing else changes.

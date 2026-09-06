@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `e5f0821c180a84e26549980382d98a603aee7f2284a236c5d08b319b23a4da14` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `944300dc68257c705be1da503660559242256ced061b3ef1503ce44c2e4030cc` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -240,8 +240,8 @@ is hidden by being excluded.
   makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
   from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
   interpreter's user site-packages directory at the single path C5 prints, taken WHOLE — every file under it, including SymPy, its
-  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the sorted
-  sha256 list of every file under that directory) and recorded in the dispatch record before launch — while executing the commands
+  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the null-separated,
+  sorted sha256 list of every file under that directory, exactly as C5's fifth command computes it) and recorded in the dispatch record before launch — while executing the commands
   this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness commands, and the §9 wrapper
   invocations), every one of which invokes the interpreter with `-E` so that no `PYTHON*` environment variable can redirect a load.
   A startup, configuration or import file loaded from any other location — `/usr/local`, `/tmp`, the working directory's parents,
@@ -252,7 +252,7 @@ is hidden by being excluded.
 `C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
-  (5) `cd <the directory (4) printed> && find . -type f | sort | xargs /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
+  (5) `cd <the directory (4) printed> && find . -type f -print0 | sort -z | xargs -0 /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
   every ledger command runs under, and the one user site-packages directory it loads from, whose path and manifest digest the dispatch
   record pins before launch. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
   (5) equal to the dispatch record's; a mismatch, a non-zero exit, missing output, or a transcribed value in place of live output is
