@@ -120,3 +120,6 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex V26-1 (same-event con
 
 ## TRACK 7 — codex V26-1/2/3 answered (standing preparation) — 2026-09-07 01:42 KST
 `TRACK7_STAGING_RECORD_20260907.md`, `TRACK7_FAIL_FIRST_RECEIPT_20260907.md` (4 fail → 4 OK; run 1b = V26 functions' old behaviour), `V27_CANDIDATE_ATTACK_INSPECTION_20260907.md` (rows 9s–9u), attribution addendum, both aggregate logs preserved. V27 text 154a680c…; 124 tests OK (run 2). Review dispatch follows.
+
+## V27 COMPLETE-PACKAGE REVIEW DISPATCHED — 2026-09-07 01:44 KST
+Same authority. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v27_gate_f2387btc/_stage2_image_analysis_20260901` (137 MB, 4,613 files; all historical digest lists and all preserved aggregate logs included); V27 digest 154a680c… verified in place. Both seats dispatched 01:44 KST (PIDs recorded); waiter reports TIMEOUT-STILL-RUNNING on timeout. Nothing adopted; no beacon read, draw, fetch, render, pixel.
