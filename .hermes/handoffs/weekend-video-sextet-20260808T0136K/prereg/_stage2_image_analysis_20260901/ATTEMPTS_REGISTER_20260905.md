@@ -1,4 +1,4 @@
-# ATTEMPTS REGISTER — generated 2026-09-06 11:59 KST by scripts/build_attempts_register.py from lane bytes
+# ATTEMPTS REGISTER — generated 2026-09-06 12:08 KST by scripts/build_attempts_register.py from lane bytes
 Rules: every row carries its source file; every digest is recomputed from disk at generation time; unreadable sources print UNSOURCED. This file is derived, not maintained — regenerate, do not edit.
 
 ## 1. INSTRUMENTS VALIDATED
