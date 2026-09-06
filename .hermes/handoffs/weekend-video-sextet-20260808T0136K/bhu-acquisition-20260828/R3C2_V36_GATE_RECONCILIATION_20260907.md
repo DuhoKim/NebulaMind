@@ -1,0 +1,18 @@
+# R3C2 — two-seat gate on V36 (`34c90d0b…`), reconciled BY TOPIC (2026-09-07 08:31 KST)
+
+Reports: `R3C2_GATE_V36_codex_20260907.md` (PREREG_UNSOUND, F1 F2 F3 + C1; PRIOR_FINDINGS_CLOSED=YES; written 07:52, wrapper absent at 08:08:14), `R3C2_GATE_V36_kimi_20260907.md`
+(**PREREG_SOUND_WITH_REPAIRS** — no numbered findings, one cosmetic and two observations; PRIOR_FINDINGS_CLOSED=YES; written 08:10, pid gone at 08:18:02). Access lines verified. Blind intact. C5 YES, no masked stage, both.
+Blanc's order of 2026-09-07 07:58 governs this round: F3 first, as the fourth instance of one disease.
+
+| topic | codex | kimi | disposition in V37 `5d83997018367a59…` |
+|---|---|---|---|
+| dependency-list order violates MOI: reversing a derived_from list changes merged bytes, ledger digest, compute output and the audit artefact; all verdicts still PASS (not a verdict flip) | F1 | — | REPAIRED with codex's exact §3 sentence: every derived_from / derived_from_alt list of both seat ledgers is sorted at the HEAD of merge, before canonical keys, graph digests, branch selection, deduplication and serialisation; dependency order enumerated as MOI source (f); the combined property gains reversed-dependency runs in both seat ledgers (both seat orders) and in the auditor's reconstruction; fail-first on pinned V36 bytes, the differing runs being the dependency-order runs |
+| C3 validation and lane compute accept non-DERIVED cycles (CHOSEN record whose derived_from names itself: validate PASS, compute USES_CHOSEN) | F2 | — | REPAIRED with codex's exact sentence at BOTH boundaries: validate walks every dependency edge independently of origin before root classification; compute checks every complete provenance graph before writing output; C6's independent check retained; two deletion probes; recorded as a false C3-boundary pass, not an end-to-end escape, and not a reopening of the V35 C6 finding |
+| per-subcase fail-first tests accept unrelated failures: `got_pass == expect_pass` credits a launch error as the expected negative | F3 | — | REPAIRED as the PRINCIPLE (Blanc 07:58), stated once in the operative text and once in the kit: a negative control must assert the EXACT expected failure — setup, exit code, completion token, exactly the expected rows, and that subcase's verdicts/diagnostics/equality; MERGE_FAIL is infrastructure, never evidence; the probe judge carries the same setup guard; three meta-controls hold the predicate. Measured: 0 of 12 real cases disagreed; against an emptied tools directory the retired predicate credits 8/8 negative cases, the new one 0/8 |
+| the filesystem-source inventory is false: r3c2_manifest.py does walk a directory (its sorting is already correct) | C1 | the same sentence, kimi's one cosmetic | REPAIRED with codex's exact replacement; behaviour untouched |
+| kimi observation (i): §10.31 named three V35-bytes control rows; the kit carried two | — | obs | the third (same-origin searches) is now a kit control row; the correction is recorded in §10.32, §10.31 is not rewritten |
+| kimi observation (ii): the lane tool's roots_alt helper is dead since V35 | — | obs | removed; it reached no output |
+
+Kit: 201 controls, 65 deletion probes, PASS. Per-subcase fail-first on pinned V36/V35/V34/V33/V32 bytes, each its own test, each asserting its exact expected failure; three V35-bytes control rows labelled as controls; three meta-controls on the predicate itself. C0 and the gate run on V37 next.
+
+**Sweep (2026-09-07 08:31 KST):** every finding label in both reports checked programmatically against the rows — missing: none. kimi filed no numbered label: its verdict token PREREG_SOUND_WITH_REPAIRS was read for its stated content (one cosmetic + two observations), each carried as a row above.

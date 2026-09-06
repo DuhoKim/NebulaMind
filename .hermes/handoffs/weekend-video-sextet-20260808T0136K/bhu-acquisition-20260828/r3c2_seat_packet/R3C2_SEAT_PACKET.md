@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `34c90d0b4062f3443ff099d7af33326bc2b79080f28901618c9fe3f46a0c171c` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `5d83997018367a591be3fe25bf48c30d0a3d4de2c207705ad68d16ab8b8f8c9a` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -66,7 +66,7 @@ is seat judgement; the second seat and C6 may detect an error, but can share it,
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `6c938c3f6b8af37e96996b963ea5ab8daebc52b13561e8af379035ba39622a3a` (`validate` takes the candidate file as its third argument), pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `5424fd3b3f1c9591317243cf3bae7d862dc212e84e62eef330dbac55fa04f3f3` (`validate` takes the candidate file as its third argument), pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -218,8 +218,7 @@ is hidden by being excluded.
   mechanism by which the second seat and the auditor judge the search adequate — a search of one query with no variants is
   not adequate, and the auditor re-classifies the record from the pinned sources.
 
-  **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
-  that names no record, a cycle, and a `DERIVED` record with no `derived_from`. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
+  **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids. Before root classification, `validate` checks every dependency edge of the complete input graph independently of origin and returns FAIL for any missing dependency or cycle; it also rejects a `DERIVED` record with no parents. Lane-side `compute` applies the same origin-independent integrity check to every complete provenance graph it classifies and fails before writing output if any graph is invalid. Stopping root traversal at a non-DERIVED origin never substitutes for either integrity check. **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that no `ABSENT` or `BLOCKED` record carries a value, that **each `PRINTED` value machine-matches its `source_file`/`source_line` as a numeric token and each non-`ORIG_SILENT` quotation occurs at its own `origin_evidence.source_file`/`source_line` — the evidence line may differ from the value line, and no second quotation check is applied to the value line**, and that **each `STANDARD` value is one of a closed list PRINTED LITERALLY BELOW and satisfies its own value-line check** — so "standard" cannot become a selectable family;
   **completeness of a claim's input list against the paper's equation is seat-authored and audited under C6, not
   machine-checked**:

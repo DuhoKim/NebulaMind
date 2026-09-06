@@ -201,6 +201,11 @@ def cmd_validate(ledger,srcdir,candidates=None):
             except Exception as e: fails.append(f"{r['input_id']}: cannot read {r['source_file']}:{r['source_line']} ({e})"); continue
             if not token_in(r.get("value"), line): fails.append(f"{r['input_id']}: value {r.get('value')} is not a numeric token at {r['source_file']}:{r['source_line']}")  # PROBE:PRINTED_VALUE_LINE
     by={r["input_id"]:r for r in recs}
+    # V37 (codex V36 F2): the complete input graph is checked for cycles INDEPENDENTLY of origin, before root classification; a missing
+    # dependency is reported by the per-record check below (itself origin-independent). Stopping root traversal at a non-DERIVED origin
+    # never substitutes for either check.
+    for g in graph_integrity(by, list(by)):
+        if g.startswith("cycle"): fails.append(f"graph integrity: {g}")  # PROBE:VALIDATE_GRAPH_INTEGRITY
     for r in recs:
         for dfrom in r.get("derived_from") or []:
             if dfrom not in by: fails.append(f"{r['input_id']}: derived_from {dfrom} absent")

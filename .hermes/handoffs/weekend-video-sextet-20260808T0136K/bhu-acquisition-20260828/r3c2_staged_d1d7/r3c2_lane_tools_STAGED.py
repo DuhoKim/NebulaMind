@@ -15,15 +15,6 @@ def load(p):
     return d,recs
 
 
-def roots_alt(rec_by_id, rid):
-    """root set when every disputed record takes its origin_alt instead of origin"""
-    alt={k:dict(v) for k,v in rec_by_id.items()}
-    for v in alt.values():
-        if v.get("origin_alt"): v["origin"]=v["origin_alt"]
-        if v.get("derived_from_alt") is not None: v["derived_from"]=v["derived_from_alt"]
-    return roots(alt, rid)
-
-
 def roots(rec_by_id, rid, seen=None):
     seen=seen or set()
     if rid in seen: raise ValueError(f"cycle at {rid}")
@@ -72,6 +63,10 @@ def cmd_compute(ledger,out,candidates=None):
     gby=[{r["input_id"]:r for r in g} for g in graphs]
     for g in gby:
         if set(g)!=set(by): print("FAIL: a provenance graph does not cover the merged input_id set"); return 1
+    # V37 (codex V36 F2): each COMPLETE provenance graph is checked for origin-independent integrity BEFORE any classification is written.
+    for gi,g in enumerate(gby):
+        probs=graph_integrity(g, list(g))
+        if probs: [print(f"FAIL: provenance graph {gi}: {p_}") for p_ in probs]; return 1  # PROBE:COMPUTE_GRAPH_INTEGRITY
     claims=[{} for _ in gby]; disputed_claims=set()
     for r in recs:
         try: per=[roots(g,r["input_id"]) for g in gby]
@@ -100,6 +95,22 @@ def cmd_compute(ledger,out,candidates=None):
     return 0
 
 
+def graph_integrity(graph, starts):
+    """V37 (codex V36 F2): every derived_from edge reachable from `starts` checked for a missing record and for a cycle, INDEPENDENTLY of
+    origin — a cycle through CHOSEN/FITTED/IMPORTED/MEASURED/STANDARD/UNDECLARED is still a cycle. Sorted traversal, so the reported
+    problems are identical in every process. Returns a sorted list of problems; empty = intact."""
+    problems=set(); done=set()
+    def walk(n, path):
+        if n in path: problems.add(f"cycle at {n}"); return
+        if n in done or n not in graph: return
+        for p in sorted(graph[n].get("derived_from") or []):
+            if p not in graph: problems.add(f"missing dependency {p} of {n}"); continue
+            walk(p, path+[n])
+        done.add(n)
+    for st in sorted(starts): walk(st, [])
+    return sorted(problems)
+
+
 def canon_key(r):
     """seat-blind canonical key of one seat's record: sha256 of its canonical JSON (sorted keys, no whitespace)"""
     import hashlib
@@ -112,7 +123,15 @@ def graph_key(g):
 def cmd_merge(a,b,out):
     """Merge two independently validated seat ledgers (same input_ids) into one: where origin differs, the merged record
     keeps the PRIMARY branch (the seat record with the smaller seat-blind canonical key — SEAT-PERMUTATION INVARIANCE) and carries the other seat's complete branch as origin_alt / origin_evidence_alt / origin_search_alt / derived_from_alt. Exit 0; exit 1 on id mismatch."""
-    da,ra=load(a); db,rb=load(b); A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
+    da,ra=load(a); db,rb=load(b)
+    # V37 (codex V36 F1): dependency-list ORDER carries no meaning. Every derived_from list of both seat ledgers is normalised to sorted
+    # input-id order HERE — before canonical record keys, graph digests, branch selection, graph deduplication and serialisation — so no
+    # later step can observe it. This does not reorder a paper's computational operations: derived_from records dependency edges, not an
+    # execution sequence.
+    for _r in list(ra)+list(rb):
+        if _r.get("derived_from") is not None: _r["derived_from"]=sorted(_r["derived_from"])  # PROBE:MERGE_DEP_CANON
+        if _r.get("derived_from_alt") is not None: _r["derived_from_alt"]=sorted(_r["derived_from_alt"])
+    A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
     if set(A)!=set(Bm):
         print("FAIL: input_id sets differ:", sorted(set(A)^set(Bm))); return 1
     out_recs=[]; ndis=0; npar=0; fails=[]

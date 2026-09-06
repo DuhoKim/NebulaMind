@@ -1,0 +1,18 @@
+case                 old   new   delta
+V35 F1              True  True   same
+V35 F2              True  True   same
+V35 missing-dep     True  True   same
+V35 multi           True  True   same
+V36 dep-order       True  True   same
+V34 mixed           True  True   same
+V33 member          True  True   same
+V32 search          True  True   same
+ctrl member/V35     True  True   same
+ctrl V34F1/V35      True  True   same
+ctrl V32/V35        True  True   same
+full property       True  True   same
+
+REAL CASES WHERE THE PREDICATES DISAGREE: 0
+ADVERSARIAL (tools directory emptied — an unrelated infrastructure failure):
+  negative cases CREDITED as fail-first evidence by the retired polarity predicate: 8/8
+  negative cases CREDITED by the exact-failure predicate:                          0/8
