@@ -1,0 +1,7 @@
+[{"name":"census positive","argv":["/usr/bin/python3","r3c2_ledger_tools.py","census","_tmp_r3c2_ledger_ctl/cand_att.json","_tmp_r3c2_ledger_ctl/excl_decl.json"],"expect":"C1_DENOMINATOR_PRINTED=PASS"},
+ {"name":"census final positive","argv":["/usr/bin/python3","r3c2_ledger_tools.py","census","_tmp_r3c2_ledger_ctl/cand_final_ok.json","_tmp_r3c2_ledger_ctl/excl_decl.json","final"],"expect":"C1_DENOMINATOR_PRINTED=PASS"},
+ {"name":"census final rejects PENDING","argv":["/usr/bin/python3","r3c2_ledger_tools.py","census","_tmp_r3c2_ledger_ctl/cand_att.json","_tmp_r3c2_ledger_ctl/excl_decl.json","final"],"expect":"still PENDING"},
+ {"name":"validate positive","argv":["/usr/bin/python3","r3c2_ledger_tools.py","validate","_tmp_r3c2_ledger_ctl/pos.json","_tmp_r3c2_ledger_ctl"],"expect":"C3_NO_SUBSTITUTION=PASS"},
+ {"name":"validate negative","argv":["/usr/bin/python3","r3c2_ledger_tools.py","validate","_tmp_r3c2_ledger_ctl/neg.json","_tmp_r3c2_ledger_ctl"],"expect":"C3_NO_SUBSTITUTION=FAIL"},
+ {"name":"lane merge parents dispute","argv":["/usr/bin/python3","r3c2_lane_tools.py","merge","_tmp_r3c2_ledger_ctl/lane_A.json","_tmp_r3c2_ledger_ctl/lane_B.json","_tmp_r3c2_ledger_ctl/lane_merged.json"],"expect":"PARENTS_DISPUTED=1"},
+ {"name":"lane compute disputed pair","argv":["/usr/bin/python3","r3c2_lane_tools.py","compute","_tmp_r3c2_ledger_ctl/lane_merged.json","_tmp_r3c2_ledger_ctl/lane_out.json"],"expect":"DISPUTED"}]

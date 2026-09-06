@@ -1,0 +1,3 @@
+[{"name":"NEG: the 09:08 failure mode — whole command as ONE argument","argv":["/usr/bin/python3","r3c2_ledger_tools.py","census _tmp_r3c2_ledger_ctl/cand_att.json _tmp_r3c2_ledger_ctl/excl_decl.json"],"expect":"C1_DENOMINATOR_PRINTED=PASS"},
+ {"name":"NEG: a genuinely failing fixture expected to pass","argv":["/usr/bin/python3","r3c2_ledger_tools.py","census","_tmp_r3c2_ledger_ctl/cand_att_wrong.json","_tmp_r3c2_ledger_ctl/excl_decl.json"],"expect":"C1_DENOMINATOR_PRINTED=PASS"},
+ {"name":"NEG: a control that passes (so the harness must show 1/3)","argv":["/usr/bin/python3","r3c2_ledger_tools.py","validate","_tmp_r3c2_ledger_ctl/pos.json","_tmp_r3c2_ledger_ctl"],"expect":"C3_NO_SUBSTITUTION=PASS"}]
