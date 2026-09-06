@@ -99,3 +99,6 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex N1–N5: publication 
 
 ## BLANC 00:30 ORDER — Q1 options aligned to the FULL contract — 2026-09-07 00:30 KST
 Option C now says ALL required events (approval, history-open, one push event per history commit); Option A′ describes what it would actually require (receipts covering every required event, refreshed per published entry, inside the window; RETRY vs terminal preserved; only the approval-event receipt exists). No review was reading the file (V25 not yet dispatched), so the edit is permitted under the immutability rule. Q1 stays unpresented.
+
+## V25 COMPLETE-PACKAGE REVIEW DISPATCHED — 2026-09-07 00:32 KST
+Same authority as V23/V24. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v25_gate_msmudiql/_stage2_image_analysis_20260901` (134 MB, 4,569 files; the historical digest lists _tmp_v22/v23/v24_gate_COPIED_DIGESTS.txt and the preserved failed aggregate log INCLUDED this time); V25 digest d29aabac… verified in place; the aligned questions file (e676c865…) inside. Both seats dispatched 00:32 KST (PIDs recorded); waiter reports TIMEOUT-STILL-RUNNING on timeout. Nothing adopted; no beacon read, draw, fetch, render, pixel.
