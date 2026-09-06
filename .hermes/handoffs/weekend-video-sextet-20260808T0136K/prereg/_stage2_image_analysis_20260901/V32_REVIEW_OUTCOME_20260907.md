@@ -1,0 +1,28 @@
+# V32 COMPLETE-PACKAGE REVIEW — OUTCOME AND CLASSIFICATION — 2026-09-07 06:38 KST
+
+Candidate: `OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V32_20260907.md` (preimage 7620673b90562ccf262c84aed0838b2cc31638d2de73224125accbdb9b87aa32), fresh sandbox selrule_v32_gate_t3c8nj46 (4,754 files; the aggregate gate — then v1 — re-run inside it before dispatch at 05:47).
+
+**Seat B codex (gpt-6-astra): NOT-SIGNABLE** (report sha256 73d2c096c5a265c91c1d528a310685d62ad4ecc6dfc8c4c213958cdc0af8109e; ACCESS PROVEN; wrapper exited 06:19). **Seat A agy (Gemini): NOT-SIGNABLE, with TWO FATALs — agy's first refusal in seventeen rounds** (report sha256 b68a94e2eaac3f55f78753039b72f20f45fc7e2292da87149c3545346272c87f, 5,347 bytes; ACCESS_SHA = the V32 preimage).
+
+## HOW SEAT A WAS READ — AN EXCEPTION TO THE READ-AFTER-EXIT RULE, recorded as one (Blanc 06:35)
+At read time (06:06–06:36 KST) seat A's wrapper (pid 63711) was still listed active: `63711   0.0   50:58 /bin/zsh /Users/duhokim/HermesOps/scripts/nm_referee_dispatch.sh /Users/duhokim/`. The rule "read a seat's report after its process exits" could not fire, because agy left a log follower running — its only child is `tail -f test_output.log` (`12612   0.0   47:25 tail -f test_output.log`) — so the wrapper cannot exit before its 90-minute print-timeout (~07:17). What stood in for the rule, each verified: (a) the report file byte-stable at 5,347 bytes since 05:58:07 (re-verified 06:34 by Blanc and here); (b) the agy seat at 0.0% CPU; (c) its sole child the log follower; (d) ACCESS_SHA in the report equal to the V32 preimage. The stale source-lane file AGY_V32_SEATA_20260905.md (4,784 bytes, 09-05 12:32) is a DIFFERENT file and was not read. This is not a normal read; the cause is filed as a dispatch defect (`DISPATCH_DEFECT_SEAT_CHILD_KEEPS_WRAPPER_ALIVE_20260907.md`, with the wrapper fix).
+
+## Seat A's FATALs (both on NSD and the table's truth)
+| finding | class | disposition |
+|---|---|---|
+| **[FATAL] NSD contribution half violated** — S3/S5 abort without recording the subsequent checks | UNREPAIRED CONTRADICTION (column C) | ACCEPTED; the same ground as codex V32-1/V32-3; repaired in track 13 by check-attributed, per-operation contribution |
+| **[FATAL] INDEPENDENCE table falsehoods** — approval-delivery declared in S0-local but implemented in S0d-delivery; the conjunction's declared codes omit IDENTITY-NOT-SEALED and other `_conjunction_prefix` codes | UNREPAIRED CONTRADICTION (column C) | ACCEPTED; the table is now verified against the code by a test that fails on divergence (`test_track13_table_vs_code.py`), and its stages/codes corrected |
+| [MAJOR] `_Blocked` used to mask a local terminal (no git repository → blocked history) | ACCEPTED DEFECT | track 13: a missing repository is a finding from repository discovery, and the checks needing it are blocked with that reason |
+| [MAJOR] degraded context trusts working-tree bytes | ACCEPTED (same as codex's degraded probe) | track 13: every approval-byte source is checked against the witness digest; the source used is recorded |
+| [MAJOR] allowlist not total (dynamic TUNING-RECEIPT-{i}-*) | ACCEPTED (same as codex V32-5) | track 13: declared dynamic families |
+
+## Seat B's findings
+| finding | class | disposition |
+|---|---|---|
+| **V32-1 [MAJOR]** NSD incomplete: the identity read gates the open-file read and repository discovery; S3's approval gate hides the open same-id check; the conjunction stops before the nonce check when the fetch fails; S0c stops at its first check; the helper import decides; the degraded S4 does not check the committed blob against the witness digest; the table is not exact (stages, codes, prerequisites), 71 pairs not 66 (five identity-file pairs skipped), the controls do not assert independently expected sets | UNREPAIRED CONTRADICTION (column C) | ACCEPTED in full; track 13 |
+| **V32-2 [MAJOR]** absence from a partial prefix used to decide FORGED (the same-commit arm) | UNREPAIRED CONTRADICTION (column C) | ACCEPTED; track 13: on a partial snapshot only predicates that survive completion are decided |
+| **V32-3 [MAJOR]** later exceptions erase history findings; provenance too coarse; the standalone path does not contribute malformed evidence | UNREPAIRED CONTRADICTION (column C) | ACCEPTED; track 13: durable per-operation contribution with source at the boundary |
+| **V32-4 [MAJOR]** the aggregate gate v1 certifies a failed block | ACCEPTED; already repaired at 05:48 (gate v2, fixtures, fail-first against v1) — the sandbox carried v1 | closed by v2 |
+| **V32-5 [MINOR]** accounting: dynamic refusal names unclassified; "working tree equals the live remote head" wording; the run-1d table covers 81 of 84 methods (wrapped unittest names — the three docstringed methods); correct counts 43 BEHAVIOURAL / 39 NEW-INTERFACE / 1 already-right / 1 ImportError; "run 2/2b: 84 OK" is not either log's result; the reconstruction file must not be described as the untouched original | ACCEPTED DEFECTS | corrected here and in track 13's receipt; the coordinating Codex's exact recovery of the original receipt (`CODEX_TRACK12_RUN1_ORIGINAL_RECOVERED_20260907.md`, sha256 5577657864d5…) is the authority for the original run |
+
+Both seats agree on the weak point: the table. Column C reopened (register section K). Nothing gated, adopted, signed or drawn. Track 13 (in progress under the coordinating Codex's continuation note and Blanc's 06:35 note): precedence_core (dependency-free resolver and local checks), provenance v13, driver v17 with check-attributed findings, the table verified against the code, controls v2 with independently expected sets (105 pairs + 6 two-prerequisite variants), codex's constructions as 16 per-subcase regressions.

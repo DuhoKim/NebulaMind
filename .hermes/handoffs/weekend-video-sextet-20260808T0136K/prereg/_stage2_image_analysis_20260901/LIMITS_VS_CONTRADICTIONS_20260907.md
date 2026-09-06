@@ -77,3 +77,11 @@ Column A unchanged. The FATAL (V30-1) stays REPAIRED (codex confirmed).
 |---|---|---|
 | V31-1, V31-2, V31-3, V31-4 | the contribution half of NSD: independent stages on the locally readable context, page-keeping snapshot, no-stop loops and both arms before availability, allowlist classification by provenance; controls derived from the INDEPENDENCE table (66 pairs) | REPAIRED in V32 — column B; the V32 reviewers test it |
 UNREPAIRED as of V32 staging: none known.
+
+## K. Column C reopened at the V32 review (2026-09-07 06:38 KST; BOTH seats) — UNREPAIRED CONTRADICTIONS, open
+| finding | the contradiction | status |
+|---|---|---|
+| agy FATAL 1 / codex V32-1 | NSD's contribution half: the identity read, S3's approval gate, the conjunction's internal order and S0c's first failure still suppress independent checks; the helper import decides | OPEN — track 13 |
+| agy FATAL 2 / codex V32-1 | the INDEPENDENCE table is not true (stage of approval-delivery; the conjunction's codes; 71 pairs not 66) and the controls do not assert independently expected sets | OPEN — track 13 (table verified against the code by a test) |
+| codex V32-2 | absence from a partial prefix decides FORGED | OPEN — track 13 |
+| codex V32-3 | later exceptions erase history findings; provenance at the wrong boundary | OPEN — track 13 |
