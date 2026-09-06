@@ -40,3 +40,14 @@ Correction of my own earlier phrasing: 'text tests green against V26' was true f
 | track7 V26_3 sweep | V27 wording (absences) | V27 text, design doc, questions, provenance v7, driver v11 | OK |
 | track7 text_v27 (NEW) | V27 labels and sentences | V27 text (fail-first: FAILS against V26) | OK |
 Aggregate run 1 (`_tmp_v27_all_suites_aggregate_RUN1_PRESERVED.txt`) had one failure in the v11 composed test (a fixture that became a contradiction under v7's predicate); run 2 after the fixture correction is all green. Both logs are preserved; neither replaces the other.
+
+## V28 addendum (2026-09-07 02:24 KST)
+| text test | written against | run against | result |
+|---|---|---|---|
+| track5/test_track5_fail_first (label) | V25 | V25 | OK (6) |
+| track6/test_track6_text_v26 | V26 | V26 | OK (1) |
+| track7/test_track7_text_v27 | V27 | V27 | OK (1) |
+| track8/test_track8_text_v28 | V28 | V27 (fail-first: FAILED) and V28 (OK) | as stated |
+| track8/test_track8_fail_first.V27_3_Text | V28 + design doc revision 8 | V27 (FAILED) and V28 (OK) | as stated |
+| tracks 1/3/4, track-6 sweep, track-7 fail-first (version-agnostic) | — | V28 | OK |
+A label test passing against its own version proves nothing about the next; the V28-specific test is the only one that speaks for the V28 text.
