@@ -1,4 +1,4 @@
-# ATTEMPTS REGISTER — generated 2026-09-06 12:10 KST by scripts/build_attempts_register.py from lane bytes
+# ATTEMPTS REGISTER — generated 2026-09-06 12:35 KST by scripts/build_attempts_register.py from lane bytes
 Rules: every row carries its source file; every digest is recomputed from disk at generation time; unreadable sources print UNSOURCED. This file is derived, not maintained — regenerate, do not edit.
 
 ## 1. INSTRUMENTS VALIDATED
@@ -10,7 +10,7 @@ Rules: every row carries its source file; every digest is recomputed from disk a
 
 Instruments validated: **1**. Attempts under §9B: **1**. Candidates pinned in a signed rule: **0**.
 
-## 2. PRE-COMMITMENT DRAFTS REFUSED (selection rule V1–V17)
+## 2. PRE-COMMITMENT DRAFTS REFUSED (selection rule V1–V18)
 
 | draft | digest (recomputed) | seat A (agy) | seat B (codex) | engines A / B (CLI, model) | access proofs | the fatal that killed it — first [FATAL] heading of a NOT-SIGNABLE report, VERBATIM with line number; the excerpt after it is a marked non-verbatim paraphrase | superseded by / record |
 |---|---|---|---|---|---|---|---|
@@ -30,9 +30,10 @@ Instruments validated: **1**. Attempts under §9B: **1**. Candidates pinned in a
 | V14 | 2965111cca6d6b13… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V14_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V14_SEATB.md) | agy (Gemini), version/model not stamped at run time / codex-cli 0.146.0, pre-astra model (not stamped at run time; Blanc relay 09-06 09:46) | A verifies; B verifies | verbatim line 6: `1. ACCEPTANCE SET` · next line (verbatim): `[FATAL] The stated acceptance set is wider than the code actually enforces. V14 §3b says, “With `fetch` supplied, `verdict` re-fetches every public input live a` | V15; MINI_PREREG_SELRULE_V14_TO_V15_CHANGE_RECORD_20260906.md ebc72c6641c08ee8…; V14_GATE_OUTCOME_AND_STOP_20260906.md 2d615621b511d74e… |
 | V15 | fdd9eedd9938c2ba… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V15_SEATA.md) | SIGNABLE-AS-PRECOMMITMENT (CODEX_SELRULE_V15_SEATB.md) | agy (Gemini), version/model not stamped at run time / codex-cli 0.146.0, pre-astra model (not stamped at run time; Blanc relay 09-06 09:46) | A verifies; B verifies | no seat returned NOT-SIGNABLE | V16; MINI_PREREG_SELRULE_V15_TO_V16_CHANGE_RECORD_20260906.md aeb937113dd10d69…; V15_GATE_OUTCOME_SIGNABLE_NOT_SIGNED_20260906.md a31f3aa82ab928c3… |
 | V16 | fe1487bd1be7dcd3… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V16_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V16_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T02:20:09Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T02:20:09Z | A verifies; B verifies | verbatim line 29: `1. [FATAL] Acceptance set exceeds the stated live-equality condition.` · excerpt (not verbatim, first following line, truncated): There IS an accepted record outside the requested union: retained NIST evidence that authenticates, followed by a failed live re-fetch. beacon_record_expedited.… | V17; MINI_PREREG_SELRULE_V16_TO_V17_CHANGE_RECORD_20260906.md 24b0275827202f7c… |
-| V17 | ef222a1e298f2787… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V17_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V17_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T02:56:19Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T02:56:19Z | A verifies; B verifies | verbatim line 33: `1. [FATAL] Approval-witness acceptance does not establish prospective approval.` · excerpt (not verbatim, first following line, truncated): Reproduction through the actual V17 boundary AND full builder: claimed T_sign = 2026-09-06T02:30:07Z, derived T_pulse = 02:41:00Z. At actual wall time 02:59:23Z… | none yet |
+| V17 | ef222a1e298f2787… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V17_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V17_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T02:56:19Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T02:56:19Z | A verifies; B verifies | verbatim line 33: `1. [FATAL] Approval-witness acceptance does not establish prospective approval.` · excerpt (not verbatim, first following line, truncated): Reproduction through the actual V17 boundary AND full builder: claimed T_sign = 2026-09-06T02:30:07Z, derived T_pulse = 02:41:00Z. At actual wall time 02:59:23Z… | V18; MINI_PREREG_SELRULE_V17_TO_V18_CHANGE_RECORD_20260906.md 14711c4b5650a917… |
+| V18 | 121b1e0e4a8af6d8… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V18_SEATA.md) | no report (None) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T03:32:13Z / — | A verifies; B — | no seat returned NOT-SIGNABLE | none yet |
 
-Drafts written: **17**. Gated: **16**. Refused (at least one seat NOT-SIGNABLE): **15**. Signed: **0**. Split rounds: V3, V10, V13, V14, V16, V17.
+Drafts written: **18**. Gated: **17**. Refused (at least one seat NOT-SIGNABLE): **15**. Signed: **0**. Split rounds: V3, V10, V13, V14, V16, V17.
 
 ## 3. CONTROLS RUN
 
@@ -52,5 +53,5 @@ Drafts written: **17**. Gated: **16**. Refused (at least one seat NOT-SIGNABLE):
 
 ## 4. Counts a methods section must carry (derived above)
 - Instruments validated under a signed preregistration: 1 (CE-ResNet) — FAILED. Candidates developed but not validated: 1 family, 0 attempts.
-- Pre-commitment drafts for a replacement: 17 written, 16 gated by two blind seats on different engines, 15 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
+- Pre-commitment drafts for a replacement: 18 written, 17 gated by two blind seats on different engines, 15 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
 - Frozen-sample access, as far as the journals show: no render or inference event for any frozen-sample object exists in the render journal (0 rows) or the 62-record seal journal; at generation time, in the lane, the only tensor files outside the validation directory number 1 (the synthetic smoke tensor under _scratch/synth_smoke, if present). This is what the records show; it is not a proof that no person viewed a frozen pixel by a route the journals do not see — that limit is stated in CUSTODIAN_QUESTION_FOR_DUHO_20260905.md.
