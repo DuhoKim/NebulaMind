@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """r3c2_ledger_tools.py — the seat's ledger tool for the R3-C2 census.
 
-  /usr/bin/python3 r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
+  /usr/bin/python3 -E r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
       C1: candidates.json = {declared_candidate_count, declared_included_count, declared_excluded_count,
       declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2} and outcome (a section-3 token or PENDING; `census ... final` rejects PENDING and requires printed_value/reproduced_value on arithmetic outcomes); exclusions.json =
       {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; the declared counts are
       compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
-  /usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
+  /usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>
       asserts: every record has the schema fields and no field outside the schema; status in
       {PRINTED,STANDARD,ABSENT,BLOCKED}; origin in {CHOSEN,DERIVED,FITTED,IMPORTED,MEASURED,STANDARD,UNDECLARED};
       reason_code/origin pair is one of the allowed pairs; no ABSENT or BLOCKED record carries a value; a BLOCKED record

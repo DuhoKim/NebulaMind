@@ -4,7 +4,9 @@ You are one of two independent seats. Work only from the files in this directory
 this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_manifest.py` (the pinned manifest script), `r3c2_timeout.py` (the pinned wrapper), and the source texts listed
 in `R3C2_CORPUS_MANIFEST.md`. Scope: you may read any file in this directory; read the pinned environment (the interpreter and the site-packages directory
 the packet's C5 prints); and execute the commands the packet prints verbatim, with whatever they themselves load — executing a printed
-command is the instruction, not a scope choice. Any path you CHOOSE to open beyond those is an outside path. Do not open any other path. Print the working directory and every path
+command is the instruction, not a scope choice. Executing a printed command does not authorise other reads: every placeholder you resolve, every command you hand to the
+wrapper, every import or data path you select is your choice and must lie inside this directory or the pinned environment. Any path
+you CHOOSE to open beyond those is an outside path. Do not open any other path. Print the working directory and every path
 you open.
 
 Order of work:

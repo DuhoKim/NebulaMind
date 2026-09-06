@@ -99,7 +99,7 @@ The ledger answers *"what did it rest on?"* So:<!--/SEAT-REDACT-->
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `f9b7d3c818647e6e3e10e19013db3a042247fc141ee01282b8928de06372c9ac`, pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `ea63fda52113a7b9d0f9e94a21745dc68870d049cb50b09fec1e16ffb81a8054`, pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 <!--SEAT-REDACT-->
 > *(Lane side: `root_origins` and the per-claim field `rests_on` are computed from the merged ledger by `r3c2_lane_tools.py`,
@@ -343,9 +343,10 @@ before audit — which is codex's order; kimi's differed only in placing the den
   the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
   dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
   `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
-  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Any path
-  the seat CHOOSES to open that is not (i) or (ii) — anything not opened by a printed command under (iii) — is an outside path and
-  `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
+  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Executing a printed command does not
+  authorise arbitrary data access: every placeholder the seat resolves, every child command or `<command>` the seat supplies to the
+  §9 wrapper, every import and every data path the seat selects is a seat CHOICE and is subject to (i)–(ii). Any path the seat
+  CHOOSES to open that is not (i) or (ii) — including through a placeholder or a wrapped command — is an outside path and `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
   listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
   reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
   environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
@@ -373,7 +374,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   forbidden list names the pattern's name and topic, the comparison model, gate history, every engine name, every
   person in the custody chain (the lane owner's name included), and every word that signals consequence rather than
   content — expectation, refute, consequential, invisible, favourable, unfavourable, stake, prior, tempting, warn. Build
-  command, run from this directory: `/usr/bin/python3 r3c2_build_seat_packet.py`; expected first line of output
+  command, run from this directory: `/usr/bin/python3 -E r3c2_build_seat_packet.py`; expected first line of output
   `C4_PACKET_REDACTED=PASS`, then the master and packet digests.**
   Redaction is done in the builder and marked in this document, so the master is never edited to serve the blind
   and a reader can see exactly what the seat was not given.
@@ -409,8 +410,8 @@ before audit — which is codex's order; kimi's differed only in placing the den
   (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256
   `19a8ce4750bb47655868ef15b55f2b168833147b460c03ad56f84dd3c9bc56f2`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
   the directory itself, reads every file, prints `FILES=<n>` and `MANIFEST_SHA256=<digest>`, and on any unreadable file prints
-  `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is a single process whose
-  exit status is the control's; no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
+  `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is one invocation whose
+  exit status is the control's (the §9 wrapper counts as one invocation that prints its child's exit status); no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
   an upstream failure can be masked.** The five commands establish the interpreter every ledger command runs under and the one
   site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest
   covers every file under that directory, everything the mandated imports can load from it, not one initializer. **PASS requires
@@ -419,7 +420,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii). The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
+  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii), including through a placeholder or a wrapped `<command>`. The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*<!--/SEAT-REDACT-->
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
@@ -928,7 +929,7 @@ classification by both seats, disagreements carried not reconciled. (2) *Compari
 asks one question; "two tallies", every `rests_on`, the severity order, "what the number rests on", the `rests_on`
 tally and its membership rule, the DISPUTED pair, and "what the interpretation reads" live only in `SEAT-REDACT` spans;
 `origin` is one recorded attribute of a ledger record. (3) *The tool split*: the seat's `r3c2_ledger_tools.py` (sha256
-`f9b7d3c818647e6e3e10e19013db3a042247fc141ee01282b8928de06372c9ac`) now has `validate` and `census` only and no word of the comparison in its text; `merge` and
+`ea63fda52113a7b9d0f9e94a21745dc68870d049cb50b09fec1e16ffb81a8054`) now has `validate` and `census` only and no word of the comparison in its text; `merge` and
 `compute` are the lane's `r3c2_lane_tools.py` (sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`), never given to a seat — because a tool that
 names `rests_on` in its usage text tells the seat what origin is for. (4) *Taxonomy order*: the origin values and the
 reason-code list are now alphabetical wherever a seat sees them; the previous order (DERIVED, STANDARD, MEASURED,
@@ -1123,3 +1124,12 @@ interpreter command so the claim is true by the text; **D9** the digest describe
 principal, assembled separately with cost and urgency (`R3C2_INHERITED_ITEMS_FOR_DUHO_20260906.md`):** D1 (imported-choice evidence),
 D2 (no exclusion kind for author-specified inputs), D4 (no result code on the lane-side no-fallback control), D7 (C6 auditor sees
 outcomes before re-deriving), D8 (`DERIVED_ONLY`). Cap: one C0, one gate; a sixth NO on executability stops the lane.
+
+**V24h — closure after the V24g gate (14:05 KST).** V24g gate: codex `PREREG_UNSOUND` with **C5_EXECUTABLE_UNDER_SCOPE=YES** and
+**NO_MASKED_STAGE=YES** (its substantive items are the five inherited questions already assembled for the principal, plus D5 and D7
+below); kimi `PREREG_SOUND_WITH_REPAIRS` with **YES / YES**, leak at the ruled floor. **The executability question is answered YES by
+both seats for the first time; the cap's stop condition did not fire.** Applied here, closing the principle and three cosmetics:
+codex D5 — executing a printed command does not authorise arbitrary data access; every placeholder, wrapped `<command>`, import or
+data path the seat selects is a seat choice under (i)–(ii) (C4, C5b, brief); codex D7 / kimi F1 — the build command carries `-E`;
+kimi F2 — the seat tool's usage text shows `-E` (tool re-pinned, controls re-run); codex C1 — "one invocation" wording for the
+wrapper. Nothing else changed. Pending for the principal, unchanged: D1, D2, D4, D7, D8 (`R3C2_INHERITED_ITEMS_FOR_DUHO_20260906.md`).

@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `c232b4ceb32be109e73cfb247ed911a6080f893a787eb28a233ad0a84104deb3` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `a12791ced815ed9f10981f41eec5440ba6dc61f4868c82bdc906ddeefe0f0c4e` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -61,7 +61,7 @@ Encountering one ends that claim's attempt.
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `f9b7d3c818647e6e3e10e19013db3a042247fc141ee01282b8928de06372c9ac`, pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `ea63fda52113a7b9d0f9e94a21745dc68870d049cb50b09fec1e16ffb81a8054`, pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -241,9 +241,10 @@ is hidden by being excluded.
   the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
   dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
   `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
-  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Any path
-  the seat CHOOSES to open that is not (i) or (ii) — anything not opened by a printed command under (iii) — is an outside path and
-  `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
+  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Executing a printed command does not
+  authorise arbitrary data access: every placeholder the seat resolves, every child command or `<command>` the seat supplies to the
+  §9 wrapper, every import and every data path the seat selects is a seat CHOICE and is subject to (i)–(ii). Any path the seat
+  CHOOSES to open that is not (i) or (ii) — including through a placeholder or a wrapped command — is an outside path and `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
   listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
   reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
   environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
@@ -256,8 +257,8 @@ is hidden by being excluded.
   (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256
   `19a8ce4750bb47655868ef15b55f2b168833147b460c03ad56f84dd3c9bc56f2`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
   the directory itself, reads every file, prints `FILES=<n>` and `MANIFEST_SHA256=<digest>`, and on any unreadable file prints
-  `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is a single process whose
-  exit status is the control's; no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
+  `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is one invocation whose
+  exit status is the control's (the §9 wrapper counts as one invocation that prints its child's exit status); no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
   an upstream failure can be masked.** The five commands establish the interpreter every ledger command runs under and the one
   site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest
   covers every file under that directory, everything the mandated imports can load from it, not one initializer. **PASS requires
@@ -266,7 +267,7 @@ is hidden by being excluded.
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii). The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
+  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii), including through a placeholder or a wrapped `<command>`. The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
   group** — no sampling discount — and **(ii) a sample of `min(max(1, ceil(0.20 × N)), R)` of the remaining included
