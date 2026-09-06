@@ -84,3 +84,6 @@ Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal; re-run after the provider-fi
 
 ## TRACK 4 — codex V23 M1/M2/M3/M6 repaired (standing preparation; no review dispatched) — 2026-09-06 23:50 KST
 `TRACK4_STAGING_RECORD_20260906.md`, `TRACK4_FAIL_FIRST_RECEIPT_20260906.md` (7 fail → 7 OK; run 1b = the V23 validator accepting codex's late push), `V24_CANDIDATE_ATTACK_INSPECTION_20260906.md` (9l: v3 OK / v4 REFUSED). V24 text f3987cbe…; 107 tests OK. Blanc decides whether to dispatch the V24 review. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+## V24 COMPLETE-PACKAGE REVIEW DISPATCHED — 2026-09-06 23:52 KST
+Same authority as V23 (review dispatch = authorized preparation). Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/selrule_v24_gate__5z2g1c8/_stage2_image_analysis_20260901` (127 MB, 4,543 files; all codex coordination notes included); V24 digest f3987cbe… verified in place; brief derived from the V23 brief with the V24 claims and the probe wording that passes the provider filter. Both seats dispatched 23:52 KST (PIDs recorded); waiter reports TIMEOUT-STILL-RUNNING on timeout. Nothing adopted; no beacon read, draw, fetch, render, pixel.
