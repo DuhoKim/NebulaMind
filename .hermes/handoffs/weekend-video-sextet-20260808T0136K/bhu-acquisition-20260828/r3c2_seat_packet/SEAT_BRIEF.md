@@ -1,12 +1,10 @@
 # Seat brief — reproduction census
 
 You are one of two independent seats. Work only from the files in this directory: `R3C2_SEAT_PACKET.md` (the rules),
-this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_timeout.py` (the pinned wrapper), and the source texts listed
-in `R3C2_CORPUS_MANIFEST.md`. The two system binaries the packet's C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are in scope, with the files they
-load from the system runtime locations `/usr` (not `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and the
-interpreter's user site-packages directory at the single path C5 prints, taken whole and pinned by the manifest digest C5 prints,
-while executing the commands the packet mandates you to run (census, validate, the C5 harness, the wrapper), each interpreter
-call with `-E`; anything loaded from elsewhere is an outside path. Do not open any other path. Print the working directory and every path
+this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_manifest.py` (the pinned manifest script), `r3c2_timeout.py` (the pinned wrapper), and the source texts listed
+in `R3C2_CORPUS_MANIFEST.md`. Scope: you may read any file in this directory; read the pinned environment (the interpreter and the site-packages directory
+the packet's C5 prints); and execute the commands the packet prints verbatim, with whatever they themselves load — executing a printed
+command is the instruction, not a scope choice. Any path you CHOOSE to open beyond those is an outside path. Do not open any other path. Print the working directory and every path
 you open.
 
 Order of work:
@@ -22,7 +20,7 @@ Order of work:
    every symbolic operation through the wrapper as the packet states; record one per-claim outcome from section 3
    with both numbers where the packet asks for them; write each outcome into the candidate file's `outcome` field (with
    `printed_value` and `reproduced_value` for arithmetic outcomes), then run
-   `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final` with the placeholders resolved and
+   `/usr/bin/python3 -E r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final` with the placeholders resolved and
    print its output.
 6. Print the path list with the scope mark for each row, and every control's token in the exact form the packet
    gives.

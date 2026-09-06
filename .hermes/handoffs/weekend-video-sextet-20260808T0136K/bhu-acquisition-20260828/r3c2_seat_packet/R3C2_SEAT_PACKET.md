@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `944300dc68257c705be1da503660559242256ced061b3ef1503ce44c2e4030cc` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `c232b4ceb32be109e73cfb247ed911a6080f893a787eb28a233ad0a84104deb3` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -161,7 +161,7 @@ is hidden by being excluded.
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
   on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print these five declared counts verbatim from the files — `declared_candidate_count`,
   `declared_included_count`, `declared_excluded_count`, `declared_attempt_count`, `declared_exclusion_count` — then run
-  `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
+  `/usr/bin/python3 -E r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
   script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate, that every excluded candidate is named by exactly one exclusion row,
   that every included candidate carries a permitted `attempts` value, and that each of the five declared counts equals
   the count recomputed from the rows; its stdout prints both the declared and the
@@ -169,12 +169,12 @@ is hidden by being excluded.
   `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every included candidate additionally carries `outcome` —
   one of the six §3 tokens, or `PENDING` before limb B — and every included candidate whose `outcome` is in the arithmetic
   group carries `printed_value` and `reproduced_value` (strings, as printed and as computed); every exclusion row names a
-  candidate and a `kind`; after limb B the seat runs `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final`, with
+  candidate and a `kind`; after limb B the seat runs `/usr/bin/python3 -E r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final`, with
   all placeholders resolved, and prints its output; that run verifies that every included candidate carries exactly one §3
   outcome, none is `PENDING`, and arithmetic-group outcomes carry both values;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
-  line, in the JSON schema of C3, validated by `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
+  line, in the JSON schema of C3, validated by `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
   directory (`.` is the sole allowed `sources_dir`); before execution the seat prints the fully resolved command with
   every angle-bracket placeholder replaced by the actual in-scope path
   (exit 0 = PASS; every failure printed; the printed C3 run — command, stdout, stderr, exit status — is this control's
@@ -228,7 +228,7 @@ is hidden by being excluded.
   The cosmological rows are the Planck 2018 TT,TE,EE+lowE+lensing baseline. **A value not in this table is not
   `STANDARD`**, whatever its provenance. **A `STANDARD` record carries `symbol` = the ledger key and `value` = the exact
   string printed in the value column; `validate` compares strings.** 
-  Each seat runs `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
+  Each seat runs `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
   resolved and prints the working directory, the resolved command, complete stdout and stderr, and the exit status; the
   control's printed artefact is that run. `C3_NO_SUBSTITUTION=PASS` only on exit 0 from every printed run in the artefact; a
   token asserted without the printed run is FAIL.
@@ -237,29 +237,36 @@ is hidden by being excluded.
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
-  from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
-  interpreter's user site-packages directory at the single path C5 prints, taken WHOLE — every file under it, including SymPy, its
-  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the null-separated,
-  sorted sha256 list of every file under that directory, exactly as C5's fifth command computes it) and recorded in the dispatch record before launch — while executing the commands
-  this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness commands, and the §9 wrapper
-  invocations), every one of which invokes the interpreter with `-E` so that no `PYTHON*` environment variable can redirect a load.
-  A startup, configuration or import file loaded from any other location — `/usr/local`, `/tmp`, the working directory's parents,
-  the lane, or any other user-writable path — is an outside path and `FAIL`; every other path outside the working directory is
-  `FAIL`. That directory is user-writable on the host: the seat's confinement makes it read-only to the seat, and the manifest digest
-  binds its bytes at dispatch; a change by another writer between the dispatch record and C5 is what the C5 comparison detects.**
+  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
+  the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
+  dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
+  `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
+  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Any path
+  the seat CHOOSES to open that is not (i) or (ii) — anything not opened by a printed command under (iii) — is an outside path and
+  `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
+  listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
+  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
+  environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
+  seat's confinement (read-only to the seat, no reach beyond (i)–(ii)) bounds what such code could touch, and the dispatch record
+  says what was pinned.
 
 `C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
-  (5) `cd <the directory (4) printed> && find . -type f -print0 | sort -z | xargs -0 /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
-  every ledger command runs under, and the one user site-packages directory it loads from, whose path and manifest digest the dispatch
-  record pins before launch. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
-  (5) equal to the dispatch record's; a mismatch, a non-zero exit, missing output, or a transcribed value in place of live output is
+  (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256
+  `19a8ce4750bb47655868ef15b55f2b168833147b460c03ad56f84dd3c9bc56f2`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
+  the directory itself, reads every file, prints `FILES=<n>` and `MANIFEST_SHA256=<digest>`, and on any unreadable file prints
+  `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is a single process whose
+  exit status is the control's; no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
+  an upstream failure can be masked.** The five commands establish the interpreter every ledger command runs under and the one
+  site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest
+  covers every file under that directory, everything the mandated imports can load from it, not one initializer. **PASS requires
+  all five commands to exit 0, their full stdout printed, the path of (4) and the `MANIFEST_SHA256` of (5) equal to the dispatch
+  record's; a mismatch, a non-zero exit, an `ERROR=` line, missing output, or a transcribed value in place of live output is
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum`, the files they load from the system runtime locations C4 lists, and the pinned user site-packages directory at the path C5 prints, while executing those same mandated commands (each with `-E`), are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
+  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii). The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. 
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
   group** — no sampling discount — and **(ii) a sample of `min(max(1, ceil(0.20 × N)), R)` of the remaining included
@@ -298,7 +305,7 @@ measured in candidate passages** — stop with `CENSUS_DENOMINATOR_DISPUTED` (§
 
 Live harness (C5); `ACCESS_SHA` proof for any pinned source audited, verified by the lane owner after the run and not
 on the seat's claim; path lists (C5b); every symbolic operation launched through the committed wrapper `r3c2_timeout.py` (sha256
-`fbb9bef7d6622a17b4dc2e856791e3166b60394c187286ea5581b2f39003f331`) as `/usr/bin/python3 r3c2_timeout.py 120.0 -- <command>`, which enforces a 120.0-second wall-clock
+`fbb9bef7d6622a17b4dc2e856791e3166b60394c187286ea5581b2f39003f331`) as `/usr/bin/python3 -E r3c2_timeout.py 120.0 -- <command>`, which enforces a 120.0-second wall-clock
 deadline on the monotonic clock, prints the wrapper command, the child's stdout and stderr and its exit status, and on
 the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome; unreached controls `NOT_RUN`. Two independent seats. 
 

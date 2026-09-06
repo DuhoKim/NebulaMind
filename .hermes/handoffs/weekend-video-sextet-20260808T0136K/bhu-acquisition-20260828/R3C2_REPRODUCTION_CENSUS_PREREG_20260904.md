@@ -245,7 +245,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
   on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print these five declared counts verbatim from the files — `declared_candidate_count`,
   `declared_included_count`, `declared_excluded_count`, `declared_attempt_count`, `declared_exclusion_count` — then run
-  `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
+  `/usr/bin/python3 -E r3c2_ledger_tools.py census <candidates.json> <exclusions.json>`: PASS requires exit 0 after the
   script verifies that every candidate has exactly one disposition, that every exclusion names one excluded candidate, that every excluded candidate is named by exactly one exclusion row,
   that every included candidate carries a permitted `attempts` value, and that each of the five declared counts equals
   the count recomputed from the rows; its stdout prints both the declared and the
@@ -253,12 +253,12 @@ before audit — which is codex's order; kimi's differed only in placing the den
   `candidate_id`, `source_file`, `source_line`, `numeral`, `included`; every included candidate additionally carries `outcome` —
   one of the six §3 tokens, or `PENDING` before limb B — and every included candidate whose `outcome` is in the arithmetic
   group carries `printed_value` and `reproduced_value` (strings, as printed and as computed); every exclusion row names a
-  candidate and a `kind`; after limb B the seat runs `/usr/bin/python3 r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final`, with
+  candidate and a `kind`; after limb B the seat runs `/usr/bin/python3 -E r3c2_ledger_tools.py census <candidates.json> <exclusions.json> final`, with
   all placeholders resolved, and prints its output; that run verifies that every included candidate carries exactly one §3
   outcome, none is `PENDING`, and arithmetic-group outcomes carry both values;
   the script's failure lines name any missing field. `C1_DENOMINATOR_PRINTED=PASS|FAIL|NOT_RUN`, PASS only on exit 0.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
-  line, in the JSON schema of C3, validated by `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
+  line, in the JSON schema of C3, validated by `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> .` run from the printed seat working
   directory (`.` is the sole allowed `sources_dir`); before execution the seat prints the fully resolved command with
   every angle-bracket placeholder replaced by the actual in-scope path
   (exit 0 = PASS; every failure printed; the printed C3 run — command, stdout, stderr, exit status — is this control's
@@ -295,7 +295,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
 
   **Provenance is transitive.** Every `DERIVED` record lists its `derived_from` ids; `validate` fails a `derived_from` id
   that names no record, a cycle, and a `DERIVED` record with no `derived_from`.<!--SEAT-REDACT--> *(Lane side: `r3c2_lane_tools.py
-  compute` derives `root_origins`, the origins at the leaves of that chain, from every step; no seat writes that field.)*<!--/SEAT-REDACT--><!--SEAT-REDACT--> **Lane side, after both seats have exited: the lane owner runs the lane-side script `r3c2_lane_tools.py`, committed beside this document, sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`: `/usr/bin/python3 r3c2_lane_tools.py merge <ledger_seatA.json> <ledger_seatB.json> <merged.json>` and then `/usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json>`, printing for each the working directory, the resolved command, complete stdout and stderr, and the exit status. `merge` exits 1 if the two `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the paper's stated equation once; an input-set difference surviving that reconciliation stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**; where the two `origin` classifications differ the merged record carries `origin_alt` and `origin_evidence_alt`; where the two `derived_from` lists differ the merged record carries both parent lists marked `PARENTS_DISPUTED`, and `compute` derives `root_origins` under both, printed as a pair, as for a disputed origin. `compute` derives each claim's `root_origins` and `rests_on` and prints the root-origin set beside it; it REJECTS (exit 2) a ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; a disputed pair is computed under both origins and marked `DISPUTED`. The seat tool `r3c2_ledger_tools.py` has no `compute` and no `merge`; a seat that runs either has left its packet. A `rests_on` value present in a seat-authored input ledger fails this control; after a successful `compute` run, a `rests_on` value absent from the script-produced output ledger fails this control.**<!--/SEAT-REDACT--> **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
+  compute` derives `root_origins`, the origins at the leaves of that chain, from every step; no seat writes that field.)*<!--/SEAT-REDACT--><!--SEAT-REDACT--> **Lane side, after both seats have exited: the lane owner runs the lane-side script `r3c2_lane_tools.py`, committed beside this document, sha256 `8e990c7a22fb4b093d5e74218e9bfcee4b108c52bbc2df615ed3b6b2aaefa848`: `/usr/bin/python3 -E r3c2_lane_tools.py merge <ledger_seatA.json> <ledger_seatB.json> <merged.json>` and then `/usr/bin/python3 -E r3c2_lane_tools.py compute <merged.json> <out.json>`, printing for each the working directory, the resolved command, complete stdout and stderr, and the exit status. `merge` exits 1 if the two `input_id` sets differ — **if `merge` exits 1, the two seats reconcile their input lists against the paper's stated equation once; an input-set difference surviving that reconciliation stops the study under `CENSUS_DENOMINATOR_DISPUTED` (§4), the disputed inputs listed with both seats' quotations**; where the two `origin` classifications differ the merged record carries `origin_alt` and `origin_evidence_alt`; where the two `derived_from` lists differ the merged record carries both parent lists marked `PARENTS_DISPUTED`, and `compute` derives `root_origins` under both, printed as a pair, as for a disputed origin. `compute` derives each claim's `root_origins` and `rests_on` and prints the root-origin set beside it; it REJECTS (exit 2) a ledger that arrives with `root_origins` or `rests_on` already set; it FAILS (exit 1) on a `derived_from` id that names no record, on a cycle, and on a `DERIVED` record with no `derived_from`, so an empty root set cannot occur; a disputed pair is computed under both origins and marked `DISPUTED`. The seat tool `r3c2_ledger_tools.py` has no `compute` and no `merge`; a seat that runs either has left its packet. A `rests_on` value present in a seat-authored input ledger fails this control; after a successful `compute` run, a `rests_on` value absent from the script-produced output ledger fails this control.**<!--/SEAT-REDACT--> **The arithmetic may consume only records with status `PRINTED` or `STANDARD`.** A
   script asserts that no `ABSENT` or `BLOCKED` record carries a value, that **each `PRINTED` value machine-matches the
   text at its cited source line and each verbatim quotation is a substring of that line**, and that **each `STANDARD`
   value is one of a closed list PRINTED LITERALLY BELOW** — so "standard" cannot become a selectable family;
@@ -324,7 +324,7 @@ before audit — which is codex's order; kimi's differed only in placing the den
   string printed in the value column; `validate` compares strings.** <!--SEAT-REDACT-->*(The list was previously "fixed here" by naming four symbols and citing a
   paper whose baseline runs to dozens of base, derived and nuisance parameters across several tables, none printed
   — so a machine membership test was impossible and "standard" was in practice a selectable family. kimi found it.)*<!--/SEAT-REDACT-->
-  Each seat runs `/usr/bin/python3 r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
+  Each seat runs `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> <sources_dir>` with the placeholders
   resolved and prints the working directory, the resolved command, complete stdout and stderr, and the exit status; the
   control's printed artefact is that run.<!--SEAT-REDACT--> The lane's `merge` and `compute` runs are printed the same way and are
   part of the same artefact.<!--/SEAT-REDACT--> `C3_NO_SUBSTITUTION=PASS` only on exit 0 from every printed run in the artefact; a
@@ -339,23 +339,24 @@ before audit — which is codex's order; kimi's differed only in placing the den
   **C4 — what the seat must do.** Work **only** from the files in your working directory. **Print every path you
   open**, and print the working directory itself. Do not construct a path outside it; if you believe you need one,
   stop and report that instead of opening it. `C4_SEAT_ISOLATION=PASS` requires that printed path list and means only that the list contains no outside path; it
-  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **The two system binaries C5 names — `/usr/bin/python3` and `/usr/bin/shasum` — are IN SCOPE, together with (a) the files they load
-  from the system runtime locations `/usr` (excluding `/usr/local`), `/System`, `/Library`, `/private/var/folders` and `/dev`, and (b) the
-  interpreter's user site-packages directory at the single path C5 prints, taken WHOLE — every file under it, including SymPy, its
-  dependency mpmath, and any startup hook installed there — pinned by the manifest digest C5 prints (the sha256 of the null-separated,
-  sorted sha256 list of every file under that directory, exactly as C5's fifth command computes it) and recorded in the dispatch record before launch — while executing the commands
-  this document mandates the seat to run (the C1 census runs, the C2/C3 validate runs, the C5 harness commands, and the §9 wrapper
-  invocations), every one of which invokes the interpreter with `-E` so that no `PYTHON*` environment variable can redirect a load.
-  A startup, configuration or import file loaded from any other location — `/usr/local`, `/tmp`, the working directory's parents,
-  the lane, or any other user-writable path — is an outside path and `FAIL`; every other path outside the working directory is
-  `FAIL`. That directory is user-writable on the host: the seat's confinement makes it read-only to the seat, and the manifest digest
-  binds its bytes at dispatch; a change by another writer between the dispatch record and C5 is what the C5 comparison detects.**
+  makes no claim that the list is complete. Any path outside the working directory is `FAIL`. **Scope, as a principle with a closed boundary (V24).** The seat may: **(i)** read any file inside its working directory; **(ii)** read
+  the pinned environment — the interpreter `/usr/bin/python3` and the site-packages directory whose path and manifest digest the
+  dispatch record fixes before launch and C5 prints live; **(iii)** execute the commands this document prints verbatim — the C1
+  `census` runs, the C2/C3 `validate` runs, the five C5 harness commands, and the §9 wrapper invocations — together with whatever
+  those commands themselves invoke or load, because executing a printed command is the instruction, not a scope choice. **Any path
+  the seat CHOOSES to open that is not (i) or (ii) — anything not opened by a printed command under (iii) — is an outside path and
+  `FAIL`.** The printed path list records the seat's own opens; what a printed command loads is not the seat's choice and is not
+  listed. Why the line is drawn here: what the seat is told to run cannot leak the study's content, because the packet's own text is
+  reviewed and blinded before dispatch; what the seat decides to open can. **Residual, stated:** the manifest digest proves the pinned
+  environment did not change between pinning and use; it does not prove the environment is minimal or free of startup code — the
+  seat's confinement (read-only to the seat, no reach beyond (i)–(ii)) bounds what such code could touch, and the dispatch record
+  says what was pinned.
 
 <!--SEAT-REDACT-->
   **What is therefore done:** each seat is run from a **redacted copy directory outside the lane**, containing the
   **seat packet** — not this document — the seat brief `r3c2_seat_packet/SEAT_BRIEF.md` (committed beside the packet,
   asserted against the same forbidden list by the builder, and pinned in `R3C2_SEAT_PACKET.sha256`), `R3C2_SEAT_PACKET.sha256` itself, `R3C2_CORPUS_MANIFEST.md`, the script
-  `r3c2_ledger_tools.py`, the wrapper `r3c2_timeout.py`, and every pinned source listed in `R3C2_CORPUS_MANIFEST.md`, with the wrapper pointed at that directory and **not** at the lane. **The
+  `r3c2_ledger_tools.py`, the manifest script `r3c2_manifest.py`, the wrapper `r3c2_timeout.py`, and every pinned source listed in `R3C2_CORPUS_MANIFEST.md`, with the wrapper pointed at that directory and **not** at the lane. **The
   lane owner lists that directory's contents and their digests in the dispatch record before launch; a copy missing any
   of them is not dispatched.** **This is procedural, not enforced by the filesystem**: nothing here denies a seat an
   absolute path into the lane, so the seat's printed path list is the detection, and `C4_SEAT_ISOLATION` is a
@@ -405,14 +406,20 @@ before audit — which is codex's order; kimi's differed only in placing the den
 <!--/SEAT-REDACT-->`C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
-  (5) `cd <the directory (4) printed> && find . -type f -print0 | sort -z | xargs -0 /usr/bin/shasum -a 256 | /usr/bin/shasum -a 256` — the interpreter
-  every ledger command runs under, and the one user site-packages directory it loads from, whose path and manifest digest the dispatch
-  record pins before launch. **PASS requires all five commands to exit 0, their full stdout printed, the path of (4) and the digest of
-  (5) equal to the dispatch record's; a mismatch, a non-zero exit, missing output, or a transcribed value in place of live output is
+  (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256
+  `19a8ce4750bb47655868ef15b55f2b168833147b460c03ad56f84dd3c9bc56f2`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
+  the directory itself, reads every file, prints `FILES=<n>` and `MANIFEST_SHA256=<digest>`, and on any unreadable file prints
+  `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is a single process whose
+  exit status is the control's; no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
+  an upstream failure can be masked.** The five commands establish the interpreter every ledger command runs under and the one
+  site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest
+  covers every file under that directory, everything the mandated imports can load from it, not one initializer. **PASS requires
+  all five commands to exit 0, their full stdout printed, the path of (4) and the `MANIFEST_SHA256` of (5) equal to the dispatch
+  record's; a mismatch, a non-zero exit, an `ERROR=` line, missing output, or a transcribed value in place of live output is
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
 - **C5b — no cross-lane access.** Print every path opened, each marked `IN_SCOPE` or `OUT_OF_SCOPE`; **any
   `OUT_OF_SCOPE` row fails the control; PASS means the printed list contains no such row and makes no claim that the
-  list is complete. **`/usr/bin/python3`, `/usr/bin/shasum`, the files they load from the system runtime locations C4 lists, and the pinned user site-packages directory at the path C5 prints, while executing those same mandated commands (each with `-E`), are `IN_SCOPE`; anything loaded from elsewhere is `OUT_OF_SCOPE` (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
+  list is complete. **`IN_SCOPE` = C4's (i) and (ii), and every path opened by a printed command under C4's (iii); `OUT_OF_SCOPE` = any path the seat chose to open outside (i)–(ii). The list records the seat's choices, not what printed commands load (C4).**** `C5B_NO_CROSS_LANE=PASS|FAIL|NOT_RUN`. <!--SEAT-REDACT-->*("As R3A/R3B" named no command and no code, and
   a seat that never saw those studies cannot resolve it — the defect codex found in R3D's C5/C5b.)*<!--/SEAT-REDACT-->
 - **C6 — audit, with a frozen sampling frame.** A third independent seat **first audits the full candidate and
   exclusion ledgers against every pinned source** — completeness, not just outcomes — then re-derives, **without sight of earlier work and re-classifying every input's `origin` from the pinned sources**: **(i) every claim in the arithmetic
@@ -495,7 +502,7 @@ the failed design; it is a different question and is not asked here.
 
 Live harness (C5); `ACCESS_SHA` proof for any pinned source audited, verified by the lane owner after the run and not
 on the seat's claim; path lists (C5b); every symbolic operation launched through the committed wrapper `r3c2_timeout.py` (sha256
-`fbb9bef7d6622a17b4dc2e856791e3166b60394c187286ea5581b2f39003f331`) as `/usr/bin/python3 r3c2_timeout.py 120.0 -- <command>`, which enforces a 120.0-second wall-clock
+`fbb9bef7d6622a17b4dc2e856791e3166b60394c187286ea5581b2f39003f331`) as `/usr/bin/python3 -E r3c2_timeout.py 120.0 -- <command>`, which enforces a 120.0-second wall-clock
 deadline on the monotonic clock, prints the wrapper command, the child's stdout and stderr and its exit status, and on
 the deadline prints `SYMBOLIC_TIMEOUT` and exits 124 — the reportable outcome; unreached controls `NOT_RUN`. Two independent seats. <!--SEAT-REDACT-->On a split, a third seat is dispatched by the lane owner through the lane's referee dispatcher with its
 `ACCESS_SHA` proof; third-seat dispatch is an administrative action of the lane owner and is not claimed executable from
@@ -1102,3 +1109,17 @@ of their names contain spaces, so the manifest command as first written failed h
 text-only fix and is what this version does, but it admits a large unrelated surface, read-only to the seat and digest-pinned. The
 cleaner fix is a dedicated read-only runtime for the seats holding only SymPy and mpmath, pinned the same way, which is an install
 the lane may not perform without his word; if he gives it, V25 replaces (b) with that runtime's path and nothing else changes.
+
+**V24g — the full-round triage applied (Blanc 13:13/13:14/13:29 KST; 13:31 KST).** The V24e round: codex `PREREG_UNSOUND` (nine items,
+C5_EXECUTABLE_UNDER_SCOPE=NO on the utilities the manifest pipeline invoked); kimi `PREREG_SOUND_WITH_REPAIRS`, C5_EXECUTABLE=YES,
+ORIGIN_PURPOSE=CANNOT_STATE — **kimi's verdict is a RE-RUN on the restored V24e bytes: the original kimi seat was stopped unread at
+13:11 when a superseding draft (V24f, principle only) was written against codex's report alone; that draft was withdrawn and V24e
+restored so the round would be two-sided (`R3C2_V24_TRIAGE_20260906.md`).** Applied, exactly three in-scope repairs plus one
+wording: **D5** the scope rule restated as the told-versus-chose principle with a closed boundary (working directory; pinned
+environment by manifest; whatever the printed commands themselves invoke), residual stated; **D3** C5's fifth command is one process
+(`r3c2_manifest.py`, pinned, fails loudly on any unreadable file — exhibited positive on 20,637 files, negative on a locked file,
+and under the seat sandbox) and the document now states that no mandated command is a shell pipeline; **D6** `-E` on every printed
+interpreter command so the claim is true by the text; **D9** the digest described as what the script prints. **Pending for the
+principal, assembled separately with cost and urgency (`R3C2_INHERITED_ITEMS_FOR_DUHO_20260906.md`):** D1 (imported-choice evidence),
+D2 (no exclusion kind for author-specified inputs), D4 (no result code on the lane-side no-fallback control), D7 (C6 auditor sees
+outcomes before re-deriving), D8 (`DERIVED_ONLY`). Cap: one C0, one gate; a sixth NO on executability stops the lane.
