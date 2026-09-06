@@ -86,34 +86,22 @@ def cmd_compute(ledger,out,candidates=None):
     return 0
 
 
-def canon_key(r):
-    """seat-blind canonical key of one seat's record: sha256 of its canonical JSON (sorted keys, no whitespace)"""
-    import hashlib
-    return hashlib.sha256(json.dumps(r,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-
 def cmd_merge(a,b,out):
     """Merge two independently validated seat ledgers (same input_ids) into one: where origin differs, the merged record
-    keeps the PRIMARY branch (the seat record with the smaller seat-blind canonical key — SEAT-PERMUTATION INVARIANCE) and carries the other seat's complete branch as origin_alt / origin_evidence_alt / origin_search_alt / derived_from_alt. Exit 0; exit 1 on id mismatch."""
+    keeps seat A's origin/evidence and carries origin_alt + origin_evidence_alt from seat B. Exit 0; exit 1 on id mismatch."""
     da,ra=load(a); db,rb=load(b); A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
     if set(A)!=set(Bm):
         print("FAIL: input_id sets differ:", sorted(set(A)^set(Bm))); return 1
     out_recs=[]; ndis=0; npar=0; fails=[]
-    # SPI enforcement: for every input the two seat records are ordered by their seat-blind canonical key; the smaller key is the PRIMARY branch.
-    # Everything below reads P (primary) and Q (secondary) — never A/B — so the merged ledger is identical for merge(A,B) and merge(B,A).
     for k in sorted(A):
-        P,Q=(A[k],Bm[k]) if canon_key(A[k])<=canon_key(Bm[k]) else (Bm[k],A[k])  # PROBE:SPI_CANONICAL
         for fld in ("status","value","source_file","source_line","symbol"):
-            if str(P.get(fld))!=str(Q.get(fld)): fails.append(f"{k}: seats disagree on {fld} ({P.get(fld)!r} vs {Q.get(fld)!r}) — a value/status/coordinate disagreement is not silently resolved")  # PROBE:MERGE_FIELDS
-        r=dict(P); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None); r.pop("origin_search_alt",None); r.pop("derived_from_alt",None); r.pop("PARENTS_DISPUTED",None)
-        ev_diff=(P.get("origin_evidence")!=Q.get("origin_evidence")); sil_q=(Q.get("origin_evidence") or {}).get("reason_code")=="ORIG_SILENT"
-        search_diff=sil_q and (P.get("origin_search")!=Q.get("origin_search")); par_diff=(sorted(P.get("derived_from") or []) != sorted(Q.get("derived_from") or []))
-        if Q["origin"]!=P["origin"]: ndis+=1
-        if Q["origin"]!=P["origin"] or ev_diff or search_diff:
-            # the secondary's COMPLETE branch is preserved whenever anything provenance-bearing differs — equal origin labels included
-            r["origin_alt"]=Q["origin"]; r["origin_evidence_alt"]=Q["origin_evidence"]  # PROBE:MERGE_BRANCH
-            if sil_q and "origin_search" in Q: r["origin_search_alt"]=Q["origin_search"]  # PROBE:MERGE_SEARCH_ALT
-        if par_diff:
-            r["derived_from_alt"]=Q.get("derived_from") or []; r["PARENTS_DISPUTED"]=True; npar+=1
+            if str(A[k].get(fld))!=str(Bm[k].get(fld)): fails.append(f"{k}: seats disagree on {fld} ({A[k].get(fld)!r} vs {Bm[k].get(fld)!r}) — a value/status/coordinate disagreement is not silently resolved")  # PROBE:MERGE_FIELDS
+        r=dict(A[k]); r.pop("origin_alt",None); r.pop("origin_evidence_alt",None); r.pop("origin_search_alt",None); r.pop("derived_from_alt",None); r.pop("PARENTS_DISPUTED",None)
+        if Bm[k]["origin"]!=A[k]["origin"]:
+            r["origin_alt"]=Bm[k]["origin"]; r["origin_evidence_alt"]=Bm[k]["origin_evidence"]; ndis+=1
+            if (Bm[k].get("origin_evidence") or {}).get("reason_code")=="ORIG_SILENT" and "origin_search" in Bm[k]: r["origin_search_alt"]=Bm[k]["origin_search"]  # PROBE:MERGE_SEARCH_ALT
+        if sorted(A[k].get("derived_from") or []) != sorted(Bm[k].get("derived_from") or []):
+            r["derived_from_alt"]=Bm[k].get("derived_from") or []; r["PARENTS_DISPUTED"]=True; npar+=1
         out_recs.append(r)
     for x in fails: print("FAIL:",x)
     print(f"PARENTS_DISPUTED={npar}"); print(f"FIELD_DISAGREEMENTS={len(fails)}")
