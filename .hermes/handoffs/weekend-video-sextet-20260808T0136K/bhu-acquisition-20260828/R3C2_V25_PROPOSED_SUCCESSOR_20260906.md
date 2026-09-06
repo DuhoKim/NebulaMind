@@ -1,6 +1,6 @@
 # R3C2 — ONE proposed successor to V24i (PROPOSAL ONLY; prepared 2026-09-06 19:00 KST at Blanc's 19:00 KST note)
 
-**Status.** Not adopted, not frozen, not run, not submitted for approval. V23 (`55b466fa…`) stays the signed design of record; V24i
+**Status.** Item 2 (D2) was decided at 19:06 KST and is in the V25 living draft; items 1, 3 and 4 remain open; nothing is frozen, run or approved. V23 (`55b466fa…`) stays the signed design of record; V24i
 (`9c4b873d4281419a…`) stays READY-FOR-APPROVAL and unapproved. This file shows the exact clauses a V25 would add so Duho can answer each
 item with one word: **accept / change / defer.** Every clause below is TORI'S RECOMMENDATION unless it is marked "carried from V24i".
 Under each item: what accepting it changes about what the census can conclude.
@@ -37,7 +37,9 @@ and a second pass over every import.
 the papers set by hand — a number the pattern record will want. It changes no reproduction outcome; it changes which passages
 are counted as claims. Without it the two seats improvise and the denominator dispute stop is likely.
 
-**Line for Duho:** accept / change / defer. (Blocks a first run: it is the denominator.)
+**DECIDED 19:06 KST — Duho, via the codex voice channel, relayed by Blanc: "일단 해" ("Go ahead for now"). ADOPTED for now into the
+V25 living draft (`ab6352d35a0e02fb…`), with the numeral and source line retained in the exclusion ledger and the kind's count printed
+beside the denominator; tool re-pinned with controls. Recorded as a decision to build on, not a settled taxonomy.**
 
 ## Item 3 — D7: the auditor sees the answers before "re-deriving without sight of them" — TORI'S RECOMMENDATION
 
