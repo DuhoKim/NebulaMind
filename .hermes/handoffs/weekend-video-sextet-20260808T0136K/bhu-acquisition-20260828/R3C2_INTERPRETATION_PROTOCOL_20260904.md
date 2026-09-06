@@ -9,7 +9,7 @@ does not prove.
 ## What this step reads (option (c))
 
 It reads **two tallies from one pass**: the reproduction tally (`REPRO_WITHIN_STATED_PRECISION` / `REPRO_FAILED` / the non-arithmetic
-outcomes) and the **`rests_on` tally** (`DERIVED_ONLY` / `USES_CHOSEN` / `USES_FITTED` / `USES_IMPORTED` /
+outcomes) and the **`rests_on` tally** (`DERIVED_STANDARD_OR_MEASURED_ONLY` / `USES_CHOSEN` / `USES_FITTED` / `USES_IMPORTED` /
 `USES_UNDECLARED`), both from the sealed tally and its ledger. **The reproduction verdict alone is never the
 interpretive input.**
 
@@ -18,7 +18,7 @@ interpretive input.**
 Once the tally is sealed under §7's receipted relay, Tori — and only Tori — compares it with
 `SHAPE_MAGNITUDE_PATTERN_RECORD_20260904.md`:
 
-- **One or more claims filed `REPRO_WITHIN_STATED_PRECISION` with `rests_on = DERIVED_ONLY`** — a number that follows from the paper's
+- **One or more claims filed `REPRO_WITHIN_STATED_PRECISION` with `rests_on = DERIVED_STANDARD_OR_MEASURED_ONLY`** — a number that follows from the paper's
   own equations and measured constants with nothing chosen, fitted, imported or undeclared — is a **counterexample** to
   the shape/magnitude pattern. The pattern record **must** be amended to say so, naming the claim.
 - **`REPRO_WITHIN_STATED_PRECISION` claims exist but every one has `rests_on` in {`USES_CHOSEN`, `USES_FITTED`, `USES_IMPORTED`,
@@ -47,3 +47,5 @@ R3C2_INTERPRETATION_PROTOCOL_V2_COMPLETE
 **V4 (2026-09-06 00:46 KST):** the stop list gains `CENSUS_OUTCOME_DISPUTED` (added to the prereg at V21 by Duho's ruling): a census stopped on a
 surviving per-claim outcome split reaches no comparison, like every other stop class; the study-level class is reported as is.
 No rule of interpretation changed. Prior digest recorded in the run log.
+
+**V5 (2026-09-06, routine label change under Blanc's 23:45 order):** the `rests_on` token `DERIVED_ONLY` of V1–V4 is `DERIVED_STANDARD_OR_MEASURED_ONLY`, identical membership (every root origin `DERIVED`, `STANDARD` or `MEASURED`), confirmed label-only by both V26 gate reviewers; no rule of this protocol changes. Receipt P of 2026-09-06 09:36 covered V4 (`962383bd…`) for a run since voided; a run under V27 needs a fresh receipt P on this V5.

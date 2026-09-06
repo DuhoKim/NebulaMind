@@ -1,4 +1,4 @@
-# Seat brief — reproduction census (V26: one session per ownership batch)
+# Seat brief — reproduction census (V27: one session per ownership batch)
 
 You are one of two independent seats, and this session is ONE of your batch sessions. Work only from the files in this directory:
 `R3C2_SEAT_PACKET.md` (the rules), this brief, `r3c2_ledger_tools.py` (the pinned tool), `r3c2_manifest.py` (the pinned manifest
@@ -23,17 +23,22 @@ Order of work (limb A session):
    `candidates_b<k>.json` and `exclusions_b<k>.json` (JSON, with the declared counts the packet names); run
    `/usr/bin/python3 -E r3c2_ledger_tools.py census candidates_b<k>.json exclusions_b<k>.json` and print its output.
 4. Build `ledger_b<k>.json` (one record per input) under the packet's C3 schema, with `origin_evidence` for every record and no field
-   outside the schema; run `/usr/bin/python3 -E r3c2_ledger_tools.py validate ledger_b<k>.json . candidates_b<k>.json` and print its output.
+   outside the schema; use globally qualified `derived_from` ids (a parent in another batch is named by its own id). Do NOT run `validate`
+   in this session: C2/C3 are NOT_RUN per session, because a cross-batch `derived_from` resolves only in the joined ledger. After the
+   custodian has sealed and joined all your limb-A batches, you run, in your integration working directory holding all pinned texts,
+   `/usr/bin/python3 -E r3c2_ledger_tools.py validate <joined_ledger.json> . <joined_candidates.json>` and print its output.
 5. Print the path list with the scope mark for each row, every `LOOKUP` line, and every control's token in the exact form the packet gives.
 6. Write `SEAT_REPORT_b<k>.md`: `ACCESS_SHA`, the owned files, digests, control tokens, declared counts, and the artefact list with
    digests. Final line: `R3C2_SEAT_B<k>_LIMB_A_COMPLETE`. Do not start the arithmetic in this session.
 
-Order of work (limb B session, dispatched only after the custodian's limb-A agreement and receipt): the same directory holds the
-agreed `candidates_b<k>.json`; write final outcomes into a COPY `candidates_b<k>_limbB.json` (never modify the sealed limb-A file):
-for each included claim, attempt the arithmetic exactly as the packet's section 2 prescribes, launching every symbolic operation
-through the wrapper as the packet states; record one per-claim outcome from section 3 with both numbers where the packet asks for
-them; then run `/usr/bin/python3 -E r3c2_ledger_tools.py census candidates_b<k>_limbB.json exclusions_b<k>.json final` and print its
-output; write `SEAT_REPORT_b<k>_limbB.md` as in step 6, final line `R3C2_SEAT_B<k>_LIMB_B_COMPLETE`.
+Order of work (limb B session, dispatched only after the custodian's limb-A agreement and receipt): this session's directory is
+SEPARATE from the sealed limb-A session directory; the custodian has copied the agreed limb-A artefacts into it under the canonical
+names `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json`, `SEAT_REPORT_b<k>.md`. Update only these copies: for each
+included claim, attempt the arithmetic exactly as the packet's section 2 prescribes, launching every symbolic operation through the
+wrapper as the packet states; record one per-claim outcome from section 3 with both numbers where the packet asks for them, into
+`candidates_b<k>.json`; keep `exclusions_b<k>.json` and `ledger_b<k>.json` as agreed; then run
+`/usr/bin/python3 -E r3c2_ledger_tools.py census candidates_b<k>.json exclusions_b<k>.json final` and print its output; write
+`SEAT_REPORT_b<k>.md` as in step 6, final line `R3C2_SEAT_B<k>_LIMB_B_COMPLETE`. No `_limbB` filename suffix is used.
 
 Negative outcomes are worded "unreproduced from the stated inputs". Apply the rules as written; where a rule and this brief differ,
 the packet governs.

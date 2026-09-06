@@ -2,8 +2,8 @@
 """r3c2_lane_tools_STAGED.py — STAGED, UNADOPTED copy (V26cand gate F2/F4 repairs) of the LANE-SIDE tool, never given to a seat: merge two validated seat ledgers; compute root_origins and
 per-claim rests_on from the merged ledger. Usage:
   /usr/bin/python3 r3c2_lane_tools.py merge   <ledger_seatA.json> <ledger_seatB.json> <merged.json>
-  /usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json>
-rests_on: DERIVED_ONLY if every root origin is DERIVED, STANDARD or MEASURED; else the most severe root present,
+  /usr/bin/python3 r3c2_lane_tools.py compute <merged.json> <out.json> <candidates.json>   (candidate file mandatory)
+rests_on: DERIVED_STANDARD_OR_MEASURED_ONLY if every root origin is DERIVED, STANDARD or MEASURED; else the most severe root present,
 USES_UNDECLARED > USES_IMPORTED > USES_FITTED > USES_CHOSEN; a disputed root gives a pair marked DISPUTED; a derived_from disagreement between seats is carried as derived_from_alt + PARENTS_DISPUTED and computed under both parent lists.
 A ledger arriving with root_origins or rests_on set is REJECTED (exit 2)."""
 import json, sys, pathlib
@@ -37,12 +37,13 @@ def roots(rec_by_id, rid, seen=None):
     return out
 
 
+# V27 label: DERIVED_STANDARD_OR_MEASURED_ONLY replaces the token DERIVED_ONLY (V10–V26) with identical membership (every root origin DERIVED, STANDARD or MEASURED); historical files keep the old token.
 SEVERITY=["UNDECLARED","IMPORTED","FITTED","CHOSEN"]
 def rests_on(rootset):
-    if rootset<= {"DERIVED","STANDARD","MEASURED"}: return "DERIVED_ONLY"
+    if rootset<= {"DERIVED","STANDARD","MEASURED"}: return "DERIVED_STANDARD_OR_MEASURED_ONLY"
     for sev in SEVERITY:
         if sev in rootset: return "USES_"+sev
-    return "DERIVED_ONLY"
+    return "DERIVED_STANDARD_OR_MEASURED_ONLY"
 
 
 def disputed_reach(rec_by_id, rid, seen=None):
@@ -105,7 +106,7 @@ def cmd_merge(a,b,out):
 
 if __name__=="__main__":
     a=sys.argv[1:]
-    if len(a)==3 and a[0]=="compute": sys.exit(cmd_compute(a[1],a[2]))
     if len(a)==4 and a[0]=="compute": sys.exit(cmd_compute(a[1],a[2],a[3]))
+    if len(a)==3 and a[0]=="compute": print("usage: compute <merged.json> <out.json> <candidates.json> — the candidate file is mandatory (every included claim gets a rests_on row)"); sys.exit(2)  # PROBE:COMPUTE_NEEDS_CANDIDATES
     if len(a)==4 and a[0]=="merge": sys.exit(cmd_merge(a[1],a[2],a[3]))
     print(__doc__); sys.exit(2)

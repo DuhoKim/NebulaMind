@@ -6,7 +6,7 @@ sources in this directory. Do not open any other path; print every path you open
 This packet is the complete instruction set for your task, extracted mechanically by
 `r3c2_build_seat_packet.py`. Apply the rules below exactly as written.
 
-Built from master sha256 `22f01220a33f8695d18599176234c466fab36ff134b69af6c7d2cecdd978cb84` by `r3c2_build_seat_packet.py`.
+Built from master sha256 `d2df83bfa9c1ba50dc6a337c79e6f2415dd834a836330d0f38c1c99edc7f31f0` by `r3c2_build_seat_packet.py`.
 
 ## 1. The question, exactly
 
@@ -56,10 +56,7 @@ numeral; `validate` fails any other line.** If the named source is not enumerabl
 under §3. C3's pair rule: `ORIG_CITATION` is satisfied by that quotation at the claiming paper.
 
 **Machine floor, stated.** For EVERY `PRINTED` record `validate` first binds the claim to its claiming file through the candidate file;
-a record whose value line lies in another file must be `IMPORTED` with `ORIG_CITATION`, whatever reason code was submitted. For an
-import it then checks: the citing file is the claiming file; the two files differ; the source is an exact manifest row with verified
-bytes; the quotation is non-empty and present at the cited claiming line; the value is a numeric token at the cited source line; some
-line of the source carries both symbol and numeral, and the cited line is the first such line. Whether the quotation cites THAT value
+a record whose value line lies in another file must be `IMPORTED` with `ORIG_CITATION`, whatever reason code was submitted. For an external import, whose value line is outside the claiming file, validate checks that the evidence file is the claiming file, the external source is an exact manifest row with verified bytes, the non-empty quotation occurs at the cited claiming line, and the cited source line is the first line carrying both the symbol and the numeric value token. A locally printed import instead follows the local-import branch above. Whether the quotation cites THAT value
 is seat judgement; the second seat and C6 may detect an error, but can share it, and C6 re-classifies inputs only for selected claims. **A seat may not supply a value for an `ABSENT` or `BLOCKED` input.** Encountering one ends that claim's attempt.
 
 ## 3. Per-claim outcomes — declared now
@@ -71,7 +68,7 @@ is seat judgement; the second seat and C6 may detect an error, but can share it,
 > its `origin`) or `STANDARD` (on C3's closed list). **Arithmetic consumes records according to status `PRINTED` or `STANDARD`.** Each record's `origin`
 > is cited under C3, independently by both seats. **`origin` is one recorded attribute of a ledger record, beside
 > `status`, `value`, `source_file` and `source_line`; a seat records it and writes no field outside the schema; `validate`
-> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `16ae91a21fb2e039244c551b808b4b7f98b9e8fb25eaca5f858df0cc58a19642` (`validate` takes the candidate file as its third argument), pinned at
+> fails a ledger that carries one. The seat's tool is `r3c2_ledger_tools.py`, sha256 `481629a46bc4cc26e62653b4092d113437fdaeda836e6a1120be38e311fe29ef` (`validate` takes the candidate file as its third argument), pinned at
 > `R3C2_SEAT_PACKET.sha256` in the seat working directory; the seat runs its `census` and `validate` subcommands only.**
 
 
@@ -174,7 +171,7 @@ is hidden by being excluded.
   ownership batches (the pinned partition of `R3C2_CORPUS_MANIFEST.md` into 12 batches in row order); every session holds ALL pinned texts
   and enumerates ONLY its owned texts; §2's named-source lookups may read any manifest text and are logged with file and line. Every
   candidate id, claim id and input id begins with `<owned file>#`. Each session writes `candidates_b<k>.json`, `exclusions_b<k>.json`,
-  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `eeafc482e6902eaec48ae0f5b74373de52ed1f9303cd553923cf3f6d26496e8e`; partition `15b69217a35dbc6f…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B resumes the same ownership batches in separate sessions, writing final outcomes into separate limb-B copies of the four files, sealed in a separate ordered LIMB-B chain bound to the agreed limb-A seals; a sealed limb-A file is never overwritten; `join` of the limb-B chain verifies that binding. The files named below are the joined files of the applicable limb.** 
+  `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`, sealed by the custodian in batch order before the next batch is dispatched, in a LIMB-A chain; the lane's pinned `join` (pure function, no renaming; `r3c2_batch_tools.py`, sha256 `eeafc482e6902eaec48ae0f5b74373de52ed1f9303cd553923cf3f6d26496e8e`; partition `15b69217a35dbc6f…`) produces the seat's one candidate file, one exclusion file and one ledger, over which `census` and `validate` run, and §6's two-seat agreement on limb A is obtained before any arithmetic. Limb B uses a separate directory from limb A: the custodian copies the agreed limb-A batch artefacts into that directory under the canonical names `candidates_b<k>.json`, `exclusions_b<k>.json`, `ledger_b<k>.json` and `SEAT_REPORT_b<k>.md`; the seat updates only these limb-B copies, records final outcomes, and runs `census … final` on them; the custodian seals and joins that directory in a separate ordered LIMB-B chain bound to the agreed limb-A seals file; the limb-A directory and seals remain unchanged; no `_limbB` filename suffix is used; `join` of the limb-B chain verifies the binding. The ownership list `OWNERSHIP_b<k>.txt` a session reads is the custodian's extract of the pinned partition, listed with its digest in the dispatch record. The files named below are the joined files of the applicable limb.** 
   **The candidate file is a JSON object `{declared_candidate_count, declared_included_count, declared_excluded_count,
   declared_attempt_count, candidates: [...]}`; every included candidate carries `attempts`, the number of §2 attempts made
   on it, in {0, 1, 2}, and `declared_attempt_count` is their sum and the exclusion file is `{declared_exclusion_count, exclusions: [...]}`. Before the tally, print these five declared counts verbatim from the files — `declared_candidate_count`,
@@ -197,7 +194,7 @@ is hidden by being excluded.
   evidence source is a manifest text, identifiers are unique and every `derived_from` resolves acyclically. Either FAIL stops the seat's
   tally. `C1B_BATCH_COVERAGE=PASS|FAIL|NOT_RUN`. `JOIN=PASS|FAIL|NOT_RUN`. Both are C1B controls for §4: a FAIL in every seat that tries it, after two tries, files `R3C2_NO_CLASS`; a surviving fail/pass split files `CENSUS_CONTROL_SPLIT`; an unreached check is `NOT_RUN`.
 - **C2 — input ledger.** Every input classified `PRINTED` / `STANDARD` / `ABSENT` / `BLOCKED`, each `PRINTED` one carrying file and
-  line, in the JSON schema of C3, validated by `/usr/bin/python3 -E r3c2_ledger_tools.py validate <ledger.json> . <candidates.json>` run from the printed seat working directory (`.` is the sole allowed `sources_dir`; the third argument is the seat's candidate file of C1 — per session its batch file, over the joined ledger the joined file); before execution the seat prints the fully resolved command with
+  line, in the JSON schema of C3, validated — after all limb-A batches are sealed and joined, since a cross-batch `derived_from` resolves only in the joined ledger (per-session validation is `NOT_RUN`) — by `/usr/bin/python3 -E r3c2_ledger_tools.py validate <joined_ledger.json> . <joined_candidates.json>` run from the seat's integration working directory holding all pinned texts (`.` is the sole allowed `sources_dir`); both seats' joined validation must PASS before limb-A agreement or arithmetic; before execution the seat prints the fully resolved command with
   every angle-bracket placeholder replaced by the actual in-scope path
   (exit 0 = PASS; every failure printed; the printed C3 run — command, stdout, stderr, exit status — is this control's
   artefact). `C2_INPUT_LEDGER=PASS|FAIL|NOT_RUN`.
@@ -213,7 +210,7 @@ is hidden by being excluded.
   `ORIG_CHOICE_STATED`→`CHOSEN`, `ORIG_EQUATION`→`DERIVED`, `ORIG_FIT_STATED`→`FITTED`, `ORIG_CITATION`→`IMPORTED`,
   `ORIG_MEASURED`→`MEASURED` (a quantity the paper reports as its own measurement, with the measurement described),
   `ORIG_CONSTANT`→`STANDARD`, `ORIG_SILENT`→`UNDECLARED` (listed alphabetically by origin; the list carries no order of its own) — and, except for `ORIG_SILENT`, a **verbatim quotation
-  machine-matched to the cited line** — for EVERY record whatever its status: `validate` requires a non-empty quotation and matches it at `origin_evidence.source_file`/`source_line`; for `STANDARD` it additionally requires the value as a numeric token at the record's own cited line and closed-list membership; for `BLOCKED` it checks the claiming paper's naming quotation while requiring an empty value. **Every input's `origin` is classified independently by both seats.** **Where
+  machine-matched to the cited line** — before any status-specific branch, `validate` requires every non-`ORIG_SILENT` record — `PRINTED`, `STANDARD`, `ABSENT` and `BLOCKED` alike — to carry a non-empty quotation occurring at the positive, one-based `origin_evidence.source_line` in `origin_evidence.source_file` (an `ABSENT` input keeps whatever origin its evidence supports — an unprinted measurement is `MEASURED` with its describing sentence quoted — and is not forced into `UNDECLARED` to close the corner); value-line checks are separate and never substitute for this evidence check; `STANDARD` additionally requires the value as a numeric token at the record's own cited line and closed-list membership; `BLOCKED` additionally requires an empty value and naming evidence in the claiming file. **Every input's `origin` is classified independently by both seats.** **Where
   more than one reason code matches the cited sentence, file the first in this order: `ORIG_CITATION`,
   `ORIG_FIT_STATED`, `ORIG_CHOICE_STATED`, `ORIG_MEASURED`, `ORIG_EQUATION`, `ORIG_CONSTANT`, `ORIG_SILENT` — a sentence
   that names an external source for the value is a citation whatever else it says — the order is a tie-break by the
@@ -277,13 +274,12 @@ is hidden by being excluded.
 `C4_SEAT_ISOLATION=PASS|FAIL|NOT_RUN`.
 - **C5 — harness, LIVE.** Execute and print, in order: (1) `/usr/bin/python3 -E --version`; (2) `/usr/bin/python3 -E -c "import sympy;
   print(sympy.__version__)"`; (3) `/usr/bin/shasum -a 256 /usr/bin/python3`; (4) `/usr/bin/python3 -E -c "import site; print(site.getusersitepackages())"`;
-  (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256
-  `19a8ce4750bb47655868ef15b55f2b168833147b460c03ad56f84dd3c9bc56f2`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
+  (5) `/usr/bin/python3 -E r3c2_manifest.py <the directory (4) printed>` — `r3c2_manifest.py` is committed beside this document, sha256 `afa2dee798a8802ff3a17e71675fe5ae94dbc8447211bfd6e26fdeff7d493cc1`, delivered in the seat's working directory and pinned in `R3C2_SEAT_PACKET.sha256`; it is ONE process that walks
   the directory itself, reads every file, prints `FILES=<n>` and `MANIFEST_SHA256=<digest>`, and on any unreadable file prints
   `ERROR=<path>` and exits 1 — nothing is skipped silently. **Every mandated command in this document is one invocation whose
   exit status is the control's (the §9 wrapper counts as one invocation that prints its child's exit status); no mandated command is a shell pipeline, because a pipeline's exit status is its last stage's and
   an upstream failure can be masked.** The five commands establish the interpreter every ledger command runs under and the one
-  site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest covers every regular file under that directory; the manifest command fails with `ERROR=<path>` and exit 1 on any symlink or non-regular entry, including a symlinked directory, rather than skipping it; importable content outside that tree is listed separately in the dispatch's pinned environment. **PASS requires
+  site-packages directory it loads from, whose path and `MANIFEST_SHA256` the dispatch record pins before launch — the digest covers every regular file under that directory; the manifest command first rejects a root path that is a symlink or is not a directory, printing `ERROR=<path>` and exiting 1, then rejects every symlink or non-regular entry below that root, including a symlinked folder, never following or silently skipping them; importable content outside that tree is listed separately in the dispatch's pinned environment. **PASS requires
   all five commands to exit 0, their full stdout printed, the path of (4) and the `MANIFEST_SHA256` of (5) equal to the dispatch
   record's; a mismatch, a non-zero exit, an `ERROR=` line, missing output, or a transcribed value in place of live output is
   FAIL.** `C5_HARNESS_PINNED=PASS|FAIL|NOT_RUN`.
@@ -299,9 +295,7 @@ is hidden by being excluded.
   seal) — every arithmetic-group claim plus `k = min(max(1, ceil(0.20 × N)), R)` of the remaining included claims, `N` being the sealed denominator and `R` the number of remaining claims (when `R` is zero the
   sample is empty), drawn by `random.Random(seed_int).sample(remaining_ids, k)` where
   `remaining_ids = sorted(set(included_ids) − set(arithmetic_group_ids))` and `seed_int = int(seed_hex, 16)`, the custodian's seed being
-  64 lowercase hexadecimal characters — and hands the auditor claim identifiers with source file and line ONLY (`audit handout`); the auditor re-derives each
-  assigned claim and re-classifies each of its inputs' `origin` from the pinned sources, and the custodian seals those re-derivations by
-  digest (`audit seal-rederivation`) BEFORE any sealed ledger is released. **Only then** are the sealed (merged) candidate, exclusion and
+  64 lowercase hexadecimal characters — and hands the auditor claim identifiers with source file and line ONLY (`audit handout`); the auditor independently reconstructs each assigned claim's complete input records and dependency closure from the pinned sources, including cross-claim dependencies, recording status, value, source coordinates, origin evidence and `derived_from` for each input, and the custodian seals this reconstruction by digest (`audit seal-rederivation`) BEFORE any sealed ledger is released; `audit compare` compares those reconstructed fields and dependency edges against the sealed ledger, carrying a declared origin alternative explicitly, and a missing input, a differing dependency edge or an unsupported record is `MISMATCH`; it recomputes each input's chain of origins to its roots from both reconstructions and prints the comparison. **Only then** are the sealed (merged) candidate, exclusion and
   input ledgers opened to the comparison (`audit compare`), which recomputes the selection from the sealed candidates and seed and fails
   on any disagreement, and writes and prints `C6_AUDIT.json` with (i) one completeness row per passage key (file, line, numeral) in the
   UNION of the sealed and the auditor's enumerations — both presences, both dispositions, both exclusion kinds, and a result: `MATCH`,

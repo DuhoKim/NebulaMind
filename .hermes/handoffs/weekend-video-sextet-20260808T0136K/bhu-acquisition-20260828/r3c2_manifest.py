@@ -7,6 +7,7 @@ Any unreadable file, permission error, or walk error prints ERROR=<path>: <reaso
 silently. Exit 0 only when every file was read and hashed. Uses only the standard library."""
 import hashlib, os, sys
 def main(root):
+    if os.path.islink(root) or not os.path.isdir(root): print(f"ERROR={root}: root is a symlink or not a directory (refused)"); sys.exit(1)  # PROBE:MANIFEST_ROOT
     root = os.path.abspath(root); rows = []; errors = 0
     for dirpath, dirnames, filenames in os.walk(root, onerror=lambda e: (print(f"ERROR={e.filename}: {e.strerror}"), sys.exit(1))):
         dirnames.sort()

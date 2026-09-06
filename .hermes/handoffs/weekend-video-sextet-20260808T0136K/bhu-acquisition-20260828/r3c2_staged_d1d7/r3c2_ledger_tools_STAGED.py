@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""r3c2_ledger_tools_STAGED.py — STAGED, UNADOPTED (D1 + D7 candidates, repaired 2026-09-06 after two independent reviews); NOT the pinned seat tool. The seat's ledger tool for the R3-C2 census.
+"""r3c2_ledger_tools.py — the seat's ledger tool for the R3-C2 census.
 
   /usr/bin/python3 -E r3c2_ledger_tools.py census   <candidates.json> <exclusions.json>
       C1: candidates.json = {declared_candidate_count, declared_included_count, declared_excluded_count,
       declared_attempt_count, candidates:[...]} — every included candidate carries attempts in {0,1,2} and outcome (a section-3 token or PENDING; `census ... final` rejects PENDING and requires printed_value/reproduced_value on arithmetic outcomes); exclusions.json =
       {declared_exclusion_count, exclusions:[...]}; every candidate has exactly one disposition; every exclusion row carries source_file, source_line and numeral equal to its candidate row (retained, not discarded); the AUTHOR_SPECIFIED_INPUT count is printed beside the denominator; the declared counts are
       compared with the recomputed counts and any mismatch FAILS; exit 0 PASS / 1 FAIL.
-  STAGED (D1, UNADOPTED) — validate <ledger.json> <sources_dir> <candidates.json>: a PRINTED record with reason_code ORIG_CITATION is
+  V26 D1 — validate <ledger.json> <sources_dir> <candidates.json>: a PRINTED record with reason_code ORIG_CITATION is
       an imported value: its non-empty verbatim is matched at the CLAIMING paper's citing sentence (origin_evidence.source_file/
       source_line), and the claiming file is the file of the candidate row whose candidate_id equals the record's claim_id; its
       value is matched as a numeric TOKEN (not a substring) at the EXTERNAL value line (source_file/source_line), which must be an
       exact row of R3C2_CORPUS_MANIFEST.md in <sources_dir> whose bytes verify against that row's sha256, must differ from the claiming
       file, and must be the FIRST line of the source carrying both the symbol and the numeral (the tie-break); no reason-code test
       is applied to the external line's wording. The kit implements the review's wording only (evidence at the borrower).
-  STAGED (D7, UNADOPTED) — audit seal-enumeration <aud_c> <aud_x> <seal.txt>   census-gated, first-write
+  V26 D7 — audit seal-enumeration <aud_c> <aud_x> <seal.txt>   census-gated, first-write
                             audit select <sealed_c> <seed_hex> <stage1_seal> <selection.json>   refuses without the stage-1 seal
                             audit handout <selection.json> <sealed_c> <handout.json>              ids + file + line ONLY
                             audit seal-rederivation <rederiv.json> <seal2.txt>                    first-write, before any release
@@ -117,18 +117,22 @@ def cmd_validate(ledger,srcdir,candidates=None):
             srch=r.get("origin_search")
             if not isinstance(srch,dict) or not all(k in srch for k in ("query","files","matches")): fails.append(f"{r['input_id']}: ORIG_SILENT requires origin_search {{query, files, matches}}")
         if PAIRS.get(rc)!=r["origin"]: fails.append(f"{r['input_id']}: reason_code {rc} does not map to origin {r['origin']}")
+        if rc!="ORIG_SILENT":
+            # gate-2 F1: before any status-specific branch, EVERY non-silent record carries a non-empty quotation found at its declared evidence coordinates
+            ef=str(ev.get("source_file","")); el=ev.get("source_line")
+            if not str(ev.get("verbatim","")).strip(): fails.append(f"{r['input_id']}: empty quotation (every non-ORIG_SILENT record quotes its evidence line)"); continue  # PROBE:EV_EMPTY_ALL
+            try: elp=int(el); assert elp>=1
+            except Exception: fails.append(f"{r['input_id']}: origin_evidence.source_line {el!r} is not a positive line number"); continue  # PROBE:EV_LINE_POS
+            cl0=read_line(srcdir, ef, elp)
+            if cl0 is None: fails.append(f"{r['input_id']}: cannot read evidence line {ef}:{elp}"); continue  # PROBE:EV_LINE_ALL
+            if ev.get("verbatim","") not in cl0: fails.append(f"{r['input_id']}: quotation not found at evidence line {ef}:{elp}"); continue  # PROBE:EV_VERBATIM_ALL
         if r["status"]=="ABSENT" and r.get("value") not in (None,""): fails.append(f"{r['input_id']}: ABSENT record carries a value")
         if r["status"]=="BLOCKED":
             if r.get("value") not in (None,""): fails.append(f"{r['input_id']}: BLOCKED record carries a value")
             if r["origin"]!="IMPORTED" or rc!="ORIG_CITATION": fails.append(f"{r['input_id']}: BLOCKED record must carry origin IMPORTED with ORIG_CITATION evidence from the claiming paper")
         if r["status"]=="STANDARD" and str(r.get("value"))!=STANDARD_LIST.get(r["symbol"]): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} for {r['symbol']} not on the closed list")
-        if rc!="ORIG_SILENT" and r["status"] in ("STANDARD","BLOCKED"):
-            # gate F3: the promised byte-level evidence check applies to every status, not only PRINTED
-            ef=str(ev.get("source_file","")); el=ev.get("source_line"); cl=read_line(srcdir, ef, el)
-            if not str(ev.get("verbatim","")).strip(): fails.append(f"{r['input_id']}: {r['status']} record with an empty quotation")  # PROBE:EV_EMPTY_ANY
-            elif cl is None: fails.append(f"{r['input_id']}: cannot read evidence line {ef}:{el}")  # PROBE:EV_LINE_ANY
-            elif ev.get("verbatim","") not in cl: fails.append(f"{r['input_id']}: quotation not found at evidence line {ef}:{el}")  # PROBE:EV_VERBATIM_ANY
-            if r["status"]=="STANDARD" and r.get("source_file"):
+        if r["status"]=="STANDARD" and rc!="ORIG_SILENT":
+            if r.get("source_file"):
                 vl=read_line(srcdir, r["source_file"], r["source_line"])
                 if vl is None or not token_in(r.get("value"), vl): fails.append(f"{r['input_id']}: STANDARD value {r.get('value')} is not a numeric token at {r['source_file']}:{r['source_line']}")  # PROBE:STD_VALUE_LINE
         if r["status"]=="PRINTED":
@@ -315,8 +319,8 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     if n_inc_sealed==0 and rows: fails.append("AUDIT denominator is zero while candidates exist on either side")  # PROBE:C6_ZERO_DENOM
     rate=(disputes/n_inc_sealed) if n_inc_sealed else None
     if n_inc_sealed and disputes/n_inc_sealed>0.10: fails.append(f"AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: {disputes}/{n_inc_sealed}")  # PROBE:C6_DISPUTE_RATE
-    s_by={c["candidate_id"]:c for c in SC}; l_by={}
-    for r in SL: l_by.setdefault(r["claim_id"],{})[r["input_id"]]=r.get("origin")
+    s_by={c["candidate_id"]:c for c in SC}; l_by={}; full_by={}
+    for r in SL: l_by.setdefault(r["claim_id"],{})[r["input_id"]]=r.get("origin"); full_by[r["input_id"]]=r
     audited={}
     for cid in S.get("audited_ids",[]):
         r=RD.get(cid); s=s_by.get(cid)
@@ -324,11 +328,31 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         why=[]; inputs_res={}
         if r.get("outcome")!=s.get("outcome"): why.append(f"outcome {r.get('outcome')} vs sealed {s.get('outcome')}")
         if s.get("outcome") in ARITH and (str(r.get("printed_value"))!=str(s.get("printed_value")) or str(r.get("reproduced_value"))!=str(s.get("reproduced_value"))): why.append("printed/reproduced values differ")
-        for iid,og in (r.get("inputs") or {}).items():
-            ok_=(l_by.get(cid,{}).get(iid)==og); inputs_res[iid]={"audit_origin":og,"sealed_origin":l_by.get(cid,{}).get(iid),"result":"MATCH" if ok_ else "MISMATCH"}
-            if not ok_: why.append(f"origin {iid}: {og} vs sealed {l_by.get(cid,{}).get(iid)}")
+        # gate-2 F2: the auditor's inputs are full reconstructed records; every field and every dependency edge is compared
+        for iid,ar in (r.get("inputs") or {}).items():
+            ar=ar if isinstance(ar,dict) else {"origin":ar}
+            sr=full_by.get(iid)
+            if sr is None: inputs_res[iid]={"result":"MISMATCH","why":"auditor reconstructed an input the sealed ledger lacks"}; why.append(f"input {iid}: unsupported by the sealed ledger"); continue
+            diffs=[]
+            for fld in ("origin","status","value","source_file"):
+                if fld in ar and str(ar.get(fld))!=str(sr.get(fld)): diffs.append(f"{fld} {ar.get(fld)} vs sealed {sr.get(fld)}")
+            if "source_line" in ar and int(ar["source_line"])!=int(sr.get("source_line") or -1): diffs.append(f"source_line {ar['source_line']} vs sealed {sr.get('source_line')}")
+            if "derived_from" in ar and sorted(ar.get("derived_from") or [])!=sorted(sr.get("derived_from") or []): diffs.append(f"derived_from {sorted(ar.get('derived_from') or [])} vs sealed {sorted(sr.get('derived_from') or [])}")  # PROBE:C6_EDGES
+            if sr.get("origin_alt") and "origin" in ar and str(ar.get("origin"))==str(sr.get("origin_alt")) and diffs and diffs[0].startswith("origin "): diffs[0]+=" (matches the sealed alternative classification: carried as ORIGIN_DISPUTED, not a mismatch)"; diffs=[d for d in diffs if not d.startswith("origin ")]
+            inputs_res[iid]={"result":"MATCH" if not diffs else "MISMATCH","why":diffs}
+            if diffs: why.append(f"input {iid}: "+"; ".join(diffs))
         for iid in l_by.get(cid,{}):
-            if iid not in (r.get("inputs") or {}): inputs_res[iid]={"audit_origin":None,"sealed_origin":l_by[cid][iid],"result":"MISMATCH"}; why.append(f"origin {iid}: not re-classified")
+            if iid not in (r.get("inputs") or {}): inputs_res[iid]={"result":"MISMATCH","why":"not reconstructed by the auditor"}; why.append(f"input {iid}: not reconstructed")
+        # rests_on recomputed from both reconstructions (seat tool's roots over the auditor's records vs the sealed ledger)
+        try:
+            a_by={i:dict(v,input_id=i) for i,v in (r.get("inputs") or {}).items() if isinstance(v,dict)}
+            for v in a_by.values(): v.setdefault("origin","UNDECLARED"); v.setdefault("derived_from",[])
+            ra=set(); [ra.update(roots(dict(full_by,**a_by),i)) for i in a_by]
+            rs=set(); [rs.update(roots(full_by,i)) for i in l_by.get(cid,{})]
+            audited_rests={"audit":sorted(ra),"sealed":sorted(rs)}
+            if ra!=rs: why.append(f"root_origins differ: audit {sorted(ra)} vs sealed {sorted(rs)}")
+        except Exception as e: audited_rests={"error":str(e)}; why.append(f"root recomputation failed: {e}")
+        inputs_res["_roots"]=audited_rests
         audited[cid]={"result":"MATCH" if not why else "MISMATCH","why":why,"inputs":inputs_res}
         if why: fails.append(f"AUDIT {cid}: MISMATCH ({'; '.join(why)})")
     tok="PASS" if not fails else "FAIL"
