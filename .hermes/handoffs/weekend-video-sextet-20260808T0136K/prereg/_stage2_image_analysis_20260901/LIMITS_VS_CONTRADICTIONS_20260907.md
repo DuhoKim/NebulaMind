@@ -100,3 +100,19 @@ UNREPAIRED as of V32 staging: none known.
 | partial-snapshot deciders declared independent of the later page; per-entry silent (found by controls v3, run 2d) | C → REPAIRED | needs declared; per-entry contributes under its own name |
 | offline candidate loads counter-cases 1, 2, A (rows 1, 2, 6, 10b–10d of the inspection) | A (disclosed limit) | unchanged since V27 |
 UNREPAIRED CONTRADICTIONS at V33: none known.
+
+
+## M. V33 REVIEW (2026-09-07 08:34 KST) — column C REOPENED by seat B's executed counter-cases; nothing moved to column A
+| item | column | disposition |
+|---|---|---|
+| B-1a `_time_checks` returns on the first parse failure | C (contradiction) | OPEN → V34: each time input its own sub-check |
+| B-1b a retained-input exception classified with the enclosing stage's remote/git label; delivery aborts before the independent same-id check | C | OPEN → V34: classify by the failing input |
+| B-1c the extension loop aborts on one unreadable blob; `_prev` unset defaults to empty and falsely reports PENDING-PUSH | C (and it corrupts an advertised failure state) | OPEN → V34: per-blob sub-checks; absence blocks, never defaults |
+| B-1d `PermissionError` on the adoption file leaves `adoption-identity` unevaluated, unblocked and unrepresented | C | OPEN → V34: block on any failure to obtain the adopted digest |
+| B-2 the table's verification misses `m[o]`-selected codes, conditional needs (approval-live/git-launch), and the true owning stage (`sub`, S0b-root) | C | OPEN → V34: a registry, not a regex |
+| B-3 the built approval-receipt SUCCESS path falls through to `m['EXPIRED']` → KeyError | C | OPEN → V34: return on a verified receipt + a success-path test |
+| B-4 the differential controls' oracle comes from the implementation; `by_check` discards class/stage/reason/multiplicity; one defect recipe per check | C (overstated reach) | OPEN → V34 |
+| B-5 `{NCTRL}` literal, the "run 2 … 16 OK" sentence, obsolete runner/gate pins and test count, "105+6" in the inspection, track-8–12 blocks credited to the successors | C (accounting) | OPEN → V34: pins regenerated after the code freezes |
+| the staged sandbox cannot reproduce the 369-test aggregate (absent `scratch/survey-bricks-dr9-north.fits.gz`, `validation_bricks/_bricks_without_r_coverage.txt`) — 3 suites EXIT 1, 365 tests | C (package vs staged copy) | OPEN → V34 dispatch stages the inputs or the text names exactly which suites a sandbox cannot run |
+| L-OFF / L-COV / L-RCPT / L-INH / L-AVAIL | A (disclosed limits) | unchanged; seat B confirms they are genuine categories and do NOT cover B-1..B-3 |
+UNREPAIRED CONTRADICTIONS at V33: the nine C rows above. None is disclosed as a limit.
