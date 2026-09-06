@@ -1,4 +1,4 @@
-# ATTEMPTS REGISTER — generated 2026-09-06 21:50 KST by scripts/build_attempts_register.py from lane bytes
+# ATTEMPTS REGISTER — generated 2026-09-06 22:56 KST by scripts/build_attempts_register.py from lane bytes
 Rules: every row carries its source file; every digest is recomputed from disk at generation time; unreadable sources print UNSOURCED. This file is derived, not maintained — regenerate, do not edit.
 
 ## 1. INSTRUMENTS VALIDATED
@@ -10,7 +10,7 @@ Rules: every row carries its source file; every digest is recomputed from disk a
 
 Instruments validated: **1**. Attempts under §9B: **1**. Candidates pinned in a signed rule: **0**.
 
-## 2. PRE-COMMITMENT DRAFTS REFUSED (selection rule V1–V22)
+## 2. PRE-COMMITMENT DRAFTS REFUSED (selection rule V1–V23)
 
 | draft | digest (recomputed) | seat A (agy) | seat B (codex) | engines A / B (CLI, model) | access proofs | the fatal that killed it — first [FATAL] heading of a NOT-SIGNABLE report, VERBATIM with line number; the excerpt after it is a marked non-verbatim paraphrase | superseded by / record |
 |---|---|---|---|---|---|---|---|
@@ -36,8 +36,9 @@ Instruments validated: **1**. Attempts under §9B: **1**. Candidates pinned in a
 | V20 | 1c8ce522ac07572f… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V20_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V20_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T10:23:26Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T10:23:26Z | A verifies; B verifies | no [FATAL] item in report | V21; MINI_PREREG_SELRULE_V20_TO_V21_CHANGE_RECORD_20260906.md 2a80f50c59491f20… |
 | V21 | 1906d0bb717faa0b… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V21_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V21_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T11:26:06Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T11:26:06Z | A verifies; B verifies | no [FATAL] item in report | none yet; V21_GATE_OUTCOME_AND_DIAGNOSIS_20260906.md 8f4d5a110bb988a7… |
 | V22 | 75eceb104b75ac61… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V22_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V22_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T12:36:34Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T12:36:34Z | A verifies; B verifies | no [FATAL] item in report | none yet |
+| V23 | 1dd822619f5831bf… | SIGNABLE-AS-PRECOMMITMENT (AGY_SELRULE_V23_SEATA.md) | NOT-SIGNABLE (CODEX_SELRULE_V23_SEATB.md) | agy 1.1.27 model gemini (as configured) dispatched 2026-09-06T13:27:24Z / codex-cli 0.153.4 model gpt-6-astra dispatched 2026-09-06T13:40:00Z | A verifies; B verifies | no [FATAL] item in report | none yet |
 
-Drafts written: **22**. Gated: **21**. Refused (at least one seat NOT-SIGNABLE): **20**. Signed: **0**. Split rounds: V3, V10, V13, V14, V16, V17, V18, V19, V20, V21, V22.
+Drafts written: **23**. Gated: **22**. Refused (at least one seat NOT-SIGNABLE): **21**. Signed: **0**. Split rounds: V3, V10, V13, V14, V16, V17, V18, V19, V20, V21, V22, V23.
 
 ## 3. CONTROLS RUN
 
@@ -57,5 +58,5 @@ Drafts written: **22**. Gated: **21**. Refused (at least one seat NOT-SIGNABLE):
 
 ## 4. Counts a methods section must carry (derived above)
 - Instruments validated under a signed preregistration: 1 (CE-ResNet) — FAILED. Candidates developed but not validated: 1 family, 0 attempts.
-- Pre-commitment drafts for a replacement: 22 written, 21 gated by two blind seats on different engines, 20 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
+- Pre-commitment drafts for a replacement: 23 written, 22 gated by two blind seats on different engines, 21 refused, 0 signed; the third-failure rule engaged twice (V4 by Blanc's count, V10 by Hwao's); pending the principal's ruling.
 - Frozen-sample access, as far as the journals show: no render or inference event for any frozen-sample object exists in the render journal (0 rows) or the 62-record seal journal; at generation time, in the lane, the only tensor files outside the validation directory number 1 (the synthetic smoke tensor under _scratch/synth_smoke, if present). This is what the records show; it is not a proof that no person viewed a frozen pixel by a route the journals do not see — that limit is stated in CUSTODIAN_QUESTION_FOR_DUHO_20260905.md.
