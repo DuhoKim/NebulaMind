@@ -1,0 +1,1201 @@
+                                                     Published for SISSA by         Springer
+                                                                     Received: March 23, 2021
+                                                                       Accepted: July 5, 2021
+                                                                      Published: July 23, 2021
+
+
+
+
+Spin polarization induced by the hydrodynamic
+
+
+
+
+                                                                                                 JHEP07(2021)188
+gradients
+
+
+
+Shuai Y.F. Liua and Yi Yina,b
+a
+  Quark Matter Research Center, Institute of Modern Physics, Chinese Academy of Sciences,
+  Lanzhou, Gansu, 730000, China
+b
+  University of Chinese Academy of Sciences,
+  Beijing, 100049, China
+
+    E-mail: lshphy@gmail.com, yiyin@impcas.ac.cn
+
+Abstract: We systematically analyze the effects of the derivatives of the hydrodynamic
+fields on axial Wigner function that describes the spin polarization vector in phase space.
+We have included all possible first-order derivative contributions that are allowed by sym-
+metry and compute the associated transport functions at one-loop using the linear re-
+sponse theory. In addition to reproducing known effects due to the temperature gradient
+and vorticity, we have identified a number of potentially significant contributions that are
+overlooked previously. In particular, we find that the shear strength, the symmetric and
+traceless part of the flow gradient, will induce a quadrupole for spin polarization in the
+phase space. Our results, together with hydrodynamic gradients obtained from hydrody-
+namic simulations, can be employed as a basis for the interpretation of the Λ (anti-Λ) spin
+polarization measurement in heavy-ion collisions.
+
+Keywords: Quark-Gluon Plasma, Phase Diagram of QCD
+
+ArXiv ePrint: 2103.09200
+
+
+
+
+Open Access, c The Authors.
+                                                    https://doi.org/10.1007/JHEP07(2021)188
+Article funded by SCOAP3 .
+Contents
+
+1 Introduction                                                                                1
+
+2 Derivative expansion                                                                        2
+
+3 Kubo relation                                                                               4
+
+4 One loop                                                                                    8
+
+
+
+
+                                                                                                   JHEP07(2021)188
+5 Results and discussion                                                                     11
+  5.1 Collecting our results, and comparison to others                                       11
+  5.2 Shear strength induced polarization and magnetization current term                     12
+
+6 Summary and outlook                                                                        14
+
+A The details in the gradient expansion                                                      15
+
+
+
+
+1   Introduction
+
+The study of spin polarization of Λ and Λ̄ hyperons produced in heavy-ion collisions opens
+a new avenue to explore the properties of hot and dense QCD matter from the perspective
+of the spin degree of freedom. Extensive theoretical and phenomenological investigations
+are devoted to the effects of vorticity on spin polarization [1–3] as well as the related
+transport phenomenon involving spin [4–10]. STAR collaboration’s measurement of global
+(phase space averaged) Λ polarization agrees with theoretical prediction [11, 12]. However,
+when it comes to the phase space distribution of Λ spin polarization [13, 14], the observed
+quadrupole pattern is firmly in tension with the theories assuming such quadrupole pattern
+is solely induced by thermal vorticity [15, 16], a specific linear combination of vorticity and
+temperature gradients.
+      Nevertheless, vorticity and temperature gradient are not the only examples of gradient,
+i.e., the derivatives of hydrodynamics field (or derivatives for short). More generally, one
+may ask if other derivatives, such as shear strength (the traceless and symmetric part of the
+flow gradient, see below), could induce spin polarization in the phase space. Therefore, to
+establish the physical interpretation of experimental results, it is desirable to first consider
+all possible effects that may arise from derivatives. Such a systematic analysis should be
+possible when the system’s typical gradient is small compared with the mean free path.
+This systematic analysis is what we shall do in this paper. We shall consider the axial
+Wigner function in phase space Aµ which is closely related to the phase space distribution
+of spin vector. Then, we expand Aµ in terms of the first order derivatives together with
+
+
+
+
+                                             –1–
+Lorentz tensors formed by single-particle momentum, and include all possible terms allowed
+by symmetry.
+     To determine transport functions coming with such expansion, we compute relevant
+correlation functions that contain the information about the response of spin polarization
+distribution to the derivatives. Alternatively, one can extract those coefficients by matching
+to the analysis using quantum kinetic theory with the spin degree of freedom (see for exam-
+ple refs. [17–19]). We shall see the agreement between both approaches for chiral fermions.
+     One remarkable effect uncovered from the present analysis is that the shear strength
+will induce quadrupole in the spin polarization distribution. We shall refer such an effect
+as “shear-induced polarization” (SIP).1 As we shall explain in detail in section 5.2, physics
+
+
+
+
+                                                                                                              JHEP07(2021)188
+origin of SIP is closely related to the single-particle magnetization current term, the im-
+portance of which is well-known in chiral kinetic theory [17, 22]. In many previous studies
+of spin polarization, the flow configuration with a vanishing shear strength is assumed.
+Nevertheless, sizable shear strength is undoubtedly present in heavy-ion collisions and may
+potentially lead to observable effects.
+     This paper is organized as follows. We present the derivative expansion for axial
+Wigner function in phase space in section 2. In section 3, we derive Kubo relation which
+relates transport functions coming with the expansion with relevant correlation functions,
+which we evaluate at one-loop in section 4. We collect and interpret our results in sec-
+tion 5. Section 6 is devoted to conclusion and outlook. We use the most minus signature
+(+, −, −, −) and adopt the notation 0123 = −0123 = 1.
+
+2       Derivative expansion
+
+We consider many-body systems whose degrees of freedom include fermion particles/anti-
+particles. We shall study the phase space density of axial current that are described by the
+following Wigner function:
+                                                Z
+                            A (t, x; p) = εp
+                              µ
+                                                    d3 y e−ip·y hJˆ5µ (t, x; y)i ,                   (2.1)
+
+where we have included the single-particle energy εp = p2 + m2 in the definition of Aµ in
+                                                                   p
+
+eq. (2.1) so that Aµ is an axial Lorentz four vector (see also eq. (2.3) below). In eq. (2.1),
+the thermal ensemble average h. . .i is taken over the operator
+                                                     y                  y
+                                                                              
+                          Jˆ5µ (t, x; y) ≡ ψ̄ t, x −   γ µ γ 5 ψ t, x +   .                          (2.2)
+                                                     2                  2
+Here, γ 5 , γ µ denote the standard gamma matrices and ψ represents a generic Dirac field.
+For simplicity, we shall assume there is only one “flavor” of fermions with an arbitrary
+mass m. Note the integration of Aµ over the Lorentz invariant phase space volume gives
+axial current:
+                                                             1         d3 p µ
+                                                                   Z
+                    J5µ (t, x) = hJˆ5µ (t, x; y = 0)i =                    A (t, x, p) .             (2.3)
+                                                           (2π)3        εp
+    1
+    In some context, the shear strength is refered as “strain rate”, see refs. [20, 21] for a discussion of
+strain-induced spin current in the condensed matter system.
+
+
+
+
+                                                    –2–
+     Throughout this paper, we are working in the regime where the typical frequency
+and momentum, q0 , q associated with the system’s inhomogeneity is much smaller than
+the characteristic energy of fermions/anti-fermions. In this regime, the transition between
+fermion states and anti-fermions states are suppressed, and we can have the division Aµ =
+Aµ+ + Aµ− with Aµ+ and Aµ− describing fermion and anti-fermion distribution respectively.
+When the system is in thermal equilibrium and homogeneous, the Aµ± should equal to zero.2
+Now we consider the situation in which slow varying hydrodynamic fields are present. We
+shall assume that the system has a vector U(1) symmetry and denote associated chemical
+potential by µ. Consequently, the hydrodynamic fields are uµ , T (or its inverse β) and µ.
+The presence of derivatives of hydrodynamic fields, or derivatives, in turn, should induce
+
+
+
+
+                                                                                                        JHEP07(2021)188
+Aµ± . Our goal is to look for an expansion of Aµ up to the first order in the derivatives.
+The corrections to the resulting expression should be suppressed when q0 , q = |q|  τR−1
+where τR is the typical relaxation time.
+     Let us now collect the first order derivatives:
+
+                          θ = ∂⊥ · u ,
+                              1                         µ             µ
+                        ω µ = µναλ uν ∂α⊥ uλ ,   β −1 ∂⊥ β,         ∂⊥ (βµ) ,
+                              2
+                              1 µ ν              1
+                       σ µν = (∂⊥   u + ∂⊥  u ) − ∆µν θ .
+                                          ν µ
+                                                                                              (2.4a)
+                              2                  3
+where ω µ and σ µν are the fluid vorticity and shear strength, respectively. Following a
+standard notation for hydrodynamics, we have defined the project
+
+                                       ∆µν ≡ η µν − uµ uν ,                                    (2.5)
+
+and denote the transverse part of a generic vector V µ by V⊥µ = ∆µν Vν . Note the terms
+involving time derivatives in the fluid rest frame, i.e D = u · ∂, are not included above since
+they can be replaced by a specific combination of spatial gradient terms in eq. (2.4) using
+hydrodynamic equation of motion.
+      We have considered the most general expression of Aµ± that can be constructed from
+uµ , εµναβ , η µν , pµ , pµ pν , . . . and derivatives listed in eq. (2.4), and require the resulting
+expression to be consistent with symmetries, including discrete ones. Decomposing Aµ±
+into longitudinal and transverse parts: Aµ± = fA,± uµ + Aµ⊥,± , we find (see appendix. A
+for details):
+
+           fA,± = c̃ω,± v · ω                                                                  (2.6)
+                                                                                        
+          Aµ⊥,± = cω,± ω µ + cT,± µναλ uν vα β −1 (∂λ⊥ β) + cµ,± µναλ uν vα ∂λ⊥ (βµ)
+                   + gσ,± µνλα uν Qλρ σρα + gω,± Qµν ων                                       (2.7)
+
+where we have defined the single-particle velocity and energy
+                                          pα⊥
+                                   vα =       ,     εu = p · u ,                               (2.8)
+                                          εu
+  2
+    We have assumed that the equilibrium state under study is parity-invariant. For a system with a
+non-zero axial density nA , Aµ ∝ nA uµ is allowed even at zeroth order in derivative expansion.
+
+
+
+
+                                                  –3–
+and the generalized quadrupole moment is given by
+
+                                            pµ p µ 1
+                                     Qµν = − ⊥2 ⊥ + ∆µν .                                          (2.9)
+                                             p⊥    3
+
+In the fluid rest frame, Qij = p̂i p̂j − 13 δ ij .3 Note for chiral fermions, fA,± /εp coincides with
+the distribution function of axial charge (cf. (2.3)).
+    In eqs. (2.6), (2.7), those scalar functions
+
+                                   c̃ω,± , cω,± , cT,± , gσ,± , gω,± , cµ,±                       (2.10)
+
+
+
+
+                                                                                                            JHEP07(2021)188
+may be viewed as generalized transport coefficients which determine the magnitude of the
+induced axial Wigner function. They are function of T, µ as well as the Lorentz scalar εu ,
+but we will keep those dependence implicit. To this point, those coefficients are generic and
+should be determined from microscopic calculations. We shall compute them at one-loop
+order, see eqs. (5.1), (5.2), (5.3) or the collection of results.
+      Let us interpret each individual terms in eqs. (2.6), (2.7). As we shall elaborate in
+section 5.2, eq. (2.6) results from the energy-shift due to spin-vorticity coupling in chiral
+limit. There are five terms shown in eq. (2.7). The first one tells us nothing but the
+familiar phenomenon that vorticity will induce the spin polarization. The second and third
+terms of eq. (2.7) describe the thermally-induced spin-Hall effect with temperature and
+chemical gradient (thermodynamic force) playing the role of the analog of electric field,
+see ref. [23] for further discussion. While the first line of eq. (2.7) describes known effects
+of vorticity and temperature/chemical potential gradient to the axial current distribution,
+physics of the second line has not been fully appreciated to date. It tells us that both
+velocity stress tensor σµν and vorticity ω µ could induce a quadrupole in phase space.
+Such flow-gradient-induced phase space quadrupole is allowed by symmetry, and hence the
+associated transport functions gω , gσ should be non-zero in general. Both terms contain
+only one spatial gradient, and their effects can potentially be as significant as other terms
+in eq. (2.7).
+      Summarizing this section, we obtain the derivative expansion for axial Wigner function
+in phase space eqs. (2.6), (2.7). If the system is isotropic in the absence of the derivatives,
+only the first term in eq. (2.7) will survive after the phase space integration in axial current
+J5µ (t, x) (2.3). However, physics is richer in phase space. According to eq. (2.7), different
+derivatives terms will induce different multipole moments respectively. Our next goal is to
+evaluate associated transport functions listed in eq. (2.10).
+
+
+3       Kubo relation
+
+In this section, we shall establish Kubo relations which relate transport functions in
+eqs. (2.6), (2.7) to the behavior of relevant correlation function under appropriate limit(s).
+The method we shall use is inspired by the classical work of Luttinger [24], but with a
+    3
+   We use δij to denote the standard Kronecker delta function, i.e. δxx = δyy = δzz . Because of the most
+minus metric that we use, δij = −δij and in the fluid rest frame ∆ij = −δij .
+
+
+
+
+                                                   –4–
+number of non-trivial generalization (see below). In ref. [23], we have computed cT,± , cµ,±
+at one-loop order using this formalism. In what follows, we shall focus on the Kubo re-
+lations for c̃ω , cω and gσ , gω . For this reason, we shall not include effects induced by the
+derivatives of T and µ in this section.
+     Let us consider a fluid which is at rest uµ = (1, 0) initially. Then, we turn on a metric
+perturbation of the form gµν = ηµν + hµν with only h0i (t, x) different from zero. The pres-
+ence of h0i (t, x) will in turn induce flow uµ = (1, u(t, x)). To perform the linear response
+analysis, we count h0i and u to be O(δ) where δ is a small parameter. In hydrodynamic
+regime when typical frequency q0 and gradient q associated with h0i (t, x) is much smaller
+than the relaxation rate 1/τR , we may expand Ai⊥ , fA to the first order in both gradient
+
+
+
+
+                                                                                                                         JHEP07(2021)188
+and δ:
+
+                          fA,± = c̃ω,± v j ωj + c̃hω,± v j Bjh
+                                                            
+                              Ai± = cω,± δ ij + gω,± Qij ωj − gσ,± ilm Qlj σ jm                                (3.1a)
+                                                                
+                                     + chω,± δ ij + gω,±
+                                                     h
+                                                         Qij Bjh − gσ,±
+                                                                    h
+                                                                        ilm Qlj (σ h )jm ,                     (3.1b)
+
+where v = p/εp and the summation over the dummy index is understood. In this section,
+we use σ ij (and similar for ω µ , Qµν ) to denote i, j components of σ µν defined in eq. (2.4a)
+up to first order in δ,4 i.e.,
+                               1                          1                       2
+                                                                                                   
+                         ω = − ijl ∂j ul ,
+                          i
+                                                   σ ij =            ∂ uj + ∂ ui + δ ij (∂ l ul )
+                                                                      i       j
+                                                                                                        .        (3.2)
+                               2                             2                    3
+                             pi pj   1
+                        Qij = 2 − δij .                                                                          (3.3)
+                              p      3
+We further decompose the gradient of h0i into symmetric and anti-symmetric part and
+define in analogous to eq. (3.2) that
+                           1                                     1  i              1
+                                                                                                           
+              B   i,h
+                        = − ijl ∂j h0l ,       (σ h )ij =          ∂ h0j + ∂ j h0i + δ ij (∂ l h0l )            (3.4)
+                           2                                     2                   3
+Note in the absence of the metric perturbation, eq. (3.1) matches with eq. (2.7) as it
+should be.
+     If Aµ were covariant under local Lorentz transformation, its dependence on the metric
+is simply given by taking all derivatives in eq. (2.7) as covariant ones. However, Aµ is only
+covariant under global Lorentz transformation but not covariant local Lorentz transforma-
+tion when a metric perturbation is present. That is why chω,± , gω,±      σ,± in eq. (3.1) are
+                                                                     h , gh
+
+independent and can not be fixed by imposing local Lorentz covariance. In principle one
+can embed the appropriate Gauge link to obtain the covariant Wigner function A0µ , see
+refs. [25, 26] for further discussion. However, for the purpose of determining cω , gω and gσ ,
+considering A is sufficient since the difference between A and the covariant one A0 should
+only appear at higher order in derivatives.
+     Next, we consider the linear response theory which tells us that the induced axial
+current distribution up to the first order in metric perturbation (in Fourier space) is given
+  4
+      We use ijk = 0ijk = −ijk to denote Levi-Civita symbol in 3d.
+
+
+
+
+                                                         –5–
+by (c.f eq. (2.1)):
+
+                             Aµ± (q0 , q; p) = εp Gµ,0j
+                                                   ± (q0 , q; p) h0j (q0 , q; p) .              (3.5)
+
+where the retarded correlation function of Âµ and stress-energy tensor operator T̂ µν reads:
+
+                           Gµ,0ν (t, x; y) = −i h[Jˆ5µ (t, x; y), T̂ 0ν (0, 0; 0)]iθ(t) ,       (3.6)
+
+In eq. (3.5), we have assumed that the correlation function can be divided into two parts,
+
+                           Gµ,0ν (q0 , q; p) = Gµ,0ν             µ,0ν
+                                                + (q0 , q; p) + G− (q0 , q; p) ,                (3.7)
+
+
+
+
+                                                                                                         JHEP07(2021)188
+which describes the induced axial Wigner function of fermion and anti-fermion respectively.
+We shall show how to make such division explicitly in section 4.
+     To extract the desired transport functions from eq. (3.5), in what follows, we shall
+consider the behavior of Aµ± and the retarded correlation function under two different
+limits. We shall detail the analysis of Ai . That of fA follows similar steps.
+     We first take the “slow limit” by which we mean:
+
+                                       lim : q0  q , and q0 , q  τR−1 .                       (3.8)
+                                        s
+
+In this limit, the flow induced by the metric perturbation is fully developed, and we would
+expect that the frame where the local fluid is at rest coincides with that of metric pertur-
+bation, i.e.,
+
+                                             lim (uj − h0j ) = 0 .                              (3.9)
+                                              s
+
+Taking the limit, eq. (3.1) becomes
+
+  lim Ai± = [(cω,± + chω,± )δ il + (gω,± + gω,±
+                                            h
+                                                ) Qil ]Blh − (gσ,± + gσ,±
+                                                                      h
+                                                                          ) ilm Qlj (σ h )jm . (3.10)
+   s
+
+When taking the slow limit, we require q0 /q  1 but q0 is not necessarily zero. That is
+why in eq. (3.10) we can keep a non-zero shear strength σij which would excite only shear
+modes with a typical frequency of the order q0 ∼ νq 2  q where ν denotes the specific
+viscosity. Note in hydrodynamic regime νq  1.
+    We now turn to the second limit, the fast limit, that:
+
+                                       lim : q0  q and q, q0  τR−1 .                         (3.11)
+                                        f
+
+Note when taking the both limit, we still require that ε0  q0 , q as we mentioned at the
+beginning of this paper. We shall further assume ε0  τR−1 throughout, the assumption of
+which is justified when the interaction is weak. In this limit, there is not enough time for
+the system to develop the flow velocity and hence flow velocity simply vanishes. However,
+we might still express A in terms of gradient of metric:
+                                                          
+                      lim Ai± = chω,± δ ij + gω,±
+                                              h
+                                                  Qij Bjh − gσ,±
+                                                             h
+                                                                 ilm Qlj (σ h )jm             (3.12)
+                       f
+
+
+
+
+                                                     –6–
+One important assumption we made here is that chω , gσh , gωh are the same as those in eq. (3.1).
+We can argue for this assumption as follows. The small parameter associated with the
+expansion in terms of the gradient of metric is q0 /ε0 , q/ε0 where ε0 denotes the typical
+single-particle energy. Therefore the expansion coefficient should not be sensitive to the
+hierarchy between q0 , q and τR−1 . Introducing the notation
+
+                                  lim(. . .) ≡ lim (. . .) − lim (. . .)                   (3.13)
+                                  s−f            s             f
+
+where . . . represents an arbitrary function of q0 , q, we then have from eqs. (3.10), (3.12) that
+
+
+
+
+                                                                                                     JHEP07(2021)188
+                                                     
+                  lim Ai± = cω,± δ ij + gω,± Qij Bjh − gσ,± ilm Qlj (σ h )jm .            (3.14)
+                  s−f
+
+Comparing eq. (3.14) with eq. (3.5), we may parametrize the behavior of G as
+
+                              εp lim Gi,0j             ijm
+                                      ± (q0 , q; p) = κ± (p)qm ,                           (3.15)
+                                  s−f
+
+where the function κ is given by:
+
+                                                         ∂
+                     κijm
+                      ± (p) = −κijm,± (p) = εp              lim Gi,0j (q0 , q; p) .        (3.16)
+                                                        ∂qm s−f ±
+
+Comparing eq. (3.5) with eq. (3.14), we further obtain the Kubo relation
+
+                                              1
+                                        cω± = i εp ijm κ±                                (3.17a)
+                                              3           ijm
+                                              3
+                                        gω± = i εp jlm Qil κ±                            (3.17b)
+                                              2              ijm
+                                                    il(j m) ±
+                                        gσ± = i εp  Ql κijm                              (3.17c)
+
+where we have used the identity δii = 3, Qij Qij = 2/3, iml Qlj ki(m Qj)k = 1, and the
+brackets around a pair of indices, (ij) mean that indices to be symmetrized. By analyzing
+fA , we obtain the following expression:
+
+                                    1                   i∂ 0,0j
+                         c̃ω± = −      εp lim lmj v l    G (q0 , q; p) .                 (3.17d)
+                                    v 2 s−f            ∂qm ±
+
+In the fast limit when the flow velocity is yet to develop, Ai± solely comes from metric
+perturbation. In the slow limit, Ai± contains the response from both the metric perturba-
+tion and flow gradient developed subsequently. Therefore one should subtract the lim Ai±
+                                                                                           f
+from lim Ai± in order to determine the response of Ai to flow gradient. For this reason,
+       s
+the transport functions, which describe the response to flow gradient, is determined by
+the difference between the behavior of correlation functions in slow and fast limit in the
+present Kubo relation .
+     We shall use eq. (3.17) and eq. (3.17d) to compute cω , gω , gσ and c̃ω respectively in
+the subsequent section. We shall test our prescription by comparing the results at one-loop
+with those obtained from the quantum kinetic theory.
+
+
+
+
+                                                 –7–
+Figure 1. One loop diagram contributing to Gi,0µ defined in eq. (3.6). Note, since we are interested
+in the induced momentum space distribution, we shall only sum over loop frequency (Matsubara
+
+
+
+
+                                                                                                          JHEP07(2021)188
+frequency), but shall not integrate over the loop momentum p.
+
+
+4   One loop
+
+In this section, we shall explicitly evaluate the correlation functions defined in eq. (3.6) at
+one-loop. We shall first present the calculation of Gi,0j ± in details, and just state the final
+              0,0i
+result for G± . Note, since we are interested in the induced momentum space distribution,
+we shall only sum over loop frequency, but shall not integrate over the loop momentum p.
+In refs. [27, 28], d3 p/(2π)3 Gi,0j (q0 , q; p) is computed to study chiral vortical effect (CVE).
+                   R
+
+     We begin with the (symmetric) energy momentum tensor T̂ µν in terms of the
+Dirac field:
+                                             i       ←→        ←→
+                                   T̂ µν =     ψ̄(γ µ ∂ ν + γ ν ∂ µ )ψ .                          (4.1)
+                                             4
+        ←
+        →                       ←
+                                →
+where ∂µ is defined by A ∂µ B = A∂µ B − (∂µ A)B for arbitrary function A and B. Note
+by definition, T̂ µν is symmetric. Since T̂ µν = T̂1µν + T̂2µν contains two terms where
+                   ←→                         ←→
+T̂1µν ≡ (i/4) ψ̄γ j ∂ 0 ψ, T̂2µν ≡ (i/4) ψ̄γ 0 ∂ j ψ, we divide correlation function into two parts
+accordingly:
+
+                                          Gµ,0j = Gµ,0j
+                                                   1    + Gµ,0j
+                                                           2    ,                                 (4.2)
+
+                    ˆµ 0j
+                      h           i
+where the Gµ,0j
+           1,2 ∼ h J5 , T̂1,2 i. Introducing the Euclidean propagator as function of the
+Fermionic Matsubara frequency νn = πT (2n + 1) + µ and momentum p
+
+                                  S(iνn , p) =         Λs (p) ∆s (iνn , p) ,                      (4.3)
+                                                 X
+
+                                                 s=±
+
+                                      Λs (p) = sγ 0 εp − p · γ + m ,                              (4.4)
+                                                      s            1
+                                                          
+                                ∆s (iνn , p) =                           ,                        (4.5)
+                                                     2εp       iνn − sεp
+
+we can explicitly express correlation function in terms of (Matsubara) frequency and mo-
+mentum space as
+                           1 X                                            iω̃n
+                                                                                           
+    Gi,0j
+     1 (iω̃n , q, p) =          Tr γ i γ 5 S (iνn + iω̃n , p1 ) γ j iνn +      S(iνn , p2 )       (4.6)
+                          2β νn                                            2
+
+
+
+
+                                                     –8–
+                           1 X                                     pj + pj2
+                                           "                                                      #
+   Gi,0j
+    2 (iω̃n , q, p) =           Tr γ i γ 5 S (iνn + iω̃n , p1 ) γ 0 1       S(iνn , p2 )                        (4.7)
+                          2β νn                                       2
+
+   G0,0j (iω̃n , q, p) = G0,0j
+                          1 (iω̃n , q, p)
+
+                         1 X                                            iω̃n
+                                                                                                       
+                      =       Tr γ 0 γ 5 S (iνn + iω̃n , p1 ) γ j iνn +      S(iνn , p2 ) .                     (4.8)
+                        2β νn                                            2
+
+Note G0,0j
+       2   = 0 due to the trace of the product of the associated gamma matrices vanishes.
+Here, correlation function depends on Bosonic Matsubara frequency ω̃n = 2nπT and we
+have defined p1 = p + q2 , p2 = p − q2 .
+
+
+
+
+                                                                                                                        JHEP07(2021)188
+    To evaluate correlation functions, we need to take the trace
+                                     h                              i
+            ij
+               0 (p1 , p2 ) ≡ Tr γ γ Λs (p1 ) γ Λs0 (p2 ) = −4i
+                                  i 5          j                 ijm
+                                                                     sε1 p2 − s0 ε2 p1 m                        (4.9)
+                                                                                                      
+           Xss
+                                     h                              i
+             Y i (p1 , p2 ) ≡ Tr γ i γ 5 Λs (p1 ) γ 0 Λs0 (p2 ) = 4iijm qj pm ,                               (4.10)
+
+and perform the summation over Matsubara frequency:
+
+        Iss0 (q0 , ε1 , ε2 ) = T         ∆s (iνn + iω̃n , p1 )∆s0 (iνn , p2 ))|iωn →q0 +i0+
+                                   X
+
+                                    νn
+                              X  −ss0   sns (ε1 ) − s0 ns0 (ε2 ) 
+                          =                                                                                   (4.11a)
+                              ss0
+                                         4ε1 ε2      q0 − sε1 + s0 ε2 + i0+
+                                   X              iω̃n
+                                                        
+        Jss0 (q0 , ε1 , ε2 ) = T           iνn +        ∆s (iνn + iω̃n , p1 )∆s0 (iνn , p2 )|iωn →q0 +i0+
+                                    νn              2
+                                           q0                          s
+                                              
+                          = sε1 −             Iss0 (q0 , ε1 , ε2 ) +        ns0 (ε2 ),                        (4.11b)
+                                           2                         4ε1 ε2
+
+To obtain the real time correlation function, we analytically continue the Euclidean cor-
+relator by employing the replacement iωn → q0 + i0+ in eq. (4.11). qNote, 0+ here
+may be understood as the inverse of relaxation time τR−1 . Here, ε1,2 = m2 + p21,2 and
+n± (ε) = 1/(eβ(ε∓µ) + 1) is the Fermi Dirac distribution for particle (n+ ) and antiparticle
+(n− ) with chemical potential µ. To obtain the above expression, we use n+ (sε) → s ns (ε)
+and drop the vacuum contribution “1” in the relation n+ (−ε) = 1 − n− (ε).
+     We now express the retarded correlation functions eq. (4.6)∼(4.8) as
+                                                   1 X ij
+                        Gi,0j
+                         1 (q0 , q, p) =                X 0 (p1 , p2 ) Jss0 (q0 , ε1 , ε2 ) ,                  (4.12)
+                                                   2 ss0 ss
+                                                   1 i
+                        Gi,0j
+                         2 (q0 , q, p) =             Y (p1 , p2 ) pj     Iss0 (q0 , ε1 , ε2 ) ,                (4.13)
+                                                                     X
+                                                   2                 ss0
+                                               1 j
+                        G0,0j (q           =       (p         )     Jss0 (q0 , ε1 , ε2 )                       (4.14)
+                                                                X
+                                 0 , q, p)   −   Y    1 , p 2
+                         1
+                                               2                ss0
+
+To proceed, we set up the power counting
+                                                    q0 q
+                                                      ,   = O(δ1 )                                             (4.15)
+                                                    ε0 ε0
+
+
+
+
+                                                            –9–
+where δ1 is a small parameter. Summing up the contribution from G1 and G2 and expanding
+the result to the first order of δ1 yield the expression
+
+                                i ijm                      i
+              Gi,0j
+               ± (q0 , q, p) = −     qm [(∓∆εD± ) − b± ] − ijl vl ∆ε q0 D±
+                                2                          2
+                                i iml
+                               −  qm vl v [(∓∆εD± ) + b± ]
+                                             j
+                                                                                           (4.16)
+                                2
+               0,0j             i
+              G± (q0 , q, p) = ± jml qm vl (∓∆εD± ).                                      (4.17)
+                                2
+
+The first line of eq. (4.16) is from Gi,0j                                           i,0j
+                                      1,± and the second line of eq. (4.16) is from G2,± . For
+
+
+
+
+                                                                                                    JHEP07(2021)188
+notational brevity, we have defined
+         p                                                                       a±
+      v=    ,              ∆ε = v · q = −v m qm ,                     D± ≡                 (4.18)
+         εp                                                                q0 ∓ ∆ε + i0+
+           ∂n± (εp )                                                       n± (εp )
+    a± = −           = β n± (εp ) (1 − n± (εp )) ,                    b± ≡          .      (4.19)
+              ∂εp                                                             εp
+
+     As we discussed earlier, we need to decompose Gi,0j (and similarly for other correlation
+functions) into two parts, Gi,0j
+                              ± (see eq. (3.7)), so that the induced axial current distribution
+for fermions and anti-fermions are given by eq. (3.5). Observing that A+ (A− ) should only
+depend on a+ , b+ (a− , b− ), we simply group terms associated with D+ and b+ are grouped
+to GR,+ and perform the similar procedure for G− .
+     We are now ready to take the slow/fast limits as defined in the previous section. Noting
+
+                 lim(∓∆εD± ) = a± ,                              lim(q0 D± ) = 0 ,         (4.20)
+                    s                                             f
+                 lim(∓∆εD± ) = 0 ,                               lim(q0 D± ) = a± ,        (4.21)
+                    s                                             f
+
+it immediately follows from eq. (4.16) and eq. (4.17) that:
+
+                     i∂           1 ijm              1
+                        lim Gi,0j
+                             ± =     (a± − b± ) + iml vl v j (a± + b± )                  (4.22)
+                    ∂qm   s       2                  2
+                     i∂             1         1                 1
+                        lim Gi,0j
+                             ± =− 
+                                      ijm
+                                          b± − ijl vl v m a± + iml vl v j b±             (4.23)
+                    ∂qm f           2         2                 2
+
+Finally, we have:
+
+                                   i∂ i,0j  1
+                 κijm
+                  ± = lim            G     = a± (−imj + iml vl v j + ijl vl v m )       (4.24)
+                            s-f   ∂qm ±     2
+
+Similarly, we have
+
+                                          i∂ 0,0j  1
+                                    lim      G± = ∓ jml vl a± .                           (4.25)
+                                     s-f ∂qm       2
+
+With eqs. (4.24), (4.25) at hand, we can extract the transport functions, as we shall do in
+the next section.
+
+
+
+
+                                                 – 10 –
+5     Results and discussion
+
+5.1     Collecting our results, and comparison to others
+In section 2, we expand axial current phase space density Aµ (t, x, p) in terms of derivatives
+of hydrodynamics fields (see eqs. (2.6), (2.7)), and derive a Kubo relation relating trans-
+port functions in this derivative expansion with the behavior of correlation function under
+appropriate limits, see eqs. (3.17), (3.16) for explicit expression. In section 4, we performed
+a standard one-loop calculation and determined the behavior of the correlation function
+under those limits. Substituting eqs. (4.24), (4.25) int eqs. (3.17), (3.17d), we obtain the
+
+
+
+
+                                                                                                          JHEP07(2021)188
+desired expression for transport functions for fermions with a generic mass:
+
+                   (cω,± )1−loop = −(c̃ω,± )1−loop = εu −n0± (εu ) ,                              (5.1)
+                                                                        
+
+                   (gω,± )1−loop = 0            (gσ,± )1−loop = (−v vα ) εu
+                                                                   α
+                                                                              −n0± (εu ) ,        (5.2)
+                                                                                        
+
+
+where we introduce the notation n0± (εu ) ≡ ∂n± (εu )/∂εu . Since we are working in the rest-
+frame of the fluid in the previous sections, we have replaced εp with εu = p · u and v 2 with
+−(v α vα ) in eqs. (4.24), (4.25) to obtain results in the general fluid frame, i.e. eq. (5.1). In
+ref. [23] by us, we computed cT , cµ through the same method, finding:
+
+              (cT,± )1−loop = εu −n0± (εu ) ,            (cµ,± )1−loop = ∓β −1 −n0± (εu ) .       (5.3)
+                                                                                            
+
+
+Placing expressions (5.1), (5.2), (5.3) back to the derivative expansion eqs. (2.6), (2.7), we
+have
+
+       (fA,± )1−loop = − −n0± (εu ) p⊥ · ω                                                       (5.4a)
+                                       
+
+                                                     p⊥
+                                                       h              i
+      (Aµ⊥,± )1−loop = εu −n0± (εu )                      β −1 (∂λ⊥ β)
+                                               ω µ + µναλ uν
+                                                      α
+                                       
+                                                     εu
+                             1            p ⊥                p2
+                                                                                  
+                        ∓         µναλ uν α ∂λ⊥ (βµ) + − ⊥         µναβ
+                                                                          u  Q
+                                                                            ν α
+                                                                                ρ
+                                                                                  σ ρβ .         (5.4b)
+                            βεu           εu                 ε2u
+
+   The phase space density of axial current (or the average spin vector) in the presence of
+temperature gradient and vorticity has been studied extensively (see ref. [3] for a review).
+To make comparison with previous studies, we use
+
+    1 µναλ                      1                     h                     i
+          pν β −1 ∂α (βuβ ) = µναλ (εu uν + pν,⊥ ) uλ β −1 (∂α β) + ∂α uλ
+    2                           2
+                                       1                            1
+                             = εu ω µ + µναλ p⊥,ν uλ β −1 (∂α β) + µναλ p⊥,ν (uα Duλ + ∂α⊥ uλ ) ,
+                                       2                            2
+                                                      −1
+                             = εu ω + 
+                                   µ    µναλ
+                                             uν p⊥,α β (∂λ β) − u (p⊥ · ω) ,
+                                                                   µ
+                                                                                              (5.5)
+
+where from the second line to the third line, we have used the ideal hydrodynamic equation
+for a neutral fluid: Duα = −β −1 ∂α β where D ≡ u · ∂ and the relation:
+
+                    1 µναλ              1
+                          p⊥,ν ∂α⊥ uλ = µναβ p⊥,ν αβσρ uσ ω ρ = −uµ (p⊥ · ω) .                 (5.6)
+                    2                   2
+
+
+
+
+                                                     – 11 –
+Therefore we can recast eq. (5.4) into the form:
+                                                       1                                p2
+                                                                                                      
+(Aµ± )loop = −n0± (εu )       β   −1
+                                       Ω̃µν
+                                         T pν ∓           µναλ uν p⊥  ⊥
+                                                                    α ∂λ (βµ) +        − ⊥ µναβ uν Qαρ σρβ
+                                                      βεu                                εu
+                                                                                                        (5.7)
+where (the dual of) thermal vorticity is given by Ω̃µν
+                                                    T = (1/2)
+                                                               µναλ ∂ (βu ). The first term
+                                                                     α     λ
+in eq. (5.7) matches with the description of thermal vorticity effects in refs. [2, 29]
+    Two remarks are due here:
+  • When shear strength and charge density gradient are non-zero, the thermal vorticity
+    is not the only effect which contribute to spin polarization. The shear strength is
+
+
+
+
+                                                                                                                JHEP07(2021)188
+    generically comparable to vorticity in heavy-ion collisions. At beam energy scan
+    energy at RHIC, the baryon density gradient is also sizable.
+
+  • Several alternative forms of axial Wigner function are proposed to describe the ex-
+    periment data, see refs. [30, 31] for examples. Those expression of course can be
+    expressed in the form of eqs. (2.6), (2.7). However, the corresponding transport
+    functions are different from one-loop results eqs. (5.1), (5.2).
+
+5.2   Shear strength induced polarization and magnetization current term
+What is the physical origin of shear-induced quadrupole? Why gω , which quantify the
+quadrupole induced by vorticity, is zero at one-loop order, although it does not have to be?
+We shall address those questions by considering quantum kinetic theory.
+     For simplicity, let us now consider a specific case that fermions under study is mass-
+less. Below, we shall only present discussion for fermions as that for anti-fermions is in
+parallel. According to chiral kinetic theory [32, 33] (see refs. [34, 35] for examples of recent
+developments), one can determine A± through the variation of the semi-classical action for
+Wely fermions [17, 18], yielding
+                                                                          p̂
+                                                                                            
+                A+ (t, x; p) =                 εp sλ p̂ fλ (t, x; p) −        × ∇fλ (t, x; p) ,         (5.8)
+                                          X
+
+                                         λ=±
+                                                                         2|p|
+where λ = +, − accounts for right-handed and left-handed fermions respectively and where
+(sL , sR ) = (1, −1). Note for massless fermions, v = p̂ and εu = |p| in the fluid rest frame.
+The first term of eq. (5.8) arises from the fact that the spin of right-handed (left-handed)
+fermions is along (opposite to) the direction of its momentum. The second term is refered
+as to the magnetization current (MC) term ∇ × M , since the magnetization density M
+of chiral fermion λ is related to magnetic moments of fermions: Mλ = p (p̂/2|p|) fλ , and
+                                                                           R
+
+∇ × M is the magnetization current.
+      Let us consider the system in the presence of a slow varying velocity field u, and
+examine the behavior of fA , A+ according to eq. (5.8). The local equilibrium distribution
+function becomes n+ (β(εp − p · u − ∆εω,λ )) where the energy shift due to spin-vorticity
+coupling is given by ∆εω,λ = 12 sλ ω · p̂ . We first note that to the first order in gradient,
+fA,+ is non-zero because of the energy shift:
+               fA,+ = εp                 n+ (β(εp − p · u − ∆εω,λ − µ)) = (−n0+ )εp ω · p̂ ,            (5.9)
+                                  X
+
+                                  λ=±
+
+
+
+
+                                                          – 12 –
+Next, we replace fλ with n+ (β(εp − p · u − ∆εω )) and expand eq. (5.8) to the first order
+in gradient. The first term in eq. (5.8), induced by energy shift, becomes
+                                                              1 i
+                                                                            
+                                    (Ai+ )1 = (−n0+ )εp         ω − Qij ωj                         (5.10)
+                                                              3
+while the second term, related to the MC term, can be written as
+
+                     (Ai+ )2 = −(−n0+ )εp ilm p̂l p̂j ∂m uj
+                                              2 i
+                                                                   
+                                    0
+                             = −(−n+ )εp − ω − Q ωk +  Qlj σ m .
+                                                           ik ilm j
+                                                                                                   (5.11)
+                                              3
+
+
+
+
+                                                                                                            JHEP07(2021)188
+Collecting both contributions, we find
+                                     1 i             2
+                                                                                  
+             Ai+ =(−n0+ )εp            ω − Qij ωj − − ω i − Qij ωj + ijk Qjl σ l k
+                                     3               3
+                                                    
+                   =(−n0+ )εp ω i − ijk Qjl σ l k .                                               (5.12)
+
+Note, eq. (5.12) agrees with eq. (2.7) in the massless limit. To this point, we have assumed
+that β and µ are constant. It is a straightforward exercise to show that one could obtain the
+effects of temperature and chemical potential gradient from the magnetization current in
+eq. (5.8) following similar steps, and the results of doing so agree with eq. (2.7) in massless
+limit as well. Since the one-loop calculations should be matched with the analysis based
+on kinetic theory, we take this agreement as a nontrivial test of our calculation.
+     The above exercise makes clear the close relation between shear-induced polarization
+and the MC term. The latter is well-known in the context of quantum kinetic theory. One
+should be able to generalize the above discussion based on chiral kinetic theory for mass-
+less fermions to massive fermions. Indeed, ref. [19] shows that quantum kinetic equation
+and consequently Aµ± behaves smoothly from massless limit to the massive case, see also
+refs. [25, 36, 37] for related studies.
+     We close this section by discussing potential corrections to eq. (5.1) from higher loop
+effects along the lines of the above analysis. Let us account for the high loop corrections to
+the energy shift due to spin-voriticity coupling by introducing a non-zero parameter γ, i.e.,
+∆εω,λ = (1+γ)2 ω · p̂. Further, we recover the g-factor g dependence of the MC term which
+changes by g/2 (see for example ref. [22]). Consequently, eqs. (5.9) and (5.12) become,
+respectively,
+
+       fA,+ = (1 + γ)(−n0+ )εp ω · p̂ ,                                                            (5.13)
+                                           1 i               2
+                          "                                                                   #
+                                                          g
+                                                                
+        Ai+ = (−n0+ )εp (1 + γ)              ω − Qij ωj −   − ω i − Qij ωj + ijk Qjl σ l k
+                                           3              2  3
+                                  1                      g − 2 ijk
+                                                                         
+            = (−n0+ )εp        1 + (γ + g − 2) ω i − 1 +        Qjl σ l k
+                                  3                        2
+                   1
+                                               
+               +     ((g − 2) − γ) Qij ωj .                                                        (5.14)
+                   2
+Two comments is due here. First, we observe from (5.14) that gω ∝ ((g − 2) − γ). Since γ is
+generically independent of g−2, gω might be non-zero beyond one-loop. Second, we observe
+
+
+
+
+                                                    – 13 –
+from eqs. (5.13) and (5.14) that cω 6= c̃ω , or more explicitly, cω − c̃ω ∝ ((g − 2) − 2γ). So, it
+would be interesting to evaluate radiative corrections to gω , cω , c̃ω as well other coefficients
+in future. We remark that in Dirac/Weyl semi-metals, the value of g-factor of the emergent
+chiral quasi-particles can significantly differ from g = 2 due to a strong spin-orbit coupling
+(see ref. [22] and references therein).
+
+6   Summary and outlook
+
+In the fireball created in heavy-ion collisions, the derivatives of hydrodynamic fields such
+as flow and temperature can be of the order 10 MeV. Those derivatives might give rise to
+
+
+
+
+                                                                                                          JHEP07(2021)188
+observable effects in Λ and Λ̄ spin polarization measurement under the current precision.
+In this work, we have expanded the axial Wigner function in phase space systematically to
+the first order in derivatives. To obtain the associated transport functions, we have derived
+a generalized Kubo relation, allowing for the computation of relevant transport functions
+using the standard thermal field theory techniques. The present one-loop calculation in
+massless limit agrees with those obtained using the chiral kinetic theory. However, our
+results can be systematically improved by including higher loop corrections.
+     The main message of our study is that derivatives of hydrodynamic fields can induce
+a rich pattern in axial Wigner function and hence spin polarization density in phase space.
+In particular, we observe the shear strength (see eq. (2.4a)) can induce quadrupole pat-
+tern in the phase space, and this contribution is closely related to magnetic current. For
+illustration, let us take a flow profile uµ = (1, u) with |u|  1. Eq. (5.2) then becomes
+                                                            2
+                                            ∂n±        p
+                                                 
+                          Ai± = − −                              ijk Qjl σkl + . . . ,           (6.1)
+                                             ∂ε        εp
+
+where explicitly
+                            1                           1                2
+                                                                                       
+             Qij = p̂i p̂j − δ ij       ,     σi j =      ∂i uj + ∂j ui + (∂ · u) δi j        .   (6.2)
+                            3                           2                3
+Let us further consider the familiar shear flow in which case both vorticity and shear
+strength are present. Figure 2, which shows the resulting spin polarization in phase
+space, suggests a description of spin-polarization distribution would not be complete with-
+out including “shear-induced polarization”. We also note that the coupling between the
+quadrupole and vorticity (see the last term in eq. (2.7)) might be non-zero beyond one-
+loop. This would potentially induce additional quadrupole pattern in the spin polarization
+distribution in the presence of vorticity.
+      In future, the derivative expansion supplemented with the one-loop calculation results,
+i.e., eq. (5.4), can be served as a reference basis for the interpretation of the experimental
+data. For this purpose, one needs to perform a quantitative study based on hydrodynamic
+derivatives obtained from the state-of-art hydrodynamics simulation, see also a recent study
+using the transport model [6] which implements the contribution from the magnetization
+current. The results employing the realistic hydrodynamic modeling are reported in the
+companion paper [38].
+
+
+
+
+                                                  – 14 –
+                                                                                                                JHEP07(2021)188
+Figure 2. An illustration of spin polarization density in phase space induced by a shear-flow
+profile. Left: we consider and plot a typical shear flow profile ∂y ux = −α, where α is a constant. The
+corresponding vorticity and shear strength are σyx = σxy = α, ω z = α. According to eq. (5.4), the spin
+polarization vector projected to z-direction is given by: P z ∝ Az ∝ α 1 − sin2 θ cos(2φ) . In the
+                                                                                                   
+
+expression of P z , the first term is due to vorticity-induced polarization (see the first term of eq. (5.4))
+and the second one is from “shear-induced polarization” (SIP), see the second line of eq. (5.4) or
+eq. (6.1) and the text. Right: the resulting (scaled) Pz vs φ at θ = 0. We consider massless fermions
+for illustrative purpose and parametrize the direction of the single particle momentum in terms of
+polar and azimuthal angle p̂ = (sin θ cos φ, θ sin φ, cos θ).
+
+
+Acknowledgments
+
+We are grateful to Baochi Fu, Longgang Pang, Koichi Hattori, Chun Shen, Shi Pu, Shu
+Lin, Shuzhe Shi, Naoki Yamamoto, Dilun Yang, Lixing Yang for helpful conversations. In
+particular, we thank Yoshimasa Hidaka, Feng Li, Yifeng Sun, Shu Lin, Ho-Ung Yee and
+Dilun Yang for comments on the draft. This work was supported by the Strategic Priority
+Research Program of Chinese Academy of Sciences, Grant No. XDB34000000.
+
+A     The details in the gradient expansion
+
+We here provide further details on obtaining the gradient expansion in eqs. (2.6) and (2.7).
+Our strategy is to first write down all possible vectors which can be formed by each of
+the derivatives listed in eq. (2.4) together with uµ , pµ⊥ , Qµν , µναβ , and then examine how
+the results transform under T and P. For simplicity, we shall consider a neutral fluid and
+                                                 µ
+hence do not include the contribution from ∂⊥      (βµ) for the moment. There are fourteen
+possible vectors:
+    W1µ = θuµ ,              W2µ = θpµ⊥ ,                                                             (A.1)
+    W3µ = (ω · p)uµ ,       W4µ = ω µ ,       W5µ = Qµν ων ,          W6µ = εµναβ uν pα ωβ            (A.2)
+    W7µ = (a · p)uµ ,       W8µ = aµ ,        W9µ = Qµν aµ ,           µ
+                                                                      W10 = εµναβ uν pα aβ ,          (A.3)
+     µ                       µ                 µ                       µ
+    W11 = (aσ · p)uµ ,      W12 = aµσ ,       W13 = Qµν aµ,σ ,        W14 = εµναβ uν pα aβ,σ .        (A.4)
+where we have defined
+                                   aµ ≡ ∂µ⊥ log β ,        aµσ ≡ σ µν pν .                            (A.5)
+
+
+
+
+                                                  – 15 –
+                                          T                    P
+                               ∂µ         (−∂0 , ∂i )          (∂0 , −∂i )
+                               u   µ
+                                          (u , −u )
+                                              0     i
+                                                               (u0 , −ui )
+                               ωµ         (ω 0 , −ω i )        (−ω 0 , ω i )
+                               pµ⊥        (p0⊥ , −pi⊥ )        (p0⊥ , −pi⊥ )
+                               aµ         (−a0 , ai )          (a0 , −ai )
+                               aµσ        (−a0σ , aiσ )        (a0σ , −aiσ )
+                               θ          −θ                   θ
+
+                  Table 1. Transformations of various tensors under T and P.
+
+
+
+
+                                                                                                                  JHEP07(2021)188
+Using the table 1 where we list transformations of various tensors under P and T , it is
+easy to check:
+
+ T : Wbµ → (−Wb0 , Wbi )           P : Wbµ → (Wb0 , −Wbi )             b = 1, 2, 6, 7, 8, 9, 11, 12, 13 . (A.6)
+
+while Aµ transforms as:
+
+                     T : Aµ → (A0 , −Aib )                P : Aµb → (−A0 , Aib )                        (A.7)
+
+Therefore Wb listed in eq. (A.6) can not enter in the derivative expansion of A for the
+parity-even background under consideration since they transform differently from A under
+P. The remaining five vectors, W3 , W4 , W5 , W10 , W14 , transform in the same way as Aµ
+under P and hence are allowed by symmetry. Furthermore, one can verify using table 1
+that W3µ , W4µ , W5µ , W10
+                        µ     µ
+                           , W14 behave in the same way as Aµ under T . So, the corresponding
+expansion coefficients, defined in eqs. (2.6), (2.7), are T -even, meaning effects described by
+those equations, including shear-induce polarization, are non-dissipative. Extending the
+above analysis to the charged fluid, we arrive at eqs. (2.6), (2.7). Note if we were studying
+a fluid with background axial charge density, terms listed in eq. (A.6) would be allowed.
+For example, the effect associated with W6 is recently discussed in ref. [39].
+
+Open Access. This article is distributed under the terms of the Creative Commons
+Attribution License (CC-BY 4.0), which permits any use, distribution and reproduction in
+any medium, provided the original author(s) and source are credited.
+
+References
+ [1] Z.-T. Liang and X.-N. Wang, Globally polarized quark-gluon plasma in non-central A+A
+     collisions, Phys. Rev. Lett. 94 (2005) 102301 [Erratum ibid. 96 (2006) 039901]
+     [nucl-th/0410079] [INSPIRE].
+ [2] F. Becattini, V. Chandra, L. Del Zanna and E. Grossi, Relativistic distribution function for
+     particles with spin at local thermodynamical equilibrium, Annals Phys. 338 (2013) 32
+     [arXiv:1303.3431] [INSPIRE].
+ [3] F. Becattini, Polarization in relativistic fluids: a quantum field theoretical derivation, 4, 2020
+     [arXiv:2004.04050] [INSPIRE].
+
+
+
+
+                                                  – 16 –
+ [4] W. Florkowski, B. Friman, A. Jaiswal and E. Speranza, Relativistic fluid dynamics with spin,
+     Phys. Rev. C 97 (2018) 041901 [arXiv:1705.00587] [INSPIRE].
+ [5] K. Hattori, M. Hongo, X.-G. Huang, M. Matsuo and H. Taya, Fate of spin polarization in a
+     relativistic fluid: An entropy-current analysis, Phys. Lett. B 795 (2019) 100
+     [arXiv:1901.06615] [INSPIRE].
+ [6] S.Y.F. Liu, Y. Sun and C.M. Ko, Spin polarizations in a covariant
+     angular-momentum-conserved chiral transport model, Phys. Rev. Lett. 125 (2020) 062301
+     [arXiv:1910.06774] [INSPIRE].
+ [7] K. Fukushima and S. Pu, Spin hydrodynamics and symmetric energy-momentum tensors —
+     A current induced by the spin vorticity, Phys. Lett. B 817 (2021) 136346
+
+
+
+
+                                                                                                     JHEP07(2021)188
+     [arXiv:2010.01608] [INSPIRE].
+ [8] S. Shi, C. Gale and S. Jeon, From chiral kinetic theory to relativistic viscous spin
+     hydrodynamics, Phys. Rev. C 103 (2021) 044906 [arXiv:2008.08618] [INSPIRE].
+ [9] S. Li, M.A. Stephanov and H.-U. Yee, Non-dissipative second-order transport, spin, and
+     pseudo-gauge transformations in hydrodynamics, arXiv:2011.12318 [INSPIRE].
+[10] R. Singh, G. Sophys and R. Ryblewski, Spin polarization dynamics in the Gubser-expanding
+     background, Phys. Rev. D 103 (2021) 074024 [arXiv:2011.14907] [INSPIRE].
+[11] STAR collaboration, Global Λ hyperon polarization in nuclear collisions: evidence for the
+     most vortical fluid, Nature 548 (2017) 62 [arXiv:1701.06657] [INSPIRE].
+                                                                                   √
+[12] STAR collaboration, Global polarization of Λ hyperons in Au+Au collisions at sN N = 200
+     GeV, Phys. Rev. C 98 (2018) 014910 [arXiv:1805.04400] [INSPIRE].
+[13] STAR collaboration, Global and local polarization of Λ hyperons in Au+Au collisions at 200
+     GeV from STAR, Nucl. Phys. A 982 (2019) 511 [arXiv:1808.10482] [INSPIRE].
+[14] STAR collaboration, Polarization of Λ (Λ̄) hyperons along the beam direction in Au+Au
+                  √
+     collisions at sN N = 200 GeV, Phys. Rev. Lett. 123 (2019) 132301 [arXiv:1905.11917]
+     [INSPIRE].
+[15] F. Becattini and I. Karpenko, Collective longitudinal polarization in relativistic heavy-ion
+     collisions at very high energy, Phys. Rev. Lett. 120 (2018) 012302 [arXiv:1707.07984]
+     [INSPIRE].
+[16] X.-L. Xia, H. Li, Z.-B. Tang and Q. Wang, Probing vorticity structure in heavy-ion collisions
+     by local Λ polarization, Phys. Rev. C 98 (2018) 024905 [arXiv:1803.00867] [INSPIRE].
+[17] J.-Y. Chen, D.T. Son, M.A. Stephanov, H.-U. Yee and Y. Yin, Lorentz invariance in chiral
+     kinetic theory, Phys. Rev. Lett. 113 (2014) 182302 [arXiv:1404.5963] [INSPIRE].
+[18] J.-Y. Chen, D.T. Son and M.A. Stephanov, Collisions in chiral kinetic theory, Phys. Rev.
+     Lett. 115 (2015) 021601 [arXiv:1502.06966] [INSPIRE].
+[19] K. Hattori, Y. Hidaka and D.-L. Yang, Axial kinetic theory and spin transport for fermions
+     with arbitrary mass, Phys. Rev. D 100 (2019) 096011 [arXiv:1903.01653] [INSPIRE].
+[20] S. A. Crooker and D. L. Smith, Imaging spin flows in semiconductors subject to electric,
+     magnetic, and strain fields, Phys. Rev. Lett. 94 (2005) 236601.
+[21] A. G. Mal’Shukov, C.S. Tang, C.S. Chu and K.A. Chao, Strain-induced coupling of spin
+     current to nanomechanical oscillations, Phys. Rev. Lett. 95 (2005) 107203
+     [cond-mat/0504773].
+
+
+
+
+                                               – 17 –
+[22] D.E. Kharzeev, M.A. Stephanov and H.-U. Yee, Anatomy of chiral magnetic effect in and out
+     of equilibrium, Phys. Rev. D 95 (2017) 051901 [arXiv:1612.01674] [INSPIRE].
+[23] S.Y.F. Liu and Y. Yin, Spin Hall effect in heavy ion collisions, arXiv:2006.12421 [INSPIRE].
+[24] J.M. Luttinger, Theory of thermal transport coefficients, Phys. Rev. 135 (1964) A1505
+     [INSPIRE].
+[25] Y.-C. Liu, K. Mameda and X.-G. Huang, Covariant spin kinetic theory I: collisionless limit,
+     Chin. Phys. C 44 (2020) 094101 [arXiv:2002.03753] [INSPIRE].
+[26] T. Hayata, Y. Hidaka and K. Mameda, Second order chiral kinetic theory under gravity and
+     antiparallel charge-energy flow, JHEP 05 (2021) 023 [arXiv:2012.12494] [INSPIRE].
+
+
+
+
+                                                                                                    JHEP07(2021)188
+[27] K. Landsteiner, E. Megias, L. Melgar and F. Pena-Benitez, Holographic gravitational
+     anomaly and chiral vortical effect, JHEP 09 (2011) 121 [arXiv:1107.0368] [INSPIRE].
+[28] S. Lin and L. Yang, Mass correction to chiral vortical effect and chiral separation effect,
+     Phys. Rev. D 98 (2018) 114022 [arXiv:1810.02979] [INSPIRE].
+[29] R.-h. Fang, L.-g. Pang, Q. Wang and X.-n. Wang, Polarization of massive fermions in a
+     vortical fluid, Phys. Rev. C 94 (2016) 024904 [arXiv:1604.04036] [INSPIRE].
+[30] H.-Z. Wu, L.-G. Pang, X.-G. Huang and Q. Wang, Local spin polarization in high energy
+     heavy ion collisions, Phys. Rev. Research. 1 (2019) 033058 [arXiv:1906.09385] [INSPIRE].
+[31] W. Florkowski, A. Kumar, R. Ryblewski and A. Mazeliauskas, Longitudinal spin polarization
+     in a thermal model, Phys. Rev. C 100 (2019) 054907 [arXiv:1904.00002] [INSPIRE].
+[32] D.T. Son and N. Yamamoto, Berry curvature, triangle anomalies, and the chiral magnetic
+     effect in Fermi liquids, Phys. Rev. Lett. 109 (2012) 181602 [arXiv:1203.2697] [INSPIRE].
+[33] M.A. Stephanov and Y. Yin, Chiral kinetic theory, Phys. Rev. Lett. 109 (2012) 162001
+     [arXiv:1207.0747] [INSPIRE].
+[34] N. Mueller and R. Venugopalan, Worldline construction of a covariant chiral kinetic theory,
+     Phys. Rev. D 96 (2017) 016023 [arXiv:1702.01233] [INSPIRE].
+[35] N. Mueller and R. Venugopalan, Constructing phase space distributions with internal
+     symmetries, Phys. Rev. D 99 (2019) 056003 [arXiv:1901.10492] [INSPIRE].
+[36] N. Weickgenannt, X.-L. Sheng, E. Speranza, Q. Wang and D.H. Rischke, Kinetic theory for
+     massive spin-1/2 particles from the Wigner-function formalism, Phys. Rev. D 100 (2019)
+     056018 [arXiv:1902.06513] [INSPIRE].
+[37] N. Weickgenannt, E. Speranza, X.-l. Sheng, Q. Wang and D.H. Rischke, Generating spin
+     polarization from vorticity through nonlocal collisions, arXiv:2005.01506 [INSPIRE].
+[38] B. Fu, S.Y.F. Liu, L. Pang, H. Song and Y. Yin, Shear-induced spin polarization in heavy-ion
+     collisions, arXiv:2103.10403 [INSPIRE].
+[39] D. Hou and S. Lin, Polarization rotation of chiral fermions in vortical fluid, Phys. Lett. B
+     818 (2021) 136386 [arXiv:2008.03862] [INSPIRE].
+
+
+
+
+                                               – 18 –
+

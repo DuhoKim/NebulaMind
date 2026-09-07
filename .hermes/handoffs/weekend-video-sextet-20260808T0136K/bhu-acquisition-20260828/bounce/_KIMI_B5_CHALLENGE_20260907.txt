@@ -1,0 +1,31 @@
+Adversarial referee. The target is a set of ABSENCE claims, which are the most dangerous kind. This lane retracted a filed claim
+today for exactly this failure: it asserted "no source prints X" from an extraction, and the equation was printed twice. Your
+task is to break these absences by FINDING the thing claimed missing.
+
+READ from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/:
+  B5_VALIDITY_20260907.md (the target), B4_RECONCILIATION_20260907.md, B3_CLASS_FILED_20260907.md,
+  B1_RESULT_V2_20260907.md (Amendments A and B). The publisher article HTML is saved at b4_springer_access.html.
+
+B5 claims all four of these are NOT ESTABLISHED for the regime where the bounce occurs (spin term >= whole ordinary density):
+  (i) validity of macroscopic Weyssenhoff spin-fluid averaging there;
+  (ii) validity of the ideal ultrarelativistic thermal matter description used with it;
+  (iii) persistence of the unpolarised isotropic spin average under strong sheared contraction, and negligible anisotropic stress;
+  (iv) physical support for extrapolating fixed-beta, beta*H^4 production through an entire collapse.
+
+ATTACK:
+1. For EACH of the four, try to FIND a published peer-reviewed source that DOES establish it, or that supplies an explicit
+   validity window (a density, a correlation length, a particle-number-per-cell criterion, a polarisation-relaxation timescale).
+   Search the Einstein-Cartan/Weyssenhoff cosmology literature properly, not only the papers this lane already cites. A single
+   such source breaks that row.
+2. Attack the strongest one specifically: (iii). If spins DO polarise under shear, an anisotropic stress appears and the shear
+   evolution argument behind B1's whole no-production result changes. Is there published work computing spin polarisation in a
+   shearing relativistic medium (spin hydrodynamics, heavy-ion spin-polarisation literature, Barnett/Einstein-de Haas analogues)
+   that bears on this? Report what it establishes and whether it transfers to this regime.
+3. Check whether B5 overstates: does "NOT ESTABLISHED" anywhere really mean "established to FAIL"? Those are different, and the
+   lane must not slide from one to the other. Quote any sentence that slides.
+4. Check the converse: does B5 UNDERSTATE anything the sources do establish?
+
+RULES: published peer-reviewed only for the physics; label preprints; for each source say whether you read the publisher page,
+the arXiv copy, or only an abstract. Bind claims to what you actually read. Report; do not repair.
+Write to bounce/KIMI_B5_CHALLENGE_20260907.md, first line exactly one of:
+B5_REVIEW=ABSENCES_HOLD / B5_REVIEW=ABSENCES_BROKEN / B5_REVIEW=OVERSTATED
