@@ -1,0 +1,31 @@
+FINAL CORE READ-ONLY PREFLIGHT (no RunPath stage invoked)
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 399, in _common
+    self.env = _environment(self.inputs["env_lock"], self.inputs["runtime"])
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 200, in _environment
+    "numpy": np.__version__, "platform": platform.platform(),
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/platform.py", line 1211, in platform
+    system, node, release, version, machine, processor = uname()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/platform.py", line 798, in __iter__
+    (self.processor,)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/functools.py", line 969, in __get__
+    val = self.func(instance)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/platform.py", line 793, in processor
+    return _unknown_as_blank(_Processor.get())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/platform.py", line 745, in get
+    return func() or ''
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/platform.py", line 764, in from_subprocess
+    return subprocess.check_output(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 424, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 829, in __init__
+    errread, errwrite) = self._get_handles(stdin, stdout, stderr)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 1610, in _get_handles
+    errwrite = self._get_devnull()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 1062, in _get_devnull
+    self._devnull = os.open(os.devnull, os.O_RDWR)
+  File "<stdin>", line 10, in deny
+RuntimeError: read-only preflight refused write

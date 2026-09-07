@@ -1,0 +1,109 @@
+{
+  "schema": "A1-RUNTIME-PINS-CORE-1",
+  "status": "AUTHORING_REGISTER",
+  "observed_at_utc": "2026-09-07T07:26:21.374930+00:00",
+  "scope": "Interpreter artifact, named library versions, enforced env_lock values, and only the two extension modules explicitly fingerprinted by run_path._environment. No installed-library or dyld sweep.",
+  "interpreter": {
+    "path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
+    "sha256": "bdea59019a38eb6600cc9e71e984a97fedadc406448431281e7657030f54987e",
+    "bytes": 102352
+  },
+  "python_version": "3.9.6",
+  "py_ecc_version": "8.0.0",
+  "numpy_version": "1.26.4",
+  "astropy_version": "6.0.1",
+  "library_version_enforcement": {
+    "py_ecc": "run_path._environment compares the recorded py_ecc_version with the imported package version; mismatch refuses naming the module path and runtime register. The independent py_ecc 8.0.0 requirement is retained.",
+    "numpy": "run_path._environment compares the recorded numpy_version with the imported package version; mismatch refuses naming the module path and runtime register.",
+    "astropy": "run_path._environment compares the recorded astropy_version with the imported package version; mismatch refuses naming the module path and runtime register."
+  },
+  "invocation": {
+    "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "PYTHONPATH": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/_venv_bls/lib/python3.9/site-packages",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "sys_dont_write_bytecode": true,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "invocation_enforcement": "run_path._environment enforces the complete recorded invocation, exact executable and PYTHONPATH, literal PYTHONDONTWRITEBYTECODE=1, sys.dont_write_bytecode and all five thread settings. Python version and every env_lock_enforced_values field are compared independently of the scientific lock.",
+  "env_lock": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/fourier_chirality/env_lock.json",
+    "sha256": "4e2c851fe1f22f4bc28f121cf3ff4326f036be57fc100b34af9e5501d6c74251"
+  },
+  "env_lock_enforced_values": {
+    "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "python": "3.9.6",
+    "numpy": "1.26.4",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "numpy_core_sha256": "e870618cf0f8a4b73a928649aba064eee859f8e25a7912344c979f1d03679194",
+    "numpy_core_basename": "_multiarray_umath.cpython-39-darwin.so",
+    "numpy_fft_sha256": "cfc7c758921da384994a66578d289d6c8aa710756a6af64a28f964b90fd5f546",
+    "numpy_fft_basename": "_pocketfft_internal.cpython-39-darwin.so",
+    "thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "non_enforced_env_lock_fields": {
+    "scope": "E2 claims the same-process double evaluation that score_config performs, in this locked environment; the driver sets the thread variables above before importing numpy and records them; no cross-process bit-exactness is claimed"
+  },
+  "files": [
+    {
+      "role": "interpreter",
+      "path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
+      "sha256": "bdea59019a38eb6600cc9e71e984a97fedadc406448431281e7657030f54987e",
+      "bytes": 102352
+    },
+    {
+      "role": "explicitly_checked_extension",
+      "module": "numpy.core._multiarray_umath",
+      "path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy/core/_multiarray_umath.cpython-39-darwin.so",
+      "resolved_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy/core/_multiarray_umath.cpython-39-darwin.so",
+      "sha256": "e870618cf0f8a4b73a928649aba064eee859f8e25a7912344c979f1d03679194",
+      "bytes": 3164512
+    },
+    {
+      "role": "explicitly_checked_extension",
+      "module": "numpy.fft._pocketfft_internal",
+      "path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy/fft/_pocketfft_internal.cpython-39-darwin.so",
+      "resolved_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy/fft/_pocketfft_internal.cpython-39-darwin.so",
+      "sha256": "cfc7c758921da384994a66578d289d6c8aa710756a6af64a28f964b90fd5f546",
+      "bytes": 102309
+    }
+  ],
+  "counts": {
+    "real_files": 3,
+    "placeholders": 0,
+    "interpreter_files": 1,
+    "explicitly_checked_extension_files": 2,
+    "library_versions": 3
+  },
+  "guarantees": [
+    "Rehashing files can detect changes to the named on-disk interpreter and the two named NumPy extension artifacts.",
+    "Comparing the recorded versions and lock values can detect drift in those reported values. Every enforced env_lock value matched in the offline observation.",
+    "The consumer enforces this bounded runtime contract at stage entry and before stage record completion. The register remains authoring evidence; no environment installation, adoption or actual study run is established."
+  ],
+  "limits": [
+    "Version strings do not identify every package byte or transitive dependency. No byte-level identity is claimed for py_ecc, astropy, NumPy Python sources or their full dependency trees.",
+    "Interpreter digest follows the invocation path's symlink to the resolved executable. It does not cover the Python framework, standard library, loader, shared libraries, OS, TLS trust store or in-memory relocated code.",
+    "Only the NumPy core and FFT extensions have explicit file pins and loaded-module path checks. Dynamically resolved Astropy, cytoolz and other extensions, their shared-library dependencies and dyld-resolved images remain outside this bounded byte pin; package versions are not binary identity.",
+    "Disabled bytecode writing does not disable reading existing .pyc files. CORE verifies all recorded local-code caches, requires an entry for each currently discoverable standard cache of its local source aliases, and compares cached code objects against compiled pinned source. Third-party caches and custom import loaders remain outside this bounded pin.",
+    "No cross-process or cross-machine bit-exactness, complete dependency closure, scientific correctness, authorization or successful study run is guaranteed."
+  ],
+  "current_driver_compatibility": {
+    "compatible": true,
+    "reason": "V46 run_path consumes A1-RUNTIME-PINS-CORE-1, verifies every recorded artifact and alias, checks the loaded paths of the two named NumPy extensions, all four Python/library versions and both representations of the scientific lock. Generic loaded-site-packages coverage is no longer required under the two-register decision.",
+    "driver_modified": true
+  }
+}

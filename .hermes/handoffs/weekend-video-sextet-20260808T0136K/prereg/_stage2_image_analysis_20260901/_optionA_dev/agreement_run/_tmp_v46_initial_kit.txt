@@ -1,0 +1,12 @@
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_core_consumer.py --against _optionA_dev/agreement_run/_tmp_v46_predecessor_tests.txt
+FAIL-FIRST KIT: PASS — 32 test methods, each with exactly one outcome assertion in its body and an explicit label; 28 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v46_predecessor_tests.txt); 4 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_run_path.py --against _optionA_dev/agreement_run/_tmp_v46_baseline_tests.txt
+FAIL-FIRST KIT: PASS — 42 test methods, each with exactly one outcome assertion in its body and an explicit label; 0 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v46_baseline_tests.txt); 42 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_medium_perturbation.py --against _optionA_dev/agreement_run/_tmp_v46_baseline_tests.txt
+FAIL-FIRST KIT: PASS — 32 test methods, each with exactly one outcome assertion in its body and an explicit label; 0 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v46_baseline_tests.txt); 32 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_select_sample.py --against _optionA_dev/agreement_run/_tmp_v46_baseline_tests.txt
+FAIL-FIRST KIT: REFUSED — test_nonmember_excluded_id_tolerated_and_counted: labelled FAIL-FIRST but PASSED against the predecessor — it reproduces nothing and cannot be counted as reproduction (RULE 2); test_nonmember_failed_id_tolerated_and_counted: labelled FAIL-FIRST but PASSED against the predecessor — it reproduces nothing and cannot be counted as reproduction (RULE 2); test_nonmembers_never_appear_in_any_split: labelled FAIL-FIRST but PASSED against the predecessor — it reproduces nothing and cannot be counted as reproduction (RULE 2)
+EXIT CODE: 2

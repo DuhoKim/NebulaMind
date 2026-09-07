@@ -3,12 +3,14 @@
 Python API; no live-run CLI. Every stage takes a digest-bearing predecessor.
 Expected C/draw/W/access digests are supplied from the applicable externally
 published record by the operator, never discovered from adjacent local files.
-See RUNTIME_EVIDENCE_20260907.md and METADATA_PINS_20260907.md for input gaps.
+See MANIFEST_SCOPE_NOTE_20260907.md for the bounded guarantees and limits.
 
-C JSON schema: schema='A1-INPUT-1', code={relative_path: sha256},
-inputs={eligible, exclusion, failed, coordinates, bricks, no_r, env_lock,
-runtime}, where each value is {path, sha256}. Runtime is JSON with
-py_ecc_version and files (a list of individual {path,sha256} entries).
+C uses A1-INPUT-CORE-DRAFT-1: files is the complete current input/code/cache
+register; inputs/code are matching lookup aliases. CORE readiness is required
+and recomputed. Runtime uses A1-RUNTIME-PINS-CORE-1: named executable/extension
+artifacts, versions, invocation and scientific lock values. The exhaustive
+inventories are not authorities. Pins check disk bytes and reported values,
+not all third-party caches, dynamically loaded libraries or process memory.
 Coordinates are label-free JSON rows with exactly objid, ra, dec, brick.
 The renderer consumes their preassigned bricks: no population/brick test is
 reimplemented. Source checksums/planes/labels arrive only in stage inventories.
@@ -22,9 +24,11 @@ from __future__ import annotations
 
 import hashlib
 import importlib
+import importlib.util
 import io
 import json
 import math
+import marshal
 import os
 from pathlib import Path
 import platform
@@ -52,9 +56,10 @@ CODE = (
     "study_renderer/pixel_rejection_v2.py",
     "miniprereg_pins/protected_region_v2.py",
     "miniprereg_pins/validation_gate.py",
+    "_optionA_dev/agreement_run/medium_perturbation.py",
 )
 INPUTS = ("eligible", "exclusion", "failed", "coordinates", "bricks", "no_r",
-          "env_lock", "runtime")
+          "render_config", "env_lock", "runtime")
 SIZES = {"tuning": 400, "holdout": 200, "validation": 2000}
 FLOORS = {"tuning": 380, "holdout": 190, "validation": 1900}
 PREVIOUS = {"seed": "designation", "draw": "seed", "tuning": "draw",
@@ -85,13 +90,19 @@ def read_pin(pin):
     require(isinstance(pin, dict), "MISSING-DIGEST: file pin")
     expected = pin.get("sha256")
     require(isinstance(expected, str) and re.fullmatch("[0-9a-f]{64}", expected),
-            "MISSING-DIGEST: malformed SHA256")
+            "MISSING-DIGEST: " + str(pin.get("path", "file pin")))
     require(isinstance(pin.get("path"), str) and pin["path"], "MISSING-PATH")
     try:
         raw = Path(pin["path"]).read_bytes()
     except OSError as exc:
         raise Refused("MISSING-FILE: " + pin["path"]) from exc
     require(sha(raw) == expected, "DIGEST-MISMATCH: " + pin["path"])
+    if "resolved_path" in pin:
+        require(str(Path(pin["path"]).resolve()) == pin["resolved_path"],
+                "RESOLVED-PATH-MISMATCH: " + pin["path"])
+    if "bytes" in pin:
+        require(type(pin["bytes"]) is int and len(raw) == pin["bytes"],
+                "SIZE-MISMATCH: " + pin["path"])
     return raw
 
 
@@ -141,23 +152,49 @@ def _module(name):
 
 def _environment(lock_pin, runtime_pin):
     lock = json_pin(lock_pin)
-    runtime_raw = read_pin(runtime_pin).decode("utf-8")
-    if "<!-- A1-RUNTIME-JSON -->" in runtime_raw:
-        runtime_raw = runtime_raw.split("<!-- A1-RUNTIME-JSON -->\n```json\n", 1)[1].split("\n```", 1)[0]
-    runtime = json.loads(runtime_raw)
+    runtime = json_pin(runtime_pin)
+    context = runtime_pin["path"]
+    require(runtime.get("schema") == "A1-RUNTIME-PINS-CORE-1",
+            "RUNTIME-SCHEMA: " + context)
     require(sys.executable == INTERPRETER and
             os.environ.get("PYTHONPATH") == PYTHONPATH and sys.dont_write_bytecode,
-            "ENV-MISMATCH: invocation")
-    files = runtime.get("files")
-    require(isinstance(files, list) and files, "MISSING-DIGEST: runtime files")
-    for p in files:
-        read_pin(p)
+            "ENV-MISMATCH: invocation: " + context)
+    invocation = {"interpreter": sys.executable,
+                  "PYTHONPATH": os.environ.get("PYTHONPATH"),
+                  "PYTHONDONTWRITEBYTECODE": os.environ.get("PYTHONDONTWRITEBYTECODE"),
+                  "sys_dont_write_bytecode": bool(sys.dont_write_bytecode),
+                  "thread_env": {v: os.environ.get(v) for v in THREAD_VARS}}
+    require(runtime.get("invocation") == invocation and
+            invocation["PYTHONDONTWRITEBYTECODE"] == "1",
+            "ENV-MISMATCH: recorded invocation: " + context)
+    files = _file_register(runtime.get("files"), "RUNTIME")
+    _registered_pin(files, runtime.get("interpreter"), "RUNTIME")
+    interpreter = runtime["interpreter"]
+    require(interpreter["path"] == sys.executable,
+            "ENV-MISMATCH: interpreter path: " + interpreter["path"])
+    require(_same_pin(runtime.get("env_lock"), lock_pin),
+            "ENV-MISMATCH: env_lock binding: " + lock_pin["path"])
     import numpy as np
     import numpy.fft._pocketfft_internal as fft
     import py_ecc
+    import astropy
     # Preload the exact renderer/scorer dependencies before any protected input.
     from astropy.io import fits
     from astropy.wcs import WCS
+    for module in (np.core._multiarray_umath, fft):
+        matches = [p for p in files.values() if p.get("module") == module.__name__]
+        require(len(matches) == 1, "MISSING-RUNTIME-ENTRY: " + module.__file__)
+        require(Path(matches[0]["path"]).resolve() == Path(module.__file__).resolve(),
+                "ENV-MISMATCH: extension path: " + module.__file__ +
+                " (recorded " + matches[0]["path"] + ")")
+    versions = {"python_version": (sys.version.split()[0], sys.executable),
+                "numpy_version": (np.__version__, np.__file__),
+                "py_ecc_version": (py_ecc.__version__, py_ecc.__file__),
+                "astropy_version": (astropy.__version__, astropy.__file__)}
+    for name, (actual, path) in versions.items():
+        require(runtime.get(name) == actual,
+                "ENV-MISMATCH: " + name + ": " + path + " in " + context)
+    require(py_ecc.__version__ == "8.0.0", "ENV-MISMATCH: py_ecc: " + py_ecc.__file__)
     observed = {
         "interpreter": sys.executable, "python": sys.version.split()[0],
         "numpy": np.__version__, "platform": platform.platform(),
@@ -168,18 +205,103 @@ def _environment(lock_pin, runtime_pin):
         "numpy_fft_basename": Path(fft.__file__).name,
         "thread_env": {v: os.environ.get(v) for v in THREAD_VARS},
     }
-    require(all(lock.get(k) == v for k, v in observed.items()),
-            "ENV-MISMATCH: scientific lock")
-    require(runtime.get("py_ecc_version") == py_ecc.__version__ == "8.0.0",
-            "ENV-MISMATCH: py_ecc")
-    pinned = {str(Path(p["path"]).resolve()) for p in files}
-    required = [INTERPRETER, py_ecc.__file__, np.core._multiarray_umath.__file__, fft.__file__]
-    required.extend(getattr(m, "__file__", "") for m in tuple(sys.modules.values())
-                    if "site-packages/" in (getattr(m, "__file__", "") or ""))
-    missing = sorted({str(Path(p).resolve()) for p in required} - pinned)
-    require(not missing, "MISSING-DIGEST: loaded runtime files: " + ", ".join(missing))
+    recorded = runtime.get("env_lock_enforced_values", {})
+    for key, value in observed.items():
+        require(lock.get(key) == value, "ENV-MISMATCH: scientific lock " + key +
+                ": " + lock_pin["path"])
+        require(recorded.get(key) == value, "ENV-MISMATCH: recorded lock " + key +
+                ": " + context)
+    require(set(recorded) == set(observed), "ENV-MISMATCH: lock fields: " + context)
     return {"observed": observed, "py_ecc": py_ecc.__version__,
+            "versions": {k: v[0] for k, v in versions.items()},
             "env_lock": lock_pin, "runtime": runtime_pin}
+
+
+def _same_pin(left, right):
+    return (isinstance(left, dict) and isinstance(right, dict) and
+            isinstance(left.get("path"), str) and isinstance(right.get("path"), str) and
+            Path(left["path"]).resolve() == Path(right["path"]).resolve() and
+            left.get("sha256") == right.get("sha256"))
+
+
+def _file_register(entries, scope):
+    require(isinstance(entries, list) and entries, "MISSING-" + scope + "-FILES")
+    result = {}
+    for entry in entries:
+        read_pin(entry)
+        path = str(Path(entry["path"]).resolve())
+        require(path not in result, "DUPLICATE-" + scope + "-ENTRY: " + entry["path"])
+        result[path] = entry
+    return result
+
+
+def _registered_pin(files, pin, scope="CORE"):
+    require(isinstance(pin, dict) and isinstance(pin.get("path"), str),
+            "MISSING-" + scope + "-PIN")
+    path = str(Path(pin["path"]).resolve())
+    require(path in files, "MISSING-" + scope + "-ENTRY: " + pin["path"])
+    require(_same_pin(files[path], pin), "PIN-BINDING-MISMATCH: " + pin["path"])
+
+
+def _core(c):
+    """Verify every CORE row and required alias; recompute readiness from CORE."""
+    require(c.get("schema") == "A1-INPUT-CORE-DRAFT-1", "INPUT-SCHEMA")
+    files = _file_register(c.get("files"), "CORE")
+    code, inputs = c.get("code", {}), c.get("inputs", {})
+    require(isinstance(code, dict) and isinstance(inputs, dict), "CORE-ALIASES-SCHEMA")
+    for rel in CODE:
+        require(rel in code, "MISSING-CORE-ENTRY: " + str(ROOT / rel))
+    for rel, digest in code.items():
+        source = ROOT / rel
+        _registered_pin(files, {"path": str(source), "sha256": digest})
+        # -B suppresses cache WRITES only. Any existing standard cache for our
+        # code must itself be pinned; no package/cache tree is swept.
+        cache = Path(importlib.util.cache_from_source(str(source.resolve())))
+        if cache.is_file():
+            require(str(cache.resolve()) in files, "MISSING-CORE-ENTRY: " + str(cache))
+    for name in INPUTS:
+        require(name in inputs, "MISSING-CORE-INPUT: " + name)
+    for pin in inputs.values():
+        _registered_pin(files, pin)
+    require(Path(inputs["render_config"]["path"]).resolve() ==
+            (ROOT / "miniprereg_pins/render_config_v2.json").resolve(),
+            "CONFIG-PATH-MISMATCH: " + inputs["render_config"]["path"])
+    for entry in files.values():
+        require(entry.get("status") == "REAL", "CORE-ENTRY-STATUS: " + entry["path"])
+        if entry.get("kind") == "our_imported_bytecode":
+            source = entry.get("source")
+            require(source in code, "CACHE-SOURCE-MISSING: " + entry["path"])
+            raw = read_pin(entry)
+            source_path = (ROOT / source).resolve()
+            source_raw = read_pin({"path": str(source_path), "sha256": code[source]})
+            try:
+                equal = (raw[:4] == importlib.util.MAGIC_NUMBER and
+                         marshal.loads(raw[16:]) == compile(source_raw, str(source_path),
+                             "exec", dont_inherit=True, optimize=sys.flags.optimize))
+            except (ValueError, EOFError, TypeError):
+                equal = False
+            require(equal, "CACHE-SOURCE-MISMATCH: " + entry["path"])
+    placeholders = c.get("placeholders")
+    obligations = c.get("current_preparation_obligations")
+    require(isinstance(placeholders, list) and isinstance(obligations, list),
+            "CORE-READINESS-SCHEMA")
+    reasons = ["INPUT placeholder: " + str(p.get("name", p.get("path")))
+               for p in placeholders if p.get("due_stage") == "INPUT" or
+               p.get("blocks_input_freeze") is not False]
+    reasons += [str(p.get("id")) + ": " + str(p.get("evidence", "unresolved"))
+                for p in obligations if p.get("resolved") is not True]
+    checks = {"all_real_entries_rehashed_and_matched": True,
+              "input_due_placeholders_resolved": not any(
+                  p.get("due_stage") == "INPUT" or p.get("blocks_input_freeze") is not False
+                  for p in placeholders),
+              "current_preparation_obligations_resolved": all(
+                  p.get("resolved") is True for p in obligations)}
+    readiness = c.get("readiness", {})
+    reason = "; ".join(reasons) or str(readiness.get("reason", "CORE readiness flag is false or missing"))
+    require(c.get("ready_for_input_freeze") is True and all(checks.values()),
+            "CORE-NOT-READY: " + reason)
+    require(readiness.get("checks") == checks, "CORE-READINESS-CHECKS-MISMATCH")
+    return inputs
 
 
 def _coordinates(pin):
@@ -273,15 +395,7 @@ class RunPath:
 
     def _common(self):
         c = json_pin(self.C)
-        require(c.get("schema") == "A1-INPUT-1", "INPUT-SCHEMA")
-        code = c.get("code", {})
-        for rel in CODE:
-            read_pin({"path": str(ROOT / rel), "sha256": code.get(rel)})
-        self.inputs = c.get("inputs", {})
-        require(set(INPUTS) <= set(self.inputs), "MISSING-DIGEST: INPUT inventory")
-        # INPUTS are all label-free, except the environment/code records.
-        for name in INPUTS:
-            read_pin(self.inputs[name])
+        self.inputs = _core(c)
         self.env = _environment(self.inputs["env_lock"], self.inputs["runtime"])
         return c
 
@@ -300,8 +414,8 @@ class RunPath:
         return prev
 
     def _record(self, stage, predecessor, fields):
-        # Recheck after lazy package imports too; an unlisted dependency stops.
-        self.env = _environment(self.inputs["env_lock"], self.inputs["runtime"])
+        # Recheck CORE and bounded runtime pins after the stage's lazy imports.
+        self._common()
         record = {"schema": "A1-STAGE-1", "stage": stage, "C": self.C,
                   "predecessor": predecessor, "utc": utc(), "environment": self.env,
                   "inputs": self.inputs, "outputs": {}, **fields}
@@ -525,14 +639,14 @@ class RunPath:
         inventory_rows = inv.get("objects", [])
         for item in inventory_rows:
             read_pin(item.get("checksums"))
-        labels = json_pin(inv.get("labels"))
-        require(isinstance(labels, dict) and set(labels) == {str(r["objid"]) for r in identities},
-                "LABEL-ID-LIST")
-        require(all(type(g) is int and g in (-1, 1) for g in labels.values()), "LABEL-INTEGRITY")
         rows = inv.get("objects", [])
         require([r.get("objid") for r in rows] == [r["objid"] for r in identities],
                 "IDENTITY-LIST-MISMATCH")
         objects, receipts, outputs = [], [], {}
+        medium = None
+        if stage == "tuning":
+            producer = _module("_optionA_dev.agreement_run.medium_perturbation")
+            medium = producer.produce_tuning_disclosure(())
         for ident, row in zip(identities, rows):
             oid, brick = ident["objid"], ident["brick"]
             # A checksum manifest must precede image access. It is stage-specific.
@@ -582,7 +696,25 @@ class RunPath:
             if absent:
                 receipt = {"status": "RENDER-REFUSED", "reason": "NO-PUBLISHED-SHA",
                            "absent_planes": absent, "brick": brick, "objid": oid}
+                if medium is not None:
+                    medium["objects"].append({"objid": oid, "status": "ELIGIBILITY-UNRESOLVED",
+                        "reason": "NO-PUBLISHED-SHA", "absent_planes": absent, "pairs": []})
+                    medium["n_objects"] += 1
+                    medium["eligibility_unresolved_objects"] += 1
             else:
+                if medium is not None:
+                    # Closed producer contract: numeric TAN geometry and source
+                    # planes only. No label file has been opened. Process one
+                    # object at a time so full-brick arrays are not accumulated.
+                    obj = {"objid": oid, "stage": "tuning", "image": planes[0],
+                           "maskbits": planes[1], "nexp": planes[2],
+                           "wcs": _medium_wcs(wcs), "ra": ident["ra"],
+                           "dec": ident["dec"], "brick": brick}
+                    try:
+                        disclosure = producer.produce_tuning_disclosure((obj,))
+                    except producer.DisclosureRefused as exc:
+                        raise Refused("MEDIUM-REFUSED: " + str(oid) + ": " + str(exc)) from exc
+                    _merge_medium(medium, disclosure)
                 receipt = chain.render_object(*planes, wcs, ident["ra"], ident["dec"],
                                               brick, chain.pr.r_t_validation())
                 receipt["objid"] = oid
@@ -594,14 +726,70 @@ class RunPath:
                         "TENSOR-INTEGRITY: renderer digest")
                 pin = write_new(self.out / (stage + ".tensors") / (str(oid) + ".f32"), tensor)
                 outputs["tensor:" + str(oid)] = pin
-                objects.append((oid, labels[str(oid)], pin, None))
+                objects.append((oid, None, pin, None))
             else:
-                objects.append((oid, labels[str(oid)], None,
+                objects.append((oid, None, None,
                                 {"status": "RENDER-REFUSED", "reason": receipt["reason"]}))
             receipts.append(receipt)
+        if medium is not None:
+            for summary in medium["configurations"]:
+                n = summary["eligible_objects"]
+                summary["sign_flip_rate"] = summary["flips"] / n if n else None
+                summary["rate_status"] = ("NO-ELIGIBLE-OBJECTS" if not n else
+                    "INCOMPLETE" if medium["eligibility_unresolved_objects"] or
+                    summary["unscored_pairs"] else "COMPLETE")
+            outputs["medium_disclosure"] = write_new(self.out / "tuning.medium.json", canonical(medium))
+        # Tuning disclosure is complete and retained before any label read.
+        labels = json_pin(inv.get("labels"))
+        require(isinstance(labels, dict) and set(labels) == {str(r["objid"]) for r in identities},
+                "LABEL-ID-LIST")
+        require(all(type(g) is int and g in (-1, 1) for g in labels.values()), "LABEL-INTEGRITY")
+        objects = [(oid, labels[str(oid)], pin, refusal) for oid, _, pin, refusal in objects]
         outputs["render"] = write_new(self.out / (stage + ".render.jsonl"),
                                       b"".join(canonical(r) for r in receipts))
         return objects, receipts, outputs
+
+
+def _merge_medium(total, part):
+    """Combine real producer receipts, never recompute an arm or pick a config."""
+    for key in ("n_objects", "medium_objects", "no_medium_objects", "eligibility_unresolved_objects"):
+        total[key] += part[key]
+    total["objects"].extend(part["objects"])
+    for left, right in zip(total["configurations"], part["configurations"]):
+        require(left["config_id"] == right["config_id"], "MEDIUM-GRID-MISMATCH")
+        for key in ("eligible_objects", "flips", "unscored_pairs"):
+            left[key] += right[key]
+
+
+def _medium_wcs(wcs):
+    """Lossless extraction for the producer's fixed distortion-free TAN API."""
+    import numpy as np
+    from astropy.wcs import WCS
+    require(wcs.pixel_n_dim == wcs.world_n_dim == 2 and not wcs.has_distortion and
+            list(wcs.wcs.ctype) == ["RA---TAN", "DEC--TAN"] and
+            list(map(str, wcs.wcs.cunit)) == ["deg", "deg"], "MEDIUM-WCS-UNSUPPORTED")
+    matrix = wcs.pixel_scale_matrix
+    geo = {"crpix": tuple(map(float, wcs.wcs.crpix)),
+           "crval": tuple(map(float, wcs.wcs.crval)),
+           "cd": tuple(tuple(map(float, row)) for row in matrix)}
+    # Normalize PC/CDELT versus CD representation, then compare ALL WCS fields.
+    # A different frame, pole, projection parameter or distortion is not stripped.
+    original = wcs.deepcopy()
+    if original.wcs.has_pc():
+        del original.wcs.pc
+    if original.wcs.has_cd():
+        del original.wcs.cd
+    original.wcs.cdelt = np.ones(2)
+    original.wcs.cd = matrix
+    original.wcs.set()
+    rebuilt = WCS(naxis=2)
+    rebuilt.wcs.ctype = ["RA---TAN", "DEC--TAN"]
+    rebuilt.wcs.cunit = ["deg", "deg"]
+    rebuilt.wcs.crpix, rebuilt.wcs.crval = geo["crpix"], geo["crval"]
+    rebuilt.wcs.cd = np.array(geo["cd"])
+    rebuilt.wcs.set()
+    require(original.wcs.compare(rebuilt.wcs, tolerance=0.0), "MEDIUM-WCS-LOSSY")
+    return geo
 
 
 def _anchor(record):

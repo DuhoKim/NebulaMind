@@ -1,10 +1,11 @@
 """Synthetic fixtures only. No protected file is read and no network is used.
 
-POSITIVE-REGRESSION labels denote retained contract checks for this new adapter.
-There is no predecessor run_path.py and no fail-first reproduction claim.
+POSITIVE-REGRESSION labels denote the retained contract checks. V46 migrates
+only their manifest/runtime fixture to CORE; the existing outcomes are retained.
 """
 import hashlib
 import io
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -53,13 +54,9 @@ class RunPathTests(unittest.TestCase):
         self.addCleanup(self.network.stop)
         coords = [{"objid": i, "ra": 40.0, "dec": 10.0, "brick": "0400p100"}
                   for i in range(2600)]
-        import py_ecc
-        import numpy.fft._pocketfft_internal as fft
-        runtime_paths = {rp.INTERPRETER, py_ecc.__file__, np.core._multiarray_umath.__file__, fft.__file__}
-        runtime_paths.update(getattr(m, "__file__", "") for m in tuple(sys.modules.values())
-                             if "site-packages/" in (getattr(m, "__file__", "") or ""))
-        runtime = {"py_ecc_version": py_ecc.__version__, "files":
-                   [self.pin(Path(p)) for p in sorted(runtime_paths)]}
+        runtime = json.loads((LANE / "_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json").read_text())
+        config_path = self.code_root / "miniprereg_pins/render_config_v2.json"
+        config_path.write_bytes((LANE / "miniprereg_pins/render_config_v2.json").read_bytes())
         inputs = {
             "eligible": self.put("eligible.txt", "".join(str(i)+"\n" for i in range(2600)).encode()),
             "exclusion": self.put("excluded.txt", b""),
@@ -67,12 +64,25 @@ class RunPathTests(unittest.TestCase):
             "coordinates": self.put_json("coordinates.json", coords),
             "bricks": self.put("bricks.txt", b"synthetic brick metadata\n"),
             "no_r": self.put("no_r.txt", b""),
+            "render_config": self.pin(config_path),
             "env_lock": self.pin(LANE / "_optionA_dev/fourier_chirality/env_lock.json"),
             "runtime": self.put_json("runtime.json", runtime),
         }
-        c = {"schema": "A1-INPUT-1",
+        c = {"schema": "A1-INPUT-CORE-DRAFT-1",
              "code": {p: self.pin(self.code_root/p)["sha256"] for p in rp.CODE},
-             "inputs": inputs}
+             "inputs": inputs, "ready_for_input_freeze": True,
+             "readiness": {"checks": {"all_real_entries_rehashed_and_matched": True,
+                 "input_due_placeholders_resolved": True,
+                 "current_preparation_obligations_resolved": True}},
+             "current_preparation_obligations": [], "placeholders": []}
+        c["files"] = [{**pin, "status": "REAL"} for pin in inputs.values()]
+        c["files"] += [{**self.pin(self.code_root/p), "status": "REAL", "kind": "our_source_code"}
+                       for p in rp.CODE]
+        for rel in rp.CODE:
+            cache = Path(importlib.util.cache_from_source(str((self.code_root/rel).resolve())))
+            if cache.is_file():
+                c["files"].append({**self.pin(cache), "status": "REAL",
+                    "kind": "our_imported_bytecode", "source": rel})
         self.C = self.put_json("C.json", c)
         self.run = rp.RunPath(self.C, self.base / "out")
         self.inputs = inputs
