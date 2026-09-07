@@ -1,0 +1,13 @@
+
+session_id: 20260907_195417_097b95
+**B7_REVIEW=RESULT_STANDS** — report at `bounce/KIMI_B7_CHALLENGE_20260907.md`. I attacked all five assigned targets and every attack failed to break the result.
+
+What I did independently (not trusting the artifact's self-report):
+- Re-derived the KS first-order system from the publisher's printed Eq. (10) and the matter laws from (14)+(34) myself — got B7's equations (B7.1)-(B7.2) to the symbol. 12/12 of my own SymPy checks pass: constraint propagation Ċ=-3HC and energy residual in both closures, off-constraint Raychaudhuri/turn-margin forms, the degenerate-equality boundary (Ḧ=-4KΔ/9, H⁽³⁾=-4K²/9), fractional race (B7.11), J-evolution (B7.13).
+- Ran `b7_curved.py` (exit 0): every printed table value reproduces exactly. Then reproduced the representative turn with LSODA at different tolerances AND a hand-written scipy-free RK4 — tb=0.313980691809, Ḣ_b=1316.48101, e_b=4150.24452 to B7's digits.
+- Perturbed the data myself rather than trusting 12/12: 40/40 turns at ±5% and 39/39 at ±10% random perturbations on the constraint manifold; plus a direct openness test around B7's §4 construction point (back-integrated to contracting data, 30 random constraint-preserving perturbations: 30/30 turn). The openness claim is real, not tuned.
+- Zero-production control: my clean β=0 run confirms the analytic story pointwise — H monotone below the Riccati bound -1/(1-t), w<S throughout, Vn conserved, invariants diverging at t≈0.3155. FINITE_CUTOFF_UNRESOLVED labelling is honest; the contrast (same datum turns with production) is established.
+- Eq. (35): B7's quotation is byte-exact against the saved publisher HTML (SHA matched). Its absolute-vs-fractional-vs-amplitude distinction is algebraically correct, and B7 itself states plainly that its turnarounds violate printed (35) at the turn (LHS=2βn_fH⁴=0 at H=0 < (2/3)KΔ) — correctly identified as a persistence condition, not a necessary turn condition.
+- Hygiene: no flat leakage, Dirac excluded, all added assumptions listed, no contradiction of B6's adopted FAILS/UNDETERMINED verdicts (B7 answers the question B6 left open without reviving a guaranteed-bounce claim).
+
+Four minor non-verdict findings recorded (constraint-manifold semantics of "open set", the turns living in the ρ<0 spin-dominated regime as disclosed, a strengthening small-β observation, one consistency-check nit). Evidence ledger, failed-attacks section, and uncertainties are in the report; my only writes are `_tmp_kimi_b7_*` files plus the report.

@@ -136,3 +136,14 @@ acquisition, no framework, no census machinery. Two workers, not a programme.
   scope-narrowings today; this route may well end in "the mechanism needs assumptions nobody has established". If that is not
   a useful product for you, better to say so before another step rather than after.
 I am not choosing among these, and nothing is dispatched on them.
+
+---
+
+## RESOLVED (B7, filed and independently challenged — RESULT_STANDS)
+The curved-scenario uncertainty this memo named as the minimum next question is **answered: `TURNS_OVER`.** In the source's own
+Kantowski–Sachs geometry, with its own production law, collapse reaches a regular turning point for an open set of admissible
+data in both determined closures — established directly, not by transfer, so B6's FAILS/UNDETERMINED transfer verdicts stand
+untouched. See `B7_RESULT_FILED_20260907.md`. Two things travel with it: the source's own printed Eq. (35) is not the turning
+criterion and is strictly violated at these turnarounds (independently verified against the publisher text), and the physical
+assumptions remain unestablished in the regime where the turn occurs, with the unpolarised-spin question left open in both
+directions by the unreviewed B8.
