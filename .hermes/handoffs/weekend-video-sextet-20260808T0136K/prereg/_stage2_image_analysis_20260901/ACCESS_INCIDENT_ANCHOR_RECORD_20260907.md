@@ -21,3 +21,18 @@ documents stay as pushed; my standing rule is to run `date` before writing any t
 did not.
 
 Preceding anchors in this chain: tuning abort — activity `42819213926`, 12:50:03Z, commit `0ccbc25e9`.
+
+## Second anchor — scope correction (added 2026-09-07 23:34 KST, stamped from `date`)
+| field | value |
+|---|---|
+| record anchored | `ACCESS_INCIDENT_SCOPE_CORRECTION_20260907.md` |
+| finding | union exposure 149 validation and 14 holdout objects; the larger part is the Tier-C `validation_bricks/` cache of 2026-09-05, predating this run |
+| public commit | `0754865e90cf` on `feat/paper-workflow-v2` |
+| mechanism | public-push |
+| external reference | GitHub repository push activity `42826737577` |
+| third-party UTC | **2026-09-07T14:33:06Z** (server-side) |
+| third party | GitHub, not the lane owner |
+
+Chain so far: abort `42819213926` 12:50:03Z · incident `42822783701` 13:39:15Z ·
+this anchor record `42822837207` 13:40:00Z · lane state `42824342071` 14:00:53Z ·
+scope correction `42826737577` 14:33:06Z.
