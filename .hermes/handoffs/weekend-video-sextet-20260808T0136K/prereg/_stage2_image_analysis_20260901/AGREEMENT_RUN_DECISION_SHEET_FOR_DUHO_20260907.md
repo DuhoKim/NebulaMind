@@ -1,27 +1,29 @@
-REISSUED 2026-09-07 13:05:41 KST — supersedes the decision sheet now in Duho's hands.
+REISSUED 2026-09-07 15:15:39 KST — supersedes the decision sheet now in Duho's hands.
 
-The proposed run produces one number: machine–human GZ1 chirality agreement on unseen images, allowing one overall sign reversal, with an uncertainty interval whose lower end must exceed 0.70.
+One machine–human GZ1 chirality agreement number on unseen images, allowing one overall sign reversal.
 
-**Why the row moved:** without an outside timestamp, whoever prepares the sample could look at the seed first and quietly retry until the split looks good. The same person could open the test set, dislike the answer, and try again without it showing.
+**Review:** Independent agy/Gemini review returned **REVIEWABLE-AND-SOUND** for A1 `61e253cef941de58…` ([retained report](AGY_A1_REVIEW2_20260907.md)). It stands; only subsequent changed bytes need re-review. A1 remains **unadopted**.
 
-| SAFEGUARDS ESSENTIAL TO THE COMPARISON | MACHINERY THAT CAN BE REMOVED OR DEFERRED |
+**Approval:** Clear plain-language approval in this Codex dialogue, bound to the exact presented final version. No special sentence, digest recitation, repetition elsewhere or signing ceremony. Agents internally record your approving words, time, provider reference and version digest.
+
+**REAL inputs:** eligible **11,837** (`15f34e4e…`); failed-set **2,000** (`f459d2fd…`); full dry-run exclusions **2,644** (`77b29eaf…`). Post-exclusion population: **7,283**. Full measured digests are in A1. Historical lists retain 44/46 non-members respectively for dry-run/failed; their mutual overlap is zero.
+
+| SAFEGUARDS ESSENTIAL TO THE COMPARISON | MACHINERY REMOVED OR DEFERRED |
 |---|---|
-| Fixed eligible list, coverage rules and file fingerprints — defines the population. | Repeated coverage tests and failed-ID extraction; keep origins and fingerprints. |
-| Repeatable seed-to-order selection — makes the sample reproducible. | Old builders/driver, record formats and split-check helper. |
-| What we publish must let someone else redo the selection and get the same sample; the published version is the one that counts. | |
-| Future public drand seed — prevents choosing a known seed. | NIST source, authentication and 24-hour fallback wait. |
-| Separate tuning, holdout and fresh sets; freeze the winner — prevents test-driven changes. | Holdout flag, seal-append helper and step 2 orchestration. |
-| Exclude 2,644 seen and 2,000 failed identities — keeps evaluation unseen. | Additional publication witnesses and per-entry publication machinery, history chains, receipts and combined evidence checks. |
-| An outside timestamp for the manifest and for every attempt — exposes quiet retries. | Chained seals, blob-equality and origin/ancestry checks beyond these minimal anchors. |
-| Fixed 2,000 draw, 1,900 scored minimum and interval bar — fixes the passing rule. | Adversarial evidence-loader checks; keep file validity checks. |
-| Record and push every draw, abort, redraw and holdout opening — exposes missing attempts. | 132 controls, table checks and fail-first package as run gates; keep six selection checks. |
-| Fixed measurement/search and protected fresh-image access — keeps the result independent. | Repeated review rounds; A1 proposes one independent review. |
+| Fixed population, eligibility origins, exclusions and fingerprints. | Repeated coverage tests and selection-time failed-ID extraction. |
+| Published inputs/code/seed and drawn-list hashes let outsiders reproduce selection; the published version governs. | Legacy builders/driver, record formats and split-check helper. |
+| Future drand-only seed; BLS authenticity AND live-refetched two-host agreement. | NIST source/authentication and 24-hour fallback. |
+| Separate sets, fixed measurement/search, winner freeze and protected-image custody/access gates. | Holdout flag, seal helper and step 2 orchestration. |
+| Outside manifest/attempt timestamps; push every draw, abort, redraw and holdout opening. | Extra witnesses, history chains, receipts and composed checks beyond minimal anchors. |
+| Exact draws, scored floors, denominators and file validity. | 132 controls, table checks and fail-first package as gates; retain **16 selection checks**, including three non-member cases and their overlap guard. |
+| One independent A1 review; changed bytes re-reviewed. | Repeated two-seat package review gates. |
 
-1. Settle A1's remaining open questions, complete its independent review and obtain the separate owner decision before any draw or opening.
-2. Fix the eligible file, exclusions, method, code and fingerprints; commit the manifest.
-3. Anchor the manifest: a pushed commit whose server-side timestamp a third party records, OR a digest statement by someone other than the lane owner. Record which was used and keep the reference and outside timestamp.
-4. Name and record the first drand round at least **ten minutes after that anchor**, before it occurs; a missed deadline stops. Verify its signature and agreement from two hosts; select 400 tuning, 200 holdout and 2,000 fresh images, saving lists before access.
-5. Push every attempt record when it happens, one push per attempt, and use the same anchor rule and evidence as the manifest; a missing record leaves a visible hole. Record, push and anchor the holdout opening before access.
-6. Tune the fixed 96 choices (380 scored minimum), freeze the winner, open holdout once (190 scored minimum; interval lower end > 0.70), only after it passes, evaluate protected fresh images once. Only one further validation attempt; report agreement, interval, failures and unscored counts without replacement or retry.
+**Remaining prerequisites:** replacement run adapters for scheduling/refetch, selection, rendering/scoring/search, repeat checks, gates and outputs; working BLS runtime with individually pinned loaded dependencies and enforcement; label-free rendering coordinate/brick input paths and hashes. Resolve these INPUT obligations before final presentation/adoption and INPUT FREEZE. Complete any required V36 identity/pipeline companion adoption before its protected action, with references to both V15 and adopted A1 digests. Later draw/data/winner inventories remain due at their specified stages.
 
-Deferred means out of scope for this run, not deleted and not disproved. Its records remain; safeguards beyond the minimal anchors remain deferred.
+1. After changed-byte review and Duho's decision, commit INPUT FREEZE C. Anchor it through a pushed commit's server timestamp recorded by a third party, OR a non-owner's external digest statement. Keep mechanism, reference and outside timestamp.
+2. Name the first drand round at least **ten minutes after that anchor**, before it occurs; a missed deadline stops. Authenticate, draw exactly **400/200/2,000** or stop on shortfall, and publish/anchor reproducible split records before development access.
+3. Tune all **96** choices; freeze/anchor winner W and push/anchor the holdout-opening record before access. Open holdout once; after PASS and custody gates, evaluate fresh images once. Push and similarly anchor every attempt when it happens. **Exactly one further validation attempt; no replacement or retry.**
+
+Scored floors are **380/190/1,900**, applied after scoring, never smaller draws. Tuning/holdout: `max(k,m−k)/400` and `max(k,m−k)/200`, unscored = misses. Validation: `max(k,m−k)/m`, scored m excludes refusals, reported separately as r. Holdout and validation require Wilson 95% lower bound **> 0.70** after their floors. Report agreement, interval, failures and unscored counts.
+
+Deferred means out of scope for this run; history remains.
