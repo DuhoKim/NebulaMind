@@ -1,0 +1,11 @@
+
+session_id: 20260907_110006_02b0ce
+Written: `bounce/KIMI_SIGN_CHECK_20260907.md`, first line `SIGN_CHECK=DISCREPANCY`. Algebra machine-checked (sympy) before filing.
+
+Findings, in short:
+
+1. Pressure correction: A gives **+αn²** (= +(9/16)κn²); B gives **−α_B n_f²**. A's conversion from "correction" to "total" convention is pinned by its own Eqs. (11)–(12), not assumed. Opposite signs — they do not agree. (Density corrections agree: both −αn².)
+2. As fluids: A's torsion piece has **w = −1** → continuity forces ε_s = const ∝ a⁰, inconsistent with n² ∝ a⁻⁶. A only stays consistent because its first law conserves matter+torsion jointly with exchange — the price shows in its own Eq. (15), where n ≠ a⁻³ at high T. B has **w = +1** (stiff) → a⁻⁶, exactly consistent.
+3. B's criterion: (a) with B's signs it reduces to κ(2α_B n_f² − ε) > 2σ² — satisfiable for n_f² > 16ε/(κ(ℏc)²) and shear below the bound; (b) with A's pressure sign the LHS is −κε − (9/16)κ²n² < 0 — can never exceed 2σ² ≥ 0.
+4. B's signs are the standard EC spin-fluid result (equal negative correction to density and pressure, stiff a⁻⁶): Hehl, von der Heyde, Kerlick & Nester, Rev. Mod. Phys. 48, 393 (1976).
+5. Genuine discrepancy in the pressure-correction sign only — not reconcilable by the tilde convention, since the comparison was already made after convention conversion.
