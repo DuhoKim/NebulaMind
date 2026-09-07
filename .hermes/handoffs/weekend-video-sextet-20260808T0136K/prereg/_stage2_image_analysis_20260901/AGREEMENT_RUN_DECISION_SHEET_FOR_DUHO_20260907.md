@@ -1,21 +1,26 @@
-The proposed run produces one number: how often the machine's chirality call agrees with the human GZ1 call on unseen images, allowing one overall reversal of the machine's clockwise/counterclockwise signs. It reports an uncertainty interval and tests whether its lower end exceeds the 0.70 bar.
+REISSUED 2026-09-07 12:22:15 KST — supersedes the decision sheet now in Duho's hands.
+
+The proposed run produces one number: machine–human GZ1 chirality agreement on unseen images, allowing one overall sign reversal, with an uncertainty interval whose lower end must exceed 0.70.
+
+**Why the row moved:** without an outside timestamp, whoever prepares the sample could look at the seed first and quietly retry until the split looks good. The same person could open the test set, dislike the answer, and try again without it showing.
 
 | SAFEGUARDS ESSENTIAL TO THE COMPARISON | MACHINERY THAT CAN BE REMOVED OR DEFERRED |
 |---|---|
-| Fixed eligible list from the protected pool, image-coverage rules and file fingerprints — otherwise the population is undefined. | Repeating image-coverage tests and failed-ID extraction during selection; retain both files’ origins and fingerprints. |
-| One repeatable seed-to-order selection — otherwise nobody can reproduce the sample. | Old builders/driver, record formats and split-check helper; keep their required information. |
-| Future public drand seed named before it exists — otherwise candidates could influence the seed choice. | NIST source, its authentication and 24-hour fallback wait; use the ten-minute margin. |
-| Separate tuning, holdout and fresh sets; fingerprint the winner before the single holdout opening — otherwise test images could shape the answer. | Holdout flag, seal-append helper and step 2 orchestration; retain access records and restrictions. |
-| Exclude all 2,644 seen dry-run identities and the 2,000 failed identities — otherwise known images could pass as unseen. | Publication witnesses, history chains, receipts and combined evidence checks. |
-| Fixed 2,000 draw, 1,900 scored minimum and interval lower end > 0.70 — otherwise the passing rule could follow the result. | Adversarial evidence-loader checks; retain required file fingerprint and validity checks. |
-| Record every draw, abort and redraw; only one further validation attempt — otherwise this could become best-of-many. | The 132 controls, table checks and fail-first test package as run gates; retain six selection checks. |
-| Fixed measurement/search rules and protected fresh-image access — otherwise measurement or access could change the result. | Repeated review rounds: A1 proposes one independent review by someone who did not write it. |
+| Fixed eligible list, coverage rules and file fingerprints — defines the population. | Repeated coverage tests and failed-ID extraction; keep origins and fingerprints. |
+| Repeatable seed-to-order selection — makes the sample reproducible. | Old builders/driver, record formats and split-check helper. |
+| Future public drand seed — prevents choosing a known seed. | NIST source, authentication and 24-hour fallback wait. |
+| Separate tuning, holdout and fresh sets; freeze the winner — prevents test-driven changes. | Holdout flag, seal-append helper and step 2 orchestration. |
+| Exclude 2,644 seen and 2,000 failed identities — keeps evaluation unseen. | Additional publication witnesses and per-entry publication machinery, history chains, receipts and combined evidence checks. |
+| An outside timestamp for the manifest and for every attempt — exposes quiet retries. | Chained seals, blob-equality and origin/ancestry checks beyond these minimal anchors. |
+| Fixed 2,000 draw, 1,900 scored minimum and interval bar — fixes the passing rule. | Adversarial evidence-loader checks; keep file validity checks. |
+| Record and push every draw, abort, redraw and holdout opening — exposes missing attempts. | 132 controls, table checks and fail-first package as run gates; keep six selection checks. |
+| Fixed measurement/search and protected fresh-image access — keeps the result independent. | Repeated review rounds; A1 proposes one independent review. |
 
-1. Bring the unadopted A1 proposal through its one independent review, settle its eight open questions, then obtain the separate owner decision before any draw or opening.
-2. Fix the eligible file, exclusions, method, code and file fingerprints; commit their list and record the time.
-3. Name and record the first drand round scheduled at least **ten minutes after that commit**, before it occurs; a missed deadline stops the run.
-4. Check the named seed and select 400 tuning, 200 holdout and 2,000 fresh images, preserving the lists before access.
-5. Run the fixed 96 choices on tuning images (at least 380 scored), freeze the winner, and open holdout once (at least 190 scored; interval lower end > 0.70).
-6. Only after holdout passes, obtain the protected fresh images under the retained access rules and evaluate once; report agreement, interval, failures and unscored counts, with no replacement or retry.
+1. Settle A1's remaining open questions, complete its independent review and obtain the separate owner decision before any draw or opening.
+2. Fix the eligible file, exclusions, method, code and fingerprints; commit the manifest.
+3. Anchor the manifest: a pushed commit whose server-side timestamp a third party records, OR a digest statement by someone other than the lane owner. Record which was used and keep the reference and outside timestamp.
+4. Name and record the first drand round at least **ten minutes after that anchor**, before it occurs; a missed deadline stops. Verify its signature and agreement from two hosts; select 400 tuning, 200 holdout and 2,000 fresh images, saving lists before access.
+5. Push every attempt record when it happens, one push per attempt, and use the same anchor rule and evidence as the manifest; a missing record leaves a visible hole. Record, push and anchor the holdout opening before access.
+6. Tune the fixed 96 choices (380 scored minimum), freeze the winner, open holdout once (190 scored minimum; interval lower end > 0.70), only after it passes, evaluate protected fresh images once. Only one further validation attempt; report agreement, interval, failures and unscored counts without replacement or retry.
 
-Deferred work is out of scope for THIS run, not deleted and not disproved. Its records remain; relying on ordinary records gives less assurance about their completeness and timing. All seven essentials from the scope note remain, with eligibility established by the procedure that produced the pinned file.
+Deferred means out of scope for this run, not deleted and not disproved. Its records remain; safeguards beyond the minimal anchors remain deferred.
