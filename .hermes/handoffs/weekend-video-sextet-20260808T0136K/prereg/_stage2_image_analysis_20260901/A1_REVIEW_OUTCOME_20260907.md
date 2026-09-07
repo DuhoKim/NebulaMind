@@ -1,0 +1,22 @@
+# A1 INDEPENDENT REVIEW — OUTCOME (2026-09-07 11:51 KST). **VERDICT: NOT-SOUND.** The simplification went one step too far.
+Reviewer: **agy / Gemini**, wrapper pid 13136, dispatched 11:40:31 KST, ACCESS PROVEN for A1 `a2c396be1f5e4924…`. **Exit artefacts read before the report counted** (whole-artefact test, not a substring): stderr 0 bytes, stdout 5,067 bytes, rc 0 — a normally completed seat, not a timeout. It authored no part of the package (authors were Codex; see `A1_REVIEW_PROVENANCE_20260907.md`). Report retained as `AGY_A1_REVIEW_20260907.md`.
+
+## THE FATAL, AND IT IS CORRECT
+**Deferring the third-party witness WHILE replacing V15's signature-anchored clock with a local commit clock destroys the prospective seed.** The two losses were listed separately in A1's ledger and are fatal only in combination: if the moment the inputs were fixed is proved only by a local, unwitnessed timestamp, that timestamp can be backdated to a drand round that has already been published — so a party who has seen the pool can grind seeds until the split is favourable. Everything the agreement number rests on collapses at that point.
+**MY OWN SCOPE NOTE IS WHERE THIS ENTERED.** I wrote that a seed fixed before we look is the one safeguard that cannot be dropped — and then put the whole witness stack in the deferred column without noticing that it carried the PROOF OF ORDERING. Keeping the rule while deferring its only evidence is not a simplification.
+
+## VERIFIED AGAINST THE ARTEFACTS, NOT ACCEPTED ON THE REVIEWER'S WORD
+| claim | my check | verdict |
+|---|---|---|
+| the clause disposition has **six** DROP rows, not seven | `grep -c "| DROP |"` → **6** (the 7th "DROP" is in the legend) | **REVIEWER RIGHT; my earlier report of "seven DROPs" was wrong and is corrected here** |
+| `select_sample.py` raises a SIZE shortfall even when the FLOOR is met | confirmed: the first loop checks floors, the second raises `size shortfall` — 1,950 survivors pass the 1,900 floor and then crash on the 2,000 size | **REVIEWER RIGHT — a real defect; floors exist precisely to permit fewer than the nominal size** |
+| the code "does not check if the files contain duplicates", nor disjointness, nor membership | **PARTLY RIGHT**: duplicates ARE rejected per file (the reader enforces ascending-without-duplicates, line 30). Exclusion∩failed disjointness and membership-in-eligible are NOT checked, and A1 promises "uniqueness and exclusion disjointness" | **corrected in this record: the duplicate half of the claim does not hold; the disjointness and membership half does** |
+| Q3 answered: p_val is `max(k, m−k)` over a fixed denominator, unscored counting as misses | consistent with V15's holdout `max(k, m−k)/200` | accepted as the reviewer's answer to one of the eight |
+
+## WHAT MOVES BETWEEN THE COLUMNS, AND WHY (Blanc 11:48)
+**DEFERRED → ESSENTIAL: a third-party time anchor for the manifest commit.** Not the provenance stack — one line of procedure: the manifest commit is PUSHED TO THE PUBLIC REMOTE (or its digest stated in chat) BEFORE the drand round is named, so the ordering is witnessed by someone who is not us. Reason it moves: it is the evidence for the one safeguard that cannot be dropped; without it "the seed was fixed in advance" is an unbacked assertion by the party who benefits.
+Everything else in the two-column sheet stands. The witness STACK stays deferred — chained seals, per-entry publication, receipts, composed provenance — because a single anchored commit is enough to prove ordering; that is the distinction A1 missed.
+
+## DISPOSITION
+A1 is NOT-SOUND as written and is NOT put to Duho in this state. Repairs, in order: (1) the third-party anchor requirement and the compounded-loss entry in the ledger; (2) the selection code's floor/size logic, exclusion∩failed disjointness and membership checks, each with a test that FAILS on the current bytes first; (3) the eight open questions (in progress, worker 78287) — the reviewer confirms Q2, Q4, Q5, Q6 need Duho. Then ONE re-review by a non-authoring seat.
+Unchanged: unseen evaluation data UNOPENED; drand-only; round 6440756 cannot seed this run; no draw, split or holdout; V33 snapshot and every retained log untouched.

@@ -38,7 +38,8 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
     """Return ordered splits, normalized seed, verified digests and input/split counts.
 
     Refuse a floor shortfall at each split after allocating earlier target sizes.
-    Also refuse any target-size shortfall even when the floor would be met.
+    If a floor is met, take up to the target and record each split's size deficit
+    in shortfalls (zero when the target is filled).
     """
     eligible, eligible_digest = _read_ids(eligible_ids_path, eligible_sha256, "eligible", True)
     excluded, exclusion_digest = _read_ids(exclusion_path, exclusion_sha256, "exclusion")
@@ -51,6 +52,15 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
             or any(floor > size for size, floor in zip(sizes, floors))):
         raise ValueError("sizes and floors must be three nonnegative integers with floors <= sizes")
     excluded, failed = set(excluded), set(failed)
+    overlap = excluded & failed
+    if overlap:
+        raise ValueError("exclusion/failed overlap: " + ", ".join(map(str, sorted(overlap))))
+    eligible_set = set(eligible)
+    for name, ids in (("exclusion", excluded), ("failed", failed)):
+        nonmembers = ids - eligible_set
+        if nonmembers:
+            raise ValueError(f"{name} IDs not in eligible: "
+                             + ", ".join(map(str, sorted(nonmembers))))
     survivors = [objid for objid in eligible if objid not in excluded | failed]
 
     def rank(objid):
@@ -59,22 +69,18 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
 
     survivors.sort(key=rank)
     names = ("tuning", "holdout", "validation")
+    result = {}
+    shortfalls = {}
     offset = 0
     for name, size, floor in zip(names, sizes, floors):
         available = max(0, len(survivors) - offset)
         if available < floor:
             raise ValueError(f"{name} floor shortfall: {floor - available} "
                              f"(available {available}, floor {floor})")
-        offset += size
-    result = {}
-    offset = 0
-    for name, size in zip(names, sizes):
-        available = max(0, len(survivors) - offset)
-        if available < size:
-            raise ValueError(f"{name} size shortfall: {size - available} "
-                             f"(available {available}, size {size})")
         result[name] = survivors[offset:offset + size]
-        offset += size
+        shortfalls[name] = size - len(result[name])
+        offset += len(result[name])
+    result["shortfalls"] = shortfalls
     result["seed"] = seed
     result["digests"] = {"eligible": eligible_digest, "exclusion": exclusion_digest,
                          "failed": failed_digest}

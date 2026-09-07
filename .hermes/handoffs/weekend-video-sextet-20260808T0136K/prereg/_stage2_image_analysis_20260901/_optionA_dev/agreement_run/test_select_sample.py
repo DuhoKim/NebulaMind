@@ -74,6 +74,31 @@ class SelectSampleTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "^" + name + ": SHA256 mismatch:"):
                     select(*inputs, self.seed)
 
+    def test_floor_satisfied_size_short_returns_sample(self):
+        """FAIL-FIRST: validation at its floor returns all available IDs and records the deficit."""
+        inputs = self.make_inputs(self.eligible[:2900], self.excluded, self.failed)
+        try:
+            result = select(*inputs, self.seed)
+            actual = (tuple(len(result[name]) for name in
+                            ("tuning", "holdout", "validation")), result["shortfalls"])
+        except ValueError as exc:
+            actual = str(exc)
+        self.assertEqual(actual, ((400, 200, 1900),
+                                 {"tuning": 0, "holdout": 0, "validation": 100}))
+
+    def test_overlapping_exclusion_failed_refused(self):
+        """FAIL-FIRST: exclusion and failed sets sharing an eligible ID refuse and name it."""
+        inputs = self.make_inputs(self.eligible, self.excluded,
+                                  [self.excluded[-1], *self.failed])
+        with self.assertRaisesRegex(ValueError, r"^exclusion/failed overlap: 100199$"):
+            select(*inputs, self.seed)
+
+    def test_nonmember_excluded_id_refused(self):
+        """FAIL-FIRST: an excluded ID outside the eligible file refuses and names that ID."""
+        inputs = self.make_inputs(self.eligible, [99999, *self.excluded], self.failed)
+        with self.assertRaisesRegex(ValueError, r"^exclusion IDs not in eligible: 99999$"):
+            select(*inputs, self.seed)
+
 
 if __name__ == "__main__":
     unittest.main()
