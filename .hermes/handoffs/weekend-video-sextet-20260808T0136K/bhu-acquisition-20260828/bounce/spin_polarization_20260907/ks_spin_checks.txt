@@ -1,0 +1,33 @@
+KS covariant derivative beta in orthonormal frame: Matrix([[-Derivative(T(t), t)/T(t)**2, 0, 0, 0], [0, -Derivative(X(t), t)/(T(t)*X(t)), 0, 0], [0, 0, -Derivative(Y(t), t)/(T(t)*Y(t)), 0], [0, 0, 0, -Derivative(Y(t), t)/(T(t)*Y(t))]])
+
+thermal vorticity and comoving acceleration: both identically zero
+
+SO(2)-invariant symmetric moment/stress: [{q1: 0, q2: 0, q4: 0, q5: q3}]
+
+connected symmetry mean / tangential reflection: radial mean allowed / radial axial mean changes sign
+
+symmetric shear-spin product for radial spin: Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
+D^j S_ij on KS spatial slice: [0, 0, 0]
+
+projected Weyssenhoff Eq. (52): m_dot + (HX+2 HY)m = 0; conditional, without production
+
+n cross (sigma n): Matrix([[0], [Delta*nx*nz], [-Delta*nx*ny]])
+
+isotropic angular mean of response: Matrix([[0], [0], [0]])
+
+angular product of mean-response pattern, NOT physical spin covariance: Matrix([[0, 0, 0], [0, Delta**2/15, 0], [0, 0, Delta**2/15]])
+
+mixed angular moment <v_y n_x n_z>: Delta/15
+
+mixed angular moment <v_z n_x n_y>: -Delta/15
+
+spin-1/2 rest operator check: {s_i,s_j}/2 = hbar^2 delta_ij/4; does not fix two-particle/density correlations
+
+G^theta_theta - G^r_r: Delta_dot + 3 H Delta - K
+
+pressure-anisotropy identity: Delta_dot + 3 H Delta = K + kappa(P_parallel-P_perp)
+
+shear-scalar identity: (sigma^2)_dot + 6 H sigma^2 = 2 Delta [K+kappa(P_parallel-P_perp)]/3
+
+result: ALL ASSERTIONS PASSED; no microscopic response coefficient, relaxation time, or collapse trajectory calculated
