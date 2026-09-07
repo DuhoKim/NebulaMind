@@ -1,13 +1,14 @@
 """TRACK 13 — the table-derived controls, v3 (Blanc 05:02 item 2; codex V32-1; agy V32 FATALs): generated from run_configurations_v18.INDEPENDENCE / PREREQUISITES
 with NO exemption, one method per (prerequisite, check) pair with the check independent of the prerequisite, plus two-prerequisite variants; every method is one subcase.
-v3 asserts the property DIFFERENTIALLY, which is what "No Stage Decides" means at input granularity: for each defect a BASELINE outcome is taken with every prerequisite
-met (the defect's own check must contribute the defect's code there, nothing may be blocked); then with the prerequisite failed, (1) EVERY check that does not need the
+v4 asserts the property DIFFERENTIALLY against the frozen defect-only DECLARED snapshot; the separate declaration suite checks it against executed outcomes; then with the prerequisite failed, (1) EVERY check that does not need the
 failed prerequisite contributes EXACTLY what it contributed in the baseline — the defect's own check included — the only permitted addition being the prerequisite's
 failure code at the check that meets it; (2) NOTHING independent of the failed prerequisite is blocked (out["blocked"] is a subset of the table's needers); (3) every
 check that needs it is BLOCKED BY NAME or contributes under its own name only unavailability / the failure code / a subset of its baseline; (4) the winner equals the
 resolver over the recorded findings. No allow-list of stray codes: a check reading the same altered input under another code is part of the baseline, not an exemption.
 v2 (the allow-list model, runs 1/2/1b/2b/1c/2c) is retained as _nsd_table_controls_v2_RETAINED_20260907.py.txt."""
 import json, os, re, sys, tempfile, unittest, hashlib, subprocess, base64
+from collections import Counter
+from BASELINE_DECLARATIONS_V18 import DECLARED
 from pathlib import Path
 from unittest import mock
 HERE = Path(__file__).resolve().parent; D = HERE.parent
@@ -85,7 +86,6 @@ def fail_prereqs(Ps, env):
         else: raise ValueError(P_)
     return ctxs, runner
 class NSD2(unittest.TestCase):
-    _base = {}
     @classmethod
     def setUpClass(cls): cls.t = TF.T("test_composed_mode_on_the_production_call_path"); cls.t.setUp(); cls.h = H13(cls.t)
     @classmethod
@@ -94,7 +94,7 @@ REPORTER = {"identity-file": "approval-local", "open-file": "open-local", "git-l
 UNAVAIL = {"RETRY-EVENTS-UNAVAILABLE", "RETRY-HISTORY-CONTINUATION", "RETRY-EVENTS-INCOMPLETE", "STAGE-BLOCKED", "MALFORMED-REMOTE-EVIDENCE", "VERIFIER-UNAVAILABLE", "IO-UNAVAILABLE", "IDENTITY-SCHEMA", "HISTORY-OPEN-EVENT-MISSING", "ADOPTION-MALFORMED"}
 def by_check(fs):
     b = {}
-    for f in fs: b.setdefault(f["check"], set()).add(f["code"])
+    for f in fs: b.setdefault(f["check"], set()).add((f["class"], f["code"], f["stage"]))
     return b
 def run_case(self, Ps, C):
     """plant defect C, fail the prerequisites Ps, run the production call path; return (winner message, LAST_OUTCOME)"""
@@ -107,37 +107,45 @@ def run_case(self, Ps, C):
     finally:
         if "_adoption_backup" in env: Path(rc.ADOPTION_FILE).write_bytes(env["_adoption_backup"])                       # the adoption file is shared by the class: restore it
     out = rc.LAST_OUTCOME; self.assertIsNotNone(out); return str(cm.exception), out
-def baseline(self, C):
-    """the defect alone, every prerequisite met — taken once per defect and asserted on its own terms"""
-    if C not in self._base:
-        msg, out = run_case(self, [], C); b = by_check(out["findings"])
-        self.assertIn(DEFECTS[C]["code"], b.get(C, set()), f"[baseline; defect {C}] the defect must be contributed by ITS check: {b}")
-        self.assertEqual(sorted(out["blocked"]), [], f"[baseline; defect {C}] nothing may be blocked when every prerequisite is met: {sorted(out['blocked'])}")
-        w = PC.resolve([PC.finding(f["class"], f["code"], f["why"], f["stage"], i, f["check"]) for i, f in enumerate(out["findings"])]); self.assertTrue(msg.startswith(w["code"]))
-        self._base[C] = b
-    return self._base[C]
+def baseline(C):
+    """Frozen data only: never execute the implementation to choose expected findings."""
+    return {check: {tuple(row) for row in rows} for check, rows in DECLARED[C].items()}
+def counts_by_check(fs):
+    b = {}
+    for f in fs:
+        b.setdefault(f["check"], Counter())[(f["class"], f["code"], f["stage"])] += 1
+    return b
 def _make(Ps, C):
     def test(self):
-        base = baseline(self, C); msg, out = run_case(self, Ps, C); fs = out["findings"]; b = by_check(fs)
+        base = baseline(C); msg, out = run_case(self, Ps, C); fs = out["findings"]; b = by_check(fs)
         needers = {k for k, v in rc.INDEPENDENCE.items() if any(P_ in v["needs"] for P_ in Ps)}; pcodes = {rc.PREREQUISITES[P_]["failure_code"] for P_ in Ps}
         self.assertTrue(msg.startswith(DEFECTS[C]["code"]) or DEFECTS[C]["code"] in {f["code"] for f in fs}, f"[{Ps} fail; defect {C}] the defect {DEFECTS[C]['code']} must be contributed at all (behavioural, before attribution): winner {msg[:100]!r}; codes {sorted({f['code'] for f in fs})}")
-        self.assertIn(DEFECTS[C]["code"], b.get(C, set()), f"[{Ps} fail; defect {C}] the defect must be contributed by ITS check: got {b}")
-        if "reason" in DEFECTS[C]: self.assertTrue(any(DEFECTS[C]["reason"] in f["why"] for f in fs if f["check"] == C), f"reason {DEFECTS[C]['reason']}: {[f['why'][:60] for f in fs if f['check'] == C]}")
+        self.assertIn(DEFECTS[C]["code"], {t[1] for t in b.get(C, set())}, f"[{Ps} fail; defect {C}] the defect must be contributed by ITS check: got {b}")
+        if "reason" in DEFECTS[C]: self.assertTrue(any(DEFECTS[C]["reason"] in f["why"] for f in fs if f["check"] == C and f["code"] == DEFECTS[C]["code"]), f"reason {DEFECTS[C]['reason']}: {[f['why'][:60] for f in fs if f['check'] == C]}")
         # (1) INDEPENDENCE: every check that needs none of the failed prerequisites contributes exactly its baseline (+ the failure code, at the reporter only)
         for k in (set(b) | set(base)) - needers - {"helpers", "resolver"}:
-            add_ = {rc.PREREQUISITES[P_]["failure_code"] for P_ in Ps if REPORTER[P_] == k}
+            add_ = {(rc.PREREQUISITES[P_]["class"], rc.PREREQUISITES[P_]["failure_code"], rc.INDEPENDENCE[k]["stage"]) for P_ in Ps if REPORTER[P_] == k}
             self.assertEqual(b.get(k, set()), base.get(k, set()) | add_, f"[{Ps} fail; defect {C}] check {k} needs none of {Ps}; its contribution must equal the baseline {sorted(base.get(k, set()))} (+{sorted(add_)}), got {sorted(b.get(k, set()))}")
+            expected_counts = Counter(tuple(row) for row in DECLARED[C].get(k, []))
+            expected_counts |= Counter(add_)
+            self.assertEqual(counts_by_check(fs).get(k, Counter()), expected_counts,
+                             f"[{Ps} fail; defect {C}] check {k}: finding multiplicity must equal the declaration plus reporter failures")
         # (2) nothing independent of the failed prerequisites is blocked
         self.assertTrue(set(out["blocked"]) <= needers, f"[{Ps} fail; defect {C}] blocked checks must all need a failed prerequisite (table needers {sorted(needers)}): blocked={sorted(out['blocked'])}")
         # the prerequisite failure is contributed by the check that meets it
         for P_ in Ps:
             r = REPORTER[P_]; fc = rc.PREREQUISITES[P_]["failure_code"]
-            self.assertTrue(fc in b.get(r, set()) or (r == "helpers" and any(f["code"] in ("VERIFIER-UNAVAILABLE", "HELPERS-UNAVAILABLE") for f in fs)), f"[{Ps} fail; defect {C}] the failure {fc} of {P_} must be contributed by {r}: got {b}")
+            self.assertTrue(fc in {t[1] for t in b.get(r, set())} or (r == "helpers" and any(f["code"] in ("VERIFIER-UNAVAILABLE", "HELPERS-UNAVAILABLE") for f in fs)), f"[{Ps} fail; defect {C}] the failure {fc} of {P_} must be contributed by {r}: got {b}")
         # (3) every check that needs a failed prerequisite: BLOCKED by name, or contributing under its own name only unavailability / the failure code / a subset of its baseline
         for n in needers:
             if n in out["blocked"]: continue
             self.assertIn(n, b, f"[{Ps} fail; defect {C}] check {n} needs {Ps}: it must be BLOCKED by name or contribute under its own name: blocked={sorted(out['blocked'])}, by_check={b}")
-            self.assertTrue(b[n] <= base.get(n, set()) | pcodes | UNAVAIL, f"[{Ps} fail; defect {C}] check {n} (needs {Ps}) contributed beyond unavailability / the failure code / its baseline {sorted(base.get(n, set()))}: {sorted(b[n])}")
+            self.assertTrue(all(t in base.get(n, set()) or t[1] in pcodes | UNAVAIL for t in b[n]), f"[{Ps} fail; defect {C}] check {n} (needs {Ps}) contributed beyond unavailability / the failure code / its baseline {sorted(base.get(n, set()))}: {sorted(b[n])}")
+            retained = Counter({t: count for t, count in counts_by_check(fs)[n].items()
+                                if t[1] not in pcodes | UNAVAIL})
+            declared_counts = Counter(tuple(row) for row in DECLARED[C].get(n, []))
+            self.assertFalse(retained - declared_counts,
+                             f"[{Ps} fail; defect {C}] check {n}: baseline subset must not gain duplicate findings")
         self.assertTrue(all(f.get("why") for f in fs))
         # (4) one resolver decides
         w = PC.resolve([PC.finding(f["class"], f["code"], f["why"], f["stage"], i, f["check"]) for i, f in enumerate(fs)]); self.assertTrue(msg.startswith(w["code"]), f"{msg[:80]!r} vs {w['code']}")
