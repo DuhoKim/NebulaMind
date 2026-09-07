@@ -4,11 +4,9 @@ Only observed import artifacts are collected; no installed package tree sweep.
 Sources AND every existing standard cache candidate are pinned conservatively:
 Python does not expose retrospectively which cache was actually read. Built-in
 and frozen code is represented by the pinned executable/Python framework.
-dyld cache residents bind to every byte of the UUID-linked on-disk cache family.
+dyld cache images use platform identity, not fabricated per-image bytes.
 """
 import ctypes
-import hashlib
-import re
 import importlib
 import importlib.machinery
 import importlib.util
@@ -18,9 +16,7 @@ import platform
 import struct
 import sys
 
-SCHEMA = "A1-RUNTIME-REPRESENTATION-2"
-CACHE_DIR = Path("/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld")
-CACHE_BYTES_SCHEMA = "A1-DYLD-CACHE-FILES-SHA256-1"
+SCHEMA = "A1-RUNTIME-REPRESENTATION-1"
 CACHE_MECHANISM = ("dyld active shared-cache UUID + kern.osversion + machine + "
                    "cache architecture; per-image loaded path + LC_UUID + "
                    "Mach-O CPU type/subtype + confirmed cache residency")
@@ -84,93 +80,9 @@ def dyld_snapshot(require):
                 "; no standalone file and not confirmed in active shared cache")
         images.append({"path": path, "lc_uuid": uuid.raw.hex(), "cpu_type": cpu,
                        "cpu_subtype": subtype, "in_shared_cache": resident,
-                       "binding": "DYLD-CACHE-FILE-SHA256" if resident else "FILE-SHA256"})
+                       "binding": "FILE-SHA256" if exists else "DYLD-CACHE-IDENTITY"})
     require(count() == initial_count, "DYLD-IMAGE-SET-CHANGED-DURING-CHECK")
     return {"shared_cache": identity, "images": sorted(images, key=lambda x: x["path"])}
-
-
-def cache_file_snapshot(identity, require):
-    """Hash the entire active cache family, including every declared subcache.
-
-    UUIDs link disk files to the active cache; SHA-256, not UUID, binds bytes.
-    Layout: Apple's dyld_cache_header and dyld_subcache_entry (suffix format).
-    https://github.com/apple-oss-distributions/dyld/blob/main/include/mach-o/dyld_cache_format.h
-    Unknown/old layouts, unreadable files and incomplete families refuse.
-    No stat/UUID-based digest memoization: every check streams every byte.
-    """
-    arch = identity.get("cache_architecture")
-    require(arch in ("arm64e", "arm64", "x86_64", "x86_64h"), "SHARED-CACHE-ARCHITECTURE")
-    main = CACHE_DIR / ("dyld_shared_cache_" + arch)
-    def read_header(path):
-        try:
-            with path.open("rb") as stream:
-                header = stream.read(456)
-        except OSError as exc:
-            require(False, "SHARED-CACHE-FILE-UNAVAILABLE: " + str(path) + ": " + str(exc))
-        require(len(header) == 456,
-                "SHARED-CACHE-FILE-HEADER: " + str(path))
-        require(header[:16].decode("ascii", "replace").strip("\0 ").split() == ["dyld_v1", arch],
-                "SHARED-CACHE-FILE-HEADER: " + str(path))
-        return header
-    header = read_header(main)
-    require(header[88:104].hex() == identity.get("uuid"),
-            "SHARED-CACHE-FILE-UUID-MISMATCH: " + str(main))
-    mapping_offset = struct.unpack_from("<I", header, 16)[0]
-    # cacheSubType at offset 448 distinguishes the modern suffix entry layout.
-    require(mapping_offset >= 452, "SHARED-CACHE-FORMAT-UNSUPPORTED: " + str(main))
-    offset, count = struct.unpack_from("<II", header, 392)
-    require(0 < count <= 128 and offset >= mapping_offset,
-            "SHARED-CACHE-SUBCACHE-TABLE: " + str(main))
-    try:
-        with main.open("rb") as stream:
-            stream.seek(offset)
-            entries = stream.read(count * 56)
-    except OSError as exc:
-        require(False, "SHARED-CACHE-FILE-UNAVAILABLE: " + str(main) + ": " + str(exc))
-    require(len(entries) == count * 56, "SHARED-CACHE-SUBCACHE-TABLE: " + str(main))
-    family = [(main, identity["uuid"])]
-    seen = set()
-    for index in range(count):
-        entry = entries[index*56:(index+1)*56]
-        suffix = entry[24:].split(b"\0", 1)[0].decode("ascii", "replace")
-        require(re.fullmatch(r"\.[0-9]+(?:\.dyld[a-z]+)?", suffix) and suffix not in seen,
-                "SHARED-CACHE-SUBCACHE-SUFFIX: " + suffix)
-        seen.add(suffix)
-        family.append((main.with_name(main.name + suffix), entry[:16].hex()))
-    result = []
-    for path, uuid in family:
-        require(read_header(path)[88:104].hex() == uuid,
-                "SHARED-CACHE-FILE-UUID-MISMATCH: " + str(path))
-        digest, size = hashlib.sha256(), 0
-        try:
-            with path.open("rb") as stream:
-                before = os.fstat(stream.fileno())
-                for chunk in iter(lambda: stream.read(8 * 1024 * 1024), b""):
-                    digest.update(chunk)
-                    size += len(chunk)
-                after = os.fstat(stream.fileno())
-        except OSError as exc:
-            require(False, "SHARED-CACHE-FILE-UNAVAILABLE: " + str(path) + ": " + str(exc))
-        require((before.st_size, before.st_mtime_ns, before.st_ctime_ns) ==
-                (after.st_size, after.st_mtime_ns, after.st_ctime_ns) and size == after.st_size,
-                "SHARED-CACHE-FILE-CHANGED-DURING-CHECK: " + str(path))
-        result.append({"path": str(path), "resolved_path": str(path.resolve()),
-                       "uuid": uuid, "bytes": size, "sha256": digest.hexdigest()})
-    return {"schema": CACHE_BYTES_SCHEMA, "files": result}
-
-
-def verify_cache_bytes(evidence, identity, require):
-    require(isinstance(evidence, dict) and evidence.get("schema") == CACHE_BYTES_SCHEMA,
-            "MISSING-SHARED-CACHE-BYTE-EVIDENCE")
-    observed = cache_file_snapshot(identity, require)
-    expected = evidence.get("files")
-    require(isinstance(expected, list) and len(expected) == len(observed["files"]),
-            "SHARED-CACHE-FILE-SET-MISMATCH")
-    for pin, actual in zip(expected, observed["files"]):
-        require(isinstance(pin, dict) and pin.get("path") == actual["path"],
-                "SHARED-CACHE-FILE-SET-MISMATCH: " + actual["path"])
-        require(pin == actual, "SHARED-CACHE-BYTES-MISMATCH: " + actual["path"])
-    return observed
 
 
 def preload(code):
@@ -232,7 +144,6 @@ def module_snapshot(require):
 
 def capture(pin, require):
     native = dyld_snapshot(require)
-    cache_bytes = cache_file_snapshot(native["shared_cache"], require)
     modules = module_snapshot(require)
     # dyld itself is not one of its enumerated client images.
     paths = {str(Path(sys.executable).resolve()), "/usr/lib/dyld"}
@@ -240,8 +151,8 @@ def capture(pin, require):
         if "path" in row:
             paths.add(row["path"])
         paths.update(p for p in row.get("cache_candidates", []) if Path(p).is_file())
-    paths.update(str(Path(r["path"]).resolve()) for r in native["images"] if Path(r["path"]).is_file())
-    return {"schema": SCHEMA, **native, "cache_bytes": cache_bytes, "modules": modules,
+    paths.update(str(Path(r["path"]).resolve()) for r in native["images"] if r["binding"] == "FILE-SHA256")
+    return {"schema": SCHEMA, **native, "modules": modules,
             "files": [pin(p) for p in sorted(paths)]}
 
 
@@ -263,18 +174,15 @@ def verify(evidence, read_pin, require):
     native = dyld_snapshot(require)
     require(evidence.get("shared_cache") == native["shared_cache"],
             "SHARED-CACHE-IDENTITY-MISMATCH: active dyld cache UUID/OS build/architecture/mechanism")
-    cache_bytes = verify_cache_bytes(evidence.get("cache_bytes"), native["shared_cache"], require)
     expected_images = {}
     for row in evidence.get("images", []):
         require(isinstance(row, dict) and isinstance(row.get("path"), str), "RUNTIME-IMAGE-SCHEMA")
         require(row["path"] not in expected_images, "DUPLICATE-RUNTIME-IMAGE: " + row["path"])
         expected_images[row["path"]] = row
-        if Path(row["path"]).is_file():
-            bound(row["path"])
         if row.get("binding") == "FILE-SHA256":
             bound(row["path"])
         else:
-            require(row.get("binding") == "DYLD-CACHE-FILE-SHA256" and row.get("in_shared_cache") is True
+            require(row.get("binding") == "DYLD-CACHE-IDENTITY" and row.get("in_shared_cache") is True
                     and "sha256" not in row, "RUNTIME-CACHE-REPRESENTATION: " + row["path"])
     for row in native["images"]:
         path = row["path"]
@@ -297,7 +205,4 @@ def verify(evidence, read_pin, require):
         require(row == expected_modules[name], "RUNTIME-MODULE-IDENTITY-MISMATCH: " + name + ": " + row.get("path", row["binding"]))
     return {"schema": SCHEMA, "verified_files": len(files),
             "observed_modules": len(module_snapshot(require)),
-            "observed_images": len(native["images"]), "shared_cache": native["shared_cache"],
-            "cache_byte_binding": {"schema": cache_bytes["schema"],
-                "verified_files": len(cache_bytes["files"]),
-                "verified_bytes": sum(p["bytes"] for p in cache_bytes["files"])}}
+            "observed_images": len(native["images"]), "shared_cache": native["shared_cache"]}

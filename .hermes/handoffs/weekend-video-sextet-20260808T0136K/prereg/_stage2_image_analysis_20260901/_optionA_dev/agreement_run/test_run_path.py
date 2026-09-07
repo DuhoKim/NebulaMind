@@ -56,6 +56,11 @@ class RunPathTests(unittest.TestCase):
         self.addCleanup(self.network.stop)
         coords = [{"objid": i, "ra": 40.0, "dec": 10.0, "brick": "0400p100"}
                   for i in range(2600)]
+        from _optionA_dev.agreement_run.test_evidence_gate import small_cache_family
+        cache_patch = patch.object(rp.runtime_binding, "CACHE_DIR",
+                                   small_cache_family(self.base / "cache"))
+        cache_patch.start()
+        self.addCleanup(cache_patch.stop)
         runtime = json.loads((LANE / "_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json").read_text())
         # Test processes import extra harness modules. Build fixture evidence
         # explicitly; the production verifier has no test-mode exemption.
@@ -93,7 +98,7 @@ class RunPathTests(unittest.TestCase):
                  "declared_obligation_set_complete": True,
                  "current_preparation_obligations_resolved": True,
                  "runtime_representation_evidenced": True,
-                 "a1_manifest_obligations_agree": True}},
+                 "medium_preparation_evidenced": True}},
              "a1_obligations_source": a1_pin,
              "current_preparation_obligations": [
                  {"id": "CORE_CONSUMER_RECONCILIATION", "resolved": True},

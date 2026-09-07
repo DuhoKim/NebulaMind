@@ -64,7 +64,7 @@ class RuntimeBindingTests(unittest.TestCase):
 
     def test_changed_cached_image_uuid_refuses_by_name(self):
         """FAIL-FIRST: each cached image has its own checked LC_UUID identity."""
-        row = next(r for r in self.runtime["representation"]["images"] if r["binding"] == "DYLD-CACHE-IDENTITY")
+        row = next(r for r in self.runtime["representation"]["images"] if r["binding"] == "DYLD-CACHE-FILE-SHA256")
         row["lc_uuid"] = "0" * 32
         with self.assertRaisesRegex(rp.Refused, "RUNTIME-IMAGE-IDENTITY-MISMATCH: " + re.escape(row["path"])):
             self.check()

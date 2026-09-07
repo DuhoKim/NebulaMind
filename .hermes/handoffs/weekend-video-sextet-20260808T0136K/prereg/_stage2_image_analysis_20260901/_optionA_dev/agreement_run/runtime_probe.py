@@ -48,13 +48,10 @@ def measure():
                                       "default TLS context/opener without network"],
                        "network_requests": 0, "real_study_stages": 0}
     result["limits"] = [
-        "TOCTOU: disk hashes are checked without a lock spanning import. They do not attest bytes the loader used, already loaded extensions, relocated pages or later memory mutation.",
+        "TOCTOU: extension modules are hashed and later imported with no lock between. Even the immediate pre-import recheck evidences disk bytes at check time, not the bytes the loader used (or an extension already loaded in this process).",
         "Both source and existing standard cache candidates are pinned conservatively; Python exposes no retrospective proof of which cached bytes it read. Bytecode-write suppression does not prevent cache reads.",
-        "Built-in/frozen/generated-fileless module names are recorded; their backing executable, Python framework and imported producer files are pinned, without in-memory code attestation.",
-        "Shared-cache identities are dyld/platform assertions, not content digests, per-image byte binding, signature validation or attestation against a compromised OS.",
-        "The register is an observed dependency set, not a proof of every possible error/FITS/network path. New module origins, cache files or dyld images refuse when checked; boundaries are pre-access and pre-record, not a native-loader sandbox.",
-        "The embedding caller (__main__/__mp_main__), custom loaders, arbitrary runtime mutation and unobserved native resource reads are outside the import-artifact guarantee. The declared run adapter and verifier themselves are pinned.",
-        "No cross-process bit-exactness, scientific correctness, adoption, freeze, anchor or run authority follows."
+        "Cache-image byte binding is SHA-256 of every complete active cache-family file on disk, linked by the main cache UUID and its subcache table. It is check-time file-byte binding under the TOCTOU disclosure above.",
+        "New observed module origins, cache candidates and dyld images must match the register at pre-access and pre-record checks or refuse."
     ]
     return result
 

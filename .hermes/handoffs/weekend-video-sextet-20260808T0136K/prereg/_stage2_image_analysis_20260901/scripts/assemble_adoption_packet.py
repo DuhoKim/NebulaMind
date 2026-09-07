@@ -16,7 +16,7 @@ CORE = [("candidate", "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"),
         ("MEDIUM producer", "_optionA_dev/agreement_run/medium_perturbation.py"),
         ("eligible ids", "_optionA_dev/agreement_run/inputs/eligible_ids_20260907.txt"),
         ("failed-set ids", "_optionA_dev/agreement_run/inputs/failed_set_ids_20260907.txt")]
-REVIEWS = [("review 1 (REFUSED)", "AGY_A1_REVIEW_20260907.md"),
+REVIEWS = [("review 6 (final)", "AGY_A1_REVIEW6_20260907.md"), ("review 5", "AGY_A1_REVIEW5_20260907.md"), ("review 4 (repair)", "AGY_A1_REVIEW4_20260907.md"),("review 1 (REFUSED)", "AGY_A1_REVIEW_20260907.md"),
            ("review 2 (changed bytes)", "AGY_A1_REVIEW2_20260907.md"),
            ("review 3 (final delta)", "AGY_A1_REVIEW3_20260907.md")]
 def verdict(p):
@@ -57,8 +57,17 @@ def access_sha(p):
         m = _re.search(r"ACCESS_SHA=([0-9a-f]{64})", open(p, encoding="utf-8").read())
         return m.group(1) if m else None
     except OSError: return None
-POSITIVE = ("REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND")
+# EXACT TOKEN MATCH, never substring: "FINAL-NOT-SOUND" must never satisfy a rule written for "FINAL-SOUND".
+# (The first version of this list also simply omitted FINAL-SOUND, so a positive review read as unreviewed.)
+POSITIVE = {"REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND", "FINAL-SOUND"}
+def verdict_token(v):
+    return (v or "").split(":", 1)[-1].strip().split()[0] if v and ":" in v else None
 a1_now = sha("AGREEMENT_RUN_AMENDMENT_A1_20260907.md")
+# Per GOVERNING ARTEFACT, not once globally (2026-09-07 18:3x): review 6 proved access to run_path.py
+# and returned FINAL-SOUND while A1's current bytes had no access-proved positive review at all.
+# Citing a file in prose is not proving you read the bytes that are there now.
+GOVERNING = [("A1", "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"),
+             ("run path", "_optionA_dev/agreement_run/run_path.py")]
 reviewed = [(p, verdict(p), access_sha(p)) for _, p in REVIEWS if verdict(p)]
 covering = [(p, v, a) for (p, v, a) in reviewed if a == a1_now]
 out += ["", "## Does a review actually cover the CURRENT bytes?",
@@ -66,10 +75,12 @@ out += ["", "## Does a review actually cover the CURRENT bytes?",
         "- reviews and the digest each one actually read:"]
 for p, v, a in reviewed: out.append(f"  - `{p}` — read `{a}` — {v}" + ("  **<- covers current bytes**" if a == a1_now else "  (older bytes)"))
 review_blockers = []
-if not covering: review_blockers.append("no independent review has read the CURRENT A1 bytes")
-else:
-    bad = [p for p, v, a in covering if not any(v.endswith(k) or k in v for k in POSITIVE)]
-    if bad: review_blockers.append(f"the review of the current bytes is not positive: {', '.join(bad)}")
+out.append("- coverage per governing artefact:")
+for label, path in GOVERNING:
+    d = sha(path); cov = [(p, v) for (p, v, a) in reviewed if a == d]
+    good = [p for p, v in cov if verdict_token(v) in POSITIVE]
+    out.append(f"  - {label} `{d}` — " + (f"positively reviewed by {', '.join(good)}" if good else ("reviewed but NOT positively: " + ", ".join(p for p, _ in cov) if cov else "**no access-proved review of these bytes**")))
+    if not good: review_blockers.append(f"{label} has no access-proved POSITIVE review of its current bytes")
 blockers = list(review_blockers)
 if missing: blockers.append(f"{len(missing)} packet file(s) absent: {', '.join(missing)}")
 if pending: blockers.append(f"{len(pending)} review report(s) not yet filed in the lane: {', '.join(pending)}")

@@ -100,7 +100,7 @@ class ReadinessTests(unittest.TestCase):
     def test_runtime_unresolved_still_blocks(self):
         """POSITIVE-REGRESSION: present unresolved runtime work defeats a TRUE flag."""
         self.c["current_preparation_obligations"][-1].update(resolved=False, evidence="unfinished")
-        with self.assertRaisesRegex(rp.Refused, "CORE-NOT-READY: RUNTIME_REPRESENTATION: unfinished"):
+        with self.assertRaisesRegex(rp.Refused, "MANIFEST-OBLIGATION-MISMATCH: RUNTIME_REPRESENTATION"):
             rp._core(self.c)
 
     def test_a1_manifest_status_divergence(self):

@@ -9,6 +9,8 @@ import marshal
 from pathlib import Path
 import re
 import unittest
+import sys
+from contextlib import contextmanager
 from unittest.mock import patch
 
 from _optionA_dev.agreement_run import run_path as rp
@@ -18,6 +20,21 @@ from _optionA_dev.agreement_run.test_medium_perturbation import raster
 from astropy.io import fits
 from astropy.wcs import WCS, Sip
 import numpy as np
+
+
+@contextmanager
+def observe_producer(callback):
+    """Observe the real producer without replacing evidence-bound code."""
+    code = mp.produce_tuning_disclosure.__code__
+    previous = sys.getprofile()
+    def profile(frame, event, arg):
+        if frame.f_code is code:
+            callback(frame, event, arg)
+    sys.setprofile(profile)
+    try:
+        yield
+    finally:
+        sys.setprofile(previous)
 
 
 class CoreConsumerTests(unittest.TestCase):
@@ -112,7 +129,7 @@ class CoreConsumerTests(unittest.TestCase):
         """FAIL-FIRST: readiness is recomputed from unresolved CORE obligations."""
         self.rewrite_core(lambda c: c["current_preparation_obligations"].append(
             {"id": "synthetic_obligation", "resolved": False, "evidence": "unfinished"}))
-        with self.assertRaisesRegex(rp.Refused, "CORE-NOT-READY: synthetic_obligation: unfinished"):
+        with self.assertRaisesRegex(rp.Refused, "CORE-NOT-READY: UNDECLARED-OBLIGATION: synthetic_obligation"):
             self.run._common()
 
     def test_input_due_placeholder_blocks(self):
@@ -207,11 +224,12 @@ class CoreConsumerTests(unittest.TestCase):
     def test_false_readiness_never_calls_medium(self):
         """FAIL-FIRST: readiness refusal occurs before the real MEDIUM call boundary."""
         self.rewrite_core(lambda c: c.update(ready_for_input_freeze=False))
-        with patch.object(mp, "produce_tuning_disclosure", wraps=mp.produce_tuning_disclosure) as producer:
+        calls = []
+        with observe_producer(lambda frame, event, arg: calls.append(event) if event == "call" else None):
             try:
                 self.run.tune(None, None, None)
             except rp.Refused as exc:
-                result = (str(exc).startswith("CORE-NOT-READY:"), producer.call_count)
+                result = (str(exc).startswith("CORE-NOT-READY:"), len(calls))
         self.assertEqual(result, (True, 0))
 
     def synthetic_tuning(self):
@@ -247,15 +265,13 @@ class CoreConsumerTests(unittest.TestCase):
             if pin == labels:
                 events.append("labels")
             return real_read(pin)
-        def produce(objects):
-            result = real_producer(objects)
-            if objects:
+        def produce(frame, event, arg):
+            if event == "return" and frame.f_locals.get("objects"):
                 events.append("medium")
-            return result
         # A single synthetic identity exercises orchestration; it cannot meet
         # the unchanged 380 floor and never creates a winner or later stage.
         with patch.dict(rp.SIZES, {"tuning": 1}), patch.object(rp, "read_pin", side_effect=read), \
-             patch.object(mp, "produce_tuning_disclosure", side_effect=produce):
+             observe_producer(produce):
             record = rp.json_pin(self.run.tune(previous, access, inv))
         disclosure_pin = record["outputs"].get("medium_disclosure")
         disclosure = rp.json_pin(disclosure_pin) if disclosure_pin else {}
