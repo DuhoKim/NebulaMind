@@ -1,5 +1,5 @@
 # The bounce route — what one day of bounded work established
-**Tori, 2026-09-07 16:23 KST. For Duho. Selected route: can a collapsing black hole become an expanding universe under varied conditions, or only
+**SCOPE LIMITATION ADDED 16:5x — see the section at the end before relying on results 1 and 3. Tori, 2026-09-07 16:23 KST. For Duho. Selected route: can a collapsing black hole become an expanding universe under varied conditions, or only
 under carefully chosen assumptions? Every claim below is filed, adversarially reviewed on an engine that did not produce it, and
 carries its own scope.**
 
@@ -54,3 +54,29 @@ day and both retractions are on disk with their corrections: a "two published pa
 the publisher page and found both cases stated by the author, and an "input is missing" claim, refuted when the referee found
 the relation printed twice. Both failures had one cause — reading extractions instead of pages — and the lane's practice was
 rewritten twice because of them.
+
+---
+
+## LIMITATION ADDED AFTER THIS SUMMARY WAS WRITTEN (B6, publisher-verified)
+**This summary's results 1 and 3 are computed in FLAT Bianchi I. The source's own scenario is curved Kantowski–Sachs, and the
+transfer is NOT automatic. B6 (`B6_APPLICABILITY_20260907.md`, digest 7531c8ed…, quotations read from the publisher HTML)
+establishes:**
+
+- **Result 1 FAILS to transfer.** The flat case rests on \(a^6\sigma^2\) being conserved, which is what makes the criterion a
+  comparison of constants. In KS it is not conserved: the exact identity is \(d(a^6S)/dt = \tfrac23 a^6 K\Delta\), so the
+  curvature term drives it, and the source itself writes, immediately after its Eq. (30), that "the shear scalar grows with
+  decreasing \(a\) faster than \(\sim a^{-6}\)". The spin term keeps exact \(a^{-6}\) scaling, so **the shear–spin degeneracy
+  is a flat-geometry feature and does not hold in the source's own geometry.** The sign qualification matters and is recorded:
+  the source's Eq. (30) right-hand side is positive only on its \(\Delta>0\) branch, not merely because the geometry is curved
+  or contracting. What survives, in the source's own setting, is weaker and not our headline: on that branch, initially
+  subdominant torsion still cannot overtake shear without production.
+- **Result 3's transfer is UNDETERMINED.** The mechanism by which production helps — number density diluting more slowly than
+  \(a^{-3}\), from the source's Eq. (34) — does transfer. The guaranteed-bounce theorem does not follow in KS, because the
+  quantity it outruns is no longer a constant. The source's own Eq. (35) states the corresponding KS condition as an inequality
+  to be satisfied at the horizon-formation instant, not as a theorem.
+
+**Consequently this summary must not be read as answering the source's own curved scenario.** Results 1 and 3 stand where they
+were computed, in flat Bianchi I with a Weyssenhoff spin fluid. Result 2 (the printed thermal closure admitting no bouncing
+solution) and result 4 (the assumptions being unestablished in the bounce regime) were established in both geometries or are
+geometry-independent, and are unaffected. **B6's two verdicts are author findings pending an independent different-engine
+challenge, which is dispatched; they are not yet adopted conclusions.**

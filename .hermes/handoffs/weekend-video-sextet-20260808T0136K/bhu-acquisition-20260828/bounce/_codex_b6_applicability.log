@@ -1,0 +1,1694 @@
+Reading additional input from stdin...
+OpenAI Codex v0.153.4
+--------
+workdir: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a07ac4-8651-7e11-866a-bda29533ffad
+--------
+user
+# BOUNDED CODEX TASK — B6: does our flat-geometry result bear on the source's own scenario? (Tori, 2026-09-07)
+
+## (1) Governing source and the meaning of the ambiguous terms
+Governing text: Poplawski, *Gen. Relativ. Gravit.* **53**, 18 — the PUBLISHER article HTML is saved at
+`bounce/b4_springer_access.html` and is the preferred source; say for each quotation whether you read it or the arXiv copy.
+- "FLUID row" = the Weyssenhoff spin fluid, its Eq. (1): eps_tilde = eps - alpha n_f^2, p_tilde = p - alpha n_f^2.
+- "Flat Bianchi I" = the flat homogeneous anisotropic geometry OUR results B1/B3 were computed in.
+- "KS" = the Kantowski-Sachs geometry the SOURCE actually solves, its Eq. (6), with the curvature term K = 1/Y^2.
+- "the degeneracy" = shear and spin-torsion both scaling as a^-6, which is what makes B1's no-production criterion a comparison
+  of constants.
+
+## (2) The question, and the acceptance criterion
+**Our B1 result says: in flat Bianchi I, shear ~ a^-6 exactly, torsion ~ a^-6, so the bounce criterion compares two constants
+and collapse can never cross it. The source's own scenario is KS, where its shear law (its Eq. 30) is curvature-sourced.**
+Determine, from the source's printed equations:
+  (a) In KS, how does the shear scalar actually evolve? Quote Eq. (30) and its neighbours verbatim and derive the scaling.
+      Does it scale as a^-6, faster, or neither (i.e. not a power law)?
+  (b) Therefore: does the a^-6 DEGENERACY hold in KS, or is it special to flat Bianchi I?
+  (c) Consequently, does B1's "comparison of constants / cannot be reached dynamically" conclusion TRANSFER to the source's own
+      scenario, fail there, or become undetermined? Answer in one explicit sentence.
+  (d) Same question for B3's production result: does the mechanism by which production breaks the degeneracy (number density
+      diluting slower than a^-3) operate the same way in KS?
+ACCEPTANCE: a verbatim quotation of the KS shear equation with its number, an explicit derived scaling, and a one-sentence
+transfer verdict for each of B1 and B3, each marked TRANSFERS / FAILS / UNDETERMINED with its reason.
+
+## (3) Allowed inputs and scope exclusions
+Allowed: the saved publisher HTML, the arXiv copy, the local APS PDFs, and this lane's own bounce/ files. EXCLUDED: any pinned
+census file, the R3C2 kit, any Hwao lane or unopened evaluation data. Do NOT adopt a closure, file a class, re-open B1/B2/B3/B5,
+or compute a new model. Do NOT treat missing support as proof of failure. Keep the DIRAC row out of this entirely.
+
+## (4) Output and how I learn it finished
+Write `bounce/B6_APPLICABILITY_20260907.md`. Print its sha256 and the two transfer verdicts as your final answer. Report only.
+codex
+I’ll check the saved publisher equations against the lane’s B1/B3 results and write the B6 applicability report within the stated scope.
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'bounce/**' -g '"'!**/node_modules/**'"' -g '"'!**/.git/**'"'" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+bounce/ECSK_DERIVATION_20260907.md
+bounce/_codex_b1_derive.log
+bounce/_tmp_kimi_j_check.py
+bounce/B1_RESULT_20260907.md
+bounce/B3_RECONCILIATION_20260907.md
+bounce/_kimi_b3_challenge.log
+bounce/_codex_b4_beta.log
+bounce/_CODEX_TASK_SOURCES_20260907.md
+bounce/B1_CRITERION_20260907.md
+bounce/B3_RESCUE_20260907.md
+bounce/_codex_sources.log
+bounce/B5_VALIDITY_20260907.md
+bounce/B4_RECONCILIATION_20260907.md
+bounce/_codex_b6_applicability.log
+bounce/prd_publisher_verify_20260907/rmp_crossref.json
+bounce/prd_publisher_verify_20260907/rmp_page_18.png
+bounce/prd_publisher_verify_20260907/rmp_doi.html
+bounce/prd_publisher_verify_20260907/prd_issue.html
+bounce/prd_publisher_verify_20260907/rmp_corrections_search.html
+bounce/prd_publisher_verify_20260907/prd_landing.html
+bounce/prd_publisher_verify_20260907/prd_doi.html
+bounce/prd_publisher_verify_20260907/prd_pdf.pdf
+bounce/prd_publisher_verify_20260907/access.json
+bounce/prd_publisher_verify_20260907/rmp_landing.html
+bounce/prd_publisher_verify_20260907/prd_corrections_search.html
+bounce/prd_publisher_verify_20260907/prd_page_2.png
+bounce/prd_publisher_verify_20260907/prd_crossref.json
+bounce/prd_publisher_verify_20260907/web_evidence.txt
+bounce/prd_publisher_verify_20260907/rmp_issue.html
+bounce/prd_publisher_verify_20260907/rmp_eq_3_23_3_24.png
+bounce/prd_publisher_verify_20260907/rmp_page_17.png
+bounce/prd_publisher_verify_20260907/rmp_pdf.pdf
+bounce/prd_publisher_verify_20260907/rmp_page_16.png
+bounce/prd_publisher_verify_20260907/prd_errata.html
+bounce/prd_publisher_verify_20260907/rmp_eq_5_18.png
+bounce/prd_publisher_verify_20260907/rmp_errata.html
+bounce/prd_publisher_verify_20260907/rmp_page_8.png
+bounce/_tmp_kimi_refs.py
+bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+bounce/SOURCES_20260907.md
+bounce/_CODEX_TASK_B6_APPLICABILITY_20260907.md
+bounce/b4_source_2007.11556v2.html
+bounce/b1_derive.py
+bounce/b4_springer_access.html
+bounce/KIMI_B1_ADVERSARIAL_20260907.md
+bounce/KIMI_B2_CHALLENGE_20260907.md
+bounce/c1_reexam.py
+bounce/_codex_c1_reexam.log
+bounce/B1_RESULT_V2_20260907.md
+bounce/b2_closure.py
+bounce/B4_BETA_COMPARISON_20260907.md
+bounce/_codex_b3_rescue.log
+bounce/B3_CLASS_FILED_20260907.md
+bounce/_CODEX_TASK_B1_DERIVE_20260907.md
+bounce/B2_CLOSURE_20260907.md
+bounce/_CODEX_TASK_B5_VALIDITY_20260907.md
+bounce/_CODEX_TASK_C1_REEXAM_20260907.md
+bounce/BOUNCE_ROUTE_SUMMARY_20260907.md
+bounce/_KIMI_B3_CHALLENGE_20260907.txt
+bounce/_kimi_sign.pid
+bounce/ecsk_derive.py
+bounce/_codex_b1_criterion.log
+bounce/PRD_PUBLISHER_VERIFY_20260907.md
+bounce/b3_rescue.py
+bounce/B1_SIGN_RESOLUTION_20260907.md
+bounce/KIMI_B5_CHALLENGE_20260907.md
+bounce/B1_DERIVATION_20260907.md
+bounce/_KIMI_B1_ADVERSARIAL_20260907.txt
+bounce/b1_criterion.py
+bounce/_CODEX_TASK_B3_RESCUE_20260907.md
+bounce/_kimi_b1_adversarial.log
+bounce/_codex_ecsk.log
+bounce/kimi_b2_independent_check.py
+bounce/b5_sources/pop2012_page-2.png
+bounce/b5_sources/liu_yin2021_publisher.pdf
+bounce/b5_sources/brechet2008_publisher.txt
+bounce/b5_sources/access.json
+bounce/b5_sources/liu_yin2021_publisher.txt
+bounce/b5_sources/grg_publisher_text.txt
+bounce/b5_sources/pop2012_dirac_publisher.txt
+bounce/b5_sources/brechet2008_publisher.pdf
+bounce/b5_sources/hehl_page-17.png
+bounce/b5_sources/write_b5_report.py
+bounce/b5_sources/hehl_page-16.png
+bounce/b5_sources/hehl_rmp_publisher.txt
+bounce/b5_sources/brechet_page-06.png
+bounce/b5_sources/pop2016_publisher.html
+bounce/b5_sources/becattini2021_publisher.pdf
+bounce/b5_sources/hehl1974_publisher.txt
+bounce/b5_sources/hehl1974_page-2.png
+bounce/b5_sources/becattini2021_publisher.txt
+bounce/b5_sources/hehl1974_publisher.pdf
+bounce/b5_sources/liu_yin2021_publisher.html
+bounce/b5_sources/becattini_page-2.png
+bounce/b5_sources/becattini_page-3.png
+bounce/b5_sources/becattini_page-1.png
+bounce/_CODEX_TASK_ECSK_DERIVE_20260907.md
+bounce/LANE_METHOD_NOTE_SHARED_INPUT_20260907.md
+bounce/_kimi_b5_challenge.log
+bounce/KIMI_SIGN_CHECK_20260907.md
+bounce/B1_SCOPE_QUALIFICATION_20260907.md
+bounce/_CODEX_TASK_B4_BETA_20260907.md
+bounce/_CODEX_TASK_B1_CRITERION_20260907.md
+bounce/_codex_prd_verify.log
+bounce/_CODEX_TASK_PRD_VERIFY_20260907.md
+bounce/_CODEX_TASK_B2_CLOSURE_20260907.md
+bounce/KIMI_B3_CHALLENGE_20260907.md
+bounce/_codex_b5_validity.log
+bounce/_codex_b2_closure.log
+bounce/_KIMI_BLIND_SIGN_CHECK_20260907.txt
+bounce/_KIMI_B5_CHALLENGE_20260907.txt
+bounce/b4_source_2007.11556v2.txt
+bounce/_KIMI_B2_CHALLENGE_20260907.txt
+bounce/_b4_write_report.py
+bounce/_kimi_b2_challenge.log
+bounce/C1_REEXAM_20260907.md
+bounce/_kimi_sign_check.log
+
+exec
+/bin/zsh -lc "python - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+p=Path('bounce/b4_springer_access.html')
+s=BeautifulSoup(p.read_text(),'html.parser')
+print('TITLE:',s.title.get_text() if s.title else '')
+print('CANONICAL:',[x.get('href') for x in s.select('link[rel=\"canonical\"]')])
+for e in s.select('div.c-article-equation'):
+ if any(f'({i})' in e.get_text() for i in list(range(25,39))+[1,6,18,19,20,21,22,23,24]):
+  print('\\nEQUATION:',e.get('id'),e.get_text(' ',strip=True))
+  prev=e.find_previous_sibling()
+  nex=e.find_next_sibling()
+  print('PREV:',prev.get_text(' ',strip=True) if prev else '')
+  print('NEXT:',nex.get_text(' ',strip=True) if nex else '')
+print('TOTAL EQUATIONS:',len(s.select('div.c-article-equation')))
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ exited 127 in 0ms:
+zsh:1: command not found: python
+
+exec
+/bin/zsh -lc "python - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for q in [*reversed(p.parents),p,p/'bounce']:
+ f=q/'AGENTS.md'
+ if f.is_file():
+  print('\\nPATH:',f)
+  print(f.read_text())
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ exited 127 in 0ms:
+zsh:1: command not found: python
+
+exec
+/bin/zsh -lc "sed -n '1,220p' bounce/B1_RESULT_V2_20260907.md && sed -n '1,240p' bounce/B3_RESCUE_20260907.md && sed -n '1,200p' bounce/B3_RECONCILIATION_20260907.md" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+# B1 — RESULT, VERSION 2 (corrected after adversarial review)
+**Tori, 2026-09-07 13:02 KST. Supersedes `B1_RESULT_20260907.md`, which stays on disk unaltered as the withdrawn version.**
+Referee: `KIMI_B1_ADVERSARIAL_20260907.md`, B1_REVIEW=CLASSES_WRONG. It was right. What follows is the corrected filing.
+
+## 0. What I withdraw, and why
+**`B1_UNDERDETERMINED` is WITHDRAWN for BOTH rows.** I filed it on the claim that an energy-transfer term J = 2Ψα n is required
+and unprinted. Both papers print it:
+- **GRG 53, 18 Eq. (14)**, the first law for the effective fluid, $d(\tilde\epsilon XY^2)/dt + \tilde p\, d(XY^2)/dt = 0$,
+  restated as the entropy law Eq. (17). Expanded with Eq. (1) it is algebraically identical to the relation I called missing.
+  The referee's machine check gives residual 0.
+- **PRD 85, 107502 Eq. (13)**, $a^3d\epsilon - 2\alpha a^3 n\,dn + (\epsilon+p)d(a^3) = 0$, which with $n\propto a^{-3}$
+  supplies exactly the $-6\alpha H n^2$ transfer that our C3_DIRAC residual reported as missing.
+**This is the second instance today of one failure**, and the worse of the two: our extraction jumped from GRG (11) to (15),
+skipping (12)–(14) and (17); and PRD (13) is printed on the very page I read myself this morning, three lines below the equation
+I went there to check. I had written the lane's method note about exactly this five hours earlier. Reading a page for one purpose
+is not reading it.
+
+## 1. Classes as they now stand
+
+**FLUID row, no particle production → `B1_DEGENERATE_FINE_TUNED` — STANDS.**
+Independently re-derived by the referee, which derived the Bianchi I shear evolution itself rather than checking ours: with the
+declared unpolarised fluid the combined source has isotropic spatial stress, so $\dot H_i + 3HH_i$ is direction-independent,
+$H_i-H_j\propto a^{-3}$ and $\sigma^2 = \Sigma^2/a^6$ exactly — torsion cannot modify the shear law within the declared model.
+Criterion $\kappa\alpha_F n_0^2 > \Sigma^2$, $a_{min}^2 = (\kappa\alpha_F n_0^2-\Sigma^2)/(\kappa\epsilon_0)$, with
+$\dot H > 0$ at the root: a genuine smooth minimum, and a comparison of constants. Holds for every $\alpha_F>0$, so across the
+whole declared interval; as $\alpha_F\to0^+$ the admissible shear window collapses, making the bounce MORE fine-tuned, never
+generic.
+
+**Novelty, corrected downward and stated plainly:** this structure is already published. The referee cites GRG's own
+introduction pointing to Kopczyński, *Phys. Lett. A* **43**, 63 (1973); Kuchowicz, *J. Phys. A* **8**, L29 (1975); Tafel,
+*Phys. Lett. A* **45**, 341 (1973) — a Bianchi I Einstein–Cartan universe avoids the singularity if torsion's effect exceeds
+shear's — and RMP 48, 393's own example (5.24) carries the same $a^{-6}$ pair. **So B1 did not discover the constant
+comparison; it corroborated it independently and added three things:** that the conclusion is α-independent in form and hence
+survives our K3 closure problem; that the correction at any such bounce is at least the entire ordinary density; and that this
+is the flat Bianchi I statement, distinct from the KS system the source actually solves, whose §7 shear law (30) is
+curvature-sourced and does grow faster than $a^{-6}$.
+
+**FLUID row, with particle production → `B1_ILL_POSED`, restricted to the paper's own thermal specialisation.**
+The defect is not a missing input but a conflict between printed equations. With GRG's constant-coefficient thermal forms
+(§9: $\epsilon=h_\star T^4$, $p=\epsilon/3$, $n=h_nT^3$), its first law (14) reduces to
+$(4h_\star T^3-6\alpha h_n^2T^5)(\dot T+HT)=0$, so on any interval with production it forces the single temperature
+$T^2 = 2h_\star/(3\alpha h_n^2)$ rather than an evolution — while the paper's own printed temperature law (37) gives
+$\dot T = -HT + \Psi/(3T^2h_n)$. GRG §9 solves {(36),(37),(11),(16)} and never re-checks (14), which it had used for the
+no-production case. **The printed system is over-determined and inconsistent on any production interval** — the pre-registered
+`B1_ILL_POSED`, filed with its obstruction stated, exactly as §4 of the pre-registration declared acceptable in advance.
+**Scope of that class, stated:** it attaches to the constant-coefficient thermal specialisation as printed. Relax that, and the
+general system {(14), (34), field equations} propagates the constraint (our own C3 algebra shows it) and the rescue question
+becomes **decidable and simply uncomputed** — which is a study, not a class, and is the obvious next one.
+
+**DIRAC row → NO CLASS FILED.** Its earlier UNDERDETERMINED is withdrawn: PRD (13) supplies the transfer, so the row is not
+inconsistent, and our C3_DIRAC=FAIL measured a system missing an equation the paper prints. Its bounce question is likewise
+decidable and uncomputed. Every Dirac-row statement in V1 that read as physical is downgraded to conditional algebra.
+
+## 2. The two scope sentences the referee quoted, corrected
+- V1 §2 said the correction exceeds the ordinary density "in both rows". **Corrected:** that is a FLUID-row physical statement.
+  The Dirac row has no dynamically attained bounce in our treatment; its root is formal only.
+- V1 said K3's threshold finding "applies a fortiori" across rows. **Corrected:** K3's 2/3 was computed at the DIRAC row's
+  turning point with $\alpha_D=9\kappa/16$. The fluid row's own ratio is ≥1 at its own bounce, which is a separate
+  computation (`C1_REEXAM_20260907.md`), not an inheritance. Both statements are true; neither travels across rows.
+- Notation nit accepted: §2's ratio uses the correction-tilde while the fluid row elsewhere uses GRG's total-tilde. The words
+  were right; the symbol is now disclosed at the point of use.
+
+## 3. What survives, in one paragraph
+For the Weyssenhoff spin fluid in flat anisotropic Bianchi I, a torsion bounce exists only when one constant exceeds another,
+both fixed by initial data, for any positive coupling — a published structure this study independently reproduced and sharpened.
+At any such bounce the spin correction is at least the whole ordinary energy density, so the mechanism operates precisely where
+the four-fermion closure that sets its strength is uncontrolled (K3 step 3, at the Dirac turning point; ≥1 at the fluid one).
+The particle production that the source invokes to escape the shear degeneracy is, in the paper's own printed thermal
+specialisation, inconsistent with the paper's own first law. **None of this proves or disproves black-hole-universe cosmology.**
+It says: this mechanism, in this class, needs chosen initial data, and its published escape route does not close as printed.
+
+---
+
+## AMENDMENT A (2026-09-07 13:32 KST) — the production sector, characterised precisely (B2)
+Codex's 13:15 check asked whether the (14)/(37) conflict really excludes ALL nonzero-production solutions. It does not, and the
+answer is sharper than the class name. Computed in `B2_CLOSURE_20260907.md` / `b2_closure.py` (re-run by me), bound to the
+version stated in `B1_SCOPE_QUALIFICATION_20260907.md`.
+
+**SPECIAL_BRANCH=EXISTS, and it carries no bounce.** Solving (14) and (37) simultaneously instead of asserting a conflict, the
+printed system admits exactly one nonzero-production branch: $\dot T=\dot n=0$ with $T$ pinned at the critical value,
+$\Psi=3Hn_\star$ (production exactly balancing dilution), and $\beta H^3=3n_\star$ — a tuned, constant-$H$ steady state, de
+Sitter-like, satisfying the constraint and all evolution equations in both curved KS and flat Bianchi I realisations at their
+respective $\beta$ tunings. **Since $H$ is constant and non-zero on that branch, it never crosses zero: the branch contains no
+turning point and therefore no bounce.**
+
+**So the corrected statement of the production result is:** in GRG's own constant-coefficient thermal specialisation the system
+is over-determined by exactly ONE compatibility condition; the only solutions satisfying it are the tuned steady state above;
+**every evolving-temperature production solution is excluded, and that includes every bouncing one.** `B1_ILL_POSED` is
+therefore narrowed, not withdrawn: it holds for the bouncing sector of the printed thermal specialisation, and the reason is a
+single compatibility condition rather than a flat contradiction.
+
+**And the closure count says where the physics has to be supplied.** With the thermal relations treated as optional closure
+choices rather than assumed (CLOSURE_SUFFICIENT=b,c):
+
+| closure retained | status |
+|---|---|
+| (a) all three constant-coefficient relations, as printed | **over-determined**, one compatibility condition |
+| (b) drop the $n$–$T$ relation | **determined** |
+| (c) $\epsilon=F(T)$ with $p=\epsilon/3$, $F'\neq0$ specified | **determined** |
+| (d) no thermal closure | **under-determined** by one free function; needs a pressure equation of state $p=P(\epsilon,n)$, plus a caloric relation $T=\Theta(\epsilon,n)$ if $T$ is wanted |
+
+**This is the useful deliverable Codex asked for: the precise extra physical input.** The rescue question — does production
+enlarge the bounce set — is *computable* under (b) or (c) and was not computed here. It is the next study, and it needs one
+constitutive choice stated up front, not a framework. Note also that the count assumes a specified $\Psi=\beta H^4$: a number
+balance alone is not a production prescription.
+
+**Thematic observation, offered as an observation and not as a further class:** the no-production bounce needs a tuned
+inequality between constants, and the only production solution the printed specialisation admits needs a tuned $\beta$. Both
+of the model's routes to avoiding the singularity, as printed, run through a tuning condition.
+
+---
+
+## AMENDMENT B (2026-09-07 14:02 KST) — after the independent challenge (`KIMI_B2_CHALLENGE_20260907.md`, B2_REVIEW=AMENDMENT_STANDS)
+The amendment survived, but three things in it were wrong or weak and are corrected here. The referee re-derived every step and
+attacked the gluing point hardest; the attempt strengthened the result rather than breaking it.
+
+**1. My justification was a non-sequitur, and the missing lemma is now stated.** I wrote that the branch carries no bounce
+because "$H$ is constant and non-zero on that branch, so it never crosses zero". Read strictly that does not answer the real
+objection: a branch with no turning point can still be *visited* by a bouncing trajectory that departs it. The correct argument,
+supplied by the referee and re-derived from the filed assumptions (smooth functions on a connected open interval, $T>0$,
+$\Psi=\beta H^4$ with fixed $\beta>0$):
+
+> Where the first-law factor is non-zero, $E=0$ gives $\dot T=-HT$, and (37) then forces $\beta H^4=0$, so $H\equiv0$ there.
+> On the interior of $\{T=T_\star\}$, (37) gives $\beta H^3=3n_\star$, so $H\equiv H_\star>0$. Hence $\{H\neq0\}$ is open and
+> $H\equiv H_\star$ on each component; a component with an interior endpoint would need $H\to H_\star\neq0$ and $H=0$ at the
+> endpoint at once. So $\{H\neq0\}$ is empty or everything. And $H\equiv0$ is impossible in both geometries — in Kantowski–Sachs
+> it forces $v=0$ and then $\dot v=-K/3\neq0$; in flat Bianchi I it forces $\epsilon=0$, i.e. $T=0$, excluded.
+
+**Therefore no solution of the printed system ever crosses $H=0$, and there is nothing to glue a bouncing solution to.** That
+is the argument the conclusion actually rests on, and it was absent from both documents until now.
+
+**2. My narrowing to "the bouncing sector" was an UNDERCLAIM, and inconsistent with my own preceding sentence.** The algebra
+excludes **every evolving interval solution** of the printed thermal specialisation at fixed $\beta>0$ — bouncing or not, the
+static case included — and at any $\beta$ off the single tuned value the printed Kantowski–Sachs system has **no smooth interval
+solutions at all**. The three loopholes I asked the referee to try are closed: production cannot switch on and off, because
+under $\Psi=\beta H^4$ it vanishes exactly where $H$ does; a non-zero-production set of measure zero must be empty, because the
+set is open; and any evolving-temperature interval forces $T=T_\star$ wherever production is non-zero. So `B1_ILL_POSED` is not
+confined to bouncing solutions: it is the printed specialisation admitting **only** the tuned steady state.
+
+**3. "Exactly one compatibility condition" is right only at function level.** After that condition is imposed, the steady state
+additionally requires a parameter-level tuning of $\beta$ — $\beta=81n_\star/\Lambda_\star^{3/2}$ in Kantowski–Sachs and
+$9\sqrt3\,n_\star/\Lambda_\star^{3/2}$ in flat Bianchi I, a ratio of $3\sqrt3$. Both were disclosed in the tuning relations
+already filed, but "exactly ONE compatibility condition" would mislead if read alone. There are two: one functional, one on the
+constants.
+
+**4. Scope, restated here rather than incorporated by reference.** The exclusion rests on smoothness AND on the fixed
+$\Psi=\beta H^4$ prescription. **With a free $\Psi(t)$, or a time-dependent $\beta$, the evolving branch $\dot T=-HT$ exists and
+a continuous gluing at a tuned instant is not excluded by the matter equations.** A reader of this file alone could otherwise
+over-read "every bouncing solution is excluded" as prescription-independent. It is not.
+
+**5. Terminology.** "de Sitter-like" is hedged but loose: the Kantowski–Sachs realisation carries constant non-zero shear and a
+constant transverse scale factor, so it is not constant-curvature de Sitter. Read it as "constant-$H$ steady state".
+
+**What the challenge did not break:** the counting (all eight rows reproduced independently, no uncounted independent equations,
+case (b) genuinely determined), and the scope qualification, which the referee found does not over-correct — the $a^{-6}$
+degeneracy supports the dynamical-unattainability statement that the qualification keeps, and licenses no measure claim that it
+wrongly disclaims.
+# B3 — particle production and the bounce set (2026-09-07)
+
+**FLUID, flat Bianchi I only. Both determined closures give an enlarged bounce set by strict set inclusion:** under fixed `Psi=beta H^4`, every admissible contracting datum bounces for every beta>0. At beta=0, only the strict torsion-dominance subset bounces. No class is filed.
+
+The no-production bounce set was **already OPEN**, as the scope qualification and Kimi challenge establish. Its **boundary**, not the bounce set, was codimension one. This is removal of the shear-versus-torsion restriction at positive beta, not a transition from a measure-small or threshold-only bounce set to an open set.
+
+## Inputs and all added assumptions
+
+Read: `B1_RESULT_V2_20260907.md`, including Amendments A and B; `B2_CLOSURE_20260907.md`; `KIMI_B2_CHALLENGE_20260907.md`; `B1_SCOPE_QUALIFICATION_20260907.md`; and the B1 pre-registration. B1 criterion's interval qualification was also checked. Equation provenance is inherited from B2's inspected arXiv 2007.11556v2 text. No new source retrieval, publisher-version identification or erratum assertion is made.
+
+- Diagonal homogeneous flat Bianchi I, positive scale factors, cosmic proper time and smooth isotropic effective FLUID stress: `rho=epsilon-alpha n^2`, `P=epsilon/3-alpha n^2`. No curvature, extra component, creation pressure, cosmological constant, anisotropic stress, chemical-potential or entropy closure is added. KS and DIRAC are not computed.
+- Initial epsilon>0, n>=0 and shear>=0, with strict initial contraction satisfying the Hamiltonian constraint. Zero n is allowed because n is independent of T; positive beta immediately sources it.
+- Alpha is a positive constant on each trajectory, carried as an interval parameter. The proof holds for **any interval I contained in (0,infinity)**. The inherited record supplies no controlled numerical FLUID endpoints. The declared **dimensionless sensitivity interval [0.25,1]**, sampled at **0.25,0.625,1**, is an added numerical choice, not a K3 interval or a physical confidence interval. No free-gas coupling is inserted at the bounce.
+- The paper's phenomenological **fixed `Psi=beta H^4`** is extrapolated through the whole collapse. Beta>=0; zero is the control. The numerical positive range [0.001,10] is exploratory, not calibrated to the paper or to microscopic production. The proof covers every fixed beta>0. Extrapolating the source and effective fluid to high density is a mathematical assumption, not evidence of validity there.
+- Set a0=1 by spatial normalization. Use initial density unit epsilon0, arbitrary number unit n_ref, and time unit t_ref=(kappa epsilon0)^(-1/2). Dimensionless alpha is alpha_phys n_ref^2/epsilon0; dimensionless beta is beta_phys/(n_ref t_ref^3). The script has kappa=epsilon0=1. The temperature unit makes h_star=1 in (b). This does not set a microscopic coupling.
+- **Closure (b):** epsilon=T^4, p=epsilon/3, n independently sourced. **Closure (c):** fix `F(T)=T^4[1+T^2/(1+T^2)]`, p=epsilon/3, n independently sourced. This smooth positive caloric crossover changes the coefficient from 1 to 2 at an order-one temperature scale. `F'=2 T^3(4 T^4+7 T^2+2)/(1+T^2)^2>0` for T>0. It is a regular phenomenological representative of a changing caloric coefficient, not a derived equilibrium-gas EOS; no equilibrium identity relating p to F is imposed. Scale and amplitude are fixed at one, never fitted to a bounce.
+- Closures are compared at matched **epsilon0**, rather than matched T0. T0=1 in (b); T0=F_c^(-1)(1) in (c). With p=epsilon/3 and no T dependence in Psi, **any globally invertible positive F with range (0,infinity)** gives the same density/geometry dynamics. F_c cannot tune the bounce map; it changes temperature alone. B2's local F'!=0 does not alone guarantee a global caloric domain, which this representative supplies.
+- No measure on initial data is introduced. Counts refer only to this finite grid. No independent adversarial review is claimed; filing and any separate review remain with the requester.
+
+## 1. Constraint propagation before integration
+
+Let S=sigma^2. The exact cosmic-time system obtained from B2's directional field equations is
+
+```
+a_dot = H a
+H_dot = kappa epsilon/3 - 3 H^2
+S_dot = -6 H S
+n_dot = beta H^4 - 3 H n
+epsilon_dot = -4 H epsilon + 2 alpha n beta H^4
+T_dot = [-4 H F(T) + 2 alpha n beta H^4]/F'(T)
+C = 3 H^2 - kappa(epsilon-alpha n^2) - S.
+```
+
+Epsilon and T are alternative coordinates for one evolution equation. In (b), `T_dot=-HT+alpha n beta H^4/(2T^3)`. In (c), use the explicitly specified F and F'. Neither retains the paper's temperature equation (37), which depended on the discarded n=h_n T^3 closure.
+
+For this precise off-constraint evolution, direct differentiation gives
+
+`C_dot+6HC=-kappa[epsilon_dot+4H epsilon-2alpha n beta H^4]=0`.
+
+The first-law residual `epsilon_dot-2alpha n n_dot+3H(4epsilon/3-2alpha n^2)` also vanishes. The script substitutes each F and symbolically computes both residuals. **CONSTRAINT_RESIDUAL_b=0; CONSTRAINT_RESIDUAL_c=0.** Both checks finish before any numerical integration; a nonzero residual stops the program.
+
+For numerical conditioning use d tau=dt/a^3 and the invertible coordinates
+
+`x=-ln a, u=-H a^3, N=n a^3, E=epsilon a^6, S0=S a^6`.
+
+The exact integrated system is
+
+```
+x' = u
+u' = -kappa E/3
+N' = beta u^4 exp(6x)
+E' = -2u E + 2alpha N N'
+t' = exp(-3x)
+C_tau = 3u^2 - kappa E - S0 + kappa alpha N^2.
+```
+
+Prime denotes tau derivative. **C_tau'=0 identically**, without projection. The script verifies this identity and the caloric chain rule `F'(T)T'=exp(6x)[4uE+2alpha N N']` for both closures. Reconstructing T from F(T)=E exp(6x) is an exact state-coordinate change. The two closures are run separately in these coordinates.
+
+For beta=0, an additional exact reduction avoids relative constraint drift near a singularity. With delta=S0-alpha n0^2 in script units, `a^2=3u^2-delta` and `dt/du=-3sqrt(3u^2-delta)`. Proper time is numerically integrated to u=0 for a bounce (delta<0), or u=sqrt(delta/3) for a singularity (delta>=0). Its reconstructed constraint is identically zero, also checked symbolically. This reduction is not used for positive beta.
+
+## 2. Scaling before numerics, including the energy source
+
+**Closure (b):** number balance gives exactly
+
+`N(t)=n0+integral_0^t a^3 Psi dt`,
+`alpha n^2=alpha a^-6 N(t)^2`,
+`S=S0 a^-6`.
+
+During collapse with n>0 and beta>0,
+
+`d ln(alpha n^2)/d ln a=-6+2beta H^3/n<-6`.
+
+For S>0, `d(alpha n^2/S)/dt=2alpha n Psi/S>0`. The integral also covers n0=0; the logarithmic formula is used only for n>0. Number density **grows faster** than a^-3 in collapse. “Falls slower” would confuse expansion with collapse.
+
+**Closure (c):** the same integral, scaling and inequalities hold, because its caloric relation changes neither number balance nor isotropic shear evolution. Its temperature equation differs as specified above. Thus **TORSION_SCALING_b=HELPS** and **TORSION_SCALING_c=HELPS**. This is an instantaneous exponent plus an exact integral, not a constant modified power-law ansatz.
+
+The helpful torsion/shear direction holds for any nonnegative production, independently of H^4. But it does not alone prove a bounce: first-law heating gives `d(epsilon a^4)/dt=2alpha n Psi a^4>=0`.
+
+To settle the competition analytically, take x as independent variable while H<0, and set
+
+`Q=3H^2 a^6=kappa E+S0-kappa alpha N^2>0`.
+
+Then
+
+```
+N_x = beta (Q/3)^(3/2) exp(6x)
+E_x = -2E + 2alpha N N_x
+Q_x = -2kappa E < 0.
+```
+
+The source contributions to Q_x cancel **exactly through the first law**, rather than by neglecting heating. E>=E0 exp(-2x)>0.
+
+**Finite-bounce proof for every alpha>0 and fixed beta>0, both closures.** Let N_star=sqrt(S0/(kappa alpha)). Suppose collapse continues with N<=N_star. Then `kappa E=Q-S0+kappa alpha N^2<=Q`, so Q_x>=-2Q and Q>=Q0 exp(-2x). Therefore
+
+`N_x>=beta (Q0/3)^(3/2) exp(3x)`.
+
+This has an unbounded integral: N must exceed N_star at finite x unless a bounce intervenes. A root itself requires N>N_star since E>0. Initial equality crosses immediately under the strictly positive source; this includes S0=N0=0.
+
+After N1>N_star at finite x1, define D=kappa alpha N1^2-S0>0. Monotonic N gives `Q_x=-2(Q+kappa alpha N^2-S0)<=-2D`, hence a root occurs no later than x1+Q(x1)/(2D). There is no prior finite-x blow-up: Q<=Q0 bounds N_x on finite-x intervals, and the constraint bounds E. At the root, Q_x=-2kappa E_b<0, so `dt/dx=a^3sqrt(3/Q)` is integrable. All variables are finite, and `H_dot_b=kappa epsilon_b/3>0`. The smooth proper-time system crosses H=0 at a genuine minimum. Finite shear and finite proper time also keep the directional scale factors regular there.
+
+**Prescription dependence is load-bearing.** The exponential lower bound uses fixed positive beta and exactly Psi=beta H^4 throughout contraction. An arbitrary nonnegative source could create too few particles to reach N_star. Universal rescue is therefore a result of this prescription, the retained p=epsilon/3 EOS and effective first law, not production per se. Psi vanishing at H=0 does not erase previously accumulated N. The proof is not uniform as beta->0 or alpha->0; alpha=0 is excluded.
+
+## 3. Declared grid and numerical results
+
+Set epsilon0=a0=kappa=1 and define the initial shear fraction
+
+`f=S0/(kappa epsilon0+S0)`, so `S0=f/(1-f)`.
+
+This uses the positive ordinary-density-plus-shear terms, not effective density. Set `H0=-sqrt((1+S0-alpha n0^2)/3)` and retain only `1+S0-alpha n0^2>0`. Invalid or initially turning data are X, not singular outcomes. Any shear orientation with this magnitude has the same mean-volume outcome; one realization at a_i0=1 is H_i-H=(sqrt(S0),-sqrt(S0),0).
+
+```
+alpha = (0.25, 0.625, 1)
+f     = (0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+n0    = (0, 0.1, 0.25, 0.5, 0.75, 1, 1.5, 2)
+beta  = (0, 0.001, 0.01, 0.1, 1, 10)
+```
+
+Each closure has 1008 cells, of which 900 are admissible and 108 excluded, counting beta copies. The script prints every cell as an eight-character row in n0 order, and per-alpha/per-beta counts and bounce-radius ranges.
+
+### Closure (b)
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_b=OPEN`.
+
+### Closure (c)
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_c=OPEN`. Exact agreement with (b) follows from coordinate equivalence, not independent physical evidence for either closure.
+
+### Numerical checks and singularity interpretation
+
+Positive-beta runs use SciPy DOP853 with rtol=2e-10, atol=2e-12 and an event for u crossing zero downwards. Each closure's maximum normalized constraint defect is **1.92274e-10**, with denominator `3u^2+E+S0+alpha N^2`. A guard at x=12 or tau=2e6 fails the run if reached without a bounce; no positive-beta grid run reaches it. No finite density cutoff is called a singularity.
+
+Beta=0 uses the exact reduction with numerical proper-time quadrature (epsabs=2e-12, epsrel=2e-11). If delta>=0, `3H^2=a^-4+delta a^-6` reaches a=0 at finite proper time with divergent ordinary density/curvature. These are analytically certified singular endpoints, not solver failures. If delta<0, `a_b=sqrt(-delta)` is the finite bounce radius.
+
+Nine extra threshold controls per closure cover every alpha and f=0,0.5,0.9. A number just below equality (relative offset 1e-10, exact zero for the isotropic case) is singular at beta=0; the equality number bounces at beta=0.001. Equality at beta=0 is covered by the exact analytic formula, avoiding floating-point sign decisions. Three refinement cases per closure include high shear/weak production, a no-production bounce, and strong production. Tenfold tighter ODE tolerances change the bounce radius by at most **1.42686e-12** relative. Positive-beta events have finite positive epsilon and H_dot. The script asserts the caloric inverses, symbolic residuals, numerical constraint bound and all map classifications against the analytic theorem.
+
+Reproduction: from `bounce/`, run `/usr/bin/python3 b3_rescue.py`. Verified with system Python, SymPy 1.14.0 and SciPy 1.13.1. The script has no network and writes no files; it reads only its own source and this report to print their SHA256s at the end.
+
+## 4. Boundary, openness and comparison
+
+Let D consist of alpha in any positive interval I, epsilon0>0, n0>=0, S0>=0, and `kappa epsilon0+S0-kappa alpha n0^2>0`. For each closure separately,
+
+`B_0={d in D: kappa alpha n0^2>S0}`,
+`B_beta=D for every fixed beta>0`.
+
+At beta=0, the separating surface is `S0=kappa alpha n0^2`, or `f=alpha n0^2/(1+alpha n0^2)` on the normalized slice. Equality is singular. The strict bounce side is open; the boundary is codimension one in the interior, with parameter-edge qualifications. For beta>0, **no internal separating surface remains in D**. In the extended space D times [0,infinity), the bounce set is relatively open and its relative boundary is `{beta=0,S0>=kappa alpha n0^2}`. This excludes the inadmissibility boundary of D itself.
+
+**The comparison is strict set inclusion, not volume or probability:** B_0 is a proper subset of B_beta at each fixed beta>0. On the grid, each positive-beta slice adds all 118 initially nonbouncing admissible data to the existing 32 bounces; none is lost. No claim of monotonic bounce radius with beta is needed. Nor must raw bounce counts increase with alpha on this slice, since alpha changes which initial data are admissible.
+
+The theorem holds throughout every positive alpha interval under the stated assumptions. The bounce constraint still requires `alpha n_b^2=epsilon_b+S_b/kappa>=epsilon_b`: rescue does not make the spin-fluid closure controlled. This is a conditional FLUID model map, not a class filing or a conclusion about black-hole-universe cosmology as a whole.
+
+## Required tokens
+
+```
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS
+TORSION_SCALING_c=HELPS
+BOUNCE_SET_b=OPEN
+BOUNCE_SET_c=OPEN
+GRID_TOTAL_b: B=782 S=118 X=108
+GRID_TOTAL_c: B=782 S=118 X=108
+```
+# B3 — reconciliation of the completed independent challenge
+**Tori, 2026-09-07 15:01 KST. The challenge is COMPLETE: `KIMI_B3_CHALLENGE_20260907.md`, B3_REVIEW=CLASS_STANDS.** The reviewer re-derived the
+analytic proof independently, re-ran the script, and checked off-grid cases and the inspected source version. It is not running,
+and I will not describe it as running again. Three findings are reconciled below; each is a correction to my filing, not to the
+reviewer.
+
+## Finding 1 — a declared deliverable was omitted, and I am not letting the theorem stand in for it
+The pre-registration's `B1_PRODUCTION_RESCUES` class says the required $\beta$ range must be "stated and compared with S1's own
+values". **B3 did not do that comparison.** Its $\beta\in[0.001,10]$ is exploratory in script units, not calibrated to the
+paper. The all-positive-$\beta$ theorem is a stronger mathematical statement in one sense — it holds for every fixed
+$\beta>0$ — but it is **not** the declared deliverable, and quoting it in place of the comparison would be exactly the
+substitution the pre-registration exists to prevent. Status: **OPEN, in progress**; a bounded extraction of the source's own
+production coefficient and normalisation is dispatched with this record. If the inspected text does not supply usable values, the
+deliverable will be marked **UNRESOLVABLE FROM THE AVAILABLE SOURCE** and named as such in the final brief, not quietly dropped.
+Exploratory numerical units and source physical parameters are kept separate wherever both appear.
+
+## Finding 2 — "exceeds" was wrong; it is "greater than or equal to"
+At the bounce the spin term is $\ge$ the ordinary density, **with EQUALITY for isotropic data** ($\Sigma^2=0$), where the
+turning point is defined by the exact cancellation. `B1_RESULT_V2` §2 stated the inequality correctly as $\ge1$; my B3 filing
+§3 then wrote "exceeds the entire ordinary density", which is wrong in the isotropic case. **Corrected: at any bounce the
+criterion allows, the spin correction is at least the ordinary energy density, and exactly equal to it when the data are
+isotropic.**
+
+## Finding 3 — the fluid row's validity limit is its own calculation, not K3's
+My B3 §3 wrote that the bounce sits "where K3 showed the four-fermion closure is uncontrolled". That **transfers a Dirac-row
+attribution to the fluid row**, which is precisely what this lane ruled must never happen. Corrected attribution:
+- **Fluid row:** its ratio at its own turning point is 1, computed in `C1_REEXAM_20260907.md` — the fluid row's own calculation.
+- **Dirac row:** K3 step 3's $2/3$ at the Dirac turning point, with $\alpha_D=9\kappa/16$ (`K3S3_CHECK_SHEET_20260904.md`).
+The physical observation survives in both rows, but each rests on its own number, and neither number travels.
+
+## What stands unchanged
+The corrected baseline statement (the no-production bounce set was already open; the equality was its boundary); the
+positive-$\beta$ qualification with its non-uniform $\beta\to0^+$ limit; and both closures described as coordinate equivalents
+rather than independent physical confirmations.
+
+## The result, stated as what it is
+**Conditional and mathematical:** in this declared flat homogeneous spin-fluid model, the prescribed particle source removes the
+initial shear-versus-spin restriction on a bounce. It does **not** establish that the source law or the effective-fluid
+description is valid at the densities where the bounce occurs, does not construct a global black-hole-to-universe spacetime, and
+establishes nothing about cosmological truth. Source-version limits are unchanged.
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for q in [*reversed(p.parents),p,p/'bounce']:
+ f=q/'AGENTS.md'
+ if f.is_file():
+  print('\\nPATH:',f)
+  print(f.read_text())
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+p=Path('bounce/b4_springer_access.html')
+s=BeautifulSoup(p.read_text(),'html.parser')
+print('TITLE:',s.title.get_text() if s.title else '')
+print('CANONICAL:',[x.get('href') for x in s.select('link[rel=\"canonical\"]')])
+for e in s.select('div.c-article-equation'):
+ if any(f'({i})' in e.get_text() for i in list(range(25,39))+[1,6,18,19,20,21,22,23,24]):
+  print('\\nEQUATION:',e.get('id'),e.get_text(' ',strip=True))
+  prev=e.find_previous_sibling()
+  nex=e.find_next_sibling()
+  print('PREV:',prev.get_text(' ',strip=True) if prev else '')
+  print('NEXT:',nex.get_text(' ',strip=True) if nex else '')
+print('TOTAL EQUATIONS:',len(s.select('div.c-article-equation')))
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 134ms:
+TITLE: A nonsingular, anisotropic universe in a black hole with torsion and particle production | General Relativity and Gravitation | Springer Nature Link
+CANONICAL: ['https://link.springer.com/article/10.1007/s10714-021-02790-7']
+
+EQUATION: Equ1 $$\begin{aligned} \tilde{\epsilon }=\epsilon -\alpha n_\text {f}^{2},\quad \tilde{p}=p-\alpha n_{\text {f}}^{2}, \end{aligned}$$ (1)
+PREV: Hehl [ 38 ], Trautman [ 39 , 40 , 41 ], and Kopczyński [ 42 ] found that torsion can generate gravitational repulsion and prevent the formation of a cosmological singularity in a homogeneous and isotropic universe described by the Friedmann–Lemaître–Robertson–Walker (FLRW) metric [ 17 , 43 , 44 , 45 , 46 , 47 , 48 , 49 ] when spins of fermions are aligned. Hehl et al. [ 50 ] found that macroscopic averaging of the spin terms in the energy–momentum tensor gives a nonzero value even for randomly oriented spins. Consequently, the effective energy density and pressure of a spin fluid are given by
+NEXT: where \(\epsilon \) and p are the thermodynamic energy density and pressure, \(n_{\text {f}}\) is the number density of fermions, and \(\alpha =\kappa (\hbar c)^{2}/32\) [ 14 , 15 , 50 , 51 , 52 ]. At lower densities, the effects of torsion can be neglected and EC effectively reduces to general relativity. At extremely high densities, much greater than nuclear density, the negative corrections from the spin-torsion coupling in ( 1 ) violate the strong energy condition and manifest themselves as repulsive gravity that may prevent the formation of a gravitational singularity in a black hole. Instead, the collapsing matter undergoes a nonsingular bounce [ 53 ] and then expands as a new, closed universe [ 12 , 13 , 14 , 15 , 54 , 55 , 56 , 57 ] whose total energy is zero [ 58 , 59 ].
+
+EQUATION: Equ6 $$\begin{aligned} ds^{2}=dt^{2}-X^{2}(t)dr^{2}-Y^{2}(t)(d\vartheta ^{2} +\sin ^{2}\vartheta \ d\varphi ^{2}). \end{aligned}$$ (6)
+PREV: brings the metric ( 4 ) to
+NEXT: This is the KS metric [ 70 ], representing a closed, homogeneous, and anisotropic universe.
+
+EQUATION: Equ18 $$\begin{aligned} \frac{\dot{Y}}{Y}=0,\quad \frac{\ddot{Y}}{Y}>0. \end{aligned}$$ (18)
+PREV: A nonsingular bounce in Y occurs when [ 90 ]
+NEXT: Bounces in X and a are defined similarly. These definitions are independent of the signs of the scale factors. If bounces in X and Y exist, then a bounce in a also exists. These three bounces in general occur at different times. Volume contraction and expansion of a universe is defined in terms of the sign of \(\dot{a}\) (negative for contraction and positive for expansion).
+
+EQUATION: Equ19 $$\begin{aligned} t=A\Bigl (\eta +\frac{1}{2}\sin (2\eta )\Bigr ),\quad Y=A\cos ^{2}\eta , \end{aligned}$$ (19)
+PREV: For dust, the pressure of matter is zero. Consequently, the second equation in ( 10 ) is \((\dot{Y}^{2}+1)/Y^{2}+2\ddot{Y}/Y=0\) and has a parametric solution of a cycloid:
+NEXT: where A is a constant [ 70 ]. Equation ( 14 ) gives \(\epsilon XY^{2}=m\) , where m is a constant. Consequently, the first equation in ( 10 ) leads to
+
+EQUATION: Equ20 $$\begin{aligned} X=-B\tan \eta +\kappa m(1+\eta \tan \eta ), \end{aligned}$$ (20)
+PREV: where A is a constant [ 70 ]. Equation ( 14 ) gives \(\epsilon XY^{2}=m\) , where m is a constant. Consequently, the first equation in ( 10 ) leads to
+NEXT: where B is a constant [ 70 ]. The rates of X and Y are
+
+EQUATION: Equ21 $$\begin{aligned} \dot{X}= & {} -\frac{B}{2A\cos ^{4}\eta }+\frac{\kappa m}{2A}\Bigl (\frac{\sin \eta }{\cos ^{3}\eta } +\frac{\eta }{\cos ^{4}\eta }\Bigr ), \nonumber \\ \dot{Y}= & {} -\tan \eta . \end{aligned}$$ (21)
+PREV: where B is a constant [ 70 ]. The rates of X and Y are
+NEXT: The relations ( 19 ), ( 20 ), and ( 21 ) determine a and \(\dot{a}\) as functions of \(\eta \) . For vacuum, the KS metric represents the interior Schwarzschild solution. In this case, ( 20 ) and ( 21 ) give
+
+EQUATION: Equ22 $$\begin{aligned} X=B\dot{Y}. \end{aligned}$$ (22)
+PREV: The relations ( 19 ), ( 20 ), and ( 21 ) determine a and \(\dot{a}\) as functions of \(\eta \) . For vacuum, the KS metric represents the interior Schwarzschild solution. In this case, ( 20 ) and ( 21 ) give
+NEXT: This relation also follows from the first and second equation in ( 10 ) that give \(\dot{X}\dot{Y}=X\ddot{Y}\) . Comparing ( 22 ) with ( 7 ) and using ( 3 ) and ( 5 ) gives \(B=b\) . If the integration in ( 3 ) uses \(t=0\) at \(\rho =2GM\) , then \(\eta =0\) at \(\rho =2GM\) and ( 19 ) gives \(A=2GM\) .
+
+EQUATION: Equ23 $$\begin{aligned} \sigma _{\mu \nu }=u_{(\mu ;\nu )}-\frac{1}{3}u^\rho {}_{;\rho }(g_{\mu \nu }-u_\mu u_\nu ). \end{aligned}$$ (23)
+PREV: The shear tensor is the symmetric and traceless part of a tensor \(u_{\mu ;\rho }(\delta ^\rho _\nu -u^\rho u_\nu )\) , where \(u^{\mu }\) is the four-velocity and the semicolon denotes covariant differentiation with respect to the Levi-Civita connection [ 31 ]. If the four-acceleration vanishes, \(w_\mu =u^\nu u_{\mu ;\nu }=0\) , then the shear tensor is equal to
+NEXT: Using \(u_{\mu ;\nu }=u_{\mu ,\nu }-\Gamma ^{\ \ \rho }_{\mu \ \nu }u_\rho \) leads to the nonzero components of this tensor:
+
+EQUATION: Equ24 $$\begin{aligned} \sigma ^{1}_1=\frac{2}{3}\Bigl (\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr ),\quad \sigma ^{2}_{2}=\sigma ^{3}_{3}=\frac{1}{3}\Bigl (\frac{\dot{Y}}{Y}-\frac{\dot{X}}{X}\Bigr ). \end{aligned}$$ (24)
+PREV: Using \(u_{\mu ;\nu }=u_{\mu ,\nu }-\Gamma ^{\ \ \rho }_{\mu \ \nu }u_\rho \) leads to the nonzero components of this tensor:
+NEXT: The shear scalar is
+
+EQUATION: Equ25 $$\begin{aligned} \sigma ^{2}=\frac{1}{2}\sigma ^{\mu }_\nu \sigma ^\nu _\mu =\frac{1}{3}\Bigl (\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr )^{2}. \end{aligned}$$ (25)
+PREV: The shear scalar is
+NEXT: Accordingly, the shear vanishes and the universe is isotropic if X is proportional to Y . Using the parametric equations for the scale factors gives the shear scalar as a function of \(\eta \) . It diverges at \(\eta =0\) for vacuum, and at \(\eta =\pi /2\) . The expansion scalar is the trace part:
+
+EQUATION: Equ26 $$\begin{aligned} \theta =u^{\rho }{}_{;\rho }=\Gamma ^{\ \ \rho }_{\rho \ \nu }u^{\nu }=\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}=3H. \end{aligned}$$ (26)
+PREV: Accordingly, the shear vanishes and the universe is isotropic if X is proportional to Y . Using the parametric equations for the scale factors gives the shear scalar as a function of \(\eta \) . It diverges at \(\eta =0\) for vacuum, and at \(\eta =\pi /2\) . The expansion scalar is the trace part:
+NEXT: The rotation tensor \(\omega _{\mu \nu }\) is the antisymmetric part of \(u_{\mu ;\rho }(\delta ^\rho _\nu -u^\rho u_\nu )\) and vanishes for any values of X and Y .
+
+EQUATION: Equ27 $$\begin{aligned} \dot{\sigma }^{1}_1=\frac{2}{3}\Bigl (\frac{X\ddot{X}-\dot{X}^{2}}{X^{2}} -\frac{Y\ddot{Y}-\dot{Y}^{2}}{Y^{2}}\Bigr ). \end{aligned}$$ (27)
+PREV: The rate of the first component of the shear tensor is
+NEXT: Using this equation with ( 11 ) and ( 16 ) gives
+
+EQUATION: Equ28 $$\begin{aligned} \dot{\sigma }^{1}_1+3H\sigma ^{1}_1=\frac{2}{3Y^{2}}. \end{aligned}$$ (28)
+PREV: Using this equation with ( 11 ) and ( 16 ) gives
+NEXT: Similarly, the rates of the other components satisfy
+
+EQUATION: Equ29 $$\begin{aligned} \dot{\sigma }^{2}_{2}+3H\sigma ^{2}_{2}=\dot{\sigma }^{3}_{3}+3H\sigma ^{3}_{3} =-\frac{1}{3Y^{2}}. \end{aligned}$$ (29)
+PREV: Similarly, the rates of the other components satisfy
+NEXT: Consequently, the rate of the shear scalar \(d(\sigma ^{2})/dt=\dot{\sigma }^{\mu }_\nu \sigma ^\nu _\mu \) satisfies
+
+EQUATION: Equ30 $$\begin{aligned} \frac{d(\sigma ^{2})}{dt}+6H\sigma ^{2}=\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$ (30)
+PREV: Consequently, the rate of the shear scalar \(d(\sigma ^{2})/dt=\dot{\sigma }^{\mu }_\nu \sigma ^\nu _\mu \) satisfies
+NEXT: The right-hand side in this equation is positive, which indicates that the shear scalar grows with decreasing a faster than \(\sim a^{-6}\) .
+
+EQUATION: Equ31 $$\begin{aligned} \frac{d\theta }{ds}=-\frac{1}{3}\theta ^{2}-2(\sigma ^{2}-\omega ^{2}) +w^{\mu }{}_{;\mu }-R_{\mu \nu }u^{\mu } u^\nu , \end{aligned}$$ (31)
+PREV: The Raychaudhuri equation for a congruence of geodesics without four-acceleration and rotation is [ 31 ]
+NEXT: where \(\omega ^{2}=\omega _{\mu \nu }\omega ^{\mu \nu }/2\) is the rotation scalar. In the KS spacetime in comoving coordinates, \(\omega ^{2}=w^{\mu }{}_{;\mu }=0\) . For a spin fluid, the last term in ( 31 ) is equal to \(-\kappa (\tilde{\epsilon }+3\tilde{p})/2\) . Consequently, the necessary and sufficient condition for avoiding a singularity in a black hole is \(-\kappa (\tilde{\epsilon }+3\tilde{p})/2>2\sigma ^{2}\) . For a relativistic spin fluid, \(p=\epsilon /3\) , this condition is equivalent to
+
+EQUATION: Equ32 $$\begin{aligned} 2\kappa \alpha n_{\text {f}}^{2}>2\sigma ^{2}+\kappa \epsilon . \end{aligned}$$ (32)
+PREV: where \(\omega ^{2}=\omega _{\mu \nu }\omega ^{\mu \nu }/2\) is the rotation scalar. In the KS spacetime in comoving coordinates, \(\omega ^{2}=w^{\mu }{}_{;\mu }=0\) . For a spin fluid, the last term in ( 31 ) is equal to \(-\kappa (\tilde{\epsilon }+3\tilde{p})/2\) . Consequently, the necessary and sufficient condition for avoiding a singularity in a black hole is \(-\kappa (\tilde{\epsilon }+3\tilde{p})/2>2\sigma ^{2}\) . For a relativistic spin fluid, \(p=\epsilon /3\) , this condition is equivalent to
+NEXT: Without torsion, the left-hand side of ( 32 ) would be absent and this inequality would not be satisfied, resulting in a singularity. Consequently, torsion provides a mechanism for preventing a singularity. However, this mechanism alone is not sufficient. If the number of fermions in a black hole is constant, then the fermion number density grows with decreasing a according to \(\sim a^{-3}\) . Since the shear scalar \(\sigma ^{2}\) grows with decreasing a faster than \(\sim a^{-6}\) , \(n_{\text {f}}^{2}\) growing as \(\sim a^{-6}\) could not satisfy ( 32 ) at sufficiently small values of a and a singularity would form. Therefore, to avoid a singularity, \(n_{\text {f}}^{2}\) must grow faster and fermions must be produced in a black hole. Quantum particle creation in strongly changing gravitational fields can provide a mechanism that ensures that torsion dominates over shear in the Raychaudhuri equation. Consequently, torsion and particle production together can replace a singularity in a universe in a black hole with a nonsingular bounce.
+
+EQUATION: Equ33 $$\begin{aligned} \frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\text {f}})}{dt}=\beta H^{4}, \end{aligned}$$ (33)
+PREV: The production rate of particles in a contracting or expanding universe can be phenomenologically given by
+NEXT: where \(g=-X^{2}Y^{4}=-a^6\) is the determinant of the metric tensor in ( 6 ) and \(\beta \) is the production rate [ 14 , 15 ]. Accordingly,
+
+EQUATION: Equ34 $$\begin{aligned} \dot{n}_{\text {f}}+3Hn_{\text {f}}=\beta H^{4},\quad \frac{d(n^{2}_{\text {f}})}{dt} +6Hn^{2}_{\text {f}}=2\beta n_{\text {f}}H^{4}. \end{aligned}$$ (34)
+PREV: where \(g=-X^{2}Y^{4}=-a^6\) is the determinant of the metric tensor in ( 6 ) and \(\beta \) is the production rate [ 14 , 15 ]. Accordingly,
+NEXT: To avoid a singularity, the rate of \(n^{2}_{\text {f}}\) must exceed the rate of \(\sigma ^{2}\) . Comparing ( 34 ) with ( 30 ) gives
+
+EQUATION: Equ35 $$\begin{aligned} \frac{2\beta n_{\text {f}}}{81}\Bigl (\frac{\dot{X}}{X} +\frac{2\dot{Y}}{Y}\Bigr )^{4}>\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$ (35)
+PREV: To avoid a singularity, the rate of \(n^{2}_{\text {f}}\) must exceed the rate of \(\sigma ^{2}\) . Comparing ( 34 ) with ( 30 ) gives
+NEXT: After the formation of the event horizon, at the instant when ( 32 ) is reached, this inequality must be satisfied to ensure that ( 32 ) continues to hold.
+
+EQUATION: Equ36 $$\begin{aligned} \frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\dot{X}\dot{Y}}{XY}=\kappa (h_\star T^{4} -\alpha h_{n{\text {f}}}^{2} T^6). \end{aligned}$$ (36)
+PREV: The spin fluid in the early universe is formed by an ultrarelativistic matter in kinetic equilibrium, for which \(\epsilon =h_\star T^{4}\) , \(p=\epsilon /3\) , and \(n_{\text {f}}=h_{n{\text {f}}}T^{3}\) , where T is the temperature of the universe, \(h_\star =(\pi ^{2}/30)(g_\text {b}+(7/8)g_{\text {f}})k_\text {B}^{4}/(\hbar c)^{3}\) , and \(h_{n{\text {f}}}=(\zeta (3)/\pi ^{2})(3/4)g_{\text {f}}k_\text {B}^{3}/(\hbar c)^{3}\) [ 14 , 15 , 52 ]. For standard-model particles, \(g_{\text {b}}=29\) and \(g_{\text {f}}=90\) . In the presence of spin and torsion, the first field equation in ( 10 ) with ( 1 ) becomes
+NEXT: Without particle production, ( 1 ) and ( 14 ) give the constancy of \(XY^{2} T^{3}\) , which is equivalent to \(\dot{T}/T+H=0\) . With particle production, this constancy is replaced with a relation that follows from the first equation in ( 34 ):
+
+EQUATION: Equ37 $$\begin{aligned} \frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n{\text {f}}}T^{3}}. \end{aligned}$$ (37)
+PREV: Without particle production, ( 1 ) and ( 14 ) give the constancy of \(XY^{2} T^{3}\) , which is equivalent to \(\dot{T}/T+H=0\) . With particle production, this constancy is replaced with a relation that follows from the first equation in ( 34 ):
+NEXT: Equations ( 36 ) and ( 37 ), with ( 11 ) and ( 16 ), determine the time dependence of X , Y , and T . The only parameters are the mass M of the parent black hole that created the universe and the production rate \(\beta \) . The initial conditions at \(t=0\) for these equations could be taken as those for the dynamics for the interior of a black hole becoming a KS universe with dust: \(X_{0}=\kappa m\) , \(Y_{0}=2GM\) , \(\dot{X}_{0}=-B/(4GM)\) , and \(\dot{Y}_{0}=0\) . The coordinate r in ( 6 ) can be rescaled to remove the arbitrariness of the constant m . Consequently, the only arbitrary initial condition is the initial value of \(\dot{X}\) , related to the constant B , which represents the radial velocity of the collapsing matter when the event horizon forms. If the parent black hole were rotating, then it would be described by the Kerr metric [ 47 , 109 ] and the angular momentum of the black hole would be another parameter. The interior of a Kerr black hole would not be represented by the KS metric; it would be a more general, anisotropic universe.
+
+EQUATION: Equ38 $$\begin{aligned} \frac{\dot{T}}{T}=H\Bigl (\frac{\beta H^{3}}{3h_{n{\text {f}}}T^{3}}-1\Bigr ). \end{aligned}$$ (38)
+PREV: Equation ( 37 ) can be written as
+NEXT: When the mean scale factor a decreases, H is negative and the temperature T increases. If the production rate \(\beta \) is too small, then particle production might be insufficient to prevent a cosmological singularity. When a increases and if \(\beta \) is too big, then the right-hand side of ( 38 ) could become positive. In this case, the temperature would grow with increasing a , which would lead to eternal inflation [ 14 , 15 ]. Consequently, there is a range of the production rate that prevents a singularity and does not cause eternal inflation.
+TOTAL EQUATIONS: 38
+
+codex
+Equation (30) gives an exact \(a^{-6}\) factor multiplied by a time-dependent curvature integral. On the positive-source collapsing branch described by the paper, shear grows faster than \(a^{-6}\), though it need not follow a fixed power law. I’ll distinguish the number-production mechanism, which survives in KS, from B3’s flat-geometry bounce guarantee.
+
+exec
+/bin/zsh -lc "sed -n '1,180p' bounce/B1_SCOPE_QUALIFICATION_20260907.md && sed -n '1,170p' bounce/B1_CRITERION_20260907.md" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+# B1 — scope qualification: what "fine-tuned" may and may not mean here, and to which version the inconsistency is bound
+**Tori, 2026-09-07 13:17 KST. Attaches to `B1_RESULT_V2_20260907.md`. Written in response to Codex's 13:15 interpretation checks, which are correct.**
+
+## 1. The label, corrected to what the algebra supports
+The pre-registered class name is `B1_DEGENERATE_FINE_TUNED`, and a class name declared before computing cannot be renamed
+afterwards without defeating the point of declaring it. But **the class name is not the physical claim**, and the physical claim
+must be stated as what was actually shown:
+
+**What is shown.** For the Weyssenhoff fluid in flat Bianchi I without production, a bounce occurs iff
+$\kappa\alpha_F n_0^2 > \Sigma^2$; equivalently, with the dimensionless $\rho \equiv \Sigma^2/(\kappa\alpha_F n_0^2)$, iff
+$\rho < 1$. **Both terms scale as $a^{-6}$, so $\rho$ is CONSTANT along the evolution.** That is the substantive result, and
+it is a statement about the dynamics, not about probability: **the bounce condition cannot be reached dynamically. A collapsing
+region that starts on the wrong side of the threshold stays there, however far it collapses.** That is what distinguishes this
+from a condition the collapse itself could drive you into, and it is why the threshold matters.
+
+**What is NOT shown, and is now explicitly disclaimed.** A strict inequality between two initial-data constants is a conditional
+threshold. It is not, by itself, a measure of fine-tuning, improbability, or non-genericity in any technical sense. Establishing
+that would require a measure on the space of initial data $(n_0,\Sigma^2,\epsilon_0,\alpha_F)$, and **no such measure is
+defined here, nor is one obviously canonical** — the usual difficulty of measures on cosmological initial data applies in full.
+So: **wherever V2 or its summary suggests improbability, read it as the threshold statement above.** The words "not generic" are
+used in the restricted sense "not attained dynamically from data on the wrong side", and nowhere in the sense "of small measure".
+Any future claim of small measure must define the measure first and justify it, and would be a separate result.
+
+## 2. Version binding for the production-sector inconsistency
+The `B1_ILL_POSED` filing rests on GRG 53, 18's Eqs. (14), (37) and its §9 thermal forms. **The text actually inspected for
+those equations is arXiv 2007.11556v2 (the revised version that self-identifies as the published article), read by the referee
+on 2026-09-07.** The Springer publisher page is behind a cookie handshake that neither the referee nor I could pass, so
+**equation identity between arXiv v2 and the publisher version of record was NOT established for (12)–(14), (17), (36) or (37)**
+— only for the material the source worker had previously read there. The claim is therefore bound to that version, and stated as
+such wherever it appears. It is not asserted of the version of record.
+
+**On later corrections:** searches for errata found none, but those searches were bounded and several publisher endpoints
+returned 403. **Absence of a later correction is NOT inferred.** If an erratum exists that revises (14) or (37), the filing
+changes and should be revisited.
+
+## 3. Incompatibility under declared assumptions is not failure of a family of models
+The inconsistency filed is between printed equations of one paper under one declared thermal specialisation. It is not a claim
+that Einstein–Cartan bounce models generally fail, that particle production cannot rescue a bounce, or that no consistent
+production sector exists. Whether a nonzero-production branch survives the conflict is being computed now (B2) rather than
+assumed; if such a branch exists, the ill-posedness is confined to the generic branch and the filing narrows accordingly.
+# B1 C2, C3 and the criterion — 2026-09-07
+
+**C2_FLUID=PASS; C2_DIRAC=PASS. C3_FLUID=FAIL; C3_DIRAC=FAIL.**
+The overall C3 tokens require both the no-production and production checks to pass.
+The separate results are **C3_FLUID_NO_PRODUCTION=PASS**, **C3_DIRAC_NO_PRODUCTION=FAIL**,
+and **C3_FLUID_PRODUCTION_THERMAL=FAIL**, **C3_DIRAC_PRODUCTION_THERMAL=FAIL**.
+Thus the no-production FLUID criterion below describes a consistent reduced system;
+the DIRAC root is only a formal constraint root. No physical interpretation is made
+for either failed production case or for the failed no-production DIRAC case.
+These tokens do not revise C1 and do not file an outcome class.
+
+The controlling document is [the pre-registration, including Amendment 1](B1_PREREG_BIANCHI_I_BOUNCE_20260907.md).
+The [settled C1 record](C1_REEXAM_20260907.md) is retained. The companion
+[b1_criterion.py](b1_criterion.py) runs from `bounce/` as `/usr/bin/python3 b1_criterion.py`.
+It uses exact SymPy algebra and writes no files. Verified with system Python and
+SymPy 1.14.0, exit status 0. C3 PASS here certifies constraint propagation for the
+stated homogeneous ODE system, not a general Einstein–Cartan PDE well-posedness theorem.
+
+## Assumptions and notation
+
+Use signature (-+++) and proper time, with c=1, no cosmological constant, and
+\(\kappa>0\). The signature is that of RMP; converting the GRG/PRD perfect-fluid
+formula to this signature gives \(T_{\mu\nu}=(\rho+P)u_\mu u_\nu+Pg_{\mu\nu}\).
+Here \(u^\mu u_\mu=-1\). In a rest orthonormal frame the covariant tensor is
+\(\operatorname{diag}(\rho,P,P,P)\).
+
+| Row | Total density \(\rho\) | Total pressure \(P\) | Symbolic coefficient label |
+|---|---|---|---|
+| FLUID | \(\epsilon-\alpha_F n^2\) | \(\epsilon/3-\alpha_F n^2\) | \(\alpha_F=\kappa\hbar^2/32\) |
+| DIRAC | \(\epsilon-\alpha_D n^2\) | \(\epsilon/3+\alpha_D n^2\) | \(\alpha_D=9\kappa/16\), PRD's \(\hbar=1\) units |
+
+All results retain \(\alpha_F\) and \(\alpha_D\) as symbols, constant in time and
+positive. Comparing the printed coefficients requires common \(\hbar=1\) units.
+No numerical coefficient or thermal free-gas value is selected at a bounce.
+Amendment 1 supplies no independently controlled fluid interval endpoints; none
+are invented here. The formulas apply pointwise for every positive constant alpha.
+
+The following are the assumptions of this reduction, including additions that the
+sources do not print as a Bianchi I model:
+
+1. The chosen metric is diagonal Bianchi I,
+   \(ds^2=-dt^2+\sum_i a_i^2 dx_i^2\), with \(a=(a_1a_2a_3)^{1/3}>0\).
+   The flow is comoving, geodesic and irrotational. No tilt, curvature, heat flux,
+   magnetic stress or anisotropic effective matter stress is retained.
+2. Spin is eliminated algebraically before averaging. Unpolarized, locally
+   isotropic spin correlations and vanishing averaged linear spin/gradient and
+   polarization-current terms are assumed. Extending these matter averages into
+   an anisotropic spacetime is a model assumption, not a result for every
+   homogeneous microscopic spinor or polarized spin distribution.
+3. The ordinary part has \(p=\epsilon/3\). For the no-production test, both
+   \(\epsilon=\epsilon_0a^{-4}\) and \(n=n_0a^{-3}\), with
+   \(\epsilon_0,n_0>0\), are imposed as requested. In the DIRAC row they are
+   hypotheses being tested, not consequences of PRD's matter evolution.
+4. \(S:=\sigma^2=\tfrac12\sum_i(H_i-H)^2\), \(H=\dot a/a\).
+   The isotropic-stress spatial equations imply
+   \(\dot{(H_i-H)}+3H(H_i-H)=0\), hence
+   \(\dot S=-6HS\) and \(S=\Sigma^2a^{-6}\), with \(\Sigma^2\ge0\).
+   This is the Bianchi I result, not the curved Kantowski–Sachs shear law.
+5. The source normalization for the averaged FLUID spin square in RMP notation
+   is fixed by matching the printed Weyssenhoff density correction to the printed
+   GRG/PRD fluid coefficient. Specifically, RMP's \(q_F^2:=s_{\rm RMP}^2\)
+   is \(\alpha_F n^2/\kappa\). This is a normalization/closure identification;
+   it is not an independent interacting determination of spin correlations.
+   The DIRAC averaging uses PRD's printed axial-spin square
+   \(\langle s_{\rm ax}^2\rangle=3n^2/4\), solely to compare the published
+   coefficient. Both coefficients remain symbolic in the dynamics.
+6. For production set \(\Psi=\dot n+3Hn\). The direct test retains the same
+   Einstein evolution equations and adds no creation pressure or extra stress
+   tensor. GRG's thermal prescription is tested conditionally through
+   \(\dot\epsilon+4H\epsilon=4\epsilon\Psi/(3n)\), without using numerical
+   thermal constants. Applying that prescription to DIRAC is explicitly an
+   additional trial, not a production law supplied by PRD. A number-only trial
+   is also printed, so the result does not depend on concealing an energy law.
+
+## C2: combined-source reduction, before matter evolution
+
+The [local RMP publisher PDF](prd_publisher_verify_20260907/rmp_pdf.pdf), printed
+p. 400, was read and visually checked. Equation (3.23) is
+\(G^{ij}(\{\})=\kappa\bar\sigma^{ij}\); (3.24) defines
+\(\bar\sigma^{ij}=\sigma^{ij}+\kappa Q^{ij}[\tau]\), with its displayed
+quadratic spin contractions. The accompanying passage specifies that the combined
+tensor is symmetric and Levi-Civita conserved after eliminating torsion using the
+algebraic second field equation. The metric stress \(\sigma^{ij}\) in (3.24)
+must include its matter-model dependence; adding only a geometric quadratic term
+to an arbitrary ordinary-fluid tensor would not be this reduction.
+
+For explicit evaluation of (3.24), use RMP's own matter-specific combined tensors
+(5.18) and (5.15), both visually checked on p. 408. This avoids replacing the
+Dirac current by a Weyssenhoff current. The script compares these **specialized
+printed tensors**, not all components of the unrestricted (3.24) for arbitrary spin.
+
+**FLUID.** RMP (5.16)–(5.18), with its convective spin current and the rest-frame
+Frenkel restriction, gives in the stated unpolarized limit
+\[
+\langle\bar\sigma^{\mu\nu}\rangle_F
+=(\epsilon+p-2\kappa q_F^2)u^\mu u^\nu
+ +(p-\kappa q_F^2)g^{\mu\nu}.
+\]
+The linear polarization terms in (5.18) average to zero under assumption 2.
+With \(\kappa q_F^2=\alpha_Fn^2\), the compared expression is exactly
+\[
+T_F^{\mu\nu}=(\epsilon+p-2\alpha_Fn^2)u^\mu u^\nu
+ +(p-\alpha_Fn^2)g^{\mu\nu}.
+\]
+The [local PRD publisher PDF](prd_publisher_verify_20260907/prd_pdf.pdf), p. 107502-2,
+paragraph immediately below (10), independently prints the fluid corrections
+\(\delta\rho=\delta P=-\kappa s_{\rm phys}^2/4\) and
+\(s_{\rm phys}^2=n^2/8\) in natural units. Restoring \(\hbar^2\) gives
+\(-\kappa\hbar^2n^2/32\), fixing the above RMP-normalization identification
+\(q_F^2=s_{\rm phys}^2/4\). Thus **C2_FLUID=PASS** in this limit.
+
+**DIRAC.** RMP (5.13) uses the fully antisymmetric spin current; (5.15) gives
+\[
+\bar\sigma_{\mu\nu,D}
+=\Sigma_{(\mu\nu)}(\{\})-\frac\kappa2g_{\mu\nu}
+ \tau^{abc}\tau_{abc}.
+\]
+With the PRD axial-spin normalization, \(\tau\) is dual to
+\(s_{\rm ax}/2\). In signature (-+++), for a spatial axial vector,
+\(\tau^{abc}\tau_{abc}=-6s_{\rm ax}^2/4\). Accordingly,
+\[
+\langle\tau^{abc}\tau_{abc}\rangle=-\frac98n^2,
+\qquad
+-\frac\kappa2\langle\tau^2\rangle g_{\mu\nu}
+=\frac{9\kappa}{16}n^2g_{\mu\nu}=\alpha_Dn^2g_{\mu\nu}.
+\]
+This matches PRD (9)–(10) after signature conversion. Averaging its ordinary
+Levi-Civita term as a perfect fluid yields the compared expression
+\[
+T_{\mu\nu,D}=(\epsilon+p)u_\mu u_\nu+(p+\alpha_Dn^2)g_{\mu\nu},
+\quad \rho_D=\epsilon-\alpha_Dn^2.
+\]
+Thus **C2_DIRAC=PASS**, with a pressure correction opposite to the fluid row.
+Both 4-by-4 tensor-difference matrices printed by the code are identically zero.
+
+For either row, the combined Einstein equation in Bianchi I gives
+\[
+3H^2=\kappa\rho+S,\qquad
+\dot H=-H^2-\frac23 S-\frac\kappa6(\rho+3P).
+\]
+The second equation also follows from RMP (5.21) with convergence \(z=-3H\),
+zero acceleration/vorticity, and \(E=(\rho+3P)/2\). The shear law above follows
+by subtracting spatial Einstein equations. There is no further independent
+torsion-shear term in this specified averaged, isotropic-stress limit. C2 is an
+algebraic formalism match; the p. 400 conservation requirement is tested next.
+
+## C3: constraint propagation
+
+Define the constraint and energy-balance residual by
+\[
+\mathcal C=3H^2-\kappa(\epsilon-\alpha n^2)-S,
+\qquad \mathcal E=\dot\rho+3H(\rho+P).
+\]
+Direct differentiation with the acceleration and shear equations, without
+division by H or use of a Friedmann square-root branch, gives
+\[
+\boxed{\dot{\mathcal C}=-2H\mathcal C-\kappa\mathcal E},\qquad
+\boxed{\mathcal R_C:=\dot{\mathcal C}+2H\mathcal C=-\kappa\mathcal E}.
+\]
+Thus \(\mathcal R_C\) is the constraint derivative on \(\mathcal C=0\).
+It must vanish identically along the proposed evolution, not just at one event.
+Writing \(J:=\dot\epsilon+4H\epsilon\) and \(\dot n=-3Hn+\Psi\) gives
+\[
+\mathcal E_F=J-2\alpha_F n\Psi,\qquad
+\mathcal E_D=J+6H\alpha_Dn^2-2\alpha_Dn\Psi.
+\]
+
+**No production and the requested scalings:** \(\Psi=J=0\).
+\[
+\boxed{\mathcal R_{C,F}=0},\qquad
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+import hashlib
+p=Path('bounce/b4_springer_access.html')
+s=BeautifulSoup(p.read_text(),'html.parser')
+for i in [10,11,12,13,14,15,16,27,28,29,30,31,32,33,34,35]:
+ e=s.find(id=f'Equ{i}')
+ print('\\n',str(e))
+ if i in [16,30,35]:
+  for q in [e.find_previous_sibling(),e.find_next_sibling()]:
+   print('NEIGHBOR RAW:',str(q))
+print('SOURCE_SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
+print('METADATA')
+for m in s.find_all('meta'):
+ if m.get('name','').startswith('citation_'):
+  print(m.get('name'),m.get('content'))
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 73ms:
+
+ <div class="c-article-equation" id="Equ10"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned}&amp;\frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\dot{X}\dot{Y}}{XY}=\kappa \tilde{\epsilon }, \nonumber \\&amp;\frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\ddot{Y}}{Y}=-\kappa \tilde{p}, \nonumber \\&amp;\frac{\ddot{X}}{X}+\frac{\ddot{Y}}{Y}+\frac{\dot{X}\dot{Y}}{XY}=-\kappa \tilde{p}. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (10)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ11"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \frac{\ddot{X}}{X}-\frac{\ddot{Y}}{Y}+\frac{\dot{X}\dot{Y}}{XY} -\frac{\dot{Y}^{2}+1}{Y^{2}}=0. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (11)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ12"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} 2\dot{Y}\ddot{Y}X+3\dot{Y}^{2}\dot{X}+\dot{X}+2\ddot{X}Y\dot{Y} +2\dot{X}Y\ddot{Y}=\kappa \frac{d(\tilde{\epsilon }XY^{2})}{dt}. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (12)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ13"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned}&amp;\kappa \tilde{p}\frac{d(XY^{2})}{dt}=-Y^{2}\dot{X}\Bigl (\frac{\dot{Y}^{2}+1}{Y^{2}} +\frac{2\ddot{Y}}{Y}\Bigr ) \nonumber \\&amp;\quad -2XY\dot{Y}\Bigl (\frac{\ddot{X}}{X}+\frac{\ddot{Y}}{Y} +\frac{\dot{X}\dot{Y}}{XY}\Bigr ). \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (13)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ14"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \frac{d(\tilde{\epsilon }XY^{2})}{dt}+\tilde{p}\frac{d(XY^{2})}{dt}=0. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (14)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ15"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} a=(XY^{2})^{1/3} \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (15)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ16"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} H=\frac{\dot{a}}{a}=\frac{1}{3XY^{2}}\frac{d(XY^{2})}{dt} =\frac{1}{3}\Bigl (\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}\Bigr ) \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (16)
+                </div></div>
+NEIGHBOR RAW: <p>as the volume scale factor, and</p>
+NEIGHBOR RAW: <p>as the mean Hubble parameter. Using (<a data-track="click" data-track-action="equation anchor" data-track-label="link" href="/article/10.1007/s10714-021-02790-7#Equ1">1</a>) and (<a data-track="click" data-track-action="equation anchor" data-track-label="link" href="/article/10.1007/s10714-021-02790-7#Equ14">14</a>) gives the change of entropy:</p>
+
+ <div class="c-article-equation" id="Equ27"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \dot{\sigma }^{1}_1=\frac{2}{3}\Bigl (\frac{X\ddot{X}-\dot{X}^{2}}{X^{2}} -\frac{Y\ddot{Y}-\dot{Y}^{2}}{Y^{2}}\Bigr ). \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (27)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ28"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \dot{\sigma }^{1}_1+3H\sigma ^{1}_1=\frac{2}{3Y^{2}}. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (28)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ29"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \dot{\sigma }^{2}_{2}+3H\sigma ^{2}_{2}=\dot{\sigma }^{3}_{3}+3H\sigma ^{3}_{3} =-\frac{1}{3Y^{2}}. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (29)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ30"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \frac{d(\sigma ^{2})}{dt}+6H\sigma ^{2}=\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (30)
+                </div></div>
+NEIGHBOR RAW: <p>Consequently, the rate of the shear scalar <span class="mathjax-tex">\(d(\sigma ^{2})/dt=\dot{\sigma }^{\mu }_\nu \sigma ^\nu _\mu \)</span> satisfies</p>
+NEIGHBOR RAW: <p>The right-hand side in this equation is positive, which indicates that the shear scalar grows with decreasing <i>a</i> faster than <span class="mathjax-tex">\(\sim a^{-6}\)</span>.</p>
+
+ <div class="c-article-equation" id="Equ31"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \frac{d\theta }{ds}=-\frac{1}{3}\theta ^{2}-2(\sigma ^{2}-\omega ^{2}) +w^{\mu }{}_{;\mu }-R_{\mu \nu }u^{\mu } u^\nu , \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (31)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ32"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} 2\kappa \alpha n_{\text {f}}^{2}&gt;2\sigma ^{2}+\kappa \epsilon . \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (32)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ33"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\text {f}})}{dt}=\beta H^{4}, \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (33)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ34"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \dot{n}_{\text {f}}+3Hn_{\text {f}}=\beta H^{4},\quad \frac{d(n^{2}_{\text {f}})}{dt} +6Hn^{2}_{\text {f}}=2\beta n_{\text {f}}H^{4}. \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (34)
+                </div></div>
+
+ <div class="c-article-equation" id="Equ35"><div class="c-article-equation__content"><span class="mathjax-tex">$$\begin{aligned} \frac{2\beta n_{\text {f}}}{81}\Bigl (\frac{\dot{X}}{X} +\frac{2\dot{Y}}{Y}\Bigr )^{4}&gt;\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$</span></div><div class="c-article-equation__number">
+                    (35)
+                </div></div>
+NEIGHBOR RAW: <p>To avoid a singularity, the rate of <span class="mathjax-tex">\(n^{2}_{\text {f}}\)</span> must exceed the rate of <span class="mathjax-tex">\(\sigma ^{2}\)</span>. Comparing (<a data-track="click" data-track-action="equation anchor" data-track-label="link" href="/article/10.1007/s10714-021-02790-7#Equ34">34</a>) with (<a data-track="click" data-track-action="equation anchor" data-track-label="link" href="/article/10.1007/s10714-021-02790-7#Equ30">30</a>) gives</p>
+NEIGHBOR RAW: <p>After the formation of the event horizon, at the instant when (<a data-track="click" data-track-action="equation anchor" data-track-label="link" href="/article/10.1007/s10714-021-02790-7#Equ32">32</a>) is reached, this inequality must be satisfied to ensure that (<a data-track="click" data-track-action="equation anchor" data-track-label="link" href="/article/10.1007/s10714-021-02790-7#Equ32">32</a>) continues to hold.</p>
+SOURCE_SHA256 fb94da36db11823ed1081fd39226a7134dec64883a7811c4011a1ea7234efc88
+METADATA
+citation_pdf_url https://link.springer.com/content/pdf/10.1007/s10714-021-02790-7.pdf
+citation_fulltext_html_url https://link.springer.com/article/10.1007/s10714-021-02790-7
+citation_journal_title General Relativity and Gravitation
+citation_journal_abbrev Gen Relativ Gravit
+citation_publisher Springer US
+citation_issn 1572-9532
+citation_title A nonsingular, anisotropic universe in a black hole with torsion and particle production
+citation_volume 53
+citation_issue 2
+citation_publication_date 2021/02
+citation_online_date 2021/02/07
+citation_firstpage 18
+citation_lastpage 
+citation_article_type Research Article
+citation_language en
+citation_doi 10.1007/s10714-021-02790-7
+citation_springer_api_url http://api.springer.com/xmldata/jats?q=doi:10.1007/s10714-021-02790-7&api_key=
+citation_reference citation_journal_title=Nat. Astron.; citation_author=E Valentino, A Melchiorri, J Silk; citation_volume=4; citation_publication_date=2020; citation_pages=196; citation_doi=10.1038/s41550-019-0906-9; citation_id=CR1
+citation_reference citation_journal_title=J. Exp. Theor. Phys. Lett.; citation_author=ID Novikov; citation_volume=3; citation_publication_date=1966; citation_pages=142; citation_id=CR2
+citation_reference citation_journal_title=Nature; citation_author=RK Pathria; citation_volume=240; citation_publication_date=1972; citation_pages=298; citation_doi=10.1038/240298a0; citation_id=CR3
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=VP Frolov, MA Markov, VF Mukhanov; citation_volume=216; citation_publication_date=1989; citation_pages=272; citation_doi=10.1016/0370-2693(89)91114-3; citation_id=CR4
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=VP Frolov, MA Markov, VF Mukhanov; citation_volume=41; citation_publication_date=1990; citation_pages=383; citation_doi=10.1103/PhysRevD.41.383; citation_id=CR5
+citation_reference citation_journal_title=Class. Quantum Grav.; citation_author=L Smolin; citation_volume=9; citation_publication_date=1992; citation_pages=173; citation_doi=10.1088/0264-9381/9/1/016; citation_id=CR6
+citation_reference citation_title=Black Holes and Baby Universes and other Essays; citation_publication_date=1993; citation_id=CR7; citation_author=S Hawking; citation_publisher=Bantam Dell
+citation_reference citation_journal_title=Am. J. Phys.; citation_author=WM Stuckey; citation_volume=62; citation_publication_date=1994; citation_pages=788; citation_doi=10.1119/1.17460; citation_id=CR8
+citation_reference citation_journal_title=J. High Energy Phys.; citation_author=DA Easson, RH Brandenberger; citation_volume=06; citation_publication_date=2001; citation_pages=024; citation_doi=10.1088/1126-6708/2001/06/024; citation_id=CR9
+citation_reference citation_journal_title=Proc. Natl. Acad. Sci. USA; citation_author=J Smoller, B Temple; citation_volume=100; citation_publication_date=2003; citation_pages=11216; citation_doi=10.1073/pnas.1833875100; citation_id=CR10
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=NJ Popławski; citation_volume=687; citation_publication_date=2010; citation_pages=110; citation_doi=10.1016/j.physletb.2010.03.029; citation_id=CR11
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=NJ Popławski; citation_volume=694; citation_publication_date=2010; citation_pages=181; citation_doi=10.1016/j.physletb.2010.09.056; citation_id=CR12
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=NJ Popławski; citation_volume=701; citation_publication_date=2011; citation_pages=672; citation_doi=10.1016/j.physletb.2011.05.047; citation_id=CR13
+citation_reference citation_journal_title=Astrophys. J.; citation_author=N Popławski; citation_volume=832; citation_publication_date=2016; citation_pages=96; citation_doi=10.3847/0004-637X/832/2/96; citation_id=CR14
+citation_reference citation_journal_title=Int. J. Mod. Phys. D; citation_author=N Popławski; citation_volume=27; citation_publication_date=2018; citation_pages=1847020; citation_doi=10.1142/S021827181847020X; citation_id=CR15
+citation_reference Popławski, N.: 
+                  arXiv:1910.10819
+                  
+                ; 
+                  arXiv:1912.02173
+                  
+                
+citation_reference citation_title=Tensors, Relativity and Cosmology; citation_publication_date=1976; citation_id=CR17; citation_author=EA Lord; citation_publisher=McGraw-Hill
+citation_reference citation_journal_title=Proc. Camb. Philos. Soc.; citation_author=DW Sciama; citation_volume=54; citation_publication_date=1958; citation_pages=72; citation_doi=10.1017/S030500410003320X; citation_id=CR18
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=TWB Kibble; citation_volume=2; citation_publication_date=1961; citation_pages=212; citation_doi=10.1063/1.1703702; citation_id=CR19
+citation_reference citation_title=Recent Developments in General Relativity; citation_publication_date=1962; citation_id=CR20; citation_author=DW Sciama; citation_publisher=Pergamon
+citation_reference citation_journal_title=Rev. Mod. Phys.; citation_author=DW Sciama; citation_volume=36; citation_publication_date=1964; citation_pages=463; citation_doi=10.1103/RevModPhys.36.463; citation_id=CR21
+citation_reference citation_journal_title=Rev. Mod. Phys.; citation_author=DW Sciama; citation_volume=36; citation_publication_date=1964; citation_pages=1103; citation_doi=10.1103/RevModPhys.36.1103; citation_id=CR22
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=FW Hehl, BK Datta; citation_volume=12; citation_publication_date=1971; citation_pages=1334; citation_doi=10.1063/1.1665738; citation_id=CR23
+citation_reference citation_journal_title=Gen. Relativ. Gravit.; citation_author=FW Hehl; citation_volume=4; citation_publication_date=1973; citation_pages=333; citation_doi=10.1007/BF00759853; citation_id=CR24
+citation_reference citation_journal_title=Gen. Relativ. Gravit.; citation_author=FW Hehl; citation_volume=5; citation_publication_date=1974; citation_pages=491; citation_doi=10.1007/BF02451393; citation_id=CR25
+citation_reference citation_journal_title=Rev. Mod. Phys.; citation_author=FW Hehl, P Heyde, GD Kerlick, JM Nester; citation_volume=48; citation_publication_date=1976; citation_pages=393; citation_doi=10.1103/RevModPhys.48.393; citation_id=CR26
+citation_reference citation_title=Introduction to Gravitation; citation_publication_date=1985; citation_id=CR27; citation_author=V Sabbata; citation_author=M Gasperini; citation_publisher=World Scientific
+citation_reference citation_title=Spin and Torsion in Gravitation; citation_publication_date=1994; citation_id=CR28; citation_author=V Sabbata; citation_author=C Sivaram; citation_publisher=World Scientific
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=NJ Popławski; citation_volume=690; citation_publication_date=2010; citation_pages=73; citation_doi=10.1016/j.physletb.2010.04.073; citation_id=CR29
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=NJ Popławski; citation_volume=727; citation_publication_date=2013; citation_pages=575; citation_doi=10.1016/j.physletb.2013.11.005; citation_id=CR30
+citation_reference Popławski, N.: Classical Physics: Spacetime and Fields. 
+                  arXiv:0911.0334
+                  
+                
+citation_reference citation_title=Non-Riemannian Geometry; citation_publication_date=1927; citation_id=CR32; citation_author=LP Eisenhart; citation_publisher=American Mathematical Society
+citation_reference citation_title=Space–Time Structure; citation_publication_date=1954; citation_id=CR33; citation_author=E Schrödinger; citation_publisher=Cambridge University Press
+citation_reference citation_title=Ricci-Calculus; citation_publication_date=1954; citation_id=CR34; citation_author=JA Schouten; citation_publisher=Springer
+citation_reference citation_journal_title=Found. Phys.; citation_author=FW Hehl, JD McCrea; citation_volume=16; citation_publication_date=1986; citation_pages=267; citation_doi=10.1007/BF01889477; citation_id=CR35
+citation_reference Popławski, N.: 
+                  arXiv:1304.0047
+                  
+                
+citation_reference citation_journal_title=Prog. Theor. Phys.; citation_author=K Nomura, T Shirafuji, K Hayashi; citation_volume=86; citation_publication_date=1991; citation_pages=1239; citation_doi=10.1143/ptp/86.6.1239; citation_id=CR37
+citation_reference citation_journal_title=Abh. Braunschw. Wiss. Ges.; citation_author=FW Hehl; citation_volume=18; citation_publication_date=1966; citation_pages=98; citation_id=CR38
+citation_reference citation_journal_title=Bull. Acad. Polon. Sci. Serie Sci. Math. Astr. Phys.; citation_author=A Trautman; citation_volume=20; citation_publication_date=1972; citation_pages=185; citation_id=CR39
+citation_reference citation_journal_title=Symp. Math.; citation_author=A Trautman; citation_volume=12; citation_publication_date=1973; citation_pages=139; citation_id=CR40
+citation_reference citation_journal_title=Nat. Phys. Sci.; citation_author=A Trautman; citation_volume=242; citation_publication_date=1973; citation_pages=7; citation_doi=10.1038/physci242007a0; citation_id=CR41
+citation_reference citation_journal_title=Phys. Lett. A; citation_author=W Kopczyński; citation_volume=39; citation_publication_date=1972; citation_pages=219; citation_doi=10.1016/0375-9601(72)90714-1; citation_id=CR42
+citation_reference citation_journal_title=Z. Phys. A; citation_author=A Friedmann; citation_volume=10; citation_publication_date=1922; citation_pages=377; citation_doi=10.1007/BF01332580; citation_id=CR43
+citation_reference citation_journal_title=Ann. Soc. Sci. Bruxelles A; citation_author=G Lemaître; citation_volume=53; citation_publication_date=1933; citation_pages=51; citation_id=CR44
+citation_reference citation_journal_title=Astrophys. J.; citation_author=HP Robertson; citation_volume=82; citation_publication_date=1935; citation_pages=284; citation_doi=10.1086/143681; citation_id=CR45
+citation_reference citation_journal_title=Proc. Lond. Math. Soc.; citation_author=AG Walker; citation_volume=42; citation_publication_date=1937; citation_pages=90; citation_doi=10.1112/plms/s2-42.1.90; citation_id=CR46
+citation_reference citation_title=The Classical Theory of Fields; citation_publication_date=1975; citation_id=CR47; citation_author=LD Landau; citation_author=EM Lifshitz; citation_publisher=Pergamon
+citation_reference citation_title=The Theory of Space, Time and Gravitation; citation_publication_date=1964; citation_id=CR48; citation_author=VA Fock; citation_publisher=Macmillan
+citation_reference citation_title=General Theory of Relativity; citation_publication_date=1975; citation_id=CR49; citation_author=PAM Dirac; citation_publisher=Wiley
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=FW Hehl, P Heyde, GD Kerlick; citation_volume=10; citation_publication_date=1974; citation_pages=1066; citation_doi=10.1103/PhysRevD.10.1066; citation_id=CR50
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=IS Nurgaliev, WN Ponomariev; citation_volume=130; citation_publication_date=1983; citation_pages=378; citation_doi=10.1016/0370-2693(83)91526-5; citation_id=CR51
+citation_reference citation_journal_title=Astrophys. J.; citation_author=G Unger, N Popławski; citation_volume=870; citation_publication_date=2019; citation_pages=78; citation_doi=10.3847/1538-4357/aaf169; citation_id=CR52
+citation_reference citation_journal_title=Phys. Rep.; citation_author=M Novello, SE Perez Bergliaffa; citation_volume=463; citation_publication_date=2008; citation_pages=127; citation_doi=10.1016/j.physrep.2008.04.006; citation_id=CR53
+citation_reference citation_journal_title=Gen. Relativ. Gravit.; citation_author=B Kuchowicz; citation_volume=9; citation_publication_date=1978; citation_pages=511; citation_doi=10.1007/BF00759545; citation_id=CR54
+citation_reference citation_journal_title=Phys. Rev. Lett.; citation_author=M Gasperini; citation_volume=56; citation_publication_date=1986; citation_pages=2873; citation_doi=10.1103/PhysRevLett.56.2873; citation_id=CR55
+citation_reference citation_journal_title=Class. Quantum Grav.; citation_author=YN Obukhov, VA Korotky; citation_volume=4; citation_publication_date=1987; citation_pages=1633; citation_doi=10.1088/0264-9381/4/6/021; citation_id=CR56
+citation_reference citation_journal_title=Gen. Relativ. Grav.; citation_author=NJ Popławski; citation_volume=44; citation_publication_date=2012; citation_pages=1007; citation_doi=10.1007/s10714-011-1323-2; citation_id=CR57
+citation_reference citation_journal_title=Class. Quantum Grav.; citation_author=NJ Popławski; citation_volume=31; citation_publication_date=2014; citation_pages=065005; citation_doi=10.1088/0264-9381/31/6/065005; citation_id=CR58
+citation_reference citation_journal_title=Mod. Phys. Lett. A; citation_author=N Popławski; citation_volume=33; citation_publication_date=2018; citation_pages=1850236; citation_doi=10.1142/S021773231850236X; citation_id=CR59
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=S Desai, NJ Popławski; citation_volume=755; citation_publication_date=2016; citation_pages=183; citation_doi=10.1016/j.physletb.2016.02.014; citation_id=CR60
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=N Popławski; citation_volume=85; citation_publication_date=2012; citation_pages=107502; citation_doi=10.1103/PhysRevD.85.107502; citation_id=CR61
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=J Magueijo, TG Zlosnik, TWB Kibble; citation_volume=87; citation_publication_date=2013; citation_pages=063504; citation_doi=10.1103/PhysRevD.87.063504; citation_id=CR62
+citation_reference citation_journal_title=Class. Quantum Grav.; citation_author=JL Cubero, NJ Popławski; citation_volume=37; citation_publication_date=2020; citation_pages=025011; citation_doi=10.1088/1361-6382/ab5cb9; citation_id=CR63
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=NJ Popławski; citation_volume=83; citation_publication_date=2011; citation_pages=084033; citation_doi=10.1103/PhysRevD.83.084033; citation_id=CR64
+citation_reference citation_journal_title=Gen. Relativ. Gravit.; citation_author=N Popławski; citation_volume=46; citation_publication_date=2014; citation_pages=1625; citation_doi=10.1007/s10714-013-1625-7; citation_id=CR65
+citation_reference Popławski, N.: Found. Phys., In press (2020)
+citation_reference citation_journal_title=Am. J. Phys.; citation_author=RW Brehme; citation_volume=45; citation_publication_date=1977; citation_pages=423; citation_doi=10.1119/1.10829; citation_id=CR67
+citation_reference citation_journal_title=Found. Phys.; citation_author=R Doran, FSN Lobo, P Crawford; citation_volume=38; citation_publication_date=2008; citation_pages=160; citation_doi=10.1007/s10701-007-9197-6; citation_id=CR68
+citation_reference citation_journal_title=J. Cosmol. Astropart. Phys.; citation_author=M Cesare, SS Seahra, E Wilson-Ewing; citation_volume=07; citation_publication_date=2020; citation_pages=018; citation_doi=10.1088/1475-7516/2020/07/018; citation_id=CR69
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=R Kantowski, RK Sachs; citation_volume=7; citation_publication_date=1966; citation_pages=443; citation_doi=10.1063/1.1704952; citation_id=CR70
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=CB Collins; citation_volume=18; citation_publication_date=1977; citation_pages=2116; citation_doi=10.1063/1.523191; citation_id=CR71
+citation_reference citation_title=Exact Solutions of the Einstein’s Field Equations; citation_publication_date=1980; citation_id=CR72; citation_author=H Stephani; citation_author=D Kramer; citation_author=M MacCallum; citation_author=C Hoenselaers; citation_author=E Herlt; citation_publisher=Cambridge University Press
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=MP Da̧browski; citation_volume=36; citation_publication_date=1995; citation_pages=2985; citation_doi=10.1063/1.531005; citation_id=CR73
+citation_reference citation_journal_title=Mon. Not. Roy. Astron. Soc.; citation_author=JD Barrow, MP Da̧browski; citation_volume=275; citation_publication_date=1995; citation_pages=850; citation_doi=10.1093/mnras/275.3.850; citation_id=CR74
+citation_reference citation_journal_title=Int. J. Mod. Phys. D; citation_author=JD Barrow, C Ganguly; citation_volume=26; citation_publication_date=2017; citation_pages=1743016; citation_doi=10.1142/S0218271817430167; citation_id=CR75
+citation_reference citation_journal_title=Nuovo Cim. B; citation_author=LC Garcia de Andrade; citation_volume=116; citation_publication_date=2001; citation_pages=1107; citation_id=CR76
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=E Weber; citation_volume=25; citation_publication_date=1984; citation_pages=3279; citation_doi=10.1063/1.526076; citation_id=CR77
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=JD Barrow; citation_volume=51; citation_publication_date=1995; citation_pages=3113; citation_doi=10.1103/PhysRevD.51.3113; citation_id=CR78
+citation_reference citation_journal_title=Astrophys. Space Sci.; citation_author=MP Da̧browski; citation_volume=240; citation_publication_date=1996; citation_pages=123; citation_doi=10.1007/BF00640199; citation_id=CR79
+citation_reference citation_journal_title=Indian J. Phys. A; citation_author=P Borgohain, M Patgiri; citation_volume=72; citation_publication_date=1998; citation_pages=331; citation_id=CR80
+citation_reference citation_journal_title=Nature; citation_author=M Demiański; citation_volume=307; citation_publication_date=1984; citation_pages=140; citation_doi=10.1038/307140a0; citation_id=CR81
+citation_reference citation_journal_title=Nucl. Phys. B; citation_author=AB Burd, JD Barrow; citation_volume=308; citation_publication_date=1988; citation_pages=929; citation_doi=10.1016/0550-3213(88)90135-6; citation_id=CR82
+citation_reference citation_journal_title=Nucl. Phys. B; citation_author=AB Burd, JD Barrow; citation_volume=324; citation_publication_date=1989; citation_pages=276; citation_doi=10.1016/0550-3213(89)90193-4; citation_id=CR83
+citation_reference citation_journal_title=J. Math. Phys.; citation_author=JP León; citation_volume=31; citation_publication_date=1990; citation_pages=371; citation_doi=10.1063/1.528924; citation_id=CR84
+citation_reference citation_journal_title=Phys. Lett. B; citation_author=LE Mendes, AB Henriques; citation_volume=254; citation_publication_date=1991; citation_pages=44; citation_doi=10.1016/0370-2693(91)90393-5; citation_id=CR85
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=S Byland, D Scialom; citation_volume=57; citation_publication_date=1998; citation_pages=6065; citation_doi=10.1103/PhysRevD.57.6065; citation_id=CR86
+citation_reference citation_journal_title=Astrophys. Space Sci.; citation_author=SD Katore, RS Rane; citation_volume=323; citation_publication_date=2009; citation_pages=293; citation_doi=10.1007/s10509-009-0068-9; citation_id=CR87
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=X-Z Li, J-G Hao; citation_volume=68; citation_publication_date=2003; citation_pages=083512; citation_doi=10.1103/PhysRevD.68.083512; citation_id=CR88
+citation_reference citation_journal_title=Class. Quantum Grav.; citation_author=JD Barrow, CG Tsagas; citation_volume=22; citation_publication_date=2005; citation_pages=1563; citation_doi=10.1088/0264-9381/22/9/006; citation_id=CR89
+citation_reference citation_journal_title=Class. Quantum Grav.; citation_author=D Solomons, PKS Dunsby, GFR Ellis; citation_volume=23; citation_publication_date=2006; citation_pages=6585; citation_doi=10.1088/0264-9381/23/23/001; citation_id=CR90
+citation_reference citation_journal_title=Phys. Lett. A; citation_author=W Kopczyński; citation_volume=43; citation_publication_date=1973; citation_pages=63; citation_doi=10.1016/0375-9601(73)90546-X; citation_id=CR91
+citation_reference citation_journal_title=J. Phys. A: Math. Gen.; citation_author=B Kuchowicz; citation_volume=8; citation_publication_date=1975; citation_pages=L29; citation_doi=10.1088/0305-4470/8/3/001; citation_id=CR92
+citation_reference citation_journal_title=Phys. Lett. A; citation_author=J Tafel; citation_volume=45; citation_publication_date=1973; citation_pages=341; citation_doi=10.1016/0375-9601(73)90108-4; citation_id=CR93
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=D Tsoubelis; citation_volume=20; citation_publication_date=1979; citation_pages=3004; citation_doi=10.1103/PhysRevD.20.3004; citation_id=CR94
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=NA Batakis, D Tsoubelis; citation_volume=26; citation_publication_date=1982; citation_pages=2611; citation_doi=10.1103/PhysRevD.26.2611; citation_id=CR95
+citation_reference citation_journal_title=Gen. Relativ. Gravit.; citation_author=D Lorenz; citation_volume=14; citation_publication_date=1982; citation_pages=691; citation_doi=10.1007/BF00761460; citation_id=CR96
+citation_reference citation_journal_title=Phys. Lett. A; citation_author=B Kuchowicz; citation_volume=54; citation_publication_date=1975; citation_pages=13; citation_doi=10.1016/0375-9601(75)90586-1; citation_id=CR97
+citation_reference citation_journal_title=Astrophys. Space Sci.; citation_author=B Kuchowicz; citation_volume=39; citation_publication_date=1976; citation_pages=157; citation_doi=10.1007/BF00640517; citation_id=CR98
+citation_reference citation_journal_title=Astrophys. Space Sci.; citation_author=B Kuchowicz; citation_volume=40; citation_publication_date=1976; citation_pages=167; citation_doi=10.1007/BF00651197; citation_id=CR99
+citation_reference citation_journal_title=Acta Phys. Pol. B; citation_author=B Kuchowicz; citation_volume=7; citation_publication_date=1976; citation_pages=81; citation_id=CR100
+citation_reference citation_journal_title=J. Phys. A: Math. Gen.; citation_author=D Lorenz; citation_volume=15; citation_publication_date=1982; citation_pages=2809; citation_doi=10.1088/0305-4470/15/9/030; citation_id=CR101
+citation_reference citation_journal_title=Phys. Rev. Lett.; citation_author=L Parker; citation_volume=21; citation_publication_date=1968; citation_pages=562; citation_doi=10.1103/PhysRevLett.21.562; citation_id=CR102
+citation_reference citation_journal_title=Phys. Rev.; citation_author=L Parker; citation_volume=183; citation_publication_date=1969; citation_pages=1057; citation_doi=10.1103/PhysRev.183.1057; citation_id=CR103
+citation_reference citation_journal_title=J. Exp. Theor. Phys. Lett.; citation_author=YB Zel’dovich; citation_volume=12; citation_publication_date=1970; citation_pages=307; citation_id=CR104
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=L Parker; citation_volume=3; citation_publication_date=1971; citation_pages=346; citation_doi=10.1103/PhysRevD.3.346; citation_id=CR105
+citation_reference citation_journal_title=Phys. Rev. D; citation_author=L Parker; citation_volume=3; citation_publication_date=1971; citation_pages=2546; citation_doi=10.1103/PhysRevD.3.2546; citation_id=CR106
+citation_reference citation_journal_title=J. Exp. Theor. Phys. Lett.; citation_author=YB Zel’dovich, AA Starobinskii; citation_volume=26; citation_publication_date=1977; citation_pages=252; citation_id=CR107
+citation_reference citation_journal_title=J. Exp. Theor. Phys.; citation_author=VA Beilin, GM Vereshkov, YS Grishkan, NM Ivanov, VA Nesterenko, AN Poltavtsev; citation_volume=51; citation_publication_date=1980; citation_pages=1045; citation_id=CR108
+citation_reference citation_journal_title=Phys. Rev. Lett.; citation_author=RP Kerr; citation_volume=11; citation_publication_date=1963; citation_pages=237; citation_doi=10.1103/PhysRevLett.11.237; citation_id=CR109
+citation_reference citation_journal_title=Phys. Rev. Lett.; citation_author=D Saadeh, SM Feeney, A Pontzen, HV Peiris, JD McEwen; citation_volume=117; citation_publication_date=2016; citation_pages=131302; citation_doi=10.1103/PhysRevLett.117.131302; citation_id=CR110
+citation_reference citation_journal_title=Astron. Astrophys. Lett.; citation_author=J Colin, R Mohayaee, M Rameez, S Sarkar; citation_volume=631; citation_publication_date=2019; citation_pages=L13; citation_doi=10.1051/0004-6361/201936373; citation_id=CR111
+citation_reference citation_journal_title=Astron. Astrophys.; citation_author=K Migkas, G Schellenberger, TH Reiprich, F Pacaud, ME Ramos-Ceja, L Lovisari; citation_volume=636; citation_publication_date=2020; citation_pages=A15; citation_doi=10.1051/0004-6361/201936602; citation_id=CR112
+citation_author Popławski, Nikodem J.
+citation_author_email NPoplawski@newhaven.edu
+citation_author_institution Department of Mathematics and Physics, University of New Haven, West Haven, USA
+citation_cover_date 2021/02/01
+
+codex
+The transfer verdicts need a precise distinction. KS invalidates B1’s constant-ratio argument, although initially subdominant torsion still cannot overtake shear on the paper’s positive-source branch. Production changes number density in KS just as it does in Bianchi I; whether it outgrows the curvature-sourced shear is a separate condition, so B3’s bounce guarantee remains undetermined by this check.
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+s=BeautifulSoup(Path('bounce/b4_springer_access.html').read_text(),'html.parser')
+for i in [27,28,29,30,31,34,35]:
+ e=s.find(id=f'Equ{i}')
+ print(i,'PRE:',e.find_previous_sibling().get_text())
+ print(i,'POST:',e.find_next_sibling().get_text())
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 44ms:
+27 PRE: The rate of the first component of the shear tensor is
+27 POST: Using this equation with (11) and (16) gives
+28 PRE: Using this equation with (11) and (16) gives
+28 POST: Similarly, the rates of the other components satisfy
+29 PRE: Similarly, the rates of the other components satisfy
+29 POST: Consequently, the rate of the shear scalar \(d(\sigma ^{2})/dt=\dot{\sigma }^{\mu }_\nu \sigma ^\nu _\mu \) satisfies
+30 PRE: Consequently, the rate of the shear scalar \(d(\sigma ^{2})/dt=\dot{\sigma }^{\mu }_\nu \sigma ^\nu _\mu \) satisfies
+30 POST: The right-hand side in this equation is positive, which indicates that the shear scalar grows with decreasing a faster than \(\sim a^{-6}\).
+31 PRE: The Raychaudhuri equation for a congruence of geodesics without four-acceleration and rotation is [31]
+31 POST: where \(\omega ^{2}=\omega _{\mu \nu }\omega ^{\mu \nu }/2\) is the rotation scalar. In the KS spacetime in comoving coordinates, \(\omega ^{2}=w^{\mu }{}_{;\mu }=0\). For a spin fluid, the last term in (31) is equal to \(-\kappa (\tilde{\epsilon }+3\tilde{p})/2\). Consequently, the necessary and sufficient condition for avoiding a singularity in a black hole is \(-\kappa (\tilde{\epsilon }+3\tilde{p})/2>2\sigma ^{2}\). For a relativistic spin fluid, \(p=\epsilon /3\), this condition is equivalent to
+34 PRE: where \(g=-X^{2}Y^{4}=-a^6\) is the determinant of the metric tensor in (6) and \(\beta \) is the production rate [14, 15]. Accordingly,
+34 POST: To avoid a singularity, the rate of \(n^{2}_{\text {f}}\) must exceed the rate of \(\sigma ^{2}\). Comparing (34) with (30) gives
+35 PRE: To avoid a singularity, the rate of \(n^{2}_{\text {f}}\) must exceed the rate of \(\sigma ^{2}\). Comparing (34) with (30) gives
+35 POST: After the formation of the event horizon, at the instant when (32) is reached, this inequality must be satisfied to ensure that (32) continues to hold.
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+import hashlib
+source=Path('bounce/b4_springer_access.html')
+soup=BeautifulSoup(source.read_text(),'html.parser')
+
+def equation_quote(number):
+    e=soup.find(id=f'Equ{number}')
+    math=e.select_one('.mathjax-tex').get_text()
+    label=e.select_one('.c-article-equation__number').get_text(strip=True)
+    return (f'**Verbatim quotation — publisher HTML, Eq. ({number}), "'`Equ{number}`; read directly, not arXiv:**'"\\n\\n'
+            f'> {math}\\n>\\n> {label}\\n')
+
+def prose_quote(number,side):
+    e=soup.find(id=f'Equ{number}')
+    p=e.find_previous_sibling() if side=='before' else e.find_next_sibling()
+    return (f'**Verbatim quotation — publisher HTML, immediately {side} Eq. ({number}); read directly, not arXiv:**\\n\\n'
+            f'> {p.get_text()}\\n')
+
+report=r'''**B6 — Applicability of the flat-geometry results to the source's KS scenario**  
+2026-09-07 · Weyssenhoff FLUID only · Report only
+
+The exact KS shear evolution is generally not a pure power law: it is an "'$a''^{-6}$ factor times a curvature-dependent, time-dependent coefficient. During contraction on the positive-source branch described after the source'"'s Eq. (30), shear grows faster than "'$a''^{-6}$. Thus B1'"'s constant-comparison argument does not transfer. The number-density mechanism used in B3 does transfer, but its guaranteed bounce result is undetermined in KS by this applicability check.
+
+The governing source read here is Nikodem J. Popławski, *A nonsingular, anisotropic universe in a black hole with torsion and particle production*, *General Relativity and Gravitation* **53**, article 18 (2021), [saved publisher HTML](b4_springer_access.html), DOI [10.1007/s10714-021-02790-7](https://link.springer.com/article/10.1007/s10714-021-02790-7). All quotations below come directly from that saved publisher HTML; none comes from arXiv or an APS PDF. Equation text is copied from its MathJax payload with its printed number; prose is copied with HTML formatting removed. Publisher source SHA256: "'`SOURCE_HASH`.
+
+The existing FLUID claims were identified from the lane'"'s B1 result, criterion and scope qualification and B3 rescue and reconciliation records, particularly [B1's scope statement](B1_SCOPE_QUALIFICATION_20260907.md) and [B3's scaling and theorem](B3_RESCUE_20260907.md). They are treated as the established flat-geometry inputs. This report performs the requested equation-level applicability derivation; it selects no closure, integrates no new model, revises no earlier result and files no class. No excluded data were used.
+
+**(a) The printed KS shear law and its neighbours.**
+
+Use the source's Eq. (6) geometry and Eqs. (15)–(16) definitions, on a regular patch with positive scale factors:
+
+"'$$
+a''^3=XY''^2,'"\\qquad H=\\frac{\\dot a}{a}=\\frac{H_X+2H_Y}{3},\\qquad
+H_X=\\frac{\\dot X}{X},\\quad H_Y=\\frac{\\dot Y}{Y},\\quad
+\\Delta=H_X-H_Y,\\quad K=Y"'^{-2}>0.
+$$
+
+Write $S='"\\sigma"'^2$ for the source'"'s shear scalar (not its square root). Eqs. (24)–(25) give "'$'"\\sigma"'^1{}_1=2'"\\Delta/3"'$, $'"\\sigma"'^2{}_2='"\\sigma"'^3{}_3=-'"\\Delta/3"'$ and $S='"\\Delta"'^2/3$.
+
+QUOTE_27
+PROSE_BEFORE_28
+QUOTE_28
+PROSE_BEFORE_29
+QUOTE_29
+PROSE_BEFORE_30
+QUOTE_30
+PROSE_AFTER_30
+
+The next numbered equation is the Raychaudhuri equation:
+
+QUOTE_31
+
+From Eq. (28) and $'"\\sigma"'^1{}_1=2'"\\Delta/3"'$, the exact signed-anisotropy equation is
+
+$$
+'"\\dot\\Delta+3H\\Delta=K.
+"'$$
+
+Multiplying by the integrating factor $a''^3$ gives
+
+$$
+'"\\frac{d(a"'^3'"\\Delta)}{dt}=a"'^3K,'"\\qquad
+I(t)=\\int_{t_0}"'^{t}a''^3(t'"')K(t')\\,dt',\\qquad
+C=a(t_0)"'^3'"\\Delta(t_0).
+"'$$
+
+Consequently, the **exact derived scaling** is
+
+$$
+'"\\boxed{\\Delta(t)=a(t)"'^{-3}[C+I(t)],'"\\qquad
+\\sigma"'^2(t)='"\\frac{[C+I(t)]"'^2}{3a(t)''^6}.}
+$$
+
+Since $a''^3K=X$ on this patch, the same integral is $I(t)='"\\int_{t_0}"'^{t}X(t'"')\\,dt'"'$. This is an exact integral identity for the printed equations, not a specification of $X(t)$ or a new solution. Equivalently, Eq. (30) gives
+
+$$
+'"\\boxed{\\frac{d(a"'^6S)}{dt}='"\\frac23a"'^6K'"\\Delta,}
+"'$$
+
+which exhibits precisely why the flat conserved shear coefficient is lost.
+
+Where $H'"\\ne0"'$ and $'"\\Delta\\ne0"'$, the instantaneous logarithmic slope is
+
+$$
+'"\\boxed{\\frac{d\\ln S}{d\\ln a}=-6+\\frac{2K}{H\\Delta}.}
+"'$$
+
+For **contraction with $H<0$ and $'"\\Delta>0"'$**, this is less than $-6$: $S$ grows faster than $a''^{-6}$ as $a$ decreases, agreeing with the quoted sentence after Eq. (30). It does not supply a fixed exponent $p>6$ with $S'"\\propto a"'^{-p}$; $K/(H'"\\Delta)"'$ need not be constant. Thus “faster” describes relative growth on that branch, while “generally not a power law” describes the exact functional dependence.
+
+The sign qualification matters. The right-hand side of Eq. (30) is positive **iff $'"\\Delta>0"'$**, not merely because the geometry is KS or the volume is contracting. If $H<0$ and $'"\\Delta<0"'$, the slope is greater than $-6$ and $a''^6S$ decreases; $S$ need not even grow throughout such an interval. The source'"'s suggested data after Eq. (37) include "'$'"\\dot Y_0=0"'$, which gives $'"\\Delta_0=3H_0"'$; if that instant is volume-contracting, its $'"\\Delta_0"'$ is negative. This algebraic observation precludes treating the prose'"'s positivity claim as a theorem for every KS datum. At "'$'"\\Delta=0"'$ the logarithmic formula is undefined, but the integral law remains regular and $'"\\dot\\Delta=K"'$; shear cannot remain zero on an interval at finite $Y$. No universal fixed shear power follows from the printed equations alone.
+
+**(b) Does the $a''^{-6}$ degeneracy hold?**
+
+With no production, the source'"'s number equation (34) at "'$'"\\beta=0"'$ gives
+
+$$
+N_0=a''^3n_{'"\\rm f}=\\text{constant},\\qquad
+\\alpha n_{\\rm f}"'^{,2}='"\\alpha N_0"'^2a''^{-6}.
+$$
+
+Here $'"\\alpha"'$ is the positive, constant coefficient in the source'"'s FLUID Eq. (1), "'$'"\\tilde\\epsilon=\\epsilon-\\alpha n_{\\rm f}"'^2$ and $'"\\tilde p=p-\\alpha n_{\\rm f}"'^2$. No value or additional matter relation is chosen.
+
+The spin term retains exact $a''^{-6}$ scaling, but the KS shear has the additional coefficient $[C+I(t)]''^2/3$. Therefore the **exact shear–spin $a''^{-6}$ degeneracy does not hold in finite-curvature KS**. Within the two geometries being compared, it is the flat Bianchi I result, recovered when the curvature source is absent ($K=0$, so $I=0$). A small curvature contribution might permit an approximation on a specified interval; it does not restore exact conservation.
+
+For $S>0$, the dimensionless torsion/shear ratio makes the difference explicit:
+
+$$
+R='"\\frac{\\kappa\\alpha n_{\\rm f}"'^{,2}}{S}
+ ='"\\frac{3\\kappa\\alpha N_0"'^2}{[C+I(t)]''^2},'"\\qquad
+\\dot R=-\\frac{2K}{\\Delta}R\\quad(\\beta=0).
+"'$$
+
+**(c) What transfers from B1?**
+
+B1 compared $'"\\kappa\\alpha N_0"'^2$ with a conserved $a''^6S='"\\Sigma"'^2$. In KS, the latter is not conserved. Also, the source'"'s first field equation (10), rewritten using the definitions above and Eq. (1), is
+
+"'$$
+3H''^2='"\\kappa(\\epsilon-\\alpha n_{\\rm f}"'^{,2})+S-K.
+$$
+
+Thus the flat constraint and its constant-only bounce criterion cannot simply be imported either.
+
+There is nevertheless a precise surviving directional statement: on an interval with $'"\\Delta>0"'$ and no production, $R$ decreases, so data with $R'"\\le1"'$ cannot evolve to $R>1$ while that sign holds. The source'"'s printed Eq. (32), "'$2'"\\kappa\\alpha n_{\\rm f}"'^{,2}>2S+'"\\kappa\\epsilon"'$, requires $R>1$ when $'"\\epsilon>0"'$, so those data cannot reach that inequality on this interval. This is a curvature-driven monotonicity argument, not a comparison of constants. For $'"\\Delta<0"'$, $R$ instead increases; that fact alone proves neither threshold crossing nor a bounce. The failure of the flat argument supplies no contrary KS solution and no general KS bounce classification.
+
+**B1 — FAILS as a transfer of the comparison-of-constants conclusion, because KS curvature makes $a''^6'"\\sigma"'^2$ and the torsion/shear ratio evolve, although initially subdominant torsion still cannot overtake shear without production on the source'"'s "'$'"\\Delta>0"'$ branch.**
+
+**(d) What transfers from B3'"'s production mechanism and result?**
+
+QUOTE_34
+PROSE_BEFORE_35
+QUOTE_35
+PROSE_AFTER_35
+
+Eq. (34) is already a KS equation. With "'$'"\\Psi=\\beta H"'^4$ and $N=a''^3n_{'"\\rm f}"'$ it gives, without a thermal closure,
+
+$$
+'"\\dot N=a"'^3'"\\Psi,\\qquad
+N(t)=N(t_0)+\\int_{t_0}"'^{t}a''^3(t'"')\\Psi(t')\\,dt',\\qquad
+\\alpha n_{\\rm f}"'^{,2}='"\\alpha a"'^{-6}N(t)''^2.
+$$
+
+For $n_{'"\\rm f}>0"'$ and $H'"\\ne0"'$,
+
+$$
+'"\\frac{d\\ln n_{\\rm f}}{d\\ln a}=-3+\\frac{\\Psi}{Hn_{\\rm f}},\\qquad
+\\frac{d\\ln(\\alpha n_{\\rm f}"'^{,2})}{d'"\\ln a}
+=-6+\\frac{2\\Psi}{Hn_{\\rm f}}.
+"'$$
+
+With positive production, these slopes are greater than $-3$ and $-6$ during expansion (slower dilution, or growth), and less than $-3$ and $-6$ during contraction (faster compression-driven growth). For the collapse in question, **number density grows faster than $a''^{-3}$** is the appropriate wording. At $n_{'"\\rm f}=0"'$ or $H=0$, use the integral and time-derivative equations rather than these logarithms.
+
+**Number-density mechanism — TRANSFERS:** the same volume balance makes $a''^3n_{'"\\rm f}"'$ increase and changes the coefficient of the spin term in KS. There is, however, no pre-existing exact KS shear–spin degeneracy for production to break; both coefficients can now evolve.
+
+The exact comparison with shear, wherever $n_{'"\\rm f}>0"'$ and $S>0$, is
+
+$$
+R(t)='"\\frac{3\\kappa\\alpha N(t)"'^2}{[C+I(t)]''^2},'"\\qquad
+\\boxed{\\frac{\\dot R}{R}
+=2\\left(\\frac{\\Psi}{n_{\\rm f}}-\\frac{K}{\\Delta}\\right).}
+"'$$
+
+In flat Bianchi I the second term vanishes and every positive source increases $R$. In KS on the positive-source branch, increasing $R$ requires the additional comparison
+
+$$
+'"\\frac{\\Psi}{n_{\\rm f}}>\\frac{K}{\\Delta}\\qquad(\\Delta>0).
+"'$$
+
+Production therefore contributes in the same helpful direction, but positivity of $'"\\Psi"'$ alone does not fix the net ratio'"'s sign. On a "'$'"\\Delta<0"'$ interval the curvature contribution also increases $R$; that conditional sign does not settle the later evolution. The quoted Eq. (35) explicitly displays the source'"'s intended competition between production and curvature-sourced shear. The fractional-rate identity above keeps the normalization of the actual torsion/shear ratio explicit; no standalone sufficient bounce theorem is inferred from Eq. (35).
+
+B3's flat-geometry theorem required its particular dynamical system as well as number production. The changing KS shear coefficient and the curvature term in the constraint prevent transferring that proof merely by retaining Eq. (34). This report establishes the production contribution, not that it necessarily wins throughout a KS collapse; no failed KS rescue is inferred from this unresolved comparison.
+
+**B3 — UNDETERMINED for transfer of its guaranteed bounce result, because the number-production mechanism transfers exactly but must compete with KS curvature-sourced shear, whose growth is not bounded by number balance alone.**
+'''
+# The raw template uses doubled backslashes for readability in this generator.
+report=report.replace('\\\\\\\\','\\\\')
+report=report.replace('SOURCE_HASH',hashlib.sha256(source.read_bytes()).hexdigest())
+for i in [27,28,29,30,31,34,35]:
+    report=report.replace(f'QUOTE_{i}',equation_quote(i))
+for i in [28,29,30,35]:
+    report=report.replace(f'PROSE_BEFORE_{i}',prose_quote(i,'before'))
+for i in [30,35]:
+    report=report.replace(f'PROSE_AFTER_{i}',prose_quote(i,'after'))
+output=Path('bounce/B6_APPLICABILITY_20260907.md')
+output.write_text(report)
+print('Wrote',output,'bytes',output.stat().st_size)
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 61ms:
+Wrote bounce/B6_APPLICABILITY_20260907.md bytes 12729
+
+exec
+/bin/zsh -lc "sed -n '1,280p' bounce/B6_APPLICABILITY_20260907.md" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+**B6 — Applicability of the flat-geometry results to the source's KS scenario**  
+2026-09-07 · Weyssenhoff FLUID only · Report only
+
+The exact KS shear evolution is generally not a pure power law: it is an $a^{-6}$ factor times a curvature-dependent, time-dependent coefficient. During contraction on the positive-source branch described after the source's Eq. (30), shear grows faster than $a^{-6}$. Thus B1's constant-comparison argument does not transfer. The number-density mechanism used in B3 does transfer, but its guaranteed bounce result is undetermined in KS by this applicability check.
+
+The governing source read here is Nikodem J. Popławski, *A nonsingular, anisotropic universe in a black hole with torsion and particle production*, *General Relativity and Gravitation* **53**, article 18 (2021), [saved publisher HTML](b4_springer_access.html), DOI [10.1007/s10714-021-02790-7](https://link.springer.com/article/10.1007/s10714-021-02790-7). All quotations below come directly from that saved publisher HTML; none comes from arXiv or an APS PDF. Equation text is copied from its MathJax payload with its printed number; prose is copied with HTML formatting removed. Publisher source SHA256: `fb94da36db11823ed1081fd39226a7134dec64883a7811c4011a1ea7234efc88`.
+
+The existing FLUID claims were identified from the lane's B1 result, criterion and scope qualification and B3 rescue and reconciliation records, particularly [B1's scope statement](B1_SCOPE_QUALIFICATION_20260907.md) and [B3's scaling and theorem](B3_RESCUE_20260907.md). They are treated as the established flat-geometry inputs. This report performs the requested equation-level applicability derivation; it selects no closure, integrates no new model, revises no earlier result and files no class. No excluded data were used.
+
+**(a) The printed KS shear law and its neighbours.**
+
+Use the source's Eq. (6) geometry and Eqs. (15)–(16) definitions, on a regular patch with positive scale factors:
+
+$$
+a^3=XY^2,\qquad H=\frac{\dot a}{a}=\frac{H_X+2H_Y}{3},\qquad
+H_X=\frac{\dot X}{X},\quad H_Y=\frac{\dot Y}{Y},\quad
+\Delta=H_X-H_Y,\quad K=Y^{-2}>0.
+$$
+
+Write $S=\sigma^2$ for the source's shear scalar (not its square root). Eqs. (24)–(25) give $\sigma^1{}_1=2\Delta/3$, $\sigma^2{}_2=\sigma^3{}_3=-\Delta/3$ and $S=\Delta^2/3$.
+
+**Verbatim quotation — publisher HTML, Eq. (27), `Equ27`; read directly, not arXiv:**
+
+> $$\begin{aligned} \dot{\sigma }^{1}_1=\frac{2}{3}\Bigl (\frac{X\ddot{X}-\dot{X}^{2}}{X^{2}} -\frac{Y\ddot{Y}-\dot{Y}^{2}}{Y^{2}}\Bigr ). \end{aligned}$$
+>
+> (27)
+
+**Verbatim quotation — publisher HTML, immediately before Eq. (28); read directly, not arXiv:**
+
+> Using this equation with (11) and (16) gives
+
+**Verbatim quotation — publisher HTML, Eq. (28), `Equ28`; read directly, not arXiv:**
+
+> $$\begin{aligned} \dot{\sigma }^{1}_1+3H\sigma ^{1}_1=\frac{2}{3Y^{2}}. \end{aligned}$$
+>
+> (28)
+
+**Verbatim quotation — publisher HTML, immediately before Eq. (29); read directly, not arXiv:**
+
+> Similarly, the rates of the other components satisfy
+
+**Verbatim quotation — publisher HTML, Eq. (29), `Equ29`; read directly, not arXiv:**
+
+> $$\begin{aligned} \dot{\sigma }^{2}_{2}+3H\sigma ^{2}_{2}=\dot{\sigma }^{3}_{3}+3H\sigma ^{3}_{3} =-\frac{1}{3Y^{2}}. \end{aligned}$$
+>
+> (29)
+
+**Verbatim quotation — publisher HTML, immediately before Eq. (30); read directly, not arXiv:**
+
+> Consequently, the rate of the shear scalar \(d(\sigma ^{2})/dt=\dot{\sigma }^{\mu }_\nu \sigma ^\nu _\mu \) satisfies
+
+**Verbatim quotation — publisher HTML, Eq. (30), `Equ30`; read directly, not arXiv:**
+
+> $$\begin{aligned} \frac{d(\sigma ^{2})}{dt}+6H\sigma ^{2}=\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$
+>
+> (30)
+
+**Verbatim quotation — publisher HTML, immediately after Eq. (30); read directly, not arXiv:**
+
+> The right-hand side in this equation is positive, which indicates that the shear scalar grows with decreasing a faster than \(\sim a^{-6}\).
+
+
+The next numbered equation is the Raychaudhuri equation:
+
+**Verbatim quotation — publisher HTML, Eq. (31), `Equ31`; read directly, not arXiv:**
+
+> $$\begin{aligned} \frac{d\theta }{ds}=-\frac{1}{3}\theta ^{2}-2(\sigma ^{2}-\omega ^{2}) +w^{\mu }{}_{;\mu }-R_{\mu \nu }u^{\mu } u^\nu , \end{aligned}$$
+>
+> (31)
+
+
+From Eq. (28) and $\sigma^1{}_1=2\Delta/3$, the exact signed-anisotropy equation is
+
+$$
+\dot\Delta+3H\Delta=K.
+$$
+
+Multiplying by the integrating factor $a^3$ gives
+
+$$
+\frac{d(a^3\Delta)}{dt}=a^3K,\qquad
+I(t)=\int_{t_0}^{t}a^3(t')K(t')\,dt',\qquad
+C=a(t_0)^3\Delta(t_0).
+$$
+
+Consequently, the **exact derived scaling** is
+
+$$
+\boxed{\Delta(t)=a(t)^{-3}[C+I(t)],\qquad
+\sigma^2(t)=\frac{[C+I(t)]^2}{3a(t)^6}.}
+$$
+
+Since $a^3K=X$ on this patch, the same integral is $I(t)=\int_{t_0}^{t}X(t')\,dt'$. This is an exact integral identity for the printed equations, not a specification of $X(t)$ or a new solution. Equivalently, Eq. (30) gives
+
+$$
+\boxed{\frac{d(a^6S)}{dt}=\frac23a^6K\Delta,}
+$$
+
+which exhibits precisely why the flat conserved shear coefficient is lost.
+
+Where $H\ne0$ and $\Delta\ne0$, the instantaneous logarithmic slope is
+
+$$
+\boxed{\frac{d\ln S}{d\ln a}=-6+\frac{2K}{H\Delta}.}
+$$
+
+For **contraction with $H<0$ and $\Delta>0$**, this is less than $-6$: $S$ grows faster than $a^{-6}$ as $a$ decreases, agreeing with the quoted sentence after Eq. (30). It does not supply a fixed exponent $p>6$ with $S\propto a^{-p}$; $K/(H\Delta)$ need not be constant. Thus “faster” describes relative growth on that branch, while “generally not a power law” describes the exact functional dependence.
+
+The sign qualification matters. The right-hand side of Eq. (30) is positive **iff $\Delta>0$**, not merely because the geometry is KS or the volume is contracting. If $H<0$ and $\Delta<0$, the slope is greater than $-6$ and $a^6S$ decreases; $S$ need not even grow throughout such an interval. The source's suggested data after Eq. (37) include $\dot Y_0=0$, which gives $\Delta_0=3H_0$; if that instant is volume-contracting, its $\Delta_0$ is negative. This algebraic observation precludes treating the prose's positivity claim as a theorem for every KS datum. At $\Delta=0$ the logarithmic formula is undefined, but the integral law remains regular and $\dot\Delta=K$; shear cannot remain zero on an interval at finite $Y$. No universal fixed shear power follows from the printed equations alone.
+
+**(b) Does the $a^{-6}$ degeneracy hold?**
+
+With no production, the source's number equation (34) at $\beta=0$ gives
+
+$$
+N_0=a^3n_{\rm f}=\text{constant},\qquad
+\alpha n_{\rm f}^{,2}=\alpha N_0^2a^{-6}.
+$$
+
+Here $\alpha$ is the positive, constant coefficient in the source's FLUID Eq. (1), $\tilde\epsilon=\epsilon-\alpha n_{\rm f}^2$ and $\tilde p=p-\alpha n_{\rm f}^2$. No value or additional matter relation is chosen.
+
+The spin term retains exact $a^{-6}$ scaling, but the KS shear has the additional coefficient $[C+I(t)]^2/3$. Therefore the **exact shear–spin $a^{-6}$ degeneracy does not hold in finite-curvature KS**. Within the two geometries being compared, it is the flat Bianchi I result, recovered when the curvature source is absent ($K=0$, so $I=0$). A small curvature contribution might permit an approximation on a specified interval; it does not restore exact conservation.
+
+For $S>0$, the dimensionless torsion/shear ratio makes the difference explicit:
+
+$$
+R=\frac{\kappa\alpha n_{\rm f}^{,2}}{S}
+ =\frac{3\kappa\alpha N_0^2}{[C+I(t)]^2},\qquad
+\dot R=-\frac{2K}{\Delta}R\quad(\beta=0).
+$$
+
+**(c) What transfers from B1?**
+
+B1 compared $\kappa\alpha N_0^2$ with a conserved $a^6S=\Sigma^2$. In KS, the latter is not conserved. Also, the source's first field equation (10), rewritten using the definitions above and Eq. (1), is
+
+$$
+3H^2=\kappa(\epsilon-\alpha n_{\rm f}^{,2})+S-K.
+$$
+
+Thus the flat constraint and its constant-only bounce criterion cannot simply be imported either.
+
+There is nevertheless a precise surviving directional statement: on an interval with $\Delta>0$ and no production, $R$ decreases, so data with $R\le1$ cannot evolve to $R>1$ while that sign holds. The source's printed Eq. (32), $2\kappa\alpha n_{\rm f}^{,2}>2S+\kappa\epsilon$, requires $R>1$ when $\epsilon>0$, so those data cannot reach that inequality on this interval. This is a curvature-driven monotonicity argument, not a comparison of constants. For $\Delta<0$, $R$ instead increases; that fact alone proves neither threshold crossing nor a bounce. The failure of the flat argument supplies no contrary KS solution and no general KS bounce classification.
+
+**B1 — FAILS as a transfer of the comparison-of-constants conclusion, because KS curvature makes $a^6\sigma^2$ and the torsion/shear ratio evolve, although initially subdominant torsion still cannot overtake shear without production on the source's $\Delta>0$ branch.**
+
+**(d) What transfers from B3's production mechanism and result?**
+
+**Verbatim quotation — publisher HTML, Eq. (34), `Equ34`; read directly, not arXiv:**
+
+> $$\begin{aligned} \dot{n}_{\text {f}}+3Hn_{\text {f}}=\beta H^{4},\quad \frac{d(n^{2}_{\text {f}})}{dt} +6Hn^{2}_{\text {f}}=2\beta n_{\text {f}}H^{4}. \end{aligned}$$
+>
+> (34)
+
+**Verbatim quotation — publisher HTML, immediately before Eq. (35); read directly, not arXiv:**
+
+> To avoid a singularity, the rate of \(n^{2}_{\text {f}}\) must exceed the rate of \(\sigma ^{2}\). Comparing (34) with (30) gives
+
+**Verbatim quotation — publisher HTML, Eq. (35), `Equ35`; read directly, not arXiv:**
+
+> $$\begin{aligned} \frac{2\beta n_{\text {f}}}{81}\Bigl (\frac{\dot{X}}{X} +\frac{2\dot{Y}}{Y}\Bigr )^{4}>\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$
+>
+> (35)
+
+**Verbatim quotation — publisher HTML, immediately after Eq. (35); read directly, not arXiv:**
+
+> After the formation of the event horizon, at the instant when (32) is reached, this inequality must be satisfied to ensure that (32) continues to hold.
+
+
+Eq. (34) is already a KS equation. With $\Psi=\beta H^4$ and $N=a^3n_{\rm f}$ it gives, without a thermal closure,
+
+$$
+\dot N=a^3\Psi,\qquad
+N(t)=N(t_0)+\int_{t_0}^{t}a^3(t')\Psi(t')\,dt',\qquad
+\alpha n_{\rm f}^{,2}=\alpha a^{-6}N(t)^2.
+$$
+
+For $n_{\rm f}>0$ and $H\ne0$,
+
+$$
+\frac{d\ln n_{\rm f}}{d\ln a}=-3+\frac{\Psi}{Hn_{\rm f}},\qquad
+\frac{d\ln(\alpha n_{\rm f}^{,2})}{d\ln a}
+=-6+\frac{2\Psi}{Hn_{\rm f}}.
+$$
+
+With positive production, these slopes are greater than $-3$ and $-6$ during expansion (slower dilution, or growth), and less than $-3$ and $-6$ during contraction (faster compression-driven growth). For the collapse in question, **number density grows faster than $a^{-3}$** is the appropriate wording. At $n_{\rm f}=0$ or $H=0$, use the integral and time-derivative equations rather than these logarithms.
+
+**Number-density mechanism — TRANSFERS:** the same volume balance makes $a^3n_{\rm f}$ increase and changes the coefficient of the spin term in KS. There is, however, no pre-existing exact KS shear–spin degeneracy for production to break; both coefficients can now evolve.
+
+The exact comparison with shear, wherever $n_{\rm f}>0$ and $S>0$, is
+
+$$
+R(t)=\frac{3\kappa\alpha N(t)^2}{[C+I(t)]^2},\qquad
+\boxed{\frac{\dot R}{R}
+=2\left(\frac{\Psi}{n_{\rm f}}-\frac{K}{\Delta}\right).}
+$$
+
+In flat Bianchi I the second term vanishes and every positive source increases $R$. In KS on the positive-source branch, increasing $R$ requires the additional comparison
+
+$$
+\frac{\Psi}{n_{\rm f}}>\frac{K}{\Delta}\qquad(\Delta>0).
+$$
+
+Production therefore contributes in the same helpful direction, but positivity of $\Psi$ alone does not fix the net ratio's sign. On a $\Delta<0$ interval the curvature contribution also increases $R$; that conditional sign does not settle the later evolution. The quoted Eq. (35) explicitly displays the source's intended competition between production and curvature-sourced shear. The fractional-rate identity above keeps the normalization of the actual torsion/shear ratio explicit; no standalone sufficient bounce theorem is inferred from Eq. (35).
+
+B3's flat-geometry theorem required its particular dynamical system as well as number production. The changing KS shear coefficient and the curvature term in the constraint prevent transferring that proof merely by retaining Eq. (34). This report establishes the production contribution, not that it necessarily wins throughout a KS collapse; no failed KS rescue is inferred from this unresolved comparison.
+
+**B3 — UNDETERMINED for transfer of its guaranteed bounce result, because the number-production mechanism transfers exactly but must compete with KS curvature-sourced shear, whose growth is not bounded by number balance alone.**
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+import hashlib
+p=Path('bounce/B6_APPLICABILITY_20260907.md')
+r=p.read_text()
+s=BeautifulSoup(Path('bounce/b4_springer_access.html').read_text(),'html.parser')
+for i in [27,28,29,30,31,34,35]:
+ e=s.find(id=f'Equ{i}')
+ assert e.select_one('.mathjax-tex').get_text() in r, i
+ assert f'publisher HTML, Eq. ({i}), "'`Equ{i}`; read directly, not arXiv'"' in r, i
+for i,side in [(28,'before'),(29,'before'),(30,'before'),(30,'after'),(35,'before'),(35,'after')]:
+ e=s.find(id=f'Equ{i}')
+ p0=e.find_previous_sibling() if side=='before' else e.find_next_sibling()
+ assert p0.get_text() in r,(i,side)
+assert 'QUOTE_' not in r and 'PROSE_' not in r and 'SOURCE_HASH' not in r
+print('Verified 7 exact publisher-equation quotations and 6 exact neighbouring-prose quotations.')
+print('SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+exec
+/bin/zsh -lc "/usr/bin/python3 - <<'PY'
+import sympy as s
+Hx,Hy,H,D,K,A,a,I,C,N,n,Psi,ka=s.symbols('Hx Hy H D K A a I C N n Psi ka', nonzero=True)
+# A = C+I; I_dot=a"'^3 K; a_dot=H a; N_dot=a''^3 Psi.
+Ds=A/a**3
+Ss=A**2/(3*a**6)
+dt=lambda f: s.diff(f,a)*H*a+s.diff(f,A)*a**3*K+s.diff(f,N)*a**3*Psi
+assert s.simplify(dt(Ds)+3*H*Ds-K)==0
+assert s.simplify(dt(Ss)+6*H*Ss-s.Rational(2,3)*K*Ds)==0
+R=3*ka*N**2/A**2
+assert s.simplify(dt(R)/R-2*(Psi/(N/a**3)-K/Ds))==0
+constraint=(Hy**2+2*Hx*Hy+K)-(3*((Hx+2*Hy)/3)**2-(Hx-Hy)**2/3+K)
+assert s.simplify(constraint)==0
+slope=dt(Ss)/(H*Ss)
+assert s.simplify(slope-(-6+2*K/(H*Ds)))==0
+print('"'Verified exact shear integral, Eq. (30), shear slope, production ratio and KS constraint identities; no trajectory integration.')
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 76ms:
+Verified 7 exact publisher-equation quotations and 6 exact neighbouring-prose quotations.
+SHA256 033f39963c4fc9aa869fc35df07425636b2a62abbb2b8aa99c0cb49474f23cb7
+
+ succeeded in 284ms:
+Verified exact shear integral, Eq. (30), shear slope, production ratio and KS constraint identities; no trajectory integration.
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+p=Path('bounce/B6_APPLICABILITY_20260907.md')
+s=p.read_text().replace('"'^{,2}'"','"'^2'"')
+s=s.replace('on an interval with "'$'"\\\\Delta>0"'$ and no production, $R$ decreases, so data'"', 'on an interval with "'$'"\\\\Delta>0"'$ and no production, $R$ is nonincreasing (strictly decreasing for positive number density), so data'"')
+p.write_text(s)
+print('Corrected six superscript formatting artifacts and made the zero-density limit explicit.')
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+Corrected six superscript formatting artifacts and made the zero-density limit explicit.
+
+codex
+The report is written. The equation and prose quotations match the saved publisher HTML, and the derived shear, spin/shear ratio, and KS constraint identities check algebraically. I’m confirming the final file hash.
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+import hashlib
+p=Path('bounce/B6_APPLICABILITY_20260907.md')
+r=p.read_text()
+s=BeautifulSoup(Path('bounce/b4_springer_access.html').read_text(),'html.parser')
+for i in [27,28,29,30,31,34,35]:
+ assert s.find(id=f'Equ{i}').select_one('.mathjax-tex').get_text() in r
+for i,side in [(28,'before'),(29,'before'),(30,'before'),(30,'after'),(35,'before'),(35,'after')]:
+ e=s.find(id=f'Equ{i}')
+ neighbour=e.find_previous_sibling() if side=='before' else e.find_next_sibling()
+ assert neighbour.get_text() in r
+assert '"'^{,2}'"' not in r
+assert 'nonincreasing' in r
+assert not any(token in r for token in ['QUOTE_','PROSE_','SOURCE_HASH'])
+for line in r.splitlines():
+ if line.startswith('**B1 —') or line.startswith('**B3 —'):
+  print(line)
+print('SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
+print('FILE',p.resolve())
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 59ms:
+**B1 — FAILS as a transfer of the comparison-of-constants conclusion, because KS curvature makes $a^6\sigma^2$ and the torsion/shear ratio evolve, although initially subdominant torsion still cannot overtake shear without production on the source's $\Delta>0$ branch.**
+**B3 — UNDETERMINED for transfer of its guaranteed bounce result, because the number-production mechanism transfers exactly but must compete with KS curvature-sourced shear, whose growth is not bounded by number balance alone.**
+SHA256 7531c8edc30ae745f59a4a27190848dd85e9fd5ec0f3fe460fd8adc36d974c59
+FILE /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/B6_APPLICABILITY_20260907.md
+
+codex
+Written: [B6_APPLICABILITY_20260907.md](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/B6_APPLICABILITY_20260907.md)
+
+SHA256: `7531c8edc30ae745f59a4a27190848dd85e9fd5ec0f3fe460fd8adc36d974c59`
+
+- **B1 — FAILS** as a constant-comparison transfer because KS curvature changes the shear coefficient, although initially subdominant torsion still cannot overtake shear on the positive-source branch without production.
+- **B3 — UNDETERMINED** for its guaranteed bounce result because the number-production mechanism transfers exactly, but must compete with curvature-sourced KS shear.
+tokens used
+63,480
+Written: [B6_APPLICABILITY_20260907.md](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/B6_APPLICABILITY_20260907.md)
+
+SHA256: `7531c8edc30ae745f59a4a27190848dd85e9fd5ec0f3fe460fd8adc36d974c59`
+
+- **B1 — FAILS** as a constant-comparison transfer because KS curvature changes the shear coefficient, although initially subdominant torsion still cannot overtake shear on the positive-source branch without production.
+- **B3 — UNDETERMINED** for its guaranteed bounce result because the number-production mechanism transfers exactly, but must compete with curvature-sourced KS shear.
