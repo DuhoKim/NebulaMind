@@ -1,0 +1,31 @@
+# BOUNDED CODEX TASK — B5: are the assumptions physically valid where the bounce happens? (Tori, 2026-09-07)
+
+The bounce this route studies occurs where the spin correction equals or exceeds the whole ordinary energy density (fluid row's
+own number: ratio = 1 at its turning point, `C1_REEXAM_20260907.md`; the Dirac row's 2/3 belongs to the Dirac turning point and
+does not travel). B5 asks whether the descriptions used there are valid there. You do NOT adopt a closure, do NOT file a class,
+and do NOT re-open B1/B2/B3.
+
+## Boundaries
+- Write ONLY under `bounce/`. No pinned census file, no kit, no census version, no Hwao data, no framework.
+- FLUID row and flat Bianchi I unless you explicitly section otherwise. Never let a statement travel between rows or geometries.
+- The publisher article HTML is saved at `bounce/b4_springer_access.html` — prefer it over the arXiv copy, and say which you used
+  for each quotation. Scope identity claims to the equations you actually compare. Infer nothing about later corrections.
+- Published peer-reviewed sources; label preprints. Where you cannot establish something, write NOT ESTABLISHED.
+
+## The three questions, in order of how much they threaten the result
+1. **The effective-fluid description.** The Weyssenhoff spin-fluid form treats spin as a macroscopic averaged field. At the
+   bounce the spin term is comparable to the entire ordinary density. Find what the PUBLISHED literature says about the validity
+   of the spin-fluid approximation in that regime — including the source's own admissions and Hehl et al. RMP 48, 393. Quote.
+   Is there a published statement of the density or correlation-length condition under which the averaging is justified?
+2. **The unpolarised-average assumption.** Our own derivation and the referee's shear argument both rely on the unpolarised
+   isotropic average of spin. What published work addresses whether spins stay unpolarised in a strongly sheared, contracting
+   region — where shear could align them? If spin polarisation develops, the averaged source acquires anisotropic stress and the
+   shear evolution argument changes. State what is established and what is not; do not compute a new model.
+3. **Extrapolating the production law.** The source presents its law phenomenologically. Quote every sentence in which it states
+   or bounds the regime of validity of that law, and state plainly whether extrapolating it through an entire collapse is
+   supported by the source, contradicted by it, or simply not addressed.
+
+## Output: `bounce/B5_VALIDITY_20260907.md`
+For each question: what published sources establish, what they do not, and the specific condition (if any) our bounce regime
+would have to satisfy. End with a short table: assumption | established validity condition | is our bounce regime inside it? |
+source read (publisher/arXiv/NOT ESTABLISHED). Print the file's sha256 as your final answer. Report; do not repair.

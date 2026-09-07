@@ -703,3 +703,415 @@ bounce/C1_REEXAM_20260907.md
 
 web search: 
 web search: https://arxiv.org/abs/2007.11556v2
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for d in [*reversed(p.parents),p,p/'bounce']:
+ f=d/'AGENTS.md'
+ if f.exists(): print(str(f)+'\\n'+f.read_text())
+PY
+rg -n '2007.11556|1007/s10714|beta|β' bounce/SOURCES_20260907.md bounce/B2_CLOSURE_20260907.md" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+bounce/B2_CLOSURE_20260907.md:9:Read first: `B1_RESULT_V2_20260907.md` and FINDING 1 of `KIMI_B1_ADVERSARIAL_20260907.md`. Equation source **A** throughout this document and the script means **[arXiv 2007.11556v2 HTML](https://arxiv.org/html/2007.11556v2), read 2026-09-07**, specifically (1), (10)–(17), (25), (28)–(30), (34), (36)–(38), and the thermal relations in §9. Numbered equation references below refer exclusively to A. The endpoint displays v2 dated 23 June 2026. I did not establish Springer publisher-version equation identity. Retrieval was confined to this versioned HTML endpoint; I did not search for subsequent corrections or errata, and draw no conclusion about their existence.
+bounce/B2_CLOSURE_20260907.md:16:- Take A's phenomenological prescription \(\Psi=\beta H^4\), with **fixed \(\beta>0\)**. Treating this parameter as time independent and excluding negative production are explicit choices. A free \(\Psi(t)\) or a variable \(\beta(t)\) would change the answer.
+bounce/B2_CLOSURE_20260907.md:45:\Psi=3Hn_*=\beta H^4.
+bounce/B2_CLOSURE_20260907.md:48:Therefore \(H=H_*=(3n_*/\beta)^{1/3}>0\) is constant, \(V=V_0e^{3H_*(t-t_0)}\), and \(n_*V\) grows even though local number density is constant. These equations describe an expanding production interval, not a contracting interval or a bounce. With a free production function instead, the two matter equations require only \(\Psi=3H(t)n_*\); constant \(H\) follows specifically from the fixed-\(\beta\) prescription.
+bounce/B2_CLOSURE_20260907.md:78:\beta=81n_*/\Lambda_*^{3/2}.}
+bounce/B2_CLOSURE_20260907.md:97:\beta=9\sqrt3\,n_*/\Lambda_*^{3/2}.}
+bounce/B2_CLOSURE_20260907.md:100:It lies in the isotropic subset of flat BI; there is no strictly nonzero-shear flat BI branch on this production interval with fixed \(\beta\). Its constraint and three directional equations have zero residuals. Its parameter tuning is different from the curved KS tuning; the two geometries cannot be interchanged.
+bounce/B2_CLOSURE_20260907.md:102:`SPECIAL_BRANCH=EXISTS` means the FLUID simultaneous equations have a branch, including full curved KS and separate flat BI realisations at their respective tunings. It does not mean one exists for every prescribed \(\beta\), or that either solution undergoes a bounce.
+bounce/B2_CLOSURE_20260907.md:110:3. First law \(E=0\) and production \(N=0\), with specified \(\Psi=\beta H^4\).
+bounce/B2_CLOSURE_20260907.md:139:\dot n=\beta H^4-3Hn,\qquad
+bounce/B2_CLOSURE_20260907.md:140:\dot T=\frac{2\alpha n\beta H^4-4HF(T)}{F'(T)}.
+bounce/B2_CLOSURE_20260907.md:155:All table rows already include a specified production law. If **curved KS FLUID** instead uses only the balance definition \(\Psi:=\dot n+3Hn\), it needs a prescribed source function or a matter-model production equation that determines \(\Psi\). The **flat BI FLUID** balance-only system independently needs that source input. A derivation of \(\Psi\) from a matter model would improve physical grounding, but is not an additional equation required by the table when A's phenomenological fixed-\(\beta\) prescription is accepted. Conversely, deriving only \(\Psi\) does not supply case (d)'s missing pressure EOS.
+bounce/SOURCES_20260907.md:7:**S1 — target and published anchor.** Nikodem J. Popławski, “A nonsingular, anisotropic universe in a black hole with torsion and particle production,” *General Relativity and Gravitation* **53**(2), article **18** (2021), DOI [10.1007/s10714-021-02790-7](https://doi.org/10.1007/s10714-021-02790-7). **Journal publication ESTABLISHED.** Publisher: received 14 December 2020, accepted 19 January 2021, published/version of record 7 February 2021. [arXiv:2007.11556v2](https://arxiv.org/html/2007.11556v2), revised 23 June 2026, identifies itself as the published version. Publisher full text was independently read: the extracted numbered bounce/shear/production expressions and geometry caveats are present there. This verifies the extracted material, not byte identity of the entire 2026 upload with the 2021 article. Access: R01, R02, R05.
+bounce/SOURCES_20260907.md:29:- **R01** requested: <https://arxiv.org/html/2007.11556v2>
+bounce/SOURCES_20260907.md:30:  - Final: <https://arxiv.org/html/2007.11556v2>
+bounce/SOURCES_20260907.md:34:- **R02** requested: <https://arxiv.org/abs/2007.11556>
+bounce/SOURCES_20260907.md:35:  - Final: <https://arxiv.org/abs/2007.11556>
+bounce/SOURCES_20260907.md:49:- **R05** requested: <https://link.springer.com/article/10.1007/s10714-021-02790-7>
+bounce/SOURCES_20260907.md:50:  - Final: <https://link.springer.com/article/10.1007/s10714-021-02790-7?error=cookies_not_supported&code=f732dded-9784-4487-9e66-df6fcfe1b153>
+bounce/SOURCES_20260907.md:153:Equation **(1)** — [source](https://arxiv.org/html/2007.11556v2#S0.E1):
+bounce/SOURCES_20260907.md:160:Equation **(6)** — [source](https://arxiv.org/html/2007.11556v2#S0.E6):
+bounce/SOURCES_20260907.md:167:Equation **(9)** — [source](https://arxiv.org/html/2007.11556v2#S0.E9); all three printed rows:
+bounce/SOURCES_20260907.md:180:Equation **(10)** — [source](https://arxiv.org/html/2007.11556v2#S0.E10); all three printed rows:
+bounce/SOURCES_20260907.md:189:Equation **(11)** — [source](https://arxiv.org/html/2007.11556v2#S0.E11):
+bounce/SOURCES_20260907.md:196:Equation **(15)** — [source](https://arxiv.org/html/2007.11556v2#S0.E15):
+bounce/SOURCES_20260907.md:203:Equation **(16)** — [source](https://arxiv.org/html/2007.11556v2#S0.E16):
+bounce/SOURCES_20260907.md:210:Equation **(18)** — [source](https://arxiv.org/html/2007.11556v2#S0.E18):
+bounce/SOURCES_20260907.md:217:Equation **(23)** — [source](https://arxiv.org/html/2007.11556v2#S0.E23):
+bounce/SOURCES_20260907.md:224:Equation **(25)** — [source](https://arxiv.org/html/2007.11556v2#S0.E25):
+bounce/SOURCES_20260907.md:231:Equation **(26)** — [source](https://arxiv.org/html/2007.11556v2#S0.E26):
+bounce/SOURCES_20260907.md:238:Equation **(28)** — [source](https://arxiv.org/html/2007.11556v2#S0.E28):
+bounce/SOURCES_20260907.md:245:Equation **(29)** — [source](https://arxiv.org/html/2007.11556v2#S0.E29):
+bounce/SOURCES_20260907.md:252:Equation **(30)** — [source](https://arxiv.org/html/2007.11556v2#S0.E30):
+bounce/SOURCES_20260907.md:259:Equation **(31)** — [source](https://arxiv.org/html/2007.11556v2#S0.E31):
+bounce/SOURCES_20260907.md:266:Equation **(32)** — [source](https://arxiv.org/html/2007.11556v2#S0.E32):
+bounce/SOURCES_20260907.md:273:Equation **(33)** — [source](https://arxiv.org/html/2007.11556v2#S0.E33):
+bounce/SOURCES_20260907.md:276:\frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\textrm{f}})}{dt}=\beta H^{4},
+bounce/SOURCES_20260907.md:280:Equation **(34)** — [source](https://arxiv.org/html/2007.11556v2#S0.E34):
+bounce/SOURCES_20260907.md:283:\dot{n}_{\textrm{f}}+3Hn_{\textrm{f}}=\beta H^{4},\quad\frac{d(n^{2}_{\textrm{f}})}{dt}+6Hn^{2}_{\textrm{f}}=2\beta n_{\textrm{f}}H^{4}.
+bounce/SOURCES_20260907.md:287:Equation **(35)** — [source](https://arxiv.org/html/2007.11556v2#S0.E35):
+bounce/SOURCES_20260907.md:290:\frac{2\beta n_{\textrm{f}}}{81}\Bigl(\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}\Bigr)^{4}>\frac{2}{3Y^{2}}\Bigl(\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr).
+bounce/SOURCES_20260907.md:294:Equation **(36)** — [source](https://arxiv.org/html/2007.11556v2#S0.E36):
+bounce/SOURCES_20260907.md:301:Equation **(37)** — [source](https://arxiv.org/html/2007.11556v2#S0.E37):
+bounce/SOURCES_20260907.md:304:\frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n\textrm{f}}T^{3}}.
+bounce/SOURCES_20260907.md:308:Equation **(38)** — [source](https://arxiv.org/html/2007.11556v2#S0.E38):
+bounce/SOURCES_20260907.md:311:\frac{\dot{T}}{T}=H\Bigl(\frac{\beta H^{3}}{3h_{n\textrm{f}}T^{3}}-1\Bigr).
+bounce/SOURCES_20260907.md:315:Production: β is the phenomenological rate parameter. Beside (33), S1 prints g=−X²Y⁴=−a⁶; that expression is retained without inserting an angular factor. Section 9 uses ε=h★T⁴, p=ε/3, n_f=h_nf T³, with
+bounce/SOURCES_20260907.md:320:T is temperature, g_b and g_f thermal degrees of freedom, k_B Boltzmann's constant. S1 prints g_b=29, g_f=90. Eq. (35) is its additional production-versus-shear rate inequality, required when (32) is reached after horizon formation so that (32) continues to hold. No numerical β interval is printed.
+bounce/SOURCES_20260907.md:415:\frac{1}{c\sqrt{-g}}\frac{d(\sqrt{-g}n_{\textrm{f}})}{dt}=\frac{\beta H^{4}}{c^{4}},
+bounce/SOURCES_20260907.md:422:\frac{\dot{T}}{T}=\frac{H}{c}\Bigl(\frac{\beta H^{3}}{3c^{3}h_{n\textrm{f}}T^{3}}-1\Bigr).
+bounce/SOURCES_20260907.md:440:β is dimensionless; g=−a⁶sin⁴R sin²θ is printed beside (42). That equation uses d/dt while nearby evolution uses τ and the dot convention above; this transcription retains the notation. δ varies with τ; ∼ in (44)–(45) is the source's symbol, not equality.
+bounce/SOURCES_20260907.md:504:It follows in the text from ȧ=0 in (11) with k omitted. It is not (16). S3's full text supplies neither shear evolution nor a βH⁴ production law.
+bounce/SOURCES_20260907.md:547:Short quotation, §11 [p30](https://arxiv.org/html/2007.11556v2#p30), also present in the publisher version:
+bounce/SOURCES_20260907.md:554:- §1 [p8](https://arxiv.org/html/2007.11556v2#p8), final sentence: torsion/production prevent exact KS; generalize for a closed FLRW limit.
+bounce/SOURCES_20260907.md:555:- §8 [p22](https://arxiv.org/html/2007.11556v2#p22), introduction to (33): production law is phenomenological.
+bounce/SOURCES_20260907.md:556:- §10 [p27](https://arxiv.org/html/2007.11556v2#p27), first three sentences: approximately constant T, H and energy density during the proposed inflation.
+bounce/SOURCES_20260907.md:557:- §10 [p28](https://arxiv.org/html/2007.11556v2#p28), sentences 2–4, citing (11): Y Ÿ≫1 supports approximate proportionality of X, Y and a; rescaling gives X≈Y.
+bounce/SOURCES_20260907.md:558:- §11 [p30](https://arxiv.org/html/2007.11556v2#p30), all four sentences: approximate illustrative scenario; Schwarzschild/KS topology R×S² is not reached with a bounce; Bianchi IX is proposed for an S³ limit.
+bounce/SOURCES_20260907.md:781:- S1/S2 do not derive their particular phenomenological βH⁴ law microscopically.
+bounce/SOURCES_20260907.md:789:| S1 — GRG 53, 18 / 2007.11556v2 | Yes; publisher full text checked | General definition (18), shear-free specialization of (32); no separate FLRW solution | Yes, KS (25), (28)–(32), (35) | Yes, (33)–(38), together with KS shear | Yes; abstract, §§1, 10–11 |
+
+web search: 
+web search: arxiv 2007.11556 Poplawski 53 18 2021 beta
+web search: 
+web search: https://arxiv.org/html/2007.11556v2
+exec
+/bin/zsh -lc "python3 - <<'PY'
+import urllib.request
+from pathlib import Path
+u='https://arxiv.org/html/2007.11556v2'
+try:
+ r=urllib.request.urlopen(u,timeout=30); b=r.read(); Path('bounce/b4_source_2007.11556v2.html').write_bytes(b); print(r.status,r.url,len(b))
+except Exception as e: print(type(e).__name__,str(e))
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 312ms:
+200 https://arxiv.org/html/2007.11556v2 213897
+
+codex
+The v2 text uses `c=1`; its beta is therefore dimensionless, but it is not automatically the beta used by B3. I’m checking all coefficient mentions and the surrounding conditions for any usable value or bound.
+web search: 
+web search: 
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+s=BeautifulSoup(Path('bounce/b4_source_2007.11556v2.html').read_text(),'html.parser')
+for el in s.select('math'):
+ el.replace_with(' "'$'"'+str(el.get('alttext',''))+'"'$ '"')
+t=s.get_text(' ',strip=True)
+Path('bounce/b4_source_2007.11556v2.txt').write_text(t)
+for p in s.select('div.ltx_para'):
+ text=p.get_text(' ',strip=True)
+ if any(x in text.lower() for x in ['beta','production rate','units','h_{','g_{','planck','cross-section','cutoff']): print(p.get('id'),text)
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 182ms:
+p5 Quantum particle production immediately after the bounce can generate a finite period of exponential inflation [ 5 ] that is consistent with the Planck 2015 observations of the cosmic microwave background radiation [ 24 ] .
+A bouncing scenario also occurs if the spin tensor is completely antisymmetric [ 25 ] .
+Torsion may also explain the matter–antimatter asymmetry in the universe [ 26 ] and the present cosmic acceleration [ 27 ] .
+Furthermore, it may eliminate the ultraviolet divergence of loop Feynman diagrams in quantum field theory [ 28 ] .
+p9 2. Black hole interior metric The interior of a black hole is given by the Schwarzschild metric: $ds^{2}=-\Bigl(\frac{2GM}{\rho}-1\Bigr)d\tau^{2}+\Bigl(\frac{2GM}{\rho}-1\Bigr)^{-1}d\rho^{2}-\rho^{2}(d\vartheta^{2}+\sin^{2}\vartheta\,d\varphi^{2}),$ (2) where $M$ is the mass of the black hole, $\tau$ is the external time coordinate, and $\rho<2GM$ is the external radial coordinate [ 16 ] .
+We use units in which $c=1$ .
+Inside a black hole, the roles of space and time are reversed: $\tau$ becomes an internal spacelike coordinate and $\rho$ becomes an internal timelike coordinate [ 29 ] .
+Defining a new time coordinate through $dt=\Bigl(\frac{2GM}{\rho}-1\Bigr)^{-1/2}d\rho$ (3) and integrating gives a function $t(\rho)$ and then $\rho(t)$ .
+A new radial coordinate is defined as $r=\tau/b$ , where $b$ is a constant.
+Substituting $\rho(t)$ into ( 2 ) gives [ 29 ] $ds^{2}=dt^{2}-b^{2}\Bigl(\frac{2GM}{\rho(t)}-1\Bigr)dr^{2}-\rho^{2}(t)(d\vartheta^{2}+\sin^{2}\vartheta\,d\varphi^{2}).$ (4) Defining $X(t)=b\Bigl(\frac{2GM}{\rho(t)}-1\Bigr)^{1/2},\quad Y(t)=\rho(t)$ (5) brings the metric ( 4 ) to $ds^{2}=dt^{2}-X^{2}(t)dr^{2}-Y^{2}(t)(d\vartheta^{2}+\sin^{2}\vartheta\,d\varphi^{2}).$ (6) This is the KS metric [ 30 ] , representing a closed, homogeneous, and anisotropic universe.
+p11 3. Kantowski–Sachs metric A closed anisotropic universe is described by the interval ( 6 ), where two scale factors $X(t)$ and $Y(t)$ depend on the cosmic time $t$ and $r,\vartheta,\varphi$ are the spatial coordinates [ 30 ] .
+Accordingly, the nonzero components of the metric tensor are $g_{00}=1$ , $g_{11}=-X^{2}$ , $g_{22}=-Y^{2}$ , $g_{33}=-Y^{2}\,\sin^{2}\vartheta$ .
+The components of the affine connection are the Christoffel symbols: $\Gamma^{\rho}_{\mu\nu}=\frac{1}{2}g^{\rho\lambda}(g_{\nu\lambda,\mu}+g_{\mu\lambda,\nu}-g_{\mu\nu,\lambda})$ , where the comma denotes partial differentiation.
+The nonzero components are: $\Gamma^{1}_{01}=\dot{X}/X$ , $\Gamma^{2}_{02}=\Gamma^{3}_{03}=\dot{Y}/Y$ , $\Gamma^{0}_{11}=X\dot{X}$ , $\Gamma^{0}_{22}=Y\dot{Y}$ , $\Gamma^{0}_{33}=Y\dot{Y}\sin^{2}\vartheta$ , $\Gamma^{3}_{23}=\cot\vartheta$ , $\Gamma^{2}_{33}=-\sin\vartheta\,\cos\vartheta$ .
+Substituting them into the Riemann curvature tensor $R^{\lambda}_{\phantom{\lambda}\rho\mu\nu}=\Gamma^{\lambda}_{\rho\nu,\mu}-\Gamma^{\lambda}_{\rho\mu,\nu}+\Gamma^{\sigma}_{\rho\nu}\Gamma^{\lambda}_{\sigma\mu}-\Gamma^{\sigma}_{\rho\mu}\Gamma^{\lambda}_{\sigma\nu}$ (we use the notation of [ 8 , 16 ] ) gives $R^{1}_{\phantom{1}010}=-\ddot{X}/X$ , $R^{2}_{\phantom{2}020}=R^{3}_{\phantom{3}030}=-\ddot{Y}/Y$ , $R^{2}_{\phantom{2}121}=R^{3}_{\phantom{3}131}=X\dot{X}\dot{Y}/Y$ , $R^{3}_{\phantom{3}232}=\dot{Y}^{2}+1$ .
+In the comoving coordinates, $u^{0}=1$ and the spatial components of the four-velocity vanish.
+Accordingly, the nonzero components of the energy–momentum tensor for a spin fluid, $T_{\mu\nu}=(\tilde{\epsilon}+\tilde{p})u_{\mu}u_{\nu}-\tilde{p}g_{\mu\nu}$ , are $T^{0}_{0}=\tilde{\epsilon}$ , $T^{1}_{1}=T^{2}_{2}=T^{3}_{3}=-\tilde{p}$ .
+p17 6. Shear The shear tensor is the symmetric and traceless part of a tensor $u_{\mu;\rho}(\delta^{\rho}_{\nu}-u^{\rho}u_{\nu})$ , where $u^{\mu}$ is the four-velocity and the semicolon denotes covariant differentiation with respect to the Levi-Civita connection [ 8 ] .
+If the four-acceleration vanishes, $w_{\mu}=u^{\nu}u_{\mu;\nu}=0$ , then the shear tensor is equal to $\sigma_{\mu\nu}=u_{(\mu;\nu)}-\frac{1}{3}u^{\rho}_{\phantom{\rho};\rho}(g_{\mu\nu}-u_{\mu}u_{\nu}).$ (23) Using $u_{\mu;\nu}=u_{\mu,\nu}-\Gamma^{\rho}_{\mu\nu}u_{\rho}$ leads to the nonzero components of this tensor: $\sigma^{1}_{1}=\frac{2}{3}\Bigl(\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr),\quad\sigma^{2}_{2}=\sigma^{3}_{3}=\frac{1}{3}\Bigl(\frac{\dot{Y}}{Y}-\frac{\dot{X}}{X}\Bigr).$ (24) The shear scalar is $\sigma^{2}=\frac{1}{2}\sigma^{\mu}_{\nu}\sigma^{\nu}_{\mu}=\frac{1}{3}\Bigl(\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr)^{2}.$ (25) Accordingly, the shear vanishes and the universe is isotropic if $X$ is proportional to $Y$ .
+Using the parametric equations for the scale factors gives the shear scalar as a function of $\eta$ .
+It diverges at $\eta=0$ for vacuum, and at $\eta=\pi/2$ .
+The expansion scalar is the trace part: $\theta=u^{\rho}_{\phantom{\rho};\rho}=\Gamma^{\rho}_{\rho\nu}u^{\nu}=\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}=3H.$ (26) The rotation tensor $\omega_{\mu\nu}$ is the antisymmetric part of $u_{\mu;\rho}(\delta^{\rho}_{\nu}-u^{\rho}u_{\nu})$ and vanishes for any values of $X$ and $Y$ .
+p22 The production rate of particles in a contracting or expanding universe can be phenomenologically given by $\frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\textrm{f}})}{dt}=\beta H^{4},$ (33) where $g=-X^{2}Y^{4}=-a^{6}$ is the determinant of the metric tensor in ( 6 ) and $\beta$ is the production rate [ 5 ] .
+Accordingly, $\dot{n}_{\textrm{f}}+3Hn_{\textrm{f}}=\beta H^{4},\quad\frac{d(n^{2}_{\textrm{f}})}{dt}+6Hn^{2}_{\textrm{f}}=2\beta n_{\textrm{f}}H^{4}.$ (34) To avoid a singularity, the rate of $n^{2}_{\textrm{f}}$ must exceed the rate of $\sigma^{2}$ .
+Comparing ( 34 ) with ( 30 ) gives $\frac{2\beta n_{\textrm{f}}}{81}\Bigl(\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}\Bigr)^{4}>\frac{2}{3Y^{2}}\Bigl(\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr).$ (35) After the formation of the event horizon, at the instant when ( 32 ) is reached, this inequality must be satisfied to ensure that ( 32 ) continues to hold.
+p23 9. Dynamics of universe with spin fluid The spin fluid in the early universe is formed by an ultrarelativistic matter in kinetic equilibrium, for which $\epsilon=h_{\star}T^{4}$ , $p=\epsilon/3$ , and $n_{\textrm{f}}=h_{n\textrm{f}}T^{3}$ , where $T$ is the temperature of the universe, $h_{\star}=(\pi^{2}/30)(g_{\textrm{b}}+(7/8)g_{\textrm{f}})k_{\textrm{B}}^{4}/(\hbar c)^{3}$ , and $h_{n\textrm{f}}=(\zeta(3)/\pi^{2})(3/4)g_{\textrm{f}}k_{\textrm{B}}^{3}/(\hbar c)^{3}$ [ 5 , 20 ] .
+For standard-model particles, $g_{\textrm{b}}=29$ and $g_{\textrm{f}}=90$ .
+In the presence of spin and torsion, the first field equation in ( 10 ) with ( 1 ) becomes $\frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\dot{X}\dot{Y}}{XY}=\kappa(h_{\star}T^{4}-\alpha h_{n\textrm{f}}^{2}T^{6}).$ (36) Without particle production, ( 1 ) and ( 14 ) give the constancy of $XY^{2}T^{3}$ , which is equivalent to $\dot{T}/T+H=0$ .
+With particle production, this constancy is replaced with a relation that follows from the first equation in ( 34 ): $\frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n\textrm{f}}T^{3}}.$ (37)
+p24 Equations ( 36 ) and ( 37 ), with ( 11 ) and ( 16 ), determine the time dependence of $X$ , $Y$ , and $T$ .
+The only parameters are the mass $M$ of the parent black hole that created the universe and the production rate $\beta$ .
+The initial conditions at $t=0$ for these equations could be taken as those for the dynamics for the interior of a black hole becoming a KS universe with dust: $X_{0}=\kappa m$ , $Y_{0}=2GM$ , $\dot{X}_{0}=-B/(4GM)$ , and $\dot{Y}_{0}=0$ .
+The coordinate $r$ in ( 6 ) can be rescaled to remove the arbitrariness of the constant $m$ .
+Consequently, the only arbitrary initial condition is the initial value of $\dot{X}$ , related to the constant $B$ , which represents the radial velocity of the collapsing matter when the event horizon forms.
+If the parent black hole were rotating, then it would be described by the Kerr metric [ 16 , 47 ] and the angular momentum of the black hole would be another parameter.
+The interior of a Kerr black hole would not be represented by the KS metric; it would be a more general, anisotropic universe.
+p25 If $\beta$ is big enough, then particle production will increase $T$ quickly enough to make the right-hand side of ( 36 ) negative while keeping the left-hand side positive.
+This increase will prevent a cosmological singularity and generate a bounce.
+After the bounce in $Y$ , the universe expands and $Y$ reaches values larger than $2GM$ .
+Since the universe is closed, $Y$ eventually stops increasing and starts decreasing, and the universe contracts to another bounce.
+Because of particle production, which increases entropy, each cycle of expansion and contraction lasts longer and reaches a larger maximum of $Y$ than the preceding cycle [ 5 , 33 ] .
+A similar behavior occurs for $a$ .
+The universe may have several bounces and cycles until it reaches the size at which the cosmological constant becomes dominant and prevents the next contraction.
+Then the cycles end and the universe begins indefinite expansion [ 5 , 33 ] .
+The last bounce would be the big bang.
+p26 10. Inflation and isotropization Equation ( 37 ) can be written as $\frac{\dot{T}}{T}=H\Bigl(\frac{\beta H^{3}}{3h_{n\textrm{f}}T^{3}}-1\Bigr).$ (38) When the mean scale factor $a$ decreases, $H$ is negative and the temperature $T$ increases.
+If the production rate $\beta$ is too small, then particle production might be insufficient to prevent a cosmological singularity.
+When $a$ increases and if $\beta$ is too big, then the right-hand side of ( 38 ) could become positive.
+In this case, the temperature would grow with increasing $a$ , which would lead to eternal inflation [ 5 ] .
+Consequently, there is a range of the production rate that prevents a singularity and does not cause eternal inflation.
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+import urllib.request,json,hashlib
+from pathlib import Path
+from bs4 import BeautifulSoup
+u='https://link.springer.com/article/10.1007/s10714-021-02790-7'
+try:
+ r=urllib.request.urlopen(u,timeout=30); b=r.read(); Path('bounce/b4_springer_access.html').write_bytes(b)
+ print(r.status,r.url,len(b)); print(BeautifulSoup(b,'html.parser').get_text(' ',strip=True)[:1500])
+except Exception as e: print(type(e).__name__,str(e))
+s=BeautifulSoup(Path('bounce/b4_source_2007.11556v2.html').read_text(),'html.parser')
+for m in s.select('math'):
+ if '\\\\beta' in m.get('alttext',''):
+  p=m.find_parent(class_='ltx_para'); print('BETA',p.get('id') if p else None,m.get('alttext'))
+print('REF5',s.find(id='bib.bib5').get_text(' ',strip=True) if s.find(id='bib.bib5') else 'not found')
+for f in ['bounce/b4_source_2007.11556v2.html','bounce/b3_rescue.py','bounce/B3_RESCUE_20260907.md']:
+ print(hashlib.sha256(Path(f).read_bytes()).hexdigest(),f)
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 2644ms:
+200 https://link.springer.com/article/10.1007/s10714-021-02790-7?error=cookies_not_supported&code=c731bb66-abba-4833-b8aa-368c388ba8ee 534985
+A nonsingular, anisotropic universe in a black hole with torsion and particle production | General Relativity and Gravitation | Springer Nature Link Skip to main content Log in Menu Find a journal Publish with us Track your research Search Saved research Cart Home General Relativity and Gravitation Article A nonsingular, anisotropic universe in a black hole with torsion and particle production Research Article Published: 07 February 2021 Volume 53 , article number 18 ( 2021 ) Cite this article Access provided by Chungnam National University Library Download PDF Save article View saved research General Relativity and Gravitation Aims and scope Submit manuscript A nonsingular, anisotropic universe in a black hole with torsion and particle production Download PDF Nikodem J. Popławski 1 531 Accesses 13 Citations 15 Altmetric 1 Mention Explore all metrics Abstract We consider a universe formed in a black hole in general relativity with spin and torsion. The interior of a Schwarzschild black hole can be represented by the Kantowski–Sachs metric that describes a closed anisotropic universe. We use this metric to derive the Einstein–Cartan field equations with a relativistic spin fluid as a source. We show that torsion may prevent a singularity and replace it with a nonsingular bounce if particle production dominates over shear. Particle production after the last bounce can generate a finite period of inflation, during which the universe expands and isotropizes to the current state. 
+BETA p22 \frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\textrm{f}})}{dt}=\beta H^{4},
+BETA p22 \beta
+BETA p22 \dot{n}_{\textrm{f}}+3Hn_{\textrm{f}}=\beta H^{4},\quad\frac{d(n^{2}_{\textrm{f}})}{dt}+6Hn^{2}_{\textrm{f}}=2\beta n_{\textrm{f}}H^{4}.
+BETA p22 \frac{2\beta n_{\textrm{f}}}{81}\Bigl(\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}\Bigr)^{4}>\frac{2}{3Y^{2}}\Bigl(\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr).
+BETA p23 \frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n\textrm{f}}T^{3}}.
+BETA p24 \beta
+BETA p25 \beta
+BETA p26 \frac{\dot{T}}{T}=H\Bigl(\frac{\beta H^{3}}{3h_{n\textrm{f}}T^{3}}-1\Bigr).
+BETA p26 \beta
+BETA p26 \beta
+REF5 [5] N. Popławski, Astrophys. J. 832 , 96 (2016); Int. J. Mod. Phys. D 27 , 1847020 (2018).
+2344050e9206e15f6d3ad5fdb826dff6f8ef40f5660e4a4c1800011ba6961f74 bounce/b4_source_2007.11556v2.html
+1b82e8b09640b28572499ea11a0090a583bcba69d9f623e58fdca07581242520 bounce/b3_rescue.py
+657186afe2617f70b14b9106a76cd30f69f2bc9a722e06843689e2cda79037f1 bounce/B3_RESCUE_20260907.md
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+s=BeautifulSoup(Path('bounce/b4_springer_access.html').read_text(),'html.parser')
+a=s.find(id='Sec8')
+print(str(a)[:1000])
+for p in s.find_all(['p','div']):
+ if p.name=='div' and 'c-article-equation' not in p.get('class',[]): continue
+ t=p.get_text(' ',strip=True)
+ if any(x in t for x in ['production rate','phenomenologically','units in which','h_{','g_{','slightly lesser']): print(p.get('id'),t)
+for n in range(33,39):
+ el=s.find(id='Equ'+str(n)); print('EQ',n,el.get_text(' ',strip=True) if el else 'NONE')
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 65ms:
+<h2 class="c-article-section__title js-section-title js-c-reading-companion-sections-item" id="Sec8"><span class="c-article-section__title-number">8 </span>Particle production</h2>
+None where M is the mass of the black hole, \(\tau \) is the external time coordinate, and \(\rho <2GM\) is the external radial coordinate [ 47 ]. We use units in which \(c=1\) . Inside a black hole, the roles of space and time are reversed: \(\tau \) becomes an internal spacelike coordinate and \(\rho \) becomes an internal timelike coordinate [ 67 , 68 , 69 ]. Defining a new time coordinate through
+None A closed anisotropic universe is described by the interval ( 6 ), where two scale factors X ( t ) and Y ( t ) depend on the cosmic time t and \(r,\vartheta ,\varphi \) are the spatial coordinates [ 70 ]. Accordingly, the nonzero components of the metric tensor are \(g_{00}=1\) , \(g_{11}=-X^{2}\) , \(g_{22}=-Y^{2}\) , \(g_{33}=-Y^{2}\ \sin ^{2}\vartheta \) . The components of the affine connection are the Christoffel symbols: \(\Gamma ^{\ \ \rho }_{\mu \ \nu }=\frac{1}{2}g^{\rho \lambda }(g_{\nu \lambda ,\mu } +g_{\mu \lambda ,\nu }-g_{\mu \nu ,\lambda })\) , where the comma denotes partial differentiation. The nonzero components are: \(\Gamma ^{\ \ 1}_{0\ 1}=\dot{X}/X\) , \(\Gamma ^{\ \ 2}_{0\ 2}= \Gamma ^{\ \ 3}_{0\ 3}=\dot{Y}/Y\) , \(\Gamma ^{\ \ 0}_{1\ 1}=X\dot{X}\) , \(\Gamma ^{\ \ 0}_{2\ 2}=Y\dot{Y}\) , \(\Gamma ^{\ \ 0}_{3\ 3}=Y\dot{Y}\sin ^{2}\vartheta \) , \(\Gamma ^{\ \ 3}_{2\ 3}=\cot \vartheta \) , \(\Gamma ^{\ \ 2}_{3\ 3}=-\sin \vartheta \ \cos \vartheta \) . Substituting them into the Riemann curvature tensor \(R^{\lambda }{}_{\rho \mu \nu }=\Gamma ^{\ \ \lambda }_{\rho \nu ,\mu } -\Gamma ^{\ \ \lambda }_{\rho \mu ,\nu }+\Gamma ^{\ \ \sigma }_{\rho \ \nu } \Gamma ^{\ \ \lambda }_{\sigma \ \mu }-\Gamma ^{\ \ \sigma }_{\rho \ \mu } \Gamma ^{\ \ \lambda }_{\sigma \ \nu }\) (we use the notation of [ 31 , 47 ]) gives \(R^{1}{}_{010}=-\ddot{X}/X\) , \(R^{2}{}_{020}=R^{3}{}_{030}=-\ddot{Y}/Y\) , \(R^{2}{}_{121}=R^{3}{}_{131}=X\dot{X}\dot{Y}/Y\) , \(R^{3}{}_{232}=\dot{Y}^{2}+1\) . In the comoving coordinates, \(u^0=1\) and the spatial components of the four-velocity vanish. Accordingly, the nonzero components of the energy–momentum tensor for a spin fluid, \(T_{\mu \nu }=(\tilde{\epsilon }+\tilde{p})u_\mu u_\nu -\tilde{p}g_{\mu \nu }\) , are \(T^0_0=\tilde{\epsilon }\) , \(T^{1}_1=T^{2}_{2}=T^{3}_{3}=-\tilde{p}\) .
+Equ23 $$\begin{aligned} \sigma _{\mu \nu }=u_{(\mu ;\nu )}-\frac{1}{3}u^\rho {}_{;\rho }(g_{\mu \nu }-u_\mu u_\nu ). \end{aligned}$$ (23)
+None The production rate of particles in a contracting or expanding universe can be phenomenologically given by
+None where \(g=-X^{2}Y^{4}=-a^6\) is the determinant of the metric tensor in ( 6 ) and \(\beta \) is the production rate [ 14 , 15 ]. Accordingly,
+None The spin fluid in the early universe is formed by an ultrarelativistic matter in kinetic equilibrium, for which \(\epsilon =h_\star T^{4}\) , \(p=\epsilon /3\) , and \(n_{\text {f}}=h_{n{\text {f}}}T^{3}\) , where T is the temperature of the universe, \(h_\star =(\pi ^{2}/30)(g_\text {b}+(7/8)g_{\text {f}})k_\text {B}^{4}/(\hbar c)^{3}\) , and \(h_{n{\text {f}}}=(\zeta (3)/\pi ^{2})(3/4)g_{\text {f}}k_\text {B}^{3}/(\hbar c)^{3}\) [ 14 , 15 , 52 ]. For standard-model particles, \(g_{\text {b}}=29\) and \(g_{\text {f}}=90\) . In the presence of spin and torsion, the first field equation in ( 10 ) with ( 1 ) becomes
+Equ36 $$\begin{aligned} \frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\dot{X}\dot{Y}}{XY}=\kappa (h_\star T^{4} -\alpha h_{n{\text {f}}}^{2} T^6). \end{aligned}$$ (36)
+Equ37 $$\begin{aligned} \frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n{\text {f}}}T^{3}}. \end{aligned}$$ (37)
+None Equations ( 36 ) and ( 37 ), with ( 11 ) and ( 16 ), determine the time dependence of X , Y , and T . The only parameters are the mass M of the parent black hole that created the universe and the production rate \(\beta \) . The initial conditions at \(t=0\) for these equations could be taken as those for the dynamics for the interior of a black hole becoming a KS universe with dust: \(X_{0}=\kappa m\) , \(Y_{0}=2GM\) , \(\dot{X}_{0}=-B/(4GM)\) , and \(\dot{Y}_{0}=0\) . The coordinate r in ( 6 ) can be rescaled to remove the arbitrariness of the constant m . Consequently, the only arbitrary initial condition is the initial value of \(\dot{X}\) , related to the constant B , which represents the radial velocity of the collapsing matter when the event horizon forms. If the parent black hole were rotating, then it would be described by the Kerr metric [ 47 , 109 ] and the angular momentum of the black hole would be another parameter. The interior of a Kerr black hole would not be represented by the KS metric; it would be a more general, anisotropic universe.
+Equ38 $$\begin{aligned} \frac{\dot{T}}{T}=H\Bigl (\frac{\beta H^{3}}{3h_{n{\text {f}}}T^{3}}-1\Bigr ). \end{aligned}$$ (38)
+None When the mean scale factor a decreases, H is negative and the temperature T increases. If the production rate \(\beta \) is too small, then particle production might be insufficient to prevent a cosmological singularity. When a increases and if \(\beta \) is too big, then the right-hand side of ( 38 ) could become positive. In this case, the temperature would grow with increasing a , which would lead to eternal inflation [ 14 , 15 ]. Consequently, there is a range of the production rate that prevents a singularity and does not cause eternal inflation.
+None If the right-hand side of ( 38 ) is slightly lesser than 1, then T would be approximately constant. Accordingly, H would be also approximately constant and the mean scale factor a would grow almost exponentially, generating inflation. Since the energy density would be also approximately constant, the universe would produce enormous amounts of matter and entropy. Such an expansion would last until the right-hand side of ( 38 ) drops significantly below 1. Consequently, the period of this inflation would be finite. After this period, the effects of torsion would become small and the universe would smoothly enter the radiation-dominated expansion, followed by the matter-dominated expansion, and then by the cosmological-constant-dominated expansion.
+EQ 33 $$\begin{aligned} \frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\text {f}})}{dt}=\beta H^{4}, \end{aligned}$$ (33)
+EQ 34 $$\begin{aligned} \dot{n}_{\text {f}}+3Hn_{\text {f}}=\beta H^{4},\quad \frac{d(n^{2}_{\text {f}})}{dt} +6Hn^{2}_{\text {f}}=2\beta n_{\text {f}}H^{4}. \end{aligned}$$ (34)
+EQ 35 $$\begin{aligned} \frac{2\beta n_{\text {f}}}{81}\Bigl (\frac{\dot{X}}{X} +\frac{2\dot{Y}}{Y}\Bigr )^{4}>\frac{2}{3Y^{2}}\Bigl (\frac{\dot{X}}{X} -\frac{\dot{Y}}{Y}\Bigr ). \end{aligned}$$ (35)
+EQ 36 $$\begin{aligned} \frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\dot{X}\dot{Y}}{XY}=\kappa (h_\star T^{4} -\alpha h_{n{\text {f}}}^{2} T^6). \end{aligned}$$ (36)
+EQ 37 $$\begin{aligned} \frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n{\text {f}}}T^{3}}. \end{aligned}$$ (37)
+EQ 38 $$\begin{aligned} \frac{\dot{T}}{T}=H\Bigl (\frac{\beta H^{3}}{3h_{n{\text {f}}}T^{3}}-1\Bigr ). \end{aligned}$$ (38)
+
+codex
+The direct Springer request returned readable full text despite a cookie-error URL. Its equations (33)–(38) match the v2 expressions inspected here; I’ll record that limited check without claiming whole-version identity. Neither text supplies a numerical beta value. The stated conditions also lack the physical inputs and scale choices needed to locate beta within B3’s `[0.001, 10]` range.
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from bs4 import BeautifulSoup
+from pathlib import Path
+s=BeautifulSoup(Path('bounce/b4_source_2007.11556v2.html').read_text(),'html.parser')
+for n in [16,33,34,35,36,37,38]:
+ e=s.find(id='S0.E'+str(n)); print(n,e.find('math').get('alttext'))
+for term in ['cross-section','cutoff','dimensionless','estimate','bound','Planck','rate']:
+ print(term, s.get_text(' ',strip=True).lower().count(term.lower()))
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 122ms:
+16 H=\frac{\dot{a}}{a}=\frac{1}{3XY^{2}}\frac{d(XY^{2})}{dt}=\frac{1}{3}\Bigl(\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}\Bigr)
+33 \frac{1}{\sqrt{-g}}\frac{d(\sqrt{-g}n_{\textrm{f}})}{dt}=\beta H^{4},
+34 \dot{n}_{\textrm{f}}+3Hn_{\textrm{f}}=\beta H^{4},\quad\frac{d(n^{2}_{\textrm{f}})}{dt}+6Hn^{2}_{\textrm{f}}=2\beta n_{\textrm{f}}H^{4}.
+35 \frac{2\beta n_{\textrm{f}}}{81}\Bigl(\frac{\dot{X}}{X}+\frac{2\dot{Y}}{Y}\Bigr)^{4}>\frac{2}{3Y^{2}}\Bigl(\frac{\dot{X}}{X}-\frac{\dot{Y}}{Y}\Bigr).
+36 \frac{\dot{Y}^{2}+1}{Y^{2}}+\frac{2\dot{X}\dot{Y}}{XY}=\kappa(h_{\star}T^{4}-\alpha h_{n\textrm{f}}^{2}T^{6}).
+37 \frac{\dot{T}}{T}+H=\frac{\beta H^{4}}{3h_{n\textrm{f}}T^{3}}.
+38 \frac{\dot{T}}{T}=H\Bigl(\frac{\beta H^{3}}{3h_{n\textrm{f}}T^{3}}-1\Bigr).
+cross-section 0
+cutoff 0
+dimensionless 0
+estimate 0
+bound 0
+Planck 1
+rate 20
+
+exec
+/bin/zsh -lc "cat > bounce/_b4_write_report.py <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+import hashlib
+root=Path('bounce')
+s=BeautifulSoup((root/'b4_source_2007.11556v2.html').read_text(),'html.parser')
+def equation(n):
+    tex=s.find(id='S0.E'+str(n)).find('math')['alttext']
+    return f'[{n}: arXiv v2](https://arxiv.org/html/2007.11556v2#S0.E{n})\\n\\n\\\\[\\n{tex} \\\\tag{{{n}}}\\n\\\\]\\n'
+text=r'''# B4 — source beta and B3 units, 2026-09-07
+
+"'`BETA_VALUES=UNRESOLVABLE_FROM_SOURCE`
+
+The inspected source specifies the production prescription and its dimensional convention, but supplies neither a numerical beta nor sufficient independent inputs to calculate one. Its thermal degrees of freedom are numerical inputs to thermal densities, not a determination of beta. A numerical placement against B3'"'s exploratory interval is therefore unavailable. This completes the source-comparison deliverable only; it does not file a class or reconsider B3.
+
+**Version and access.** Equation numbers and verbatim mathematical transcriptions below refer exclusively to Nikodem J. Popławski, *A nonsingular, anisotropic universe in a black hole with torsion and particle production*, **arXiv:2007.11556v2**, whose inspected HTML header is dated **23 June 2026**. This is the arXiv manuscript/preprint endpoint associated with the published paper, not an assumed copy of the version of record. [Inspected v2](https://arxiv.org/html/2007.11556v2).
+
+The peer-reviewed publication is *General Relativity and Gravitation* **53**, article **18** (2021), published 7 February 2021, DOI **10.1007/s10714-021-02790-7**. The browser retrieval exposed a subscription preview. A separate direct HTTP retrieval returned status 200 and readable publisher full text, including sections 2, 8–10 and equations (33)–(38), even though its final URL was "'`https://link.springer.com/article/10.1007/s10714-021-02790-7?error=cookies_not_supported&code=c731bb66-abba-4833-b8aa-368c388ba8ee`. Thus the cookie-error URL did **not** prevent this particular full-text inspection. The six equations, unit declaration, beta definition, thermal coefficients and qualitative beta discussion were checked against that retrieved publisher HTML and agree in mathematical content. This limited comparison does not establish whole-document or byte identity. [Publisher article](https://link.springer.com/article/10.1007/s10714-021-02790-7).
+
+**Verbatim source inventory.** Mathematical expressions retain v2'"'s symbols, factors and punctuation; equation tags are displayed alongside them. Prose excerpts are deliberately short. Source beta is denoted **β_S** only in the analysis below; quotations retain **β**. The symbol **Ψ** is our label for the left-hand side of (33), not a symbol printed in these source equations.
+
+In §8, paragraph p22, immediately after (33), the definition is: “\\(\\beta\\) is the production rate”. The preceding prose presents the prescription phenomenologically; it cites v2 reference [5], without importing numerical values from that reference. The complete law and neighbouring comparison are:
+
+'''
+for n in (33,34,35): text+=equation(n)+'\\n'
+text+=r'''The determinant printed beside (33) is \\(g=-X"'^{2}Y''^{4}=-a''^{6}'"\\). No angular factor or extra normalising coefficient has been inserted here. Equation (35) is a state-dependent inequality, not a numerical beta interval. [v2 §8, p22](https://arxiv.org/html/2007.11556v2#p22).
+
+In §9, p23, the unnumbered thermal relations before (36), transcribed verbatim, are:
+
+\\[
+\\epsilon=h_{\\star}T"'^{4},'"\\qquad p=\\epsilon/3,\\qquad n_{\\textrm{f}}=h_{n\\textrm{f}}T"'^{3},
+'"\\]
+\\[
+h_{\\star}=(\\pi"'^{2}/30)(g_{'"\\textrm{b}}+(7/8)g_{\\textrm{f}})k_{\\textrm{B}}"'^{4}/('"\\hbar c)"'^{3},
+'"\\]
+\\[
+h_{n\\textrm{f}}=(\\zeta(3)/\\pi"'^{2})(3/4)g_{'"\\textrm{f}}k_{\\textrm{B}}"'^{3}/('"\\hbar c)"'^{3}.
+'"\\]
+
+The numerical assignments are **\\(g_{\\textrm{b}}=29\\)** and **\\(g_{\\textrm{f}}=90\\)**, unnumbered before (36). They specify the source's standard-model thermal species counts. They are not beta values, nor does the source define beta as a function of these counts. [v2 §9, p23](https://arxiv.org/html/2007.11556v2#p23).
+
+'''
+for n in (36,37,38): text+=equation(n)+'\\n'
+text+=r'''All other beta occurrences and nearby bounds were inspected:
+
+- **§9, p24, after (37):** beta remains a model parameter alongside parent mass; symbolic initial data are discussed, not numerical beta inputs. [p24](https://arxiv.org/html/2007.11556v2#p24).
+- **§9, p25:** the coefficient must be “big enough”; no threshold is evaluated. [p25](https://arxiv.org/html/2007.11556v2#p25).
+- **§10, p26, after (38):** “too small” and “too big” qualify the production coefficient; the proposed acceptable range has no numerical endpoints. [p26](https://arxiv.org/html/2007.11556v2#p26).
+- **§10, p27, after (38):** the text applies “slightly lesser than 1” to the right-hand side of (38). This wording is retained as written. It supplies neither a numerical tolerance nor a value of beta. [p27](https://arxiv.org/html/2007.11556v2#p27).
+
+**Dimensions and normalisation — analysis of the inspected v2 equations.** Section 2, after (2), explicitly states: “We use units in which \\(c=1\\).” No declaration setting \\(G\\), \\(\\hbar\\), \\(k_B\\), \\(\\kappa\\), or the thermal coefficients to one was found. In §3 before (9), \\(\\kappa=8\\pi G\\); beside (1), \\(\\alpha=\\kappa(\\hbar c)"'^2/32'"\\). These are physical coefficients, not B3's sensitivity parameters. [v2 §2](https://arxiv.org/html/2007.11556v2#p9), [v2 (1)](https://arxiv.org/html/2007.11556v2#S0.E1), [v2 (9)](https://arxiv.org/html/2007.11556v2#S0.E9).
+
+The source's Hubble normalisation is exactly:
+
+'''
+text+=equation(16)
+text+=r'''
+With length as the common space/time dimension in this \\(c=1\\) convention, fermion number is a count, \\([n_f]=L"'^{-3}'"\\), \\([t]=L\\), \\([H]=L"'^{-1}'"\\). Thus (33) has \\([\\Psi]=L"'^{-4}'"\\) and **\\([\\beta_S]=1\\)**. This is dimensional analysis, not a source assertion that Planck units or B3 units have been selected. There is no factor of 3 absorbed into beta: the 3 belongs to the mean-volume expansion in (16)/(34), and the 81 in (35) is \\(3"'^4'"\\).
+
+For a seconds-and-metres convention, define physical proper time \\(t_s\\), \\(\\ell=ct_s\\), and \\(H_s=d\\ln a/dt_s\\). Restoring dimensions in v2 (33) gives, by change of variable,
+
+\\[
+\\frac{dn_f}{dt_s}+3H_s n_f=\\frac{\\beta_S}{c"'^3}H_s''^4
+       '"\\equiv\\beta_{\\mathrm{sec}}H_s"'^4,
+'"\\qquad [\\beta_{\\mathrm{sec}}]=\\mathrm{s"'^3'"\\,m"'^{-3}}.
+'"\\]
+
+Hence \\(\\beta_{\\mathrm{sec}}=\\beta_S/c"'^3'"\\); a dimensionful coefficient multiplying a seconds-based \\(H_s"'^4'"\\) must not be identified numerically with \\(\\beta_S\\).
+
+There is a further limit on using the *printed* (35) as a calibrated bound: with the dimensions just established, its left-hand side has dimension \\(L"'^{-7}'"\\) and its right-hand side \\(L"'^{-3}'"\\). Equation (32) compares \\(\\kappa\\alpha n_f"'^2'"\\) with shear, whereas (35) as printed compares unweighted rates. No rescaling of number density that resolves this difference is declared in the inspected text. We preserve (35) and do not repair it or use it to infer a physical beta threshold. This local units observation does not change the normalisation obtained directly from (33)–(34), and does not reopen B3.
+
+Likewise, the literal right-hand side of (38) has inverse-time dimension; comparison to the bare number 1 in p27 cannot itself specify a coefficient. If one instead examines the dimensionless combination appearing inside (38),
+
+\\[
+R=\\frac{\\beta_S H"'^3}{3h_{n'"\\mathrm f}T"'^3},
+'"\\]
+
+then \\(R\\approx1\\) would imply \\(\\beta_S\\approx3h_{n\\mathrm f}(T/H)"'^3'"\\) for a suitable expanding state. That is our conditional algebraic reading, not a corrected quotation or a source-supplied estimate. The source gives no numerical \\(T/H\\), tolerance, or independently specified trajectory at which to evaluate it. Its \\(g_f=90\\) determines \\(h_{n\\mathrm f}\\) in selected physical units but does not determine \\(T/H\\).
+
+**Conversion to the exploratory script — analysis, not source physics.** The inspected local [b3_rescue.py](b3_rescue.py) sets \\(\\kappa=\\epsilon_0=h_\\star=a_0=1\\) and scans beta values \\(0,0.001,0.01,0.1,1,10\\). The normalisation is documented in [B3_RESCUE_20260907.md](B3_RESCUE_20260907.md), under “Inputs and all added assumptions”. Denote script quantities with subscript B. For a chosen physical initial ordinary energy density \\(\\epsilon_0\\), number-density unit \\(n_{\\rm ref}\\), and length-time unit \\(\\ell_{\\rm ref}\\),
+
+\\[
+\\ell_{\\rm ref}=(\\kappa\\epsilon_0)"'^{-1/2},'"\\qquad
+\\hat t=\\ell/\\ell_{\\rm ref},\\quad n_B=n_f/n_{\\rm ref},\\quad H_B=\\ell_{\\rm ref}H.
+\\]
+
+Here \\(\\kappa\\) and \\(\\epsilon_0\\) are expressed consistently with the source's \\(c=1\\) energy-density convention. In SI the corresponding \\(\\kappa_{\\rm SI}=8\\pi G/c"'^4'"\\) gives \\(\\ell_{\\rm ref}=(\\kappa_{\\rm SI}\\epsilon_0)"'^{-1/2}'"\\) and \\(t_{\\rm ref,s}=\\ell_{\\rm ref}/c\\). Substitution into (34) yields
+
+\\[
+\\boxed{\\beta_B=\\frac{\\beta_S}{n_{\\rm ref}\\ell_{\\rm ref}"'^{3}}
+='"\\frac{\\beta_{\\rm sec}}{n_{\\rm ref}t_{\\rm ref,s}"'^{3}}.}
+'"\\]
+
+This is B3's documented conversion with its time convention made explicit. Both \\(\\beta_B\\) and \\(\\beta_S\\) are dimensionless, but they coincide only for the additional choice \\(n_{\\rm ref}\\ell_{\\rm ref}"'^3=1'"\\). B3 does not impose that choice. Its temperature unit fixes \\(h_\\star=1\\) in closure (b), not the independently selectable number-density unit. Its \\(\\alpha_B=\\alpha_{\\rm phys}n_{\\rm ref}"'^2/'"\\epsilon_0\\) and exploratory interval \\([0.25,1]\\) also do not specify a physical density scale.
+
+A numerical conversion requires (i) an independently specified \\(\\beta_S\\), (ii) the physical \\(\\epsilon_0\\) defining the script's initial-density unit, and (iii) \\(n_{\\rm ref}\\), or an equivalent complete normalisation. To infer beta from (33) instead requires an independent physical fermion-production density rate \\(\\Psi\\) and nonzero \\(H\\) at the same state: \\(\\beta_S=\\Psi/H"'^4'"\\) in \\(c=1\\) units. Neither is numerically supplied. A microscopic alternative would have to supply a production calculation (species, couplings and state/geometry, and any needed cutoff), evaluate its net fermion rate, establish an approximately constant \\(\\Psi/H"'^4'"\\), and then apply the conversion above. The paper does not specify such a cross-section or cutoff chain. A rate per unit volume defined by (33) is not an independent input to (33).
+
+For any eventual normalisation \\(Q=n_{\\rm ref}\\ell_{\\rm ref}"'^3>0'"\\), the exact comparison would be
+
+\\[
+\\beta_B\\in[0.001,10]\\quad\\Longleftrightarrow\\quad
+\\beta_S\\in[0.001Q,10Q].
+\\]
+
+Neither \\(\\beta_S\\) nor \\(Q\\) is fixed here. Therefore no below/inside/above placement is available, and setting them to convenient values would manufacture the requested comparison. This is a units comparison only, not validation of B3. The source thermal relation \\(n_f=h_{n\\mathrm f}T"'^3'"\\) has not been imposed on B3's independently sourced number density.
+
+**Search coverage and verdict.** The complete retrieved v2 text, including references, was read and searched for beta, production/rate, numerical assignments, estimates, bounds, units, cross-sections, cutoffs and Planck references. Its ten beta-bearing mathematical elements occur only in p22 (four), p23 (one), p24 (one), p25 (one), and p26 (three). Equations (33)–(38), all those paragraphs and p27 are covered above. No numerical beta assignment, order of magnitude, evaluated lower/upper bound, microscopic beta formula, or independent numerical rate was found. No values from the papers cited in v2 reference [5] are silently substituted for this paper's own values.
+
+The thermal species counts and conditional relations do not close a calculation of beta. Formal rearrangement of a phenomenological law is not a derivation from independent supplied physical inputs. Thus the selected verdict is **BETA_VALUES=UNRESOLVABLE_FROM_SOURCE**, rather than SUPPLIED or DERIVABLE. The normalisation is understandable; the numerical comparison is unresolvable from the inspected source and B3's declared scale choices.
+
+**Audit artifacts.** Retrieved source and publisher HTML are preserved under "'`bounce/`; the text extraction uses the HTML'"'s mathematical "'`alttext` rather than discarding equations. No B3 execution or modification was needed for this source-and-units audit. Input hashes:
+
+'"'''
+for name in ['b4_source_2007.11556v2.html','b4_springer_access.html','b3_rescue.py','B3_RESCUE_20260907.md']:
+    text+=f'- "'`{name}`: `{hashlib.sha256((root/name).read_bytes()).hexdigest()}`'"\\n'
+(root/'B4_BETA_COMPARISON_20260907.md').write_text(text)
+PY
+python3 bounce/_b4_write_report.py" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 121ms:
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+import hashlib
+p=Path('bounce/B4_BETA_COMPARISON_20260907.md')
+t=p.read_text()
+s=BeautifulSoup(Path('bounce/b4_source_2007.11556v2.html').read_text(),'html.parser')
+for n in [16,33,34,35,36,37,38]:
+ assert s.find(id='S0.E'+str(n)).find('math')['alttext'] in t
+assert t.count('BETA_VALUES=SUPPLIED')==0 and t.count('BETA_VALUES=DERIVABLE')==0
+for name in ['b3_rescue.py','B3_RESCUE_20260907.md']:
+ assert hashlib.sha256((Path('bounce')/name).read_bytes()).hexdigest() in t
+print('Verified: all seven equation transcriptions match v2 mathematical alttext; B3 input hashes unchanged.')
+print('SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
+print('BETA_VALUES=UNRESOLVABLE_FROM_SOURCE')
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 116ms:
+Verified: all seven equation transcriptions match v2 mathematical alttext; B3 input hashes unchanged.
+SHA256 f4cf91f797358af603e7c63da30706430f60863d8000668be244927a9537394d
+BETA_VALUES=UNRESOLVABLE_FROM_SOURCE
+
+codex
+`BETA_VALUES=UNRESOLVABLE_FROM_SOURCE`
+
+SHA256 (`bounce/B4_BETA_COMPARISON_20260907.md`):
+```text
+f4cf91f797358af603e7c63da30706430f60863d8000668be244927a9537394d
+```
+tokens used
+70,158
+`BETA_VALUES=UNRESOLVABLE_FROM_SOURCE`
+
+SHA256 (`bounce/B4_BETA_COMPARISON_20260907.md`):
+```text
+f4cf91f797358af603e7c63da30706430f60863d8000668be244927a9537394d
+```
