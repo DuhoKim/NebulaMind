@@ -46,7 +46,31 @@ out += ["", "## Status, stated narrowly",
         f"- `ready_for_input_freeze` = **{ready}** — this means ONLY that the input-stage files are ready to freeze. It is not adoption, not permission to start a run, and not the existence of later-stage evidence.",
         "- Nothing is adopted. Duho has made no decision. No seed, round, anchor, selection, draw or holdout has occurred.",
         "- Approval medium: plain-language approval in Duho's dialogue with Codex, bound to the exact presented version (his recorded decision, `CODEX_DUHO_CONVERSATION_APPROVAL_RECORD_20260906.md`). He recites no digest."]
-blockers = []
+# --- THE CHECK THIS ASSEMBLER WAS MISSING (found 2026-09-07 17:50 by the owner):
+# it verified that review files EXIST, never that the latest verdict is POSITIVE or that the reviewed
+# bytes are the CURRENT bytes. It called a package presentable whose last A1 review said NOT-SOUND
+# against a digest two revisions old. Same defect class as every other one this lane found today:
+# a check over a list that never asks whether the list covers what it claims to cover.
+def access_sha(p):
+    try:
+        import re as _re
+        m = _re.search(r"ACCESS_SHA=([0-9a-f]{64})", open(p, encoding="utf-8").read())
+        return m.group(1) if m else None
+    except OSError: return None
+POSITIVE = ("REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND")
+a1_now = sha("AGREEMENT_RUN_AMENDMENT_A1_20260907.md")
+reviewed = [(p, verdict(p), access_sha(p)) for _, p in REVIEWS if verdict(p)]
+covering = [(p, v, a) for (p, v, a) in reviewed if a == a1_now]
+out += ["", "## Does a review actually cover the CURRENT bytes?",
+        f"- current A1 digest: `{a1_now}`",
+        "- reviews and the digest each one actually read:"]
+for p, v, a in reviewed: out.append(f"  - `{p}` — read `{a}` — {v}" + ("  **<- covers current bytes**" if a == a1_now else "  (older bytes)"))
+review_blockers = []
+if not covering: review_blockers.append("no independent review has read the CURRENT A1 bytes")
+else:
+    bad = [p for p, v, a in covering if not any(v.endswith(k) or k in v for k in POSITIVE)]
+    if bad: review_blockers.append(f"the review of the current bytes is not positive: {', '.join(bad)}")
+blockers = list(review_blockers)
 if missing: blockers.append(f"{len(missing)} packet file(s) absent: {', '.join(missing)}")
 if pending: blockers.append(f"{len(pending)} review report(s) not yet filed in the lane: {', '.join(pending)}")
 if ready is not True: blockers.append("input readiness is not TRUE")

@@ -7,11 +7,10 @@ See MANIFEST_SCOPE_NOTE_20260907.md for the bounded guarantees and limits.
 
 C uses A1-INPUT-CORE-DRAFT-1: files is the complete current input/code/cache
 register; inputs/code are matching lookup aliases. CORE readiness is required
-and recomputed. Runtime uses A1-RUNTIME-PINS-CORE-1 with mandatory
-A1-RUNTIME-REPRESENTATION-1 evidence: observed source/cache/extension/native
-file SHA-256 pins, loaded module origins, and dyld shared-cache identities.
-The historical exhaustive inventories are not authorities. Pins check disk
-bytes and reported identities, not relocated process memory.
+and recomputed. Runtime uses A1-RUNTIME-PINS-CORE-1: named executable/extension
+artifacts, versions, invocation and scientific lock values. The exhaustive
+inventories are not authorities. Pins check disk bytes and reported values,
+not all third-party caches, dynamically loaded libraries or process memory.
 TOCTOU: extension modules are hashed and later imported with no lock between.
 Even the immediate pre-import recheck evidences disk bytes at check time, not
 the bytes the loader used (or an extension already loaded in this process).
@@ -39,7 +38,6 @@ import platform
 import re
 import sys
 from datetime import datetime, timezone
-from _optionA_dev.agreement_run import runtime_binding
 
 ROOT = Path(__file__).resolve().parents[2]
 INTERPRETER = "/Library/Developer/CommandLineTools/usr/bin/python3"
@@ -62,7 +60,6 @@ CODE = (
     "miniprereg_pins/protected_region_v2.py",
     "miniprereg_pins/validation_gate.py",
     "_optionA_dev/agreement_run/medium_perturbation.py",
-    "_optionA_dev/agreement_run/runtime_binding.py",
 )
 INPUTS = ("eligible", "exclusion", "failed", "coordinates", "bricks", "no_r",
           "render_config", "env_lock", "runtime")
@@ -85,7 +82,7 @@ OBLIGATION_REGISTRY = {
         "selected import artifacts and OS shared-cache images; the compact pins do not waive it.",
 }
 A1_SOURCE = "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
-A1_REVIEWED_SHA256 = "2465294f44d0afcd8201117e4f45964b36c3e83070755629f9482863512d1546"
+A1_REVIEWED_SHA256 = "c0459ad1b16cfdec2333eabae4d78284f09f4c396e1781e489cbbf8cca6c7d12"
 # A bounded interpretation of the reviewed A1 prose, not an NLP completeness
 # claim. Full-source identity below rejects ANY unfamiliar revision, including
 # an added obligation outside these excerpts, even if its manifest pin is reset.
@@ -217,13 +214,6 @@ def _environment(lock_pin, runtime_pin):
             "ENV-MISMATCH: interpreter path: " + interpreter["path"])
     require(_same_pin(runtime.get("env_lock"), lock_pin),
             "ENV-MISMATCH: env_lock binding: " + lock_pin["path"])
-    representation = runtime.get("representation")
-    require(isinstance(representation, dict) and representation.get("schema") == runtime_binding.SCHEMA,
-            "MISSING-RUNTIME-EVIDENCE: RUNTIME_REPRESENTATION")
-    # Rehash all recorded import/native artifacts before dependency preload.
-    # Like the NumPy recheck below this is disk evidence, with no loader lock.
-    for pin in representation.get("files", []):
-        read_pin(pin)
     # Cheap bounded recheck immediately before imports can open either extension
     # (import numpy may open both). No lock spans hashing and Python's loader;
     # this narrows the interval but does not attest loaded or in-memory bytes.
@@ -269,12 +259,9 @@ def _environment(lock_pin, runtime_pin):
         require(recorded.get(key) == value, "ENV-MISMATCH: recorded lock " + key +
                 ": " + context)
     require(set(recorded) == set(observed), "ENV-MISMATCH: lock fields: " + context)
-    runtime_binding.preload(CODE)
-    representation_check = runtime_binding.verify(representation, read_pin, require)
     return {"observed": observed, "py_ecc": py_ecc.__version__,
             "versions": {k: v[0] for k, v in versions.items()},
-            "env_lock": lock_pin, "runtime": runtime_pin,
-            "runtime_representation": representation_check}
+            "env_lock": lock_pin, "runtime": runtime_pin}
 
 
 def _same_pin(left, right):
@@ -399,18 +386,6 @@ def input_readiness(c):
     reasons += ["UNDECLARED-OBLIGATION: " + oid for oid in undeclared]
     reasons += ["A1-OBLIGATION-MISMATCH: " + oid + "; A1 resolved=" + str(a1[oid]) +
                 ", manifest resolved=" + str(by_id[oid]["resolved"]) for oid in disagreements]
-    # A declaration and matching A1 prose cannot discharge runtime work alone.
-    # Re-read the registered evidence and measure this process/platform now.
-    runtime_evidenced = False
-    runtime_row = by_id.get("RUNTIME_REPRESENTATION", {})
-    if runtime_row.get("resolved") is True:
-        evidence_pin = runtime_row.get("evidence_pin")
-        if not _same_pin(evidence_pin, inputs["runtime"]):
-            reasons.append("MISSING-RUNTIME-EVIDENCE: RUNTIME_REPRESENTATION")
-        else:
-            _registered_pin(files, evidence_pin)
-            _environment(inputs["env_lock"], evidence_pin)
-            runtime_evidenced = True
     checks = {"all_real_entries_rehashed_and_matched": True,
               "input_due_placeholders_resolved": not any(
                   p.get("due_stage") == "INPUT" or p.get("blocks_input_freeze") is not False
@@ -418,7 +393,6 @@ def input_readiness(c):
               "declared_obligation_set_complete": not (missing or undeclared or duplicates),
               "current_preparation_obligations_resolved": all(
                   p.get("resolved") is True for p in obligations),
-              "runtime_representation_evidenced": runtime_evidenced,
               "a1_manifest_obligations_agree": not (missing or undeclared or duplicates or disagreements)}
     return {"ready_for_input_freeze": all(checks.values()), "checks": checks,
             "reasons": reasons, "a1_obligations": a1,

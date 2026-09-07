@@ -136,7 +136,7 @@ class CoreConsumerTests(unittest.TestCase):
             self.run._common()
 
     def test_bounded_runtime_does_not_require_sweep(self):
-        """FAIL-FIRST: the three artifacts and versions suffice without a loaded-module sweep."""
+        """FAIL-FIRST: CORE runtime evidence works without the historical exhaustive inventory."""
         self.assertEqual(rp._environment(self.inputs["env_lock"], self.inputs["runtime"])["py_ecc"], "8.0.0")
 
     def test_python_version_mismatch_refuses(self):

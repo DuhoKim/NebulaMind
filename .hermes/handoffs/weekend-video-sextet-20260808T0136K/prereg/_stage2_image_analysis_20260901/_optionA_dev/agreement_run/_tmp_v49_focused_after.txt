@@ -1,0 +1,36 @@
+test_changed_cached_image_uuid_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: each cached image has its own checked LC_UUID identity. ... FAIL
+test_changed_os_build_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: cache identity includes the kernel-reported OS build. ... ok
+test_changed_shared_cache_uuid_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a changed active shared-cache UUID cannot pass runtime checks. ... ok
+test_deleted_import_artifact_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: deleting a py_ecc artifact pin cannot conceal the loaded import. ... ok
+test_native_library_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: native library bytes beyond the two compact pins are verified. ... ok
+test_obligation_cannot_resolve_without_evidence (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: resolved prose and a TRUE flag cannot replace required evidence. ... ok
+test_py_ecc_source_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: changed py_ecc source bytes refuse by the artifact path. ... ok
+test_runtime_record_without_representation_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: compact runtime pins cannot stand in for representation evidence. ... ok
+test_selected_cache_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a selected-import cache is byte-bound independently of source. ... ok
+
+======================================================================
+FAIL: test_changed_cached_image_uuid_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: each cached image has its own checked LC_UUID identity.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: UNREGISTERED-RUNTIME-IMAGE: /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/pyexpat.cpython-39-darwin.so
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 70, in test_changed_cached_image_uuid_refuses_by_name
+    self.check()
+AssertionError: "RUNTIME-IMAGE-IDENTITY-MISMATCH: /System/Library/Frameworks/Accelerate\.framework/Versions/A/Accelerate" does not match "UNREGISTERED-RUNTIME-IMAGE: /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/pyexpat.cpython-39-darwin.so"
+
+----------------------------------------------------------------------
+Ran 9 tests in 4.974s
+
+FAILED (failures=1)

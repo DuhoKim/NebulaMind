@@ -1,0 +1,279 @@
+CURRENT BYTES, before production repair
+run_path.py SHA256=0b47f76bb35bc619ed49b1705506912637b2295c2c8f844a6376e0795766cc07
+INPUT_MANIFEST_A1_CORE.json SHA256=cdac63a5c32f35e43c897a9fd256363a648e4254d0ac879e909a75afe8d50bc0
+RUNTIME_PINS_A1_CORE.json SHA256=ea3b8a49ca40a542af67319539845be986928f835daf2b0231e7c5babe435c50
+test_readiness.py SHA256=c59dce82a2f1b016b0cb9ce9ac9155ab06a20715c9b41a9a2477233d632d0fa9
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 -m unittest -v _optionA_dev.agreement_run.test_readiness
+PYTHONPATH=/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/_venv_bls/lib/python3.9/site-packages
+PYTHONDONTWRITEBYTECODE=1
+test_a1_added_obligation_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: unfamiliar new prose obligations require a reviewed mapping update. ... FAIL
+test_a1_deleted_statement_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing an A1 declaration cannot be concealed by repinning A1. ... FAIL
+test_a1_manifest_status_divergence (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: matching declared ids with contradictory A1 status are detected. ... FAIL
+test_a1_missing_source (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing the A1 source binding cannot skip the cross-check. ... FAIL
+test_complete_resolved_fixture_passes (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: a complete resolved fixture can pass the real CORE gate. ... ok
+test_delete_all_obligations (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an empty obligations list fails with every declared missing id. ... FAIL
+test_delete_core_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared CORE obligation fails by name. ... FAIL
+test_delete_medium_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared MEDIUM obligation fails by name. ... FAIL
+test_delete_runtime_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting runtime preparation cannot make an incomplete list ready. ... FAIL
+test_duplicate_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: duplicates cannot substitute for a unique declaration. ... FAIL
+test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: the actual authoring register records runtime-blocked readiness FALSE. ... FAIL
+test_runtime_digest_rechecked_before_import (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: a mutation after initial runtime hashing fails at the pre-use recheck. ... FAIL
+test_runtime_unresolved_still_blocks (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: present unresolved runtime work defeats a TRUE flag. ... ok
+test_undeclared_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an additional resolved obligation must also be declared in code/A1. ... FAIL
+
+======================================================================
+FAIL: test_a1_added_obligation_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: unfamiliar new prose obligations require a reviewed mapping update.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 128, in test_a1_added_obligation_even_when_repinned
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_a1_deleted_statement_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing an A1 declaration cannot be concealed by repinning A1.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 122, in test_a1_deleted_statement_even_when_repinned
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_a1_manifest_status_divergence (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: matching declared ids with contradictory A1 status are detected.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 115, in test_a1_manifest_status_divergence
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_a1_missing_source (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing the A1 source binding cannot skip the cross-check.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 134, in test_a1_missing_source
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_delete_all_obligations (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an empty obligations list fails with every declared missing id.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 85, in test_delete_all_obligations
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_delete_core_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared CORE obligation fails by name.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 64, in test_delete_core_obligation
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_delete_medium_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared MEDIUM obligation fails by name.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 70, in test_delete_medium_obligation
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_delete_runtime_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting runtime preparation cannot make an incomplete list ready.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 76, in test_delete_runtime_obligation
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_duplicate_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: duplicates cannot substitute for a unique declaration.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 91, in test_duplicate_obligation
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: the actual authoring register records runtime-blocked readiness FALSE.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 144, in test_recorded_readiness_is_false
+    self.assertIs(manifest["ready_for_input_freeze"], False)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_runtime_digest_rechecked_before_import (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: a mutation after initial runtime hashing fails at the pre-use recheck.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: ENV-MISMATCH: extension path: /Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy/core/_multiarray_umath.cpython-39-darwin.so (recorded /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-uzkjzozf/synthetic-extension.so)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 161, in test_runtime_digest_rechecked_before_import
+    rp._environment(self.inputs["env_lock"], runtime_pin)
+AssertionError: "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1\-synthetic\-uzkjzozf/synthetic\-extension\.so" does not match "ENV-MISMATCH: extension path: /Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy/core/_multiarray_umath.cpython-39-darwin.so (recorded /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-uzkjzozf/synthetic-extension.so)"
+
+======================================================================
+FAIL: test_undeclared_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an additional resolved obligation must also be declared in code/A1.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 97, in test_undeclared_obligation
+    rp._core(self.c)
+AssertionError: Refused not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.262s
+
+FAILED (failures=12)
+
+EXIT CODE: 1
+
+test_changed_cached_image_uuid_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: each cached image has its own checked LC_UUID identity. ... FAIL
+test_changed_os_build_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: cache identity includes the kernel-reported OS build. ... FAIL
+test_changed_shared_cache_uuid_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a changed active shared-cache UUID cannot pass runtime checks. ... FAIL
+test_deleted_import_artifact_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: deleting a py_ecc artifact pin cannot conceal the loaded import. ... FAIL
+test_native_library_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: native library bytes beyond the two compact pins are verified. ... FAIL
+test_obligation_cannot_resolve_without_evidence (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: resolved prose and a TRUE flag cannot replace required evidence. ... FAIL
+test_py_ecc_source_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: changed py_ecc source bytes refuse by the artifact path. ... FAIL
+test_runtime_record_without_representation_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: compact runtime pins cannot stand in for representation evidence. ... FAIL
+test_selected_cache_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a selected-import cache is byte-bound independently of source. ... FAIL
+
+======================================================================
+FAIL: test_changed_cached_image_uuid_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: each cached image has its own checked LC_UUID identity.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 70, in test_changed_cached_image_uuid_refuses_by_name
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_changed_os_build_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: cache identity includes the kernel-reported OS build.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 63, in test_changed_os_build_refuses
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_changed_shared_cache_uuid_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a changed active shared-cache UUID cannot pass runtime checks.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 57, in test_changed_shared_cache_uuid_refuses
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_deleted_import_artifact_refuses_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: deleting a py_ecc artifact pin cannot conceal the loaded import.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 78, in test_deleted_import_artifact_refuses_by_name
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_native_library_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: native library bytes beyond the two compact pins are verified.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 51, in test_native_library_bytes_refuse_by_name
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_obligation_cannot_resolve_without_evidence (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: resolved prose and a TRUE flag cannot replace required evidence.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 93, in test_obligation_cannot_resolve_without_evidence
+    rp._core(c)
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_py_ecc_source_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: changed py_ecc source bytes refuse by the artifact path.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 39, in test_py_ecc_source_bytes_refuse_by_name
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_runtime_record_without_representation_refuses (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: compact runtime pins cannot stand in for representation evidence.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 84, in test_runtime_record_without_representation_refuses
+    self.check()
+AssertionError: Refused not raised
+
+======================================================================
+FAIL: test_selected_cache_bytes_refuse_by_name (_optionA_dev.agreement_run.test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a selected-import cache is byte-bound independently of source.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py", line 45, in test_selected_cache_bytes_refuse_by_name
+    self.check()
+AssertionError: Refused not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 2.047s
+
+FAILED (failures=9)
+
+ADAPTED RETAINED READINESS CHECK: actual predecessor run_path, final authoring evidence removed from a copy; no real file mutation.
+test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: without runtime evidence a copied authoring register computes FALSE. ... FAIL
+
+======================================================================
+FAIL: test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: without runtime evidence a copied authoring register computes FALSE.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 150, in test_recorded_readiness_is_false
+    self.assertIs(rp.input_readiness(manifest)["ready_for_input_freeze"], False)
+AssertionError: True is not False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.281s
+
+FAILED (failures=1)
+EXPECTED PREDECESSOR FAILURE: True

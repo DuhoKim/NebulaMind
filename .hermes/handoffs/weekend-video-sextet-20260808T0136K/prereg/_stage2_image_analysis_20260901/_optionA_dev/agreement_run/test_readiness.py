@@ -41,6 +41,7 @@ class ReadinessTests(unittest.TestCase):
         self.c["files"].append({**self.pin(self.a1_path), "status": "REAL"})
         self.c["current_preparation_obligations"] = [
             {"id": oid, "resolved": True} for oid in DECLARED]
+        self.c["current_preparation_obligations"][-1]["evidence_pin"] = self.c["inputs"]["runtime"]
         source_patch = patch.object(rp, "A1_REVIEWED_SHA256",
                                    self.pin(self.a1_path)["sha256"], create=True)
         source_patch.start()
@@ -138,10 +139,15 @@ class ReadinessTests(unittest.TestCase):
         self.assertEqual(rp._core(self.c), self.c["inputs"])
 
     def test_recorded_readiness_is_false(self):
-        """FAIL-FIRST: the actual authoring register records runtime-blocked readiness FALSE."""
+        """FAIL-FIRST: without runtime evidence a copied authoring register computes FALSE."""
         manifest = json.loads((fixtures.LANE /
             "_optionA_dev/agreement_run/INPUT_MANIFEST_A1_CORE.json").read_text())
-        self.assertIs(manifest["ready_for_input_freeze"], False)
+        for row in manifest["current_preparation_obligations"]:
+            if row["id"] == "RUNTIME_REPRESENTATION":
+                row.pop("evidence_pin", None)
+        with patch.object(rp, "ROOT", fixtures.LANE), patch.object(rp, "A1_REVIEWED_SHA256",
+                fixtures.hashlib.sha256((fixtures.LANE / A1_NAME).read_bytes()).hexdigest()):
+            self.assertIs(rp.input_readiness(manifest)["ready_for_input_freeze"], False)
 
     def test_runtime_digest_rechecked_before_import(self):
         """FAIL-FIRST: a mutation after initial runtime hashing fails at the pre-use recheck."""

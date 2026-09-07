@@ -2,8 +2,8 @@
 
 POSITIVE-REGRESSION labels denote the retained contract checks. V46 migrates
 only their manifest/runtime fixture to CORE; the existing outcomes are retained.
-V47 gives that synthetic ready fixture all declared obligations and a separately
-bound synthetic A1 revision. The real A1/runtime obligation remains unresolved.
+V49 gives the synthetic ready fixture independently measured runtime evidence
+including its test harness imports, and a separately bound synthetic A1 revision.
 """
 import hashlib
 import io
@@ -57,6 +57,10 @@ class RunPathTests(unittest.TestCase):
         coords = [{"objid": i, "ra": 40.0, "dec": 10.0, "brick": "0400p100"}
                   for i in range(2600)]
         runtime = json.loads((LANE / "_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json").read_text())
+        # Test processes import extra harness modules. Build fixture evidence
+        # explicitly; the production verifier has no test-mode exemption.
+        rp.runtime_binding.preload(rp.CODE)
+        runtime["representation"] = rp.runtime_binding.capture(lambda p: self.pin(Path(p)), rp.require)
         config_path = self.code_root / "miniprereg_pins/render_config_v2.json"
         config_path.write_bytes((LANE / "miniprereg_pins/render_config_v2.json").read_bytes())
         inputs = {
@@ -88,12 +92,14 @@ class RunPathTests(unittest.TestCase):
                  "input_due_placeholders_resolved": True,
                  "declared_obligation_set_complete": True,
                  "current_preparation_obligations_resolved": True,
+                 "runtime_representation_evidenced": True,
                  "a1_manifest_obligations_agree": True}},
              "a1_obligations_source": a1_pin,
              "current_preparation_obligations": [
                  {"id": "CORE_CONSUMER_RECONCILIATION", "resolved": True},
                  {"id": "MEDIUM_CURRENT_PREPARATION", "resolved": True},
-                 {"id": "RUNTIME_REPRESENTATION", "resolved": True}], "placeholders": []}
+                 {"id": "RUNTIME_REPRESENTATION", "resolved": True,
+                  "evidence_pin": inputs["runtime"]}], "placeholders": []}
         c["files"] = [{**pin, "status": "REAL"} for pin in inputs.values()]
         c["files"].append({**a1_pin, "status": "REAL", "kind": "a1_obligation_source"})
         c["files"] += [{**self.pin(self.code_root/p), "status": "REAL", "kind": "our_source_code"}
