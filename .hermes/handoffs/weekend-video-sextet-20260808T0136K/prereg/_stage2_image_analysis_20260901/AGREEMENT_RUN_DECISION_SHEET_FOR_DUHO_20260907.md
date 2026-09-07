@@ -1,4 +1,4 @@
-REISSUED 2026-09-07 18:29:32 KST — supersedes the decision sheet now in Duho's hands.
+REISSUED 2026-09-07 18:44 KST — supersedes the decision sheet now in Duho's hands.
 
 One machine–human GZ1 chirality agreement number on unseen images, allowing one overall sign reversal.
 
@@ -8,7 +8,7 @@ One machine–human GZ1 chirality agreement number on unseen images, allowing on
 
 **Inputs:** Eligible **11,837**; failed-set **2,000**; full dry-run exclusions **2,644**; post-exclusion population **7,283**. Historical lists retain 44/46 non-members respectively; mutual overlap is zero. Pins/provenance are referenced in A1.
 
-**Preparation and checks:** CORE has **28 real entries / 5 later-stage placeholders**; runtime CORE registers interpreter, library versions and enforced env_lock. The 1,529-entry sweep is retained inventory. The run path consumes CORE, names mismatched paths on refusal and blocks readiness false. The bit-11 pixel-perturbation/sign-flip producer is `medium_perturbation.py`; `medium_disclosure.py` remains the historical approval-recorder. Separate retained evidence: **122 consumer checks**, kit PASS; **42 run-path checks**; **32 MEDIUM checks**; **16 selector checks**; **4 BLS checks**. These counts test different things and are not summed.
+**Preparation and checks:** CORE has **30 real entries / 5 later-stage placeholders**; runtime CORE registers interpreter, library versions and enforced env_lock. The 1,529-entry sweep is retained inventory. The run path consumes CORE, names mismatched paths on refusal and blocks readiness false. The bit-11 pixel-perturbation/sign-flip producer is `medium_perturbation.py`; `medium_disclosure.py` remains the historical approval-recorder. Separate retained evidence: **measured per suite: 32 CORE-consumer, 14 readiness, 5 evidence-gate**, kit PASS; **42 run-path**; **32 MEDIUM**; **16 selector**; **4 BLS**. These counts test different things and are not summed. (measured from `INPUT_MANIFEST_A1_CORE.json`, SHA-256 `ec2e51586d5664cded303112a02b7f1bc55fa114d3ede753fb390d70cfc67fbe`: 30 real entries, 5 later-stage placeholders — quote the digest so the count is checkable rather than taken on trust.)
 
 **Readiness:** All three current preparation obligations are resolved: CORE reconciliation, scientific MEDIUM preparation and runtime representation. V50 evidence and Reviews 6–7 establish evidence-driven `ready_for_input_freeze=TRUE`; editing prose cannot make it true. **INPUT-STAGE FILES ARE READY TO FREEZE.** Selected import artifacts are byte-pinned; shared-cache images are bound by streaming SHA-256 over every byte of the main shared-cache file and all 12 declared subcache files on every verification. **Limit:** The binding covers the on-disk copy, not the bytes the process holds in memory, so a custom loader or post-load change could evade it. Five later-stage obligations remain due, including the actual MEDIUM tuning disclosure. Readiness grants no run permission.
 
