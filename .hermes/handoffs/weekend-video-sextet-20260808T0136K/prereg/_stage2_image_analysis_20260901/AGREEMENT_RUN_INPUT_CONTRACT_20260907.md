@@ -11,3 +11,10 @@ Why this is the right simplification, not a loss: eligibility stays explicit and
 CONSEQUENCE FOR THE AMENDMENT (`AGREEMENT_RUN_AMENDMENT_A1_20260907.md`, drafted before this decision): its eligibility clause currently derives renderability inline from the survey-bricks table. It must instead name the eligibility FILE + digest as a pinned input, with the derivation cited as its provenance. That is a bounded follow-up edit, not a re-draft.
 
 The amendment author's eight open questions stand as open questions for the independent review — none is answered by guessing here.
+
+## 3. THE THIRD INPUT'S FORMAT, decided from the files themselves (2026-09-07 11:20 KST)
+The selection author asked whether the exclusion and failed-set files share the eligible-id file's one-ID-per-line format. Checked against the real artefacts rather than assumed:
+- **Exclusion**: `_optionA_dev/corpus_identity/dryrun_identities_to_exclude_20260905.txt` — 2,644 lines, ONE GZ1_OBJID PER LINE, sha256 `77b29eafe18e02d4dee621a6e748e8f698381c6e23098e7db2db190aee270c95` (recomputed here, equal to V15's pin). The author's assumption HOLDS.
+- **Failed set**: it does NOT. It lives in `VALIDATION_SELECTION_V29_20260905.csv`, a CSV with a header and columns `GZ1_OBJID,RA,DEC,G,DR9N_BRICK`.
+DECISION, for uniformity with the eligibility decision: **all three selection inputs are pinned one-ID-per-line files.** The failed-set input is a file DERIVED from that CSV (its `GZ1_OBJID` column, ascending, deduplicated); the CSV is cited as its provenance and BOTH digests go in the manifest. `select_sample.py` therefore needs no change — it already reads three ID files — but the derivation step must exist, be recorded, and run before the manifest is fixed.
+What the reader loses: the failed-set membership is established by the derivation from the CSV rather than re-checked at selection time — so the derived file, its digest and the CSV's digest must all be fixed BEFORE the seed round is named, exactly as for eligibility.
