@@ -1,0 +1,514 @@
+{
+ "D1 neg (codex F4): an import re-filed CHOSEN quoting the source's choice sentence \u2014 value line in another file must be IMPORTED/ORIG_CITATION#0": [
+  "FAIL: paperA.txt#1.a: value line is in paperB.txt but claim paperA.txt#1 belongs to paperA.txt: such a record must be IMPORTED with ORIG_CITATION (submitted CHOSEN/ORIG_CHOICE_STATED)"
+ ],
+ "D1 neg (codex F5 / kimi F3): no line of the source carries both symbol and numeral \u2014 the floor no longer fails open#0": [
+  "FAIL: paperA.txt#1.a: no line of paperD.txt carries both g and 9"
+ ],
+ "D1 neg (round-3 N1, both reviewers): a non-import PRINTED record whose claim is not a candidate row, value line in another file#0": [
+  "FAIL: ghost.txt#9.a: claim ghost.txt#9 is not a candidate row"
+ ],
+ "D1 neg: a second matching line filed instead of the first (kimi K5d / codex two-line source)#0": [
+  "FAIL: paperA.txt#1.a: external value line 6 is not the first line of paperB.txt carrying both a and 2 (that is line 5)"
+ ],
+ "D1 neg: citing sentence quoted from a third text, not the claiming paper (kimi K5g)#0": [
+  "FAIL: paperA.txt#1.a: citing sentence is in paperC.txt, but claim paperA.txt#1 belongs to paperA.txt"
+ ],
+ "D1 neg: empty quotation (codex; the shared check fires first)#0": [
+  "FAIL: paperA.txt#1.a: empty quotation (every non-ORIG_SILENT record quotes its evidence line)"
+ ],
+ "D1 neg: external source bytes differ from the manifest row#0": [
+  "FAIL: paperA.txt#1.a: external source not an enumerable verified text: paperB.txt bytes (7a6d13b1bcfedbbb) differ from the manifest row (1998df35985a9c78)"
+ ],
+ "D1 neg: external source not a manifest row#0": [
+  "FAIL: paperA.txt#1.a: external source not an enumerable verified text: paperC.txt is not a row of the manifest"
+ ],
+ "D1 neg: no manifest in the sources directory (codex absent-manifest probe)#0": [
+  "FAIL: paperA.txt#1.a: external source not an enumerable verified text: no R3C2_CORPUS_MANIFEST.md in the sources directory"
+ ],
+ "D1 neg: record names its own file as the external source (two failures: claiming-file and self-file)#0": [
+  "FAIL: paperA.txt#1.a: citing sentence is in paperB.txt, but claim paperA.txt#1 belongs to paperA.txt",
+  "FAIL: paperA.txt#1.a: IMPORTED PRINTED record names its own file as the external source"
+ ],
+ "D1 neg: validate without the candidate file cannot bind the claiming paper (every PRINTED record)#0": [
+  "FAIL: paperA.txt#1.a: PRINTED record needs the candidate file to bind claim paperA.txt#1 to its claiming paper"
+ ],
+ "D1 neg: value '2' is only a substring of 'b = 20' at line 2 (codex substring attack, symbol a)#0": [
+  "FAIL: paperA.txt#1.a: value 2 is not a numeric token at external value line paperB.txt:2"
+ ],
+ "D1 neg: value token: '2' is not a numeric token of 'b = 20' when line 2 is the only b-line (codex substring attack)#0": [
+  "FAIL: paperA.txt#1.a: value 2 is not a numeric token at external value line paperB.txt:2"
+ ],
+ "D1 neg: verbatim not at the citing sentence (the shared evidence check fires first)#0": [
+  "FAIL: paperA.txt#1.a: quotation not found at evidence line paperA.txt:2"
+ ],
+ "D1 positive: import whose source line says 'we choose' validates (review's wording: evidence at the borrower)#0": [],
+ "D1 unchanged path: a non-import PRINTED record (claim bound to its own file) still validates at one line#0": [],
+ "D7 (kimi K3): a sealed EXCLUDED passage absent from the auditor's enumeration \u2192 listed as a dispute, counted, PASS (1/3 = 33%... no: FAILS the 10% rule)#0": [
+  "FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 1/3"
+ ],
+ "D7 neg (codex F1 / kimi F2): selection without a seed, ids emptied, digests retained \u2192 FAIL, not skipped#0": [
+  "FAIL: C6_SELECTION: selection carries no seed of 64 lowercase hexadecimal characters; nothing to recompute against"
+ ],
+ "D7 neg (codex zero case): sealed denominator zero with candidates present \u2192 FAIL#0": [
+  "FAIL: AUDIT denominator is zero while candidates exist on either side"
+ ],
+ "D7 neg (kimi F6): a passage the seats never enumerated, EXCLUDED by the auditor \u2192 still incompleteness, FAIL#0": [
+  "FAIL: COMPLETENESS audit_excluded_absent_from_sealed: ['paperB.txt', 9, '1999'] (a passage the seats never enumerated is incompleteness whatever the auditor's disposition)"
+ ],
+ "D7 neg (reverse): a sealed included passage absent from the auditor's enumeration#0": [
+  "FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['paperB.txt', 7, '3.1']"
+ ],
+ "D7 neg (round-3 N2 both): non-hex seed \u2192 a FAIL token and an artefact, never a traceback#0": [
+  "FAIL: C6_SELECTION: selection carries no seed of 64 lowercase hexadecimal characters; nothing to recompute against"
+ ],
+ "D7 neg (round-3 N2 codex): uppercase seed in the selection \u2192 FAIL under select's contract, not PASS#0": [
+  "FAIL: C6_SELECTION: selection carries no seed of 64 lowercase hexadecimal characters; nothing to recompute against"
+ ],
+ "D7 neg: an audited claim has no re-derivation#0": [
+  "FAIL: AUDIT c1: MISMATCH (missing)"
+ ],
+ "D7 neg: an auditor enumeration failing census is not sealed (kimi K4)#0": [
+  "FAIL: declared_candidate_count=99 but recomputed 4",
+  "FAIL: auditor enumeration does not pass census; not sealed"
+ ],
+ "D7 neg: auditor enumeration changed after the stage-1 seal#0": [
+  "FAIL: C6_STAGE_ORDER: the auditor's enumeration differs from its stage-1 seal"
+ ],
+ "D7 neg: re-classified origin differs from the sealed ledger#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; origin CHOSEN vs sealed IMPORTED; root_origins differ: audit ['CHOSEN'] vs sealed ['IMPORTED'])"
+ ],
+ "D7 neg: re-derivations changed after their seal (kimi F5: MATCH cannot be manufactured after release)#0": [
+  "FAIL: C6_STAGE_ORDER: the auditor's re-derivations differ from their seal (re-derivations must be sealed before any sealed ledger is released)"
+ ],
+ "D7 neg: re-derived outcome differs from the sealed record#0": [
+  "FAIL: AUDIT c1: MISMATCH (outcome REPRO_FAILED vs sealed REPRO_WITHIN_STATED_PRECISION; printed/reproduced values differ)"
+ ],
+ "D7 neg: re-sealing the enumeration is refused (first-write)#0": [
+  "FAIL: pos_stage1.txt already exists (first-write seal; a seal is never replaced)"
+ ],
+ "D7 neg: seed not 64 lowercase hex#0": [
+  "FAIL: seed must be 64 lowercase hexadecimal characters"
+ ],
+ "D7 neg: select before any stage-1 seal is refused (codex select-before-seal)#0": [
+  "FAIL: no stage-1 seal of the auditor's enumeration; selection refused"
+ ],
+ "D7 neg: selection edited to audit nothing, candidate digest retained (codex) \u2192 recomputation fails it#0": [
+  "FAIL: C6_SELECTION: supplied k differs from the recomputed selection",
+  "FAIL: C6_SELECTION: supplied sampled_ids differs from the recomputed selection",
+  "FAIL: C6_SELECTION: supplied audited_ids differs from the recomputed selection"
+ ],
+ "D7 positive: stage-ordered, complete, all MATCH#0": [],
+ "D7 stage 1: census-gated first-write seal of the auditor's enumeration#0": [],
+ "D7 stage 2: selection requires the stage-1 seal; N=3, arithmetic c1 + k=1 of {c2,c3}#0": [],
+ "D7 stage 2b: first-write seal of the re-derivations#0": [],
+ "PROBE 1 (Codex/Blanc): a required passage omitted by BOTH seats, retained by the auditor \u2192 FAIL, listed#0": [
+  "FAIL: COMPLETENESS audit_included_absent_from_sealed: ['paperB.txt', 7, '3.1']"
+ ],
+ "PROBE 3: inclusion disputed on 2 of 20 (10%) \u2192 listed, counted, PASS#0": [],
+ "PROBE 4: inclusion disputed on 3 of 20 (15%) \u2192 FAIL#0": [
+  "FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20"
+ ],
+ "V37 F2 (codex): `validate` rejects a cycle through a NON-DERIVED record \u2014 origin-independent graph integrity, exact failure set#0": [
+  "FAIL: graph integrity: cycle at p.txt#x"
+ ],
+ "V37 F2 (codex): lane `compute` fails BEFORE writing output on a cyclic complete provenance graph, whatever the origin#0": [
+  "FAIL: provenance graph 0: cycle at p.txt#x"
+ ],
+ "batch (the reviewers' finding, reproduced): the same record CANNOT validate when the session holds only its batch's texts#0": [
+  "FAIL: t1.txt#1.a: external source not an enumerable verified text: t4.txt absent from the sources directory",
+  "FAIL: t1.txt#1.a: cannot read external value line t4.txt:2"
+ ],
+ "batch neg (codex F6): an input_id not of the form <claim file>#\u2026#0": [
+  "FAIL: batch 1: input_id i1 does not begin with its claim's file followed by #"
+ ],
+ "batch neg (codex F6): ledger records naming a claim that is not an included candidate#0": [
+  "FAIL: batch 1: ledger record t1.txt#1.a names claim t1.txt#77, not an included candidate of this batch",
+  "FAIL: batch 1: ledger record t1.txt#1.r names claim t1.txt#77, not an included candidate of this batch"
+ ],
+ "batch neg (codex F7): a seal for a batch not in the partition#0": [
+  "FAIL: seals for batches not in the partition: ['3']"
+ ],
+ "batch neg (codex F7): batch 2's predecessor digest replaced by zeros \u2192 chain broken#0": [
+  "FAIL: batch 2: predecessor chain broken (seal does not bind batch 1's seal)"
+ ],
+ "batch neg (codex F7): sealed ownership list differs from the partition (chain of batch 2 also breaks, as it must)#0": [
+  "FAIL: batch 1: sealed ownership differs from the partition",
+  "FAIL: batch 2: predecessor chain broken (seal does not bind batch 1's seal)"
+ ],
+ "batch neg (kimi F4): a candidate_id collision#0": [
+  "FAIL: candidate_id collision across batches: t4.txt#1"
+ ],
+ "batch neg (round-3 N3 codex): the root seal claims a predecessor, batch 2 rebound consistently \u2192 FAIL#0": [
+  "FAIL: batch 1: the chain's root seal claims a predecessor"
+ ],
+ "batch neg: a batch report without the packet's ACCESS_SHA#0": [
+  "FAIL: batch 2: SEAT_REPORT does not print ACCESS_SHA=abababababababab\u2026"
+ ],
+ "batch neg: a batch-2 candidate claims ownership of a batch-1 text#0": [
+  "FAIL: batch 2: candidate t1.txt#9 cites t1.txt, not an owned text of this batch"
+ ],
+ "batch neg: a candidate id not of the global form <file>#<local> (codex/kimi id finding)#0": [
+  "FAIL: batch 2: candidate_id c1 is not of the form <source_file>#<local>"
+ ],
+ "batch neg: a cross-batch derived_from that resolves to nothing (codex b1_b2_i1 case)#0": [
+  "FAIL: t1.txt#1.r: derived_from t4.txt#1.zz unresolved after join"
+ ],
+ "batch neg: a manifest text owned by no batch#0": [
+  "FAIL: manifest text t5.txt is owned by no batch"
+ ],
+ "batch neg: a sealed artefact changed after its seal#0": [
+  "FAIL: batch 1: candidates_b1.json differs from its seal"
+ ],
+ "batch neg: a text owned by two batches#0": [
+  "FAIL: text t2.txt is owned by batch 1 and batch 2"
+ ],
+ "batch neg: an owned text's bytes differ from the manifest (codex/kimi: bytes, not names)#0": [
+  "FAIL: owned text t3.txt: bytes do not verify against the manifest"
+ ],
+ "batch neg: evidence cited from a non-manifest text#0": [
+  "FAIL: batch 1: record t1.txt#1.a cites elsewhere.txt, not a manifest text"
+ ],
+ "batch neg: re-sealing a batch is refused#0": [
+  "FAIL: batch 1 already sealed"
+ ],
+ "batch neg: sealing batch 2 before batch 1 is refused (codex order probe)#0": [
+  "FAIL: batch 2 sealed before batch 1 (dispatch order)"
+ ],
+ "batch: C1B_BATCH_COVERAGE positive (ownership once, bytes verified, ACCESS_SHA in every report)#0": [],
+ "batch: census PASSES over the joined files (one denominator)#0": [],
+ "batch: join \u2014 cross-batch IMPORT evidence (t1 claim cites t4's line) is ALLOWED, ids kept, graph resolved#0": [],
+ "batch: partition 5 texts into 2 batches (3+2), manifest order, bytes and lines printed#0": [],
+ "batch: seal batch 1 (binds partition, owned texts' verified digests, artefacts)#0": [],
+ "batch: seal batch 2 (binds predecessor seal)#0": [],
+ "batch: the joined ledger validates against the FULL corpus (the cross-batch import machine-matches at t4:2)#0": [],
+ "gate F1 (codex): a LOCALLY printed cited value ('We adopt a = 3 from paperB' printed by the claiming paper) validates as IMPORTED at its own line#0": [],
+ "gate F1 neg: local import whose value is not a token at its own line#0": [
+  "FAIL: paperE.txt#1.a: value 4 is not a numeric token at paperE.txt:2"
+ ],
+ "gate F10 neg: a limb-B chain not bound to the agreed limb-A seals is refused#0": [
+  "FAIL: a limb-B chain must be bound to the agreed limb-A seals file at its first seal"
+ ],
+ "gate F10 neg: join of a limb-B chain against a DIFFERENT limb-A seals file fails#0": [
+  "FAIL: limb-B chain is not bound to the supplied agreed limb-A seals file"
+ ],
+ "gate F10: join of a limb-B chain verifies its binding to the supplied limb-A seals#0": [],
+ "gate F10: limb-B chain bound to the limb-A seals at its first seal#0": [],
+ "gate F2 (codex): an EMPTY ledger validates (a paper may state no derivation)#0": [],
+ "gate F2: compute over an empty ledger with the candidate file emits rests_on=NOT_COMPUTED for the included claim#0": [],
+ "gate F3 (codex): a STANDARD record citing a nonexistent line with a fabricated quotation FAILS at the shared evidence check#0": [
+  "FAIL: paperE.txt#1.c: cannot read evidence line paperE.txt:99"
+ ],
+ "gate F3 positive: a STANDARD record with a real quotation at a real line validates#0": [],
+ "gate F8 (codex): the staged builder builds from explicit --master/--out/--brief#0": [],
+ "gate F9 (codex): the manifest refuses a symlinked file instead of skipping it#0": [],
+ "gate-2 F1 (codex): an ordinary PRINTED record whose evidence coordinates name a nonexistent file FAILS#0": [
+  "FAIL: paperB.txt#1.a: cannot read evidence line nonexistent.txt:999"
+ ],
+ "gate-2 F1 (kimi T11): an ABSENT/MEASURED record with an empty quotation FAILS#0": [
+  "FAIL: paperA.txt#1.m: empty quotation (every non-ORIG_SILENT record quotes its evidence line)"
+ ],
+ "gate-2 F2 (codex): a reconstructed dependency edge differing from the sealed ledger is MISMATCH (roots equal; only the edge differs)#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; derived_from ['i2'] vs sealed [])"
+ ],
+ "gate-2 F3 (codex/kimi): compute without the candidate file exits 2 and writes nothing#0": [],
+ "gate-2 F7 (codex): a symlinked ROOT is refused#0": [],
+ "gate-3 F1 (codex): a reconstruction with only origin and parents is refused at the re-derivation seal#0": [
+  "FAIL: c1/i1: reconstruction missing ['symbol', 'status', 'value', 'source_file', 'source_line', 'origin_evidence']"
+ ],
+ "gate-3 F1 (exact failure set widened at V36, disclosed in \u00a710.31): a reconstruction that omits a claim's dependency (i2) is MISMATCH \u2014 the dependency is never borrowed from the sealed side#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i2: not reconstructed; graph integrity (auditor closure): missing dependency i2 of i1; dependency not reconstructed by the auditor or cyclic: i1: derived_from i2 not in ledger)"
+ ],
+ "gate-3 F1 positive: the same claim with its dependency reconstructed PASSES#0": [],
+ "gate-3 F1: a complete reconstruction whose evidence quotation differs is MISMATCH#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; origin_evidence.verbatim fabricated vs sealed We adopt a = 2 from paperB (2020))"
+ ],
+ "gate-3 F2 (codex): an auditor classification matching the sealed ALTERNATIVE is compared under that branch and PASSES#0": [],
+ "gate-3 F3 (codex): a BLOCKED record whose naming evidence lies in another file FAILS#0": [
+  "FAIL: paperA.txt#1.z: BLOCKED naming evidence is in paperB.txt, but claim paperA.txt#1 belongs to paperA.txt"
+ ],
+ "gate-3 F3 (codex): a STANDARD/ORIG_SILENT record without value coordinates FAILS (absence of origin evidence never waives value evidence)#0": [
+  "FAIL: paperE.txt#1.h: STANDARD record needs its own source_file and a positive source_line (absence of origin evidence never waives value evidence)"
+ ],
+ "gate-3 F3 positive: a BLOCKED record naming its source in the claiming paper validates#0": [],
+ "gate-3 F4 (codex): a PRINTED record with origin evidence on line 7 and its value on line 8 validates#0": [],
+ "gate-3 F4 neg: the value must still be a numeric token at its own line#0": [
+  "FAIL: paperB.txt#1.g: value 9 is not a numeric token at paperB.txt:8"
+ ],
+ "gate-4 F1 (codex): an OFF-SAMPLE dependency record with a fabricated quotation is compared through the closure \u2192 MISMATCH on the selected claim#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i9: record matches neither complete declared branch; origin_evidence.verbatim Fabricated dependency evidence vs sealed We adopt a = 2 from paperB (2020))"
+ ],
+ "gate-4 F1 positive: the same closure with a faithful off-sample record PASSES#0": [],
+ "gate-4 F2 (codex): a PARENT-ONLY declared alternative (origin unchanged, derived_from_alt) matched by the auditor PASSES#0": [],
+ "gate-4 F2 (codex): an INHERITED alternative (the dependency of another claim matched on its declared alternative) carries through the closure \u2192 the dependent claim PASSES#0": [],
+ "gate-4 F3 (codex): a STANDARD value line in another file FAILS#0": [
+  "FAIL: paperA.txt#1.c: STANDARD value line is in paperE.txt, outside the claiming file paperA.txt: a value outside the claiming paper follows the named-source rule (PRINTED/IMPORTED with ORIG_CITATION), even when it is on the closed list"
+ ],
+ "gate-4 N5 (kimi): seats disagreeing on an input's value and line \u2192 MERGE=FAIL, both listed#0": [
+  "FAIL: i1: seats disagree on value ('2' vs '3') \u2014 a value/status/coordinate disagreement is not silently resolved",
+  "FAIL: i1: seats disagree on source_line (5 vs 6) \u2014 a value/status/coordinate disagreement is not silently resolved"
+ ],
+ "gate-5 F1 (codex): a dependency reconstructed under the WRONG claim key is bound to its sealed identity at compare \u2192 MISMATCH#0": [
+  "FAIL: C6_IDENTITY: i9 reconstructed under claim cZ, but the sealed record belongs to claim c2",
+  "FAIL: AUDIT c1: MISMATCH (input i9: identity: reconstructed under claim cZ, but the sealed record belongs to claim c2)"
+ ],
+ "gate-5 F1 (codex): an explicit claim_id that conflicts with the enclosing claim key is refused at the seal#0": [
+  "FAIL: c2/i9: explicit claim_id 'p.txt#f0' conflicts with its enclosing claim c2"
+ ],
+ "gate-5 F1 (codex): an input_id reconstructed twice (a fabricated copy shadowed by a faithful one) is refused at the seal#0": [
+  "FAIL: cX99/i9: input_id already reconstructed under c2 \u2014 every input_id occurs exactly once across the reconstruction"
+ ],
+ "gate-5 F2 (codex): primary origin+evidence with the ALTERNATIVE's parents \u2014 a hybrid of both branches \u2014 is MISMATCH even though the roots agree#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; derived_from ['i3'] vs sealed ['i2'] (alternative ['i3']))"
+ ],
+ "gate-5 F2 positive: the COMPLETE alternative branch (alt origin + alt evidence + alt parents together) PASSES#0": [],
+ "gate-6 F2 (codex): the REVERSE hybrid (alternative origin+evidence with the primary parents) is MISMATCH by the authoritative predicate#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; root_origins differ: audit ['CHOSEN', 'STANDARD'] vs sealed ['STANDARD'])"
+ ],
+ "gate-7 F1 (codex): the same reconstruction against the seats MERGED IN THE OTHER ORDER also PASSES (verdict independent of seat order)#0": [],
+ "gate-7 F1 neg: a changed search CONTENT still fails#0": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; origin_search differs (structural comparison against the matched branch's search); root_origins differ: audit ['UNDECLARED'] vs sealed ['CHOSEN'])"
+ ],
+ "gate-7 F1/F2 (codex): the auditor matching the ORIG_SILENT alternative, with its search in a different key order, PASSES (branch search, structural comparison)#0": [],
+ "probe:D1 probe: deleting the candidate-file requirement turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: PRINTED record needs the candidate file to bind claim paperA.txt#1 to its claiming paper"
+ ],
+ "probe:D1 probe: deleting the claiming-file binding turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: citing sentence is in paperC.txt, but claim paperA.txt#1 belongs to paperA.txt"
+ ],
+ "probe:D1 probe: deleting the enumerable check turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: external source not an enumerable verified text: paperC.txt is not a row of the manifest"
+ ],
+ "probe:D1 probe: deleting the first-line tie-break turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: external value line 6 is not the first line of paperB.txt carrying both a and 2 (that is line 5)"
+ ],
+ "probe:D1 probe: deleting the no-symbol-line check turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: no line of paperD.txt carries both g and 9"
+ ],
+ "probe:D1 probe: deleting the refiled-import check turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: value line is in paperB.txt but claim paperA.txt#1 belongs to paperA.txt: such a record must be IMPORTED with ORIG_CITATION (submitted CHOSEN/ORIG_CHOICE_STATED)"
+ ],
+ "probe:D1 probe: deleting the self-file check leaves only the claiming-file failure on that negative": [
+  "FAIL: paperA.txt#1.a: IMPORTED PRINTED record names its own file as the external source"
+ ],
+ "probe:D1 probe: deleting the shared empty-quotation check turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: empty quotation (every non-ORIG_SILENT record quotes its evidence line)"
+ ],
+ "probe:D1 probe: deleting the shared quotation check turns that negative into PASS (the neutralised line still skips the record)": [
+  "FAIL: paperA.txt#1.a: quotation not found at evidence line paperA.txt:2"
+ ],
+ "probe:D1 probe: deleting the token check turns that negative into PASS": [
+  "FAIL: paperA.txt#1.a: value 2 is not a numeric token at external value line paperB.txt:2"
+ ],
+ "probe:D1 probe: deleting the unknown-claim check turns that negative into PASS (the record then skips binding entirely)": [
+  "FAIL: ghost.txt#9.a: claim ghost.txt#9 is not a candidate row"
+ ],
+ "probe:D7 probe: deleting the census gate seals the bad enumeration": [
+  "FAIL: declared_candidate_count=99 but recomputed 4",
+  "declared: candidates=99 included=3 excluded=1 attempts=1 exclusions=1",
+  "outcomes: REPRO_NOT_EVALUABLE=1 REPRO_NO_DERIVATION_STATED=1 REPRO_WITHIN_STATED_PRECISION=1",
+  "author_specified_input=0",
+  "recomputed: candidates=4 included=3 excluded=1 attempts=1 reconciled=NO",
+  "FAIL: auditor enumeration does not pass census; not sealed"
+ ],
+ "probe:D7 probe: deleting the excluded-missing check turns it into PASS": [
+  "FAIL: COMPLETENESS audit_excluded_absent_from_sealed: ['paperB.txt', 9, '1999'] (a passage the seats never enumerated is incompleteness whatever the auditor's disposition)",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:D7 probe: deleting the re-derivation seal check turns that negative into PASS": [
+  "FAIL: C6_STAGE_ORDER: the auditor's re-derivations differ from their seal (re-derivations must be sealed before any sealed ledger is released)",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:D7 probe: deleting the recomputation lets the emptied selection PASS": [
+  "FAIL: C6_SELECTION: supplied k differs from the recomputed selection",
+  "FAIL: C6_SELECTION: supplied sampled_ids differs from the recomputed selection",
+  "FAIL: C6_SELECTION: supplied audited_ids differs from the recomputed selection",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:D7 probe: deleting the seal requirement lets select run first": [
+  "FAIL: no stage-1 seal of the auditor's enumeration; selection refused"
+ ],
+ "probe:D7 probe: deleting the sealed-missing check turns it into PASS": [
+  "FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['paperB.txt', 7, '3.1']",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:D7 probe: deleting the seed-presence check lets the seedless empty audit PASS": [
+  "FAIL: C6_SELECTION: selection carries no seed of 64 lowercase hexadecimal characters; nothing to recompute against",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:D7 probe: deleting the stage-order check turns that negative into PASS": [
+  "FAIL: C6_STAGE_ORDER: the auditor's enumeration differs from its stage-1 seal",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:D7 probe: deleting the zero-denominator check turns it into PASS": [
+  "FAIL: AUDIT denominator is zero while candidates exist on either side",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:PROBE 1 deletion probe: removing the both-seats-missed check turns it into PASS": [
+  "FAIL: COMPLETENESS audit_included_absent_from_sealed: ['paperB.txt', 7, '3.1']",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:PROBE 4 deletion probe: removing the 10% rule turns it into PASS": [
+  "FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:V37 F2 probe: deleting the compute integrity check classifies the cyclic graph as USES_CHOSEN": [
+  "FAIL: provenance graph 0: cycle at p.txt#x"
+ ],
+ "probe:V37 F2 probe: deleting the validate integrity check lets the CHOSEN self-cycle pass C3": [
+  "FAIL: graph integrity: cycle at p.txt#x"
+ ],
+ "probe:batch probe: deleting the ACCESS_SHA check turns that negative into PASS": [
+  "FAIL: batch 2: SEAT_REPORT does not print ACCESS_SHA=abababababababab\u2026"
+ ],
+ "probe:batch probe: deleting the bytes check turns that negative into PASS": [
+  "FAIL: owned text t3.txt: bytes do not verify against the manifest"
+ ],
+ "probe:batch probe: deleting the chain check turns that negative into PASS": [
+  "FAIL: batch 2: predecessor chain broken (seal does not bind batch 1's seal)"
+ ],
+ "probe:batch probe: deleting the collision check turns that negative into PASS": [
+  "FAIL: candidate_id collision across batches: t4.txt#1"
+ ],
+ "probe:batch probe: deleting the duplicate check turns that negative into PASS": [
+  "FAIL: text t2.txt is owned by batch 1 and batch 2"
+ ],
+ "probe:batch probe: deleting the global-id check turns that negative into PASS": [
+  "FAIL: batch 2: candidate_id c1 is not of the form <source_file>#<local>"
+ ],
+ "probe:batch probe: deleting the graph check turns that negative into PASS": [
+  "FAIL: t1.txt#1.r: derived_from t4.txt#1.zz unresolved after join"
+ ],
+ "probe:batch probe: deleting the input-id form check turns that negative into PASS": [
+  "FAIL: batch 1: input_id i1 does not begin with its claim's file followed by #"
+ ],
+ "probe:batch probe: deleting the manifest-evidence check turns that negative into PASS": [
+  "FAIL: batch 1: record t1.txt#1.a cites elsewhere.txt, not a manifest text"
+ ],
+ "probe:batch probe: deleting the missing-text check turns that negative into PASS": [
+  "FAIL: manifest text t5.txt is owned by no batch"
+ ],
+ "probe:batch probe: deleting the order check seals batch 2 first": [
+  "FAIL: batch 2 sealed before batch 1 (dispatch order)"
+ ],
+ "probe:batch probe: deleting the orphan-claim check turns that negative into PASS": [
+  "FAIL: batch 1: ledger record t1.txt#1.a names claim t1.txt#77, not an included candidate of this batch",
+  "FAIL: batch 1: ledger record t1.txt#1.r names claim t1.txt#77, not an included candidate of this batch"
+ ],
+ "probe:batch probe: deleting the ownership check turns that negative into PASS": [
+  "FAIL: batch 2: candidate t1.txt#9 cites t1.txt, not an owned text of this batch"
+ ],
+ "probe:batch probe: deleting the ownership-binding check leaves only the chain failure": [
+  "FAIL: batch 1: sealed ownership differs from the partition"
+ ],
+ "probe:batch probe: deleting the root check turns that negative into PASS": [
+  "FAIL: batch 1: the chain's root seal claims a predecessor"
+ ],
+ "probe:batch probe: deleting the seal check turns that negative into PASS": [
+  "FAIL: batch 1: candidates_b1.json differs from its seal"
+ ],
+ "probe:gate F1 probe: deleting the local value check turns that negative into PASS": [
+  "FAIL: paperE.txt#1.a: value 4 is not a numeric token at paperE.txt:2"
+ ],
+ "probe:gate F10 probe: deleting the binding check joins the mismatched chain": [
+  "FAIL: limb-B chain is not bound to the supplied agreed limb-A seals file"
+ ],
+ "probe:gate F10 probe: deleting the binding requirement seals an unbound limb-B chain": [
+  "FAIL: a limb-B chain must be bound to the agreed limb-A seals file at its first seal"
+ ],
+ "probe:gate F2 probe: deleting the NOT_COMPUTED fill makes the row count fail": [
+  "paperE.txt#1\trests_on=NOT_COMPUTED\troot_origins=[]"
+ ],
+ "probe:gate F3 probe: deleting the shared evidence-line check turns that negative into PASS": [
+  "FAIL: paperE.txt#1.c: cannot read evidence line paperE.txt:99"
+ ],
+ "probe:gate F4 probe: deleting the propagation leaves the dependent claim undisputed": [
+  "t01.txt#1\trests_on=['USES_CHOSEN', 'DERIVED_STANDARD_OR_MEASURED_ONLY']\troot_origins=['CHOSEN', 'MEASURED']\tDISPUTED",
+  "t12.txt#1\trests_on=['USES_CHOSEN', 'DERIVED_STANDARD_OR_MEASURED_ONLY']\troot_origins=['CHOSEN', 'MEASURED']\tDISPUTED"
+ ],
+ "probe:gate F9 probe: deleting the refusal makes the manifest hash past the symlink without an error": [
+  "ERROR=link.py: symlink or non-regular entry (the manifest pins regular files only and refuses to skip)"
+ ],
+ "probe:gate-2 F1 probe: deleting the shared empty-quotation check lets it PASS": [
+  "FAIL: paperA.txt#1.m: empty quotation (every non-ORIG_SILENT record quotes its evidence line)"
+ ],
+ "probe:gate-2 F1 probe: deleting the shared evidence-line check lets it PASS": [
+  "FAIL: paperB.txt#1.a: cannot read evidence line nonexistent.txt:999"
+ ],
+ "probe:gate-2 F2 probe: with the edge DIAGNOSTIC deleted the verdict still FAILS on the authoritative branch predicate (guard retained, Blanc 03:03)": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; derived_from ['i2'] vs sealed [])",
+  "      \"record matches neither complete declared branch\",",
+  "      \"derived_from ['i2'] vs sealed []\"",
+  "    \"input i1: record matches neither complete declared branch; derived_from ['i2'] vs sealed []\""
+ ],
+ "probe:gate-2 F7 probe: deleting the root check lets the symlinked root be hashed": [
+  "ERROR=<W>/manifest_root_link: root is a symlink or not a directory (refused)"
+ ],
+ "probe:gate-3 F1 probe: deleting the schema gate seals the incomplete reconstruction": [
+  "re-derivation NOT sealed: the reconstruction is incomplete"
+ ],
+ "probe:gate-3 F1 probe: with the evidence DIAGNOSTIC deleted the verdict still FAILS on the authoritative branch predicate (guard retained)": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; origin_evidence.verbatim fabricated vs sealed We adopt a = 2 from paperB (2020))",
+  "      \"record matches neither complete declared branch\",",
+  "      \"origin_evidence.verbatim fabricated vs sealed We adopt a = 2 from paperB (2020)\"",
+  "    \"input i1: record matches neither complete declared branch; origin_evidence.verbatim fabricated vs sealed We adopt a = 2 from paperB (2020)\""
+ ],
+ "probe:gate-3 F3 probe: deleting the claiming-file binding lets it PASS": [
+  "FAIL: paperA.txt#1.z: BLOCKED naming evidence is in paperB.txt, but claim paperA.txt#1 belongs to paperA.txt"
+ ],
+ "probe:gate-3 F3 probe: deleting the coordinate requirement lets it PASS": [
+  "FAIL: paperE.txt#1.h: STANDARD record needs its own source_file and a positive source_line (absence of origin evidence never waives value evidence)"
+ ],
+ "probe:gate-3 F4 probe: deleting the value-line check lets the wrong value PASS": [
+  "FAIL: paperB.txt#1.g: value 9 is not a numeric token at paperB.txt:8"
+ ],
+ "probe:gate-4 F1 probe: deleting the closure attribution lets the fabricated off-sample record PASS": [
+  "FAIL: AUDIT c1: MISMATCH (input i9: record matches neither complete declared branch; origin_evidence.verbatim Fabricated dependency evidence vs sealed We adopt a = 2 from paperB (2020))",
+  " \"C6_AUDIT_SAMPLE\": \"FAIL\",",
+  "   \"result\": \"MISMATCH\",",
+  "   \"why\": [",
+  "    \"input i9: record matches neither complete declared branch; origin_evidence.verbatim Fabricated dependency evidence vs sealed We adopt a = 2 from paperB (2020)\"",
+  "   ]",
+  " \"study_files\": \"CENSUS_AUDIT_FAILED\""
+ ],
+ "probe:gate-4 F3 probe: deleting the claiming-file check lets the external STANDARD PASS": [
+  "FAIL: paperA.txt#1.c: STANDARD value line is in paperE.txt, outside the claiming file paperA.txt: a value outside the claiming paper follows the named-source rule (PRINTED/IMPORTED with ORIG_CITATION), even when it is on the closed list"
+ ],
+ "probe:gate-4 N5 probe: deleting the field comparison merges silently": [
+  "FAIL: i1: seats disagree on value ('2' vs '3') \u2014 a value/status/coordinate disagreement is not silently resolved",
+  "FAIL: i1: seats disagree on source_line (5 vs 6) \u2014 a value/status/coordinate disagreement is not silently resolved"
+ ],
+ "probe:gate-5 F1 probe: deleting the claim-key check seals the conflicting record": [
+  "FAIL: c2/i9: explicit claim_id 'p.txt#f0' conflicts with its enclosing claim c2",
+  "re-derivation NOT sealed: the reconstruction is incomplete"
+ ],
+ "probe:gate-5 F1 probe: deleting the uniqueness check seals the shadowed reconstruction": [
+  "FAIL: cX99/i9: input_id already reconstructed under c2 \u2014 every input_id occurs exactly once across the reconstruction",
+  "re-derivation NOT sealed: the reconstruction is incomplete"
+ ],
+ "probe:gate-5 F1 probe: with the GLOBAL identity line deleted, the per-record identity mismatch still fails the dependent claim (guard retained, Blanc 03:03)": [
+  "FAIL: C6_IDENTITY: i9 reconstructed under claim cZ, but the sealed record belongs to claim c2"
+ ],
+ "probe:gate-5 F2 probe: with the parent DIAGNOSTIC deleted the hybrid still FAILS on the authoritative branch predicate (guard retained)": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; derived_from ['i3'] vs sealed ['i2'] (alternative ['i3']))",
+  "      \"record matches neither complete declared branch\",",
+  "      \"derived_from ['i3'] vs sealed ['i2'] (alternative ['i3'])\"",
+  "    \"input i1: record matches neither complete declared branch; derived_from ['i3'] vs sealed ['i2'] (alternative ['i3'])\""
+ ],
+ "probe:gate-7 F1 probe: deleting the preservation drops the alternative's search": [],
+ "probe:gate-7 probe: with the search DIAGNOSTIC deleted the verdict still FAILS on the authoritative predicate": [
+  "FAIL: AUDIT c1: MISMATCH (input i1: record matches neither complete declared branch; origin_search differs (structural comparison against the matched branch's search); root_origins differ: audit ['UNDECLARED'] vs sealed ['CHOSEN'])",
+  "      \"record matches neither complete declared branch\",",
+  "      \"origin_search differs (structural comparison against the matched branch's search)\"",
+  "    \"input i1: record matches neither complete declared branch; origin_search differs (structural comparison against the matched branch's search)\","
+ ]
+}

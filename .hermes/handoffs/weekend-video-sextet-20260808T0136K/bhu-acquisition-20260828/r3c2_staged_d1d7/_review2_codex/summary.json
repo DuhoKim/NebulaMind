@@ -1,0 +1,877 @@
+[
+  [
+    "both_omit",
+    1,
+    [
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": false,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "OMISSION_AUDIT_INCLUDED_ABSENT_FROM_SEALED",
+        "sealed_included": null,
+        "sealed_kind": null
+      }
+    ],
+    0,
+    "FAIL"
+  ],
+  [
+    "reverse",
+    1,
+    [
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": null,
+        "audit_kind": null,
+        "in_audit": false,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "OMISSION_SEALED_INCLUDED_ABSENT_FROM_AUDIT",
+        "sealed_included": true,
+        "sealed_kind": null
+      }
+    ],
+    0,
+    "FAIL"
+  ],
+  [
+    "missing_seed_skips_selection",
+    0,
+    [
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      }
+    ],
+    0,
+    "PASS"
+  ],
+  [
+    "dispute_2_of_20",
+    0,
+    [
+      {
+        "audit_included": false,
+        "audit_kind": "ATTRIBUTED_NOT_DERIVED",
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "AUDIT_INCLUSION_DISPUTED",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": false,
+        "audit_kind": "ATTRIBUTED_NOT_DERIVED",
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "AUDIT_INCLUSION_DISPUTED",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          3,
+          "43"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          4,
+          "44"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          5,
+          "45"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          6,
+          "46"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          7,
+          "47"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          8,
+          "48"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          9,
+          "49"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          10,
+          "50"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          11,
+          "51"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          12,
+          "52"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          13,
+          "53"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          14,
+          "54"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          15,
+          "55"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          16,
+          "56"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          17,
+          "57"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          18,
+          "58"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          19,
+          "59"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          20,
+          "60"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      }
+    ],
+    2,
+    "PASS"
+  ],
+  [
+    "dispute_3_of_20",
+    1,
+    [
+      {
+        "audit_included": false,
+        "audit_kind": "ATTRIBUTED_NOT_DERIVED",
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "AUDIT_INCLUSION_DISPUTED",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": false,
+        "audit_kind": "ATTRIBUTED_NOT_DERIVED",
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "AUDIT_INCLUSION_DISPUTED",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": false,
+        "audit_kind": "ATTRIBUTED_NOT_DERIVED",
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          3,
+          "43"
+        ],
+        "result": "AUDIT_INCLUSION_DISPUTED",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          4,
+          "44"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          5,
+          "45"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          6,
+          "46"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          7,
+          "47"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          8,
+          "48"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          9,
+          "49"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          10,
+          "50"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          11,
+          "51"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          12,
+          "52"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          13,
+          "53"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          14,
+          "54"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          15,
+          "55"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          16,
+          "56"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          17,
+          "57"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          18,
+          "58"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          19,
+          "59"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          20,
+          "60"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      }
+    ],
+    3,
+    "FAIL"
+  ],
+  [
+    "audit_excluded_only",
+    1,
+    [
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": false,
+        "audit_kind": "DATE",
+        "in_audit": true,
+        "in_sealed": false,
+        "key": [
+          "own.txt",
+          3,
+          "43"
+        ],
+        "result": "OMISSION_AUDIT_EXCLUDED_ABSENT_FROM_SEALED",
+        "sealed_included": null,
+        "sealed_kind": null
+      }
+    ],
+    0,
+    "FAIL"
+  ],
+  [
+    "sealed_excluded_only",
+    1,
+    [
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": null,
+        "audit_kind": null,
+        "in_audit": false,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          3,
+          "43"
+        ],
+        "note": "sealed excluded, not in the auditor's enumeration: listed, counted as a dispute",
+        "result": "AUDIT_INCLUSION_DISPUTED",
+        "sealed_included": false,
+        "sealed_kind": "DATE"
+      }
+    ],
+    1,
+    "FAIL"
+  ],
+  [
+    "kind_difference",
+    0,
+    [
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          1,
+          "41"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": true,
+        "audit_kind": null,
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          2,
+          "42"
+        ],
+        "result": "MATCH",
+        "sealed_included": true,
+        "sealed_kind": null
+      },
+      {
+        "audit_included": false,
+        "audit_kind": "REFERENCE_NUMBER",
+        "in_audit": true,
+        "in_sealed": true,
+        "key": [
+          "own.txt",
+          3,
+          "43"
+        ],
+        "result": "MATCH_KIND_DIFFERS",
+        "sealed_included": false,
+        "sealed_kind": "DATE"
+      }
+    ],
+    0,
+    "PASS"
+  ],
+  [
+    "choose",
+    0,
+    "C3_NO_SUBSTITUTION=PASS"
+  ],
+  [
+    "fit",
+    0,
+    "C3_NO_SUBSTITUTION=PASS"
+  ],
+  [
+    "measure",
+    0,
+    "C3_NO_SUBSTITUTION=PASS"
+  ],
+  [
+    "adopt_from_X",
+    0,
+    "C3_NO_SUBSTITUTION=PASS"
+  ],
+  [
+    "second_line",
+    1,
+    "FAIL: borrow.txt#i: external value line 2 is not the first line of source.txt carrying both a and 41 (that is line 1)\nC3_NO_SUBSTITUTION=FAIL"
+  ],
+  [
+    "no_symbol",
+    0,
+    "C3_NO_SUBSTITUTION=PASS"
+  ],
+  [
+    "import_refiled_CHOSEN",
+    0,
+    "C3_NO_SUBSTITUTION=PASS"
+  ],
+  [
+    "batch_bad_chain_nonglobal_orphan",
+    0,
+    "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_codex/batch/joined_candidates.json sha256=b64b6071e88a95fd53285fa0555f7121e73dc40df76967168092d15614853b09\n/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_codex/batch/joined_exclusions.json sha256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05\n/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_codex/batch/joined_ledger.json sha256=ca47ecf8d0dfb7fe887a36b18cdf8ac9af6ad76adfc02a7b8a2a4741baf38b72\njoined: batches=2 candidates=2 included=2 excluded=0 exclusions=0 records=2\nJOIN=PASS\n"
+  ]
+]

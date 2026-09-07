@@ -1,0 +1,95 @@
+{
+ "claims": {
+  "t01.txt#1": {
+   "DISPUTED": true,
+   "rests_on": [
+    "USES_CHOSEN",
+    "DERIVED_STANDARD_OR_MEASURED_ONLY"
+   ],
+   "root_origins": [
+    "CHOSEN",
+    "MEASURED"
+   ],
+   "root_origins_by_graph": [
+    [
+     "CHOSEN"
+    ],
+    [
+     "MEASURED"
+    ]
+   ]
+  },
+  "t12.txt#1": {
+   "DISPUTED": true,
+   "rests_on": [
+    "USES_CHOSEN",
+    "DERIVED_STANDARD_OR_MEASURED_ONLY"
+   ],
+   "root_origins": [
+    "CHOSEN",
+    "MEASURED"
+   ],
+   "root_origins_by_graph": [
+    [
+     "CHOSEN"
+    ],
+    [
+     "MEASURED"
+    ]
+   ]
+  }
+ },
+ "records": [
+  {
+   "claim_id": "t01.txt#1",
+   "derived_from": [
+    "t12.txt#1.p"
+   ],
+   "input_id": "t01.txt#1.d",
+   "origin": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "t01.txt",
+    "source_line": 2,
+    "verbatim": "y"
+   },
+   "root_origins": [
+    "CHOSEN",
+    "MEASURED"
+   ],
+   "source_file": "t01.txt",
+   "source_line": 2,
+   "status": "PRINTED",
+   "symbol": "d",
+   "value": "2"
+  },
+  {
+   "claim_id": "t12.txt#1",
+   "derived_from": [],
+   "input_id": "t12.txt#1.p",
+   "origin": "CHOSEN",
+   "origin_alt": "MEASURED",
+   "origin_evidence": {
+    "reason_code": "ORIG_CHOICE_STATED",
+    "source_file": "t12.txt",
+    "source_line": 1,
+    "verbatim": "x"
+   },
+   "origin_evidence_alt": {
+    "reason_code": "ORIG_MEASURED",
+    "source_file": "t12.txt",
+    "source_line": 1,
+    "verbatim": "x"
+   },
+   "root_origins": [
+    "CHOSEN",
+    "MEASURED"
+   ],
+   "source_file": "t12.txt",
+   "source_line": 1,
+   "status": "PRINTED",
+   "symbol": "p",
+   "value": "1"
+  }
+ ]
+}

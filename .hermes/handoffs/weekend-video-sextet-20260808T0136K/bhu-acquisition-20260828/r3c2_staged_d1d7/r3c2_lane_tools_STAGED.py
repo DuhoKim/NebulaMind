@@ -57,20 +57,20 @@ def cmd_compute(ledger,out,candidates=None):
     graphs=d.get("provenance_graphs")
     has_alt=any(r.get("origin_alt") or r.get("derived_from_alt") is not None or r.get("PARENTS_DISPUTED") for r in recs)
     if not graphs:
-        if has_alt: print("FAIL: ledger carries alternative branches but no provenance_graphs (a mixed PRIMARY/ALT view is not a seat-supplied graph; compute accepts merge output)"); return 1  # PROBE:COMPUTE_NO_MIXED_GRAPH
+        if has_alt: print("FAIL: ledger carries alternative branches but no provenance_graphs (a mixed PRIMARY/ALT view is not a seat-supplied graph; compute accepts merge output)"); print("COMPUTE=FAIL"); return 1  # PROBE:COMPUTE_NO_MIXED_GRAPH
         graphs=[recs]
-    if len(graphs)>2: print("FAIL: more than two provenance graphs"); return 1
+    if len(graphs)>2: print("FAIL: more than two provenance graphs"); print("COMPUTE=FAIL"); return 1
     gby=[{r["input_id"]:r for r in g} for g in graphs]
     for g in gby:
-        if set(g)!=set(by): print("FAIL: a provenance graph does not cover the merged input_id set"); return 1
+        if set(g)!=set(by): print("FAIL: a provenance graph does not cover the merged input_id set"); print("COMPUTE=FAIL"); return 1
     # V37 (codex V36 F2): each COMPLETE provenance graph is checked for origin-independent integrity BEFORE any classification is written.
     for gi,g in enumerate(gby):
         probs=graph_integrity(g, list(g))
-        if probs: [print(f"FAIL: provenance graph {gi}: {p_}") for p_ in probs]; return 1  # PROBE:COMPUTE_GRAPH_INTEGRITY
+        if probs: [print(f"FAIL: provenance graph {gi}: {p_}") for p_ in probs]; print("COMPUTE=FAIL"); return 1  # PROBE:COMPUTE_GRAPH_INTEGRITY
     claims=[{} for _ in gby]; disputed_claims=set()
     for r in recs:
         try: per=[roots(g,r["input_id"]) for g in gby]
-        except ValueError as e: print("FAIL:",e); return 1
+        except ValueError as e: print("FAIL:",e); print("COMPUTE=FAIL"); return 1
         r["root_origins"]=sorted(set().union(*per))
         for i,rs in enumerate(per): claims[i].setdefault(r["claim_id"],set()).update(rs)
         if disputed_reach(by, r["input_id"]): disputed_claims.add(r["claim_id"])  # PROBE:DISPUTE_PROPAGATES  (ONE resolver: every graph difference merge preserves is reachable as an alternative branch)
@@ -87,12 +87,22 @@ def cmd_compute(ledger,out,candidates=None):
         for cid in inc:
             if cid not in out_claims: out_claims.update({cid:{"root_origins":[],"rests_on":"NOT_COMPUTED"}})  # PROBE:NOT_COMPUTED
         extra=[c for c in out_claims if c not in set(inc)]
-        if extra: print("FAIL: ledger claims that are not included candidates:",extra); return 1
-        if len(out_claims)!=len(inc): print(f"FAIL: rests_on rows {len(out_claims)} != included denominator {len(inc)}"); return 1
+        if extra: print("FAIL: ledger claims that are not included candidates:",extra); print("COMPUTE=FAIL"); return 1
+        if len(out_claims)!=len(inc): print(f"FAIL: rests_on rows {len(out_claims)} != included denominator {len(inc)}"); print("COMPUTE=FAIL"); return 1
     result={"records":recs,"claims":out_claims}
     pathlib.Path(out).write_text(json.dumps(result,indent=1,sort_keys=True))   # V36 canon: JSON member order is one more meaningless ordering
     for c,v in sorted(out_claims.items(),key=lambda kv:str(kv[0])): print(f"{c}\trests_on={v['rests_on']}\troot_origins={v['root_origins']}"+("\tDISPUTED" if v.get("DISPUTED") else ""))
-    return 0
+    print("COMPUTE=PASS"); return 0
+
+
+def canon_search(s):
+    """V38 (codex V37 N1): canonical form of an origin_search object — `files` and `matches` are UNORDERED evidence inventories, so their
+    entries are sorted by canonical JSON; `query` is an ordered field and is preserved exactly. Nothing is dropped, added or altered."""
+    if not isinstance(s,dict): return s
+    out=dict(s)
+    for f in ("files","matches"):
+        if isinstance(out.get(f),list): out[f]=sorted(out[f],key=lambda e: json.dumps(e,sort_keys=True,separators=(",",":")))
+    return out
 
 
 def graph_integrity(graph, starts):
@@ -131,6 +141,8 @@ def cmd_merge(a,b,out):
     for _r in list(ra)+list(rb):
         if _r.get("derived_from") is not None: _r["derived_from"]=sorted(_r["derived_from"])  # PROBE:MERGE_DEP_CANON
         if _r.get("derived_from_alt") is not None: _r["derived_from_alt"]=sorted(_r["derived_from_alt"])
+        if _r.get("origin_search") is not None: _r["origin_search"]=canon_search(_r["origin_search"])  # PROBE:MERGE_SEARCH_CANON
+        if _r.get("origin_search_alt") is not None: _r["origin_search_alt"]=canon_search(_r["origin_search_alt"])
     A={r["input_id"]:r for r in ra}; Bm={r["input_id"]:r for r in rb}
     if set(A)!=set(Bm):
         print("FAIL: input_id sets differ:", sorted(set(A)^set(Bm))); return 1
@@ -166,9 +178,15 @@ def cmd_merge(a,b,out):
     pathlib.Path(out).write_text(json.dumps({"records":out_recs,"provenance_graphs":graphs},indent=1,sort_keys=True)); print(f"merged {len(out_recs)} records; origin disagreements={ndis}; provenance_graphs={len(graphs)}"); return 0  # PROBE:SPI_SORTED_BYTES (V34)
 
 
+def _emit(prefix, rc, argv):
+    """V38: one completion token per subcommand run — <PREFIX>_<SUBCOMMAND>=PASS|FAIL, printed once, whatever the exit status."""
+    sub="_".join(str(x).upper().replace("-","_") for x in argv[:2] if not str(x).startswith("/") and not str(x).endswith(".json") and not str(x).endswith(".md") and not str(x).endswith(".txt"))
+    print(f"{prefix}_{sub}=" + ("PASS" if rc==0 else "FAIL")); sys.exit(rc)
+
+
 if __name__=="__main__":
     a=sys.argv[1:]
-    if len(a)==4 and a[0]=="compute": sys.exit(cmd_compute(a[1],a[2],a[3]))
-    if len(a)==3 and a[0]=="compute": print("usage: compute <merged.json> <out.json> <candidates.json> — the candidate file is mandatory (every included claim gets a rests_on row)"); sys.exit(2)  # PROBE:COMPUTE_NEEDS_CANDIDATES
-    if len(a)==4 and a[0]=="merge": sys.exit(cmd_merge(a[1],a[2],a[3]))
-    print(__doc__); sys.exit(2)
+    if len(a)==4 and a[0]=="compute": _emit("LANE_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "LANE", cmd_compute(a[1],a[2],a[3]), a)
+    if len(a)==3 and a[0]=="compute": print("usage: compute <merged.json> <out.json> <candidates.json> — the candidate file is mandatory (every included claim gets a rests_on row)"); print("INVOCATION=REJECTED"); sys.exit(2)  # PROBE:COMPUTE_NEEDS_CANDIDATES
+    if len(a)==4 and a[0]=="merge": _emit("LANE_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "LANE", cmd_merge(a[1],a[2],a[3]), a)
+    print(__doc__); print("INVOCATION=REJECTED"); sys.exit(2)

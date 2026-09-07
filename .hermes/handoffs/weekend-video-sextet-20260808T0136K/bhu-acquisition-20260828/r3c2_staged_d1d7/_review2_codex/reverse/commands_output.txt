@@ -1,0 +1,75 @@
+AUDITOR_CANDIDATES_SHA256=9b056adcdb9b8d42953babbbb7df977adc23b9a511d886873e712ae615e6291b
+AUDITOR_EXCLUSIONS_SHA256=19f4e2630f65b83a68e8c575126bd448fe31a931e4e8fb9b1a89308fdfc14b9e
+AUDITOR_CENSUS_STDOUT_SHA256=c5bf5ded8708c833f49dc84f9e21f64a77b74b7c725195b7e28a9fd1f1adab00
+
+N=2 R=2 k=1 audited=1
+
+handout: 1 claims, fields claim_id/source_file/source_line only
+
+AUDITOR_REDERIVATIONS_SHA256=985dc9c0e64c67d75a292305c789c4e05fc2aa3d3a6f22ade96076b6c77f11c6
+
+FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['own.txt', 2, '42']
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "own.txt#2": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "own.txt",
+    1,
+    "41"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": null,
+   "audit_kind": null,
+   "in_audit": false,
+   "in_sealed": true,
+   "key": [
+    "own.txt",
+    2,
+    "42"
+   ],
+   "result": "OMISSION_SEALED_INCLUDED_ABSENT_FROM_AUDIT",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=985dc9c0e64c67d75a292305c789c4e05fc2aa3d3a6f22ade96076b6c77f11c6\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "51c72f8fed0b113d7f2634bd5988d767a72d0fd425b87f3c6ea6f0428b63bc45",
+ "sealed_denominator": 2,
+ "sealed_exclusions_sha256": "19f4e2630f65b83a68e8c575126bd448fe31a931e4e8fb9b1a89308fdfc14b9e",
+ "sealed_ledger_sha256": "a4e17ae4dae862aae9f36cf63d5e892e9bfb67264b917b1febd1c786ddedef7b",
+ "seed_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "own.txt#2"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "own.txt#1",
+   "own.txt#2"
+  ],
+  "sampled_ids": [
+   "own.txt#2"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=9b056adcdb9b8d42953babbbb7df977adc23b9a511d886873e712ae615e6291b\nAUDITOR_EXCLUSIONS_SHA256=19f4e2630f65b83a68e8c575126bd448fe31a931e4e8fb9b1a89308fdfc14b9e\nAUDITOR_CENSUS_STDOUT_SHA256=c5bf5ded8708c833f49dc84f9e21f64a77b74b7c725195b7e28a9fd1f1adab00\n"
+}
+C6_AUDIT_SAMPLE=FAIL

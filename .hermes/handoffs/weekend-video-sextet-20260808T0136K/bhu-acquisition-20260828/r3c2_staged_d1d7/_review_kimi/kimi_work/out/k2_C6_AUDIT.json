@@ -1,0 +1,42 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "arithmetic_group_ids": [
+  "c1"
+ ],
+ "audited": {
+  "c1": {
+   "result": "MATCH",
+   "why": []
+  },
+  "c4": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness": {
+  "audit_included_absent_from_sealed": [],
+  "exclusion_kind_differs": [],
+  "inclusion_disputed": [],
+  "inclusion_disputed_count": 0,
+  "inclusion_disputed_rate": 0.0,
+  "sealed_included_absent_from_audit_enumeration": [
+   [
+    "paperY.txt",
+    4,
+    "17.4"
+   ]
+  ]
+ },
+ "k": 1,
+ "receipt_T_sealed_candidates_sha256": "c566caef9ddce758e1911e3c51cba02990faf3a4d7318c062cb98ffb147f96d4",
+ "remaining_ids": [
+  "c2",
+  "c4"
+ ],
+ "sampled_ids": [
+  "c4"
+ ],
+ "sealed_denominator": 3,
+ "seed_hex": "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=ca82b1bfcc822e6a2ece01bae23bc3c46355c7b800f6585cff30d4c222fd84b8\nAUDITOR_EXCLUSIONS_SHA256=fb6522d9d16bb4906de352f561fc5ebc1645bd9e0957886e37b5b1c42643fc53\n"
+}

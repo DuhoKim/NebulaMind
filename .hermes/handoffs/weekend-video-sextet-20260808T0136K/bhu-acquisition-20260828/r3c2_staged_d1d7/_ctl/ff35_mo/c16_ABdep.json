@@ -1,0 +1,120 @@
+{
+ "provenance_graphs": [
+  [
+   {
+    "claim_id": "c1",
+    "derived_from": [],
+    "input_id": "r",
+    "origin": "MEASURED",
+    "origin_evidence": {
+     "reason_code": "ORIG_MEASURED",
+     "source_file": "p.txt",
+     "source_line": 3,
+     "verbatim": "We measure r = 2."
+    },
+    "source_file": "p.txt",
+    "source_line": 3,
+    "status": "PRINTED",
+    "symbol": "r",
+    "value": "2"
+   },
+   {
+    "claim_id": "c1",
+    "derived_from": [
+     "r",
+     "y"
+    ],
+    "input_id": "x",
+    "origin": "DERIVED",
+    "origin_evidence": {
+     "reason_code": "ORIG_EQUATION",
+     "source_file": "p.txt",
+     "source_line": 1,
+     "verbatim": "x from y and r."
+    },
+    "source_file": "p.txt",
+    "source_line": 1,
+    "status": "PRINTED",
+    "symbol": "x",
+    "value": "2"
+   },
+   {
+    "claim_id": "c1",
+    "derived_from": [
+     "r"
+    ],
+    "input_id": "y",
+    "origin": "DERIVED",
+    "origin_evidence": {
+     "reason_code": "ORIG_EQUATION",
+     "source_file": "p.txt",
+     "source_line": 2,
+     "verbatim": "y from r."
+    },
+    "source_file": "p.txt",
+    "source_line": 2,
+    "status": "PRINTED",
+    "symbol": "y",
+    "value": "2"
+   }
+  ]
+ ],
+ "records": [
+  {
+   "claim_id": "c1",
+   "derived_from": [],
+   "input_id": "r",
+   "origin": "MEASURED",
+   "origin_evidence": {
+    "reason_code": "ORIG_MEASURED",
+    "source_file": "p.txt",
+    "source_line": 3,
+    "verbatim": "We measure r = 2."
+   },
+   "source_file": "p.txt",
+   "source_line": 3,
+   "status": "PRINTED",
+   "symbol": "r",
+   "value": "2"
+  },
+  {
+   "claim_id": "c1",
+   "derived_from": [
+    "r",
+    "y"
+   ],
+   "input_id": "x",
+   "origin": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "p.txt",
+    "source_line": 1,
+    "verbatim": "x from y and r."
+   },
+   "source_file": "p.txt",
+   "source_line": 1,
+   "status": "PRINTED",
+   "symbol": "x",
+   "value": "2"
+  },
+  {
+   "claim_id": "c1",
+   "derived_from": [
+    "r"
+   ],
+   "input_id": "y",
+   "origin": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "p.txt",
+    "source_line": 2,
+    "verbatim": "y from r."
+   },
+   "source_file": "p.txt",
+   "source_line": 2,
+   "status": "PRINTED",
+   "symbol": "y",
+   "value": "2"
+  }
+ ]
+}

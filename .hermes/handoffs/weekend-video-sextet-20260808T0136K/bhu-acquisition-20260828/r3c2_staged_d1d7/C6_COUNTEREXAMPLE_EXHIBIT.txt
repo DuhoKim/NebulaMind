@@ -7,6 +7,10 @@ FAIL: COMPLETENESS audit_included_absent_from_sealed: ['paperB.txt', 7, '3.1']
  "audited": {
   "c1": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [
@@ -31,6 +35,10 @@ FAIL: COMPLETENESS audit_included_absent_from_sealed: ['paperB.txt', 7, '3.1']
   },
   "c2": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -126,10 +134,11 @@ FAIL: COMPLETENESS audit_included_absent_from_sealed: ['paperB.txt', 7, '3.1']
    "c2"
   ]
  },
- "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2850c752f802921e4e76820c153e0b6dabe72bdbf849e41f217f494000804e2\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\nAUDITOR_CENSUS_STDOUT_SHA256=5df02fbbdfb200e6d6c7cf30c644cc92259d7a8abd7ae4d54f39bb941bdd1bd2\n",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2850c752f802921e4e76820c153e0b6dabe72bdbf849e41f217f494000804e2\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\nAUDITOR_CENSUS_STDOUT_SHA256=b1e9e3fe4202efc0485dae543de2e9dd825487f594946c9e665192e1d327a852\n",
  "study_files": "CENSUS_AUDIT_FAILED"
 }
 C6_AUDIT_SAMPLE=FAIL
+SEAT_AUDIT_COMPARE=FAIL
 
 
 === PROBE 2 — sealed includes paperB.txt:7 '3.1'; the auditor's enumeration lacks it ===
@@ -139,6 +148,10 @@ FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['paperB.txt',
  "audited": {
   "c1": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [
@@ -163,6 +176,10 @@ FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['paperB.txt',
   },
   "c3": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -259,10 +276,11 @@ FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['paperB.txt',
    "c3"
   ]
  },
- "stage1_seal": "AUDITOR_CANDIDATES_SHA256=2a995a6c3098b1e1834ae787f3aecd9278f4cbd5bd8c4d9311600d7d198eb72e\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\nAUDITOR_CENSUS_STDOUT_SHA256=4c2995f3aa3426ae72a6661a1f2a3358d4caa642e86fdda9f771eda6cd98367c\n",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=2a995a6c3098b1e1834ae787f3aecd9278f4cbd5bd8c4d9311600d7d198eb72e\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\nAUDITOR_CENSUS_STDOUT_SHA256=60990ffc7e29c78ea42d6f6e6febe9f32f542c07c9618f9bcd92363a5b70958e\n",
  "study_files": "CENSUS_AUDIT_FAILED"
 }
 C6_AUDIT_SAMPLE=FAIL
+SEAT_AUDIT_COMPARE=FAIL
 
 
 === PROBE 5 — seats never enumerated paperB.txt:9 '1999'; the auditor excluded it (DATE) ===
@@ -272,6 +290,10 @@ FAIL: COMPLETENESS audit_excluded_absent_from_sealed: ['paperB.txt', 9, '1999'] 
  "audited": {
   "c1": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [
@@ -296,6 +318,10 @@ FAIL: COMPLETENESS audit_excluded_absent_from_sealed: ['paperB.txt', 9, '1999'] 
   },
   "c2": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -391,10 +417,11 @@ FAIL: COMPLETENESS audit_excluded_absent_from_sealed: ['paperB.txt', 9, '1999'] 
    "c2"
   ]
  },
- "stage1_seal": "AUDITOR_CANDIDATES_SHA256=468835e5e56469d12ba6d451b97e531b964ff1a1af8e4735036b21394c923703\nAUDITOR_EXCLUSIONS_SHA256=e5a8a423eb2f7f8e2cc2afd1e25ea6e7afd72bd50fbc3174e3a8dc05f358bf02\nAUDITOR_CENSUS_STDOUT_SHA256=06471694598df15f067c8a60f0f5e2bbfa368b206b2d13dd81c1de1b51515936\n",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=468835e5e56469d12ba6d451b97e531b964ff1a1af8e4735036b21394c923703\nAUDITOR_EXCLUSIONS_SHA256=e5a8a423eb2f7f8e2cc2afd1e25ea6e7afd72bd50fbc3174e3a8dc05f358bf02\nAUDITOR_CENSUS_STDOUT_SHA256=6306bbe84b0cf0997d71a0a54ded77a884e4fd17c68562ab7102b982737b3be5\n",
  "study_files": "CENSUS_AUDIT_FAILED"
 }
 C6_AUDIT_SAMPLE=FAIL
+SEAT_AUDIT_COMPARE=FAIL
 
 
 === PROBE 6 — sealed excluded paperB.txt:1 '2020' (DATE) absent from the auditor's enumeration: listed as AUDIT_INCLUSION_DISPUTED, 1/3 > 10% → FAIL ===
@@ -404,6 +431,10 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 1/3
  "audited": {
   "c1": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [
@@ -428,6 +459,10 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 1/3
   },
   "c3": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -524,10 +559,11 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 1/3
    "c3"
   ]
  },
- "stage1_seal": "AUDITOR_CANDIDATES_SHA256=9b9f820a4f473474a30b8a8e43aef10cdf7498a0f6a67d98cc53c415e8245d7d\nAUDITOR_EXCLUSIONS_SHA256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05\nAUDITOR_CENSUS_STDOUT_SHA256=0de0f8c93c3662b2355f0e38439463072beb6b284a8f192ce7062150770b414e\n",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=9b9f820a4f473474a30b8a8e43aef10cdf7498a0f6a67d98cc53c415e8245d7d\nAUDITOR_EXCLUSIONS_SHA256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05\nAUDITOR_CENSUS_STDOUT_SHA256=a59574414421fb7e73c97e9c5bf730f6f935ec91e94f2c1cc1932a6d3fd55227\n",
  "study_files": "CENSUS_AUDIT_FAILED"
 }
 C6_AUDIT_SAMPLE=FAIL
+SEAT_AUDIT_COMPARE=FAIL
 
 
 === PROBE 3 — inclusion disputed on 2 of 20 ===
@@ -536,6 +572,10 @@ C6_AUDIT_SAMPLE=FAIL
  "audited": {
   "c16": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -548,6 +588,10 @@ C6_AUDIT_SAMPLE=FAIL
   },
   "c3": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -560,6 +604,10 @@ C6_AUDIT_SAMPLE=FAIL
   },
   "c4": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -572,6 +620,10 @@ C6_AUDIT_SAMPLE=FAIL
   },
   "c6": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -912,10 +964,11 @@ C6_AUDIT_SAMPLE=FAIL
    "c6"
   ]
  },
- "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2ef741a9a1c8a32edcbf54f5cfd1fc1ab79423aadc5373594d24a41b59b7764\nAUDITOR_EXCLUSIONS_SHA256=b1445bfab4b904995629e8d8073ea412905eaf9e1df883a60bb3fbdf99599211\nAUDITOR_CENSUS_STDOUT_SHA256=fa4325ed70384b7dc2a121dcab1ab5450678891c2ad20627c994aeb94dffcb02\n",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2ef741a9a1c8a32edcbf54f5cfd1fc1ab79423aadc5373594d24a41b59b7764\nAUDITOR_EXCLUSIONS_SHA256=b1445bfab4b904995629e8d8073ea412905eaf9e1df883a60bb3fbdf99599211\nAUDITOR_CENSUS_STDOUT_SHA256=86f484d7bb8e506b2bcbce6fcd2a95ee1dd1cc64bc09ef9c18e55ff6de2db3af\n",
  "study_files": "none"
 }
 C6_AUDIT_SAMPLE=PASS
+SEAT_AUDIT_COMPARE=PASS
 
 
 === PROBE 4 — inclusion disputed on 3 of 20 ===
@@ -925,6 +978,10 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20
  "audited": {
   "c16": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -937,6 +994,10 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20
   },
   "c3": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -949,6 +1010,10 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20
   },
   "c4": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -961,6 +1026,10 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20
   },
   "c6": {
    "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
     "_roots": {
      "alt_branch_records": [],
      "audit": [],
@@ -1301,7 +1370,8 @@ FAIL: AUDIT_INCLUSION_DISPUTED above 10% of the sealed denominator: 3/20
    "c6"
   ]
  },
- "stage1_seal": "AUDITOR_CANDIDATES_SHA256=cc9efb994fd6fea9fc09be07b9159aec86a8011631679515a953e84a452ec6e0\nAUDITOR_EXCLUSIONS_SHA256=2e6d229ef315a9c637551490829e4eeee72bab8fd61a7cd76c83efe953de9257\nAUDITOR_CENSUS_STDOUT_SHA256=2b521100d572261a5ef7b511d9ea965c4484d8f572a601056e983a22aa02e034\n",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=cc9efb994fd6fea9fc09be07b9159aec86a8011631679515a953e84a452ec6e0\nAUDITOR_EXCLUSIONS_SHA256=2e6d229ef315a9c637551490829e4eeee72bab8fd61a7cd76c83efe953de9257\nAUDITOR_CENSUS_STDOUT_SHA256=6bd4132cef6bec8490b7d5431f92940b07982db79a30dadcef10b2d9a008a61b\n",
  "study_files": "CENSUS_AUDIT_FAILED"
 }
 C6_AUDIT_SAMPLE=FAIL
+SEAT_AUDIT_COMPARE=FAIL

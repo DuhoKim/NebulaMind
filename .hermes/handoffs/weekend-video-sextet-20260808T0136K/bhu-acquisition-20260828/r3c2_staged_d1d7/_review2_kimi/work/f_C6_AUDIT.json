@@ -1,0 +1,76 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "c1": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": false,
+   "audit_kind": "AUTHOR_SPECIFIED_INPUT",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "k2paper.txt",
+    2,
+    "5"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "AUTHOR_SPECIFIED_INPUT"
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": false,
+   "key": [
+    "k2paper.txt",
+    3,
+    "0.625"
+   ],
+   "result": "OMISSION_AUDIT_INCLUDED_ABSENT_FROM_SEALED",
+   "sealed_included": null,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "k2paper.txt",
+    4,
+    "42.0"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=581b65cd3d625b055dcc53ae0e5f85d0f66a3b6a39a1eafe3816e5af3c86b253\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "3249d31c5e8d38431713e3b3add81c11890d3dde70fc2b9448718e09e19dbbf1",
+ "sealed_denominator": 1,
+ "sealed_exclusions_sha256": "19b106c5048c4c8826dc228d88a978f5ef616e1f1f283ef7b8f3f27bf78e0c5e",
+ "sealed_ledger_sha256": "033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552",
+ "seed_hex": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "c1"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "c1"
+  ],
+  "sampled_ids": [
+   "c1"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=c7a530a709495ace48043c8d3cad30b8e36868dd91ae0d7d5d639f6f25ac24b7\nAUDITOR_EXCLUSIONS_SHA256=fdafd86f54485ea242a3596fb4ac69d7ddf404757b6131e59ed5d3db297d5b4a\nAUDITOR_CENSUS_STDOUT_SHA256=266d57d77fff978daefb58cdd591e279a07abca59006f31cf0cc5b9ec42c69b5\n"
+}

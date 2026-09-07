@@ -1,0 +1,310 @@
+[
+ {
+  "cmd": [
+   "audit",
+   "seal-enumeration",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_stage1.txt"
+  ],
+  "rc": 0,
+  "stdout": "AUDITOR_CANDIDATES_SHA256=c7a530a709495ace48043c8d3cad30b8e36868dd91ae0d7d5d639f6f25ac24b7\nAUDITOR_EXCLUSIONS_SHA256=fdafd86f54485ea242a3596fb4ac69d7ddf404757b6131e59ed5d3db297d5b4a\nAUDITOR_CENSUS_STDOUT_SHA256=266d57d77fff978daefb58cdd591e279a07abca59006f31cf0cc5b9ec42c69b5\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "select",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_c.json",
+   "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sel.json"
+  ],
+  "rc": 0,
+  "stdout": "N=1 R=1 k=1 audited=1\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "handout",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sel.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_handout.json"
+  ],
+  "rc": 0,
+  "stdout": "handout: 1 claims, fields claim_id/source_file/source_line only\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "seal-rederivation",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_rd.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_stage2.txt"
+  ],
+  "rc": 0,
+  "stdout": "AUDITOR_REDERIVATIONS_SHA256=581b65cd3d625b055dcc53ae0e5f85d0f66a3b6a39a1eafe3816e5af3c86b253\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "compare",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_l.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sel.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_stage2.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_rd.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_C6_AUDIT.json"
+  ],
+  "rc": 1,
+  "stdout": "FAIL: COMPLETENESS audit_included_absent_from_sealed: ['k2paper.txt', 3, '0.625']\n{\n \"C6_AUDIT_SAMPLE\": \"FAIL\",\n \"audited\": {\n  \"c1\": {\n   \"result\": \"MATCH\",\n   \"why\": []\n  }\n },\n \"completeness_rows\": [\n  {\n   \"audit_included\": false,\n   \"audit_kind\": \"AUTHOR_SPECIFIED_INPUT\",\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    2,\n    \"5\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": false,\n   \"sealed_kind\": \"AUTHOR_SPECIFIED_INPUT\"\n  },\n  {\n   \"audit_included\": true,\n   \"audit_kind\": null,\n   \"in_audit\": true,\n   \"in_sealed\": false,\n   \"key\": [\n    \"k2paper.txt\",\n    3,\n    \"0.625\"\n   ],\n   \"result\": \"OMISSION_AUDIT_INCLUDED_ABSENT_FROM_SEALED\",\n   \"sealed_included\": null,\n   \"sealed_kind\": null\n  },\n  {\n   \"audit_included\": true,\n   \"audit_kind\": null,\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    4,\n    \"42.0\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": true,\n   \"sealed_kind\": null\n  }\n ],\n \"inclusion_disputed_count\": 0,\n \"inclusion_disputed_rate\": 0.0,\n \"rederivation_seal\": \"AUDITOR_REDERIVATIONS_SHA256=581b65cd3d625b055dcc53ae0e5f85d0f66a3b6a39a1eafe3816e5af3c86b253\\n\",\n \"scope\": \"PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness\",\n \"sealed_candidates_sha256\": \"3249d31c5e8d38431713e3b3add81c11890d3dde70fc2b9448718e09e19dbbf1\",\n \"sealed_denominator\": 1,\n \"sealed_exclusions_sha256\": \"19b106c5048c4c8826dc228d88a978f5ef616e1f1f283ef7b8f3f27bf78e0c5e\",\n \"sealed_ledger_sha256\": \"033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552\",\n \"seed_hex\": \"deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef\",\n \"selection\": {\n  \"arithmetic_group_ids\": [],\n  \"audited_ids\": [\n   \"c1\"\n  ],\n  \"k\": 1,\n  \"remaining_ids\": [\n   \"c1\"\n  ],\n  \"sampled_ids\": [\n   \"c1\"\n  ]\n },\n \"stage1_seal\": \"AUDITOR_CANDIDATES_SHA256=c7a530a709495ace48043c8d3cad30b8e36868dd91ae0d7d5d639f6f25ac24b7\\nAUDITOR_EXCLUSIONS_SHA256=fdafd86f54485ea242a3596fb4ac69d7ddf404757b6131e59ed5d3db297d5b4a\\nAUDITOR_CENSUS_STDOUT_SHA256=266d57d77fff978daefb58cdd591e279a07abca59006f31cf0cc5b9ec42c69b5\\n\"\n}\nC6_AUDIT_SAMPLE=FAIL\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "seal-enumeration",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_stage1.txt"
+  ],
+  "rc": 0,
+  "stdout": "AUDITOR_CANDIDATES_SHA256=bfc453ee2693de3637ddf75c3e63fa080b0f78a756478d7d39ab840fda841aea\nAUDITOR_EXCLUSIONS_SHA256=1648776141e90da31bb03376380ddb165ddecf18c977679724304af9d2c98500\nAUDITOR_CENSUS_STDOUT_SHA256=cf60154123272817243964706f7740e9f8b82b5cae9f1c9e5e36a98d1952c199\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "select",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sealed_c.json",
+   "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sel.json"
+  ],
+  "rc": 0,
+  "stdout": "N=2 R=2 k=1 audited=1\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "handout",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sel.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_handout.json"
+  ],
+  "rc": 0,
+  "stdout": "handout: 1 claims, fields claim_id/source_file/source_line only\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "seal-rederivation",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_rd.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_stage2.txt"
+  ],
+  "rc": 0,
+  "stdout": "AUDITOR_REDERIVATIONS_SHA256=c927b890691e4c816ef1ef9790bb51bc1a5cb7272e3c7bb01f8c57c429660ad6\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "compare",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sealed_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_l.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_sel.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_stage2.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_rd.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/r_C6_AUDIT.json"
+  ],
+  "rc": 1,
+  "stdout": "FAIL: COMPLETENESS sealed_included_absent_from_audit_enumeration: ['k2paper.txt', 3, '0.625']\n{\n \"C6_AUDIT_SAMPLE\": \"FAIL\",\n \"audited\": {\n  \"c1\": {\n   \"result\": \"MATCH\",\n   \"why\": []\n  }\n },\n \"completeness_rows\": [\n  {\n   \"audit_included\": false,\n   \"audit_kind\": \"AUTHOR_SPECIFIED_INPUT\",\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    2,\n    \"5\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": false,\n   \"sealed_kind\": \"AUTHOR_SPECIFIED_INPUT\"\n  },\n  {\n   \"audit_included\": null,\n   \"audit_kind\": null,\n   \"in_audit\": false,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    3,\n    \"0.625\"\n   ],\n   \"result\": \"OMISSION_SEALED_INCLUDED_ABSENT_FROM_AUDIT\",\n   \"sealed_included\": true,\n   \"sealed_kind\": null\n  },\n  {\n   \"audit_included\": true,\n   \"audit_kind\": null,\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    4,\n    \"42.0\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": true,\n   \"sealed_kind\": null\n  }\n ],\n \"inclusion_disputed_count\": 0,\n \"inclusion_disputed_rate\": 0.0,\n \"rederivation_seal\": \"AUDITOR_REDERIVATIONS_SHA256=c927b890691e4c816ef1ef9790bb51bc1a5cb7272e3c7bb01f8c57c429660ad6\\n\",\n \"scope\": \"PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness\",\n \"sealed_candidates_sha256\": \"0cba33ff59ca96281cf5f2a9b91d1eb4504ed3624ee62da0d1acaf8d4ba318b2\",\n \"sealed_denominator\": 2,\n \"sealed_exclusions_sha256\": \"313e3ae52a586f851a26fa72fbb055a04e7bf2d01616b6653e280f1c0cfbf0a7\",\n \"sealed_ledger_sha256\": \"033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552\",\n \"seed_hex\": \"deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef\",\n \"selection\": {\n  \"arithmetic_group_ids\": [],\n  \"audited_ids\": [\n   \"c1\"\n  ],\n  \"k\": 1,\n  \"remaining_ids\": [\n   \"c1\",\n   \"c2\"\n  ],\n  \"sampled_ids\": [\n   \"c1\"\n  ]\n },\n \"stage1_seal\": \"AUDITOR_CANDIDATES_SHA256=bfc453ee2693de3637ddf75c3e63fa080b0f78a756478d7d39ab840fda841aea\\nAUDITOR_EXCLUSIONS_SHA256=1648776141e90da31bb03376380ddb165ddecf18c977679724304af9d2c98500\\nAUDITOR_CENSUS_STDOUT_SHA256=cf60154123272817243964706f7740e9f8b82b5cae9f1c9e5e36a98d1952c199\\n\"\n}\nC6_AUDIT_SAMPLE=FAIL\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "seal-enumeration",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage1.txt"
+  ],
+  "rc": 0,
+  "stdout": "AUDITOR_CANDIDATES_SHA256=bfc453ee2693de3637ddf75c3e63fa080b0f78a756478d7d39ab840fda841aea\nAUDITOR_EXCLUSIONS_SHA256=1648776141e90da31bb03376380ddb165ddecf18c977679724304af9d2c98500\nAUDITOR_CENSUS_STDOUT_SHA256=cf60154123272817243964706f7740e9f8b82b5cae9f1c9e5e36a98d1952c199\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "select",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sealed_c.json",
+   "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sel.json"
+  ],
+  "rc": 0,
+  "stdout": "N=1 R=1 k=1 audited=1\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "handout",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sel.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_handout.json"
+  ],
+  "rc": 0,
+  "stdout": "handout: 1 claims, fields claim_id/source_file/source_line only\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "seal-rederivation",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_rd.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage2.txt"
+  ],
+  "rc": 0,
+  "stdout": "AUDITOR_REDERIVATIONS_SHA256=581b65cd3d625b055dcc53ae0e5f85d0f66a3b6a39a1eafe3816e5af3c86b253\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "compare",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sealed_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_l.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sel.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage2.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_rd.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_C6_AUDIT.json"
+  ],
+  "rc": 0,
+  "stdout": "{\n \"C6_AUDIT_SAMPLE\": \"PASS\",\n \"audited\": {\n  \"c1\": {\n   \"result\": \"MATCH\",\n   \"why\": []\n  }\n },\n \"completeness_rows\": [\n  {\n   \"audit_included\": false,\n   \"audit_kind\": \"AUTHOR_SPECIFIED_INPUT\",\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    2,\n    \"5\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": false,\n   \"sealed_kind\": \"AUTHOR_SPECIFIED_INPUT\"\n  },\n  {\n   \"audit_included\": true,\n   \"audit_kind\": null,\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    4,\n    \"42.0\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": true,\n   \"sealed_kind\": null\n  }\n ],\n \"inclusion_disputed_count\": 0,\n \"inclusion_disputed_rate\": 0.0,\n \"rederivation_seal\": \"AUDITOR_REDERIVATIONS_SHA256=581b65cd3d625b055dcc53ae0e5f85d0f66a3b6a39a1eafe3816e5af3c86b253\\n\",\n \"scope\": \"PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness\",\n \"sealed_candidates_sha256\": \"3249d31c5e8d38431713e3b3add81c11890d3dde70fc2b9448718e09e19dbbf1\",\n \"sealed_denominator\": 1,\n \"sealed_exclusions_sha256\": \"19b106c5048c4c8826dc228d88a978f5ef616e1f1f283ef7b8f3f27bf78e0c5e\",\n \"sealed_ledger_sha256\": \"033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552\",\n \"seed_hex\": \"deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef\",\n \"selection\": {\n  \"arithmetic_group_ids\": [],\n  \"audited_ids\": [\n   \"c1\"\n  ],\n  \"k\": 1,\n  \"remaining_ids\": [\n   \"c1\"\n  ],\n  \"sampled_ids\": [\n   \"c1\"\n  ]\n },\n \"stage1_seal\": \"AUDITOR_CANDIDATES_SHA256=bfc453ee2693de3637ddf75c3e63fa080b0f78a756478d7d39ab840fda841aea\\nAUDITOR_EXCLUSIONS_SHA256=1648776141e90da31bb03376380ddb165ddecf18c977679724304af9d2c98500\\nAUDITOR_CENSUS_STDOUT_SHA256=cf60154123272817243964706f7740e9f8b82b5cae9f1c9e5e36a98d1952c199\\n\"\n}\nC6_AUDIT_SAMPLE=PASS\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "audit",
+   "compare",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage1.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_aud_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_aud_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sealed_c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sealed_x.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/f_sealed_l.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_sel_seedless.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_stage2.txt",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_rd_empty.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/b_C6_seedless.json"
+  ],
+  "rc": 1,
+  "stdout": "FAIL: C6_STAGE_ORDER: the auditor's re-derivations differ from their seal (re-derivations must be sealed before any sealed ledger is released)\n{\n \"C6_AUDIT_SAMPLE\": \"FAIL\",\n \"audited\": {},\n \"completeness_rows\": [\n  {\n   \"audit_included\": false,\n   \"audit_kind\": \"AUTHOR_SPECIFIED_INPUT\",\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    2,\n    \"5\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": false,\n   \"sealed_kind\": \"AUTHOR_SPECIFIED_INPUT\"\n  },\n  {\n   \"audit_included\": true,\n   \"audit_kind\": null,\n   \"in_audit\": true,\n   \"in_sealed\": true,\n   \"key\": [\n    \"k2paper.txt\",\n    4,\n    \"42.0\"\n   ],\n   \"result\": \"MATCH\",\n   \"sealed_included\": true,\n   \"sealed_kind\": null\n  }\n ],\n \"inclusion_disputed_count\": 0,\n \"inclusion_disputed_rate\": 0.0,\n \"rederivation_seal\": \"AUDITOR_REDERIVATIONS_SHA256=581b65cd3d625b055dcc53ae0e5f85d0f66a3b6a39a1eafe3816e5af3c86b253\\n\",\n \"scope\": \"PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness\",\n \"sealed_candidates_sha256\": \"3249d31c5e8d38431713e3b3add81c11890d3dde70fc2b9448718e09e19dbbf1\",\n \"sealed_denominator\": 1,\n \"sealed_exclusions_sha256\": \"19b106c5048c4c8826dc228d88a978f5ef616e1f1f283ef7b8f3f27bf78e0c5e\",\n \"sealed_ledger_sha256\": \"033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552\",\n \"seed_hex\": null,\n \"selection\": {\n  \"arithmetic_group_ids\": [],\n  \"audited_ids\": [],\n  \"k\": 0,\n  \"remaining_ids\": [\n   \"c1\"\n  ],\n  \"sampled_ids\": []\n },\n \"stage1_seal\": \"AUDITOR_CANDIDATES_SHA256=bfc453ee2693de3637ddf75c3e63fa080b0f78a756478d7d39ab840fda841aea\\nAUDITOR_EXCLUSIONS_SHA256=1648776141e90da31bb03376380ddb165ddecf18c977679724304af9d2c98500\\nAUDITOR_CENSUS_STDOUT_SHA256=cf60154123272817243964706f7740e9f8b82b5cae9f1c9e5e36a98d1952c199\\n\"\n}\nC6_AUDIT_SAMPLE=FAIL\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/D1a.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 0,
+  "stdout": "C3_NO_SUBSTITUTION=PASS\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/D1b.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 0,
+  "stdout": "C3_NO_SUBSTITUTION=PASS\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/D1c.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 0,
+  "stdout": "C3_NO_SUBSTITUTION=PASS\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/D1d.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 0,
+  "stdout": "C3_NO_SUBSTITUTION=PASS\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/D1e1.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 0,
+  "stdout": "C3_NO_SUBSTITUTION=PASS\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1e2.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 1,
+  "stdout": "FAIL: k2borrow.txt#1.g: external value line 4 is not the first line of k2s_two.txt carrying both g and 9 (that is line 2)\nC3_NO_SUBSTITUTION=FAIL\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1f.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 1,
+  "stdout": "FAIL: k2borrow.txt#1.g: citing sentence is in k2s_choose.txt, but claim k2borrow.txt#1 belongs to k2borrow.txt\nFAIL: k2borrow.txt#1.g: IMPORTED PRINTED record names its own file as the external source\nC3_NO_SUBSTITUTION=FAIL\n",
+  "stderr": ""
+ },
+ {
+  "cmd": [
+   "validate",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1g.json",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1src",
+   "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review2_kimi/work/d1_cands.json"
+  ],
+  "rc": 0,
+  "stdout": "C3_NO_SUBSTITUTION=PASS\n",
+  "stderr": ""
+ }
+]

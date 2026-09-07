@@ -2,14 +2,53 @@
 """r3c2_staged_tests.py — controls for the STAGED (UNADOPTED) D1/D7/batch tooling, repaired 2026-09-06 after two independent reviews.
 Every negative asserts the EXACT failure set (count and text); every load-bearing check has a DELETION PROBE (the check is replaced by a
 no-op in a copy of the tool; the negative must then PASS). Run from this directory: /usr/bin/python3 -E r3c2_staged_tests.py"""
-import json, subprocess, sys, pathlib, hashlib, shutil
+import json, subprocess, sys, pathlib, hashlib, shutil, re, os
 H=pathlib.Path(__file__).resolve().parent; PY="/usr/bin/python3"; SEAT=H/"r3c2_ledger_tools_STAGED.py"; BATCH=H/"r3c2_batch_tools_STAGED.py"
 W=H/"_ctl"; shutil.rmtree(W,ignore_errors=True); W.mkdir()
 def w(p,obj): p=W/p; p.write_text(json.dumps(obj,indent=1,sort_keys=True) if not isinstance(obj,str) else obj); return str(p)
 def run(tool,*a): r=subprocess.run([PY,"-E",str(tool),*[str(x) for x in a]],capture_output=True,text=True); return r.returncode, r.stdout+r.stderr
 def sha_s(s): return hashlib.sha256(s.encode()).hexdigest()
 results=[]; EX=[]; NPROBES=0
+# ================= THE EXACT-RESULT EVALUATOR (Blanc 2026-09-07 09:07; codex V37 F3-continued) =================
+# ONE evaluator, used by EVERY outcome judge in this kit — no per-helper variants, no optional fields, no substring matching.
+# It requires: setup succeeded (no traceback, import or launch error, non-empty output); the EXACT exit code; a completion token
+# line, never optional; exactly the expected diagnostic rows, in emitted order, compared as COMPLETE ROWS against the pinned
+# expectation table `r3c2_exact_rows.json`; and, additionally for deletion probes, that the targeted diagnostic is ABSENT while the
+# exact remaining rows of the unprobed run are retained. A crash, an unrelated failure, a wrong diagnostic or an undeleted
+# diagnostic can never satisfy a control. Production guards are never weakened to make a probe pass.
+SETUP_ERRORS=("Traceback (most recent call last)","ModuleNotFoundError","ImportError:","SyntaxError","No such file or directory","command not found","Permission denied","can\'t open file")
+TOKEN_LINE=re.compile(r"^[A-Z][A-Z0-9_]*=[A-Za-z0-9_.:/+-]+$",re.M)
+CAPTURE = os.environ.get("NM_KIT_CAPTURE")=="1"
+EXACT_PATH = H/"r3c2_exact_rows.json"
+EXACT_ROWS = json.loads(EXACT_PATH.read_text()) if (EXACT_PATH.exists() and not CAPTURE) else {}
+_CAPTURED={}; _SEEN={}
+def norm_row(l):
+    return l.replace(str(W),"<W>").replace(str(H),"<H>").replace(str(H.parent),"<LANE>")
+def setup_ok(out):
+    if not (out or "").strip(): return "empty output — no evidence the case ran"
+    for e in SETUP_ERRORS:
+        if e in out: return f"setup/launch/traceback failure in output: {e!r}"
+    return ""
+def judge(name, rc, out, want_rc, want_fails, token=None):
+    """the one evaluator; returns (ok, why)"""
+    why=setup_ok(out)
+    if why: return False,why
+    if rc!=want_rc: return False,f"exit {rc} != expected {want_rc}"
+    if token is not None and token not in out: return False,f"declared completion token {token!r} absent"
+    if not TOKEN_LINE.search(out): return False,"no completion token line in the output — a subcommand without one cannot serve as control evidence"
+    rows=[norm_row(l) for l in out.splitlines() if l.startswith("FAIL:")]
+    if len(rows)!=len(want_fails): return False,f"{len(rows)} diagnostic rows, expected exactly {len(want_fails)}: {rows}"
+    for i,(row,want) in enumerate(zip(rows,want_fails)):
+        if want not in row: return False,f"diagnostic row {i+1} is {row!r}, which does not carry the declared expectation {want!r}"
+    key=name+"#"+str(_SEEN.get(name,0)); _SEEN[name]=_SEEN.get(name,0)+1
+    if CAPTURE: _CAPTURED[key]=rows; return True,""
+    if key not in EXACT_ROWS: return False,f"no pinned exact rows for {key!r} — every judged control must have its complete expected text pinned"
+    if EXACT_ROWS[key]!=rows: return False,f"diagnostic rows differ from the pinned exact text:\n     pinned: {EXACT_ROWS[key]}\n     actual: {rows}"
+    return True,""
 def check(name, rc, out, want_rc, want_fails, token=None):
+    ok,why=judge(name,rc,out,want_rc,want_fails,token)
+    results.append((name,ok)); print(("ok  " if ok else "BAD ")+name+("" if ok else f"\n   {why}\n{out[-500:]}")); return ok
+def _unused_check(name, rc, out, want_rc, want_fails, token=None):
     fails=[l for l in out.splitlines() if l.startswith("FAIL:")]
     ok = rc==want_rc and len(fails)==len(want_fails) and all(sum(1 for f in fails if s in f)==1 for s in want_fails) and (token is None or token in out)
     results.append((name,ok)); print(("ok  " if ok else "BAD ")+name+("" if ok else f"\n   rc={rc} fails={fails}\n{out[-700:]}")); return ok
@@ -21,22 +60,44 @@ def check(name, rc, out, want_rc, want_fails, token=None):
 #   (3) a non-empty selection of EXACTLY the expected rows;
 #   (4) that subcase's specific verdicts, diagnostic text and equality results.
 # A missing fixture, a traceback, an empty selection, or a failure for an unrelated reason FAILS the kit test; it never satisfies it.
-SETUP_ERRORS=("Traceback (most recent call last)","ModuleNotFoundError","ImportError:","No such file or directory","command not found","Permission denied","can\'t open file","usage: ")
-def setup_ok(out):
-    if not (out or "").strip(): return "empty output — no evidence the case ran"
-    for e in SETUP_ERRORS:
-        if e in out: return f"setup/launch failure in output: {e!r}"
-    return ""
 
-def probe(name, tool, marker, *args, token, want_rc=0):
-    global NPROBES; NPROBES+=1
+def probe(name, tool, marker, *args, token, want_rc=0, artefact=None, gone_text=None, judge_only=False):
+    global NPROBES
+    if not judge_only: NPROBES+=1
     src=tool.read_text().splitlines(); hits=[l for l in src if marker in l]; assert len(hits)==1, f"marker {marker} must occur exactly once"
     # the check on the marked line is neutralised in place (its failure call becomes a no-op; its early return is dropped) so the surrounding if/elif structure survives
-    def neut(l): return l.replace("fails.append(","_probe_noop(").replace("diffs.append(","_probe_noop(").replace("why.append(","_probe_noop(").replace("out.append(","_probe_noop(").replace("out_claims.update(","_probe_noop(").replace("disputed_claims.add(","_probe_noop(").replace("; sys.exit(1)","; pass").replace("; return 1","; pass").replace("PROBE:","PROBE-DELETED:")
+    def neut(l):
+        s2=l.strip()
+        if s2.startswith(("elif ","else:","except ","finally:")) or "=" not in s2.split("#")[0] or any(k in l for k in ("fails.append(","print(","diffs.append(","why.append(","out.append(")):
+            return l.replace("print(","_probe_noop(").replace("fails.append(","_probe_noop(").replace("diffs.append(","_probe_noop(").replace("why.append(","_probe_noop(").replace("out.append(","_probe_noop(").replace("out_claims.update(","_probe_noop(").replace("disputed_claims.add(","_probe_noop(").replace("; sys.exit(1)","; pass").replace("; return 1","; pass").replace("PROBE:","PROBE-DELETED:")
+        return l[:len(l)-len(l.lstrip())]+"pass  # PROBE-DELETED (assignment guard neutralised in place)"
     kept=["_probe_noop=lambda *a,**k: None  # PROBE-DELETED"]+[neut(l) if marker in l else l for l in src]
-    t=W/(tool.stem+"_minus_"+marker.split(":")[1]+".py"); t.write_text("\n".join(kept)+"\n"); rc,out=run(t,*args)
-    why=setup_ok(out) or ("" if token in out else f"expected token {token!r} absent") or ("" if rc==want_rc else f"exit {rc} != expected {want_rc}")
-    ok=not why; results.append((name,ok)); print(("ok  " if ok else "BAD ")+name+("" if ok else f"\n   {why}\n   rc={rc}\n{out[-500:]}"))
+    t=W/(tool.stem+"_minus_"+marker.split(":")[1]+".py"); t.write_text("\n".join(kept)+"\n")
+    rc0,out0=run(tool,*args); base_art=(pathlib.Path(artefact).read_text() if artefact and pathlib.Path(artefact).exists() else None)
+    rc,out=run(t,*args); probed_art=(pathlib.Path(artefact).read_text() if artefact and pathlib.Path(artefact).exists() else None)   # baseline vs probed: the probe must REMOVE the check's effect, not merely change a polarity
+    def diag(o): return [norm_row(l) for l in o.splitlines() if l.strip() and not TOKEN_LINE.match(norm_row(l))]
+    D0,D1=diag(out0),diag(out)
+    gone=[l for l in D0 if l not in D1]
+    key="probe:"+name
+    if CAPTURE: _CAPTURED[key]=gone
+    why=(setup_ok(out0) and f"baseline run: {setup_ok(out0)}") or setup_ok(out) \
+        or ("" if token in out else f"expected token {token!r} absent after deletion") \
+        or ("" if rc==want_rc else f"exit {rc} != expected {want_rc}") \
+        or ("" if TOKEN_LINE.search(out) else "no completion token line after deletion") \
+        or ("" if (gone or gone_text) else "NO diagnostic vanished — deleting the marked check changed nothing (a relocated marker cannot satisfy a probe)") \
+        or ("" if gone_text is None else ("" if (base_art is not None and gone_text in base_art) else f"the declared artefact evidence {gone_text!r} was absent from the UNPROBED artefact")) \
+        or ("" if gone_text is None else ("" if (probed_art is not None and gone_text not in probed_art) else f"the declared artefact evidence {gone_text!r} SURVIVED the deletion"))
+    if gone_text is not None: pass   # an artefact-effect probe pins its vanished evidence in the call itself
+    if not why and not CAPTURE and gone_text is None:
+        pinned=EXACT_ROWS.get(key)
+        if pinned is None: why=f"no pinned vanished-diagnostic text for {key!r} — a probe must declare exactly what its deletion removes"
+        else:
+            still=[l for l in pinned if l in D1]; missing=[l for l in pinned if l not in D0]
+            if still: why=f"the targeted diagnostic is STILL PRESENT after deletion: {still}"
+            elif missing: why=f"the pinned targeted diagnostic never appeared in the unprobed run: {missing}"
+    ok=not why
+    if judge_only: return ok,why
+    results.append((name,ok)); print(("ok  " if ok else "BAD ")+name+("" if ok else f"\n   {why}\n   rc={rc}\n{out[-500:]}"))
 def manifest(path, files_dir, files):
     rows="".join(f"| {i+1} | `{f}` | `{hashlib.sha256((files_dir/f).read_bytes()).hexdigest()}` | {(files_dir/f).stat().st_size} | {sum(1 for l in (files_dir/f).read_text().splitlines() if l.strip())} |\n" for i,f in enumerate(files))
     pathlib.Path(path).write_text("# m\n| # | file | sha256 | bytes | non-blank lines |\n|---|---|---|---|---|\n"+rows)
@@ -269,7 +330,7 @@ SILA=dict(rec(claim_id="c1",input_id="i1"),origin="CHOSEN",origin_evidence={"rea
 SILB=dict(SILA,origin="UNDECLARED",origin_evidence={"reason_code":"ORIG_SILENT","source_file":"paperB.txt","source_line":5,"verbatim":""},origin_search={"query":"a","files":["paperB.txt"],"matches":2})
 mA=w("silA.json",{"records":[SILA]}); mB=w("silB.json",{"records":[SILB]})
 rc,out=run(LANE,"merge",mA,mB,W/"silAB.json"); mAB=json.loads((W/"silAB.json").read_text()); results.append(("gate-7 F1 (codex): merge preserves the alternative's origin_search as origin_search_alt when the alternative is ORIG_SILENT",rc==0 and mAB["records"][0].get("origin_search_alt")==SILB["origin_search"])); print(("ok  " if results[-1][1] else "BAD ")+results[-1][0])
-probe("gate-7 F1 probe: deleting the preservation drops the alternative's search",LANE,"PROBE:MERGE_SEARCH_ALT","merge",mA,mB,W/"silAB_p.json",token="merged 1 records")
+probe("gate-7 F1 probe: deleting the preservation drops the alternative's search",LANE,"PROBE:MERGE_SEARCH_ALT","merge",mA,mB,W/"silAB_p.json",token="merged 1 records",artefact=W/"silAB_p.json",gone_text="origin_search_alt")
 I1SIL={"symbol":"a","origin":"UNDECLARED","status":"PRINTED","value":"2","source_file":"paperB.txt","source_line":5,"derived_from":[],"origin_evidence":{"reason_code":"ORIG_SILENT","source_file":"paperB.txt","source_line":5,"verbatim":""},"origin_search":{"matches":2,"files":["paperB.txt"],"query":"a"}}
 rc,out,_=full_case("silalt",AC,[A4],SC,[X4],lambda ids: {**rd_ok(ids),"c1":{"outcome":"REPRO_WITHIN_STATED_PRECISION","printed_value":"4","reproduced_value":"4","inputs":{"i1":dict(I1SIL)}}},sl_=str(W/"silAB.json")); check("gate-7 F1/F2 (codex): the auditor matching the ORIG_SILENT alternative, with its search in a different key order, PASSES (branch search, structural comparison)",rc,out,0,[],"C6_AUDIT_SAMPLE=PASS")
 rc,out=run(LANE,"merge",mB,mA,W/"silBA.json"); rc,out,_=full_case("silalt_rev",AC,[A4],SC,[X4],lambda ids: {**rd_ok(ids),"c1":{"outcome":"REPRO_WITHIN_STATED_PRECISION","printed_value":"4","reproduced_value":"4","inputs":{"i1":dict(I1SIL)}}},sl_=str(W/"silBA.json")); check("gate-7 F1 (codex): the same reconstruction against the seats MERGED IN THE OTHER ORDER also PASSES (verdict independent of seat order)",rc,out,0,[],"C6_AUDIT_SAMPLE=PASS")
@@ -393,7 +454,8 @@ ex=H/"C6_COUNTEREXAMPLE_EXHIBIT.txt"; ex.write_text("C6 counterexample exhibit �
 #      labelled controls, never counted as fail-first evidence.
 LIVE=W/"spi_live"; LIVE.mkdir(); shutil.copy(H/"r3c2_ledger_tools_STAGED.py",LIVE/"r3c2_ledger_tools.py"); shutil.copy(H/"r3c2_lane_tools_STAGED.py",LIVE/"r3c2_lane_tools.py")
 def moi_judge(rc,out,spec):
-    """returns (ok, why) — `why` names the FIRST reason this is not the exact expected outcome"""
+    """returns (ok, why) — `why` names the FIRST reason this is not the exact expected outcome. Setup, exit code and completion
+    token are decided by the one evaluator's rules; the row assertions below are this helper's own exact-outcome expectations."""
     why=setup_ok(out)
     if why: return False,why
     if "runs per construction:" not in out: return False,"the exhibition did not reach its completion line"
@@ -429,10 +491,10 @@ FF={
  "v32_sea": dict(rc=1,token="SPI=FAIL",rows=1,assert_=[("codex V32 F1",True,["verdicts=[0, 1]","expected=0"])]),
  "c_mem":   dict(rc=0,token="SPI=PASS",rows=1,assert_=[("member order",False,["merged-bytes-equal=True","whole-outcome-equal=True"])]),
  "c_v34":   dict(rc=0,token="SPI=PASS",rows=1,assert_=[("codex V34 F1",False,["merged-bytes-equal=True","whole-outcome-equal=True","compute-ok=True"])]),
- "full":    dict(rc=0,token="SPI=PASS",rows=20,assert_=[("dependency-list order",False,["merged-bytes-equal=True","whole-outcome-equal=True"]),("codex V35 F1",False,["verdicts=[1]","expected=1"]),("codex V35 F2",False,["whole-outcome-equal=True"])]),
+ "full":    dict(rc=0,token="SPI=PASS",rows=26,assert_=[("dependency-list order",False,["merged-bytes-equal=True","whole-outcome-equal=True"]),("codex V35 F1",False,["verdicts=[1]","expected=1"]),("codex V35 F2",False,["whole-outcome-equal=True"])]),
 }
 for _k,_v in FF.items(): _v["assert"]=_v.pop("assert_")
-moi("MOI property (delivered tools): 20 constructions, each identical across 2 seat orders x seeds 0,1,2 x reversed arrival x reversed rederivation order x reversed dependency order (both seat orders) x reversed auditor dependency order, every expected verdict met",LIVE,None,FF["full"],"moi_live")
+moi("MOI property (delivered tools): 26 constructions, each identical across 2 seat orders x seeds 0,1,2 x reversed arrival x reversed rederivation order x reversed dependency order (both seat orders) x reversed auditor dependency order, every expected verdict met",LIVE,None,FF["full"],"moi_live")
 moi("fail-first V35 / F1 (exact): a matched cycle through a CHOSEN record with parents is a FALSE PASS on the V35 bytes — verdict 0 where 1 is required, graph-integrity diagnostic absent",H/"_v35_bytecopy","codex V35 F1",FF["v35_f1"],"ff35_f1")
 moi("fail-first V35 / F2 (exact): the all-DERIVED cycle gives UNEQUAL complete outcomes across PYTHONHASHSEED runs on the V35 bytes, the differing runs named",H/"_v35_bytecopy","codex V35 F2",FF["v35_f2"],"ff35_f2")
 moi("fail-first V35 / missing dependency (exact): audit FAILs but the graph-integrity diagnostic is absent on the V35 bytes",H/"_v35_bytecopy","missing dependency in the auditor",FF["v35_md"],"ff35_md")
@@ -464,4 +526,21 @@ rc,out=run(SEAT,"validate",_gled,_gsrc,_gcand); check("V37 F2 (codex): `validate
 probe("V37 F2 probe: deleting the validate integrity check lets the CHOSEN self-cycle pass C3",SEAT,"PROBE:VALIDATE_GRAPH_INTEGRITY","validate",_gled,_gsrc,_gcand,token="C3_NO_SUBSTITUTION=PASS",want_rc=0)
 rc,out=run(LANE,"compute",_gled,W/"cyc_chosen_compute.json",_gcand); check("V37 F2 (codex): lane `compute` fails BEFORE writing output on a cyclic complete provenance graph, whatever the origin",rc,out,1,["FAIL: provenance graph 0: cycle at p.txt#x"])
 probe("V37 F2 probe: deleting the compute integrity check classifies the cyclic graph as USES_CHOSEN",LANE,"PROBE:COMPUTE_GRAPH_INTEGRITY","compute",_gled,W/"cyc_chosen_compute_p.json",_gcand,token="rests_on=USES_CHOSEN",want_rc=0)
+if CAPTURE:
+    EXACT_PATH.write_text(json.dumps(_CAPTURED,indent=1,sort_keys=True)); print(f"CAPTURED {len(_CAPTURED)} pinned expectations -> {EXACT_PATH.name}")
+# ================= META-CONTROLS ON THE JUDGES THEMSELVES =================
+def meta(label, cond, detail=""):
+    results.append((label,bool(cond))); print(("ok  " if cond else "BAD ")+label+("" if cond else f"\n   {detail}"))
+_crash="FAIL: provenance graph 0: cycle at p.txt#x\nTraceback (most recent call last):\n  File \"x\", line 1\nRuntimeError: injected infrastructure failure\n"
+_ok,_why=judge("(meta crash)",1,_crash,1,["cycle at p.txt#x"])
+meta("meta-control on the exact-result evaluator: a REAL TRACEBACK is rejected even though its exit code and diagnostic row match (this is the case the retired general check credited)",(not _ok) and "traceback failure" in _why,_why)
+_ok,_why=judge("(meta notoken)",1,"FAIL: provenance graph 0: cycle at p.txt#x\n",1,["cycle at p.txt#x"])
+meta("meta-control: output with no completion token line is rejected — a subcommand that never announces completion cannot serve as control evidence",(not _ok) and "completion token" in _why,_why)
+_ok,_why=judge("(meta wrongdiag)",1,"FAIL: something else entirely\nSEAT_VALIDATE=FAIL\n",1,["cycle at p.txt#x"])
+meta("meta-control: a control whose subcommand fails for a DIFFERENT stated reason is rejected",(not _ok) and "does not carry the declared expectation" in _why,_why)
+_ok,_why=judge("(meta extrarows)",1,"FAIL: a\nFAIL: b\nSEAT_VALIDATE=FAIL\n",1,["a"])
+meta("meta-control: an unexpected EXTRA diagnostic row is rejected (the failure set is exact, not a lower bound)",(not _ok) and "expected exactly" in _why,_why)
+_inert=W/"inert_tool.py"; _inert.write_text((SEAT.read_text()+"\n# PROBE:INERT_MARKER — a marker on a line that disables nothing\n"))
+_ok,_why=probe("(meta inert)",_inert,"PROBE:INERT_MARKER","validate",_gled,_gsrc,_gcand,token="C3_NO_SUBSTITUTION=FAIL",want_rc=1,judge_only=True)
+meta("meta-control on deletion probes: a marker RELOCATED to a line that disables nothing is rejected — no diagnostic vanished",(not _ok) and "NO diagnostic vanished" in _why,_why)
 n_ok=sum(1 for _,o in results if o); print(f"deletion_probes={NPROBES}"); print(f"controls={len(results)} passed={n_ok} failed={len(results)-n_ok}"); print("STAGED_TESTS="+("PASS" if n_ok==len(results) else "FAIL")); sys.exit(0 if n_ok==len(results) else 1)

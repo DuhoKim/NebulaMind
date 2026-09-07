@@ -1,0 +1,118 @@
+{
+ "claims": {
+  "c1": {
+   "DISPUTED": true,
+   "rests_on": [
+    "DERIVED_STANDARD_OR_MEASURED_ONLY",
+    "DERIVED_STANDARD_OR_MEASURED_ONLY"
+   ],
+   "root_origins": [
+    "MEASURED"
+   ],
+   "root_origins_by_graph": [
+    [
+     "MEASURED"
+    ],
+    [
+     "MEASURED"
+    ]
+   ]
+  },
+  "c2": {
+   "rests_on": "NOT_COMPUTED",
+   "root_origins": []
+  },
+  "cZ": {
+   "rests_on": "NOT_COMPUTED",
+   "root_origins": []
+  }
+ },
+ "records": [
+  {
+   "claim_id": "c1",
+   "derived_from": [],
+   "input_id": "r",
+   "origin": "MEASURED",
+   "origin_evidence": {
+    "reason_code": "ORIG_MEASURED",
+    "source_file": "p.txt",
+    "source_line": 3,
+    "verbatim": "We measure r = 2 using a ruler."
+   },
+   "root_origins": [
+    "MEASURED"
+   ],
+   "source_file": "p.txt",
+   "source_line": 3,
+   "status": "PRINTED",
+   "symbol": "r",
+   "value": "2"
+  },
+  {
+   "PARENTS_DISPUTED": true,
+   "claim_id": "c1",
+   "derived_from": [
+    "r"
+   ],
+   "derived_from_alt": [
+    "y"
+   ],
+   "input_id": "x",
+   "origin": "DERIVED",
+   "origin_alt": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "p.txt",
+    "source_line": 4,
+    "verbatim": "x is calculated as 2 from r."
+   },
+   "origin_evidence_alt": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "p.txt",
+    "source_line": 1,
+    "verbatim": "x is calculated as 2 from y."
+   },
+   "root_origins": [
+    "MEASURED"
+   ],
+   "source_file": "p.txt",
+   "source_line": 1,
+   "status": "PRINTED",
+   "symbol": "x",
+   "value": "2"
+  },
+  {
+   "PARENTS_DISPUTED": true,
+   "claim_id": "c1",
+   "derived_from": [
+    "r"
+   ],
+   "derived_from_alt": [
+    "x"
+   ],
+   "input_id": "y",
+   "origin": "DERIVED",
+   "origin_alt": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "p.txt",
+    "source_line": 2,
+    "verbatim": "y is calculated as 2 from r."
+   },
+   "origin_evidence_alt": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "p.txt",
+    "source_line": 5,
+    "verbatim": "y is calculated as 2 from x."
+   },
+   "root_origins": [
+    "MEASURED"
+   ],
+   "source_file": "p.txt",
+   "source_line": 2,
+   "status": "PRINTED",
+   "symbol": "y",
+   "value": "2"
+  }
+ ]
+}

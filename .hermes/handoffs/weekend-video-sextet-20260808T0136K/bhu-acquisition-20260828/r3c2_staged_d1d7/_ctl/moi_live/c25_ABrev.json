@@ -1,0 +1,125 @@
+{
+ "provenance_graphs": [
+  [
+   {
+    "claim_id": "c1",
+    "derived_from": [
+     "i9"
+    ],
+    "input_id": "i1",
+    "origin": "DERIVED",
+    "origin_evidence": {
+     "reason_code": "ORIG_EQUATION",
+     "source_file": "paperA.txt",
+     "source_line": 4,
+     "verbatim": "Then y"
+    },
+    "source_file": "paperB.txt",
+    "source_line": 5,
+    "status": "PRINTED",
+    "symbol": "a",
+    "value": "2"
+   },
+   {
+    "claim_id": "c2",
+    "derived_from": [],
+    "input_id": "i9",
+    "origin": "FITTED",
+    "origin_evidence": {
+     "reason_code": "ORIG_FIT_STATED",
+     "source_file": "paperB.txt",
+     "source_line": 5,
+     "verbatim": "we choose a = 2"
+    },
+    "source_file": "paperB.txt",
+    "source_line": 5,
+    "status": "PRINTED",
+    "symbol": "a",
+    "value": "2"
+   }
+  ],
+  [
+   {
+    "claim_id": "c1",
+    "derived_from": [
+     "i9"
+    ],
+    "input_id": "i1",
+    "origin": "DERIVED",
+    "origin_evidence": {
+     "reason_code": "ORIG_EQUATION",
+     "source_file": "paperA.txt",
+     "source_line": 4,
+     "verbatim": "Then y"
+    },
+    "source_file": "paperB.txt",
+    "source_line": 5,
+    "status": "PRINTED",
+    "symbol": "a",
+    "value": "2"
+   },
+   {
+    "claim_id": "c2",
+    "derived_from": [],
+    "input_id": "i9",
+    "origin": "CHOSEN",
+    "origin_evidence": {
+     "reason_code": "ORIG_CHOICE_STATED",
+     "source_file": "paperB.txt",
+     "source_line": 5,
+     "verbatim": "we choose a = 2"
+    },
+    "source_file": "paperB.txt",
+    "source_line": 5,
+    "status": "PRINTED",
+    "symbol": "a",
+    "value": "2"
+   }
+  ]
+ ],
+ "records": [
+  {
+   "claim_id": "c1",
+   "derived_from": [
+    "i9"
+   ],
+   "input_id": "i1",
+   "origin": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "paperA.txt",
+    "source_line": 4,
+    "verbatim": "Then y"
+   },
+   "source_file": "paperB.txt",
+   "source_line": 5,
+   "status": "PRINTED",
+   "symbol": "a",
+   "value": "2"
+  },
+  {
+   "claim_id": "c2",
+   "derived_from": [],
+   "input_id": "i9",
+   "origin": "FITTED",
+   "origin_alt": "CHOSEN",
+   "origin_evidence": {
+    "reason_code": "ORIG_FIT_STATED",
+    "source_file": "paperB.txt",
+    "source_line": 5,
+    "verbatim": "we choose a = 2"
+   },
+   "origin_evidence_alt": {
+    "reason_code": "ORIG_CHOICE_STATED",
+    "source_file": "paperB.txt",
+    "source_line": 5,
+    "verbatim": "we choose a = 2"
+   },
+   "source_file": "paperB.txt",
+   "source_line": 5,
+   "status": "PRINTED",
+   "symbol": "a",
+   "value": "2"
+  }
+ ]
+}

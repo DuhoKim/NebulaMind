@@ -1,0 +1,98 @@
+You are a fresh adversarial referee gating a pre-registration for a reproduction census. Judge the DESIGN only. No
+derivation has been run. You have seen no prior verdict on this document and there is none to infer; section 10 of
+the master is history and BINDS NOTHING — do not report its narrated findings as yours, do not look for gate files,
+and do not open any file other than the two named below.
+
+STEP 0 (already done by the access proof above): print ACCESS_SHA of the master.
+
+STEP 1 — PACKET FIRST, BEFORE ANYTHING ELSE. Open ONLY the seat packet:
+  r3c2_seat_packet/R3C2_SEAT_PACKET.md
+Print its sha256 as PACKET_SHA=<64 hex>. Then answer, from the packet ALONE and before you have read the master:
+  Q5. CAN YOU TELL, FROM THE PACKET ALONE, THAT ANY OUTCOME IS MORE CONSEQUENTIAL THAN ANY OTHER — to the lane, to
+      anyone? Quote the sentence that tells you, or state that no sentence does. Answer before Q3.
+  Q6. CAN YOU STATE, FROM THE PACKET ALONE, WHAT THE RECORDED `origin` OF AN INPUT IS FOR — what the study does with
+      it after you record it? Quote the sentence that tells you, or state that you cannot. Answer before Q3.
+  Q3. WHAT CAN YOU INFER ABOUT WHAT THE LANE EXPECTS OR HOPES THE CENSUS WILL SHOW? State every inference you can
+      draw about a hypothesis, a comparison model, a preferred outcome, or a "pattern" — with the packet sentence
+      that leaks it. If you can infer nothing, say so and say why the packet gives you nothing. This is the
+      hypothesis-reachability test; six leak findings preceded it. Be adversarial: try to reconstruct the stake.
+STEP 2 — then read the master in full: R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md (Version 32, the living draft; not signed). Judge the operative sections
+  (1, 2, 3, 4, 5, 6, 7, 9, 11). Section 3's core definition is SETTLED by the principal's ruling (option (c): one
+  pass, two tallies — reproduce mechanically from every input the paper states, record provenance, a script
+  computes each claim's rests_on; REPRO_AFTER_CHOICE retired). Judge it as written.
+
+JUDGE, each explicitly and in order:
+1. OUTCOME CLASSES. Exhaustive and mutually exclusive? Construct a real claim fitting two per-claim outcomes, or
+   none; a real tally fitting two study-level classes, or none. Is INCONCLUSIVE genuinely reachable?
+   Q1 (ask directly): DOES SECTION 3's DEFINITION, AS WRITTEN UNDER OPTION (c), MAKE EVERY DECLARED OUTCOME REACHABLE
+   AND KEEP THE REPRODUCTION QUESTION DECIDABLE? Those two pull against each other and four earlier rounds failed on
+   that tension. Construct the hardest case you can — a printed-but-chosen input, a fitted parameter the paper
+   states, an imported value — and trace it to exactly one outcome and one rests_on value, or show it cannot be.
+2. CONTROLS. Can any control be passed by assertion rather than a printed artefact? Does each name an exact code
+   with PASS/FAIL/NOT_RUN? Are unreached controls handled?
+   Q2 (ask directly): IS THE PROVENANCE FIELD CHECKABLE RATHER THAN ASSERTED? origin must be cited with a
+   machine-matched quotation; root_origins and rests_on are computed by script; the audit re-classifies origin from
+   the sources. TEST IT: write a ledger record whose origin is wrong but plausible, and say which mechanism catches
+   it and how. If the mechanism as written cannot catch it, that is the answer — say so.
+3. CIRCULARITY. Can the lane's expectation reach the evidence — through inclusion, exclusion, origin classification,
+   or the interpretation step? Can a contrary claim be quietly excluded?
+4. THE BLIND. Is the packet's redaction machine-asserted as claimed? Does the C4 mechanism as described actually
+   prevent what it claims to prevent, and does the document state its limit honestly?
+5. THE SEAL (section 7). Does the receipted relay bind what it claims to bind, before the step it must precede?
+6. FAIRNESS. Every negative outcome worded "unreproduced from the stated inputs", never "error"? Any class name or
+   clause that asserts more than its definition?
+7. STALL / EXECUTABILITY.
+   Q4 (ask directly): CAN ANYTHING THE DOCUMENT DESCRIBES NOT BE EXECUTED AS DELIVERED? Every literal command, every
+   named script, every file the document says exists, every field a script is said to compute, every path a seat is
+   told to use. Name each thing you checked and how. A described artefact that does not exist as delivered is a
+   finding.
+
+For every defect: QUOTE the verbatim sentence, state the defect, give an EXACT replacement. Mark COSMETIC anything
+that changes no class filed, no control's passability, no reachability, no conclusion and no tested value.
+
+REPORT — write R3C2_GATE_V37_<seat>_20260907.md beside the master AND print it as your final answer:
+  line 1: ACCESS_SHA=<64 hex of the master>
+  line 2: PACKET_SHA=<64 hex of the packet>
+  line 3: GATE=PREREG_SOUND | PREREG_SOUND_WITH_REPAIRS | PREREG_UNSOUND
+  line 4: LEAK=NONE | LEAK=<one line: what the packet alone let you infer>
+  line 5: CONSEQUENCE_VISIBLE=NO | CONSEQUENCE_VISIBLE=<one line: which outcome, from which sentence>
+  line 6: ORIGIN_PURPOSE=CANNOT_STATE | ORIGIN_PURPOSE=<one line: what it is for, from which sentence>
+  then sections 1-7 with Q1-Q4 answered where placed.
+  final line: R3C2_V37_GATE_COMPLETE
+
+
+Q7 (V37): this version repairs the two-seat gate on V36 (§10.32) — you may open R3C2_GATE_V36_codex_20260907.md and
+R3C2_GATE_V36_kimi_20260907.md AFTER the master. The V36 gate left three non-cosmetic findings and one cosmetic (codex), and one
+cosmetic plus two observations (kimi, verdict PREREG_SOUND_WITH_REPAIRS).
+F3, treated FIRST as the fourth instance of one disease: the kit's fail-first helper decided a negative case by `got_pass ==
+expect_pass`, so ANY failure — a launch error exiting 2 — was credited as the expected negative. V37 claims the rule is now stated ONCE
+in the operative text and once at the head of the kit and applied wherever a control judges an outcome: A NEGATIVE CONTROL MUST ASSERT
+THE EXACT EXPECTED FAILURE, NEVER THE BARE POLARITY — successful setup (no traceback, import/launch error or usage banner, non-empty
+output), the expected completion token AND exit code, a non-empty selection of EXACTLY the expected rows, and that subcase's own
+verdicts, diagnostics and equality results; a construction whose merge did not run is infrastructure, never evidence; the deletion-probe
+judge carries the same setup guard; three meta-controls hold the predicate (an unrelated launch failure rejected; a REAL failure of a
+DIFFERENT subcase rejected; the right subcase failing for the WRONG stated reason rejected). §10.32 reports the measurement: 0 of 12
+real cases disagreed between old and new predicate, while against an emptied tools directory the retired predicate credits 8/8 negative
+cases and the new one 0/8.
+F1: reversing a `derived_from` list changed merged bytes, the ledger digest, compute output and the audit artefact while every verdict
+still PASSED. V37 claims dependency-list order is now enumerated MOI source (f) and canonicalised at ONE place — the head of `merge`,
+before canonical keys, graph digests, branch selection, deduplication and serialisation, in both complete seat graphs and every retained
+primary or alternative record — with three added runs per construction (reversed dependency lists in both seat ledgers under both seat
+orders, and in the auditor's reconstruction): 20 constructions x 9 runs.
+F2: a CHOSEN record whose `derived_from` named itself passed `validate` (C3_NO_SUBSTITUTION=PASS) and was classified USES_CHOSEN by
+`compute`. V37 claims origin-independent graph integrity now runs at BOTH C3 boundaries before root classification and before compute
+writes output, C6's independent check retained, each guard carrying a deletion probe.
+C1 (codex) and kimi's cosmetic, the same sentence: source (e) claimed no delivered tool walks the filesystem; `r3c2_manifest.py` does,
+and already sorts. Corrected; behaviour untouched. kimi observation (i): §10.31 claimed three V35-bytes control rows where the kit
+carried two — the third is now a kit control row and the correction is recorded in §10.32, not by rewriting §10.31. kimi observation
+(ii): the dead `roots_alt` helper is removed.
+TEST THE PRINCIPLE, NOT THE INSTANCE, IN BOTH DIRECTIONS: (1) try to satisfy any negative control in the kit with something OTHER than
+the failure it names — break a fixture, empty a tools directory, point a subcase at the wrong bytes, make a probed tool crash — and
+report whether any control still passes; (2) pick ordering sources of your own, including ones NOT in the enumerated list (a–f), and
+report whether the whole outcome moves; (3) try to pass a cycle or a missing dependency through ANY origin at `validate`, `compute` or
+C6. Also check that the exact-failure rule is stated once and applied everywhere a control judges an outcome, and that no production
+guard was weakened to make a probe pass. (a) Rerun the executable checks of Q1–Q6 on THIS text and
+  print tokens. (b) C5_EXECUTABLE_UNDER_SCOPE=YES|NO and NO_MASKED_STAGE=YES|NO for THIS text. (c) PRIOR_FINDINGS_CLOSED=YES|NO over
+  the V36 gate's findings (codex F1, F2, F3, C1; kimi one cosmetic + two observations): each CLOSED / PARTLY / NOT with your evidence. (d) Any NEW executable defect,
+  with its counterexample. Add line 7: C5_EXECUTABLE_UNDER_SCOPE=…, line 8: NO_MASKED_STAGE=…, line 9: PRIOR_FINDINGS_CLOSED=….
+  Nothing you write adopts, signs or runs anything.

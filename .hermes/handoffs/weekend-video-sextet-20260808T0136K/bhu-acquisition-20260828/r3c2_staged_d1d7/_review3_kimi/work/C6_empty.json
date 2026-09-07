@@ -1,0 +1,70 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {},
+ "completeness_rows": [
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "r3a.txt",
+    4,
+    "4"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "r3a.txt",
+    9,
+    "7"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": false,
+   "audit_kind": "REFERENCE_NUMBER",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "r3b.txt",
+    1,
+    "2020"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "DATE"
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=d74cfccdb9ff5cae52f19f1e3c0369b0389f4d654f211b53c87974c7b8bae030\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "70e7c2e10b58134f98c7627ac3b83678ba48febcecf4756c1a45e0f934b0f834",
+ "sealed_denominator": 2,
+ "sealed_exclusions_sha256": "40cbc1e423d283a0bd20f49f1241b9ba2c6158d7f11723f50192bb89c3de4687",
+ "sealed_ledger_sha256": "e230b040ad7341611a3fcf6d115b86b0e0d66548e590cbd1febbdc99e6b50673",
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "selection": {
+  "arithmetic_group_ids": [
+   "c1"
+  ],
+  "audited_ids": [],
+  "k": 0,
+  "remaining_ids": [
+   "c2"
+  ],
+  "sampled_ids": []
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=8c3b6bb2459408ccfa4a953ab9d1bccc17cf35165e58647c093a4f4ff664ae29\nAUDITOR_EXCLUSIONS_SHA256=00c489ffbb2aafad0c628bd69b254219a11530a376457aa7fdee2112ce323f43\nAUDITOR_CENSUS_STDOUT_SHA256=4c2995f3aa3426ae72a6661a1f2a3358d4caa642e86fdda9f771eda6cd98367c\n",
+ "study_files": "CENSUS_AUDIT_FAILED"
+}

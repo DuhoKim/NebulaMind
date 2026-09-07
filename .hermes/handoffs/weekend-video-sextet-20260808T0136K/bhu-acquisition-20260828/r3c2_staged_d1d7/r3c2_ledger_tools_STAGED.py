@@ -83,6 +83,16 @@ def load(p):
     return d,recs
 
 
+def canon_search(s):
+    """V38 (codex V37 N1): canonical form of an origin_search object — `files` and `matches` are UNORDERED evidence inventories, so their
+    entries are sorted by canonical JSON; `query` is an ordered field and is preserved exactly. Nothing is dropped, added or altered."""
+    if not isinstance(s,dict): return s
+    out=dict(s)
+    for f in ("files","matches"):
+        if isinstance(out.get(f),list): out[f]=sorted(out[f],key=lambda e: json.dumps(e,sort_keys=True,separators=(",",":")))
+    return out
+
+
 def graph_integrity(graph, starts):
     """V36: every derived_from edge reachable from `starts` is checked for a missing record and for a cycle, INDEPENDENTLY of origin
     (a cycle through a CHOSEN/FITTED/IMPORTED/MEASURED/STANDARD/UNDECLARED record is still a cycle). Traversal is sorted, so the
@@ -405,7 +415,7 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
         alt_par_full=s_par_alt if s_par_alt is not None else s_par
         matches_primary=same_origin and ev_ok and par_ok
         matches_alt=has_alt and str(ar.get("origin"))==alt_origin_full and all(str(aev.get(f2))==str(alt_ev_full.get(f2)) for f2 in ("reason_code","source_file","source_line","verbatim")) and a_par==alt_par_full and (alt_ev_full.get("reason_code")!="ORIG_SILENT" or ar.get("origin_search")==(sr.get("origin_search_alt") if "origin_search_alt" in sr else sr.get("origin_search")))
-        matches_primary=matches_primary and (sev.get("reason_code")!="ORIG_SILENT" or ar.get("origin_search")==sr.get("origin_search"))
+        matches_primary=matches_primary and (sev.get("reason_code")!="ORIG_SILENT" or canon_search(ar.get("origin_search"))==canon_search(sr.get("origin_search")))  # PROBE:C6_SEARCH_CANON_MATCH
         if matches_primary: branch="primary"
         elif matches_alt: branch="alt"
         else:
@@ -420,7 +430,7 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
             if not par_ok: diffs.append(f"derived_from {a_par} vs sealed {s_par}"+(f" (alternative {s_par_alt})" if s_par_alt is not None else ""))  # PROBE:C6_EDGES
         if aev.get("reason_code")=="ORIG_SILENT":
             expected_search = sr.get("origin_search_alt") if (branch=="alt" and "origin_search_alt" in sr) else sr.get("origin_search")
-            if ar.get("origin_search")!=expected_search: diffs.append("origin_search differs (structural comparison against the matched branch's search)")  # PROBE:C6_SEARCH_BRANCH
+            if canon_search(ar.get("origin_search"))!=canon_search(expected_search): diffs.append("origin_search differs (structural comparison against the matched branch's search)")  # PROBE:C6_SEARCH_BRANCH
         return diffs, branch
     def closure_of(iid, graph, seen=None):
         seen=seen if seen is not None else set()
@@ -489,14 +499,20 @@ def cmd_audit_compare(seal1, ac, ax, sc, sx, sl, sel, seal2, red, out):
     print(json.dumps(res,indent=1,sort_keys=True)); print("C6_AUDIT_SAMPLE="+tok); return 0 if tok=="PASS" else 1
 
 
+def _emit(prefix, rc, argv):
+    """V38: one completion token per subcommand run — <PREFIX>_<SUBCOMMAND>=PASS|FAIL, printed once, whatever the exit status."""
+    sub="_".join(str(x).upper().replace("-","_") for x in argv[:2] if not str(x).startswith("/") and not str(x).endswith(".json") and not str(x).endswith(".md") and not str(x).endswith(".txt"))
+    print(f"{prefix}_{sub}=" + ("PASS" if rc==0 else "FAIL")); sys.exit(rc)
+
+
 if __name__=="__main__":
     a=sys.argv[1:]
-    if len(a)==3 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2]))
-    if len(a)==4 and a[0]=="validate": sys.exit(cmd_validate(a[1],a[2],a[3]))
-    if len(a)==5 and a[0]=="audit" and a[1]=="seal-enumeration": sys.exit(cmd_audit_seal(a[2],a[3],a[4]))
-    if len(a)==6 and a[0]=="audit" and a[1]=="select": sys.exit(cmd_audit_select(a[2],a[3],a[4],a[5]))
-    if len(a)==5 and a[0]=="audit" and a[1]=="handout": sys.exit(cmd_audit_handout(a[2],a[3],a[4]))
-    if len(a)==4 and a[0]=="audit" and a[1]=="seal-rederivation": sys.exit(cmd_audit_seal_rederivation(a[2],a[3]))
-    if len(a)==12 and a[0]=="audit" and a[1]=="compare": sys.exit(cmd_audit_compare(*a[2:]))
-    if len(a) in (3,4) and a[0]=="census" and (len(a)==3 or a[3]=="final"): sys.exit(cmd_census(a[1],a[2],final=(len(a)==4)))
-    print(__doc__); sys.exit(2)
+    if len(a)==3 and a[0]=="validate": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_validate(a[1],a[2]), a)
+    if len(a)==4 and a[0]=="validate": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_validate(a[1],a[2],a[3]), a)
+    if len(a)==5 and a[0]=="audit" and a[1]=="seal-enumeration": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_audit_seal(a[2],a[3],a[4]), a)
+    if len(a)==6 and a[0]=="audit" and a[1]=="select": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_audit_select(a[2],a[3],a[4],a[5]), a)
+    if len(a)==5 and a[0]=="audit" and a[1]=="handout": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_audit_handout(a[2],a[3],a[4]), a)
+    if len(a)==4 and a[0]=="audit" and a[1]=="seal-rederivation": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_audit_seal_rederivation(a[2],a[3]), a)
+    if len(a)==12 and a[0]=="audit" and a[1]=="compare": _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_audit_compare(*a[2:]), a)
+    if len(a) in (3,4) and a[0]=="census" and (len(a)==3 or a[3]=="final"): _emit("SEAT_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "SEAT", cmd_census(a[1],a[2],final=(len(a)==4)), a)
+    print(__doc__); print("INVOCATION=REJECTED"); sys.exit(2)

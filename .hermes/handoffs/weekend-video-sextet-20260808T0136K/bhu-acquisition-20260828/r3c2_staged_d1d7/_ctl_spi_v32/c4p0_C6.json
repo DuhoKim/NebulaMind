@@ -1,0 +1,127 @@
+{
+ "C6_AUDIT_SAMPLE": "PASS",
+ "audited": {
+  "c1": {
+   "inputs": {
+    "_roots": {
+     "alt_branch_records": [
+      "i1"
+     ],
+     "audit": [
+      "STANDARD"
+     ],
+     "sealed_primary": [
+      "STANDARD"
+     ],
+     "sealed_under_matching_branch": [
+      "STANDARD"
+     ]
+    },
+    "i1": {
+     "branch": "alt",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    },
+    "i2": {
+     "branch": "primary",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    },
+    "i3": {
+     "branch": "primary",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    }
+   },
+   "result": "MATCH",
+   "why": []
+  },
+  "cZ": {
+   "inputs": {
+    "_roots": {
+     "alt_branch_records": [],
+     "audit": [],
+     "sealed_primary": [],
+     "sealed_under_matching_branch": []
+    }
+   },
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperA.txt",
+    4,
+    "4"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperB.txt",
+    9,
+    "7"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperB.txt",
+    11,
+    "8"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=063f7b88f25c6329151a0f24de377f99e75ee98eceedb0a96cb937529e0417b3\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "f7aeef9617e0a555da8421d70bcce823de31cfde190710005e7445601a80d33c",
+ "sealed_denominator": 3,
+ "sealed_exclusions_sha256": "5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05",
+ "sealed_ledger_sha256": "c5f221075c7521463c9aeffcb0a39533647309d572bbf7a6b492ae54e27869ce",
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "selection": {
+  "arithmetic_group_ids": [
+   "c1"
+  ],
+  "audited_ids": [
+   "c1",
+   "cZ"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "c2",
+   "cZ"
+  ],
+  "sampled_ids": [
+   "cZ"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=f7aeef9617e0a555da8421d70bcce823de31cfde190710005e7445601a80d33c\nAUDITOR_EXCLUSIONS_SHA256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05\nAUDITOR_CENSUS_STDOUT_SHA256=bfcc3ed863687e07880d2bd76b52096b7ddf7914e4a45cc9cadff8bf0259facb\n",
+ "study_files": "none"
+}

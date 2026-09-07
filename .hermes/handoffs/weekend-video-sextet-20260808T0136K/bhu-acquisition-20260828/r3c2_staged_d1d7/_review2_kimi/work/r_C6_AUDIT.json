@@ -1,0 +1,77 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "c1": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": false,
+   "audit_kind": "AUTHOR_SPECIFIED_INPUT",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "k2paper.txt",
+    2,
+    "5"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "AUTHOR_SPECIFIED_INPUT"
+  },
+  {
+   "audit_included": null,
+   "audit_kind": null,
+   "in_audit": false,
+   "in_sealed": true,
+   "key": [
+    "k2paper.txt",
+    3,
+    "0.625"
+   ],
+   "result": "OMISSION_SEALED_INCLUDED_ABSENT_FROM_AUDIT",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "k2paper.txt",
+    4,
+    "42.0"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=c927b890691e4c816ef1ef9790bb51bc1a5cb7272e3c7bb01f8c57c429660ad6\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "0cba33ff59ca96281cf5f2a9b91d1eb4504ed3624ee62da0d1acaf8d4ba318b2",
+ "sealed_denominator": 2,
+ "sealed_exclusions_sha256": "313e3ae52a586f851a26fa72fbb055a04e7bf2d01616b6653e280f1c0cfbf0a7",
+ "sealed_ledger_sha256": "033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552",
+ "seed_hex": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "c1"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "c1",
+   "c2"
+  ],
+  "sampled_ids": [
+   "c1"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=bfc453ee2693de3637ddf75c3e63fa080b0f78a756478d7d39ab840fda841aea\nAUDITOR_EXCLUSIONS_SHA256=1648776141e90da31bb03376380ddb165ddecf18c977679724304af9d2c98500\nAUDITOR_CENSUS_STDOUT_SHA256=cf60154123272817243964706f7740e9f8b82b5cae9f1c9e5e36a98d1952c199\n"
+}

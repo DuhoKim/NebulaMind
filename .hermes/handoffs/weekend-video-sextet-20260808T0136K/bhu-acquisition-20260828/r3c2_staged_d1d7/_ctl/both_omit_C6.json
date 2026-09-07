@@ -1,0 +1,135 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "c1": {
+   "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
+    "_roots": {
+     "alt_branch_records": [],
+     "audit": [
+      "IMPORTED"
+     ],
+     "sealed_primary": [
+      "IMPORTED"
+     ],
+     "sealed_under_matching_branch": [
+      "IMPORTED"
+     ]
+    },
+    "i1": {
+     "branch": "primary",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    }
+   },
+   "result": "MATCH",
+   "why": []
+  },
+  "c2": {
+   "inputs": {
+    "_graph_integrity": {
+     "auditor": [],
+     "matched_sealed": []
+    },
+    "_roots": {
+     "alt_branch_records": [],
+     "audit": [],
+     "sealed_primary": [],
+     "sealed_under_matching_branch": []
+    }
+   },
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperA.txt",
+    4,
+    "4"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperA.txt",
+    9,
+    "7"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": false,
+   "audit_kind": "DATE",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperB.txt",
+    1,
+    "2020"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "DATE"
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "direction": "audit_included_absent_from_sealed",
+   "in_audit": true,
+   "in_sealed": false,
+   "key": [
+    "paperB.txt",
+    7,
+    "3.1"
+   ],
+   "result": "OMISSION",
+   "sealed_included": null,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=fd89c3a51e8cc4b6a5a3eff72c0a61e5eeaeeb648847baca23a5a6054f2f6d40\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "05ec2605b867f9ee4b4c1deb0730a8d6e2c227fb1b0d9177918c18092f5b750c",
+ "sealed_denominator": 2,
+ "sealed_exclusions_sha256": "14a58acf9d1870d8488c12d7fba794e25856299e217cf6b67b8783a3b947eed8",
+ "sealed_ledger_sha256": "92ea80e0ef68f82ce778930019f50537bb123b2507fd93f28a2c11fb87d70f99",
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "selection": {
+  "arithmetic_group_ids": [
+   "c1"
+  ],
+  "audited_ids": [
+   "c1",
+   "c2"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "c2"
+  ],
+  "sampled_ids": [
+   "c2"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=a2850c752f802921e4e76820c153e0b6dabe72bdbf849e41f217f494000804e2\nAUDITOR_EXCLUSIONS_SHA256=b2962e1cbacd14992a035995dd4f2c05800ae2238a386da4826ffbc6d4d7c944\nAUDITOR_CENSUS_STDOUT_SHA256=b1e9e3fe4202efc0485dae543de2e9dd825487f594946c9e665192e1d327a852\n",
+ "study_files": "CENSUS_AUDIT_FAILED"
+}

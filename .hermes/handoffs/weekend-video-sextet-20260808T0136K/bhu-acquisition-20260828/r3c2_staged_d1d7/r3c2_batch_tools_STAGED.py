@@ -142,10 +142,16 @@ def cmd_coverage(part,m,seat_dir,corpus,packet_sha):
     print(f"texts_in_manifest={len(msha)} texts_owned={len(seen)} batches={len(P['batches'])}")
     print("C1B_BATCH_COVERAGE="+("PASS" if not fails else "FAIL")); return 0 if not fails else 1
 
+def _emit(prefix, rc, argv):
+    """V38: one completion token per subcommand run — <PREFIX>_<SUBCOMMAND>=PASS|FAIL, printed once, whatever the exit status."""
+    sub="_".join(str(x).upper().replace("-","_") for x in argv[:2] if not str(x).startswith("/") and not str(x).endswith(".json") and not str(x).endswith(".md") and not str(x).endswith(".txt"))
+    print(f"{prefix}_{sub}=" + ("PASS" if rc==0 else "FAIL")); sys.exit(rc)
+
+
 if __name__=="__main__":
     a=sys.argv[1:]
-    if len(a)==4 and a[0]=="partition": sys.exit(cmd_partition(a[1],a[2],a[3]))
-    if len(a) in (6,7,8) and a[0]=="seal": sys.exit(cmd_seal(*a[1:]))
-    if len(a) in (6,7) and a[0]=="join": sys.exit(cmd_join(*a[1:]))
-    if len(a)==6 and a[0]=="coverage": sys.exit(cmd_coverage(*a[1:]))
-    print(__doc__); sys.exit(2)
+    if len(a)==4 and a[0]=="partition": _emit("BATCH_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "BATCH", cmd_partition(a[1],a[2],a[3]), a)
+    if len(a) in (6,7,8) and a[0]=="seal": _emit("BATCH_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "BATCH", cmd_seal(*a[1:]), a)
+    if len(a) in (6,7) and a[0]=="join": _emit("BATCH_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "BATCH", cmd_join(*a[1:]), a)
+    if len(a)==6 and a[0]=="coverage": _emit("BATCH_"+"_".join(x.upper() for x in a[:1] if isinstance(x,str)) if False else "BATCH", cmd_coverage(*a[1:]), a)
+    print(__doc__); print("INVOCATION=REJECTED"); sys.exit(2)

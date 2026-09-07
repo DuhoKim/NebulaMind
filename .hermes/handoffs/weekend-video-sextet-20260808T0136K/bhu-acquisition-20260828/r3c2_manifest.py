@@ -7,15 +7,15 @@ Any unreadable file, permission error, or walk error prints ERROR=<path>: <reaso
 silently. Exit 0 only when every file was read and hashed. Uses only the standard library."""
 import hashlib, os, sys
 def main(root):
-    if os.path.islink(root) or not os.path.isdir(root): print(f"ERROR={root}: root is a symlink or not a directory (refused)"); sys.exit(1)  # PROBE:MANIFEST_ROOT
+    if os.path.islink(root) or not os.path.isdir(root): print(f"ERROR={root}: root is a symlink or not a directory (refused)"); print("MANIFEST=FAIL"); sys.exit(1)  # PROBE:MANIFEST_ROOT
     root = os.path.abspath(root); rows = []; errors = 0
-    for dirpath, dirnames, filenames in os.walk(root, onerror=lambda e: (print(f"ERROR={e.filename}: {e.strerror}"), sys.exit(1))):
+    for dirpath, dirnames, filenames in os.walk(root, onerror=lambda e: (print(f"ERROR={e.filename}: {e.strerror}"), print("MANIFEST=FAIL"), sys.exit(1))):
         dirnames.sort()
         for dn in list(dirnames):
-            if os.path.islink(os.path.join(dirpath, dn)): print(f"ERROR={os.path.relpath(os.path.join(dirpath, dn), root)}: symlinked directory (refused)"); sys.exit(1)
+            if os.path.islink(os.path.join(dirpath, dn)): print(f"ERROR={os.path.relpath(os.path.join(dirpath, dn), root)}: symlinked directory (refused)"); print("MANIFEST=FAIL"); sys.exit(1)
         for fn in sorted(filenames):
             p = os.path.join(dirpath, fn)
-            if os.path.islink(p) or not os.path.isfile(p): print(f"ERROR={os.path.relpath(p, root)}: symlink or non-regular entry (the manifest pins regular files only and refuses to skip)"); sys.exit(1)  # PROBE:MANIFEST_SYMLINK
+            if os.path.islink(p) or not os.path.isfile(p): print(f"ERROR={os.path.relpath(p, root)}: symlink or non-regular entry (the manifest pins regular files only and refuses to skip)"); print("MANIFEST=FAIL"); sys.exit(1)  # PROBE:MANIFEST_SYMLINK
             try:
                 h = hashlib.sha256()
                 with open(p, "rb") as f:
@@ -23,9 +23,9 @@ def main(root):
                 rows.append((os.path.relpath(p, root), h.hexdigest()))
             except OSError as e:
                 print(f"ERROR={os.path.relpath(p, root)}: {e.strerror}"); errors += 1
-    if errors: print(f"FILES={len(rows)}\nMANIFEST_SHA256=INCOMPLETE ({errors} unreadable)"); sys.exit(1)
+    if errors: print(f"FILES={len(rows)}\nMANIFEST_SHA256=INCOMPLETE ({errors} unreadable)"); print("MANIFEST=FAIL"); sys.exit(1)
     rows.sort(key=lambda r: r[0]); m = hashlib.sha256("".join(f"{d}  {p}\n" for p, d in rows).encode("utf-8")).hexdigest()
-    print(f"FILES={len(rows)}\nMANIFEST_SHA256={m}"); sys.exit(0)
+    print(f"FILES={len(rows)}\nMANIFEST_SHA256={m}"); print("MANIFEST=PASS"); sys.exit(0)
 if __name__ == "__main__":
     if len(sys.argv) != 2: print(__doc__); sys.exit(2)
     main(sys.argv[1])

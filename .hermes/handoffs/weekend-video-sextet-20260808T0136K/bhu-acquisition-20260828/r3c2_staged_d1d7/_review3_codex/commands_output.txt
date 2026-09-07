@@ -1,0 +1,453 @@
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py validate /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_positive.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_candidates.json
+exit=0
+C3_NO_SUBSTITUTION=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py validate /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_no_symbol.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_candidates.json
+exit=1
+FAIL: borrow.txt#q: no line of source.txt carries both zeta and 17
+C3_NO_SUBSTITUTION=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py validate /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_designated_second.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_candidates.json
+exit=1
+FAIL: borrow.txt#q: external value line 2 is not the first line of source.txt carrying both q and 17 (that is line 1)
+C3_NO_SUBSTITUTION=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py validate /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_refiled.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_candidates.json
+exit=1
+FAIL: borrow.txt#q: value line is in source.txt but claim borrow.txt#c belongs to borrow.txt: such a record must be IMPORTED with ORIG_CITATION (submitted CHOSEN/ORIG_CHOICE_STATED)
+C3_NO_SUBSTITUTION=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py validate /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_refiled.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src
+exit=0
+C3_NO_SUBSTITUTION=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py validate /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/d1_refiled.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/empty_candidates.json
+exit=0
+C3_NO_SUBSTITUTION=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit seal-enumeration /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt
+exit=0
+AUDITOR_CANDIDATES_SHA256=3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1
+AUDITOR_EXCLUSIONS_SHA256=342add4067798fe4d9adbb46fea772f87e831d216e4d4d5895d71fde67acb92d
+AUDITOR_CENSUS_STDOUT_SHA256=f2b273433935a847c9e389e6f752ae576451f7846dab56d963a05b11fa0f3778
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit select /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sel.json
+exit=0
+N=1 R=1 k=1 audited=1
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit handout /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sel.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/handout.json
+exit=0
+handout: 1 claims, fields claim_id/source_file/source_line only
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit seal-rederivation /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s2.txt
+exit=0
+AUDITOR_REDERIVATIONS_SHA256=24568609f1fd9ad5104acc97e065314cc88ab4022f6648ca1b09313669cc2918
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit compare /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sx.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sl.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sel.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s2.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/audit_compare.json
+exit=0
+{
+ "C6_AUDIT_SAMPLE": "PASS",
+ "audited": {
+  "borrow.txt#c": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": false,
+   "audit_kind": "DATE",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    1,
+    "2026"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "REFERENCE_NUMBER"
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    2,
+    "53"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=24568609f1fd9ad5104acc97e065314cc88ab4022f6648ca1b09313669cc2918\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1",
+ "sealed_denominator": 1,
+ "sealed_exclusions_sha256": "63845fac6eff7ef8f1ab080ddd36b94acd864877582ffa7841b05f49ec2c740d",
+ "sealed_ledger_sha256": "033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552",
+ "seed_hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "borrow.txt#c"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "borrow.txt#c"
+  ],
+  "sampled_ids": [
+   "borrow.txt#c"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1\nAUDITOR_EXCLUSIONS_SHA256=342add4067798fe4d9adbb46fea772f87e831d216e4d4d5895d71fde67acb92d\nAUDITOR_CENSUS_STDOUT_SHA256=f2b273433935a847c9e389e6f752ae576451f7846dab56d963a05b11fa0f3778\n",
+ "study_files": "none"
+}
+C6_AUDIT_SAMPLE=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit compare /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sx.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sl.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/seedless_selection.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s2.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/seedless.json
+exit=1
+FAIL: C6_SELECTION: selection carries no 64-hex seed; nothing to recompute against
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {},
+ "completeness_rows": [
+  {
+   "audit_included": false,
+   "audit_kind": "DATE",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    1,
+    "2026"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "REFERENCE_NUMBER"
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    2,
+    "53"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=24568609f1fd9ad5104acc97e065314cc88ab4022f6648ca1b09313669cc2918\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1",
+ "sealed_denominator": 1,
+ "sealed_exclusions_sha256": "63845fac6eff7ef8f1ab080ddd36b94acd864877582ffa7841b05f49ec2c740d",
+ "sealed_ledger_sha256": "033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552",
+ "seed_hex": null,
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [],
+  "k": 0,
+  "remaining_ids": [
+   "borrow.txt#c"
+  ],
+  "sampled_ids": []
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1\nAUDITOR_EXCLUSIONS_SHA256=342add4067798fe4d9adbb46fea772f87e831d216e4d4d5895d71fde67acb92d\nAUDITOR_CENSUS_STDOUT_SHA256=f2b273433935a847c9e389e6f752ae576451f7846dab56d963a05b11fa0f3778\n",
+ "study_files": "CENSUS_AUDIT_FAILED"
+}
+C6_AUDIT_SAMPLE=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit compare /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sx.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sl.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/uppercase_selection.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s2.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/uppercase_seed.json
+exit=0
+{
+ "C6_AUDIT_SAMPLE": "PASS",
+ "audited": {
+  "borrow.txt#c": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": false,
+   "audit_kind": "DATE",
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    1,
+    "2026"
+   ],
+   "result": "MATCH",
+   "sealed_included": false,
+   "sealed_kind": "REFERENCE_NUMBER"
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    2,
+    "53"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=24568609f1fd9ad5104acc97e065314cc88ab4022f6648ca1b09313669cc2918\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1",
+ "sealed_denominator": 1,
+ "sealed_exclusions_sha256": "63845fac6eff7ef8f1ab080ddd36b94acd864877582ffa7841b05f49ec2c740d",
+ "sealed_ledger_sha256": "033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552",
+ "seed_hex": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "borrow.txt#c"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "borrow.txt#c"
+  ],
+  "sampled_ids": [
+   "borrow.txt#c"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1\nAUDITOR_EXCLUSIONS_SHA256=342add4067798fe4d9adbb46fea772f87e831d216e4d4d5895d71fde67acb92d\nAUDITOR_CENSUS_STDOUT_SHA256=f2b273433935a847c9e389e6f752ae576451f7846dab56d963a05b11fa0f3778\n",
+ "study_files": "none"
+}
+C6_AUDIT_SAMPLE=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit compare /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sx.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sl.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/nonhex_selection.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s2.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/nonhex_seed.json
+exit=1
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py", line 327, in <module>
+    if len(a)==12 and a[0]=="audit" and a[1]=="compare": sys.exit(cmd_audit_compare(*a[2:]))
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py", line 272, in cmd_audit_compare
+    R=selection_of(sc, S["seed_hex"])
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py", line 242, in selection_of
+    samp=sorted(random.Random(int(seed_hex,16)).sample(rem,k)) if k>0 else []
+ValueError: invalid literal for int() with base 16: 'gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg'
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit select /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/sc.json AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/audit/rejected_selection.json
+exit=1
+FAIL: seed must be 64 lowercase hexadecimal characters
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit seal-enumeration /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/s1.txt
+exit=0
+AUDITOR_CANDIDATES_SHA256=3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1
+AUDITOR_EXCLUSIONS_SHA256=342add4067798fe4d9adbb46fea772f87e831d216e4d4d5895d71fde67acb92d
+AUDITOR_CENSUS_STDOUT_SHA256=f2b273433935a847c9e389e6f752ae576451f7846dab56d963a05b11fa0f3778
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit select /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sc.json aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sel.json
+exit=0
+N=1 R=1 k=1 audited=1
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit handout /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sel.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/handout.json
+exit=0
+handout: 1 claims, fields claim_id/source_file/source_line only
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit seal-rederivation /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/s2.txt
+exit=0
+AUDITOR_REDERIVATIONS_SHA256=24568609f1fd9ad5104acc97e065314cc88ab4022f6648ca1b09313669cc2918
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_ledger_tools_STAGED.py audit compare /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/s1.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/ac.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/ax.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sc.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sx.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sl.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/sel.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/s2.txt /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/rd.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/omission/omission_compare.json
+exit=1
+FAIL: COMPLETENESS audit_excluded_absent_from_sealed: ['borrow.txt', 1, '2026'] (a passage the seats never enumerated is incompleteness whatever the auditor's disposition)
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "borrow.txt#c": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": false,
+   "audit_kind": "DATE",
+   "in_audit": true,
+   "in_sealed": false,
+   "key": [
+    "borrow.txt",
+    1,
+    "2026"
+   ],
+   "result": "OMISSION_AUDIT_EXCLUDED_ABSENT_FROM_SEALED",
+   "sealed_included": null,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "borrow.txt",
+    2,
+    "53"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=24568609f1fd9ad5104acc97e065314cc88ab4022f6648ca1b09313669cc2918\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "1154da7489b66068e7054c070372cc2b2e40d6ef46825ebb1b81a296b31775a8",
+ "sealed_denominator": 1,
+ "sealed_exclusions_sha256": "5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05",
+ "sealed_ledger_sha256": "033b8a8714a2e827a5cfa3b40dddb40e7b00f919dd07b64b3e16b1f9c91d0552",
+ "seed_hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "borrow.txt#c"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "borrow.txt#c"
+  ],
+  "sampled_ids": [
+   "borrow.txt#c"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=3e54559f31d84d7be9456f25b75c78e6c561d9bd085a2515d40fdb10a513c7f1\nAUDITOR_EXCLUSIONS_SHA256=342add4067798fe4d9adbb46fea772f87e831d216e4d4d5895d71fde67acb92d\nAUDITOR_CENSUS_STDOUT_SHA256=f2b273433935a847c9e389e6f752ae576451f7846dab56d963a05b11fa0f3778\n",
+ "study_files": "CENSUS_AUDIT_FAILED"
+}
+C6_AUDIT_SAMPLE=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py partition /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json
+exit=0
+batch 1: rows 1-1 (1 texts, 71 bytes, 2 non-blank lines)
+batch 2: rows 2-2 (1 texts, 32 bytes, 2 non-blank lines)
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f5560f60592c856f SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/joined_
+exit=0
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/joined_candidates.json sha256=622f2d81a470c1c9836150cc1b342ccac172bd16ed2c59ab9cf459fc751aa1d5
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/joined_exclusions.json sha256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_positive/joined_ledger.json sha256=e6301f2ec2e8bd3dd1f8270e6eede14e6997602c15792d6c92d768e30300b56f
+joined: batches=2 candidates=2 included=2 excluded=0 exclusions=0 records=2
+JOIN=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=be060d929b675b50 SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan/seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_orphan/joined_
+exit=1
+FAIL: batch 1: ledger record borrow.txt#q names claim borrow.txt#missing, not an included candidate of this batch
+JOIN=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f22ad5e46829c865 SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form/seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_input_form/joined_
+exit=1
+FAIL: batch 1: input_id local_q does not begin with its claim's file followed by #
+JOIN=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f5560f60592c856f SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain/mutated_seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_chain/joined_
+exit=1
+FAIL: batch 2: predecessor chain broken (seal does not bind batch 1's seal)
+JOIN=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f5560f60592c856f SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership/mutated_seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_ownership/joined_
+exit=1
+FAIL: batch 2: sealed ownership differs from the partition
+JOIN=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f5560f60592c856f SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra/mutated_seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_extra/joined_
+exit=1
+FAIL: seals for batches not in the partition: ['3']
+JOIN=FAIL
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1154da7489b66068 exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f5560f60592c856f SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/mutated_seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/joined_
+exit=0
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/joined_candidates.json sha256=622f2d81a470c1c9836150cc1b342ccac172bd16ed2c59ab9cf459fc751aa1d5
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/joined_exclusions.json sha256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_root_chain/joined_ledger.json sha256=e6301f2ec2e8bd3dd1f8270e6eede14e6997602c15792d6c92d768e30300b56f
+joined: batches=2 candidates=2 included=2 excluded=0 exclusions=0 records=2
+JOIN=PASS
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision/seals.json
+exit=0
+sealed batch 1: candidates_b1.json=1f4fe622471e598f exclusions_b1.json=5c1eddc179881233 ledger_b1.json=f5560f60592c856f SEAT_REPORT_b1.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py seal /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json 2 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision/seals.json
+exit=0
+sealed batch 2: candidates_b2.json=b126083d4db4299b exclusions_b2.json=5c1eddc179881233 ledger_b2.json=a8a4694cf6120248 SEAT_REPORT_b2.md=4fa8da526c2fbb69
+
+$ /usr/bin/python3 -E /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/r3c2_batch_tools_STAGED.py join /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/partition.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision/seals.json /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/src/R3C2_CORPUS_MANIFEST.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/r3c2_staged_d1d7/_review3_codex/batch_collision/joined_
+exit=1
+FAIL: candidate_id collision across batches: borrow.txt#c
+JOIN=FAIL

@@ -1,0 +1,77 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "own.txt#2": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "own.txt",
+    1,
+    "41"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "own.txt",
+    2,
+    "42"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": false,
+   "audit_kind": "DATE",
+   "in_audit": true,
+   "in_sealed": false,
+   "key": [
+    "own.txt",
+    3,
+    "43"
+   ],
+   "result": "OMISSION_AUDIT_EXCLUDED_ABSENT_FROM_SEALED",
+   "sealed_included": null,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=985dc9c0e64c67d75a292305c789c4e05fc2aa3d3a6f22ade96076b6c77f11c6\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "51c72f8fed0b113d7f2634bd5988d767a72d0fd425b87f3c6ea6f0428b63bc45",
+ "sealed_denominator": 2,
+ "sealed_exclusions_sha256": "19f4e2630f65b83a68e8c575126bd448fe31a931e4e8fb9b1a89308fdfc14b9e",
+ "sealed_ledger_sha256": "a4e17ae4dae862aae9f36cf63d5e892e9bfb67264b917b1febd1c786ddedef7b",
+ "seed_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+ "selection": {
+  "arithmetic_group_ids": [],
+  "audited_ids": [
+   "own.txt#2"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "own.txt#1",
+   "own.txt#2"
+  ],
+  "sampled_ids": [
+   "own.txt#2"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=284f140ac91a4e34509f60e40f73074428d1bceb15cb32b02ff8bcd6db297d26\nAUDITOR_EXCLUSIONS_SHA256=03a39df53dc9c4557170935286d5c3ff320225d932a8893ecbc2f2a44ebc815e\nAUDITOR_CENSUS_STDOUT_SHA256=90791d68935e95cbe0f1738e90fd0de6488d51ee948b410dfa7ca99369167de9\n"
+}

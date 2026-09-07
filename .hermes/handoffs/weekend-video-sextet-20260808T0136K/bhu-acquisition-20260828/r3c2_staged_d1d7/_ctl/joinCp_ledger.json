@@ -1,0 +1,40 @@
+{
+ "records": [
+  {
+   "claim_id": "t1.txt#1",
+   "derived_from": [],
+   "input_id": "t1.txt#1.a",
+   "origin": "IMPORTED",
+   "origin_evidence": {
+    "reason_code": "ORIG_CITATION",
+    "source_file": "t1.txt",
+    "source_line": 2,
+    "verbatim": "We adopt a = 2 from t4 (2020)"
+   },
+   "source_file": "t4.txt",
+   "source_line": 2,
+   "status": "PRINTED",
+   "symbol": "a",
+   "value": "2"
+  },
+  {
+   "claim_id": "t1.txt#1",
+   "derived_from": [
+    "t1.txt#1.a"
+   ],
+   "input_id": "t1.txt#1.r",
+   "origin": "DERIVED",
+   "origin_evidence": {
+    "reason_code": "ORIG_EQUATION",
+    "source_file": "t1.txt",
+    "source_line": 3,
+    "verbatim": "Result r = 10"
+   },
+   "source_file": "t1.txt",
+   "source_line": 3,
+   "status": "PRINTED",
+   "symbol": "r",
+   "value": "10"
+  }
+ ]
+}

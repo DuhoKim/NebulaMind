@@ -1,0 +1,118 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "audited": {
+  "c1": {
+   "inputs": {
+    "_roots": {
+     "error": "cycle at x"
+    },
+    "r": {
+     "branch": "primary",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    },
+    "x": {
+     "branch": "alt",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    },
+    "y": {
+     "branch": "alt",
+     "own_input": true,
+     "result": "MATCH",
+     "why": []
+    }
+   },
+   "result": "MISMATCH",
+   "why": [
+    "dependency not reconstructed by the auditor or cyclic: cycle at x"
+   ]
+  },
+  "cZ": {
+   "inputs": {
+    "_roots": {
+     "alt_branch_records": [],
+     "audit": [],
+     "sealed_primary": [],
+     "sealed_under_matching_branch": []
+    }
+   },
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness_rows": [
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperA.txt",
+    4,
+    "4"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperB.txt",
+    9,
+    "7"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  },
+  {
+   "audit_included": true,
+   "audit_kind": null,
+   "in_audit": true,
+   "in_sealed": true,
+   "key": [
+    "paperB.txt",
+    11,
+    "8"
+   ],
+   "result": "MATCH",
+   "sealed_included": true,
+   "sealed_kind": null
+  }
+ ],
+ "inclusion_disputed_count": 0,
+ "inclusion_disputed_rate": 0.0,
+ "rederivation_seal": "AUDITOR_REDERIVATIONS_SHA256=0eda418470940fa649fc24ef90d5d7fee9717ba686a18a455e6cd7592e1ffbbe\n",
+ "scope": "PASS means the enumerated predicates held over the sealed files; it is bounded by the custodian's dispatch and release record and by shared reader error; it does not prove corpus completeness",
+ "sealed_candidates_sha256": "40a5ade3410905241f26e0a8cacf492ca4fbb6e5bc3a25ca98425c6fec3a0f7f",
+ "sealed_denominator": 3,
+ "sealed_exclusions_sha256": "5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05",
+ "sealed_ledger_sha256": "5fba85f7ec0c0bb85bd82d0b973881c4ee8e47273eef89907fbf9e430edb978e",
+ "seed_hex": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+ "selection": {
+  "arithmetic_group_ids": [
+   "c1"
+  ],
+  "audited_ids": [
+   "c1",
+   "cZ"
+  ],
+  "k": 1,
+  "remaining_ids": [
+   "c2",
+   "cZ"
+  ],
+  "sampled_ids": [
+   "cZ"
+  ]
+ },
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=40a5ade3410905241f26e0a8cacf492ca4fbb6e5bc3a25ca98425c6fec3a0f7f\nAUDITOR_EXCLUSIONS_SHA256=5c1eddc179881233548af0c1d4eef781829e6d9aadfa46b00eb236f0e0852d05\nAUDITOR_CENSUS_STDOUT_SHA256=bfcc3ed863687e07880d2bd76b52096b7ddf7914e4a45cc9cadff8bf0259facb\n",
+ "study_files": "CENSUS_AUDIT_FAILED"
+}

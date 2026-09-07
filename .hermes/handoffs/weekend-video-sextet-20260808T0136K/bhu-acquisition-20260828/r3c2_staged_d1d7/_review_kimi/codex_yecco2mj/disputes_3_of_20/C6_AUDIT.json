@@ -1,0 +1,79 @@
+{
+ "C6_AUDIT_SAMPLE": "FAIL",
+ "arithmetic_group_ids": [],
+ "audited": {
+  "s1": {
+   "result": "MATCH",
+   "why": []
+  },
+  "s10": {
+   "result": "MATCH",
+   "why": []
+  },
+  "s13": {
+   "result": "MATCH",
+   "why": []
+  },
+  "s9": {
+   "result": "MATCH",
+   "why": []
+  }
+ },
+ "completeness": {
+  "audit_included_absent_from_sealed": [],
+  "exclusion_kind_differs": [],
+  "inclusion_disputed": [
+   [
+    "results.txt",
+    1,
+    "1"
+   ],
+   [
+    "results.txt",
+    2,
+    "2"
+   ],
+   [
+    "results.txt",
+    3,
+    "3"
+   ]
+  ],
+  "inclusion_disputed_count": 3,
+  "inclusion_disputed_rate": 0.15,
+  "sealed_included_absent_from_audit_enumeration": []
+ },
+ "k": 4,
+ "receipt_T_sealed_candidates_sha256": "d65ca6e5e8505cec15ca81d9592297045f5d2a6f726d90c19f57f59aa5fb6af1",
+ "remaining_ids": [
+  "s1",
+  "s10",
+  "s11",
+  "s12",
+  "s13",
+  "s14",
+  "s15",
+  "s16",
+  "s17",
+  "s18",
+  "s19",
+  "s2",
+  "s20",
+  "s3",
+  "s4",
+  "s5",
+  "s6",
+  "s7",
+  "s8",
+  "s9"
+ ],
+ "sampled_ids": [
+  "s1",
+  "s10",
+  "s13",
+  "s9"
+ ],
+ "sealed_denominator": 20,
+ "seed_hex": "1919191919191919191919191919191919191919191919191919191919191919",
+ "stage1_seal": "AUDITOR_CANDIDATES_SHA256=28bb27f61e134e401a1fab71a303c72d1434753a0a2a962739d5f62fafc84866\nAUDITOR_EXCLUSIONS_SHA256=2ae2ddb58439036c058e9ce94ec229fc0c51bf66c631a8e5cb6b1ead75e2f246\n"
+}
