@@ -1,0 +1,705 @@
+Reading additional input from stdin...
+OpenAI Codex v0.153.4
+--------
+workdir: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: none
+reasoning summaries: none
+session id: 01a07a74-f0ee-7750-8dfe-f3886b385faa
+--------
+user
+# BOUNDED CODEX TASK — B4: does the source supply usable production-coefficient values? (Tori, 2026-09-07)
+
+Completing a DECLARED pre-registration deliverable that B3 omitted: the required beta range must be "stated and compared with
+S1's own values". Establish whether the inspected source supplies usable values and a normalisation, or whether the comparison
+is unresolvable from it. You do NOT file a class and you do NOT re-open the B3 result.
+
+## Boundaries
+- Write ONLY under `bounce/`. No pinned census file, no kit, no census version, no Hwao data, no new framework.
+- Bind every equation claim to the exact version you inspect and name it. The Springer publisher page is behind a cookie
+  handshake; if you cannot reach it, say so and do not claim publisher identity.
+- Published peer-reviewed sources for physics; label preprints.
+
+## Do exactly this
+1. In the inspected text of Poplawski, GRG 53, 18 / arXiv 2007.11556v2, find every place the particle-production law is given
+   (the Psi = beta H^4 form and its neighbours, its equations (33)-(38) region) and quote VERBATIM with equation numbers:
+   the law, the definition of beta, and any NUMERICAL value, estimate, order of magnitude or bound the paper gives for beta or
+   for the quantities beta is built from.
+2. Establish the DIMENSIONS and normalisation of beta as the paper uses it, explicitly, and the unit system in force. State what
+   would have to be known to convert the paper's beta into the dimensionless units b3_rescue.py integrates in. If the paper
+   gives beta only implicitly (e.g. through a particle-production rate per unit volume, a cross-section, or a cutoff), say so
+   and give the chain that would be needed.
+3. VERDICT, one of exactly these, with your evidence:
+   BETA_VALUES=SUPPLIED (with the values and their equation numbers)
+   BETA_VALUES=DERIVABLE (with the exact chain and the missing inputs named)
+   BETA_VALUES=UNRESOLVABLE_FROM_SOURCE (with what you searched and what is absent)
+4. If SUPPLIED or DERIVABLE, convert into the script's units and state where the paper's beta sits relative to the exploratory
+   range [0.001, 10] used in B3 — as a comparison, not as a validation of B3.
+5. Keep exploratory script units and source physical parameters visibly separate throughout.
+
+## Output: `bounce/B4_BETA_COMPARISON_20260907.md`
+Print the file's sha256 and the verdict token as your final answer.
+codex
+I’ll inspect the source version, the B3 script’s units, and local task instructions, then write the comparison only under `bounce/`.
+exec
+/bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '*b3*' -g '*B3*' -g '*2007*' -g '*pop*' -g '*Pop*' -g '*prereg*' -g '*PRE*'" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+WATCH_2609.03157_PREREAD_20260907.md
+K4_PREREG_GATE_20260904_agy.stdout
+R3B_LAMBDA_RIGIDITY_PREREG_20260904.md
+_tmp_prereg_gate.log
+K3S2_PREREG_GATE_20260904_agy.stdout
+K3S3_SELFCONSISTENCY_PREREG_DRAFT_20260904.md
+AGATE_B39_VERDICT.md
+K1S2_PREREG_GATE_agy.md
+CGATE_B32_VERDICT.md
+K1S2_POPSYN_PREREG_20260903.md
+GATE_BRIEF_B39.md
+GATE_BRIEF_B30.md
+K3S2_PREREG_GATE_20260904_agy.md
+CGATE_B33_VERDICT.md
+_tmp_codex_warrant_b3.log
+K2_PREREG_GATE_agy.stdout
+R3A_BETA_PRODUCTION_PREREG_20260904.md
+b37_census_final.py
+K3S1_PREREG_GATE_agy.stdout
+K3S3_PREREG_GATE_20260904_agy.md
+R3C_MAGNITUDE_CENSUS_PREREG_DRAFT_20260904.md
+AGATE_B34_VERDICT.md
+NS_MASS_WATCH_PREREG_20260902.md
+GATE_BRIEF_B33.md
+b30_misfiled_obstructions.py
+K5_LISA_FORECAST_PREREG_DRAFT_20260903.md
+CGATE_B30_VERDICT.md
+K3S2_PREREG_GATE_ADJUDICATION_20260904_agy.stderr
+b39_entry19.py
+K3S3_PREREG_GATE_20260904_agy.stderr
+R3A_PREREG_GATE_20260904_agy.stdout
+CGATE_B37_VERDICT.md
+R3A_PREREG_GATE_20260904_agy.stderr
+K3S1_SPIN_CLOSURE_PREREG_20260903.md
+K3S2_PREREG_GATE_ADJUDICATION_20260904_agy.stdout
+R3A_BETA_PRODUCTION_PREREG_DRAFT_20260904.md
+K3S3_PREREG_GATE_20260904_agy.stdout
+R3E_DYMNIKOVA_SOURCE_CONSISTENCY_PREREG_DRAFT_20260905.md
+K5_PREREG_GATE_20260904_agy.md
+K1S1_PREREG_GATE_agy.md
+K1S1_PREREG_GATE_agy.stdout
+R3B_PREREG_GATE_20260904_agy.stdout
+CGATE_B36_VERDICT.md
+R3D_DYMNIKOVA_FLOOR_PREREG_20260904.md
+K3S2_PREREG_GATE_20260904_agy.stderr
+R3B_PREREG_GATE_V2_20260904_agy.stderr
+AGATE_B30_VERDICT.md
+K6_ECKS_FLOOR_PREREG_DRAFT_20260903.md
+b3_entry1_mismap.py
+R3B_PREREG_GATE_V2_20260904_agy.md
+R3D_DYMNIKOVA_FLOOR_PREREG_DRAFT_20260904.md
+K2_PREREG_GATE_agy.md
+K3S1_PREREG_GATE_agy.md
+_PREREG_GATE_BRIEF.txt
+K3S2_EXCHANGE_PREREG_20260904.md
+b34_census_batch3.py
+K3S1_PREREG_GATE_agy.stderr
+K6_ECKS_FLOOR_PREREG_20260904.md
+K5_PREREG_GATE_20260904_agy.stderr
+K6_PREREG_GATE_20260904_agy.stdout
+K3S3_SELFCONSISTENCY_PREREG_20260904.md
+AGATE_B38_VERDICT.md
+b38_acquisitions_batch.py
+CGATE_B39_VERDICT.md
+GATE_BRIEF_B34.md
+K6_PREREG_GATE_20260904_agy.md
+K6_PREREG_GATE_20260904_agy.stderr
+b32_entry38_candidate.py
+R3C2_BATCH_PREPARATION_UNADOPTED_20260906.md
+R3B_LAMBDA_RIGIDITY_PREREG_DRAFT_20260904.md
+R3A_PREREG_GATE_20260904_agy.md
+R3B_PREREG_GATE_V2_20260904_agy.stdout
+AGATE_B32_VERDICT.md
+K5_PREREG_GATE_20260904_agy.stdout
+PHASEB_INTERPRETATION_PACKET_23_27_20260902.md
+CGATE_B34_VERDICT.md
+R3I_BLACK_HOLE_REFERENT_CENSUS_PREREG_DRAFT_20260905.md
+R3_PREREG_DESIGN_RULES_20260905.md
+AGATE_B37_VERDICT.md
+PROGRAM_C_FLUX_PREREG_20260902.md
+b36_census_batch4.py
+PHASE_B_PREREG_20260902.md
+K3S2_PREREG_GATE_ADJUDICATION_20260904_agy.md
+GATE_BRIEF_B38.md
+R3B_PREREG_GATE_20260904_agy.md
+R3C_MAGNITUDE_CENSUS_PREREG_20260904.md
+K1S2_PREREG_GATE_agy.stdout
+R3F_ROUPAS_ENTROPY_PREREG_DRAFT_20260905.md
+GATE_BRIEF_B37.md
+b31_remainder_census.py
+b33_census_batch2.py
+R3B_PREREG_GATE_20260904_agy.stderr
+R3H_ENTRY10_COEFFICIENT_PROPAGATION_PREREG_DRAFT_20260905.md
+AGATE_B36_VERDICT.md
+R3C2_REPRODUCTION_CENSUS_PREREG_20260904.md
+K4_BOUNDARY_TRANSFER_PREREG_DRAFT_20260903.md
+R3C2_INTERPRETATION_PROTOCOL_20260904.md
+K3S2_EXCHANGE_PREREG_DRAFT_20260903.md
+GATE_BRIEF_B36.md
+K1S2_PREREG_GATE_agy.stderr
+b35_draw_batch4.py
+CGATE_B38_VERDICT.md
+K4_PREREG_GATE_20260904_agy.md
+K1S1_PREREG_GATE_agy.stderr
+K4_PREREG_GATE_20260904_agy.stderr
+CODEX_DUHO_V24_PREPARATION_AUTHORIZATION_20260906.md
+K5_LISA_FORECAST_PREREG_20260904.md
+K2_PREREG_GATE_agy.stderr
+WARRANT_AUDIT_PREREG_20260903.md
+K2_JUNCTION_PREREG_20260903.md
+GATE_BRIEF_B32.md
+R3G_SMOLLER_TEMPLE_SHOCK_MAGNITUDE_PREREG_DRAFT_20260905.md
+bounce/B3_RECONCILIATION_20260907.md
+bounce/_kimi_b3_challenge.log
+bounce/B3_RESCUE_20260907.md
+bounce/_KIMI_B3_CHALLENGE_20260907.txt
+bounce/b3_rescue.py
+bounce/_CODEX_TASK_B3_RESCUE_20260907.md
+bounce/KIMI_B3_CHALLENGE_20260907.md
+bounce/_codex_b3_rescue.log
+bounce/B3_CLASS_FILED_20260907.md
+bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+AGATE_B33_VERDICT.md
+K4_BOUNDARY_TRANSFER_PREREG_20260904.md
+K1S1_CNS_SIGN_PREREG_20260903.md
+r3c2_staged_d1d7/_ctl/r3c2_ledger_tools_STAGED_minus_C6_SEED_PRESENT.py
+
+exec
+/bin/zsh -lc "python - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for d in [*reversed(p.parents),p,p/'bounce']:
+ f=d/'AGENTS.md'
+ if f.exists(): print(str(f)+'\\n'+f.read_text())
+PY
+" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ exited 127 in 0ms:
+zsh:1: command not found: python
+
+exec
+/bin/zsh -lc 'cat bounce/b3_rescue.py bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md bounce/B3_RESCUE_20260907.md; rg --files bounce' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+#!/usr/bin/python3
+"""B3: flat Bianchi I FLUID only. Deterministic, offline, no file writes.
+Run: /usr/bin/python3 b3_rescue.py
+Dependencies: SymPy and SciPy. Definitions, proof and scope: B3_RESCUE_20260907.md.
+"""
+import hashlib
+import math
+from pathlib import Path
+import sympy as sp
+from scipy.integrate import solve_ivp, quad
+from scipy.optimize import brentq
+
+ALPHAS = (0.25, 0.625, 1.0)
+FRACTIONS = (0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+NUMBERS = (0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0)
+BETAS = (0.0, 0.001, 0.01, 0.1, 1.0, 10.0)
+RTOL, ATOL = 2e-10, 2e-12
+
+
+def caloric(T, closure):
+    if closure == 'b':
+        return T**4
+    return T**4 * (1.0 + T*T/(1.0 + T*T))
+
+
+def temperature(eps, closure):
+    if closure == 'b':
+        return eps**0.25
+    # Globally T^4 <= F_c(T) <= 2 T^4. Bracket in scaled coordinates.
+    scale = eps**0.25
+    z = brentq(lambda z: caloric(z*scale, closure)/eps-1,
+               2**(-0.25), 1.0, xtol=2e-14)
+    return z*scale
+
+
+def verify():
+    H, S, n, T, alpha, k, beta = sp.symbols('H S n T alpha k beta')
+    for closure in ('b', 'c'):
+        F = T**4 if closure == 'b' else T**4*(1+T**2/(1+T**2))
+        nd = beta*H**4-3*H*n
+        Td = (2*alpha*n*beta*H**4-4*H*F)/sp.diff(F, T)
+        Hd = k*F/3-3*H**2  # exact directional-equation mean, off constraint
+        Sd = -6*H*S
+        C = 3*H**2-k*(F-alpha*n**2)-S
+        Cd = sum(sp.diff(C, v)*d for v, d in ((H,Hd),(S,Sd),(n,nd),(T,Td)))
+        residual = sp.factor(Cd+6*H*C)
+        energy = sp.factor(sp.diff(F,T)*Td-2*alpha*n*nd+3*H*(4*F/3-2*alpha*n*n))
+        x,u,N,E = sp.symbols('x u N E')
+        prod = beta*u**4*sp.exp(6*x)
+        transformed = sp.expand(6*u*(-k*E/3)-k*(-2*u*E+2*alpha*N*prod)+2*k*alpha*N*prod)
+        # T reconstructed from F(T)=E exp(6x) obeys precisely transformed Td.
+        reconstruction = sp.simplify(
+            (sp.diff(F,T)*Td).subs({H:-u*sp.exp(3*x), n:N*sp.exp(3*x)})
+            *sp.exp(-3*x) - (4*u*F+2*alpha*N*prod*sp.exp(6*x)))
+        delta = sp.symbols('delta')
+        beta0_residual = sp.expand(3*u*u-(3*u*u-delta)-delta)
+        assert beta0_residual == 0
+        print(f'CONSTRAINT_RESIDUAL_{closure}={residual}')
+        print(f'CHECK_{closure}: first_law={energy}; transformed_constraint={transformed}; caloric_chain_rule={reconstruction}; Fprime={sp.factor(sp.diff(F,T))}')
+        if any(r != 0 for r in (residual, energy, transformed, reconstruction)):
+            raise SystemExit('STOP: nonzero exact residual; no integration performed')
+    # These analytic statements are printed before any numerical integration.
+    for closure in ('b', 'c'):
+        print(f'TORSION_SCALING_{closure}=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)')
+
+
+def integrate(alpha, f, n0, beta, closure, tighter=False):
+    """Integrate in d tau=dt/a^3; x=-ln a, u=-H a^3, N=n a^3, E=eps a^6.
+    Caloric energy is an invertible state coordinate in EACH specified closure.
+    No constraint projection is used. t is proper time, initially zero.
+    """
+    sigma = f/(1-f)
+    q0 = 1+sigma-alpha*n0*n0
+    if q0 <= 0:
+        return {'kind': 'X'}  # no strictly collapsing real initial H
+    if beta == 0:
+        # Exact beta=0 reduction, with u as independent variable:
+        # a^2=3u^2-delta, dt/du=-3a. Numerically integrate proper time
+        # all the way to the analytic bounce or singular endpoint.
+        delta = sigma-alpha*n0*n0
+        u0 = math.sqrt(q0/3)
+        end = math.sqrt(max(delta,0)/3)
+        time, quadrature_error = quad(lambda u: 3*math.sqrt(max(0,3*u*u-delta)),
+                                      end,u0,epsabs=2e-12,epsrel=2e-11)
+        kind = 'B' if delta < 0 else 'S'
+        a = math.sqrt(-delta) if kind == 'B' else 0.0
+        Tb = temperature(a**-4,closure) if kind == 'B' else None
+        assert math.isfinite(time) and time > 0
+        if kind == 'B': assert abs(caloric(Tb,closure)*a**4-1) < 1e-11
+        return dict(kind=kind,a=a,t=time,error=0.0,T=Tb,quadrature_error=quadrature_error)
+    y0 = (0.0, math.sqrt(q0/3), n0, 1.0, 0.0)
+    T0 = temperature(1.0, closure)
+    assert abs(caloric(T0, closure)-1) < 1e-12
+
+    def rhs(tau, y):
+        x,u,N,E,t = y
+        prod = beta*u**4*math.exp(6*x)
+        return (u, -E/3, prod, -2*u*E+2*alpha*N*prod, math.exp(-3*x))
+
+    def bounce(tau,y): return y[1]
+    bounce.terminal, bounce.direction = True, -1
+    def cutoff(tau,y): return y[0]-12.0
+    cutoff.terminal, cutoff.direction = True, 1
+    sol = solve_ivp(rhs, (0,2e6), y0, method='DOP853',
+                    rtol=RTOL/(10 if tighter else 1),
+                    atol=ATOL/(10 if tighter else 1), events=(bounce,cutoff))
+    if not sol.success:
+        raise AssertionError(sol.message)
+    x,u,N,E,t = sol.y[:,-1]
+    errors = []
+    for xi,ui,Ni,Ei,ti in sol.y.T:
+        assert Ei > 0 and Ni >= -1e-12
+        errors.append(abs(3*ui*ui-Ei-sigma+alpha*Ni*Ni)/
+                      (3*ui*ui+Ei+sigma+alpha*Ni*Ni))
+    err = max(errors)
+    assert err < 2e-8, (closure, alpha,f,n0,beta,err)
+    if len(sol.t_events[0]):
+        kind = 'B'
+        eps = E*math.exp(6*x)
+        Tb = temperature(eps, closure)
+        assert abs(caloric(Tb,closure)/eps-1) < 1e-11
+        assert math.isfinite(eps) and eps/3 > 0  # Hdot at H=0; finite positive crossing
+    else:
+        raise AssertionError('UNRESOLVED: positive-beta run failed to reach bounce; cutoff is not a singularity')
+    expected = 'B' if beta > 0 or alpha*n0*n0 > sigma else 'S'
+    assert kind == expected, (closure,alpha,f,n0,beta,kind,expected)
+    return dict(kind=kind, a=math.exp(-x), t=t, error=err, T=Tb)
+
+
+def main():
+    verify()  # MUST finish for BOTH closures before any integration.
+    print('DOMAIN: FLUID; flat Bianchi I; kappa=h_star=eps0=a0=1; alpha_interval=[0.25,1]; samples='+str(ALPHAS))
+    print('GRID: f='+str(FRACTIONS)+'; n0='+str(NUMBERS)+'; beta='+str(BETAS))
+    print('MAP_LEGEND: B=bounce; S=analytically certified singular continuation; X=inadmissible initial collapse; columns=n0 in printed order')
+    all_results = {}
+    for closure in ('b','c'):
+        results = {}
+        print(f'CLOSURE_{closure}: F(T)='+('T^4' if closure=='b' else 'T^4*(1+T^2/(1+T^2))')+f'; T0={temperature(1,closure):.12g}')
+        maxerr = 0.0
+        totals = dict(B=0,S=0,X=0)
+        for alpha in ALPHAS:
+            for beta in BETAS:
+                counts = dict(B=0,S=0,X=0)
+                radii = []
+                for f in FRACTIONS:
+                    row = ''
+                    for n0 in NUMBERS:
+                        r = integrate(alpha,f,n0,beta,closure)
+                        results[(alpha,f,n0,beta)] = r
+                        row += r['kind']
+                        counts[r['kind']] += 1
+                        if r['kind'] != 'X': maxerr = max(maxerr,r['error'])
+                        if r['kind'] == 'B': radii.append(r['a'])
+                    print(f'MAP_{closure} alpha={alpha:g} beta={beta:g} f={f:g} {row}')
+                for key in totals: totals[key] += counts[key]
+                interval = f'{min(radii):.9g},{max(radii):.9g}' if radii else 'none'
+                print(f'GRID_SUMMARY_{closure} alpha={alpha:g} beta={beta:g} B={counts["B"]} S={counts["S"]} X={counts["X"]} bounce_a_range={interval}')
+        # Explicit equality-side controls, including anisotropy, plus refinement.
+        for alpha in ALPHAS:
+            for f in (0.0,0.5,0.9):
+                n0 = math.sqrt((f/(1-f))/alpha)
+                # roundoff at equality: integrate a nearby nonbouncing datum instead
+                # and retain exact equality as an analytic control printed below.
+                nbelow = n0*(1-1e-10)
+                assert integrate(alpha,f,nbelow,0,closure)['kind'] == 'S'
+                assert integrate(alpha,f,n0,0.001,closure)['kind'] == 'B'
+        refinement = 0.0
+        for alpha,f,n0,beta in ((0.25,0.99,0,0.001),(1,0.1,0.5,0),(0.625,0.5,0.1,10)):
+            r = results[(alpha,f,n0,beta)]
+            fine = integrate(alpha,f,n0,beta,closure,True)
+            refinement = max(refinement,abs(r['a']/fine['a']-1))
+        assert refinement < 2e-7
+        print(f'NUMERICS_{closure}: max_normalized_constraint={maxerr:.6g}; max_refinement_relative_a={refinement:.6g}; threshold_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature')
+        print(f'GRID_TOTAL_{closure}: B={totals["B"]} S={totals["S"]} X={totals["X"]}; counts_are_not_probabilities')
+        print(f'BOUNDARY_{closure}: beta=0 has bounce iff alpha*n0^2>f/(1-f); every beta>0 admissible datum bounces; relative_nonbounce_boundary=beta=0,alpha*n0^2<=f/(1-f)')
+        print(f'BOUNCE_SET_{closure}=OPEN')
+        all_results[closure] = results
+    assert all(all_results['b'][key]['kind']==all_results['c'][key]['kind'] for key in all_results['b'])
+    print('COMPARISON: strictly_enlarged_by_set_inclusion_for_each_beta>0; beta0_set_already_OPEN; no_measure_claim; no_class_filed')
+    for name in ('b3_rescue.py','B3_RESCUE_20260907.md'):
+        path = Path(__file__).resolve().parent/name
+        if path.exists(): print('SHA256 '+name+' '+hashlib.sha256(path.read_bytes()).hexdigest())
+
+
+if __name__ == '__main__':
+    main()
+# B1 — pre-registration: is the Einstein–Cartan bounce generic, or does it need chosen initial data?
+**Tori, 2026-09-07 10:45 KST. DRAFT — declared before any calculation is run. Nothing here is signed, ordered or run.**
+
+## 0. The question, in Duho's words and then in equations
+"Can a collapsing black hole turn into an expanding universe under varied conditions, or only with carefully chosen assumptions?"
+
+Formally: in Einstein–Cartan gravity with a spin fluid, does a collapsing anisotropic region bounce for a robust set of initial
+data, or only on a measure-small set? This is a question about GENERICITY, not about whether one tuned solution bounces — that is
+already published.
+
+## 1. Model, assumptions, published anchors
+- **S3** — Popławski, *Phys. Rev. D* **85**, 107502 (2012), APS version verified: the isotropic torsion bounce, cusp condition
+  `da/dT = 0`, spin-squared term entering as `n²`.
+- **S1** — Popławski, *Gen. Relativ. Gravit.* **53**, 18, publisher full text verified: effective density and pressure
+  `ε̃ = ε − α n_f²`, `p̃ = p − α n_f²` (Eq. 1) with `α = κ(ℏc)²/32`; Kantowski–Sachs metric (Eq. 6); field equations (9)–(11);
+  the singularity-avoidance condition printed unnumbered in §7, `−κ(ε̃ + 3p̃)/2 > 2σ²`; particle production (33)–(38).
+- **S4** — Hehl, von der Heyde, Kerlick & Nester, *Rev. Mod. Phys.* **48**, 393 (1976), APS version verified: the Einstein–Cartan
+  formalism and its shear treatment, (5.21) and (5.24).
+- **Assumptions declared:** classical Einstein–Cartan with the standard spin-fluid ansatz; ultrarelativistic matter `ε ∝ a⁻⁴`;
+  fermion number `n_f ∝ a⁻³` in the absence of production; Bianchi I (flat, anisotropic, homogeneous) — chosen because S1's own
+  geometry is Kantowski–Sachs and S1 states it is approximate and proposes, but does not supply, a replacement.
+
+## 2. What our own record forbids me to assume
+K3 step 3 (`K3S3_CHECK_SHEET_20260904.md`): at the bounce the four-fermion interaction is a **two-thirds** correction
+(`R = |ε̃|/ε = 2/3` at `T_cr`, threshold 0.1, limb A fired); the free-Dirac-gas closure is controlled only below about
+`0.32 T_cr`; "at the bounce nobody has a controlled calculation at all", and limb B (Hartree–Fock) was never written.
+**Therefore `α` is carried as an INTERVAL, not a number**, and no result may depend on the free-gas value at the bounce. Any
+conclusion states which interval it holds on.
+
+## 3. The decisive calculation, and why it is small
+In Bianchi I the mean expansion obeys `3H² = κ ε̃ + σ²` with shear `σ² = Σ²/a⁶`. With `ε = ε₀ a⁻⁴` and `n_f = n₀ a⁻³`:
+
+    3H² = κ ε₀ a⁻⁴ + (Σ² − κ α n₀²) a⁻⁶
+
+**Both the shear term and the torsion term scale as `a⁻⁶`.** So, with no production, a bounce (`H = 0` at finite `a`) requires
+
+    κ α n₀² > Σ²   —   a comparison of two CONSTANTS fixed by initial data, which the dynamics never drives either way,
+
+with `a_min² = (κ α n₀² − Σ²)/(κ ε₀)`. If that is right, the bounce in this model is not generic in the ordinary sense: it holds
+on the side of a sharp inequality in initial data, and shear does not merely delay it — shear competes with it at every epoch on
+equal terms. This is the calculation to do first because it is analytic, it is decidable, and it either exposes the fine-tuning
+or refutes my expectation. Particle production is the pivot precisely because it BREAKS this degeneracy: if `n_f` falls slower
+than `a⁻³`, the torsion term outruns shear. S1 needs production to dominate shear; S1's `βH⁴` law is phenomenological and, in
+S1's own text, not derived microscopically.
+
+## 4. Outcome classes — declared NOW, before any computation
+- **B1_DEGENERATE_FINE_TUNED** — the no-production criterion is a constant inequality as above: the bounce requires chosen
+  initial data, quantified by the dimensionless ratio `κ α n₀²/Σ²`.
+- **B1_GENERIC** — a bounce occurs for an open set of initial data with no inequality on constants, contradicting §3.
+- **B1_PRODUCTION_RESCUES** — with S1's production law the bounce set is enlarged from measure-small to open, with the required
+  `β` range stated and compared with S1's own values.
+- **B1_PRODUCTION_INSUFFICIENT** — production does not enlarge the set over the declared `α` interval and physical `β` range.
+- **B1_UNDERDETERMINED** — the system as published does not determine the answer without an input no source supplies; the missing
+  input is named. (K3 step 3 makes this a live outcome, not a formality.)
+- **B1_ILL_POSED** — the equations as printed do not form a well-posed initial-value problem in the regime where the bounce sits;
+  the obstruction is stated. This too is a real result and would be filed as one.
+
+## 5. Controls that must pass before any class is filed
+- **C1 recovery:** setting `σ² = 0` and no production must reproduce S3's published isotropic bounce, including the cusp
+  condition `da/dT = 0` — a published-value check, not a self-check.
+- **C2 formalism:** the Bianchi I Einstein–Cartan equations used must reduce to S4's (5.21)/(5.24) forms in the stated limit.
+- **C3 well-posedness BEFORE interpretation:** constraint propagation verified, and the integration's regime of validity stated,
+  before any numerical trajectory is read physically.
+- **C4 α-interval:** every reported result is reported across the K3S3 interval, never at a single free-gas value at the bounce.
+- **C5 independent critique:** the derivation and the code are checked by a seat that did not write them, on a different engine
+  from the implementer.
+
+## 6. What would count against my own expectation
+If C1 passes and the Bianchi I criterion turns out NOT to be a constant inequality — for instance if the correct shear evolution
+in Einstein–Cartan carries a torsion coupling that changes its scaling — then `B1_GENERIC` files and §3 is wrong. I would rather
+find that than defend §3.
+
+## 7. Limits, stated now
+This addresses the spin-fluid Einstein–Cartan version of the bounce with the assumptions in §1. It does not address every
+black-hole-universe model, does not test whether our universe is inside a black hole, and says nothing about the Kantowski–Sachs
+case S1 actually solves except by contrast. A negative result would mean: this mechanism, in this class, needs chosen data.
+
+---
+
+## AMENDMENT 1 (2026-09-07 11:50 KST) — which matter row this study is about
+Recorded rather than rewritten; §§0–7 above stand as first declared.
+
+1. **GRG 53, 18 uses the spin FLUID row.** Its abstract, read by me at arXiv 2007.11556 (the revised version the publisher entry
+   corresponds to): "a relativistic spin fluid as a source", and "torsion may prevent a singularity and replace it with a
+   nonsingular bounce if particle production dominates over shear"; its printed $\alpha=\kappa(\hbar c)^2/32$ is the
+   Weyssenhoff coefficient, matching the value our ECSK derivation obtained. **B1's genericity question is therefore asked about
+   the FLUID row**, which is the correct target: the anisotropic avoidance condition we are testing is that paper's own.
+   *Provenance note: the Springer publisher page is behind a cookie handshake I could not pass; the publisher full text was read
+   by the source worker, the abstract sentences above are my own read of the arXiv version. Labelled, not blurred.*
+2. **K3's two-thirds result belongs to the DIRAC row, not this one.** `K3S3_CHECK_SHEET_20260904.md` computes
+   $R=\alpha h_n^2T^2/h_\star$ with $\alpha=(9/16)\kappa$ — the Dirac coefficient of PRD 85, 107502 (corpus entry 10).
+   The fluid coefficient is $\kappa/32$ in $\hbar=1$ units, smaller by a factor of 18. **So §2's interval statement above does
+   not transfer to the fluid row unchanged**, and the honest position is: the self-consistency ratio for the fluid row at the
+   fluid row's OWN turning point has not been computed by anyone here. It is now the first thing B1 computes, and until it is,
+   no claim is made about whether the fluid-row closure is controlled at its bounce.
+3. **Both rows are carried** wherever the effective pressure enters, per Blanc 11:18.
+# B3 — particle production and the bounce set (2026-09-07)
+
+**FLUID, flat Bianchi I only. Both determined closures give an enlarged bounce set by strict set inclusion:** under fixed `Psi=beta H^4`, every admissible contracting datum bounces for every beta>0. At beta=0, only the strict torsion-dominance subset bounces. No class is filed.
+
+The no-production bounce set was **already OPEN**, as the scope qualification and Kimi challenge establish. Its **boundary**, not the bounce set, was codimension one. This is removal of the shear-versus-torsion restriction at positive beta, not a transition from a measure-small or threshold-only bounce set to an open set.
+
+## Inputs and all added assumptions
+
+Read: `B1_RESULT_V2_20260907.md`, including Amendments A and B; `B2_CLOSURE_20260907.md`; `KIMI_B2_CHALLENGE_20260907.md`; `B1_SCOPE_QUALIFICATION_20260907.md`; and the B1 pre-registration. B1 criterion's interval qualification was also checked. Equation provenance is inherited from B2's inspected arXiv 2007.11556v2 text. No new source retrieval, publisher-version identification or erratum assertion is made.
+
+- Diagonal homogeneous flat Bianchi I, positive scale factors, cosmic proper time and smooth isotropic effective FLUID stress: `rho=epsilon-alpha n^2`, `P=epsilon/3-alpha n^2`. No curvature, extra component, creation pressure, cosmological constant, anisotropic stress, chemical-potential or entropy closure is added. KS and DIRAC are not computed.
+- Initial epsilon>0, n>=0 and shear>=0, with strict initial contraction satisfying the Hamiltonian constraint. Zero n is allowed because n is independent of T; positive beta immediately sources it.
+- Alpha is a positive constant on each trajectory, carried as an interval parameter. The proof holds for **any interval I contained in (0,infinity)**. The inherited record supplies no controlled numerical FLUID endpoints. The declared **dimensionless sensitivity interval [0.25,1]**, sampled at **0.25,0.625,1**, is an added numerical choice, not a K3 interval or a physical confidence interval. No free-gas coupling is inserted at the bounce.
+- The paper's phenomenological **fixed `Psi=beta H^4`** is extrapolated through the whole collapse. Beta>=0; zero is the control. The numerical positive range [0.001,10] is exploratory, not calibrated to the paper or to microscopic production. The proof covers every fixed beta>0. Extrapolating the source and effective fluid to high density is a mathematical assumption, not evidence of validity there.
+- Set a0=1 by spatial normalization. Use initial density unit epsilon0, arbitrary number unit n_ref, and time unit t_ref=(kappa epsilon0)^(-1/2). Dimensionless alpha is alpha_phys n_ref^2/epsilon0; dimensionless beta is beta_phys/(n_ref t_ref^3). The script has kappa=epsilon0=1. The temperature unit makes h_star=1 in (b). This does not set a microscopic coupling.
+- **Closure (b):** epsilon=T^4, p=epsilon/3, n independently sourced. **Closure (c):** fix `F(T)=T^4[1+T^2/(1+T^2)]`, p=epsilon/3, n independently sourced. This smooth positive caloric crossover changes the coefficient from 1 to 2 at an order-one temperature scale. `F'=2 T^3(4 T^4+7 T^2+2)/(1+T^2)^2>0` for T>0. It is a regular phenomenological representative of a changing caloric coefficient, not a derived equilibrium-gas EOS; no equilibrium identity relating p to F is imposed. Scale and amplitude are fixed at one, never fitted to a bounce.
+- Closures are compared at matched **epsilon0**, rather than matched T0. T0=1 in (b); T0=F_c^(-1)(1) in (c). With p=epsilon/3 and no T dependence in Psi, **any globally invertible positive F with range (0,infinity)** gives the same density/geometry dynamics. F_c cannot tune the bounce map; it changes temperature alone. B2's local F'!=0 does not alone guarantee a global caloric domain, which this representative supplies.
+- No measure on initial data is introduced. Counts refer only to this finite grid. No independent adversarial review is claimed; filing and any separate review remain with the requester.
+
+## 1. Constraint propagation before integration
+
+Let S=sigma^2. The exact cosmic-time system obtained from B2's directional field equations is
+
+```
+a_dot = H a
+H_dot = kappa epsilon/3 - 3 H^2
+S_dot = -6 H S
+n_dot = beta H^4 - 3 H n
+epsilon_dot = -4 H epsilon + 2 alpha n beta H^4
+T_dot = [-4 H F(T) + 2 alpha n beta H^4]/F'(T)
+C = 3 H^2 - kappa(epsilon-alpha n^2) - S.
+```
+
+Epsilon and T are alternative coordinates for one evolution equation. In (b), `T_dot=-HT+alpha n beta H^4/(2T^3)`. In (c), use the explicitly specified F and F'. Neither retains the paper's temperature equation (37), which depended on the discarded n=h_n T^3 closure.
+
+For this precise off-constraint evolution, direct differentiation gives
+
+`C_dot+6HC=-kappa[epsilon_dot+4H epsilon-2alpha n beta H^4]=0`.
+
+The first-law residual `epsilon_dot-2alpha n n_dot+3H(4epsilon/3-2alpha n^2)` also vanishes. The script substitutes each F and symbolically computes both residuals. **CONSTRAINT_RESIDUAL_b=0; CONSTRAINT_RESIDUAL_c=0.** Both checks finish before any numerical integration; a nonzero residual stops the program.
+
+For numerical conditioning use d tau=dt/a^3 and the invertible coordinates
+
+`x=-ln a, u=-H a^3, N=n a^3, E=epsilon a^6, S0=S a^6`.
+
+The exact integrated system is
+
+```
+x' = u
+u' = -kappa E/3
+N' = beta u^4 exp(6x)
+E' = -2u E + 2alpha N N'
+t' = exp(-3x)
+C_tau = 3u^2 - kappa E - S0 + kappa alpha N^2.
+```
+
+Prime denotes tau derivative. **C_tau'=0 identically**, without projection. The script verifies this identity and the caloric chain rule `F'(T)T'=exp(6x)[4uE+2alpha N N']` for both closures. Reconstructing T from F(T)=E exp(6x) is an exact state-coordinate change. The two closures are run separately in these coordinates.
+
+For beta=0, an additional exact reduction avoids relative constraint drift near a singularity. With delta=S0-alpha n0^2 in script units, `a^2=3u^2-delta` and `dt/du=-3sqrt(3u^2-delta)`. Proper time is numerically integrated to u=0 for a bounce (delta<0), or u=sqrt(delta/3) for a singularity (delta>=0). Its reconstructed constraint is identically zero, also checked symbolically. This reduction is not used for positive beta.
+
+## 2. Scaling before numerics, including the energy source
+
+**Closure (b):** number balance gives exactly
+
+`N(t)=n0+integral_0^t a^3 Psi dt`,
+`alpha n^2=alpha a^-6 N(t)^2`,
+`S=S0 a^-6`.
+
+During collapse with n>0 and beta>0,
+
+`d ln(alpha n^2)/d ln a=-6+2beta H^3/n<-6`.
+
+For S>0, `d(alpha n^2/S)/dt=2alpha n Psi/S>0`. The integral also covers n0=0; the logarithmic formula is used only for n>0. Number density **grows faster** than a^-3 in collapse. “Falls slower” would confuse expansion with collapse.
+
+**Closure (c):** the same integral, scaling and inequalities hold, because its caloric relation changes neither number balance nor isotropic shear evolution. Its temperature equation differs as specified above. Thus **TORSION_SCALING_b=HELPS** and **TORSION_SCALING_c=HELPS**. This is an instantaneous exponent plus an exact integral, not a constant modified power-law ansatz.
+
+The helpful torsion/shear direction holds for any nonnegative production, independently of H^4. But it does not alone prove a bounce: first-law heating gives `d(epsilon a^4)/dt=2alpha n Psi a^4>=0`.
+
+To settle the competition analytically, take x as independent variable while H<0, and set
+
+`Q=3H^2 a^6=kappa E+S0-kappa alpha N^2>0`.
+
+Then
+
+```
+N_x = beta (Q/3)^(3/2) exp(6x)
+E_x = -2E + 2alpha N N_x
+Q_x = -2kappa E < 0.
+```
+
+The source contributions to Q_x cancel **exactly through the first law**, rather than by neglecting heating. E>=E0 exp(-2x)>0.
+
+**Finite-bounce proof for every alpha>0 and fixed beta>0, both closures.** Let N_star=sqrt(S0/(kappa alpha)). Suppose collapse continues with N<=N_star. Then `kappa E=Q-S0+kappa alpha N^2<=Q`, so Q_x>=-2Q and Q>=Q0 exp(-2x). Therefore
+
+`N_x>=beta (Q0/3)^(3/2) exp(3x)`.
+
+This has an unbounded integral: N must exceed N_star at finite x unless a bounce intervenes. A root itself requires N>N_star since E>0. Initial equality crosses immediately under the strictly positive source; this includes S0=N0=0.
+
+After N1>N_star at finite x1, define D=kappa alpha N1^2-S0>0. Monotonic N gives `Q_x=-2(Q+kappa alpha N^2-S0)<=-2D`, hence a root occurs no later than x1+Q(x1)/(2D). There is no prior finite-x blow-up: Q<=Q0 bounds N_x on finite-x intervals, and the constraint bounds E. At the root, Q_x=-2kappa E_b<0, so `dt/dx=a^3sqrt(3/Q)` is integrable. All variables are finite, and `H_dot_b=kappa epsilon_b/3>0`. The smooth proper-time system crosses H=0 at a genuine minimum. Finite shear and finite proper time also keep the directional scale factors regular there.
+
+**Prescription dependence is load-bearing.** The exponential lower bound uses fixed positive beta and exactly Psi=beta H^4 throughout contraction. An arbitrary nonnegative source could create too few particles to reach N_star. Universal rescue is therefore a result of this prescription, the retained p=epsilon/3 EOS and effective first law, not production per se. Psi vanishing at H=0 does not erase previously accumulated N. The proof is not uniform as beta->0 or alpha->0; alpha=0 is excluded.
+
+## 3. Declared grid and numerical results
+
+Set epsilon0=a0=kappa=1 and define the initial shear fraction
+
+`f=S0/(kappa epsilon0+S0)`, so `S0=f/(1-f)`.
+
+This uses the positive ordinary-density-plus-shear terms, not effective density. Set `H0=-sqrt((1+S0-alpha n0^2)/3)` and retain only `1+S0-alpha n0^2>0`. Invalid or initially turning data are X, not singular outcomes. Any shear orientation with this magnitude has the same mean-volume outcome; one realization at a_i0=1 is H_i-H=(sqrt(S0),-sqrt(S0),0).
+
+```
+alpha = (0.25, 0.625, 1)
+f     = (0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+n0    = (0, 0.1, 0.25, 0.5, 0.75, 1, 1.5, 2)
+beta  = (0, 0.001, 0.01, 0.1, 1, 10)
+```
+
+Each closure has 1008 cells, of which 900 are admissible and 108 excluded, counting beta copies. The script prints every cell as an eight-character row in n0 order, and per-alpha/per-beta counts and bounce-radius ranges.
+
+### Closure (b)
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_b=OPEN`.
+
+### Closure (c)
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_c=OPEN`. Exact agreement with (b) follows from coordinate equivalence, not independent physical evidence for either closure.
+
+### Numerical checks and singularity interpretation
+
+Positive-beta runs use SciPy DOP853 with rtol=2e-10, atol=2e-12 and an event for u crossing zero downwards. Each closure's maximum normalized constraint defect is **1.92274e-10**, with denominator `3u^2+E+S0+alpha N^2`. A guard at x=12 or tau=2e6 fails the run if reached without a bounce; no positive-beta grid run reaches it. No finite density cutoff is called a singularity.
+
+Beta=0 uses the exact reduction with numerical proper-time quadrature (epsabs=2e-12, epsrel=2e-11). If delta>=0, `3H^2=a^-4+delta a^-6` reaches a=0 at finite proper time with divergent ordinary density/curvature. These are analytically certified singular endpoints, not solver failures. If delta<0, `a_b=sqrt(-delta)` is the finite bounce radius.
+
+Nine extra threshold controls per closure cover every alpha and f=0,0.5,0.9. A number just below equality (relative offset 1e-10, exact zero for the isotropic case) is singular at beta=0; the equality number bounces at beta=0.001. Equality at beta=0 is covered by the exact analytic formula, avoiding floating-point sign decisions. Three refinement cases per closure include high shear/weak production, a no-production bounce, and strong production. Tenfold tighter ODE tolerances change the bounce radius by at most **1.42686e-12** relative. Positive-beta events have finite positive epsilon and H_dot. The script asserts the caloric inverses, symbolic residuals, numerical constraint bound and all map classifications against the analytic theorem.
+
+Reproduction: from `bounce/`, run `/usr/bin/python3 b3_rescue.py`. Verified with system Python, SymPy 1.14.0 and SciPy 1.13.1. The script has no network and writes no files; it reads only its own source and this report to print their SHA256s at the end.
+
+## 4. Boundary, openness and comparison
+
+Let D consist of alpha in any positive interval I, epsilon0>0, n0>=0, S0>=0, and `kappa epsilon0+S0-kappa alpha n0^2>0`. For each closure separately,
+
+`B_0={d in D: kappa alpha n0^2>S0}`,
+`B_beta=D for every fixed beta>0`.
+
+At beta=0, the separating surface is `S0=kappa alpha n0^2`, or `f=alpha n0^2/(1+alpha n0^2)` on the normalized slice. Equality is singular. The strict bounce side is open; the boundary is codimension one in the interior, with parameter-edge qualifications. For beta>0, **no internal separating surface remains in D**. In the extended space D times [0,infinity), the bounce set is relatively open and its relative boundary is `{beta=0,S0>=kappa alpha n0^2}`. This excludes the inadmissibility boundary of D itself.
+
+**The comparison is strict set inclusion, not volume or probability:** B_0 is a proper subset of B_beta at each fixed beta>0. On the grid, each positive-beta slice adds all 118 initially nonbouncing admissible data to the existing 32 bounces; none is lost. No claim of monotonic bounce radius with beta is needed. Nor must raw bounce counts increase with alpha on this slice, since alpha changes which initial data are admissible.
+
+The theorem holds throughout every positive alpha interval under the stated assumptions. The bounce constraint still requires `alpha n_b^2=epsilon_b+S_b/kappa>=epsilon_b`: rescue does not make the spin-fluid closure controlled. This is a conditional FLUID model map, not a class filing or a conclusion about black-hole-universe cosmology as a whole.
+
+## Required tokens
+
+```
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS
+TORSION_SCALING_c=HELPS
+BOUNCE_SET_b=OPEN
+BOUNCE_SET_c=OPEN
+GRID_TOTAL_b: B=782 S=118 X=108
+GRID_TOTAL_c: B=782 S=118 X=108
+```
+bounce/ECSK_DERIVATION_20260907.md
+bounce/B1_RESULT_20260907.md
+bounce/B3_RECONCILIATION_20260907.md
+bounce/_CODEX_TASK_SOURCES_20260907.md
+bounce/B1_CRITERION_20260907.md
+bounce/B3_RESCUE_20260907.md
+bounce/prd_publisher_verify_20260907/rmp_crossref.json
+bounce/prd_publisher_verify_20260907/rmp_doi.html
+bounce/prd_publisher_verify_20260907/prd_issue.html
+bounce/prd_publisher_verify_20260907/rmp_corrections_search.html
+bounce/prd_publisher_verify_20260907/prd_landing.html
+bounce/prd_publisher_verify_20260907/prd_doi.html
+bounce/prd_publisher_verify_20260907/access.json
+bounce/prd_publisher_verify_20260907/rmp_landing.html
+bounce/prd_publisher_verify_20260907/prd_corrections_search.html
+bounce/prd_publisher_verify_20260907/prd_crossref.json
+bounce/prd_publisher_verify_20260907/web_evidence.txt
+bounce/prd_publisher_verify_20260907/rmp_issue.html
+bounce/prd_publisher_verify_20260907/prd_errata.html
+bounce/prd_publisher_verify_20260907/rmp_errata.html
+bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+bounce/SOURCES_20260907.md
+bounce/b1_derive.py
+bounce/KIMI_B1_ADVERSARIAL_20260907.md
+bounce/KIMI_B2_CHALLENGE_20260907.md
+bounce/c1_reexam.py
+bounce/B1_RESULT_V2_20260907.md
+bounce/b2_closure.py
+bounce/B3_CLASS_FILED_20260907.md
+bounce/_CODEX_TASK_B1_DERIVE_20260907.md
+bounce/B2_CLOSURE_20260907.md
+bounce/_CODEX_TASK_C1_REEXAM_20260907.md
+bounce/_KIMI_B3_CHALLENGE_20260907.txt
+bounce/ecsk_derive.py
+bounce/PRD_PUBLISHER_VERIFY_20260907.md
+bounce/b3_rescue.py
+bounce/B1_SIGN_RESOLUTION_20260907.md
+bounce/B1_DERIVATION_20260907.md
+bounce/_KIMI_B1_ADVERSARIAL_20260907.txt
+bounce/b1_criterion.py
+bounce/_CODEX_TASK_B3_RESCUE_20260907.md
+bounce/kimi_b2_independent_check.py
+bounce/_CODEX_TASK_ECSK_DERIVE_20260907.md
+bounce/LANE_METHOD_NOTE_SHARED_INPUT_20260907.md
+bounce/KIMI_SIGN_CHECK_20260907.md
+bounce/B1_SCOPE_QUALIFICATION_20260907.md
+bounce/_CODEX_TASK_B4_BETA_20260907.md
+bounce/_CODEX_TASK_B1_CRITERION_20260907.md
+bounce/_CODEX_TASK_PRD_VERIFY_20260907.md
+bounce/_CODEX_TASK_B2_CLOSURE_20260907.md
+bounce/KIMI_B3_CHALLENGE_20260907.md
+bounce/_KIMI_BLIND_SIGN_CHECK_20260907.txt
+bounce/_KIMI_B2_CHALLENGE_20260907.txt
+bounce/C1_REEXAM_20260907.md
+
+web search: 
+web search: https://arxiv.org/abs/2007.11556v2

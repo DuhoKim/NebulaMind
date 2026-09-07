@@ -47,6 +47,9 @@ finite proper time with divergent density, not a solver giving up.
 ## 3. Where this leaves the route
 The three results now form one picture. Without production the bounce needs a condition collapse cannot reach. With the paper's
 own printed thermal closure nothing smooth bounces at all. With production and a consistent closure, everything admissible
-bounces — and it bounces where the spin correction exceeds the entire ordinary density, which is exactly where K3 showed the
-four-fermion closure is uncontrolled. **The mechanism's viability and its uncontrolled regime are the same regime.** That, not a
-verdict on the cosmology, is the finding.
+bounces — and it bounces where the spin correction is **at least** the ordinary energy density, with EQUALITY for isotropic
+data. The fluid row's own ratio at its own turning point is 1, computed in `C1_REEXAM_20260907.md`; K3 step 3's 2/3 belongs to
+the DIRAC row at the Dirac turning point and is not transferred here. On the fluid row's own number, the effective-fluid and
+free-gas descriptions are therefore being used exactly where the correction is comparable to the whole ordinary density.
+**The mechanism's viability and the regime where its own closure is unverified are the same regime.** That, not a verdict on
+the cosmology, is the finding. See `B3_RECONCILIATION_20260907.md` for the corrections behind this paragraph.
