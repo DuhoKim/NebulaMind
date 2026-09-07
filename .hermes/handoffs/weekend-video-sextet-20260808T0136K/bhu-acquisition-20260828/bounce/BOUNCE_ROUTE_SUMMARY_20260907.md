@@ -78,5 +78,10 @@ establishes:**
 **Consequently this summary must not be read as answering the source's own curved scenario.** Results 1 and 3 stand where they
 were computed, in flat Bianchi I with a Weyssenhoff spin fluid. Result 2 (the printed thermal closure admitting no bouncing
 solution) and result 4 (the assumptions being unestablished in the bounce regime) were established in both geometries or are
-geometry-independent, and are unaffected. **B6's two verdicts are author findings pending an independent different-engine
-challenge, which is dispatched; they are not yet adopted conclusions.**
+geometry-independent, and are unaffected. **B6's two verdicts are now ADOPTED**: the independent different-engine challenge
+returned B6_REVIEW=VERDICTS_STAND, having re-derived the identity itself from the source's Eqs. (24)-(30) and reproduced printed
+Eq. (30) exactly, confirmed the branch qualification as "exactly the algebra", and found no flat/curved mix-up, no overstatement
+and no absence treated as proof. Four minor findings, none verdict-changing, are recorded in the reconciliation; one is a
+correction to THIS file's wording of Eq. (35), and one notes that the SOURCE's own positivity sentence after Eq. (30) is
+unqualified where B6 is careful — it is false at the source's own suggested initial instant, so B6 under-claims in the source's
+favour.

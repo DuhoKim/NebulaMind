@@ -1,0 +1,14 @@
+
+session_id: 20260907_165344_b91038
+**B6_REVIEW=VERDICTS_STAND** — report filed at `bounce/KIMI_B6_CHALLENGE_20260907.md`. All five attacks failed to break B6.
+
+What I did and found:
+
+- **Ground truth**: parsed the saved publisher HTML directly (SHA256 `fb94da36…` matches B6's pin; metadata confirms Popławski, GRG 53, art. 18, 2021). All 13 B6 quotations byte-verified against it. Independently re-derived everything with SymPy (13 checks, `ALL_PASS`).
+- **Attack 1 (the identity)**: `d(a⁶S)/dt = (2/3)a⁶KΔ` is exactly the source's printed Eq. (30) multiplied by a⁶. I re-derived (30) itself from printed (27)+(11)+(16) and from (28)+(29)+(25) — no sign/factor error. S is the shear scalar as printed (Eq. (25), the ½ convention, S=Δ²/3); B6 keeps it straight, and the printed rate law is consistent only with that convention.
+- **Attack 2 (branch qualification)**: B6 has it right — sign of (30)'s RHS = sign(Δ), since K=Y⁻²>0; contraction never enters. Sharper: the *source's* unqualified "the right-hand side is positive" is false at the source's own suggested initial data (Ẏ₀=0 with B>0 collapse ⇒ Δ₀=3H₀<0). B6 under-claims here; the hedged "if volume-contracting" is satisfied by the source's own §5 numbers.
+- **Attack 3 (B1=FAILS)**: exact, not overstated. İ=X>0 strictly on any regular patch, so no special data restore a conserved a⁶S; only the flat K→0 limit does. The verdict is scoped to the comparison-of-constants argument, and B6 already files both the approximate-limit concession and the exact surviving monotonicity (Ṙ=−2KR/Δ) on the Δ>0 branch — which is the source's own §7 conclusion.
+- **Attack 4 (B3=UNDETERMINED)**: the only verdict (34)+(35) support. Number balance fixes N(t) exactly (mechanism transfers); it does not fix the shear coefficient ∫Xdt′, the sign of Ṙ/R=2(Ψ/n−K/Δ), or the KS turning-point condition (constraint has −K, which can even assist). Eq. (35) is printed as a condition, not a theorem; "if β is big enough" lives in the thermal specialisation B1/B2 found inconsistent as printed.
+- **Attack 5 (hygiene)**: no flat/curved swap, no overstatement, no absence-as-proof. One nit found, not in B6: the route summary's "at the horizon-formation instant" compresses the printed "after the formation of the event horizon, at the instant when (32) is reached" (F1, reported, not repaired).
+
+No lane artifact modified; B6's hash re-verified unchanged after the pass.
