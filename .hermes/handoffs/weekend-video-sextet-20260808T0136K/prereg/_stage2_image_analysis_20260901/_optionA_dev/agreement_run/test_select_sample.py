@@ -74,7 +74,7 @@ class SelectSampleTests(unittest.TestCase):
                     select(*inputs, self.seed)
 
     def test_tuning_scored_floor_sufficient_draw_short_refused(self):
-        """FAIL-FIRST: tuning meeting its scored-count floor cannot permit a short draw."""
+        """POSITIVE-REGRESSION: tuning meeting its scored-count floor cannot permit a short draw."""
         inputs = self.make_inputs(self.eligible[:780], self.excluded, self.failed)
         with self.assertRaisesRegex(
                 ValueError,
@@ -84,7 +84,7 @@ class SelectSampleTests(unittest.TestCase):
             select(*inputs, self.seed)
 
     def test_holdout_scored_floor_sufficient_draw_short_refused(self):
-        """FAIL-FIRST: holdout meeting its scored-count floor cannot permit a short draw."""
+        """POSITIVE-REGRESSION: holdout meeting its scored-count floor cannot permit a short draw."""
         inputs = self.make_inputs(self.eligible[:990], self.excluded, self.failed)
         with self.assertRaisesRegex(
                 ValueError,
@@ -94,7 +94,7 @@ class SelectSampleTests(unittest.TestCase):
             select(*inputs, self.seed)
 
     def test_validation_scored_floor_sufficient_draw_short_refused(self):
-        """FAIL-FIRST: validation meeting its scored-count floor cannot permit a short draw."""
+        """POSITIVE-REGRESSION: validation meeting its scored-count floor cannot permit a short draw."""
         inputs = self.make_inputs(self.eligible[:2900], self.excluded, self.failed)
         with self.assertRaisesRegex(
                 ValueError,
@@ -110,11 +110,42 @@ class SelectSampleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, r"^exclusion/failed overlap: 100199$"):
             select(*inputs, self.seed)
 
-    def test_nonmember_excluded_id_refused(self):
-        """POSITIVE-REGRESSION: an excluded ID outside the eligible file refuses and names that ID."""
+    def test_nonmember_excluded_id_tolerated_and_counted(self):
+        """FAIL-FIRST: an excluded ID outside eligibility is tolerated and counted."""
         inputs = self.make_inputs(self.eligible, [99999, *self.excluded], self.failed)
-        with self.assertRaisesRegex(ValueError, r"^exclusion IDs not in eligible: 99999$"):
+        result = select(*inputs, self.seed)
+        self.assertEqual(result["counts"]["exclusion_nonmembers"], 1)
+
+    def test_nonmember_failed_id_tolerated_and_counted(self):
+        """FAIL-FIRST: failed IDs outside eligibility are tolerated and counted as unique IDs."""
+        inputs = self.make_inputs(self.eligible, self.excluded,
+                                  [99998, 99997, 99998, *self.failed])
+        result = select(*inputs, self.seed)
+        self.assertEqual(result["counts"]["failed_nonmembers"], 2)
+
+    def test_nonmembers_never_appear_in_any_split(self):
+        """FAIL-FIRST: neither historical nonmembers nor eligible excluded IDs enter any split."""
+        excluded = [99999, *self.excluded]
+        failed = [99998, *self.failed]
+        inputs = self.make_inputs(self.eligible, excluded, failed)
+        result = select(*inputs, self.seed)
+        selected = set(result["tuning"] + result["holdout"] + result["validation"])
+        self.assertEqual(selected & set(excluded + failed), set())
+
+    def test_nonmember_overlap_still_refused(self):
+        """POSITIVE-REGRESSION: overlap outside eligibility still refuses and names the ID."""
+        inputs = self.make_inputs(self.eligible, [99999, *self.excluded],
+                                  [99999, *self.failed])
+        with self.assertRaisesRegex(ValueError, r"^exclusion/failed overlap: 99999$"):
             select(*inputs, self.seed)
+
+    def test_invalid_eligible_order_refused(self):
+        """POSITIVE-REGRESSION: descending or duplicate eligible IDs still refuse."""
+        for eligible in (self.eligible[::-1], [self.eligible[0], *self.eligible]):
+            with self.subTest(eligible_prefix=eligible[:2]):
+                inputs = self.make_inputs(eligible, self.excluded, self.failed)
+                with self.assertRaisesRegex(ValueError, "ascending without duplicates"):
+                    select(*inputs, self.seed)
 
 
 if __name__ == "__main__":

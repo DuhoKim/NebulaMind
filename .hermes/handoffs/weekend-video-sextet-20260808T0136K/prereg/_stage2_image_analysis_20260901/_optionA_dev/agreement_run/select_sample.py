@@ -37,6 +37,8 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
            sizes=(400, 200, 2000)):
     """Return ordered splits, normalized seed, verified digests and input/split counts.
 
+    Counts include unique exclusion/failed nonmembers of eligibility; these are
+    retained history, not input errors.
     Draw exactly the requested sizes or raise with the split's shortfall in
     the eligible population after exclusions and earlier split allocations.
     """
@@ -53,11 +55,9 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
     if overlap:
         raise ValueError("exclusion/failed overlap: " + ", ".join(map(str, sorted(overlap))))
     eligible_set = set(eligible)
-    for name, ids in (("exclusion", excluded), ("failed", failed)):
-        nonmembers = ids - eligible_set
-        if nonmembers:
-            raise ValueError(f"{name} IDs not in eligible: "
-                             + ", ".join(map(str, sorted(nonmembers))))
+    # Historical lists are global; eligibility is already renderability-qualified.
+    exclusion_nonmembers = len(excluded - eligible_set)
+    failed_nonmembers = len(failed - eligible_set)
     survivors = [objid for objid in eligible if objid not in excluded | failed]
 
     def rank(objid):
@@ -82,5 +82,7 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
     result["counts"] = {"eligible": len(eligible), "exclusion": len(excluded),
                         "failed": len(failed), "removed": len(eligible) - len(survivors),
                         "survivors": len(survivors),
+                        "exclusion_nonmembers": exclusion_nonmembers,
+                        "failed_nonmembers": failed_nonmembers,
                         **{name: len(result[name]) for name in names}}
     return result
