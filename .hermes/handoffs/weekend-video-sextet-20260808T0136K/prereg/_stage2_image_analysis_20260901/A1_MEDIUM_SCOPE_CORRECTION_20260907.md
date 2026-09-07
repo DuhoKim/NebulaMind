@@ -1,0 +1,11 @@
+# "MEDIUM" MEANS BIT-11 MASK PIXELS, NOT THE APPROVAL MEDIUM — my error (2026-09-07 16:01 KST)
+**What I wrote.** v42 item 3 of my brief asked for "the medium-disclosure producer — the module that emits the retained disclosure record: what medium carried the approval, when, and the version digest". The worker built exactly that (`_optionA_dev/agreement_run/medium_disclosure.py`, 4,972 bytes). It is a correct implementation of a wrong request.
+
+**What the rule actually requires.** V15 §6, verified in the source: "**Bit 11 MEDIUM is NOT rejecting; it is carried (§8.9d) and reported per raster as a covariate**". The retained MEDIUM disclosure is an **IMAGE PERTURBATION STUDY**: for each TUNING object carrying bit-11 MEDIUM pixels, compute chi with those pixels KEPT and again with them REPLACED BY THE LOWER MEDIAN, and report the **sign-flip rate**. It is LABEL-BLIND and TUNING-ONLY, and the preprocessing rule is fixed in advance so it cannot depend on the result. `AGREEMENT_RUN_V15_CLAUSE_DISPOSITION_20260907.md` line 81 marks this obligation KEEP — so the disposition table had it right while my brief did not.
+
+**Why the collision was easy and is still my fault.** The word carries two meanings in this lane — the approval MEDIUM (Duho's dialogue channel, settled today) and the bit-11 MEDIUM maskbit. I was working on the approval channel an hour earlier and read the readiness item through that lens instead of checking §6. The disposition table, the run-path report (lines 119, 128) and the clause list all named it correctly.
+
+**Disposition.**
+- `medium_disclosure.py` is RETAINED as what it is — a historical approval-recorder — and is **NOT** counted as the MEDIUM producer. It will be renamed to say so, not deleted.
+- The REAL producer is to be built from the existing rendering, pixel-rejection and scoring components, exercised on meaningful SYNTHETIC fixtures: no real tuning pixels, no labels, no sample, seed, round, anchor or holdout. The method is retained exactly as V15 states it; no search choice is added.
+- The MEDIUM producer and the unresolved runtime representation are **CURRENT preparation obligations**, not later-stage evidence. Any sheet or fold that says implementation is complete except for later-stage inventories is wrong until both are actually done.
