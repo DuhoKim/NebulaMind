@@ -1,11 +1,11 @@
-# ADOPTION PACKET — assembled deterministically, 2026-09-07 18:22 KST
+# ADOPTION PACKET — assembled deterministically, 2026-09-07 18:34 KST
 Assembled by `scripts/assemble_adoption_packet.py`. It states what exists; it adopts nothing and asserts no review result it cannot read.
 
 ## The bytes
 | item | path | sha256 |
 |---|---|---|
 | candidate | `AGREEMENT_RUN_AMENDMENT_A1_20260907.md` | `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` |
-| decision sheet | `AGREEMENT_RUN_DECISION_SHEET_FOR_DUHO_20260907.md` | `e869ad92c97e6586ed26ccf8761cf843819d009ae3acb87f091d86440b43cd57` |
+| decision sheet | `AGREEMENT_RUN_DECISION_SHEET_FOR_DUHO_20260907.md` | `c37ff259a19bdaecf3b02f3355aeb76bfaa09a6dcd591306fe71b376ce17494f` |
 | implementation delta | `A1_IMPLEMENTATION_DELTA_20260907.md` | `aedfef21a4a34529ebed3dc952249584eb1fdc8fdc40b072e9f2c570ff03f33d` |
 | input manifest (CORE) | `_optionA_dev/agreement_run/INPUT_MANIFEST_A1_CORE.json` | `ec2e51586d5664cded303112a02b7f1bc55fa114d3ede753fb390d70cfc67fbe` |
 | runtime pins (CORE) | `_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json` | `0fc7024c9a4e6337ec8a3a6c0ccd76b16e5926ae19619f5f40556c844a02251c` |
@@ -18,6 +18,9 @@ Assembled by `scripts/assemble_adoption_packet.py`. It states what exists; it ad
 ## The independent review chain
 | pass | file | verdict |
 |---|---|---|
+| review 9 (A1 bytes) | `AGY_A1_REVIEW9_20260907.md` | VERDICT: CANDIDATE-SOUND |
+| review 8 (decision sheet) | `AGY_A1_REVIEW8_20260907.md` | VERDICT: SHEET-SOUND |
+| review 7 | `AGY_A1_REVIEW7_20260907.md` | VERDICT: CANDIDATE-NOT-SOUND |
 | review 6 (final) | `AGY_A1_REVIEW6_20260907.md` | VERDICT: FINAL-SOUND |
 | review 5 | `AGY_A1_REVIEW5_20260907.md` | VERDICT: FINAL-NOT-SOUND |
 | review 4 (repair) | `AGY_A1_REVIEW4_20260907.md` | VERDICT: REPAIR-SOUND |
@@ -33,6 +36,9 @@ Assembled by `scripts/assemble_adoption_packet.py`. It states what exists; it ad
 ## Does a review actually cover the CURRENT bytes?
 - current A1 digest: `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9`
 - reviews and the digest each one actually read:
+  - `AGY_A1_REVIEW9_20260907.md` — read `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` — VERDICT: CANDIDATE-SOUND  **<- covers current bytes**
+  - `AGY_A1_REVIEW8_20260907.md` — read `c37ff259a19bdaecf3b02f3355aeb76bfaa09a6dcd591306fe71b376ce17494f` — VERDICT: SHEET-SOUND  (older bytes)
+  - `AGY_A1_REVIEW7_20260907.md` — read `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` — VERDICT: CANDIDATE-NOT-SOUND  **<- covers current bytes**
   - `AGY_A1_REVIEW6_20260907.md` — read `f5100a046ba63c9e043e7ff67ef6e01e7621fe12eaa1097ac68a0fd96b5ffeec` — VERDICT: FINAL-SOUND  (older bytes)
   - `AGY_A1_REVIEW5_20260907.md` — read `2465294f44d0afcd8201117e4f45964b36c3e83070755629f9482863512d1546` — VERDICT: FINAL-NOT-SOUND  (older bytes)
   - `AGY_A1_REVIEW4_20260907.md` — read `53f8bef5cf24bdcf80f0658b0238639ab274ccb96f4aee3e95ab03fe2d39a906` — VERDICT: REPAIR-SOUND  (older bytes)
@@ -40,8 +46,9 @@ Assembled by `scripts/assemble_adoption_packet.py`. It states what exists; it ad
   - `AGY_A1_REVIEW2_20260907.md` — read `61e253cef941de58b6be805faacc12822d0a31900ae8309f160ad976618ac069` — VERDICT: REVIEWABLE-AND-SOUND  (older bytes)
   - `AGY_A1_REVIEW3_20260907.md` — read `c0459ad1b16cfdec2333eabae4d78284f09f4c396e1781e489cbbf8cca6c7d12` — VERDICT: DELTA-NOT-SOUND  (older bytes)
 - coverage per governing artefact:
-  - A1 `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` — **no access-proved review of these bytes**
+  - A1 `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` — positively reviewed by AGY_A1_REVIEW9_20260907.md
   - run path `f5100a046ba63c9e043e7ff67ef6e01e7621fe12eaa1097ac68a0fd96b5ffeec` — positively reviewed by AGY_A1_REVIEW6_20260907.md
+  - decision sheet `c37ff259a19bdaecf3b02f3355aeb76bfaa09a6dcd591306fe71b376ce17494f` — positively reviewed by AGY_A1_REVIEW8_20260907.md
 
 ## Is this presentable to Duho?
-**NO — A1 has no access-proved POSITIVE review of its current bytes.**
+**The packet is assembled and complete as listed.** Presentation remains Codex's step; assembly is not adoption.

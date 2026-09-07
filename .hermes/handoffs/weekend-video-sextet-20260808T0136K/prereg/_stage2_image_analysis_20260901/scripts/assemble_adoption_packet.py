@@ -16,7 +16,7 @@ CORE = [("candidate", "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"),
         ("MEDIUM producer", "_optionA_dev/agreement_run/medium_perturbation.py"),
         ("eligible ids", "_optionA_dev/agreement_run/inputs/eligible_ids_20260907.txt"),
         ("failed-set ids", "_optionA_dev/agreement_run/inputs/failed_set_ids_20260907.txt")]
-REVIEWS = [("review 6 (final)", "AGY_A1_REVIEW6_20260907.md"), ("review 5", "AGY_A1_REVIEW5_20260907.md"), ("review 4 (repair)", "AGY_A1_REVIEW4_20260907.md"),("review 1 (REFUSED)", "AGY_A1_REVIEW_20260907.md"),
+REVIEWS = [("review 9 (A1 bytes)", "AGY_A1_REVIEW9_20260907.md"), ("review 8 (decision sheet)", "AGY_A1_REVIEW8_20260907.md"), ("review 7", "AGY_A1_REVIEW7_20260907.md"),("review 6 (final)", "AGY_A1_REVIEW6_20260907.md"), ("review 5", "AGY_A1_REVIEW5_20260907.md"), ("review 4 (repair)", "AGY_A1_REVIEW4_20260907.md"),("review 1 (REFUSED)", "AGY_A1_REVIEW_20260907.md"),
            ("review 2 (changed bytes)", "AGY_A1_REVIEW2_20260907.md"),
            ("review 3 (final delta)", "AGY_A1_REVIEW3_20260907.md")]
 def verdict(p):
@@ -59,7 +59,7 @@ def access_sha(p):
     except OSError: return None
 # EXACT TOKEN MATCH, never substring: "FINAL-NOT-SOUND" must never satisfy a rule written for "FINAL-SOUND".
 # (The first version of this list also simply omitted FINAL-SOUND, so a positive review read as unreviewed.)
-POSITIVE = {"REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND", "FINAL-SOUND"}
+POSITIVE = {"REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND", "FINAL-SOUND", "SHEET-SOUND", "CANDIDATE-SOUND"}
 def verdict_token(v):
     return (v or "").split(":", 1)[-1].strip().split()[0] if v and ":" in v else None
 a1_now = sha("AGREEMENT_RUN_AMENDMENT_A1_20260907.md")
@@ -67,7 +67,11 @@ a1_now = sha("AGREEMENT_RUN_AMENDMENT_A1_20260907.md")
 # and returned FINAL-SOUND while A1's current bytes had no access-proved positive review at all.
 # Citing a file in prose is not proving you read the bytes that are there now.
 GOVERNING = [("A1", "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"),
-             ("run path", "_optionA_dev/agreement_run/run_path.py")]
+             ("run path", "_optionA_dev/agreement_run/run_path.py"),
+             # The sheet is the ONLY document written for the user, and review 7 found it stale while
+             # A1 and the code were sound. Checking the technical artefacts and leaving the presented
+             # page unchecked is how a correct package still misleads the person it is for.
+             ("decision sheet", "AGREEMENT_RUN_DECISION_SHEET_FOR_DUHO_20260907.md")]
 reviewed = [(p, verdict(p), access_sha(p)) for _, p in REVIEWS if verdict(p)]
 covering = [(p, v, a) for (p, v, a) in reviewed if a == a1_now]
 out += ["", "## Does a review actually cover the CURRENT bytes?",
