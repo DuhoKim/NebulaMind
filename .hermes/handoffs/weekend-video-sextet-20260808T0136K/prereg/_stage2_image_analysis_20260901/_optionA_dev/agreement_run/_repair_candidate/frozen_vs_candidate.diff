@@ -1,0 +1,694 @@
+--- frozen/RUNTIME_PINS_A1_CORE.json
++++ candidate/RUNTIME_PINS_A1_CORE.json
+@@ -5,10 +5,10 @@
+     "explicitly_checked_extension_files": 2,
+     "interpreter_files": 1,
+     "library_versions": 3,
+-    "observed_module_names": 822,
++    "observed_module_names": 843,
+     "placeholders": 0,
+     "real_files": 3,
+-    "representation_files": 1487,
++    "representation_files": 1526,
+     "shared_cache_bytes": 5820973056,
+     "shared_cache_files": 13,
+     "shared_cache_images": 349
+@@ -291,6 +291,12 @@
+         "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/abc.py",
+         "sha256": "937d73a33adba6b015171e0e2670ec4ddfe155e36f9ab4bf711853d3b7df6419"
+       },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.py": {
++        "bytes": 97714,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.py",
++        "sha256": "0e82574a85809fa1b7e0ce7e05230ff0a95ce196713cfbed47ab79bccb37ab0f"
++      },
+       "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.py": {
+         "bytes": 56179,
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.py",
+@@ -699,6 +705,12 @@
+         "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/cp437.py",
+         "sha256": "5c2a5015cd36cf7f561269f33dec4c323093d3d88b0673969accdabdcb9ce2cb"
+       },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.py": {
++        "bytes": 9098,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.py",
++        "sha256": "4fc5a79f53d60fd0576f94dfe8aa7677357d9ad95315ea220ba523f53c89229b"
++      },
+       "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/latin_1.py": {
+         "bytes": 1264,
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/latin_1.py",
+@@ -747,6 +759,12 @@
+         "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/genericpath.py",
+         "sha256": "9d58ad64056a89f12258a62596c2073cd9e52b459dde152f710edc0cffcd865b"
+       },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.py": {
++        "bytes": 27266,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.py",
++        "sha256": "46c4d4e2e72bcd572e64bfbce15975d8054a65af167664c6da193773c38dd1ae"
++      },
+       "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/glob.py": {
+         "bytes": 5823,
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/glob.py",
+@@ -1347,6 +1365,12 @@
+         "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/string.py",
+         "sha256": "bc57c407a8397ee2bea8683d0ce0a563a060c74c785ff36fc6555d66a9c7a566"
+       },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.py": {
++        "bytes": 12917,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.py",
++        "sha256": "60b6c83581093029312efb6670b11c540090b3f78bcf72264467b494f02f21a5"
++      },
+       "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/struct.py": {
+         "bytes": 257,
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/struct.py",
+@@ -1413,6 +1437,66 @@
+         "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/typing.py",
+         "sha256": "8f179cb73f6ba0e037fcef214cbe82edaa19ea4d04e22bc3e7f444a89e486f0f"
+       },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.py": {
++        "bytes": 3761,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.py",
++        "sha256": "07bdf1fff20e4121ba61cfb64ea3c404d54ac56b053475a3a105907f48685210"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py": {
++        "bytes": 56769,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py",
++        "sha256": "783a254e02b0510c44878857e01018238f907da8bb7899aa98634eb0e3268f47"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.py": {
++        "bytes": 22702,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.py",
++        "sha256": "4b8d7dbfe68bc38f50e6b3952fda338e1cf9de43f299ab910cfef31c219e0342"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.py": {
++        "bytes": 11238,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.py",
++        "sha256": "d813319fba8e6eedcc3e0409ded944bc68ff33f0ca04cd1f080b8f226d13105b"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py": {
++        "bytes": 99132,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py",
++        "sha256": "8846048f2ae98d7341bcfc4e81658543ba9291d469dd7ab981bcfce2b4b5a148"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.py": {
++        "bytes": 7443,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.py",
++        "sha256": "c3b8ec54534c7b103bb2bb82863b23ac6c5a3e9d0d4e5d222907a26778d28692"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.py": {
++        "bytes": 7767,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.py",
++        "sha256": "f224fb8d32e6c317f17de752e7daf433865d0ab1488fb59e7dd6414a4e268b96"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.py": {
++        "bytes": 2403,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.py",
++        "sha256": "f8286e818ca56e10e03745bc056cdfd31147678f9a1dc8cb6b0fe96ef9a4362a"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.py": {
++        "bytes": 12815,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.py",
++        "sha256": "2c7c614fd33ad533a86b01a8efe309ea01474271c5e18c527e3088a41d574003"
++      },
++      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.py": {
++        "bytes": 5215,
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.py",
++        "resolved_path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.py",
++        "sha256": "fdcc640c3505d16deab9c32eae7c3f5f67c3b5e81c563dc6698fa7fcf403854d"
++      },
+       "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/__init__.py": {
+         "bytes": 7,
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/__init__.py",
+@@ -1575,6 +1659,12 @@
+         "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/abc.cpython-39.pyc",
+         "sha256": "eb975b7f1bd4011e4fe5ec5e78d0c7c5467fd5152ae8c0f46e7ab2d987c5752a"
+       },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.cpython-39.pyc": {
++        "bytes": 63468,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.cpython-39.pyc",
++        "sha256": "0efe09c20c838e705441274bf1a351949f710c50ff521e649cfaa92b9d89ab03"
++      },
+       "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.cpython-39.pyc": {
+         "bytes": 52385,
+         "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ast.cpython-39.pyc",
+@@ -1983,6 +2073,12 @@
+         "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/cp437.cpython-39.pyc",
+         "sha256": "20c736d28de41f7778f2c006eba855933f54aad55be9f6d58066f0d778b90ef0"
+       },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.cpython-39.pyc": {
++        "bytes": 5670,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.cpython-39.pyc",
++        "sha256": "5903322664e89548e08a25692b7e7b78f551a0464d10c0ca70056b11056f51b1"
++      },
+       "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/latin_1.cpython-39.pyc": {
+         "bytes": 1974,
+         "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/latin_1.cpython-39.pyc",
+@@ -2031,6 +2127,12 @@
+         "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/genericpath.cpython-39.pyc",
+         "sha256": "9046c1a2847ef1fe81dd8f7a4d73da096274b825b037694abe23f60099dc71c6"
+       },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.cpython-39.pyc": {
++        "bytes": 18152,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.cpython-39.pyc",
++        "sha256": "ccddb8cd102332562e4b881b5d28f29d7e7601fae5e03025dd82d2b6b4340f6a"
++      },
+       "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/glob.cpython-39.pyc": {
+         "bytes": 4623,
+         "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/glob.cpython-39.pyc",
+@@ -2397,6 +2499,12 @@
+         "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/string.cpython-39.pyc",
+         "sha256": "46cdd5ad9c2939fce359843fb7c3432221cda97e73ff95583e2931263298a514"
+       },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.cpython-39.pyc": {
++        "bytes": 10065,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.cpython-39.pyc",
++        "sha256": "72a6b37d7bad122263e5e0ada3de239b93b26c9344acd9c3ebe2357b099cd7a3"
++      },
+       "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/struct.cpython-39.pyc": {
+         "bytes": 385,
+         "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/struct.cpython-39.pyc",
+@@ -2463,6 +2571,66 @@
+         "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/typing.cpython-39.pyc",
+         "sha256": "2fe6f85e8cf945c286244c239b512773decc6c7237f46f9ad871a951d114a8ff"
+       },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.cpython-39.pyc": {
++        "bytes": 3477,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.cpython-39.pyc",
++        "sha256": "07688193da1c15bfff2e55cddc9a17bade552f7f32cd5753422c2b4ccfdab3ca"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.cpython-39.pyc": {
++        "bytes": 48187,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.cpython-39.pyc",
++        "sha256": "8ceb72de76edd950559fe05633504d2857c5e68d008c444f7d2a25c14e4fdc35"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.cpython-39.pyc": {
++        "bytes": 14597,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.cpython-39.pyc",
++        "sha256": "2392963da2b0c60e1c983c06fcf01e404e1715bd7a2338d9c2db51a16158e1e5"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.cpython-39.pyc": {
++        "bytes": 7591,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.cpython-39.pyc",
++        "sha256": "0b1bb1ceaa09d70fe4aff303daa4644c91d6f9004abb1e756a891bdbb412a783"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.cpython-39.pyc": {
++        "bytes": 78052,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.cpython-39.pyc",
++        "sha256": "1ea151b3f51e028afcc40aa87093ecfda429760d68c2ca2a9a93c19a783424ba"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.cpython-39.pyc": {
++        "bytes": 7370,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.cpython-39.pyc",
++        "sha256": "ffab802f31c72e8bc63d191d6afbcaea3d299ac1e886e196183bdba729d04017"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.cpython-39.pyc": {
++        "bytes": 7145,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.cpython-39.pyc",
++        "sha256": "67b7fca2fa7ec8ffdfdd398a2c51852a23a837439d866a0f9ef03fbb00756f58"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.cpython-39.pyc": {
++        "bytes": 2321,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.cpython-39.pyc",
++        "sha256": "88ec88cade57033ee6a9a411bd1041eb0c136cb96e2110bcf432fe189e31dcb6"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.cpython-39.pyc": {
++        "bytes": 10324,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.cpython-39.pyc",
++        "sha256": "f0bea72bb3a768ad46402521b144c8cf99dd07552f696b8e8ddff553f9eb2035"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.cpython-39.pyc": {
++        "bytes": 4517,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.cpython-39.pyc",
++        "sha256": "2d6cd45d2bf35f5b182219ac8bd7ca4b8fe83f74b4ea6cd9bdcddc1e3740848f"
++      },
+       "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/__init__.cpython-39.pyc": {
+         "bytes": 209,
+         "path": "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/__init__.cpython-39.pyc",
+@@ -5667,6 +5835,36 @@
+         "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/select_sample.cpython-39.pyc",
+         "sha256": "e1d450f85ae246a2d4fa1330fe60094041624b3b50d11196b539490a23f9d9f4"
+       },
++      "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.cpython-39.pyc": {
++        "bytes": 25115,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.cpython-39.pyc",
++        "sha256": "86810a9ee1ea78fb62e273d02aa9b6dd2e4620c338f301fc07bb35e96d9f7ce4"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.cpython-39.pyc": {
++        "bytes": 7002,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.cpython-39.pyc",
++        "sha256": "104c34856e887818e537a03ad9c26620e2214f8b81c95115de123889d523b60c"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.cpython-39.pyc": {
++        "bytes": 18130,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.cpython-39.pyc",
++        "sha256": "d0f8f59a7591a23e04193c29e9db963c43b017e4fb26784e631b8c561fd53e98"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.cpython-39.pyc": {
++        "bytes": 10508,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.cpython-39.pyc",
++        "sha256": "01ee9bfd60978eabc15277170198a0ce51c77da95ea5661aadc1d7a1ac15d778"
++      },
++      "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.cpython-39.pyc": {
++        "bytes": 30311,
++        "path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.cpython-39.pyc",
++        "resolved_path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.cpython-39.pyc",
++        "sha256": "15f71be6531482d8bf19ea6768739ac0f81692b98fb3692a7a6a169dd7c695e6"
++      },
+       "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/drand_only/verify_drand_v2.cpython-39.pyc": {
+         "bytes": 5790,
+         "path": "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/drand_only/verify_drand_v2.cpython-39.pyc",
+@@ -9050,6 +9248,42 @@
+         "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/select_sample.py",
+         "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/select_sample.py",
+         "sha256": "8e517aab2715e6ec814a37f0dfb517b186f2f0ed7b64f045ae6a2a34120144b5"
++      },
++      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.py": {
++        "bytes": 18851,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.py",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.py",
++        "sha256": "26600c812d11bfaa2f4fa6c3b5e27696900fc39b21918c99e46c47a37a58eac6"
++      },
++      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.py": {
++        "bytes": 7050,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.py",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.py",
++        "sha256": "f3692e7dfdcf02bfc7f7948fb7f6d74ce6eafec496a184b7998a7721dd334a41"
++      },
++      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.py": {
++        "bytes": 13888,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.py",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.py",
++        "sha256": "94ec5127829ff81a70f61324492fe674bf35c98937b67c32b8bec8e323af5553"
++      },
++      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py": {
++        "bytes": 8919,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py",
++        "sha256": "76cf6bf5942bb0c916e083bbb036e410076e66c3ff201c561555b59d42e535d7"
++      },
++      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.py": {
++        "bytes": 26568,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.py",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.py",
++        "sha256": "cd8e10c03395df729fc4f6a9d95c21fa1625c8642c9944916691a17f860a4070"
++      },
++      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py": {
++        "bytes": 4707,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py",
++        "sha256": "b28aa29f9b7fc0ca7a90a55d1e5affe2c483ba4095b9907e087e0f7d5168d0bb"
+       },
+       "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/verify_core.py": {
+         "bytes": 3461,
+@@ -12721,6 +12955,10 @@
+         "binding": "namespace",
+         "module": "_optionA_dev.agreement_run"
+       },
++      "_optionA_dev.agreement_run._repair_candidate": {
++        "binding": "namespace",
++        "module": "_optionA_dev.agreement_run._repair_candidate"
++      },
+       "_optionA_dev.agreement_run.bytecode_correspondence": {
+         "binding": "FILE-SHA256",
+         "cache_candidates": [
+@@ -12776,6 +13014,54 @@
+         ],
+         "module": "_optionA_dev.agreement_run.select_sample",
+         "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/select_sample.py"
++      },
++      "_optionA_dev.agreement_run.test_core_consumer": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.cpython-39.pyc"
++        ],
++        "module": "_optionA_dev.agreement_run.test_core_consumer",
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_core_consumer.py"
++      },
++      "_optionA_dev.agreement_run.test_evidence_gate": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.cpython-39.pyc"
++        ],
++        "module": "_optionA_dev.agreement_run.test_evidence_gate",
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_evidence_gate.py"
++      },
++      "_optionA_dev.agreement_run.test_medium_perturbation": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.cpython-39.pyc"
++        ],
++        "module": "_optionA_dev.agreement_run.test_medium_perturbation",
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_medium_perturbation.py"
++      },
++      "_optionA_dev.agreement_run.test_readiness": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.cpython-39.pyc"
++        ],
++        "module": "_optionA_dev.agreement_run.test_readiness",
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py"
++      },
++      "_optionA_dev.agreement_run.test_run_path": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.cpython-39.pyc"
++        ],
++        "module": "_optionA_dev.agreement_run.test_run_path",
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_run_path.py"
++      },
++      "_optionA_dev.agreement_run.test_runtime_binding": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.cpython-39.pyc"
++        ],
++        "module": "_optionA_dev.agreement_run.test_runtime_binding",
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_runtime_binding.py"
+       },
+       "_optionA_dev.agreement_run.verify_core": {
+         "binding": "FILE-SHA256",
+@@ -12953,6 +13239,14 @@
+         "module": "annotated_types",
+         "path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/annotated_types/__init__.py"
+       },
++      "argparse": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.cpython-39.pyc"
++        ],
++        "module": "argparse",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/argparse.py"
++      },
+       "array": {
+         "binding": "FILE-SHA256",
+         "module": "array",
+@@ -15778,6 +16072,14 @@
+         "module": "encodings.cp437",
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/cp437.py"
+       },
++      "encodings.idna": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.cpython-39.pyc"
++        ],
++        "module": "encodings.idna",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/encodings/idna.py"
++      },
+       "encodings.latin_1": {
+         "binding": "FILE-SHA256",
+         "cache_candidates": [
+@@ -16196,6 +16498,14 @@
+         "module": "genericpath",
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/genericpath.py"
+       },
++      "gettext": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.cpython-39.pyc"
++        ],
++        "module": "gettext",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/gettext.py"
++      },
+       "glob": {
+         "binding": "FILE-SHA256",
+         "cache_candidates": [
+@@ -18156,6 +18466,14 @@
+         "module": "string",
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/string.py"
+       },
++      "stringprep": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.cpython-39.pyc"
++        ],
++        "module": "stringprep",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/stringprep.py"
++      },
+       "struct": {
+         "binding": "FILE-SHA256",
+         "cache_candidates": [
+@@ -18437,6 +18755,86 @@
+         "binding": "FILE-SHA256",
+         "module": "unicodedata",
+         "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/unicodedata.cpython-39-darwin.so"
++      },
++      "unittest": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.cpython-39.pyc"
++        ],
++        "module": "unittest",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/__init__.py"
++      },
++      "unittest.case": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.cpython-39.pyc"
++        ],
++        "module": "unittest.case",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py"
++      },
++      "unittest.loader": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.cpython-39.pyc"
++        ],
++        "module": "unittest.loader",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/loader.py"
++      },
++      "unittest.main": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.cpython-39.pyc"
++        ],
++        "module": "unittest.main",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/main.py"
++      },
++      "unittest.mock": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.cpython-39.pyc"
++        ],
++        "module": "unittest.mock",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py"
++      },
++      "unittest.result": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.cpython-39.pyc"
++        ],
++        "module": "unittest.result",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/result.py"
++      },
++      "unittest.runner": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.cpython-39.pyc"
++        ],
++        "module": "unittest.runner",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/runner.py"
++      },
++      "unittest.signals": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.cpython-39.pyc"
++        ],
++        "module": "unittest.signals",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/signals.py"
++      },
++      "unittest.suite": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.cpython-39.pyc"
++        ],
++        "module": "unittest.suite",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/suite.py"
++      },
++      "unittest.util": {
++        "binding": "FILE-SHA256",
++        "cache_candidates": [
++          "/Users/duhokim/Library/Caches/com.apple.python/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.cpython-39.pyc"
++        ],
++        "module": "unittest.util",
++        "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/util.py"
+       },
+       "urllib": {
+         "binding": "FILE-SHA256",
+@@ -18726,16 +19124,55 @@
+       }
+     },
+     "probe": {
++      "execution_evidence": {
++        "fetch": {
++          "checks": {
++            "accepted": true,
++            "bls_verifies_under_pinned_key": true,
++            "randomness_is_sha256_of_signature": true,
++            "round_matches": true,
++            "seed_hex": "6497c5eb0ec4e6886349dffe42decb747a6fdd7c8636e0ff71191ea83f9c675f",
++            "signature_is_96_bytes_g2": true,
++            "url_bound_to_chain_hash": true
++          },
++          "purpose": "NON-STUDY exposed-round runtime probe",
++          "response": {
++            "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/build_module/NON_STUDY_6444980.response.json",
++            "sha256": "5cd9100881a720585acec840649a16e00af14eba34d0edc489004433ba03c575"
++          },
++          "url": "https://api.drand.sh/8990e7a9aaed2ffed73dbd7092123d6f289930540d7651336225dc172e51b2ce/public/6444980"
++        },
++        "render_score": {
++          "bitwise_repeat": true,
++          "compressed_fits_planes": 3,
++          "errors": 0,
++          "failures": 0,
++          "labels_read": 0,
++          "real_estimators": 96,
++          "render": "SCORED",
++          "tests": 32
++        },
++        "selection": {
++          "errors": 0,
++          "failures": 0,
++          "tests": 2
++        }
++      },
+       "module": "_optionA_dev.agreement_run.runtime_probe",
+-      "network_requests": 0,
++      "network_requests": 1,
+       "operations": [
+         "declared code imports",
+         "generated RICE_1 FITS encode/decode",
+         "generated TAN WCS transform",
+         "NumPy FFT",
+         "synthetic-key BLS",
+-        "default TLS context/opener without network"
++        "default TLS context/opener without network",
++        "real run_path.fetch_bytes drand 6444980 and pinned-key BLS verification",
++        "existing synthetic RunPath selection tests",
++        "synthetic compressed FITS -> render chain -> 96 real Fourier chi scores",
++        "existing label-blind MEDIUM synthetic suite"
+       ],
++      "purpose": "NON-STUDY REPAIR CANDIDATE",
+       "real_study_stages": 0
+     },
+     "schema": "A1-RUNTIME-REPRESENTATION-2",
+--- frozen/INPUT_MANIFEST_A1_CORE.json
++++ candidate/INPUT_MANIFEST_A1_CORE.json
+@@ -56,10 +56,10 @@
+     {
+       "evidence": "Evaluated by run_path.EVIDENCE_PREDICATES[RUNTIME_REPRESENTATION]; declarations do not resolve this obligation.",
+       "evidence_pin": {
+-        "bytes": 975794,
+-        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-        "sha256": "73145a0600a11548018eb3763ce1d1d880d6b882ee9f349da88bc0e7b4e4c5e3"
++        "bytes": 1002839,
++        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++        "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++        "sha256": "d1cd15d2ced15a65145fb05283447ab1d3a51e1cda074885d707f9343e00fad6"
+       },
+       "id": "RUNTIME_REPRESENTATION",
+       "required_work": "Resolve A1's runtime representation, including reproducible byte binding for selected import artifacts and OS shared-cache images; the compact pins do not waive it.",
+@@ -183,12 +183,12 @@
+       "sha256": "6b9ecc79210046fa4c6611953184ece75818214bf4e962e4ac2e308243616e9f",
+       "status": "REAL"
+     },
+-    "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json": {
+-      "bytes": 975794,
++    "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json": {
++      "bytes": 1002839,
+       "kind": "runtime_register_reference",
+-      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-      "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-      "sha256": "73145a0600a11548018eb3763ce1d1d880d6b882ee9f349da88bc0e7b4e4c5e3",
++      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++      "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++      "sha256": "d1cd15d2ced15a65145fb05283447ab1d3a51e1cda074885d707f9343e00fad6",
+       "status": "REAL"
+     },
+     "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/bytecode_correspondence.py": {
+@@ -450,10 +450,10 @@
+       "sha256": "b1c0c6d6dca9ee438a474a96b884b5164c1731c95392be04726b1e49f3d34db4"
+     },
+     "runtime": {
+-      "bytes": 975794,
+-      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-      "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-      "sha256": "73145a0600a11548018eb3763ce1d1d880d6b882ee9f349da88bc0e7b4e4c5e3"
++      "bytes": 1002839,
++      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++      "resolved_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++      "sha256": "d1cd15d2ced15a65145fb05283447ab1d3a51e1cda074885d707f9343e00fad6"
+     }
+   },
+   "placeholders": [
+--- frozen/INPUT_FREEZE_C_20260907.json
++++ candidate/INPUT_FREEZE_C_20260907.json
+@@ -7,11 +7,11 @@
+   "anchor": {
+     "commit_id": "TO BE FILLED AT ANCHORING",
+     "external_timestamp": "NOT YET OBTAINED",
+-    "note": "C is PREPARED only. No anchor, publication, round designation, draw or data access has occurred."
++    "note": "Prospective candidate only; no new anchor or formal designation. Only exposed-round NON-STUDY probes and synthetic fixtures executed."
+   },
+   "core_manifest": {
+-    "path": "_optionA_dev/agreement_run/INPUT_MANIFEST_A1_CORE.json",
+-    "sha256": "e9222abf13485a36017d09dbd5be4c50597478882acc773626102416f9a26710"
++    "path": "_optionA_dev/agreement_run/_repair_candidate/INPUT_MANIFEST_A1_CORE.json",
++    "sha256": "f4f782be7e872f9ebacdb63db501096916422c419f729fa614dc288e624e3878"
+   },
+   "input_due_expanded": {
+     "/Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/medium_perturbation.cpython-39.pyc": {
+@@ -66,9 +66,9 @@
+       "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/AGREEMENT_RUN_AMENDMENT_A1_20260907.md",
+       "sha256": "6b9ecc79210046fa4c6611953184ece75818214bf4e962e4ac2e308243616e9f"
+     },
+-    "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json": {
+-      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
+-      "sha256": "73145a0600a11548018eb3763ce1d1d880d6b882ee9f349da88bc0e7b4e4c5e3"
++    "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json": {
++      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_repair_candidate/RUNTIME_PINS_A1_CORE.json",
++      "sha256": "d1cd15d2ced15a65145fb05283447ab1d3a51e1cda074885d707f9343e00fad6"
+     },
+     "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/bytecode_correspondence.py": {
+       "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/bytecode_correspondence.py",
+@@ -204,7 +204,7 @@
+       "status": "NOT DUE AT C \u2014 cannot exist yet"
+     }
+   ],
+-  "record": "INPUT FREEZE C",
++  "record": "INPUT FREEZE C \u2014 ISOLATED REPAIR CANDIDATE, NOT ADOPTED",
+   "scope_rule": "Expansion applies at the due stage (A1). INPUT-due obligations and inputs actually read are expanded here; later-stage groups are named with their schema and producing stage. Their absence is not a defect.",
+-  "utc": "2026-09-07T10:46:40.289442+00:00"
++  "utc": "2026-09-07T11:44:36.631784+00:00"
+ }
