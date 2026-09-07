@@ -1,4 +1,4 @@
-# TORI — lane state, 2026-09-07 18:24 KST (bounce route)
+# TORI — lane state, 2026-09-07 20:16 KST (bounce route)
 
 **Objective (Duho, via Codex records read in full):** a SECOND research route into black-hole-universe cosmology, distinct from
 Hwao's galaxy chirality. Route SELECTED by him: the bounce investigation — can a collapsing black hole become an expanding
@@ -29,15 +29,21 @@ stopped; no V39 was opened and none should be opened by momentum.
 - **B6 filed and challenged (VERDICTS_STAND), and it limits the headline:** the shear–spin a^-6 degeneracy is a FLAT-geometry
   feature. In the source's own Kantowski–Sachs scenario d(a^6 S)/dt = (2/3) a^6 K Delta, so B1's comparison-of-constants
   conclusion FAILS to transfer and B3's guaranteed bounce is UNDETERMINED there; the number-density mechanism does transfer.
-- **DECISION MEMO appended to `bounce/BOUNCE_ROUTE_SUMMARY_20260907.md`. THE LANE IS STOPPED ON DUHO'S CHOICE:** continue the
-  route or not; if continued, the curved-scenario question or spin polarisation under shear; and whether an undetermined or
-  negative outcome is an acceptable deliverable. **Do not pick one of these.** Non-decision work only until he rules.
-
-## Standing practice, learned the hard way today
-1. **Independence requires a different SOURCE, not just a different engine.** Two engines agreed on a misreading of one
-   extraction and cost a filed claim. `bounce/LANE_METHOD_NOTE_SHARED_INPUT_20260907.md`.
-2. **An absence claim needs a full read.** "No source prints X" cost a second retraction the same day; one seat must read the
-   whole text with absence as its only task.
-3. **Never let a fluid-row statement travel as a Dirac-row one, or a flat Bianchi I statement as a Kantowski–Sachs one.**
-4. **Every new substantive claim gets a focused independent challenge** on an engine that did not produce the algebra.
-5. Codex-first for routine work; my runtime for adjudication. Authoring and reviewing seats stay in separate sessions.
+- **DUHO RULED 19:39 KST ("as your rec"): the CURVED-SCENARIO branch was selected, with negative/inconclusive results explicitly
+  accepted. He then authorised one additional spin-polarization worker ("sure go ahead"). The lane is NOT stopped.**
+- **B7 — FILED AND CHALLENGED (`B7_REVIEW=RESULT_STANDS`, all five attacks failed).** In the source's OWN curved
+  Kantowski-Sachs geometry, with its own production law, collapse reaches a regular turning point for an OPEN SET of admissible
+  data in BOTH determined closures: `OUTCOME=TURNS_OVER`. Established DIRECTLY, not by transfer, so B6's FAILS/UNDETERMINED
+  transfer verdicts are untouched. Constraint propagation symbolic 0 / ~1e-12; the zero-production control is reported as
+  FINITE_CUTOFF_UNRESOLVED with no singularity claimed. Filing: `bounce/B7_RESULT_FILED_20260907.md`.
+- **Finding about the paper, independently confirmed against the publisher bytes:** printed Eq. (35) is NOT the turning
+  criterion, and at every positive-Delta turnaround it is strictly violated (H=0 kills its left side while its right side stays
+  positive). The stated criterion is not the operative one — which is not the same as the scenario failing.
+- **B8 — COMPLETE and UNREVIEWED, and it stays unreviewed unless a challenge is separately authorised.** The literature gives a
+  conditional momentum-space response, NOT net alignment and NOT a quantitative failure of the scalar spin-fluid source. The
+  unpolarised-spin gap therefore stays open IN BOTH DIRECTIONS. Isolated under `bounce/spin_polarization_20260907/`.
+- **MATERIAL LIMITATION, unchanged by any of the above:** the physical assumptions this mechanism rests on — fluid averaging,
+  the thermal description, unpolarised spins under shear, and extrapolating the production law through collapse — remain
+  unestablished in the regime where the turn occurs. The turn happens where the spin correction is at least the whole ordinary
+  energy density. Viability and unverified regime coincide.
+- **No open decision is pending on me.** Next steps, if any, are Duho's to start.
