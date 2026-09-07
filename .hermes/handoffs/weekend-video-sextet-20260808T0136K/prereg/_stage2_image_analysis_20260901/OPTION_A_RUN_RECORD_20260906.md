@@ -126,3 +126,36 @@ Same authority. Fresh mkdtemp sandbox `/Users/duhokim/.claude/jobs/5b2f0371/tmp/
 
 ## V27 REVIEW RESULT — 2026-09-07 02:00 KST
 Split: agy SIGNABLE / codex NOT-SIGNABLE (no fatal). Codex V27-1 (precedence: locally decidable mismatches and same-id contradictions must be decided before a retry is declared; same-commit arm scoped to the protected ref), V27-2 (tri-state delivery not propagated through the driver's witness-commit precheck and the open-event stage; git launch exceptions), V27-3 (names: lineage-table error, v6 comments, 18 suites not 17). V26-1/2 targeted cases confirmed repaired; honest re-delivery never reaches FORGED. Classified in `V27_REVIEW_OUTCOME_20260907.md`. Register 27/26/25/0. Nothing adopted; no beacon read, draw, fetch, render, pixel.
+
+---
+
+## STEP 1 RE-RUN AT T_pulse + 24 h — EXECUTED 2026-09-07 09:41 KST (2026-09-07T00:38Z). OUTCOME: **ACCEPT-DRAND (fallback)**
+Governing text: the SIGNED V15 (`OPTION_A_INSTRUMENT_SELECTION_RULE_DRAFT_V15_20260906.md`, SHA-256 `fdd9eedd9938c2ba7df312cdc9b82a06612772ccc087e9365b33fd7d9d9a97d1` — recomputed here and equal to the digest in `SIGNATURE_RECORD_SELRULE_V15_20260906.md`), §3b, under Duho's decision 4(a). Scheduled by me on 2026-09-06 10:58 KST for T_pulse + 24 h.
+
+**Gate.** T_pulse = 2026-09-06T00:15:00Z (first whole minute ≥ T_sign 2026-09-06T00:04:07Z + 600 s). The 24-hour boundary is 2026-09-07T00:15:00Z; collection began 2026-09-07T00:38:42Z — **23 min 21 s after the boundary**, verified from `date -u` at run time, not estimated.
+
+**Commands, verbatim, from the lane root:**
+```
+python3 _optionA_dev/beacon_v2/beacon_record.py collect --t-sign 2026-09-06T00:04:07Z --rule-sha256 fdd9eedd9938c2ba7df312cdc9b82a06612772ccc087e9365b33fd7d9d9a97d1 --signature-statement SIGNATURE_RECORD_SELRULE_V15_20260906.md --out _optionA_dev/beacon_record_T_pulse_20260906T0015Z_collected_20260907T003842Z.json
+python3 _optionA_dev/beacon_v2/beacon_record.py verify --record _optionA_dev/beacon_record_T_pulse_20260906T0015Z_collected_20260907T003842Z.json --rule-sha256 fdd9eedd9938c2ba7df312cdc9b82a06612772ccc087e9365b33fd7d9d9a97d1 --signature-statement SIGNATURE_RECORD_SELRULE_V15_20260906.md
+```
+
+**Result.** collect → `{"outcome": "ACCEPT-DRAND", "seed_hex": "1f80335edc437d518f76a93500744ae4b6fc4477448aafc2711760e22c72b210", "source": "drand-mainnet-default"}`, rc 0. verify **with live re-fetch** (no `--no-live`) → the same outcome, same seed, `"why": null`, rc 0.
+
+| item | value |
+|---|---|
+| record | `_optionA_dev/beacon_record_T_pulse_20260906T0015Z_collected_20260907T003842Z.json` (24,229 bytes) |
+| **record SHA-256** | `6697d73c8f551915ac1d3d091a90c15422cd5506f714ae74e1ab0f42aa6dbe51` |
+| outcome | ACCEPT-DRAND (the fixed fallback; NOT a primary acceptance) |
+| seed_hex | `1f80335edc437d518f76a93500744ae4b6fc4477448aafc2711760e22c72b210` |
+| source | drand-mainnet-default |
+| T_pulse | 2026-09-06T00:15:00Z |
+| NIST at the verdict | `accepted: False` — recomputed live at verdict time, not read from the record |
+| drand agreement | `accepted: True`, three pinned hosts agreeing: api.drand.sh, api2.drand.sh, api3.drand.sh (drand.cloudflare.com also retained in the record); the rule requires ≥ 2 |
+| drand round | 6440756 |
+
+**The round is the right one, checked independently.** From the chain's own `/info` (genesis_time, period), round 6440756 ↔ 2026-09-06T00:15:00Z, and T_pulse 2026-09-06T00:15:00Z ↔ round 6440756. The round was not taken on the record's word.
+
+**ONE THING FOR BLANC, NOT RESOLVED BY ME.** Round **6440756 is also one of the three exhibit/fixture rounds** (6440756 / 6441904 / 6441924) that the UNADOPTED amendment drafts (V25–V33) name as exhibit rounds — V30's E3 says "the exhibit-round exclusion lifted inside the fixture only". Under the governing signed V15 this is not a conflict: **V15 excludes OBJECT IDENTITIES, not rounds** (the failed 2,000 and the 2,644 dry-run identities via the pinned exclusion file `77b29eaf…`); it names no excluded round anywhere, and 6440756 is simply the round the signed T_sign determines. But if any successor rule that excludes exhibit rounds were ever adopted, it would retroactively collide with this seed. Flagged, not decided.
+
+**State after step 1.** The seed is now known. NO labels are open; no draw, no split, no holdout was performed. **Step 2 is NOT taken**: the seal-append helper is not written, tested or digest-filed, and Blanc has not ruled on gating it — the two conditions the wakeup makes step 2 conditional on are both unmet. One holdout remains unspent.
