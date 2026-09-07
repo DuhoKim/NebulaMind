@@ -32,14 +32,13 @@ import importlib.util
 import io
 import json
 import math
-import marshal
 import os
 from pathlib import Path
 import platform
 import re
 import sys
 from datetime import datetime, timezone
-from _optionA_dev.agreement_run import runtime_binding
+from _optionA_dev.agreement_run import runtime_binding, bytecode_correspondence
 
 ROOT = Path(__file__).resolve().parents[2]
 INTERPRETER = "/Library/Developer/CommandLineTools/usr/bin/python3"
@@ -63,6 +62,10 @@ CODE = (
     "miniprereg_pins/validation_gate.py",
     "_optionA_dev/agreement_run/medium_perturbation.py",
     "_optionA_dev/agreement_run/runtime_binding.py",
+    "_optionA_dev/agreement_run/bytecode_correspondence.py",
+    "_optionA_dev/agreement_run/verify_core.py",
+    "_optionA_dev/agreement_run/runtime_probe.py",
+    "_optionA_dev/agreement_run/runtime_authoring.py",
 )
 INPUTS = ("eligible", "exclusion", "failed", "coordinates", "bricks", "no_r",
           "render_config", "env_lock", "runtime")
@@ -85,7 +88,7 @@ OBLIGATION_REGISTRY = {
         "selected import artifacts and OS shared-cache images; the compact pins do not waive it.",
 }
 A1_SOURCE = "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
-A1_REVIEWED_SHA256 = "2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9"
+A1_REVIEWED_SHA256 = "6b9ecc79210046fa4c6611953184ece75818214bf4e962e4ac2e308243616e9f"
 # The historical variable name denotes the pinned A1 revision; V50 is authored
 # for independent review, not represented as independently approved.
 # A bounded interpretation of A1 prose for consistency, not an NLP completeness
@@ -341,11 +344,7 @@ def _core_consumer_evidence(c, files):
     for rel, digest in code.items():
         source = ROOT / rel
         _registered_pin(files, {"path": str(source), "sha256": digest})
-        # -B suppresses cache WRITES only. Any existing standard cache for our
-        # code must itself be pinned; no package/cache tree is swept.
-        cache = Path(importlib.util.cache_from_source(str(source.resolve())))
-        if cache.is_file():
-            require(str(cache.resolve()) in files, "MISSING-CORE-ENTRY: " + str(cache))
+    bytecode_correspondence.verify(ROOT, code, files, read_pin, require)
     for name in INPUTS:
         require(name in inputs, "MISSING-CORE-INPUT: " + name)
     for pin in inputs.values():
@@ -355,19 +354,6 @@ def _core_consumer_evidence(c, files):
             "CONFIG-PATH-MISMATCH: " + inputs["render_config"]["path"])
     for entry in files.values():
         require(entry.get("status") == "REAL", "CORE-ENTRY-STATUS: " + entry["path"])
-        if entry.get("kind") == "our_imported_bytecode":
-            source = entry.get("source")
-            require(source in code, "CACHE-SOURCE-MISSING: " + entry["path"])
-            raw = read_pin(entry)
-            source_path = (ROOT / source).resolve()
-            source_raw = read_pin({"path": str(source_path), "sha256": code[source]})
-            try:
-                equal = (raw[:4] == importlib.util.MAGIC_NUMBER and
-                         marshal.loads(raw[16:]) == compile(source_raw, str(source_path),
-                             "exec", dont_inherit=True, optimize=sys.flags.optimize))
-            except (ValueError, EOFError, TypeError):
-                equal = False
-            require(equal, "CACHE-SOURCE-MISMATCH: " + entry["path"])
     _bound_function(c, "_optionA_dev/agreement_run/run_path.py", _core)
     _bound_function(c, "_optionA_dev/agreement_run/run_path.py", _environment)
     return True
@@ -493,7 +479,7 @@ def _a1_consistency(c, computed):
                     "MANIFEST-OBLIGATION-MISMATCH: " + row["id"])
 
 
-def _core(c):
+def _core(c, *, return_evidence=False):
     """Enforce computed readiness and the recorded flag/checks; no stage access here."""
     computed = input_readiness(c)
     readiness = c.get("readiness", {})
@@ -503,7 +489,7 @@ def _core(c):
             "CORE-NOT-READY: " + reason)
     _a1_consistency(c, computed)
     require(readiness.get("checks") == computed["checks"], "CORE-READINESS-CHECKS-MISMATCH")
-    return c["inputs"]
+    return computed if return_evidence else c["inputs"]
 
 
 def _coordinates(pin):

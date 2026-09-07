@@ -1,0 +1,15 @@
+test_core_register_is_consumed (_optionA_dev.agreement_run.test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: CORE readiness and all rows reach the bounded environment. ... ok
+test_rehashed_cache_must_equal_source (_optionA_dev.agreement_run.test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: a pinned but different cached program cannot impersonate source. ... ok
+test_core_cache_tamper_names_path (_optionA_dev.agreement_run.test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: TAMPER of recorded bytecode refuses even with intact source. ... ok
+test_missing_discoverable_cache_names_path (_optionA_dev.agreement_run.test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: deleting a currently discoverable local-code cache row refuses. ... ok
+test_core_code_tamper_names_path (_optionA_dev.agreement_run.test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: TAMPER of pinned driver bytes names that exact path. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.233s
+
+OK

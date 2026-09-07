@@ -1,0 +1,1 @@
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/miniprereg_pins/protected_region_v2.py

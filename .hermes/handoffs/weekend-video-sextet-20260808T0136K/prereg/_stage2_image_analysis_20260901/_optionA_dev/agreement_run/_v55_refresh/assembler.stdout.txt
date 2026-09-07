@@ -1,0 +1,54 @@
+# ADOPTION PACKET — assembled deterministically, 2026-09-07 19:11 KST
+Assembled by `scripts/assemble_adoption_packet.py`. It states what exists; it adopts nothing and asserts no review result it cannot read.
+
+## The bytes
+| item | path | sha256 |
+|---|---|---|
+| candidate | `AGREEMENT_RUN_AMENDMENT_A1_20260907.md` | `6b9ecc79210046fa4c6611953184ece75818214bf4e962e4ac2e308243616e9f` |
+| decision sheet | `AGREEMENT_RUN_DECISION_SHEET_FOR_DUHO_20260907.md` | `768598ef4cc6e37054893154a6203d13b2d4fbd6268c06b894473cd19f035507` |
+| implementation delta | `A1_IMPLEMENTATION_DELTA_20260907.md` | `aedfef21a4a34529ebed3dc952249584eb1fdc8fdc40b072e9f2c570ff03f33d` |
+| input manifest (CORE) | `_optionA_dev/agreement_run/INPUT_MANIFEST_A1_CORE.json` | `e9222abf13485a36017d09dbd5be4c50597478882acc773626102416f9a26710` |
+| runtime pins (CORE) | `_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json` | `73145a0600a11548018eb3763ce1d1d880d6b882ee9f349da88bc0e7b4e4c5e3` |
+| selection code | `_optionA_dev/agreement_run/select_sample.py` | `8e517aab2715e6ec814a37f0dfb517b186f2f0ed7b64f045ae6a2a34120144b5` |
+| run path | `_optionA_dev/agreement_run/run_path.py` | `1c4f96fba5bae6c33154471dcaae4dd5db50df70a042a8c9226ad55eaab9e5ae` |
+| MEDIUM producer | `_optionA_dev/agreement_run/medium_perturbation.py` | `ea46478e1947c58ebf641803eab317f20d230f7244569d07604785a8216b831f` |
+| eligible ids | `_optionA_dev/agreement_run/inputs/eligible_ids_20260907.txt` | `15f34e4ef21b47a5393786a404ecc45aa07f347d548c4811fcc92932a258611d` |
+| failed-set ids | `_optionA_dev/agreement_run/inputs/failed_set_ids_20260907.txt` | `f459d2fd996047ac8470ba2309062f98d9ce21c5adf5d28d609f14126bad3f5d` |
+
+## The independent review chain
+| pass | file | verdict |
+|---|---|---|
+| review 9 (A1 bytes) | `AGY_A1_REVIEW9_20260907.md` | VERDICT: CANDIDATE-SOUND |
+| review 8 (decision sheet) | `AGY_A1_REVIEW8_20260907.md` | VERDICT: SHEET-SOUND |
+| review 7 | `AGY_A1_REVIEW7_20260907.md` | VERDICT: CANDIDATE-NOT-SOUND |
+| review 6 (final) | `AGY_A1_REVIEW6_20260907.md` | VERDICT: FINAL-SOUND |
+| review 5 | `AGY_A1_REVIEW5_20260907.md` | VERDICT: FINAL-NOT-SOUND |
+| review 4 (repair) | `AGY_A1_REVIEW4_20260907.md` | VERDICT: REPAIR-SOUND |
+| review 1 (REFUSED) | `AGY_A1_REVIEW_20260907.md` | VERDICT: NOT-SOUND |
+| review 2 (changed bytes) | `AGY_A1_REVIEW2_20260907.md` | VERDICT: REVIEWABLE-AND-SOUND |
+| review 3 (final delta) | `AGY_A1_REVIEW3_20260907.md` | VERDICT: DELTA-NOT-SOUND |
+
+## Status, stated narrowly
+- `ready_for_input_freeze` = **True** — derived by executing consumer verification on CORE `e9222abf13485a36017d09dbd5be4c50597478882acc773626102416f9a26710`. This means ONLY that input-stage files are ready to freeze; it is not adoption or permission to start a run.
+- Nothing is adopted. Duho has made no decision. No seed, round, anchor, selection, draw or holdout has occurred.
+- Approval medium: plain-language approval in Duho's dialogue with Codex, bound to the exact presented version (his recorded decision, `CODEX_DUHO_CONVERSATION_APPROVAL_RECORD_20260906.md`). He recites no digest.
+
+## Does a review actually cover the CURRENT bytes?
+- current A1 digest: `6b9ecc79210046fa4c6611953184ece75818214bf4e962e4ac2e308243616e9f`
+- reviews and the digest each one actually read:
+  - `AGY_A1_REVIEW9_20260907.md` — read `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` — VERDICT: CANDIDATE-SOUND  (older bytes)
+  - `AGY_A1_REVIEW8_20260907.md` — read `c37ff259a19bdaecf3b02f3355aeb76bfaa09a6dcd591306fe71b376ce17494f` — VERDICT: SHEET-SOUND  (older bytes)
+  - `AGY_A1_REVIEW7_20260907.md` — read `2c8f31828fa13de790e891bcf2da3091d55b2567cb4436beb74f519d81ebeac9` — VERDICT: CANDIDATE-NOT-SOUND  (older bytes)
+  - `AGY_A1_REVIEW6_20260907.md` — read `f5100a046ba63c9e043e7ff67ef6e01e7621fe12eaa1097ac68a0fd96b5ffeec` — VERDICT: FINAL-SOUND  (older bytes)
+  - `AGY_A1_REVIEW5_20260907.md` — read `2465294f44d0afcd8201117e4f45964b36c3e83070755629f9482863512d1546` — VERDICT: FINAL-NOT-SOUND  (older bytes)
+  - `AGY_A1_REVIEW4_20260907.md` — read `53f8bef5cf24bdcf80f0658b0238639ab274ccb96f4aee3e95ab03fe2d39a906` — VERDICT: REPAIR-SOUND  (older bytes)
+  - `AGY_A1_REVIEW_20260907.md` — read `a2c396be1f5e4924bbf8f49f02558a2739151a97c44e2d9034e281e34a037139` — VERDICT: NOT-SOUND  (older bytes)
+  - `AGY_A1_REVIEW2_20260907.md` — read `61e253cef941de58b6be805faacc12822d0a31900ae8309f160ad976618ac069` — VERDICT: REVIEWABLE-AND-SOUND  (older bytes)
+  - `AGY_A1_REVIEW3_20260907.md` — read `c0459ad1b16cfdec2333eabae4d78284f09f4c396e1781e489cbbf8cca6c7d12` — VERDICT: DELTA-NOT-SOUND  (older bytes)
+- coverage per governing artefact:
+  - A1 `6b9ecc79210046fa4c6611953184ece75818214bf4e962e4ac2e308243616e9f` — **no access-proved review of these bytes**
+  - run path `1c4f96fba5bae6c33154471dcaae4dd5db50df70a042a8c9226ad55eaab9e5ae` — **no access-proved review of these bytes**
+  - decision sheet `768598ef4cc6e37054893154a6203d13b2d4fbd6268c06b894473cd19f035507` — **no access-proved review of these bytes**
+
+## Is this presentable to Duho?
+**NO — A1 has no access-proved POSITIVE review of its current bytes; run path has no access-proved POSITIVE review of its current bytes; decision sheet has no access-proved POSITIVE review of its current bytes.**

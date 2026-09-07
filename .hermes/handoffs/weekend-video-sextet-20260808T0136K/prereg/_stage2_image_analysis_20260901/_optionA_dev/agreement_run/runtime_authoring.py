@@ -16,6 +16,18 @@ BASE = rp.ROOT / "_optionA_dev/agreement_run"
 
 
 def refresh():
+    cpath = BASE / "INPUT_MANIFEST_A1_CORE.json"
+    c = json.loads(cpath.read_bytes())
+    # Check correspondence BEFORE measuring/importing dependencies or writing
+    # either register. Registration alone cannot bless a stale program.
+    bytecode_rows = []
+    for rel in sorted(set(rp.CODE) | set(c["code"])):
+        source = (rp.ROOT / rel).resolve()
+        raw = source.read_bytes()
+        for cache in rp.bytecode_correspondence.candidates(source):
+            rp.bytecode_correspondence.corresponds(source, raw, cache, rp.require)
+            bytecode_rows.append({**pin(cache), "status": "REAL",
+                                  "kind": "our_imported_bytecode", "source": rel})
     path = BASE / "RUNTIME_PINS_A1_CORE.json"
     runtime = json.loads(path.read_bytes())
     runtime["representation"] = measure()
@@ -36,8 +48,6 @@ def refresh():
     runtime["current_driver_compatibility"] = {"compatible": True, "driver_modified": True,
         "reason": "V50 retains compact pins and additionally requires A1-RUNTIME-REPRESENTATION-2; historical sweeps are not authorities."}
     path.write_bytes(rp.canonical(runtime))
-    cpath = BASE / "INPUT_MANIFEST_A1_CORE.json"
-    c = json.loads(cpath.read_bytes())
     # Re-pin only mutable authoring code/evidence and A1, never study inputs.
     for rel in rp.CODE:
         if rel.startswith("_optionA_dev/agreement_run/"):
@@ -45,6 +55,9 @@ def refresh():
             c["code"][rel] = actual["sha256"]
             c["files"] = [p for p in c["files"] if Path(p["path"]).resolve() != Path(actual["path"])]
             c["files"].append({**actual, "status": "REAL", "kind": "our_source_code"})
+    for actual in bytecode_rows:
+        c["files"] = [p for p in c["files"] if Path(p["path"]).resolve() != Path(actual["path"])]
+        c["files"].append(actual)
     for name, actual in (("runtime", pin(path)), ("a1", pin(rp.ROOT / rp.A1_SOURCE))):
         c["files"] = [p for p in c["files"] if Path(p["path"]).resolve() != Path(actual["path"])]
         c["files"].append({**actual, "status": "REAL",
@@ -58,8 +71,9 @@ def refresh():
             row["evidence_pin"] = c["inputs"]["runtime"]
     c["counts"]["real"] = len(c["files"])
     c["counts"]["our_source_code"] = len(c["code"])
+    c["counts"]["our_imported_bytecode"] = sum(p.get("kind") == "our_imported_bytecode" for p in c["files"])
     c["scope"]["runtime"] = "Runtime register includes mandatory per-artifact byte pins and full dyld cache-family file-byte evidence, checked by the predicate and the environment consumer; see its precise limits."
-    c["scope"]["own_bytecode"] = "CORE retains local cache SHA-256 and source-code equality checks. Runtime additionally pins observed source files and existing standard cache candidates of all imported packages; no installed-library tree sweep. TOCTOU and in-memory limits remain."
+    c["scope"]["own_bytecode"] = "CORE requires SHA-256 registration and code-object equality to compilation of current pinned source for every own-module cache in __pycache__, the macOS com.apple.python cache, the active interpreter cache prefix, legacy adjacent bytecode and reported loaded cache paths. Existing optimization variants are checked at their respective optimization levels. Missing rows, relabeled rows and non-corresponding programs refuse by module and path; no location is exempted. TOCTOU and in-memory limits remain."
     record(cpath, c)
     print(json.dumps({"runtime_pin": pin(path), "counts": runtime["counts"],
                       "shared_cache": evidence["shared_cache"]}, sort_keys=True))

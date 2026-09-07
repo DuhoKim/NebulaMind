@@ -2,7 +2,8 @@
 """Assemble the adoption packet Codex presents to Duho — DETERMINISTIC, no AI worker (Trio efficiency policy).
 It reports what exists and what does not; it decides nothing, adopts nothing, and refuses to describe an
 unreviewed or unfinished package as ready. Run from the lane root."""
-import hashlib, json, os, sys, datetime
+import hashlib, json, os, sys, datetime, subprocess
+from pathlib import Path
 def sha(p):
     try: return hashlib.sha256(open(p,'rb').read()).hexdigest()
     except OSError: return None
@@ -16,7 +17,7 @@ CORE = [("candidate", "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"),
         ("MEDIUM producer", "_optionA_dev/agreement_run/medium_perturbation.py"),
         ("eligible ids", "_optionA_dev/agreement_run/inputs/eligible_ids_20260907.txt"),
         ("failed-set ids", "_optionA_dev/agreement_run/inputs/failed_set_ids_20260907.txt")]
-REVIEWS = [("review 9 (A1 bytes)", "AGY_A1_REVIEW9_20260907.md"), ("review 8 (decision sheet)", "AGY_A1_REVIEW8_20260907.md"), ("review 7", "AGY_A1_REVIEW7_20260907.md"),("review 6 (final)", "AGY_A1_REVIEW6_20260907.md"), ("review 5", "AGY_A1_REVIEW5_20260907.md"), ("review 4 (repair)", "AGY_A1_REVIEW4_20260907.md"),("review 1 (REFUSED)", "AGY_A1_REVIEW_20260907.md"),
+REVIEWS = [("final: A1", "AGY_FINAL_A1_20260907.md"), ("final: run path", "AGY_FINAL_RUNPATH_20260907.md"), ("final: decision sheet", "AGY_FINAL_SHEET_20260907.md"),("review 9 (A1 bytes)", "AGY_A1_REVIEW9_20260907.md"), ("review 8 (decision sheet)", "AGY_A1_REVIEW8_20260907.md"), ("review 7", "AGY_A1_REVIEW7_20260907.md"),("review 6 (final)", "AGY_A1_REVIEW6_20260907.md"), ("review 5", "AGY_A1_REVIEW5_20260907.md"), ("review 4 (repair)", "AGY_A1_REVIEW4_20260907.md"),("review 1 (REFUSED)", "AGY_A1_REVIEW_20260907.md"),
            ("review 2 (changed bytes)", "AGY_A1_REVIEW2_20260907.md"),
            ("review 3 (final delta)", "AGY_A1_REVIEW3_20260907.md")]
 def verdict(p):
@@ -40,10 +41,31 @@ for label, p in REVIEWS:
     out.append(f"| {label} | `{p}` | {v or '**not yet filed in the lane**'} |")
 core_mf = "_optionA_dev/agreement_run/INPUT_MANIFEST_A1_CORE.json"
 ready = None
-try: ready = json.load(open(core_mf)).get("ready_for_input_freeze")
-except Exception: pass
+verification_refusal = None
+verification = None
+try:
+    lane = Path(__file__).resolve().parents[1]
+    core_digest = sha(core_mf)
+    env = dict(os.environ, PYTHONPATH=str(lane / "_optionA_dev/_venv_bls/lib/python3.9/site-packages"),
+               PYTHONDONTWRITEBYTECODE="1")
+    checked = subprocess.run([
+        "/Library/Developer/CommandLineTools/usr/bin/python3", "-B",
+        str(lane / "_optionA_dev/agreement_run/verify_core.py"),
+        str((lane / core_mf).resolve()), core_digest or "ABSENT"],
+        cwd=str(lane), env=env, capture_output=True, text=True)
+    verification = json.loads(checked.stdout)
+    if checked.returncode != 0 or verification.get("status") != "PASS":
+        verification_refusal = verification.get("reason") or checked.stderr or "consumer verification failed"
+    elif verification.get("core_sha256") != core_digest or sha(core_mf) != core_digest:
+        verification_refusal = "DIGEST-MISMATCH: " + str(lane / core_mf)
+    else:
+        ready = verification["ready_for_input_freeze"]
+except Exception as exc:
+    verification_refusal = "CONSUMER-VERIFICATION-ERROR: " + str(exc)
 out += ["", "## Status, stated narrowly",
-        f"- `ready_for_input_freeze` = **{ready}** — this means ONLY that the input-stage files are ready to freeze. It is not adoption, not permission to start a run, and not the existence of later-stage evidence.",
+        (f"- CONSUMER REFUSED: `{verification_refusal}`; `ready_for_input_freeze` is unverified."
+         if verification_refusal else
+         f"- `ready_for_input_freeze` = **{ready}** — derived by executing consumer verification on CORE `{verification['core_sha256']}`. This means ONLY that input-stage files are ready to freeze; it is not adoption or permission to start a run."),
         "- Nothing is adopted. Duho has made no decision. No seed, round, anchor, selection, draw or holdout has occurred.",
         "- Approval medium: plain-language approval in Duho's dialogue with Codex, bound to the exact presented version (his recorded decision, `CODEX_DUHO_CONVERSATION_APPROVAL_RECORD_20260906.md`). He recites no digest."]
 # --- THE CHECK THIS ASSEMBLER WAS MISSING (found 2026-09-07 17:50 by the owner):
@@ -59,7 +81,7 @@ def access_sha(p):
     except OSError: return None
 # EXACT TOKEN MATCH, never substring: "FINAL-NOT-SOUND" must never satisfy a rule written for "FINAL-SOUND".
 # (The first version of this list also simply omitted FINAL-SOUND, so a positive review read as unreviewed.)
-POSITIVE = {"REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND", "FINAL-SOUND", "SHEET-SOUND", "CANDIDATE-SOUND"}
+POSITIVE = {"REVIEWABLE-AND-SOUND", "DELTA-SOUND", "REPAIR-SOUND", "FINAL-SOUND", "SHEET-SOUND", "CANDIDATE-SOUND", "SNAPSHOT-SOUND"}
 def verdict_token(v):
     return (v or "").split(":", 1)[-1].strip().split()[0] if v and ":" in v else None
 a1_now = sha("AGREEMENT_RUN_AMENDMENT_A1_20260907.md")
@@ -86,6 +108,7 @@ for label, path in GOVERNING:
     out.append(f"  - {label} `{d}` — " + (f"positively reviewed by {', '.join(good)}" if good else ("reviewed but NOT positively: " + ", ".join(p for p, _ in cov) if cov else "**no access-proved review of these bytes**")))
     if not good: review_blockers.append(f"{label} has no access-proved POSITIVE review of its current bytes")
 blockers = list(review_blockers)
+if verification_refusal: blockers.append("CONSUMER REFUSED: " + verification_refusal)
 if missing: blockers.append(f"{len(missing)} packet file(s) absent: {', '.join(missing)}")
 if pending: blockers.append(f"{len(pending)} review report(s) not yet filed in the lane: {', '.join(pending)}")
 if ready is not True: blockers.append("input readiness is not TRUE")

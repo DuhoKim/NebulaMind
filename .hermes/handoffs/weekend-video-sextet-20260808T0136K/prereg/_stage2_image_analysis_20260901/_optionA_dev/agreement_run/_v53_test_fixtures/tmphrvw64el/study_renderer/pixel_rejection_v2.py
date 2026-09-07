@@ -1,0 +1,1 @@
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/study_renderer/pixel_rejection_v2.py

@@ -1,0 +1,328 @@
+test_astropy_version_mismatch_refuses (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: the previously ignored Astropy version now refuses on mismatch. ... ok
+test_bounded_runtime_does_not_require_sweep (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: CORE runtime evidence works without the historical exhaustive inventory. ... ok
+test_core_alias_mismatch_refuses (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: conflicting alias and CORE expected digests refuse. ... ok
+test_core_cache_tamper_names_path (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: TAMPER of recorded bytecode refuses even with intact source. ... ok
+test_core_code_tamper_names_path (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: TAMPER of pinned driver bytes names that exact path. ... ok
+test_core_config_tamper_names_path (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: TAMPER of a pinned render config is not ignored. ... ok
+test_core_pins_rechecked_before_record (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: a changed CORE config refuses a successful stage record. ... ok
+test_core_register_is_consumed (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: CORE readiness and all rows reach the bounded environment. ... ok
+test_false_readiness_blocks_public_tuning (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: explicit FALSE blocks tune with its recorded reason before access. ... ok
+test_false_readiness_never_calls_medium (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: readiness refusal occurs before the real MEDIUM call boundary. ... ok
+test_input_due_placeholder_blocks (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: an INPUT placeholder cannot masquerade as future evidence. ... ok
+test_later_placeholder_remains_later (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: later evidence needs no fabricated INPUT digest. ... ok
+test_later_render_never_calls_medium (test_core_consumer.CoreConsumerTests)
+POSITIVE-REGRESSION: a later synthetic render cannot invoke the tuning producer. ... ok
+test_medium_aggregate_matches_real_batch (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: streaming aggregation retains actual batch rates and rows. ... ok
+test_medium_wcs_rejects_changed_frame (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: extracting numeric TAN coordinates cannot erase a changed frame. ... ok
+test_medium_wcs_rejects_distortion (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: a distorted WCS is never silently stripped for MEDIUM. ... ok
+test_missing_core_entry_names_path (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: an input alias cannot replace its missing authoritative CORE row. ... ok
+test_missing_discoverable_cache_names_path (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: deleting a currently discoverable local-code cache row refuses. ... ok
+test_missing_medium_entry_names_path (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: the real MEDIUM producer must be an explicit CORE code input. ... ok
+test_missing_plane_keeps_unresolved_medium_identity (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: an unrenderable object remains explicitly unresolved in MEDIUM. ... ok
+test_numpy_version_mismatch_refuses (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: the recorded NumPy version is independently enforced. ... ok
+test_py_ecc_version_mismatch_refuses (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: the BLS version refusal names the package and runtime record. ... ok
+test_python_version_mismatch_refuses (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: the recorded Python version is independently enforced. ... ok
+test_recorded_lock_value_mismatch (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: runtime lock values are enforced independently of the lock file. ... ok
+test_rehashed_cache_must_equal_source (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: a pinned but different cached program cannot impersonate source. ... ok
+test_runtime_artifact_tamper_names_path (test_core_consumer.CoreConsumerTests)
+POSITIVE-REGRESSION: extra recorded runtime bytes still require their digest. ... ok
+test_runtime_extension_path_mismatch (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: hashing a different file cannot stand in for the loaded extension. ... ok
+test_runtime_missing_extension_refuses (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: removing an explicitly pinned extension names its loaded path. ... ok
+test_scientific_lock_mismatch_still_refuses (test_core_consumer.CoreConsumerTests)
+POSITIVE-REGRESSION: platform drift still fails the original scientific lock. ... ok
+test_spoofed_true_does_not_clear_obligation (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: readiness is recomputed from unresolved CORE obligations. ... ok
+test_tune_calls_real_medium_before_labels (test_core_consumer.CoreConsumerTests)
+FAIL-FIRST: public tune retains actual two-arm results before label access. ... ok
+test_wrong_invocation_still_refuses (test_core_consumer.CoreConsumerTests)
+POSITIVE-REGRESSION: the required BLS PYTHONPATH remains exact. ... ok
+test_real_cache_resident_image_bytes_change_same_uuid_and_os_build_refuses (test_evidence_gate.CacheImageBytesTests)
+FAIL-FIRST: change an actual CoreFoundation __TEXT byte in a cache copy. ... ok
+test_any_a1_edit_even_repinned_cannot_flip_evidence_readiness (test_evidence_gate.EvidenceGateTests)
+FAIL-FIRST: A1 edits leave evidence readiness fixed and only refuse use. ... ok
+test_document_status_edits_cannot_flip_evidence_readiness (test_evidence_gate.EvidenceGateTests)
+FAIL-FIRST: explanatory/status edits cannot change evidence readiness. ... ok
+test_missing_runtime_evidence_cannot_be_discharged_by_prose (test_evidence_gate.EvidenceGateTests)
+FAIL-FIRST: discharge prose cannot replace absent runtime evidence. ... ok
+test_prose_can_only_refuse_when_evidence_disagrees (test_evidence_gate.EvidenceGateTests)
+FAIL-FIRST: jointly changing A1/status claims only triggers refusal. ... ok
+test_all_existing_configurations_are_reported_in_order (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: every existing configuration index is retained. ... ok
+test_array_conversion_hook_is_not_accessed (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: numeric data cannot be supplied through a reader hook. ... ok
+test_configuration_selection_is_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: no caller can select a configuration subset. ... ok
+test_disclosure_is_strict_json_serializable (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: retained output has no tensor bytes or NaN values. ... ok
+test_duplicate_objects_are_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: duplicate object IDs cannot inflate the denominator. ... ok
+test_entire_batch_schema_is_checked_before_render (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: labels in a later row refuse before any processing. ... ok
+test_imports_exclude_label_loading_and_run_path (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the producer imports only fixed numeric components. ... ok
+test_label_argument_is_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: labels cannot be supplied to the public function. ... ok
+test_label_bearing_wcs_metadata_is_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: nested WCS metadata cannot smuggle in labels. ... ok
+test_label_field_is_refused_without_reading_it (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: surplus label metadata is rejected unread. ... ok
+test_lazy_batch_cannot_request_external_data (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: a loader cannot execute while fetching objects. ... ok
+test_lower_median_is_the_lower_observed_value (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the even-count replacement is one, not two. ... ok
+test_medium_elsewhere_in_brick_has_no_pair (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the per-raster covariate determines membership. ... ok
+test_medium_never_becomes_a_contamination_flag (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: even central MEDIUM pixels flag neither arm. ... ok
+test_no_eligible_objects_has_null_rate (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: a tie-only disclosure cannot report zero percent. ... ok
+test_no_medium_has_no_pair (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: a raster without MEDIUM has no perturbation pair. ... ok
+test_non_tuning_stage_is_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: non-tuning pixels cannot enter the declared API. ... ok
+test_object_dtype_cannot_carry_labels (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: label-bearing objects cannot enter a pixel plane. ... ok
+test_preprocessing_variant_is_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: no preprocessing selector exists in the API. ... ok
+test_producer_runs_with_all_external_io_denied (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: a real paired run performs no label-capable I/O. ... ok
+test_rate_denominator_excludes_objects_without_medium (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: four inputs provide three eligible MEDIUM objects. ... ok
+test_rate_is_flips_over_eligible_objects (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: each configuration has one flip in three objects. ... ok
+test_real_chi_sign_change_is_a_flip (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the masked opposing spiral flips every real scorer. ... ok
+test_refused_objects_are_explicit (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: render refusal is retained in the unscored count. ... ok
+test_replacement_chain_uses_that_lower_median (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the reused chain retains the same source fill. ... ok
+test_same_negative_sign_is_not_a_flip (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: retaining a negative sign reports no flip. ... ok
+test_same_positive_sign_is_not_a_flip (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: retaining a positive sign reports no flip. ... ok
+test_scorer_callback_is_refused (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: an external scorer or reader cannot be requested. ... ok
+test_source_pixels_are_unchanged (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the paired computation leaves all input pixels intact. ... ok
+test_tie_is_unknown_not_a_false_nonflip (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: zero chi does not provide a comparable sign. ... ok
+test_two_actual_chi_values_are_reported (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: both nonzero chi values exhibit opposite signs. ... ok
+test_zero_exposure_still_refuses_central_contamination (test_medium_perturbation.MediumPerturbationTests)
+POSITIVE-REGRESSION: the protected-region rule remains executed. ... ok
+test_a1_added_obligation_even_when_repinned (test_readiness.ReadinessTests)
+FAIL-FIRST: unfamiliar new prose obligations require a reviewed mapping update. ... ok
+test_a1_deleted_statement_even_when_repinned (test_readiness.ReadinessTests)
+FAIL-FIRST: removing an A1 declaration cannot be concealed by repinning A1. ... ok
+test_a1_manifest_status_divergence (test_readiness.ReadinessTests)
+FAIL-FIRST: matching declared ids with contradictory A1 status are detected. ... ok
+test_a1_missing_source (test_readiness.ReadinessTests)
+FAIL-FIRST: removing the A1 source binding cannot skip the cross-check. ... ok
+test_complete_resolved_fixture_passes (test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: a complete resolved fixture can pass the real CORE gate. ... ok
+test_delete_all_obligations (test_readiness.ReadinessTests)
+FAIL-FIRST: an empty obligations list fails with every declared missing id. ... ok
+test_delete_core_obligation (test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared CORE obligation fails by name. ... ok
+test_delete_medium_obligation (test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared MEDIUM obligation fails by name. ... ok
+test_delete_runtime_obligation (test_readiness.ReadinessTests)
+FAIL-FIRST: deleting runtime preparation cannot make an incomplete list ready. ... ok
+test_duplicate_obligation (test_readiness.ReadinessTests)
+FAIL-FIRST: duplicates cannot substitute for a unique declaration. ... ok
+test_recorded_readiness_is_false (test_readiness.ReadinessTests)
+FAIL-FIRST: without runtime evidence a copied authoring register computes FALSE. ... ok
+test_runtime_digest_rechecked_before_import (test_readiness.ReadinessTests)
+FAIL-FIRST: a mutation after initial runtime hashing fails at the pre-use recheck. ... ok
+test_runtime_unresolved_still_blocks (test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: present unresolved runtime work defeats a TRUE flag. ... ok
+test_undeclared_obligation (test_readiness.ReadinessTests)
+FAIL-FIRST: an additional resolved obligation must also be declared in code/A1. ... ok
+test_access_inventory_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: a changed data inventory refuses before rendering. ... ok
+test_anchor_schedule_uses_a1_formula (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: anchor plus 600 uses ceil on the drand period. ... ok
+test_bad_tensor_is_integrity_failure (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: missing tensor bytes are not silently unscored. ... ok
+test_closed_holdout_cannot_validate (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: a CLOSED holdout record prevents validation. ... ok
+test_code_digest_mismatch_before_tuning (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: code pins are checked at a data-stage boundary. ... ok
+test_designation_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: designation refuses mismatched predecessor bytes. ... ok
+test_draw_cannot_be_reused (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: an existing draw invocation is never overwritten. ... ok
+test_draw_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: draw refuses mismatched predecessor bytes. ... ok
+test_every_stage_checks_predecessor_kind (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: a valid digest from another stage cannot advance. ... ok
+test_every_stage_requires_a_digest (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: no stage accepts a path without an expected digest. ... ok
+test_every_stage_requires_predecessor_file (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: a nonexistent predecessor cannot advance any stage. ... ok
+test_exact_draw_required_by_statistics (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: a floor-sized sample is not an exact draw. ... ok
+test_full_stage_orchestration_synthetic (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: exact stages traverse 96 configs then the sole W winner. ... ok
+test_holdout_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: holdout refuses mismatched predecessor bytes. ... ok
+test_holdout_fixed_denominator (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: 150/200 fails although 150/190 would pass. ... ok
+test_holdout_floor_at (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: m=190 reaches the strength gate. ... ok
+test_holdout_floor_before_wilson (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: m=189 closes before any Wilson call. ... ok
+test_holdout_threshold_153 (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: 153 of exact draw 200 clears the retained bar. ... ok
+test_input_digest_mismatch_before_seed (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: changed INPUT metadata prevents seed collection. ... ok
+test_missed_designation_deadline_aborts (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: a missed prospective deadline cannot choose a replacement. ... ok
+test_nonrepeat_is_unscored (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: unequal float32 bits never enter m or k. ... ok
+test_plane_digest_mismatch_is_fatal (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: corrupted synthetic FITS cannot become a render refusal. ... ok
+test_real_renderer_and_all_96_estimators (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: synthetic FITS reaches actual renderer and every config. ... ok
+test_render_refusal_keeps_identity_and_no_tensor (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: explicit render refusals retain identity without sentinels. ... ok
+test_seed_accepts_bls_and_two_refetched_hosts (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: accepted seed retains both passes and all raw pins. ... ok
+test_seed_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: seed refuses mismatched predecessor bytes. ... ok
+test_seed_refetch_is_required (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: successful collection alone cannot accept seed. ... ok
+test_seed_requires_bls_despite_matching_hosts (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: two agreeing hosts never substitute for BLS. ... ok
+test_seed_requires_two_distinct_hosts (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: one authenticated refetched host is insufficient. ... ok
+test_selector_exact_disjoint_synthetic_draw (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: existing selector supplies all exact identity lists. ... ok
+test_tie_break_earlier_index (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: equal objectives and refusal counts prefer earlier index. ... ok
+test_tie_break_fewer_refusals (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: equal objectives prefer fewer refusals. ... ok
+test_tie_is_unscored (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: zero is a measurement failure, not a sign. ... ok
+test_tuning_denominator_is_400 (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: refusals count as misses under either orientation. ... ok
+test_tuning_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: tuning refuses mismatched predecessor bytes. ... ok
+test_tuning_floor_at (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: m=380 is eligible without shrinking the draw. ... ok
+test_tuning_floor_below (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: m=379 cannot enter the winner comparison. ... ok
+test_validation_digest_mismatch (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: validation refuses mismatched predecessor bytes. ... ok
+test_validation_floor_at (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: m=1900 reaches Wilson with r=100 excluded. ... ok
+test_validation_floor_before_wilson (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: m=1899 closes before any Wilson call. ... ok
+test_validation_reversed_orientation (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: global sign reversal uses m-k among scored only. ... ok
+test_validation_scored_denominator (test_run_path.RunPathTests)
+POSITIVE-REGRESSION: validation computes 1400/1900, never 1400/2000. ... ok
+test_changed_cached_image_uuid_refuses_by_name (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: each cached image has its own checked LC_UUID identity. ... ok
+test_changed_os_build_refuses (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: cache identity includes the kernel-reported OS build. ... ok
+test_changed_shared_cache_uuid_refuses (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a changed active shared-cache UUID cannot pass runtime checks. ... ok
+test_deleted_import_artifact_refuses_by_name (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: deleting a py_ecc artifact pin cannot conceal the loaded import. ... ok
+test_native_library_bytes_refuse_by_name (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: native library bytes beyond the two compact pins are verified. ... ok
+test_obligation_cannot_resolve_without_evidence (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: resolved prose and a TRUE flag cannot replace required evidence. ... ok
+test_py_ecc_source_bytes_refuse_by_name (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: changed py_ecc source bytes refuse by the artifact path. ... ok
+test_runtime_record_without_representation_refuses (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: compact runtime pins cannot stand in for representation evidence. ... ok
+test_selected_cache_bytes_refuse_by_name (test_runtime_binding.RuntimeBindingTests)
+FAIL-FIRST: a selected-import cache is byte-bound independently of source. ... ok
+test_determinism (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: identical pinned inputs and seed reproduce the entire result. ... ok
+test_different_seed_changes_tuning (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: changing the seed changes tuning membership. ... ok
+test_digest_mismatch_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: each of the three input pins is mandatory and verified. ... ok
+test_exact_sizes (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: the default draw fills all three target sizes. ... ok
+test_exclusion_and_failed_applied (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: the complete surviving population excludes both burnt sets. ... ok
+test_holdout_scored_floor_sufficient_draw_short_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: holdout meeting its scored-count floor cannot permit a short draw. ... ok
+test_insufficient_population_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: an insufficient post-exclusion population refuses. ... ok
+test_invalid_eligible_order_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: descending or duplicate eligible IDs still refuse. ... ok
+test_nonmember_excluded_id_tolerated_and_counted (test_select_sample.SelectSampleTests)
+FAIL-FIRST: an excluded ID outside eligibility is tolerated and counted. ... ok
+test_nonmember_failed_id_tolerated_and_counted (test_select_sample.SelectSampleTests)
+FAIL-FIRST: failed IDs outside eligibility are tolerated and counted as unique IDs. ... ok
+test_nonmember_overlap_still_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: overlap outside eligibility still refuses and names the ID. ... ok
+test_nonmembers_never_appear_in_any_split (test_select_sample.SelectSampleTests)
+FAIL-FIRST: neither historical nonmembers nor eligible excluded IDs enter any split. ... ok
+test_overlapping_exclusion_failed_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: exclusion and failed sets sharing an eligible ID refuse and name it. ... ok
+test_three_way_disjointness (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: every pair of selected splits has empty intersection. ... ok
+test_tuning_scored_floor_sufficient_draw_short_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: tuning meeting its scored-count floor cannot permit a short draw. ... ok
+test_validation_scored_floor_sufficient_draw_short_refused (test_select_sample.SelectSampleTests)
+POSITIVE-REGRESSION: validation meeting its scored-count floor cannot permit a short draw. ... ok
+test_all_locations_correspond (test_v53_bytecode.CorrespondenceTests) ... ok
+test_corresponding_code_still_requires_digest (test_v53_bytecode.CorrespondenceTests) ... ok
+test_digest_registered_wrong_code_refuses_each_location (test_v53_bytecode.CorrespondenceTests) ... ok
+test_each_location_requires_registration (test_v53_bytecode.CorrespondenceTests) ... ok
+test_optimization_variants_checked_at_their_own_level (test_v53_bytecode.CorrespondenceTests) ... ok
+test_relabeling_cache_does_not_waive_equality (test_v53_bytecode.CorrespondenceTests) ... ok
+test_assembler_noncorresponding_cache (test_v53_bytecode.PacketRefusalTests) ... ok
+test_assembler_stale_a1_pin (test_v53_bytecode.PacketRefusalTests) ... ok
+test_consumer_noncorresponding_cache (test_v53_bytecode.PacketRefusalTests) ... ok
+test_consumer_stale_a1_pin (test_v53_bytecode.PacketRefusalTests) ... ok
+test_predecessor_reports_saved_true_for_both_defects (test_v53_bytecode.PacketRefusalTests) ... ok
+
+----------------------------------------------------------------------
+Ran 161 tests in 188.376s
+
+OK
+
+SYNTHETIC EVIDENCE: config_index=0 kept_chi=0.9118412137031555 replaced_chi=-0.38820579648017883 sign_flipped=True; all 96 configurations report 1/3.
+EXPECTED REFUSAL: CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/__pycache__/module.cpython-39.pyc; module=/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.py
+EXPECTED REFUSAL: CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/home/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.cpython-39.pyc; module=/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.py
+EXPECTED REFUSAL: CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/active-cache/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.cpython-39.pyc; module=/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.py
+EXPECTED REFUSAL: CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.pyc; module=/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmp3172ha4w/module.py
+EXPECTED REFUSAL: assembler CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmphrvw64el/_optionA_dev/agreement_run/run_path.cpython-39.pyc
+EXPECTED REFUSAL: assembler DIGEST-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+EXPECTED REFUSAL: consumer CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmpcro59pg8/_optionA_dev/agreement_run/run_path.cpython-39.pyc
+EXPECTED REFUSAL: consumer DIGEST-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+PREDECESSOR GAP: cache stored readiness=True despite CACHE-SOURCE-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/_v53_test_fixtures/tmpyzov9lw_/_optionA_dev/agreement_run/run_path.cpython-39.pyc
+PREDECESSOR GAP: a1 stored readiness=True despite DIGEST-MISMATCH: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/AGREEMENT_RUN_AMENDMENT_A1_20260907.md

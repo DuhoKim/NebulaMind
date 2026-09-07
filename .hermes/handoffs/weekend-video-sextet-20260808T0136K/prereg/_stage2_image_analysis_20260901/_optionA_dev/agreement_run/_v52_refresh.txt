@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/runtime_authoring.py", line 93, in <module>
+    (refresh if sys.argv[1] == "refresh" else resolve)()
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/runtime_authoring.py", line 63, in refresh
+    record(cpath, c)
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/runtime_authoring.py", line 69, in record
+    computed = rp.input_readiness(c)
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 457, in input_readiness
+    evidence = {oid: predicate(c, files) for oid, predicate in EVIDENCE_PREDICATES.items()}
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 457, in <dictcomp>
+    evidence = {oid: predicate(c, files) for oid, predicate in EVIDENCE_PREDICATES.items()}
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 348, in _core_consumer_evidence
+    require(str(cache.resolve()) in files, "MISSING-CORE-ENTRY: " + str(cache))
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 121, in require
+    raise Refused(message)
+_optionA_dev.agreement_run.run_path.Refused: MISSING-CORE-ENTRY: /Users/duhokim/Library/Caches/com.apple.python/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/medium_perturbation.cpython-39.pyc

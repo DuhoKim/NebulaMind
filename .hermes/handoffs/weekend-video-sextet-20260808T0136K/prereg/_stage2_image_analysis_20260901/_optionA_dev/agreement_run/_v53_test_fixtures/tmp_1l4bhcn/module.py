@@ -1,0 +1,2 @@
+VALUE = "current"
+assert VALUE
