@@ -85,3 +85,54 @@ and no absence treated as proof. Four minor findings, none verdict-changing, are
 correction to THIS file's wording of Eq. (35), and one notes that the SOURCE's own positivity sentence after Eq. (30) is
 unqualified where B6 is careful — it is false at the source's own suggested initial instant, so B6 under-claims in the source's
 favour.
+
+---
+
+# DECISION MEMO (2026-09-07 17:22 KST) — what is settled, what one question would settle next, and what needs your choice
+Appended to this existing summary rather than filed as a new memo. Nothing here starts a study.
+
+## 1. The scoped outcome, as clearly as I can state it
+**In the flat anisotropic case with a spin fluid:** without particle production a bounce requires one constant to exceed another
+and collapse can never change which side it is on; with production and a consistent closure, a bounce is guaranteed — proved
+analytically for every coupling value and every fixed production rate, not merely observed numerically.
+**In the source's own curved scenario:** neither of those transfers. Curvature makes the shear coefficient evolve, so the
+comparison-of-constants conclusion FAILS there, and the guaranteed-bounce result is UNDETERMINED. What survives in the source's
+own setting is weaker: on its own branch, initially subdominant torsion cannot overtake shear without production.
+**Independent of geometry:** the paper's own printed thermal closure admits no bouncing solution at all, and all four physical
+assumptions the mechanism needs — fluid averaging, the thermal description, unpolarised spins under shear, and extrapolating the
+production law through collapse — are unestablished exactly in the regime where the bounce occurs.
+Every one of those statements has been challenged on an engine that did not produce it.
+
+## 2. The minimum next question that would resolve the curved-scenario uncertainty
+**Does the curvature-driven growth of the shear term outpace the production-boosted spin term in the source's own geometry?**
+That is the whole of it. The referee established what is and is not already fixed there: the number balance determines the
+particle number and the spin coefficient exactly, but determines neither the shear coefficient, nor the sign of the relevant
+rate, nor the turning-point condition — which is precisely why the transfer is undetermined rather than merely uncomputed.
+Answering it converts the source's own inequality, which its text says must be satisfied at horizon formation, into either a
+condition that collapse can meet or one it cannot.
+
+## 3. A concrete acceptance criterion, declared before any work
+The question is answered when, for the curved system with production under the same declared closures already used:
+1. constraint propagation is verified for the exact system integrated, residual printed;
+2. the turning-point condition is stated as an explicit inequality in the source's own variables;
+3. the outcome is reported as one of: TURNS_OVER for an open set of admissible data, NEVER_TURNS_OVER, or STILL_UNDETERMINED
+   with the missing input named — declared in advance, so a null result is a result;
+4. singular outcomes are distinguished from integration failures;
+5. the result is challenged on an engine that did not produce it.
+
+## 4. Bounded inputs and compute
+Inputs: the publisher article already held locally, the equations already extracted and verified, and this lane's existing
+scripts. Compute: one research-profile worker for the derivation and integration, one different-engine challenge. No new corpus
+acquisition, no framework, no census machinery. Two workers, not a programme.
+
+## 5. What actually requires your choice
+- **Whether to continue this route at all.** The bounded phase answered the question you asked: under varied conditions the
+  bounce is not generic in the flat case, and in the paper's own geometry the question is open. Continuing means one more
+  bounded step, not an open commitment.
+- **If continued, which of two directions.** Either (a) the curved-scenario question above, which finishes what the source
+  actually claims, or (b) spin polarisation under shear, which is the load-bearing physical assumption and now has a published
+  handle on it; (a) completes the paper's own scenario, (b) tests whether the mechanism's ingredients are legitimate at all.
+- **Whether a negative or undetermined outcome is acceptable as a deliverable.** I have filed one retraction and two
+  scope-narrowings today; this route may well end in "the mechanism needs assumptions nobody has established". If that is not
+  a useful product for you, better to say so before another step rather than after.
+I am not choosing among these, and nothing is dispatched on them.
