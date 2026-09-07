@@ -11,6 +11,9 @@ and recomputed. Runtime uses A1-RUNTIME-PINS-CORE-1: named executable/extension
 artifacts, versions, invocation and scientific lock values. The exhaustive
 inventories are not authorities. Pins check disk bytes and reported values,
 not all third-party caches, dynamically loaded libraries or process memory.
+TOCTOU: extension modules are hashed and later imported with no lock between.
+Even the immediate pre-import recheck evidences disk bytes at check time, not
+the bytes the loader used (or an extension already loaded in this process).
 Coordinates are label-free JSON rows with exactly objid, ra, dec, brick.
 The renderer consumes their preassigned bricks: no population/brick test is
 reimplemented. Source checksums/planes/labels arrive only in stage inventories.
@@ -65,6 +68,43 @@ FLOORS = {"tuning": 380, "holdout": 190, "validation": 1900}
 PREVIOUS = {"seed": "designation", "draw": "seed", "tuning": "draw",
             "holdout": "tuning", "validation": "holdout"}
 DR9_BASE = "https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr9/north/coadd"
+
+# OBLIGATION means current preparation work due before INPUT freeze.
+# COMPLETE means every declared member is present, regardless of resolution.
+# This code declaration is independent of the manifest's supplied rows/counts.
+OBLIGATION_REGISTRY = {
+    "CORE_CONSUMER_RECONCILIATION":
+        "Bind the run-path consumer to CORE and bounded runtime pins, preserving all gates.",
+    "MEDIUM_CURRENT_PREPARATION":
+        "Implement and bind the scientific MEDIUM perturbation producer before INPUT freeze.",
+    "RUNTIME_REPRESENTATION":
+        "Resolve A1's runtime representation, including reproducible byte binding for "
+        "selected import artifacts and OS shared-cache images; the compact pins do not waive it.",
+}
+A1_SOURCE = "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+A1_REVIEWED_SHA256 = "c0459ad1b16cfdec2333eabae4d78284f09f4c396e1781e489cbbf8cca6c7d12"
+# A bounded interpretation of the reviewed A1 prose, not an NLP completeness
+# claim. Full-source identity below rejects ANY unfamiliar revision, including
+# an added obligation outside these excerpts, even if its manifest pin is reset.
+# A later A1 revision requires an explicit reviewed update of this mapping/hash.
+A1_OBLIGATION_STATEMENTS = {
+    "CORE_CONSUMER_RECONCILIATION": {
+        True: ("The owner reports that the current module consumes CORE, refuses mismatched "
+               "pins while naming the path, and blocks on readiness false (`run_path.py:301`).",),
+        False: ("CORE consumer reconciliation remains current preparation work to be done.",),
+    },
+    "MEDIUM_CURRENT_PREPARATION": {
+        True: ("The producer was a current preparation obligation in v41/v42, not later-stage "
+               "evidence; the owner's additional facts now report it produced.",),
+        False: ("Scientific MEDIUM production remains current preparation work to be done.",),
+    },
+    "RUNTIME_REPRESENTATION": {
+        True: ("Runtime representation preparation work is resolved.",
+               "Runtime representation is a resolved current preparation obligation"),
+        False: ("Runtime representation remains current preparation work to be done.",
+                "Runtime representation remains a current preparation obligation to be done"),
+    },
+}
 
 
 class Refused(ValueError):
@@ -174,6 +214,13 @@ def _environment(lock_pin, runtime_pin):
             "ENV-MISMATCH: interpreter path: " + interpreter["path"])
     require(_same_pin(runtime.get("env_lock"), lock_pin),
             "ENV-MISMATCH: env_lock binding: " + lock_pin["path"])
+    # Cheap bounded recheck immediately before imports can open either extension
+    # (import numpy may open both). No lock spans hashing and Python's loader;
+    # this narrows the interval but does not attest loaded or in-memory bytes.
+    for name in ("numpy.core._multiarray_umath", "numpy.fft._pocketfft_internal"):
+        matches = [p for p in files.values() if p.get("module") == name]
+        require(len(matches) == 1, "MISSING-RUNTIME-ENTRY: " + name)
+        read_pin(matches[0])
     import numpy as np
     import numpy.fft._pocketfft_internal as fft
     import py_ecc
@@ -243,8 +290,39 @@ def _registered_pin(files, pin, scope="CORE"):
     require(_same_pin(files[path], pin), "PIN-BINDING-MISMATCH: " + pin["path"])
 
 
-def _core(c):
-    """Verify every CORE row and required alias; recompute readiness from CORE."""
+def _a1_obligations(c, files):
+    """Read the actual reviewed prose and extract its mapped preparation statuses."""
+    pin = c.get("a1_obligations_source")
+    require(isinstance(pin, dict), "MISSING-A1-OBLIGATIONS-SOURCE")
+    _registered_pin(files, pin)
+    require(Path(pin["path"]).resolve() == (ROOT / A1_SOURCE).resolve(),
+            "A1-OBLIGATIONS-SOURCE-PATH: " + pin["path"])
+    raw = read_pin(pin)
+    require(sha(raw) == A1_REVIEWED_SHA256,
+            "A1-OBLIGATION-SOURCE-CHANGED: " + pin["path"] +
+            "; update the reviewed prose mapping and declaration before INPUT freeze")
+    require(set(A1_OBLIGATION_STATEMENTS) == set(OBLIGATION_REGISTRY),
+            "A1-OBLIGATION-REGISTRY-MISMATCH")
+    text = raw.decode("utf-8").replace("**", "")
+    result = {}
+    for oid, alternatives in A1_OBLIGATION_STATEMENTS.items():
+        states = [state for state, quotes in alternatives.items()
+                  if all(text.count(quote) == 1 for quote in quotes)]
+        require(len(states) == 1, "A1-OBLIGATION-DECLARATION: " + oid)
+        state = states[0]
+        require(not any(quote in text for quote in alternatives[not state]),
+                "A1-OBLIGATION-CONTRADICTION: " + oid)
+        result[oid] = state
+    return result
+
+
+def input_readiness(c):
+    """Rehash every CORE row; compute completeness, resolution and A1 agreement.
+
+    Returns FALSE and named reasons for incomplete/unresolved obligations.
+    Malformed schemas, invalid pins and unfamiliar A1 prose revisions refuse.
+    Recorded flags/checks/counts are never operands of the computed predicate.
+    """
     require(c.get("schema") == "A1-INPUT-CORE-DRAFT-1", "INPUT-SCHEMA")
     files = _file_register(c.get("files"), "CORE")
     code, inputs = c.get("code", {}), c.get("inputs", {})
@@ -285,23 +363,52 @@ def _core(c):
     obligations = c.get("current_preparation_obligations")
     require(isinstance(placeholders, list) and isinstance(obligations, list),
             "CORE-READINESS-SCHEMA")
+    require(all(isinstance(p, dict) for p in placeholders), "CORE-READINESS-SCHEMA")
+    by_id, duplicates = {}, []
+    for p in obligations:
+        require(isinstance(p, dict) and isinstance(p.get("id"), str) and p["id"] and
+                type(p.get("resolved")) is bool, "CORE-OBLIGATION-SCHEMA")
+        if p["id"] in by_id:
+            duplicates.append(p["id"])
+        by_id[p["id"]] = p
+    missing = sorted(set(OBLIGATION_REGISTRY) - set(by_id))
+    undeclared = sorted(set(by_id) - set(OBLIGATION_REGISTRY))
+    a1 = _a1_obligations(c, files)
+    disagreements = sorted(oid for oid, row in by_id.items()
+                           if oid in a1 and row["resolved"] is not a1[oid])
     reasons = ["INPUT placeholder: " + str(p.get("name", p.get("path")))
                for p in placeholders if p.get("due_stage") == "INPUT" or
                p.get("blocks_input_freeze") is not False]
     reasons += [str(p.get("id")) + ": " + str(p.get("evidence", "unresolved"))
                 for p in obligations if p.get("resolved") is not True]
+    reasons += ["MISSING-OBLIGATION: " + oid for oid in missing]
+    reasons += ["DUPLICATE-OBLIGATION: " + oid for oid in sorted(set(duplicates))]
+    reasons += ["UNDECLARED-OBLIGATION: " + oid for oid in undeclared]
+    reasons += ["A1-OBLIGATION-MISMATCH: " + oid + "; A1 resolved=" + str(a1[oid]) +
+                ", manifest resolved=" + str(by_id[oid]["resolved"]) for oid in disagreements]
     checks = {"all_real_entries_rehashed_and_matched": True,
               "input_due_placeholders_resolved": not any(
                   p.get("due_stage") == "INPUT" or p.get("blocks_input_freeze") is not False
                   for p in placeholders),
+              "declared_obligation_set_complete": not (missing or undeclared or duplicates),
               "current_preparation_obligations_resolved": all(
-                  p.get("resolved") is True for p in obligations)}
+                  p.get("resolved") is True for p in obligations),
+              "a1_manifest_obligations_agree": not (missing or undeclared or duplicates or disagreements)}
+    return {"ready_for_input_freeze": all(checks.values()), "checks": checks,
+            "reasons": reasons, "a1_obligations": a1,
+            "declared_obligation_ids": list(OBLIGATION_REGISTRY)}
+
+
+def _core(c):
+    """Enforce computed readiness and the recorded flag/checks; no stage access here."""
+    computed = input_readiness(c)
     readiness = c.get("readiness", {})
-    reason = "; ".join(reasons) or str(readiness.get("reason", "CORE readiness flag is false or missing"))
-    require(c.get("ready_for_input_freeze") is True and all(checks.values()),
+    reason = "; ".join(computed["reasons"]) or str(
+        readiness.get("reason", "CORE readiness flag is false or missing"))
+    require(c.get("ready_for_input_freeze") is True and computed["ready_for_input_freeze"],
             "CORE-NOT-READY: " + reason)
-    require(readiness.get("checks") == checks, "CORE-READINESS-CHECKS-MISMATCH")
-    return inputs
+    require(readiness.get("checks") == computed["checks"], "CORE-READINESS-CHECKS-MISMATCH")
+    return c["inputs"]
 
 
 def _coordinates(pin):

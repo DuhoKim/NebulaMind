@@ -1,0 +1,33 @@
+test_a1_added_obligation_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: unfamiliar new prose obligations require a reviewed mapping update. ... ok
+test_a1_deleted_statement_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing an A1 declaration cannot be concealed by repinning A1. ... ok
+test_a1_manifest_status_divergence (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: matching declared ids with contradictory A1 status are detected. ... ok
+test_a1_missing_source (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing the A1 source binding cannot skip the cross-check. ... ok
+test_complete_resolved_fixture_passes (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: a complete resolved fixture can pass the real CORE gate. ... ok
+test_delete_all_obligations (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an empty obligations list fails with every declared missing id. ... ok
+test_delete_core_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared CORE obligation fails by name. ... ok
+test_delete_medium_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared MEDIUM obligation fails by name. ... ok
+test_delete_runtime_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting runtime preparation cannot make an incomplete list ready. ... ok
+test_duplicate_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: duplicates cannot substitute for a unique declaration. ... ok
+test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: the actual authoring register records runtime-blocked readiness FALSE. ... ok
+test_runtime_digest_rechecked_before_import (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: a mutation after initial runtime hashing fails at the pre-use recheck. ... ok
+test_runtime_unresolved_still_blocks (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: present unresolved runtime work defeats a TRUE flag. ... ok
+test_undeclared_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an additional resolved obligation must also be declared in code/A1. ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.286s
+
+OK

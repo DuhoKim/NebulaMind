@@ -2,6 +2,8 @@
 
 POSITIVE-REGRESSION labels denote the retained contract checks. V46 migrates
 only their manifest/runtime fixture to CORE; the existing outcomes are retained.
+V47 gives that synthetic ready fixture all declared obligations and a separately
+bound synthetic A1 revision. The real A1/runtime obligation remains unresolved.
 """
 import hashlib
 import io
@@ -68,14 +70,32 @@ class RunPathTests(unittest.TestCase):
             "env_lock": self.pin(LANE / "_optionA_dev/fourier_chirality/env_lock.json"),
             "runtime": self.put_json("runtime.json", runtime),
         }
+        a1_path = self.code_root / "AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+        a1_text = (LANE / a1_path.name).read_text().replace(
+            "Runtime representation remains current preparation work to be done.",
+            "Runtime representation preparation work is resolved.").replace(
+            "Runtime representation remains a current preparation obligation to be done",
+            "Runtime representation is a resolved current preparation obligation")
+        a1_path.write_text(a1_text)
+        a1_pin = self.pin(a1_path)
+        a1_patch = patch.object(rp, "A1_REVIEWED_SHA256", a1_pin["sha256"])
+        a1_patch.start()
+        self.addCleanup(a1_patch.stop)
         c = {"schema": "A1-INPUT-CORE-DRAFT-1",
              "code": {p: self.pin(self.code_root/p)["sha256"] for p in rp.CODE},
              "inputs": inputs, "ready_for_input_freeze": True,
              "readiness": {"checks": {"all_real_entries_rehashed_and_matched": True,
                  "input_due_placeholders_resolved": True,
-                 "current_preparation_obligations_resolved": True}},
-             "current_preparation_obligations": [], "placeholders": []}
+                 "declared_obligation_set_complete": True,
+                 "current_preparation_obligations_resolved": True,
+                 "a1_manifest_obligations_agree": True}},
+             "a1_obligations_source": a1_pin,
+             "current_preparation_obligations": [
+                 {"id": "CORE_CONSUMER_RECONCILIATION", "resolved": True},
+                 {"id": "MEDIUM_CURRENT_PREPARATION", "resolved": True},
+                 {"id": "RUNTIME_REPRESENTATION", "resolved": True}], "placeholders": []}
         c["files"] = [{**pin, "status": "REAL"} for pin in inputs.values()]
+        c["files"].append({**a1_pin, "status": "REAL", "kind": "a1_obligation_source"})
         c["files"] += [{**self.pin(self.code_root/p), "status": "REAL", "kind": "our_source_code"}
                        for p in rp.CODE]
         for rel in rp.CODE:

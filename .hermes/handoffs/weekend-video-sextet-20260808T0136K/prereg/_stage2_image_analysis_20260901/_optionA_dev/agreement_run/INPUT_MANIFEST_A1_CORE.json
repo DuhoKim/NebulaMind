@@ -5,7 +5,7 @@
   "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901",
   "authority": "A1_MANIFEST_SCOPE_DECISION_20260907.md",
   "counts": {
-    "real": 28,
+    "real": 29,
     "placeholders": 5,
     "input_placeholders": 0,
     "future_stage_placeholder_groups": 5,
@@ -14,18 +14,23 @@
     "data_inputs": 7,
     "environment_lock": 1,
     "runtime_register_references": 1,
-    "current_unresolved_preparation_obligations": 0
+    "current_unresolved_preparation_obligations": 1,
+    "a1_obligation_sources": 1,
+    "declared_preparation_obligations": 3
   },
-  "ready_for_input_freeze": true,
+  "ready_for_input_freeze": false,
   "readiness": {
-    "source": "INPUT_MANIFEST_A1_CORE.json only",
-    "formula": "all_real_entries_rehashed_and_matched AND input_due_placeholders_resolved AND current_preparation_obligations_resolved",
+    "source": "CORE pins and declared code registry, cross-checked against the pinned reviewed A1 prose",
+    "formula": "all_real_entries_rehashed_and_matched AND input_due_placeholders_resolved AND declared_obligation_set_complete AND current_preparation_obligations_resolved AND a1_manifest_obligations_agree",
     "checks": {
       "all_real_entries_rehashed_and_matched": true,
       "input_due_placeholders_resolved": true,
-      "current_preparation_obligations_resolved": true
+      "declared_obligation_set_complete": true,
+      "current_preparation_obligations_resolved": false,
+      "a1_manifest_obligations_agree": true
     },
-    "rule": "At each freeze check, recompute digests and these predicates from CORE. Future-stage placeholders do not block INPUT; each must expand into concrete individual pins before its due read. Inventory counts and historical ready flags are never operands. Readiness does not confer adoption, publication or stage access."
+    "reason": "RUNTIME_REPRESENTATION: A1 states: Runtime representation remains a current preparation obligation to be done. AGY_A1_REVIEW3_20260907.md FATALs 3/4 and A1_REVIEW3_OUTCOME_20260907.md confirm it was omitted and remains unresolved.",
+    "rule": "At each freeze check, rehash every real CORE entry, verify the complete declared obligation set independently of manifest rows/counts, compare A1 statuses, and require every present obligation resolved. COMPLETE means every declared member is present, regardless of resolution. Unknown, duplicate or missing ids refuse by name. Recorded flags/counts are never predicate operands. Future-stage placeholders keep their existing due-read gates."
   },
   "inputs": {
     "eligible": {
@@ -62,11 +67,11 @@
     },
     "runtime": {
       "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
-      "sha256": "ea3b8a49ca40a542af67319539845be986928f835daf2b0231e7c5babe435c50"
+      "sha256": "95ea06f8a2f21261d0aec0f68f7593ae307782720c0ea0a3035f5b00e953919f"
     }
   },
   "code": {
-    "_optionA_dev/agreement_run/run_path.py": "0b47f76bb35bc619ed49b1705506912637b2295c2c8f844a6376e0795766cc07",
+    "_optionA_dev/agreement_run/run_path.py": "53f8bef5cf24bdcf80f0658b0238639ab274ccb96f4aee3e95ab03fe2d39a906",
     "_optionA_dev/agreement_run/select_sample.py": "8e517aab2715e6ec814a37f0dfb517b186f2f0ed7b64f045ae6a2a34120144b5",
     "_optionA_dev/drand_only/verify_drand_v2.py": "e982d9441f5c8d8b9d4cdf43b4bd44a03c5de42d4246c5bdc5531f4ba5d5ed7b",
     "_optionA_dev/fourier_chirality/fourier_chirality.py": "a026fe5fa168ca1eb2056829d86fb549dec4a61596b5d122f60c2a389e2d98a2",
@@ -165,8 +170,8 @@
       "status": "REAL",
       "due_stage": "INPUT",
       "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py",
-      "sha256": "0b47f76bb35bc619ed49b1705506912637b2295c2c8f844a6376e0795766cc07",
-      "bytes": 40958,
+      "sha256": "53f8bef5cf24bdcf80f0658b0238639ab274ccb96f4aee3e95ab03fe2d39a906",
+      "bytes": 47123,
       "read_purpose": "Driver entry module; _common verifies CORE files/aliases, readiness and bounded runtime at each stage entry and again before record completion."
     },
     {
@@ -353,8 +358,8 @@
       "status": "REAL",
       "due_stage": "INPUT",
       "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/RUNTIME_PINS_A1_CORE.json",
-      "sha256": "ea3b8a49ca40a542af67319539845be986928f835daf2b0231e7c5babe435c50",
-      "bytes": 7289,
+      "sha256": "95ea06f8a2f21261d0aec0f68f7593ae307782720c0ea0a3035f5b00e953919f",
+      "bytes": 7665,
       "read_purpose": "RunPath._environment consumes the bounded CORE runtime register, including every recorded artifact, version, invocation requirement and lock value."
     },
     {
@@ -366,6 +371,16 @@
       "sha256": "ea46478e1947c58ebf641803eab317f20d230f7244569d07604785a8216b831f",
       "bytes": 10439,
       "read_purpose": "RunPath._render invokes produce_tuning_disclosure on tuning-only numeric source planes before reading labels; both arms use the already pinned renderer, pixel rejection and Fourier components."
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/AGREEMENT_RUN_AMENDMENT_A1_20260907.md",
+      "sha256": "c0459ad1b16cfdec2333eabae4d78284f09f4c396e1781e489cbbf8cca6c7d12",
+      "name": "A1 current preparation obligations",
+      "kind": "a1_obligation_source",
+      "status": "REAL",
+      "due_stage": "INPUT",
+      "bytes": 42450,
+      "read_purpose": "The readiness predicate reads this reviewed A1 revision and compares every mapped preparation obligation/status with the declared registry and manifest. Unfamiliar revisions refuse even if repinned."
     }
   ],
   "current_preparation_obligations": [
@@ -381,6 +396,12 @@
       "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/medium_perturbation.py",
       "evidence": "V44 producer exists at the recorded real path and digest. V46 binds it in CODE and calls it in the tuning render path before label reads; the real synthetic two-arm/all-96 integration is retained in test_core_consumer.py. The approval recorder is not used.",
       "required_work": "Current implementation and consumer binding complete; final-byte verification and test evidence are in _tmp_v46_consumer_REPORT.md. This status is not adoption or execution authority."
+    },
+    {
+      "id": "RUNTIME_REPRESENTATION",
+      "resolved": false,
+      "evidence": "A1 states: Runtime representation remains a current preparation obligation to be done. AGY_A1_REVIEW3_20260907.md FATALs 3/4 and A1_REVIEW3_OUTCOME_20260907.md confirm it was omitted and remains unresolved.",
+      "required_work": "Resolve A1's runtime representation, including reproducible byte binding for selected import artifacts and OS shared-cache images; the compact pins do not waive it."
     }
   ],
   "placeholders": [
@@ -541,17 +562,21 @@
     "counting": "files counts unique current physical files; inputs/code are lookup aliases, not additional entries. Five placeholders are explicitly future binding groups, not five predicted future files. OUT denotes an as-yet-unspecified run output directory; null paths have no invented bytes or digests.",
     "current_data": "The seven data inputs include render_config_v2.json. Protected-region logic is counted once as source code. Brick/no-r files are read for integrity only, not decoded by this adapter.",
     "own_bytecode": "Eight existing cached copies remain explicitly pinned. The consumer checks every cache digest and code-object equality to pinned source, and rejects currently discoverable standard caches missing from CORE. No cache or installed-library tree is swept. Custom import loaders, unobserved runtime mutation and third-party caches are not a complete-byte guarantee.",
-    "runtime": "Only the runtime register document is referenced here. Its three artifact pins, versions and lock values live in RUNTIME_PINS_A1_CORE.json.",
+    "runtime": "Only the runtime register document is referenced here. Its three artifact pins, versions and lock values live in RUNTIME_PINS_A1_CORE.json. Extension hashes are check-time disk evidence; no lock spans checking and import, so they do not establish the bytes the loader used.",
     "retained_inventories": [
       "INPUT_MANIFEST_A1.json",
       "RUNTIME_DEPENDENCIES_A1_FINAL.json",
       "RUNTIME_LIBRARY_BYTES_A1_FINAL.md"
     ],
     "inventory_disposition": "Retained unchanged as inventory artefacts, NOT the manifest. Their 1,529/359 and 1,521/422 historical counts do not determine CORE readiness.",
-    "excluded_provenance": "Input builders, source catalogues/failed-source CSV, receipts, A1 prose/adoption records and approval recorder are not run_path file reads; their lineage or procedural roles do not make them current run data/code entries.",
+    "excluded_provenance": "Input builders, source catalogues/failed-source CSV, receipts, adoption records and approval recorder are not run_path file reads. A1 is now read solely for the bounded current-preparation obligation cross-check, and is registered as such; other procedural prose is not run data.",
     "self": "run_path.read_pin(C) consumes the manifest document itself. Its final full-file digest is external, in the authoring report and eventual independently supplied C pin; no self-referential entry.",
     "output_only": "Started/abort records and terminal validation record/render/scores/configurations are written, not subsequently read by this driver, so they are not invented input placeholders. Validation tensors and retained planes ARE read and appear in stage bindings.",
-    "trace_limits": "V45 static/import trace plus V46 bounded consumer and synthetic integration checks. Only named current metadata/code/runtime bytes are rehashed; no actual study stage, network fetch, real pixel/label access or scientific run is performed. Runtime dependencies are governed by the bounded runtime contract, not asserted byte-complete."
+    "trace_limits": "V45 static/import trace plus V46 bounded consumer and synthetic integration checks. Only named current metadata/code/runtime bytes are rehashed; no actual study stage, network fetch, real pixel/label access or scientific run is performed. Runtime dependencies are governed by the bounded runtime contract, not asserted byte-complete. V47 adds the declared preparation registry, reviewed A1 prose cross-check and synthetic deletion/divergence refusals."
   },
-  "updated_at_utc": "2026-09-07T08:02:42.953955+00:00"
+  "updated_at_utc": "2026-09-07T08:28:11.948072+00:00",
+  "a1_obligations_source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/AGREEMENT_RUN_AMENDMENT_A1_20260907.md",
+    "sha256": "c0459ad1b16cfdec2333eabae4d78284f09f4c396e1781e489cbbf8cca6c7d12"
+  }
 }

@@ -1,0 +1,13 @@
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_readiness.py --against _optionA_dev/agreement_run/_tmp_v47_failfirst.txt
+FAIL-FIRST KIT: PASS — 14 test methods, each with exactly one outcome assertion in its body and an explicit label; 12 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v47_failfirst.txt); 2 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_run_path.py --against _optionA_dev/agreement_run/_tmp_v47_baseline.txt
+FAIL-FIRST KIT: PASS — 42 test methods, each with exactly one outcome assertion in its body and an explicit label; 0 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v47_baseline.txt); 42 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_core_consumer.py --against _optionA_dev/agreement_run/_tmp_v46_predecessor_tests.txt
+FAIL-FIRST KIT: PASS — 32 test methods, each with exactly one outcome assertion in its body and an explicit label; 28 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v46_predecessor_tests.txt); 4 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+COMMAND: /Library/Developer/CommandLineTools/usr/bin/python3 scripts/failfirst_kit.py _optionA_dev/agreement_run/test_medium_perturbation.py --against _optionA_dev/agreement_run/_tmp_v47_baseline.txt
+FAIL-FIRST KIT: PASS — 32 test methods, each with exactly one outcome assertion in its body and an explicit label; 0 FAIL-FIRST (each observed FAILING in _optionA_dev/agreement_run/_tmp_v47_baseline.txt); 32 POSITIVE-REGRESSION (each observed passing there)
+EXIT CODE: 0
+Scope: the 14 new readiness tests and 42 migrated-fixture tests; retained 32 consumer and 32 MEDIUM methods use their applicable predecessor logs. Selector methods and their historical labels are unchanged; their 16 executable outcomes are covered by the baseline/after suite.

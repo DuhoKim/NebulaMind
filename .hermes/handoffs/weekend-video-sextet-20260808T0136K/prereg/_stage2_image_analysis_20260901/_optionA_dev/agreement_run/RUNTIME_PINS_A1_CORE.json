@@ -95,6 +95,7 @@
     "The consumer enforces this bounded runtime contract at stage entry and before stage record completion. The register remains authoring evidence; no environment installation, adoption or actual study run is established."
   ],
   "limits": [
+    "TOCTOU: extension modules are hashed by read_pin and later imported by Python with no lock between. These pins evidence what was on disk at check time, not what the loader used or what is already loaded. The consumer re-verifies both named extension digests immediately before the NumPy imports; this narrows the interval but does not remove it or attest loaded bytes.",
     "Version strings do not identify every package byte or transitive dependency. No byte-level identity is claimed for py_ecc, astropy, NumPy Python sources or their full dependency trees.",
     "Interpreter digest follows the invocation path's symlink to the resolved executable. It does not cover the Python framework, standard library, loader, shared libraries, OS, TLS trust store or in-memory relocated code.",
     "Only the NumPy core and FFT extensions have explicit file pins and loaded-module path checks. Dynamically resolved Astropy, cytoolz and other extensions, their shared-library dependencies and dyld-resolved images remain outside this bounded byte pin; package versions are not binary identity.",

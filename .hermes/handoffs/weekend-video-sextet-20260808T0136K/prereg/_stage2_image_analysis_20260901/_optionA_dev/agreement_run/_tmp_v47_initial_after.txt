@@ -1,0 +1,204 @@
+test_a1_added_obligation_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: unfamiliar new prose obligations require a reviewed mapping update. ... FAIL
+test_a1_deleted_statement_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing an A1 declaration cannot be concealed by repinning A1. ... FAIL
+test_a1_manifest_status_divergence (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: matching declared ids with contradictory A1 status are detected. ... FAIL
+test_a1_missing_source (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing the A1 source binding cannot skip the cross-check. ... FAIL
+test_complete_resolved_fixture_passes (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: a complete resolved fixture can pass the real CORE gate. ... ERROR
+test_delete_all_obligations (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an empty obligations list fails with every declared missing id. ... FAIL
+test_delete_core_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared CORE obligation fails by name. ... FAIL
+test_delete_medium_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared MEDIUM obligation fails by name. ... FAIL
+test_delete_runtime_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting runtime preparation cannot make an incomplete list ready. ... FAIL
+test_duplicate_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: duplicates cannot substitute for a unique declaration. ... FAIL
+test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: the actual authoring register records runtime-blocked readiness FALSE. ... FAIL
+test_runtime_digest_rechecked_before_import (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: a mutation after initial runtime hashing fails at the pre-use recheck. ... ok
+test_runtime_unresolved_still_blocks (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: present unresolved runtime work defeats a TRUE flag. ... FAIL
+test_undeclared_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an additional resolved obligation must also be declared in code/A1. ... FAIL
+
+======================================================================
+ERROR: test_complete_resolved_fixture_passes (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: a complete resolved fixture can pass the real CORE gate.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 138, in test_complete_resolved_fixture_passes
+    self.assertEqual(rp._core(self.c), self.c["inputs"])
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 404, in _core
+    computed = input_readiness(c)
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 327, in input_readiness
+    files = _file_register(c.get("files"), "CORE")
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 278, in _file_register
+    read_pin(entry)
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 139, in read_pin
+    require(sha(raw) == expected, "DIGEST-MISMATCH: " + pin["path"])
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/run_path.py", line 116, in require
+    raise Refused(message)
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-0up1xe_q/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+======================================================================
+FAIL: test_a1_added_obligation_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: unfamiliar new prose obligations require a reviewed mapping update.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DUPLICATE-CORE-ENTRY: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-yr4y04kg/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 128, in test_a1_added_obligation_even_when_repinned
+    rp._core(self.c)
+AssertionError: "A1-OBLIGATION-SOURCE-CHANGED:" does not match "DUPLICATE-CORE-ENTRY: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-yr4y04kg/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_a1_deleted_statement_even_when_repinned (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing an A1 declaration cannot be concealed by repinning A1.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DUPLICATE-CORE-ENTRY: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-d_t6zd9b/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 122, in test_a1_deleted_statement_even_when_repinned
+    rp._core(self.c)
+AssertionError: "A1-OBLIGATION-SOURCE-CHANGED:" does not match "DUPLICATE-CORE-ENTRY: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-d_t6zd9b/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_a1_manifest_status_divergence (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: matching declared ids with contradictory A1 status are detected.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DUPLICATE-CORE-ENTRY: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-0wy59y7n/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 115, in test_a1_manifest_status_divergence
+    rp._core(self.c)
+AssertionError: "A1-OBLIGATION-MISMATCH: RUNTIME_REPRESENTATION" does not match "DUPLICATE-CORE-ENTRY: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-0wy59y7n/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_a1_missing_source (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: removing the A1 source binding cannot skip the cross-check.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-itq6bf1a/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 134, in test_a1_missing_source
+    rp._core(self.c)
+AssertionError: "MISSING-A1-OBLIGATIONS-SOURCE" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-itq6bf1a/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_delete_all_obligations (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an empty obligations list fails with every declared missing id.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-7t0lrbiv/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 85, in test_delete_all_obligations
+    rp._core(self.c)
+AssertionError: "MISSING-OBLIGATION: CORE_CONSUMER_RECONCILIATION.*MISSING-OBLIGATION: MEDIUM_CURRENT_PREPARATION.*MISSING-OBLIGATION: RUNTIME_REPRESENTATION" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-7t0lrbiv/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_delete_core_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared CORE obligation fails by name.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-i0wjys2u/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 64, in test_delete_core_obligation
+    rp._core(self.c)
+AssertionError: "MISSING-OBLIGATION: CORE_CONSUMER_RECONCILIATION" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-i0wjys2u/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_delete_medium_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting the declared MEDIUM obligation fails by name.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-4p9c5uq7/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 70, in test_delete_medium_obligation
+    rp._core(self.c)
+AssertionError: "MISSING-OBLIGATION: MEDIUM_CURRENT_PREPARATION" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-4p9c5uq7/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_delete_runtime_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: deleting runtime preparation cannot make an incomplete list ready.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-hh8aojr7/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 76, in test_delete_runtime_obligation
+    rp._core(self.c)
+AssertionError: "MISSING-OBLIGATION: RUNTIME_REPRESENTATION" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-hh8aojr7/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_duplicate_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: duplicates cannot substitute for a unique declaration.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-uzgz75d1/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 91, in test_duplicate_obligation
+    rp._core(self.c)
+AssertionError: "DUPLICATE-OBLIGATION: CORE_CONSUMER_RECONCILIATION" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-uzgz75d1/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_recorded_readiness_is_false (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: the actual authoring register records runtime-blocked readiness FALSE.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 144, in test_recorded_readiness_is_false
+    self.assertIs(manifest["ready_for_input_freeze"], False)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_runtime_unresolved_still_blocks (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+POSITIVE-REGRESSION: present unresolved runtime work defeats a TRUE flag.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-s5tsit9y/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 103, in test_runtime_unresolved_still_blocks
+    rp._core(self.c)
+AssertionError: "CORE-NOT-READY: RUNTIME_REPRESENTATION: unfinished" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-s5tsit9y/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+======================================================================
+FAIL: test_undeclared_obligation (_optionA_dev.agreement_run.test_readiness.ReadinessTests)
+FAIL-FIRST: an additional resolved obligation must also be declared in code/A1.
+----------------------------------------------------------------------
+_optionA_dev.agreement_run.run_path.Refused: DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-b_u617vb/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_stage2_image_analysis_20260901/_optionA_dev/agreement_run/test_readiness.py", line 97, in test_undeclared_obligation
+    rp._core(self.c)
+AssertionError: "UNDECLARED-OBLIGATION: UNDECLARED" does not match "DIGEST-MISMATCH: /private/var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/a1-synthetic-b_u617vb/code/AGREEMENT_RUN_AMENDMENT_A1_20260907.md"
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.170s
+
+FAILED (failures=12, errors=1)
