@@ -34,12 +34,11 @@ def _read_ids(path, expected, name, ascending=False):
 
 def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
            failed_set_path, failed_sha256, seed_hex,
-           sizes=(400,200,2000), floors=(380,190,1900)):
+           sizes=(400, 200, 2000)):
     """Return ordered splits, normalized seed, verified digests and input/split counts.
 
-    Refuse a floor shortfall at each split after allocating earlier target sizes.
-    If a floor is met, take up to the target and record each split's size deficit
-    in shortfalls (zero when the target is filled).
+    Draw exactly the requested sizes or raise with the split's shortfall in
+    the eligible population after exclusions and earlier split allocations.
     """
     eligible, eligible_digest = _read_ids(eligible_ids_path, eligible_sha256, "eligible", True)
     excluded, exclusion_digest = _read_ids(exclusion_path, exclusion_sha256, "exclusion")
@@ -47,10 +46,8 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
     if not isinstance(seed_hex, str) or re.fullmatch(r"[0-9a-fA-F]{64}", seed_hex) is None:
         raise ValueError("seed_hex must contain exactly 64 hexadecimal characters")
     seed = seed_hex.lower()
-    if (len(sizes) != 3 or len(floors) != 3
-            or any(type(n) is not int or n < 0 for n in (*sizes, *floors))
-            or any(floor > size for size, floor in zip(sizes, floors))):
-        raise ValueError("sizes and floors must be three nonnegative integers with floors <= sizes")
+    if len(sizes) != 3 or any(type(n) is not int or n < 0 for n in sizes):
+        raise ValueError("sizes must be three nonnegative integers")
     excluded, failed = set(excluded), set(failed)
     overlap = excluded & failed
     if overlap:
@@ -70,17 +67,15 @@ def select(eligible_ids_path, eligible_sha256, exclusion_path, exclusion_sha256,
     survivors.sort(key=rank)
     names = ("tuning", "holdout", "validation")
     result = {}
-    shortfalls = {}
     offset = 0
-    for name, size, floor in zip(names, sizes, floors):
-        available = max(0, len(survivors) - offset)
-        if available < floor:
-            raise ValueError(f"{name} floor shortfall: {floor - available} "
-                             f"(available {available}, floor {floor})")
+    for name, size in zip(names, sizes):
+        available = len(survivors) - offset
+        if available < size:
+            raise ValueError(f"{name} draw size shortfall: {size - available} "
+                             f"(eligible population after exclusions {len(survivors)}, "
+                             f"remaining {available}, requested {size})")
         result[name] = survivors[offset:offset + size]
-        shortfalls[name] = size - len(result[name])
-        offset += len(result[name])
-    result["shortfalls"] = shortfalls
+        offset += size
     result["seed"] = seed
     result["digests"] = {"eligible": eligible_digest, "exclusion": exclusion_digest,
                          "failed": failed_digest}

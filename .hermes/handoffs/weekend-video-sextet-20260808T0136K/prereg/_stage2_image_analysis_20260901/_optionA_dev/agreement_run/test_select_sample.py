@@ -58,11 +58,10 @@ class SelectSampleTests(unittest.TestCase):
         self.assertEqual(tuple(len(result[name]) for name in
                                ("tuning", "holdout", "validation")), (400, 200, 2000))
 
-    def test_floor_shortfall_refused(self):
-        """POSITIVE-REGRESSION: validation one below its floor refuses with the exact deficit."""
+    def test_insufficient_population_refused(self):
+        """POSITIVE-REGRESSION: an insufficient post-exclusion population refuses."""
         inputs = self.make_inputs(self.eligible[:2899], self.excluded, self.failed)
-        with self.assertRaisesRegex(ValueError,
-                                    r"^validation floor shortfall: 1 \(available 1899, floor 1900\)$"):
+        with self.assertRaises(ValueError):
             select(*inputs, self.seed)
 
     def test_digest_mismatch_refused(self):
@@ -74,27 +73,45 @@ class SelectSampleTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "^" + name + ": SHA256 mismatch:"):
                     select(*inputs, self.seed)
 
-    def test_floor_satisfied_size_short_returns_sample(self):
-        """FAIL-FIRST: validation at its floor returns all available IDs and records the deficit."""
+    def test_tuning_scored_floor_sufficient_draw_short_refused(self):
+        """FAIL-FIRST: tuning meeting its scored-count floor cannot permit a short draw."""
+        inputs = self.make_inputs(self.eligible[:780], self.excluded, self.failed)
+        with self.assertRaisesRegex(
+                ValueError,
+                r"^tuning draw size shortfall: 20 "
+                r"\(eligible population after exclusions 380, "
+                r"remaining 380, requested 400\)$"):
+            select(*inputs, self.seed)
+
+    def test_holdout_scored_floor_sufficient_draw_short_refused(self):
+        """FAIL-FIRST: holdout meeting its scored-count floor cannot permit a short draw."""
+        inputs = self.make_inputs(self.eligible[:990], self.excluded, self.failed)
+        with self.assertRaisesRegex(
+                ValueError,
+                r"^holdout draw size shortfall: 10 "
+                r"\(eligible population after exclusions 590, "
+                r"remaining 190, requested 200\)$"):
+            select(*inputs, self.seed)
+
+    def test_validation_scored_floor_sufficient_draw_short_refused(self):
+        """FAIL-FIRST: validation meeting its scored-count floor cannot permit a short draw."""
         inputs = self.make_inputs(self.eligible[:2900], self.excluded, self.failed)
-        try:
-            result = select(*inputs, self.seed)
-            actual = (tuple(len(result[name]) for name in
-                            ("tuning", "holdout", "validation")), result["shortfalls"])
-        except ValueError as exc:
-            actual = str(exc)
-        self.assertEqual(actual, ((400, 200, 1900),
-                                 {"tuning": 0, "holdout": 0, "validation": 100}))
+        with self.assertRaisesRegex(
+                ValueError,
+                r"^validation draw size shortfall: 100 "
+                r"\(eligible population after exclusions 2500, "
+                r"remaining 1900, requested 2000\)$"):
+            select(*inputs, self.seed)
 
     def test_overlapping_exclusion_failed_refused(self):
-        """FAIL-FIRST: exclusion and failed sets sharing an eligible ID refuse and name it."""
+        """POSITIVE-REGRESSION: exclusion and failed sets sharing an eligible ID refuse and name it."""
         inputs = self.make_inputs(self.eligible, self.excluded,
                                   [self.excluded[-1], *self.failed])
         with self.assertRaisesRegex(ValueError, r"^exclusion/failed overlap: 100199$"):
             select(*inputs, self.seed)
 
     def test_nonmember_excluded_id_refused(self):
-        """FAIL-FIRST: an excluded ID outside the eligible file refuses and names that ID."""
+        """POSITIVE-REGRESSION: an excluded ID outside the eligible file refuses and names that ID."""
         inputs = self.make_inputs(self.eligible, [99999, *self.excluded], self.failed)
         with self.assertRaisesRegex(ValueError, r"^exclusion IDs not in eligible: 99999$"):
             select(*inputs, self.seed)

@@ -1,4 +1,4 @@
-REISSUED 2026-09-07 12:22:15 KST — supersedes the decision sheet now in Duho's hands.
+REISSUED 2026-09-07 13:05:41 KST — supersedes the decision sheet now in Duho's hands.
 
 The proposed run produces one number: machine–human GZ1 chirality agreement on unseen images, allowing one overall sign reversal, with an uncertainty interval whose lower end must exceed 0.70.
 
@@ -8,6 +8,7 @@ The proposed run produces one number: machine–human GZ1 chirality agreement on
 |---|---|
 | Fixed eligible list, coverage rules and file fingerprints — defines the population. | Repeated coverage tests and failed-ID extraction; keep origins and fingerprints. |
 | Repeatable seed-to-order selection — makes the sample reproducible. | Old builders/driver, record formats and split-check helper. |
+| What we publish must let someone else redo the selection and get the same sample; the published version is the one that counts. | |
 | Future public drand seed — prevents choosing a known seed. | NIST source, authentication and 24-hour fallback wait. |
 | Separate tuning, holdout and fresh sets; freeze the winner — prevents test-driven changes. | Holdout flag, seal-append helper and step 2 orchestration. |
 | Exclude 2,644 seen and 2,000 failed identities — keeps evaluation unseen. | Additional publication witnesses and per-entry publication machinery, history chains, receipts and combined evidence checks. |
