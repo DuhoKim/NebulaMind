@@ -1,0 +1,19 @@
+
+session_id: 20260907_133224_0c6536
+Verdict filed: bounce/KIMI_B2_CHALLENGE_20260907.md, first line `B2_REVIEW=AMENDMENT_STANDS`.
+
+I attacked hardest at the gluing point and could not falsify anything. What I did: re-read arXiv:2007.11556v2 HTML (extraction, not the publisher page — Springer full text is subscription-walled; metadata confirmed there), re-ran b2_closure.py (exit 0), and wrote my own independent check script (kimi_b2_independent_check.py, exit 0) that re-derives everything from the printed equations.
+
+Attack outcomes, in order:
+
+1. No-bounce claim — survives. H is forced constant (βH³=3n_*), H=0 is excluded on the branch, and no solution can join or leave the branch at finite time: under smoothness + fixed βH⁴, {H≠0} is open with H≡H_* on each component, so a component boundary would violate continuity; H≡0 intervals are impossible in both geometries (KS forces K=0, contradicting K=1/Y²>0; BI forces ε=0, i.e. T=0). But the amendment's stated reason is a non-sequitur as written — it only addresses trajectories confined to the branch, and the no-gluing lemma is unstated in both documents. Conclusion correct, justification incomplete. Reported, not repaired.
+
+2. Counting — all eight rows reproduce. (11), (36), (37), (38), (17) verified as consequences of counted equations, not uncounted ones. K, H, Ψ are definitions. E is legitimately counted: with ῥ unsubstantiated, Ċ_K+3HC_K = −κE and Ċ_B+6HC_B = −κE exactly, so the first law is the constraint propagator. Case (b) leaves n sourced by N=0. One caveat: "exactly one compatibility condition" is function-level; existence also needs the parameter-level β tuning (disclosed nearby).
+
+3. Narrowing — the loopholes (on/off switching, measure-zero production) are closed by continuity plus the βH⁴ prescription. The exclusion is actually broader than filed: every evolving interval solution is excluded, not just bouncing ones; the amendment says this in one sentence, then understates it in the narrowing sentence.
+
+4. Scope qualification — no over-correction found. The a⁻⁶ degeneracy makes the bounce region an OPEN set in data space, which undermines "improbability" rather than supporting a genericity claim; the disclaimer's direction is right.
+
+5. Shown by my algebra but unclaimed: at any fixed β off the single tuned value, the printed thermal KS system has NO smooth interval solutions at all — the paper's §9 collapse→bounce→cycles→inflation narrative has no solution on any open interval as printed, strictly stronger than "ill-posed for the bouncing sector".
+
+Nothing repaired; findings are one unstated lemma, one unrestated scope dependence (fixed-β, smoothness — disclosed in B2, not in the amendment), three disclosed wording nits ("de Sitter-like" with nonzero KS shear being one), and the strengthenings above.

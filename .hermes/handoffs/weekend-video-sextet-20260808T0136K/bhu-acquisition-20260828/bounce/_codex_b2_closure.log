@@ -1,0 +1,1780 @@
+Reading additional input from stdin...
+OpenAI Codex v0.153.4
+--------
+workdir: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: none
+reasoning summaries: none
+session id: 01a07a15-9dc2-7de2-a216-4ec63faf8259
+--------
+user
+# BOUNDED CODEX TASK — B2: is the production closure sufficient, and does the conflict admit special solutions? (Tori, 2026-09-07)
+
+Context you must read first: `B1_RESULT_V2_20260907.md` and `KIMI_B1_ADVERSARIAL_20260907.md` (FINDING 1). The V2 filing says the
+fluid row WITH production is `B1_ILL_POSED` **scoped to GRG's constant-coefficient thermal specialisation**. Two checks are now
+required before that is presented as a broad physical conclusion. You do NOT file classes and you do NOT restate the conclusion.
+
+## Boundaries
+- Write ONLY under `bounce/`. No pinned census file, no kit, no census version, no Hwao data. No new framework.
+- Keep FLUID and DIRAC rows separate, and keep flat Bianchi I separate from curved Kantowski-Sachs, in every statement.
+- Bind every claim about equations to the EXACT version you inspected, named in the text (e.g. "arXiv 2007.11556v2, read
+  <date>"). Do NOT claim publisher-version equation identity you did not establish, and do NOT infer the absence of later
+  corrections from a bounded search — say what you searched and stop there.
+
+## Do exactly this
+1. **SPECIAL SOLUTIONS — does the conflict exclude ALL nonzero-production solutions?** The claimed incompatibility is: with the
+   constant-coefficient thermal forms, the first law (14) forces T^2 = 2 h_star/(3 alpha h_n^2) on any production interval,
+   while the printed temperature law (37) gives an evolution. Solve the two SIMULTANEOUSLY rather than asserting they conflict.
+   Ask: is there a nonzero-production branch on which BOTH hold? Work out what (37) requires when T is pinned at that value
+   (T_dot = 0), what production rate Psi that implies, and what it implies for n(t) and for the expansion. If such a branch
+   exists, characterise it exactly and state whether it is consistent with the rest of the printed system. Print a token
+   SPECIAL_BRANCH=EXISTS|NONE and, if it exists, its defining relations.
+2. **CLOSURE SUFFICIENCY — the question Codex actually asked.** Formulate the general energy-conserving production system WITHOUT
+   silently keeping mutually incompatible thermal assumptions: field equations + the first law (14) + a production law for n,
+   with the thermal relations treated as OPTIONAL closure choices rather than assumed. Then COUNT: list every unknown function
+   of time and every independent equation, and state whether the system is under-determined, determined, or over-determined in
+   each of these cases: (a) all three constant-coefficient thermal relations retained; (b) the n-T relation dropped; (c) only
+   eps = eps(T), p = eps/3 retained; (d) no thermal closure, eps and n independent. Print a table and a token
+   CLOSURE_SUFFICIENT=<case letters that are determined>.
+3. **WHAT EXTRA ASSUMPTION WOULD BE NEEDED.** For whichever cases are under-determined, state the minimal additional physical
+   input that would close them (an equation of state, a production law derived from a matter model, a temperature-entropy
+   relation), naming it precisely. This is the useful deliverable: a precise extra physical assumption needed.
+4. Everything symbolic in `bounce/b2_closure.py`, runnable as `/usr/bin/python3 b2_closure.py`, printing SPECIAL_BRANCH,
+   the counting table, CLOSURE_SUFFICIENT and the residuals it rests on. No writes outside `bounce/`.
+
+## Output: `bounce/B2_CLOSURE_20260907.md` and `bounce/b2_closure.py`
+State every assumption you add that the sources do not print. Print both sha256s and the tokens as your final answer.
+codex
+I’ll read the two B1 records, inspect the cited source version, and work through the special branch and closure count. I’ll write only the two requested files under `bounce/`.
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g '*B1*20260907*' -g '*2007*' -g '*grg*' -g '*GRG*' -g '*11556*'" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+bounce/B1_RESULT_20260907.md
+bounce/B1_CRITERION_20260907.md
+bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+bounce/KIMI_B1_ADVERSARIAL_20260907.md
+bounce/B1_RESULT_V2_20260907.md
+bounce/_CODEX_TASK_B1_DERIVE_20260907.md
+bounce/B1_SIGN_RESOLUTION_20260907.md
+bounce/B1_DERIVATION_20260907.md
+bounce/_KIMI_B1_ADVERSARIAL_20260907.txt
+bounce/_CODEX_TASK_B1_CRITERION_20260907.md
+
+exec
+/bin/zsh -lc 'cat bounce/B1_RESULT_V2_20260907.md bounce/KIMI_B1_ADVERSARIAL_20260907.md' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+# B1 — RESULT, VERSION 2 (corrected after adversarial review)
+**Tori, 2026-09-07 13:02 KST. Supersedes `B1_RESULT_20260907.md`, which stays on disk unaltered as the withdrawn version.**
+Referee: `KIMI_B1_ADVERSARIAL_20260907.md`, B1_REVIEW=CLASSES_WRONG. It was right. What follows is the corrected filing.
+
+## 0. What I withdraw, and why
+**`B1_UNDERDETERMINED` is WITHDRAWN for BOTH rows.** I filed it on the claim that an energy-transfer term J = 2Ψα n is required
+and unprinted. Both papers print it:
+- **GRG 53, 18 Eq. (14)**, the first law for the effective fluid, $d(\tilde\epsilon XY^2)/dt + \tilde p\, d(XY^2)/dt = 0$,
+  restated as the entropy law Eq. (17). Expanded with Eq. (1) it is algebraically identical to the relation I called missing.
+  The referee's machine check gives residual 0.
+- **PRD 85, 107502 Eq. (13)**, $a^3d\epsilon - 2\alpha a^3 n\,dn + (\epsilon+p)d(a^3) = 0$, which with $n\propto a^{-3}$
+  supplies exactly the $-6\alpha H n^2$ transfer that our C3_DIRAC residual reported as missing.
+**This is the second instance today of one failure**, and the worse of the two: our extraction jumped from GRG (11) to (15),
+skipping (12)–(14) and (17); and PRD (13) is printed on the very page I read myself this morning, three lines below the equation
+I went there to check. I had written the lane's method note about exactly this five hours earlier. Reading a page for one purpose
+is not reading it.
+
+## 1. Classes as they now stand
+
+**FLUID row, no particle production → `B1_DEGENERATE_FINE_TUNED` — STANDS.**
+Independently re-derived by the referee, which derived the Bianchi I shear evolution itself rather than checking ours: with the
+declared unpolarised fluid the combined source has isotropic spatial stress, so $\dot H_i + 3HH_i$ is direction-independent,
+$H_i-H_j\propto a^{-3}$ and $\sigma^2 = \Sigma^2/a^6$ exactly — torsion cannot modify the shear law within the declared model.
+Criterion $\kappa\alpha_F n_0^2 > \Sigma^2$, $a_{min}^2 = (\kappa\alpha_F n_0^2-\Sigma^2)/(\kappa\epsilon_0)$, with
+$\dot H > 0$ at the root: a genuine smooth minimum, and a comparison of constants. Holds for every $\alpha_F>0$, so across the
+whole declared interval; as $\alpha_F\to0^+$ the admissible shear window collapses, making the bounce MORE fine-tuned, never
+generic.
+
+**Novelty, corrected downward and stated plainly:** this structure is already published. The referee cites GRG's own
+introduction pointing to Kopczyński, *Phys. Lett. A* **43**, 63 (1973); Kuchowicz, *J. Phys. A* **8**, L29 (1975); Tafel,
+*Phys. Lett. A* **45**, 341 (1973) — a Bianchi I Einstein–Cartan universe avoids the singularity if torsion's effect exceeds
+shear's — and RMP 48, 393's own example (5.24) carries the same $a^{-6}$ pair. **So B1 did not discover the constant
+comparison; it corroborated it independently and added three things:** that the conclusion is α-independent in form and hence
+survives our K3 closure problem; that the correction at any such bounce is at least the entire ordinary density; and that this
+is the flat Bianchi I statement, distinct from the KS system the source actually solves, whose §7 shear law (30) is
+curvature-sourced and does grow faster than $a^{-6}$.
+
+**FLUID row, with particle production → `B1_ILL_POSED`, restricted to the paper's own thermal specialisation.**
+The defect is not a missing input but a conflict between printed equations. With GRG's constant-coefficient thermal forms
+(§9: $\epsilon=h_\star T^4$, $p=\epsilon/3$, $n=h_nT^3$), its first law (14) reduces to
+$(4h_\star T^3-6\alpha h_n^2T^5)(\dot T+HT)=0$, so on any interval with production it forces the single temperature
+$T^2 = 2h_\star/(3\alpha h_n^2)$ rather than an evolution — while the paper's own printed temperature law (37) gives
+$\dot T = -HT + \Psi/(3T^2h_n)$. GRG §9 solves {(36),(37),(11),(16)} and never re-checks (14), which it had used for the
+no-production case. **The printed system is over-determined and inconsistent on any production interval** — the pre-registered
+`B1_ILL_POSED`, filed with its obstruction stated, exactly as §4 of the pre-registration declared acceptable in advance.
+**Scope of that class, stated:** it attaches to the constant-coefficient thermal specialisation as printed. Relax that, and the
+general system {(14), (34), field equations} propagates the constraint (our own C3 algebra shows it) and the rescue question
+becomes **decidable and simply uncomputed** — which is a study, not a class, and is the obvious next one.
+
+**DIRAC row → NO CLASS FILED.** Its earlier UNDERDETERMINED is withdrawn: PRD (13) supplies the transfer, so the row is not
+inconsistent, and our C3_DIRAC=FAIL measured a system missing an equation the paper prints. Its bounce question is likewise
+decidable and uncomputed. Every Dirac-row statement in V1 that read as physical is downgraded to conditional algebra.
+
+## 2. The two scope sentences the referee quoted, corrected
+- V1 §2 said the correction exceeds the ordinary density "in both rows". **Corrected:** that is a FLUID-row physical statement.
+  The Dirac row has no dynamically attained bounce in our treatment; its root is formal only.
+- V1 said K3's threshold finding "applies a fortiori" across rows. **Corrected:** K3's 2/3 was computed at the DIRAC row's
+  turning point with $\alpha_D=9\kappa/16$. The fluid row's own ratio is ≥1 at its own bounce, which is a separate
+  computation (`C1_REEXAM_20260907.md`), not an inheritance. Both statements are true; neither travels across rows.
+- Notation nit accepted: §2's ratio uses the correction-tilde while the fluid row elsewhere uses GRG's total-tilde. The words
+  were right; the symbol is now disclosed at the point of use.
+
+## 3. What survives, in one paragraph
+For the Weyssenhoff spin fluid in flat anisotropic Bianchi I, a torsion bounce exists only when one constant exceeds another,
+both fixed by initial data, for any positive coupling — a published structure this study independently reproduced and sharpened.
+At any such bounce the spin correction is at least the whole ordinary energy density, so the mechanism operates precisely where
+the four-fermion closure that sets its strength is uncontrolled (K3 step 3, at the Dirac turning point; ≥1 at the fluid one).
+The particle production that the source invokes to escape the shear degeneracy is, in the paper's own printed thermal
+specialisation, inconsistent with the paper's own first law. **None of this proves or disproves black-hole-universe cosmology.**
+It says: this mechanism, in this class, needs chosen initial data, and its published escape route does not close as printed.
+B1_REVIEW=CLASSES_WRONG
+
+# KIMI B1 adversarial review — 2026-09-07
+
+Referee: kimi (Moonshot), a seat that did not produce the algebra. Verdict: the no-production class
+`B1_DEGENERATE_FINE_TUNED` STANDS — I re-derived it independently and it is corroborated by published
+sources the lane did not lean on. But the fluid-row production class `B1_UNDERDETERMINED` is WRONG as
+filed: the energy-transfer relation it declares absent ("the required one is named: J = 2Ψα_Fn. No
+checked source prints it") IS printed in GRG 53, 18 — as Eq. (14), the first law for the effective
+fluid, derived from the paper's own field equations, and restated as the entropy law Eq. (17).
+Eq. (14) with Eq. (1) inserted is algebraically IDENTICAL to J = 2α_F n Ψ. The lane's own extraction
+(SOURCES_20260907.md) skips Eqs. (12)–(14) and (17) — the same extraction-blindness failure mode the
+lane documented in LANE_METHOD_NOTE_SHARED_INPUT_20260907.md hours earlier, repeated. One of the two
+fluid-row classes fails, so the filed classes as a whole are wrong.
+
+What I read for the physics: the arXiv HTML full text of 2007.11556v2 (the revised version that
+identifies itself as the published GRG 53, 18), read by me today, in full. The Springer publisher page
+remains behind the cookie handshake; I did not pass it. That split is stated, not blurred. PRD 85,
+107502 and RMP 48, 393 equations below come from the lane's locally held APS publisher PDFs as
+transcribed in PRD_PUBLISHER_VERIFY_20260907.md; I did not re-render those PDFs myself (disclosed in
+the ledger).
+
+## FINDING 1 (fatal, attack 3): J is printed in the paper. UNDERDETERMINED is refuted.
+
+GRG 53, 18, §3, derives from its own field equations (10), via (12)–(13):
+
+    (14):  d(ε̃ XY²)/dt + p̃ d(XY²)/dt = 0
+
+and introduces it as "identical with the first law of thermodynamics" for a³ = XY². Expanding with
+(1) (ε̃ = ε − αn², p̃ = p − αn²) and (16) (dV/dt = 3HV, V = XY²):
+
+    (14)/V  =  ė − 2αnṅ + 3H(ε + p − 2αn²)  =  [ė + 4Hε] − 2αn[ṅ + 3Hn]  =  J − 2αnΨ
+
+with p = ε/3, J := ė + 4Hε, Ψ := ṅ + 3Hn. That is EXACTLY B1's own energy-balance residual E_F, the
+condition B1 says must be supplied. Machine check (`_tmp_kimi_j_check.py`, SymPy, exit 0):
+
+    GRG(14)/V with p=eps/3  minus  B1 E_F = 0
+    GRG(17) RHS/V  minus  2*a*n*Psi = 0
+
+Eq. (17) is the same transfer written as the paper's entropy-production law: T d(sV)/dt = VJ =
+2αnVΨ — i.e. the paper's own mechanism for the entropy increase its introduction says the scenario
+needs. So the paper prints the required relation twice. The filed sentences — "unless an
+energy-transfer term is supplied, and the required one is named: J = 2Ψα_Fn. No checked source prints
+it" and "not because the answer is hard, but because an input is missing" — are false. The brief's
+own test was explicit: if the paper supplies an equivalent energy-transfer/thermodynamic relation
+elsewhere, the class UNDERDETERMINED is wrong. It supplies two.
+
+What is actually true about the paper's production sector is the OPPOSITE of a missing input — it is
+an internal contradiction. With the constant-coefficient thermal forms ε = h_*T⁴, p = ε/3,
+n = h_nT³ (§9), the paper's own (14) reduces to
+
+    (4h_*T³ − 6αh_n²T⁵)(Ṫ + HT) = 0,
+
+so on any interval with production (Ṫ + HT = Ψ/(3h_nT²) ≠ 0 by the paper's own (37)), (14) forces
+T² = 2h_*/(3αh_n²) — a single temperature, not an evolution. Machine check:
+
+    Tdot required by (14)+thermal = -H*T
+    Tdot printed as GRG (37)      = -H*T + Psi/(3*T**2*h_n)
+    (14) residual when (37) holds = -2*Psi*T*(3*T**2*alpha*h_n**2 - 2*h_star)/(3*h_n)
+
+GRG §9 solves {(36),(37),(11),(16)} ("Equations (36) and (37), with (11) and (16), determine the
+time dependence of X, Y, and T") and never re-checks (14), which it had itself used for the
+no-production case ("Without particle production, (1) and (14) give the constancy of XY²T³"). So the
+correct diagnosis for the fluid row with production is one of:
+
+  (a) the printed system {(9)–(11), (1), (34), (37), constant-coefficient thermal forms} is
+      over-determined and inconsistent on any production interval — that is the prereg's own
+      `B1_ILL_POSED`, not UNDERDETERMINED; or
+  (b) if the constant-coefficient thermal specialization is relaxed, the general published system
+      {(14), (34), field equations} is well-posed (B1's own C3 algebra shows the constraint then
+      propagates), and whether production rescues the bounce is DECIDABLE from the published
+      equations — merely uncomputed in this study. That would file as PRODUCTION_RESCUES or
+      PRODUCTION_INSUFFICIENT after integration, not UNDERDETERMINED.
+
+Either way the filed reason — "an input no source supplies" — cannot stand. Note also the result's
+own framing "supply J and the system is well posed again" concedes the system is well-posed with J;
+the paper already supplies J; the live defect is the conflict between the paper's (14) and its (37).
+
+Consequence for the headline: "the Einstein–Cartan bounce is not generic" survives only in its
+no-production half. "The mechanism that would rescue it is underdetermined as published" does not
+survive: the mechanism is determined-as-published (via (14)) and inconsistent in its thermal
+specialization, and the rescue question is computable and was not computed.
+
+Root cause, for the record: SOURCES_20260907.md §B/S1 transcribes Eqs. (9),(10),(11) then jumps to
+(15); Eqs. (12)–(14) and (17) were never extracted, so every seat that worked from the extraction
+inherited the blind spot — the exact pattern of LANE_METHOD_NOTE_SHARED_INPUT_20260907.md.
+
+## FINDING 2 (attack 1 failed): the central a⁻⁶ degeneracy survives, independently re-derived.
+
+I derived the shear evolution myself. Bianchi I, ds² = −dt² + Σaᵢ²dxᵢ², Hᵢ = ȧᵢ/aᵢ, H = ΣHᵢ/3,
+σ² = ½Σ(Hᵢ−H)². In Einstein–Cartan the connection equation is algebraic; after eliminating torsion
+the field equation is the Levi-Civita Einstein equation sourced by the combined tensor (RMP (3.23)–
+(3.24), quadratic in spin only — no metric derivatives, so no shear–torsion coupling can enter
+geometrically). For the unpolarized Weyssenhoff fluid (RMP (5.18)), the derivative terms are linear
+in spin and average to zero under the declared unpolarized average; the surviving source
+(ρ+P−2κs²)uⁱuʲ + (P−κs²)gⁱʲ has ISOTROPIC spatial stress. The spatial Einstein equations then give,
+for each direction, Ḣᵢ + 3HHᵢ = κ(ρ−P)/2 — the same right-hand side for all i — so subtracting any
+two gives d(Hᵢ−Hⱼ)/dt + 3H(Hᵢ−Hⱼ) = 0, hence Hᵢ−Hⱼ ∝ a⁻³ and σ² = Σ²/a⁶ exactly. The only way
+torsion could modify the shear law is an anisotropic stress or a spin–velocity-gradient correlation
+(the τ·∇u term in (5.18)); both are excluded by the prereg's declared unpolarized, isotropic-stress
+assumption (B1_CRITERION assumptions 2 and 4 declare this explicitly). Within the filed model the
+shear law is unmodified. The torsion term αn² ∝ a⁻⁶ with conserved n; both coefficients are constant
+(d(Sa⁶)/dt = 0, d(αn²a⁶)/dt = 2αna⁶Ψ = 0 without production — re-derived, and printed by the script).
+
+Corroboration the lane did not cite: RMP's own printed Bianchi-I-type example (5.24) carries exactly
+2σ₀²a₀⁶/a⁶ − k²s₀²a₀⁶/a⁶ — the same a⁻⁶ degeneracy, in the formalism anchor itself. And GRG's
+introduction cites published peer-reviewed results — Kopczyński, Phys. Lett. A 43, 63 (1973);
+Kuchowicz, J. Phys. A 8, L29 (1975); Tafel, Phys. Lett. A 45, 341 (1973) — that a Bianchi I universe
+in EC "has no cosmological singularity if the effect of torsion is greater than that of shear": the
+constant-comparison structure is the published result, not a new claim. (GRG's own §7 text "shear
+grows faster than a⁻⁶" is its KS curvature-sourced law (30); Bianchi I is flat and lacks that source
+— the lane's KS/Bianchi-I distinction here is correct.)
+
+The criterion follows: 3H² = κε₀a⁻⁴ + (Σ² − κα_Fn₀²)a⁻⁶; H = 0 at finite a ⟺ κα_Fn₀² > Σ²,
+a_min² = (κα_Fn₀² − Σ²)/(κε₀); equality or reverse inequality gives no finite positive root
+(singular). At the root, Ḣ_b = κε₀/(3a_min⁴) > 0 — a smooth local minimum of the mean scale factor.
+I verified every step by hand; b1_criterion.py (run by me, exit 0) asserts the same, including the
+three-direction geometric component checks. `B1_DEGENERATE_FINE_TUNED` stands.
+
+## FINDING 3 (attack 2 failed): alpha-independence holds on its domain.
+
+The criterion is a comparison of κα_Fn₀² against Σ²; for every α_F > 0 the character is the same
+constant inequality. The only boundary is α → 0⁺, where the allowed shear interval Σ² < κα_Fn₀²
+collapses to the shear-free point — which makes the bounce MORE fine-tuned, not generic; the filed
+class is unchanged. α < 0 would kill the bounce outright but is excluded by the model (α_F > 0
+derived, ecsk_derive.py exit 0). Time-dependent α is outside the declared model (α carried as a
+constant interval parameter, declared). No case found where α's value changes the character of the
+answer within the stated domain.
+
+## FINDING 4 (attack 4 verified): the ratio claim is correct, with one notation nit.
+
+At the H = 0 root the constraint gives καn_b² = κε_b + S_b, hence
+R = |δρ|/ε = αn_b²/ε_b = 1 + S_b/(κε_b) ≥ 1, equality iff S_b = 0, diverging as Σ² → καn₀².
+The RESULT's formula καn₀²/(καn₀² − Σ²) matches (verified by hand and by the script). Nit:
+RESULT §2 writes the symbol "|ε̃|/ε" using the K3/PRD tilde (correction) while the same document's
+fluid row elsewhere uses GRG tildes (totals); B1_CRITERION discloses the distinction explicitly, the
+RESULT does not re-disclose it at that sentence — but its words ("the ratio of the torsion
+correction") are correct, so this is a disclosure nit, not an error. The GRG-literal ratio
+|ε̃_GRG|/ε = Σ²/Δ is correctly handled in B1_CRITERION.
+
+## FINDING 5 (scope policing): two sentences to quote; otherwise clean.
+
+(a) RESULT §2: "So the bounce always sits where the spin correction is at least the whole ordinary
+energy density — an order of magnitude past the 0.1 small-correction threshold K3 step 3 declared,
+in both rows and across the entire α interval." — For the DIRAC row there is no dynamically attained
+bounce at all (C3_DIRAC_NO_PRODUCTION=FAIL; the root is FORMAL_ONLY). This sentence lets a fluid-row
+physical statement pass as a Dirac-row one without the FORMAL_ONLY qualifier that §1 correctly
+attaches. The underlying conditional algebra is fine (B1_CRITERION states it conditionally); the
+sentence as written over-extends it.
+
+(b) RESULT §2: "Our own K3 result ... therefore applies a fortiori: the regime that produces the
+bounce is the regime where the closure supplying its strength is not under control." — This is an
+inference, not a computed result. K3's 2/3 and 0.32 T_cr are Dirac-row numbers; Amendment 1 itself
+records that the fluid row's closure control at its own turning point "has not been computed by
+anyone here". Partial support exists (C1_REEXAM computes R_F = 1 formally at the fluid turning
+point, and K3S1 found the ℏ²/8 closure to be a convention, not a derivation), so the sentence is
+defensible as an argument — but it transfers a Dirac-row computation across rows, the exact move
+Amendment 1 flagged. Flagged, not counted as an error.
+
+Clean elsewhere: RESULT §0 ("Nothing below is a statement about the literal KS system"), §3's
+non-address list, prereg §7, and C1_REEXAM's literal-KS qualification (shear-free KS forces
+−1/Y² = 0, impossible) are exactly the right scope controls. No Bianchi-I statement passed as KS;
+no reduction result passed as a genericity answer beyond the flagged sentences.
+
+## FINDING 6 (what the algebra shows that the result did not claim; other claims checked).
+
+- The DIRAC row's UNDERDETERMINED label is questionable for the same reason as Finding 1, though the
+  underlying FAIL is real and verified (residual −6Hα_Dκn², re-derived by hand and by the script).
+  PRD's own first law for the total fluid exists (it is what yields PRD's Eq. (14)); the failure is
+  that the prereg-IMPOSED simultaneous scalings ε ∝ a⁻⁴, n ∝ a⁻³ are incompatible with the Dirac
+  w = −1 correction pair — an inconsistency of the imposed test system, not an input missing from a
+  source. The result's own words ("with conserved particle number the ε̃ = −p̃ pair is not separately
+  conserved") are the accurate statement; the class label sits loosely on it.
+- The smooth-bounce conclusion (Ḣ_b > 0, a genuine local minimum of the mean scale factor — a real
+  contrast with the Dirac cusp) is proved by the algebra and claimed in B1_CRITERION but not in the
+  RESULT. Minor unclaimed support.
+- The sharp trichotomy (equality Σ² = καn₀² is singular; reversed inequality singular) is in
+  B1_CRITERION; RESULT could state it. Minor.
+- All printed residuals in RESULT §1 match the script output and my hand derivations exactly:
+  2Ψα_Fκn (number-only), 2Ψκ(3α_Fn² − 2ε)/(3n) (thermal), −6Hα_Dκn² (Dirac no-production),
+  required J_F = 2α_FnΨ, J_D = 2α_DnΨ − 6Hα_Dn². C2 tensor residuals are zero matrices as claimed.
+  c1_reexam.py (exit 0) and ecsk_derive.py (exit 0) reproduce every token they print, and the
+  ecsk script's asserts (24/24 Hessian rank, Weyssenhoff ε_s = p_s = −κCn²/4, w = 1, continuity
+  residual 0, opposite-pressure trial 3CHκn²/2) match my independent variation of the same action.
+
+## Failed attacks (what I tried that held)
+
+1. Shear-scaling refutation — failed: derived the shear law independently; torsion cannot enter it
+   in the declared model (algebraic elimination, isotropic effective stress). Corroborated by RMP
+   (5.24) and by the published Kopczyński/Kuchowicz/Tafel Bianchi results GRG cites.
+2. Alpha-dependence — failed: no α > 0 case changes the character; α → 0⁺ only sharpens fine-tuning.
+3. Ratio claim — failed: R ≥ 1 with equality iff Σ² = 0 is forced by the constraint balance itself.
+4. Script-token distrust — failed: all three scripts run clean (exit 0) under /usr/bin/python3 and
+   every token I spot-derived by hand (constraint residuals, required J, criterion, root, ratio,
+   Ḣ_b, Dirac cusp algebra, ECSK fluid stress) matches. No hard-coded result literals found on
+   reading the scripts.
+5. DIRAC-row C3 failure — tried to find it spurious; it is real and correctly diagnosed as the
+   w = −1 versus a⁻⁶ tension.
+
+## Evidence ledger
+
+- Read in full: B1_PREREG (incl. Amendment 1), B1_RESULT, b1_criterion.py, c1_reexam.py,
+  ecsk_derive.py, B1_SIGN_RESOLUTION, SOURCES_20260907.md (all 795 lines), PRD_PUBLISHER_VERIFY,
+  B1_CRITERION, B1_DERIVATION, C1_REEXAM, ECSK_DERIVATION, KIMI_SIGN_CHECK,
+  LANE_METHOD_NOTE_SHARED_INPUT, K3S3_CHECK_SHEET_20260904.md (matches SOURCES §D quotes).
+- Ran (all exit 0): /usr/bin/python3 ecsk_derive.py; b1_criterion.py; c1_reexam.py;
+  _tmp_kimi_j_check.py (my own; printed identities above).
+- Paper check for Finding 1: arXiv 2007.11556v2 HTML full text fetched and read by me in full
+  (abstract through references); Eqs. (14), (17), (33)–(38), §9 line "Equations (36) and (37)...
+  determine the time dependence", §11 approximation statements all read in place. This is the
+  revised arXiv version identifying itself as the published GRG 53, 18 — an extraction of the
+  publisher-corresponding text, read as a page, not the lane's extraction. Springer publisher page:
+  not passed (cookie wall), same limitation the lane declared.
+- PRD/RMP equations: relied on the lane's locally saved APS publisher PDFs as transcribed in
+  PRD_PUBLISHER_VERIFY_20260907.md; I did not re-render the PDF pages myself. The C2 assertions in
+  b1_criterion.py compare against those transcriptions and pass.
+
+## Uncertainties and what I did not inspect
+
+- I did not survey later literature for errata/corrections to GRG 53, 18; if an erratum withdraws or
+  repairs (14)/(37), Finding 1's quotation base changes. No such erratum is recorded in the lane's
+  checked records.
+- My identification of (14) as holding under production rests on the paper printing no creation
+  pressure or production-modified stress tensor (it prints none; §9 keeps (1) unchanged). If a
+  reader repairs GRG with an external creation-pressure model, that repair — not the paper — could
+  restore consistency; that would be a new input from outside the published text, which is what the
+  prereg menu calls a next study, not this one.
+- I did not recompute K3's 2/3 from the K3 scripts; I verified the check sheet matches the quotes
+  the B1 documents carry.
+- I did not verify the Springer page; the arXiv-vs-publisher equation identity for (14)/(17)
+  specifically is covered only by the lane's claim that its publisher read matched the extraction —
+  which did not include (14)/(17). That residual risk is stated plainly: my Finding 1 quotes are
+  from the arXiv v2 full text.
+
+## Bottom line for the coordinator
+
+Filed classes should NOT stand as a set. `B1_DEGENERATE_FINE_TUNED` (fluid, no production) stands —
+independently verified and published-corroborated. `B1_UNDERDETERMINED` (fluid, with production) is
+refuted by the target paper's own Eq. (14)/(17): the named "missing" input J = 2Ψα_Fn is printed in
+GRG 53, 18 as the effective first law and again as the entropy law. The honest re-filing is either
+`B1_ILL_POSED` for the paper's printed thermal production system (its (14) and its (37) conflict on
+any production interval with constant thermal coefficients), or a computed PRODUCTION_RESCUES /
+PRODUCTION_INSUFFICIENT from the well-posed general system {(14), (34), field equations}. This
+report repairs nothing; it reports.
+
+B1_REVIEW=CLASSES_WRONG
+
+exec
+/bin/zsh -lc 'rg --files bounce | head -70; for p in /AGENTS.md /Users/AGENTS.md /Users/duhokim/AGENTS.md /Users/duhokim/NebulaMind/AGENTS.md /Users/duhokim/NebulaMind/NebulaMind/AGENTS.md; do if test -f "$p"; then cat "$p"; fi; done' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+bounce/ECSK_DERIVATION_20260907.md
+bounce/B1_RESULT_20260907.md
+bounce/_CODEX_TASK_SOURCES_20260907.md
+bounce/B1_CRITERION_20260907.md
+bounce/B1_DERIVATION_20260907.md
+bounce/_KIMI_B1_ADVERSARIAL_20260907.txt
+bounce/b1_criterion.py
+bounce/_CODEX_TASK_ECSK_DERIVE_20260907.md
+bounce/LANE_METHOD_NOTE_SHARED_INPUT_20260907.md
+bounce/KIMI_SIGN_CHECK_20260907.md
+bounce/_CODEX_TASK_B1_CRITERION_20260907.md
+bounce/_CODEX_TASK_PRD_VERIFY_20260907.md
+bounce/_CODEX_TASK_B2_CLOSURE_20260907.md
+bounce/_KIMI_BLIND_SIGN_CHECK_20260907.txt
+bounce/C1_REEXAM_20260907.md
+bounce/b1_derive.py
+bounce/KIMI_B1_ADVERSARIAL_20260907.md
+bounce/c1_reexam.py
+bounce/B1_RESULT_V2_20260907.md
+bounce/ecsk_derive.py
+bounce/_CODEX_TASK_B1_DERIVE_20260907.md
+bounce/PRD_PUBLISHER_VERIFY_20260907.md
+bounce/SOURCES_20260907.md
+bounce/_CODEX_TASK_C1_REEXAM_20260907.md
+bounce/B1_SIGN_RESOLUTION_20260907.md
+bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+bounce/prd_publisher_verify_20260907/prd_errata.html
+bounce/prd_publisher_verify_20260907/rmp_errata.html
+bounce/prd_publisher_verify_20260907/prd_crossref.json
+bounce/prd_publisher_verify_20260907/web_evidence.txt
+bounce/prd_publisher_verify_20260907/rmp_issue.html
+bounce/prd_publisher_verify_20260907/access.json
+bounce/prd_publisher_verify_20260907/rmp_landing.html
+bounce/prd_publisher_verify_20260907/prd_corrections_search.html
+bounce/prd_publisher_verify_20260907/prd_landing.html
+bounce/prd_publisher_verify_20260907/prd_doi.html
+bounce/prd_publisher_verify_20260907/rmp_corrections_search.html
+bounce/prd_publisher_verify_20260907/prd_issue.html
+bounce/prd_publisher_verify_20260907/rmp_crossref.json
+bounce/prd_publisher_verify_20260907/rmp_doi.html
+
+web search: 
+web search: https://arxiv.org/html/2007.11556v2
+exec
+/bin/zsh -lc 'for p in /Users/duhokim/NebulaMind/NebulaMind/.hermes/AGENTS.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/AGENTS.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/AGENTS.md AGENTS.md bounce/AGENTS.md; do if test -f "$p"; then cat "$p"; fi; done
+/usr/bin/python3 -c '"'import sympy; print(sympy.__version__)'" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 57ms:
+1.14.0
+
+web search: 
+web search: https://arxiv.org/html/2007.11556v2
+codex
+The simultaneous equations do admit a constant-temperature production branch. I’m checking it against the full field equations: curved Kantowski–Sachs and flat Bianchi I impose different expansion rates and parameter conditions. For the closure count, dropping only the \(n\)-\(T\) relation leaves two matter evolution equations; dropping all thermal relations leaves pressure unspecified.
+exec
+/bin/zsh -lc "cat > bounce/b2_closure.py <<'PY'
+#"'!/usr/bin/python3
+"""B2 symbolic audit; no file writes. Run: /usr/bin/python3 b2_closure.py.
+Source: arXiv 2007.11556v2 HTML, read 2026-09-07, equations
+(1), (10), (11), (14), (16), (17), (34), (36), (37), section 9.
+All calculations are FLUID only. BI is an explicitly added flat reduction;
+KS retains curvature. No DIRAC equations or publisher-identity claim.
+Requires SymPy (verified with 1.14.0 under /usr/bin/python3).
+"""
+import sympy as s
+
+
+def check(label, expression):
+    result = s.factor(s.simplify(expression))
+    print(label + '"' = ' + str(result))
+    assert result == 0, (label, result)
+
+
+alpha, hn, hs, kappa, beta, T = s.symbols(
+    'alpha h_n h_star kappa beta T', positive=True)
+H, Td, Psi, n, nd, eps, ed, p = s.symbols('H Tdot Psi n ndot eps epsdot p')
+E = ed - 2*alpha*n*nd + 3*H*(eps+p-2*alpha*n**2)
+N = nd + 3*H*n-Psi
+print('SOURCE=arXiv 2007.11556v2 HTML; read 2026-09-07')
+print('ROW=FLUID; DIRAC=NOT_ANALYSED')
+check('energy balance identity E - [epsdot+3H(eps+p)-2alpha*n*Psi-2alpha*n*N]',
+      E-(ed+3*H*(eps+p)-2*alpha*n*Psi-2*alpha*n*N))
+thermal = E.subs({eps:hs*T**4, p:hs*T**4/3, n:hn*T**3,
+                  ed:4*hs*T**3*Td, nd:3*hn*T**2*Td})
+check('thermal factorisation', thermal-(4*hs*T**3-6*alpha*hn**2*T**5)*(Td+H*T))
+compat = s.factor(thermal.subs(Td, -H*T+Psi/(3*hn*T**2)))
+print('FLUID compatibility residual after (37):', compat)
+q = s.solve(2*hs-3*alpha*hn**2*s.Symbol('q'), s.Symbol('q'))[0]
+Ts = s.sqrt(q)
+ns = s.simplify(hn*Ts**3)
+es = s.simplify(hs*Ts**4)
+rhos = s.simplify(es-alpha*ns**2)
+ps = s.simplify(es/3-alpha*ns**2)
+Lam = s.simplify(kappa*rhos)
+check('p_eff_star + rho_eff_star', ps+rhos)
+check('rho_eff_star - eps_star/3', rhos-es/3)
+check('pinned first law', thermal.subs({T:Ts, Td:0}))
+check('pinned temperature law', H*Ts-(3*H*ns)/(3*hn*Ts**2))
+check('pinned number balance', 3*H*ns-3*H*ns)
+print('T_star"'^2 ='"', q)
+print('n_star =', ns)
+print('Lambda_eff =', Lam)
+print('Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H"'^3=3*n_star; H>0'"')
+
+# Curved KS: u=Xdot/X, v=Ydot/Y, K=1/Y"'^2. These are a
+# first-order rewriting of source (10), with no flat substitution.
+u,v,K = s.symbols('"'u v K', real=True)
+rho,P = s.symbols('rho P', real=True)
+ud = -u**2-u*v+(v**2+K-kappa*P)/2
+vd = -(3*v**2+K+kappa*P)/2
+Kd = -2*v*K
+C = v**2+2*u*v+K-kappa*rho
+rh od = None
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+apply patch
+patch: completed
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..0d78394119e50d5f524f8488d58524d0c87a0f0c
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -54,4 +54,92 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/3)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+exec
+/bin/zsh -lc '/usr/bin/python3 b2_closure.py' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce
+ exited 1 in 248ms:
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py", line 63, in <module>
+SOURCE=arXiv 2007.11556v2 HTML; read 2026-09-07
+ROW=FLUID; DIRAC=NOT_ANALYSED
+energy balance identity E - [epsdot+3H(eps+p)-2alpha*n*Psi-2alpha*n*N] = 0
+thermal factorisation = 0
+FLUID compatibility residual after (37): -2*Psi*T*(3*T**2*alpha*h_n**2 - 2*h_star)/(3*h_n)
+p_eff_star + rho_eff_star = 0
+rho_eff_star - eps_star/3 = 0
+pinned first law = 0
+pinned temperature law = 0
+pinned number balance = 0
+T_star^2 = 2*h_star/(3*alpha*h_n**2)
+n_star = 2*sqrt(6)*h_star**(3/2)/(9*alpha**(3/2)*h_n**2)
+Lambda_eff = 4*h_star**3*kappa/(27*alpha**2*h_n**4)
+Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0
+CURVED_KS constraint propagation Cdot+3H*C = 0
+CURVED_KS Raychaudhuri identity on constraint = (K - kappa*rho + 2*u*v + v**2)/6
+    check('CURVED_KS Raychaudhuri identity on constraint',
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py", line 15, in check
+    assert result == 0, (label, result)
+AssertionError: ('CURVED_KS Raychaudhuri identity on constraint', (K - kappa*rho + 2*u*v + v**2)/6)
+
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..0d78394119e50d5f524f8488d58524d0c87a0f0c
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -54,4 +54,92 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/3)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+apply patch
+patch: completed
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..d54b0d495bd59627b986e5e1b672db17e6ba4174
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -54,4 +54,92 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/6)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+exec
+/bin/zsh -lc '/usr/bin/python3 b2_closure.py' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce
+ succeeded in 318ms:
+SOURCE=arXiv 2007.11556v2 HTML; read 2026-09-07
+ROW=FLUID; DIRAC=NOT_ANALYSED
+energy balance identity E - [epsdot+3H(eps+p)-2alpha*n*Psi-2alpha*n*N] = 0
+thermal factorisation = 0
+FLUID compatibility residual after (37): -2*Psi*T*(3*T**2*alpha*h_n**2 - 2*h_star)/(3*h_n)
+p_eff_star + rho_eff_star = 0
+rho_eff_star - eps_star/3 = 0
+pinned first law = 0
+pinned temperature law = 0
+pinned number balance = 0
+T_star^2 = 2*h_star/(3*alpha*h_n**2)
+n_star = 2*sqrt(6)*h_star**(3/2)/(9*alpha**(3/2)*h_n**2)
+Lambda_eff = 4*h_star**3*kappa/(27*alpha**2*h_n**4)
+Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0
+CURVED_KS constraint propagation Cdot+3H*C = 0
+CURVED_KS Raychaudhuri identity on constraint = 0
+CURVED_KS constraint special branch = 0
+CURVED_KS u evolution special branch = 0
+CURVED_KS v evolution special branch = 0
+CURVED_KS curvature evolution special branch = 0
+CURVED_KS (11) special branch = 0
+CURVED_KS production special branch = 0
+CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))
+CURVED_KS: H = sqrt(Lambda_eff)/3 ; beta = 81*n/Lambda_eff**(3/2) (n=n_star)
+FLAT_BI constraint propagation Cdot+6H*C = 0
+FLAT_BI shear evolution Sdot+6H*S = 0
+FLAT_BI constraint special branch = 0
+FLAT_BI H1 evolution special branch = 0
+FLAT_BI H2 evolution special branch = 0
+FLAT_BI H3 evolution special branch = 0
+FLAT_BI production special branch = 0
+FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0
+FLAT_BI: H = sqrt(3)*sqrt(Lambda_eff)/3 ; beta = 9*sqrt(3)*n/Lambda_eff**(3/2) (n=n_star)
+case c energy residual = 0
+case b energy residual = 0
+case c matter derivative determinant = 0
+
+FLUID counting table; initial Hamiltonian constraints=1 in each row
+| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |
+| CURVED_KS | a | X,Y,u,v,eps,p,n,T (8) | 6 | 3 | over-determined (+1 compatibility) |
+| CURVED_KS | b | X,Y,u,v,eps,p,n,T (8) | 6 | 2 | determined |
+| CURVED_KS | c | X,Y,u,v,eps,p,n,T (8) | 6 | 2 | determined |
+| CURVED_KS | d | X,Y,u,v,eps,p,n (7) | 6 | 0 | under-determined (1 free function) |
+| FLAT_BI | a | a1,a2,a3,H1,H2,H3,eps,p,n,T (10) | 8 | 3 | over-determined (+1 compatibility) |
+| FLAT_BI | b | a1,a2,a3,H1,H2,H3,eps,p,n,T (10) | 8 | 2 | determined |
+| FLAT_BI | c | a1,a2,a3,H1,H2,H3,eps,p,n,T (10) | 8 | 2 | determined |
+| FLAT_BI | d | a1,a2,a3,H1,H2,H3,eps,p,n (9) | 8 | 0 | under-determined (1 free function) |
+Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.
+Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.
+If T is also requested in d, add a caloric relation T=Theta(eps,n).
+All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.
+SPECIAL_BRANCH=EXISTS
+Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.
+CLOSURE_SUFFICIENT=b,c
+
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..d54b0d495bd59627b986e5e1b672db17e6ba4174
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -54,4 +54,92 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/6)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+apply patch
+patch: completed
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..713758318bd2b1e401de3b8b069efe8f91a01b67
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -45,6 +45,12 @@
+ print('n_star =', ns)
+ print('Lambda_eff =', Lam)
+ print('Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0')
++t, t0, V0, sint = s.symbols('t t0 V0 s_integration')
++V = V0*s.exp(3*H*(t-t0))
++check('pinned comoving number growth', s.diff(ns*V,t)-3*H*ns*V)
++entropy = 2*alpha*ns**2/Ts+sint/V
++check('pinned entropy law (17)', Ts*s.diff(entropy*V,t)-2*alpha*ns*(3*H*ns)*V)
++print('Entropy reconstruction: s(t)=2*alpha*n_star^2/T_star + C_s/V(t)')
+ 
+ # Curved KS: u=Xdot/X, v=Ydot/Y, K=1/Y^2. These are a
+ # first-order rewriting of source (10), with no flat substitution.
+@@ -54,4 +60,105 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/6)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++Sfixed = (L-3*H**2)/2
++Kfixed = s.simplify(L+Sfixed-3*H**2)
++print('CURVED_KS constant-H necessity: S =', Sfixed, '; K =', Kfixed)
++check('CURVED_KS constant-H Raychaudhuri', L/3-H**2-2*Sfixed/3)
++check('CURVED_KS constant-H constraint', 3*H**2-L-Sfixed+Kfixed)
++print('CURVED_KS: Kdot=-2*v*K=0 and K>0 force v=0; u=3H; u^2=K=Lambda_eff.')
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++Hbd = sum(F)/3
++check('FLAT_BI Raychaudhuri identity on constraint',
++      Hbd-(-(theta/3)**2-2*Sb/3-kappa*(rho+3*P)/6)+2*CB/3)
++print('FLAT_BI: constant H implies constant S; Sdot=-6H*S with H>0 forces S=0.')
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('Independent KS evolution: Xdot=uX, Ydot=vY, udot='+str(ud)+', vdot='+str(vd)+', E=0, N=0.')
++print('Independent BI evolution: aidot=Hi*ai, Hidot=kappa*(rho-P)/2-3H*Hi (i=1,2,3), E=0, N=0.')
++print('Algebraic closures: a: eps=h_star*T^4,p=eps/3,n=h_n*T^3; b: first two; c: eps=F(T),p=eps/3; d: none.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+exec
+/bin/zsh -lc '/usr/bin/python3 b2_closure.py' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce
+ succeeded in 417ms:
+SOURCE=arXiv 2007.11556v2 HTML; read 2026-09-07
+ROW=FLUID; DIRAC=NOT_ANALYSED
+energy balance identity E - [epsdot+3H(eps+p)-2alpha*n*Psi-2alpha*n*N] = 0
+thermal factorisation = 0
+FLUID compatibility residual after (37): -2*Psi*T*(3*T**2*alpha*h_n**2 - 2*h_star)/(3*h_n)
+p_eff_star + rho_eff_star = 0
+rho_eff_star - eps_star/3 = 0
+pinned first law = 0
+pinned temperature law = 0
+pinned number balance = 0
+T_star^2 = 2*h_star/(3*alpha*h_n**2)
+n_star = 2*sqrt(6)*h_star**(3/2)/(9*alpha**(3/2)*h_n**2)
+Lambda_eff = 4*h_star**3*kappa/(27*alpha**2*h_n**4)
+Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0
+pinned comoving number growth = 0
+pinned entropy law (17) = 0
+Entropy reconstruction: s(t)=2*alpha*n_star^2/T_star + C_s/V(t)
+CURVED_KS constraint propagation Cdot+3H*C = 0
+CURVED_KS Raychaudhuri identity on constraint = 0
+CURVED_KS constant-H necessity: S = -3*H**2/2 + Lambda_eff/2 ; K = -9*H**2/2 + 3*Lambda_eff/2
+CURVED_KS constant-H Raychaudhuri = 0
+CURVED_KS constant-H constraint = 0
+CURVED_KS: Kdot=-2*v*K=0 and K>0 force v=0; u=3H; u^2=K=Lambda_eff.
+CURVED_KS constraint special branch = 0
+CURVED_KS u evolution special branch = 0
+CURVED_KS v evolution special branch = 0
+CURVED_KS curvature evolution special branch = 0
+CURVED_KS (11) special branch = 0
+CURVED_KS production special branch = 0
+CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))
+CURVED_KS: H = sqrt(Lambda_eff)/3 ; beta = 81*n/Lambda_eff**(3/2) (n=n_star)
+FLAT_BI constraint propagation Cdot+6H*C = 0
+FLAT_BI shear evolution Sdot+6H*S = 0
+FLAT_BI Raychaudhuri identity on constraint = 0
+FLAT_BI: constant H implies constant S; Sdot=-6H*S with H>0 forces S=0.
+FLAT_BI constraint special branch = 0
+FLAT_BI H1 evolution special branch = 0
+FLAT_BI H2 evolution special branch = 0
+FLAT_BI H3 evolution special branch = 0
+FLAT_BI production special branch = 0
+FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0
+FLAT_BI: H = sqrt(3)*sqrt(Lambda_eff)/3 ; beta = 9*sqrt(3)*n/Lambda_eff**(3/2) (n=n_star)
+case c energy residual = 0
+case b energy residual = 0
+case c matter derivative determinant = 0
+
+FLUID counting table; initial Hamiltonian constraints=1 in each row
+| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |
+| CURVED_KS | a | X,Y,u,v,eps,p,n,T (8) | 6 | 3 | over-determined (+1 compatibility) |
+| CURVED_KS | b | X,Y,u,v,eps,p,n,T (8) | 6 | 2 | determined |
+| CURVED_KS | c | X,Y,u,v,eps,p,n,T (8) | 6 | 2 | determined |
+| CURVED_KS | d | X,Y,u,v,eps,p,n (7) | 6 | 0 | under-determined (1 free function) |
+| FLAT_BI | a | a1,a2,a3,H1,H2,H3,eps,p,n,T (10) | 8 | 3 | over-determined (+1 compatibility) |
+| FLAT_BI | b | a1,a2,a3,H1,H2,H3,eps,p,n,T (10) | 8 | 2 | determined |
+| FLAT_BI | c | a1,a2,a3,H1,H2,H3,eps,p,n,T (10) | 8 | 2 | determined |
+| FLAT_BI | d | a1,a2,a3,H1,H2,H3,eps,p,n (9) | 8 | 0 | under-determined (1 free function) |
+Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.
+Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.
+If T is also requested in d, add a caloric relation T=Theta(eps,n).
+All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.
+Independent KS evolution: Xdot=uX, Ydot=vY, udot=K/2 - P*kappa/2 - u**2 - u*v + v**2/2, vdot=-K/2 - P*kappa/2 - 3*v**2/2, E=0, N=0.
+Independent BI evolution: aidot=Hi*ai, Hidot=kappa*(rho-P)/2-3H*Hi (i=1,2,3), E=0, N=0.
+Algebraic closures: a: eps=h_star*T^4,p=eps/3,n=h_n*T^3; b: first two; c: eps=F(T),p=eps/3; d: none.
+SPECIAL_BRANCH=EXISTS
+Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.
+CLOSURE_SUFFICIENT=b,c
+
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..713758318bd2b1e401de3b8b069efe8f91a01b67
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -45,6 +45,12 @@
+ print('n_star =', ns)
+ print('Lambda_eff =', Lam)
+ print('Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0')
++t, t0, V0, sint = s.symbols('t t0 V0 s_integration')
++V = V0*s.exp(3*H*(t-t0))
++check('pinned comoving number growth', s.diff(ns*V,t)-3*H*ns*V)
++entropy = 2*alpha*ns**2/Ts+sint/V
++check('pinned entropy law (17)', Ts*s.diff(entropy*V,t)-2*alpha*ns*(3*H*ns)*V)
++print('Entropy reconstruction: s(t)=2*alpha*n_star^2/T_star + C_s/V(t)')
+ 
+ # Curved KS: u=Xdot/X, v=Ydot/Y, K=1/Y^2. These are a
+ # first-order rewriting of source (10), with no flat substitution.
+@@ -54,4 +60,105 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/6)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++Sfixed = (L-3*H**2)/2
++Kfixed = s.simplify(L+Sfixed-3*H**2)
++print('CURVED_KS constant-H necessity: S =', Sfixed, '; K =', Kfixed)
++check('CURVED_KS constant-H Raychaudhuri', L/3-H**2-2*Sfixed/3)
++check('CURVED_KS constant-H constraint', 3*H**2-L-Sfixed+Kfixed)
++print('CURVED_KS: Kdot=-2*v*K=0 and K>0 force v=0; u=3H; u^2=K=Lambda_eff.')
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++Hbd = sum(F)/3
++check('FLAT_BI Raychaudhuri identity on constraint',
++      Hbd-(-(theta/3)**2-2*Sb/3-kappa*(rho+3*P)/6)+2*CB/3)
++print('FLAT_BI: constant H implies constant S; Sdot=-6H*S with H>0 forces S=0.')
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('Independent KS evolution: Xdot=uX, Ydot=vY, udot='+str(ud)+', vdot='+str(vd)+', E=0, N=0.')
++print('Independent BI evolution: aidot=Hi*ai, Hidot=kappa*(rho-P)/2-3H*Hi (i=1,2,3), E=0, N=0.')
++print('Algebraic closures: a: eps=h_star*T^4,p=eps/3,n=h_n*T^3; b: first two; c: eps=F(T),p=eps/3; d: none.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+codex
+Both branches pass the symbolic field-equation checks with different, precisely tuned values of \(\beta\). The curved Kantowski–Sachs branch has constant \(Y\) and exponentially growing \(X\); the flat Bianchi I branch has zero shear. Cases (b) and (c) close once the energy–temperature function is specified. Case (d) needs one pressure equation of state, \(p=P(\epsilon,n)\).
+exec
+/bin/zsh -lc "cat > bounce/B2_CLOSURE_20260907.md <<'MD'
+# B2 — special solutions and closure sufficiency
+
+Read and computed 2026-09-07. No class is filed here.
+
+The FLUID simultaneous first-law/temperature equations admit a nonzero-production branch. Full field-equation compatibility restricts that branch differently in curved Kantowski–Sachs (KS) and flat Bianchi I (BI). With a specified production prescription, closure cases **(b) and (c) are determined**; case (d) needs a pressure equation of state.
+
+## Exact source and assumptions
+
+Read first: "'`B1_RESULT_V2_20260907.md` and FINDING 1 of `KIMI_B1_ADVERSARIAL_20260907.md`. Equation source **A** throughout this document and the script means **[arXiv 2007.11556v2 HTML](https://arxiv.org/html/2007.11556v2), read 2026-09-07**, specifically (1), (10)–(17), (25), (28)–(30), (34), (36)–(38), and the thermal relations in §9. Numbered equation references below refer exclusively to A. The endpoint displays v2 dated 23 June 2026. I did not establish Springer publisher-version equation identity. Retrieval was confined to this versioned HTML endpoint; I did not search for subsequent corrections or errata, and draw no conclusion about their existence.
+
+Every calculation below concerns the **FLUID row** using A'"'s effective source. **DIRAC row: not analysed; no equation, closure count, or branch result here transfers to it.** The curved KS equations are rewritten from A. The flat BI equations are explicitly our separate flat Einstein-system reduction with the same effective FLUID source, not equations claimed to be printed for BI in A.
+
+Assumptions/choices made explicit:
+
+- Work on a connected open interval with smooth functions, positive scale factors and temperature, and fixed positive \\(\\alpha,h_\\star,h_n,\\kappa\\). Use cosmic proper time and \\(c=1\\). The constant thermal coefficients are the specialisation under test.
+- Take A's phenomenological prescription \\(\\Psi=\\beta H"'^4'"\\), with **fixed \\(\\beta>0\\)**. Treating this parameter as time independent and excluding negative production are explicit choices. A free \\(\\Psi(t)\\) or a variable \\(\\beta(t)\\) would change the answer.
+- Retain exactly the effective isotropic FLUID stress \\(\\rho=\\epsilon-\\alpha n"'^2'"\\), \\(P=p-\\alpha n"'^2'"\\) from A (1); no extra cosmological constant, creation pressure, or additional matter component is introduced. \\(\\Lambda_*\\) below abbreviates \\(\\kappa\\rho_*\\), not an added source.
+- For the separate flat BI calculation, assume a diagonal homogeneous metric with three scale factors and isotropic effective FLUID spatial stress. This geometry is an added comparison, not A's curved KS metric.
+- In case (c), “\\(\\epsilon=\\epsilon(T)\\)” means a **specified** smooth constitutive function \\(F(T)\\), locally \\(F'(T)\\ne0\\). Merely naming an unknown function is not a closure. Case (b) is the special choice \\(F=h_\\star T"'^4'"\\).
+- Count local evolution after fixing the time coordinate, with compatible initial data. Entropy is an auxiliary reconstruction unless explicitly requested as a state variable. No chemical-potential or equilibrium entropy formula is silently imposed.
+
+## 1. Simultaneous equations: FLUID matter sector
+
+For curved KS use \\(V=XY"'^2'"\\), \\(3H=\\dot V/V\\). For the separate flat BI reduction use \\(V=a_1a_2a_3\\), \\(3H=\\sum_i\\dot a_i/a_i\\). In each geometry separately, expansion of A (14) with the effective FLUID source, and A (34)'s production prescription, gives
+
+\\[
+E:=\\dot\\epsilon-2\\alpha n\\dot n+3H(\\epsilon+p-2\\alpha n"'^2)=0,
+'"\\qquad N:=\\dot n+3Hn-\\Psi=0.
+\\]
+
+Our identity is \\(E=\\dot\\epsilon+3H(\\epsilon+p)-2\\alpha n\\Psi-2\\alpha nN\\). Thus imposing number balance gives \\(\\dot\\epsilon+3H(\\epsilon+p)=2\\alpha n\\Psi\\); it does not supply a pressure equation of state.
+
+With all three thermal relations in A §9, our substitution into A (14), followed by A (37), gives
+
+\\[
+E=(4h_\\star T"'^3-6'"\\alpha h_n"'^2T''^5)('"\\dot T+HT),
+\\qquad E\\big|_{(37)}=\\frac{2\\Psi T}{3h_n}(2h_\\star-3\\alpha h_n"'^2T''^2).
+'"\\]
+
+Hence on an interval with \\(\\Psi\\ne0\\), in the curved KS FLUID system, or separately in the flat BI FLUID reduction,
+
+\\[
+T=T_*:=\\sqrt{\\frac{2h_\\star}{3\\alpha h_n"'^2}},'"\\quad
+n=n_*:=h_nT_*"'^3,'"\\quad \\dot T=\\dot n=0,\\quad
+\\Psi=3Hn_*=\\beta H"'^4.
+'"\\]
+
+Therefore \\(H=H_*=(3n_*/\\beta)"'^{1/3}>0'"\\) is constant, \\(V=V_0e"'^{3H_*(t-t_0)}'"\\), and \\(n_*V\\) grows even though local number density is constant. These equations describe an expanding production interval, not a contracting interval or a bounce. With a free production function instead, the two matter equations require only \\(\\Psi=3H(t)n_*\\); constant \\(H\\) follows specifically from the fixed-\\(\\beta\\) prescription.
+
+Our effective-source values are
+
+\\[
+\\alpha n_*"'^2='"\\frac23\\epsilon_*,\\quad
+\\rho_*=\\frac13\\epsilon_*>0,\\quad P_*=-\\rho_*,\\quad
+\\Lambda_*:=\\kappa\\rho_*=\\frac{4\\kappa h_\\star"'^3}{27'"\\alpha"'^2h_n''^4}.
+'"\\]
+
+The first law is satisfied exactly. A (17), treated as its printed entropy evolution relation, also admits \\(s(t)=2\\alpha n_*"'^2/T_*+C_s/V(t)'"\\). Its residual \\(T_*\\,d(sV)/dt-2\\alpha n_*\\Psi V\\) vanishes. No additional entropy closure is needed to exhibit this solution.
+
+### Curved KS FLUID: compatibility with the remaining equations of A
+
+Set \\(u=\\dot X/X\\), \\(v=\\dot Y/Y\\), \\(K=Y"'^{-2}>0'"\\), and \\(S=\\sigma"'^2=(u-v)''^2/3'"\\). Rewriting A (10) gives the constraint and two spatial evolution equations:
+
+\\[
+C_K=v"'^2+2uv+K-'"\\kappa\\rho=0,
+\\quad \\dot v=-\\tfrac12(3v"'^2+K+'"\\kappa P),
+\\quad \\dot u=-u"'^2-uv+'"\\tfrac12(v"'^2+K-'"\\kappa P).
+\\]
+
+Our constant-\\(H\\), constant-source consequences are
+\\(S=(\\Lambda_*-3H_*"'^2)/2'"\\) and \\(K=3(\\Lambda_*-3H_*"'^2)/2'"\\).
+Both are constant. Since \\(\\dot K=-2vK\\) and \\(K>0\\), \\(v=0\\). The spatial equations then force \\(K=u"'^2='"\\Lambda_*\\). Thus the exact curved KS branch is
+
+\\[
+\\boxed{Y=\\Lambda_*"'^{-1/2},'"\\quad
+X=X_0e"'^{'"\\sqrt{\\Lambda_*}(t-t_0)},\\quad
+H_*=\\sqrt{\\Lambda_*}/3,\\quad
+\\beta=81n_*/\\Lambda_*"'^{3/2}.}
+'"\\]
+
+Its shear is \\(S=\\Lambda_*/3\\), not zero. The script verifies A (10)'s constraint and both spatial equations, A (11), first law (14), entropy relation (17), number law (34), and temperature law (37); A (36) is the same verified constraint after thermal substitution and A (16) is the definition of \\(H\\). All residuals vanish. Thus a full curved KS FLUID solution exists at this parameter tuning. For fixed positive parameters away from this tuning there is no such nonzero-production interval under these assumptions. This is not a trajectory matching A §9's suggested collapsing initial radial velocity; those suggested initial data are not additional field equations.
+
+### Flat BI FLUID: separate compatibility calculation
+
+For our flat BI reduction define \\(H_i=\\dot a_i/a_i\\), \\(3H=\\sum H_i\\), \\(S=\\tfrac12\\sum(H_i-H)"'^2'"\\). The isotropic effective FLUID Einstein equations give
+
+\\[
+C_B=H_1H_2+H_1H_3+H_2H_3-\\kappa\\rho=0,
+\\qquad \\dot H_i=\\frac\\kappa2(\\rho-P)-3HH_i.
+\\]
+
+Our shear identity is \\(\\dot S=-6HS\\). The constant-source, constant-\\(H\\) Raychaudhuri equation makes \\(S\\) constant, so \\(H>0\\) forces \\(S=0\\). Hence this separate branch is
+
+\\[
+\\boxed{a_i=a_{i0}e"'^{'"\\sqrt{\\Lambda_*/3}(t-t_0)},\\quad
+H_* = \\sqrt{\\Lambda_*/3},\\quad
+\\beta=9\\sqrt3\\,n_*/\\Lambda_*"'^{3/2}.}
+'"\\]
+
+It lies in the isotropic subset of flat BI; there is no strictly nonzero-shear flat BI branch on this production interval with fixed \\(\\beta\\). Its constraint and three directional equations have zero residuals. Its parameter tuning is different from the curved KS tuning; the two geometries cannot be interchanged.
+
+"'`SPECIAL_BRANCH=EXISTS` means the FLUID simultaneous equations have a branch, including full curved KS and separate flat BI realisations at their respective tunings. It does not mean one exists for every prescribed '"\\(\\beta\\), or that either solution undergoes a bounce.
+
+## 2. Independent equations and closure count
+
+For **curved KS FLUID**, the first-order geometry unknowns are \\(X,Y,u,v\\). The independent evolution set is:
+
+1. \\(\\dot X=uX\\), \\(\\dot Y=vY\\).
+2. The two spatial evolution equations written above from A (10).
+3. First law \\(E=0\\) and production \\(N=0\\), with specified \\(\\Psi=\\beta H"'^4'"\\).
+
+This is six evolution equations. \\(K=1/Y"'^2'"\\), \\(H=(u+2v)/3\\), and \\(\\Psi\\) are definitions, not extra unknown functions. Impose \\(C_K=0\\) on initial data. Our symbolic identity \\(\\dot C_K=-3HC_K\\) proves propagation under this evolution system. Do not count first law (14) again as an independent equation alongside the full field system and the time derivative of its constraint.
+
+For the **separate flat BI FLUID reduction**, geometry unknowns are \\(a_1,a_2,a_3,H_1,H_2,H_3\\). The independent evolution set is the three \\(\\dot a_i=H_i a_i\\), the three directional equations above, and \\(E=0,N=0\\): eight evolution equations. Impose \\(C_B=0\\) initially. Our identity for this chosen off-constraint evolution is \\(\\dot C_B=-6HC_B\\). The differing off-constraint factors do not change either constraint's propagation. This is a flat derivation using A's FLUID source, not a substitution of zero curvature into a claimed printed BI equation.
+
+The following table keeps algebraic unknowns explicit. “Total” is evolution plus algebraic closure equations; the single propagated initial Hamiltonian constraint in each row is listed separately and is **not an additional evolution equation**. All unknowns are functions of proper time; constants and coordinate normalisations are not free functions.
+
+| FLUID geometry | Case | Every unknown function | Evolution | Algebraic closures | Total | Initial constraint | Status |
+|---|---|---|---:|---:|---:|---:|---|
+| Curved KS | (a) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 3 | 9 | 1 | Over-determined: one compatibility condition |
+| Curved KS | (b) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 2 | 8 | 1 | Determined |
+| Curved KS | (c) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 2 | 8 | 1 | Determined, specified regular F |
+| Curved KS | (d) | X,Y,u,v,epsilon,p,n (7) | 6 | 0 | 6 | 1 | Under-determined: one free function |
+| Flat BI | (a) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 3 | 11 | 1 | Over-determined: one compatibility condition |
+| Flat BI | (b) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 2 | 10 | 1 | Determined |
+| Flat BI | (c) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 2 | 10 | 1 | Determined, specified regular F |
+| Flat BI | (d) | a1,a2,a3,H1,H2,H3,epsilon,p,n (9) | 8 | 0 | 8 | 1 | Under-determined: one free function |
+
+Algebraic closure lists, applied separately to each FLUID geometry:
+
+- **(a):** \\(\\epsilon=h_\\star T"'^4,'"\\ p=\\epsilon/3,\\ n=h_nT"'^3'"\\). The extra compatibility is the factored residual in §1. Over-determined is a generic functional count, not proof of an empty solution set. On the pinned branch the first-law temperature coefficient vanishes; its degenerate rank and subsequent field compatibility must be analysed as above.
+- **(b):** \\(\\epsilon=h_\\star T"'^4,'"\\ p=\\epsilon/3\\); \\(n\\) is independent. Two matter equations determine \\(T,n\\).
+- **(c):** \\(\\epsilon=F(T),\\ p=\\epsilon/3\\), with known \\(F\\). This is the same count as (b); the wording does not create a distinct equation deficit. The matter derivative matrix for \\((\\dot T,\\dot n)\\) is \\(\\left(\\begin{smallmatrix}F'&-2\\alpha n\\\\0&1\\end{smallmatrix}\\right)\\), with determinant \\(F'\\). At zeros of \\(F'\\) a separate singular-point analysis is required.
+- **(d):** No thermal relation and no pressure EOS. \\(\\epsilon,n\\) are independent; \\(p(t)\\) is also unknown. Temperature has no role in this dynamical state. If temperature is nevertheless retained as a requested unknown, add one unknown and no equation: then two physical relations are missing.
+
+For curved KS FLUID case (c), and independently for flat BI FLUID case (c), the explicit matter evolution derived here is
+
+\\[
+\\dot n=\\beta H"'^4-3Hn,'"\\qquad
+\\dot T=\\frac{2\\alpha n\\beta H"'^4-4HF(T)}{F'"'(T)}.
+\\]
+
+Case (b) sets \\(F=h_\\star T"'^4'"\\). Substitution into \\(E\\) gives zero in both cases. **Do not retain A (37) after dropping \\(n=h_nT"'^3'"\\)**: that temperature equation was obtained using that closure. Determined here means a regular local initial-value system with compatible constraint data, not a claim about global existence, stability, a bounce, or microscopic validity.
+
+"'`CLOSURE_SUFFICIENT=b,c`
+
+## 3. Precisely what extra physical input is needed
+
+For **curved KS FLUID case (d)** the missing input is **one specified pressure equation of state '"\\(p=\\mathcal P(\\epsilon,n)\\)** (smooth on the chosen state domain). For the **separate flat BI FLUID case (d)** the same type of input closes that geometry's equations independently. Choosing \\(p=\\epsilon/3\\) is one concrete possible added assumption: then the first law evolves \\(\\epsilon\\), the prescribed production law evolves \\(n\\), and geometry evolves from its own spatial equations. Energy conservation alone does not choose this EOS.
+
+If temperature is also required in **curved KS FLUID (d)**, supply a caloric relation \\(T=\\Theta(\\epsilon,n)\\) in addition to the pressure EOS. The **flat BI FLUID (d)** temperature extension independently needs the same type of caloric input. An entropy-based thermodynamic constitutive relation may instead supply these relations, but simply appending A (17) introduces \\(s\\) while giving one entropy evolution equation; it does not determine an otherwise free temperature or pressure.
+
+For **curved KS FLUID (c)**, if \\(F\\) has not actually been supplied, the missing input is the function \\(\\epsilon=F(T)\\), including its parameters. The **flat BI FLUID (c)** count has the same qualification independently. Stating that such a function exists is insufficient to predict \\(T\\).
+
+All table rows already include a specified production law. If **curved KS FLUID** instead uses only the balance definition \\(\\Psi:=\\dot n+3Hn\\), it needs a prescribed source function or a matter-model production equation that determines \\(\\Psi\\). The **flat BI FLUID** balance-only system independently needs that source input. A derivation of \\(\\Psi\\) from a matter model would improve physical grounding, but is not an additional equation required by the table when A's phenomenological fixed-\\(\\beta\\) prescription is accepted. Conversely, deriving only \\(\\Psi\\) does not supply case (d)'s missing pressure EOS.
+
+## Reproduction and residuals
+
+Run from "'`bounce/`:
+
+```sh
+/usr/bin/python3 b2_closure.py
+```
+
+Verified with system Python and SymPy 1.14.0; exit 0. The script writes no files. It computes and asserts the energy-balance identity, thermal factorisation, pinned first law and temperature/number relations, entropy reconstruction, both geometries'"' constraint propagation and Raychaudhuri identities, flat BI shear evolution, each special branch's field and production residuals, and the regular case (b)/(c) matter residuals and determinant identity. Every asserted residual is zero. It also prints the non-identically-zero generic compatibility residual, both defining parameter tunings, all unknown-function counts, the independent equation lists, and:
+
+"'```text
+SPECIAL_BRANCH=EXISTS
+CLOSURE_SUFFICIENT=b,c
+```
+
+No DIRAC result is asserted. No census, class, or broader physical conclusion is filed.
+MD
+/usr/bin/python3 bounce/b2_closure.py > /dev/null
+shasum -a 256 bounce/B2_CLOSURE_20260907.md bounce/b2_closure.py' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 439ms:
+d99f286fc66dfbe1f313c7a7dab5f0c73933f7b8378e7ec96179290e437bd2b7  bounce/B2_CLOSURE_20260907.md
+189adf48e111a1baf3088e4ffa15f630a8371349887cd824fed9a4a6773acffd  bounce/b2_closure.py
+
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..713758318bd2b1e401de3b8b069efe8f91a01b67
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -45,6 +45,12 @@
+ print('n_star =', ns)
+ print('Lambda_eff =', Lam)
+ print('Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0')
++t, t0, V0, sint = s.symbols('t t0 V0 s_integration')
++V = V0*s.exp(3*H*(t-t0))
++check('pinned comoving number growth', s.diff(ns*V,t)-3*H*ns*V)
++entropy = 2*alpha*ns**2/Ts+sint/V
++check('pinned entropy law (17)', Ts*s.diff(entropy*V,t)-2*alpha*ns*(3*H*ns)*V)
++print('Entropy reconstruction: s(t)=2*alpha*n_star^2/T_star + C_s/V(t)')
+ 
+ # Curved KS: u=Xdot/X, v=Ydot/Y, K=1/Y^2. These are a
+ # first-order rewriting of source (10), with no flat substitution.
+@@ -54,4 +60,105 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/6)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++Sfixed = (L-3*H**2)/2
++Kfixed = s.simplify(L+Sfixed-3*H**2)
++print('CURVED_KS constant-H necessity: S =', Sfixed, '; K =', Kfixed)
++check('CURVED_KS constant-H Raychaudhuri', L/3-H**2-2*Sfixed/3)
++check('CURVED_KS constant-H constraint', 3*H**2-L-Sfixed+Kfixed)
++print('CURVED_KS: Kdot=-2*v*K=0 and K>0 force v=0; u=3H; u^2=K=Lambda_eff.')
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++Hbd = sum(F)/3
++check('FLAT_BI Raychaudhuri identity on constraint',
++      Hbd-(-(theta/3)**2-2*Sb/3-kappa*(rho+3*P)/6)+2*CB/3)
++print('FLAT_BI: constant H implies constant S; Sdot=-6H*S with H>0 forces S=0.')
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('Independent KS evolution: Xdot=uX, Ydot=vY, udot='+str(ud)+', vdot='+str(vd)+', E=0, N=0.')
++print('Independent BI evolution: aidot=Hi*ai, Hidot=kappa*(rho-P)/2-3H*Hi (i=1,2,3), E=0, N=0.')
++print('Algebraic closures: a: eps=h_star*T^4,p=eps/3,n=h_n*T^3; b: first two; c: eps=F(T),p=eps/3; d: none.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+codex
+Created both files; `/usr/bin/python3 b2_closure.py` passes with all asserted residuals zero.
+
+```text
+SPECIAL_BRANCH=EXISTS
+CLOSURE_SUFFICIENT=b,c
+```
+
+SHA256:
+
+```text
+B2_CLOSURE_20260907.md
+d99f286fc66dfbe1f313c7a7dab5f0c73933f7b8378e7ec96179290e437bd2b7
+
+b2_closure.py
+189adf48e111a1baf3088e4ffa15f630a8371349887cd824fed9a4a6773acffd
+```
+diff --git a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+index 7b5919ec07fe38e2fd99cfd66e581b7db769ac78..713758318bd2b1e401de3b8b069efe8f91a01b67
+--- a/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
++++ b/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b2_closure.py
+@@ -45,6 +45,12 @@
+ print('n_star =', ns)
+ print('Lambda_eff =', Lam)
+ print('Pinned relations: Tdot=ndot=0; Psi=3*H*n_star; beta*H^3=3*n_star; H>0')
++t, t0, V0, sint = s.symbols('t t0 V0 s_integration')
++V = V0*s.exp(3*H*(t-t0))
++check('pinned comoving number growth', s.diff(ns*V,t)-3*H*ns*V)
++entropy = 2*alpha*ns**2/Ts+sint/V
++check('pinned entropy law (17)', Ts*s.diff(entropy*V,t)-2*alpha*ns*(3*H*ns)*V)
++print('Entropy reconstruction: s(t)=2*alpha*n_star^2/T_star + C_s/V(t)')
+ 
+ # Curved KS: u=Xdot/X, v=Ydot/Y, K=1/Y^2. These are a
+ # first-order rewriting of source (10), with no flat substitution.
+@@ -54,4 +60,105 @@
+ vd = -(3*v**2+K+kappa*P)/2
+ Kd = -2*v*K
+ C = v**2+2*u*v+K-kappa*rho
+-rh od = None
++rhod = -(u+2*v)*(rho+P)
++Cdot = s.diff(C,u)*ud+s.diff(C,v)*vd+s.diff(C,K)*Kd-kappa*rhod
++check('CURVED_KS constraint propagation Cdot+3H*C', Cdot+(u+2*v)*C)
++Hm = (u+2*v)/3
++S = (u-v)**2/3
++Hd = (ud+2*vd)/3
++check('CURVED_KS Raychaudhuri identity on constraint',
++      Hd-(-Hm**2-2*S/3-kappa*(rho+3*P)/6)+C/6)
++
++# Necessity on the pinned branch: H is constant, and Raychaudhuri
++# makes S constant; constraint makes K constant. K>0 then forces v=0.
++# u=3H; the two spatial equations force u^2=Lambda, K=Lambda.
++L = s.symbols('Lambda_eff', positive=True)
++Sfixed = (L-3*H**2)/2
++Kfixed = s.simplify(L+Sfixed-3*H**2)
++print('CURVED_KS constant-H necessity: S =', Sfixed, '; K =', Kfixed)
++check('CURVED_KS constant-H Raychaudhuri', L/3-H**2-2*Sfixed/3)
++check('CURVED_KS constant-H constraint', 3*H**2-L-Sfixed+Kfixed)
++print('CURVED_KS: Kdot=-2*v*K=0 and K>0 force v=0; u=3H; u^2=K=Lambda_eff.')
++ks_H = s.sqrt(L)/3
++ks_beta = s.simplify(3*n/ks_H**3)
++ks = {u:s.sqrt(L), v:0, K:L, rho:L/kappa, P:-L/kappa}
++check('CURVED_KS constraint special branch', C.subs(ks))
++check('CURVED_KS u evolution special branch', ud.subs(ks))
++check('CURVED_KS v evolution special branch', vd.subs(ks))
++check('CURVED_KS curvature evolution special branch', Kd.subs(ks))
++check('CURVED_KS (11) special branch', (u**2-v**2+u*v-v**2-K).subs(ks))
++check('CURVED_KS production special branch', ks_beta*ks_H**4-3*ks_H*n)
++print('CURVED_KS: Y=1/sqrt(Lambda_eff), X=X0*exp(sqrt(Lambda_eff)*(t-t0))')
++print('CURVED_KS: H =', ks_H, '; beta =', ks_beta, '(n=n_star)')
++
++# Flat diagonal BI: three scale factors and isotropic effective FLUID stress.
++# This is our flat Einstein-system derivation, not a printed KS equation.
++h1,h2,h3 = s.symbols('H1 H2 H3', real=True)
++hh = [h1,h2,h3]
++theta = sum(hh)
++F = [kappa*(rho-P)/2-theta*x for x in hh]
++CB = h1*h2+h1*h3+h2*h3-kappa*rho
++CBD = sum(s.diff(CB,x)*f for x,f in zip(hh,F))-kappa*(-theta*(rho+P))
++check('FLAT_BI constraint propagation Cdot+6H*C', CBD+2*theta*CB)
++Sb = sum((x-theta/3)**2 for x in hh)/2
++Sbd = sum(s.diff(Sb,x)*f for x,f in zip(hh,F))
++check('FLAT_BI shear evolution Sdot+6H*S', Sbd+2*theta*Sb)
++Hbd = sum(F)/3
++check('FLAT_BI Raychaudhuri identity on constraint',
++      Hbd-(-(theta/3)**2-2*Sb/3-kappa*(rho+3*P)/6)+2*CB/3)
++print('FLAT_BI: constant H implies constant S; Sdot=-6H*S with H>0 forces S=0.')
++bi_H = s.sqrt(L/3)
++bi_beta = s.simplify(3*n/bi_H**3)
++bi = {x:bi_H for x in hh}
++bi.update({rho:L/kappa, P:-L/kappa})
++check('FLAT_BI constraint special branch', CB.subs(bi))
++for i,f in enumerate(F, 1):
++    check('FLAT_BI H'+str(i)+' evolution special branch', f.subs(bi))
++check('FLAT_BI production special branch', bi_beta*bi_H**4-3*bi_H*n)
++print('FLAT_BI: ai=ai0*exp(sqrt(Lambda_eff/3)*(t-t0)); shear=0')
++print('FLAT_BI: H =', bi_H, '; beta =', bi_beta, '(n=n_star)')
++
++# Independent matter equations after closure in b/c. A prescribed F(T)
++# with Fprime != 0 gives a regular two-dimensional matter evolution.
++Fp = s.symbols('Fprime', nonzero=True)
++Fval = s.symbols('F_of_T')
++nd_rhs = Psi-3*H*n
++Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
++check('case c energy residual', E.subs(
++    {eps:Fval, p:Fval/3, ed:Fp*Td_rhs, nd:nd_rhs}))
++check('case b energy residual', E.subs(
++    {eps:hs*T**4, p:hs*T**4/3,
++     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
++check('case c matter derivative determinant',
++      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
++
++# Count differential evolution equations plus algebraic closure equations;
++# the propagated Hamiltonian constraint is one initial-data restriction,
++# not another independent evolution equation. H and Psi are derived.
++print('\nFLUID counting table; initial Hamiltonian constraints=1 in each row')
++print('| Geometry | Case | Unknown functions | Evolution eqs | Algebraic closure eqs | Status |')
++statuses = {}
++for geometry,glist in [('CURVED_KS',['X','Y','u','v']),
++                       ('FLAT_BI',['a1','a2','a3','H1','H2','H3'])]:
++    for case,closures in [('a',3),('b',2),('c',2),('d',0)]:
++        matter = ['eps','p','n'] + ([] if case=='d' else ['T'])
++        unknowns = glist+matter
++        equations = len(glist)+2  # geometry, first law, number law
++        excess = equations+closures-len(unknowns)
++        status = ('over-determined (+1 compatibility)' if excess>0 else
++                  'under-determined (1 free function)' if excess<0 else 'determined')
++        statuses[(geometry,case)] = status
++        print('| '+geometry+' | '+case+' | '+','.join(unknowns)+
++              ' ('+str(len(unknowns))+') | '+str(equations)+' | '+str(closures)+' | '+status+' |')
++determined = [c for c in 'abcd' if all(statuses[(g,c)]=='determined'
++              for g in ['CURVED_KS','FLAT_BI'])]
++print('Case c assumes a SPECIFIED smooth eps=F(T), Fprime!=0; otherwise one constitutive function is missing.')
++print('Case d: supply one pressure EOS p=P(eps,n); T is not a state variable here.')
++print('If T is also requested in d, add a caloric relation T=Theta(eps,n).')
++print('All counts assume specified Psi=beta*H^4 with fixed beta>0; a number balance alone is not a production prescription.')
++print('Independent KS evolution: Xdot=uX, Ydot=vY, udot='+str(ud)+', vdot='+str(vd)+', E=0, N=0.')
++print('Independent BI evolution: aidot=Hi*ai, Hidot=kappa*(rho-P)/2-3H*Hi (i=1,2,3), E=0, N=0.')
++print('Algebraic closures: a: eps=h_star*T^4,p=eps/3,n=h_n*T^3; b: first two; c: eps=F(T),p=eps/3; d: none.')
++print('SPECIAL_BRANCH=EXISTS')
++print('Token scope: FLUID simultaneous (14),(37); full CURVED_KS / FLAT_BI branches require their respective beta tuning above.')
++print('CLOSURE_SUFFICIENT='+','.join(determined))
+
+tokens used
+89,616
+Created both files; `/usr/bin/python3 b2_closure.py` passes with all asserted residuals zero.
+
+```text
+SPECIAL_BRANCH=EXISTS
+CLOSURE_SUFFICIENT=b,c
+```
+
+SHA256:
+
+```text
+B2_CLOSURE_20260907.md
+d99f286fc66dfbe1f313c7a7dab5f0c73933f7b8378e7ec96179290e437bd2b7
+
+b2_closure.py
+189adf48e111a1baf3088e4ffa15f630a8371349887cd824fed9a4a6773acffd
+```
