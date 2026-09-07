@@ -1,0 +1,9 @@
+# INPUT-DUE ONLY — the rule I will apply to C's output, written BEFORE I see it (2026-09-07 19:43 KST)
+**My brief for job `bypi12lqk` says "expand EVERY multi-file obligation into actual paths and individual digests". That is over-broad and it is my error.** The adopted A1 requires expansion **at the due stage**. At C — the INPUT freeze — only INPUT-due obligations and inputs actually read can be expanded. The five later-stage obligations (draw/beacon records, staged data, tuning evidence, the winner) **cannot exist yet**, and A1 expressly forbids pretend future digests.
+**Pre-committed reconciliation, so I am not improvising after seeing the result:**
+- If the worker expanded the INPUT-due obligations and left the later-stage ones **named with their fixed schemas and deterministic production/access rules**, that is CORRECT and complete for C — I will accept it even though my brief asked for more.
+- If it reports **INPUT-FREEZE-BLOCKED because a later-stage artefact could not be digested**, that is a **FALSE BLOCKER created by my brief**, not a real one. I will record it as such, keep the worker's output, and complete C by scoping the expansion to INPUT-due — without a duplicate worker and without a new review.
+- Under no circumstances does a legitimate future-stage absence become a reason to open data, generate a seed, designate a round, or alter the reviewed procedure. A missing thing that cannot exist yet is not a defect.
+- Existing passing verification is reused rather than re-run.
+**Why write this now:** the failure mode all day has been an over-strict check manufacturing work — and here the over-strict instruction is mine. Fixing it after seeing a blocked report would look like relaxing a gate to get a pass; fixing the rule before the output arrives makes the distinction checkable by anyone reading the record.
+The active job is preserved; no duplicate is launched; no broad re-review is opened.
