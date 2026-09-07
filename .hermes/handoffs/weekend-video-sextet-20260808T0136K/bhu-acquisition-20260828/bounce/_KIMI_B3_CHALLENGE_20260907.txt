@@ -1,0 +1,27 @@
+Adversarial referee. Attack the new claim; do not confirm it. Re-derive; run the script, do not trust its tokens.
+
+READ from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/:
+  B3_CLASS_FILED_20260907.md (the target), B3_RESCUE_20260907.md, b3_rescue.py,
+  B1_RESULT_V2_20260907.md (Amendments A and B), B2_CLOSURE_20260907.md, B1_SCOPE_QUALIFICATION_20260907.md
+
+ATTACK, hardest first:
+1. THE FINITE-BOUNCE PROOF. It claims that for EVERY alpha>0 and every fixed beta>0, in both closures, contraction must reach a
+   turning point, via an exponential lower bound on particle number. Break it. Is the bound valid for all admissible initial
+   data, or does it assume something about the initial contraction rate, the sign of H, or n0>0? Does it survive as beta->0+?
+   Is there admissible data where the integral term stays too small? A proof that silently needs beta above some threshold is
+   not the claim as filed.
+2. THE SCALING CLAIM: d ln(alpha n^2)/d ln a = -6 + 2*beta*H^3/n < -6 during contraction. Verify the sign conventions yourself
+   (H<0 in contraction, so H^3<0). Does the inequality really hold throughout, including near the turning point where H->0?
+3. CONSISTENCY WITH B1/B2. B1 says GRG's printed thermal specialisation admits no smooth bouncing solution; B3 says everything
+   bounces under closures (b) and (c). Is the reconciliation offered ("the paper's own closure is the part that fails") actually
+   right, or does it hide a contradiction - e.g. is closure (b) or (c) doing physical work that the paper's own equations
+   forbid? Check whether either closure violates any printed equation of the source.
+4. THE SINGULAR/EXCLUDED DISTINCTION. Verify that no integration failure is counted as a physical singularity, and that the
+   excluded cells are genuinely inadmissible rather than inconvenient.
+5. Anything claimed beyond the algebra, or shown by the algebra and not claimed. Check especially that no statement travels
+   between fluid/Dirac rows or between flat Bianchi I and curved KS.
+
+RULES: published peer-reviewed sources; label preprints; say whether you read a publisher page or an extraction; bind equation
+claims to the version you inspected. Report, do not repair.
+Write to bounce/KIMI_B3_CHALLENGE_20260907.md, first line exactly one of:
+B3_REVIEW=CLASS_STANDS / B3_REVIEW=CLASS_WRONG / B3_REVIEW=CLASS_UNSUPPORTED

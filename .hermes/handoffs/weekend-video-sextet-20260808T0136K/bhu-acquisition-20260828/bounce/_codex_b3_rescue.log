@@ -1,0 +1,2642 @@
+Reading additional input from stdin...
+OpenAI Codex v0.153.4
+--------
+workdir: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: none
+reasoning summaries: none
+session id: 01a07a5a-f432-71e0-9342-7a41a0765eb0
+--------
+user
+# BOUNDED CODEX TASK — B3: does particle production enlarge the bounce set? (Tori, 2026-09-07)
+
+This computes the question B1 named as decidable-but-uncomputed. It is INSIDE the existing pre-registration
+`B1_PREREG_BIANCHI_I_BOUNCE_20260907.md`: the classes `B1_PRODUCTION_RESCUES` and `B1_PRODUCTION_INSUFFICIENT` were declared
+there before any of this was computed. You do NOT file a class; you produce the map and the tokens. I file.
+
+## Read first
+`B1_RESULT_V2_20260907.md` INCLUDING Amendments A and B, `B2_CLOSURE_20260907.md`, `KIMI_B2_CHALLENGE_20260907.md`,
+`B1_SCOPE_QUALIFICATION_20260907.md`.
+
+## Boundaries
+- Write ONLY under `bounce/`. No pinned census file, no kit, no census version, no Hwao data, no new framework.
+- FLUID row only. Flat Bianchi I is the primary case; if you also run Kantowski-Sachs, keep it in a separate section and never
+  let a statement about one pass as a statement about the other.
+- Carry alpha as an INTERVAL parameter; never insert the free-gas closure value at the bounce as though controlled.
+- Run BOTH determined closures from B2 and report them separately — do not choose between them:
+  (b) drop the n-T relation: eps = h_star T^4, p = eps/3, with n sourced by its own balance;
+  (c) eps = F(T) specified with F' != 0, p = eps/3.
+  For (c) state the F you use and why it is a defensible representative, not a tuned one.
+- The production prescription Psi = beta H^4 is the paper's; state it as such. Where a result depends on that prescription
+  rather than on production per se, say so — Amendment B makes that dependence load-bearing.
+
+## Do exactly this
+1. **Well-posedness first, again.** Re-verify constraint propagation for the exact system you integrate, in each closure. Print
+   the residual. If it is non-zero, STOP and report that; do not integrate.
+2. **The scaling question, analytically before numerically.** With production, n no longer falls as a^-3, so the torsion term
+   no longer shares the shear term's a^-6 scaling. Derive how the torsion term scales under each closure, and state whether
+   production breaks the degeneracy in the direction that HELPS a bounce (torsion outrunning shear) or HURTS it. This is the
+   heart of the question; get it analytically if you can.
+3. **The map.** Integrate collapse from declared initial data and determine, over a stated grid, which data bounce and which
+   reach a singularity. Vary: initial shear fraction, initial n, and beta, across a stated range, for at least three alpha
+   values spanning the declared interval. Report the boundary of the bounce set and, crucially, whether the bounce set is
+   an OPEN region of the parameter space or remains a codimension-one threshold as it was without production.
+4. **Compare with the no-production result.** State plainly whether the bounce set is enlarged, unchanged, or shrunk, and by
+   what measure you are comparing (if you use a measure, name it and justify it; if you cannot, report the geometry of the set
+   instead and say so — the lane has explicitly disclaimed unjustified measure language).
+5. Everything in `bounce/b3_rescue.py`, runnable as `/usr/bin/python3 b3_rescue.py`, printing per-closure tokens:
+   CONSTRAINT_RESIDUAL_<closure>, TORSION_SCALING_<closure>, BOUNCE_SET_<closure>=OPEN|THRESHOLD|EMPTY, and the grid summary.
+   Deterministic; no network; no writes outside `bounce/`.
+
+## Output: `bounce/B3_RESCUE_20260907.md` and `bounce/b3_rescue.py`
+State every added assumption. Print both sha256s and all tokens as your final answer.
+codex
+I’ll read the specified results and closure challenges, verify constraint propagation for each exact system, then derive the scaling before building the deterministic map under `bounce/`.
+exec
+/bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '*B1*20260907*' -g '*B2*20260907*' -g '*b2*' -g '*b1*'" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+K4_limb2_claude.py
+b2_depth_probe_entry36.py
+_tmp_kimi_amendb2.err
+_tmp_blanc_nudge_b1_next.txt
+b25_screen_precision.py
+run_b27_list.py
+K4_limb2_codex.py
+_tmp_codex_warrant_b2.log
+b10_what_moves_entry31.py
+b27_readability_audit.py
+R3D_V31_DESIGN_OF_RECORD_aa3b1841.md
+b23_which_parameter.py
+b19_entry31_criticisms.py
+b16_entry44_tilt.py
+b18_source_level_firings.py
+render_b22.py
+_tmp_k4_limb2_codex.log
+b29_missrate_result.py
+_tmp_kimi_sub27.err
+b13_floor_routes.py
+b17_entry44_audit.py
+b26_answer_q1.py
+K4_limb2_claude.out
+b24_entry22_warrant.py
+b22_the_case_against_entry31.py
+render_b21.py
+_tmp_codex_amendb2.log
+b12_entry51_pbh_route.py
+b21_harrison_objection.py
+b14_uncited_measurement_claims.py
+_tmp_codex_sub27.log
+_tmp_codex_warrant_b1.log
+_tmp_blanc_nudge_b1_after_resolution.txt
+b11_entry51_measurement.py
+b20_rothman_ellis_read.py
+_tmp_agy_sub27A.err
+run_b1_on_all.py
+K4_limb2_codex.out
+b28_missrate_draw.py
+b1_theoretical_obstruction_tier.py
+bounce/_codex_b1_derive.log
+bounce/B1_RESULT_20260907.md
+bounce/B1_CRITERION_20260907.md
+r3c2_staged_d1d7/_review3_codex/batch_orphan/candidates_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_orphan/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_orphan/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_orphan/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_orphan/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_orphan/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_orphan/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_orphan/candidates_b1.json
+bounce/B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+bounce/b1_derive.py
+bounce/KIMI_B1_ADVERSARIAL_20260907.md
+bounce/KIMI_B2_CHALLENGE_20260907.md
+bounce/B1_RESULT_V2_20260907.md
+bounce/b2_closure.py
+bounce/_CODEX_TASK_B1_DERIVE_20260907.md
+bounce/B2_CLOSURE_20260907.md
+bounce/_codex_b1_criterion.log
+bounce/B1_SIGN_RESOLUTION_20260907.md
+bounce/B1_DERIVATION_20260907.md
+bounce/_KIMI_B1_ADVERSARIAL_20260907.txt
+bounce/b1_criterion.py
+bounce/_kimi_b1_adversarial.log
+bounce/kimi_b2_independent_check.py
+bounce/B1_SCOPE_QUALIFICATION_20260907.md
+bounce/_CODEX_TASK_B1_CRITERION_20260907.md
+bounce/_CODEX_TASK_B2_CLOSURE_20260907.md
+bounce/_codex_b2_closure.log
+bounce/_KIMI_B2_CHALLENGE_20260907.txt
+bounce/_kimi_b2_challenge.log
+_tmp_agy_sub27B.err
+b15_entry54_curvature.py
+r3c2_staged_d1d7/_review3_codex/batch_input_form/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_input_form/candidates_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_input_form/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_input_form/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_input_form/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_input_form/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_input_form/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_input_form/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_positive/candidates_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_positive/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_positive/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_positive/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_positive/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_positive/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_positive/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_positive/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_ownership/candidates_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_ownership/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_ownership/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_ownership/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_ownership/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_ownership/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_ownership/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_ownership/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_collision/candidates_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_collision/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_collision/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_collision/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_collision/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_collision/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_collision/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_collision/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/candidates_b2.json
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/candidates_b2.json
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/ledger_b1.json
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/exclusions_b2.json
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/ledger_b2.json
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/exclusions_b1.json
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review_kimi/kimi_work/out/k6seat/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_chain/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_extra/candidates_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_extra/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_extra/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_extra/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_extra/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_chain/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_extra/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_extra/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_extra/candidates_b1.json
+r3c2_staged_d1d7/_review2_codex/batch/candidates_b2.json
+r3c2_staged_d1d7/_review2_codex/batch/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review2_codex/batch/ledger_b1.json
+r3c2_staged_d1d7/_review2_codex/batch/exclusions_b2.json
+r3c2_staged_d1d7/_review2_codex/batch/ledger_b2.json
+r3c2_staged_d1d7/_review2_codex/batch/exclusions_b1.json
+r3c2_staged_d1d7/_review2_codex/batch/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review2_codex/batch/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/exclusions_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/candidates_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/exclusions_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/ledger_b2.json
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/ledger_b1.json
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_codex/batch_root_chain/candidates_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/candidates_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/ledger_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/exclusions_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/ledger_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/exclusions_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK_inputid/candidates_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/candidates_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/candidates_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/ledger_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/exclusions_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/ledger_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/ledger_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/exclusions_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/exclusions_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/ledger_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/exclusions_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK_collide/candidates_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK_orphan/candidates_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK/candidates_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK/ledger_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK/exclusions_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK/ledger_b2.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK/exclusions_b1.json
+r3c2_staged_d1d7/_review3_kimi/work/seatK/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review3_kimi/work/seatK/candidates_b1.json
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/candidates_b2.json
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/ledger_b1.json
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/exclusions_b2.json
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/ledger_b2.json
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/exclusions_b1.json
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_review_kimi/codex_yecco2mj/batches/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_collide/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_dangling/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_dangling/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_dangling/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_dangling/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_dangling/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_dangling/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_dangling/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_dangling/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_collide/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_collide/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_collide/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_collide/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_collide/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_collide/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_collide/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_orphan/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_orphan/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_orphan/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_badid/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_orphan/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_orphan/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_badid/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_orphan/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_badid/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_orphan/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_badid/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_orphan/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_noaccess/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_badid/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_noaccess/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_badid/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_noaccess/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_badid/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_noaccess/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_noaccess/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_badid/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_noaccess/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_noaccess/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_noaccess/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_inputid/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_inputid/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_inputid/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_inputid/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_tamper/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_tamper/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_tamper/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_tamper/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_tamper/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_tamper/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_tamper/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_tamper/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_inputid/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_inputid/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_inputid/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_inputid/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_scope/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_scope/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_scope/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_scope/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_scope/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_scope/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_scope/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_scope/candidates_b1.json
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/candidates_b2.json
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/SEAT_REPORT_b2.md
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/ledger_b1.json
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/exclusions_b2.json
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/ledger_b2.json
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/exclusions_b1.json
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/SEAT_REPORT_b1.md
+r3c2_staged_d1d7/_ctl/seatA_offcorpus/candidates_b1.json
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for q in [*reversed(list(p.parents)),p,p/'bounce']:
+ f=q/'AGENTS.md'
+ if f.exists(): print(str(f)+'\\n'+f.read_text())
+for name in ['B1_RESULT_V2_20260907.md','B2_CLOSURE_20260907.md','KIMI_B2_CHALLENGE_20260907.md','B1_SCOPE_QUALIFICATION_20260907.md','B1_PREREG_BIANCHI_I_BOUNCE_20260907.md']:
+ print('\\nFILE '+name+'\\n'+(p/'bounce'/name).read_text())
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+
+FILE B1_RESULT_V2_20260907.md
+# B1 — RESULT, VERSION 2 (corrected after adversarial review)
+**Tori, 2026-09-07 13:02 KST. Supersedes `B1_RESULT_20260907.md`, which stays on disk unaltered as the withdrawn version.**
+Referee: `KIMI_B1_ADVERSARIAL_20260907.md`, B1_REVIEW=CLASSES_WRONG. It was right. What follows is the corrected filing.
+
+## 0. What I withdraw, and why
+**`B1_UNDERDETERMINED` is WITHDRAWN for BOTH rows.** I filed it on the claim that an energy-transfer term J = 2Ψα n is required
+and unprinted. Both papers print it:
+- **GRG 53, 18 Eq. (14)**, the first law for the effective fluid, $d(\tilde\epsilon XY^2)/dt + \tilde p\, d(XY^2)/dt = 0$,
+  restated as the entropy law Eq. (17). Expanded with Eq. (1) it is algebraically identical to the relation I called missing.
+  The referee's machine check gives residual 0.
+- **PRD 85, 107502 Eq. (13)**, $a^3d\epsilon - 2\alpha a^3 n\,dn + (\epsilon+p)d(a^3) = 0$, which with $n\propto a^{-3}$
+  supplies exactly the $-6\alpha H n^2$ transfer that our C3_DIRAC residual reported as missing.
+**This is the second instance today of one failure**, and the worse of the two: our extraction jumped from GRG (11) to (15),
+skipping (12)–(14) and (17); and PRD (13) is printed on the very page I read myself this morning, three lines below the equation
+I went there to check. I had written the lane's method note about exactly this five hours earlier. Reading a page for one purpose
+is not reading it.
+
+## 1. Classes as they now stand
+
+**FLUID row, no particle production → `B1_DEGENERATE_FINE_TUNED` — STANDS.**
+Independently re-derived by the referee, which derived the Bianchi I shear evolution itself rather than checking ours: with the
+declared unpolarised fluid the combined source has isotropic spatial stress, so $\dot H_i + 3HH_i$ is direction-independent,
+$H_i-H_j\propto a^{-3}$ and $\sigma^2 = \Sigma^2/a^6$ exactly — torsion cannot modify the shear law within the declared model.
+Criterion $\kappa\alpha_F n_0^2 > \Sigma^2$, $a_{min}^2 = (\kappa\alpha_F n_0^2-\Sigma^2)/(\kappa\epsilon_0)$, with
+$\dot H > 0$ at the root: a genuine smooth minimum, and a comparison of constants. Holds for every $\alpha_F>0$, so across the
+whole declared interval; as $\alpha_F\to0^+$ the admissible shear window collapses, making the bounce MORE fine-tuned, never
+generic.
+
+**Novelty, corrected downward and stated plainly:** this structure is already published. The referee cites GRG's own
+introduction pointing to Kopczyński, *Phys. Lett. A* **43**, 63 (1973); Kuchowicz, *J. Phys. A* **8**, L29 (1975); Tafel,
+*Phys. Lett. A* **45**, 341 (1973) — a Bianchi I Einstein–Cartan universe avoids the singularity if torsion's effect exceeds
+shear's — and RMP 48, 393's own example (5.24) carries the same $a^{-6}$ pair. **So B1 did not discover the constant
+comparison; it corroborated it independently and added three things:** that the conclusion is α-independent in form and hence
+survives our K3 closure problem; that the correction at any such bounce is at least the entire ordinary density; and that this
+is the flat Bianchi I statement, distinct from the KS system the source actually solves, whose §7 shear law (30) is
+curvature-sourced and does grow faster than $a^{-6}$.
+
+**FLUID row, with particle production → `B1_ILL_POSED`, restricted to the paper's own thermal specialisation.**
+The defect is not a missing input but a conflict between printed equations. With GRG's constant-coefficient thermal forms
+(§9: $\epsilon=h_\star T^4$, $p=\epsilon/3$, $n=h_nT^3$), its first law (14) reduces to
+$(4h_\star T^3-6\alpha h_n^2T^5)(\dot T+HT)=0$, so on any interval with production it forces the single temperature
+$T^2 = 2h_\star/(3\alpha h_n^2)$ rather than an evolution — while the paper's own printed temperature law (37) gives
+$\dot T = -HT + \Psi/(3T^2h_n)$. GRG §9 solves {(36),(37),(11),(16)} and never re-checks (14), which it had used for the
+no-production case. **The printed system is over-determined and inconsistent on any production interval** — the pre-registered
+`B1_ILL_POSED`, filed with its obstruction stated, exactly as §4 of the pre-registration declared acceptable in advance.
+**Scope of that class, stated:** it attaches to the constant-coefficient thermal specialisation as printed. Relax that, and the
+general system {(14), (34), field equations} propagates the constraint (our own C3 algebra shows it) and the rescue question
+becomes **decidable and simply uncomputed** — which is a study, not a class, and is the obvious next one.
+
+**DIRAC row → NO CLASS FILED.** Its earlier UNDERDETERMINED is withdrawn: PRD (13) supplies the transfer, so the row is not
+inconsistent, and our C3_DIRAC=FAIL measured a system missing an equation the paper prints. Its bounce question is likewise
+decidable and uncomputed. Every Dirac-row statement in V1 that read as physical is downgraded to conditional algebra.
+
+## 2. The two scope sentences the referee quoted, corrected
+- V1 §2 said the correction exceeds the ordinary density "in both rows". **Corrected:** that is a FLUID-row physical statement.
+  The Dirac row has no dynamically attained bounce in our treatment; its root is formal only.
+- V1 said K3's threshold finding "applies a fortiori" across rows. **Corrected:** K3's 2/3 was computed at the DIRAC row's
+  turning point with $\alpha_D=9\kappa/16$. The fluid row's own ratio is ≥1 at its own bounce, which is a separate
+  computation (`C1_REEXAM_20260907.md`), not an inheritance. Both statements are true; neither travels across rows.
+- Notation nit accepted: §2's ratio uses the correction-tilde while the fluid row elsewhere uses GRG's total-tilde. The words
+  were right; the symbol is now disclosed at the point of use.
+
+## 3. What survives, in one paragraph
+For the Weyssenhoff spin fluid in flat anisotropic Bianchi I, a torsion bounce exists only when one constant exceeds another,
+both fixed by initial data, for any positive coupling — a published structure this study independently reproduced and sharpened.
+At any such bounce the spin correction is at least the whole ordinary energy density, so the mechanism operates precisely where
+the four-fermion closure that sets its strength is uncontrolled (K3 step 3, at the Dirac turning point; ≥1 at the fluid one).
+The particle production that the source invokes to escape the shear degeneracy is, in the paper's own printed thermal
+specialisation, inconsistent with the paper's own first law. **None of this proves or disproves black-hole-universe cosmology.**
+It says: this mechanism, in this class, needs chosen initial data, and its published escape route does not close as printed.
+
+---
+
+## AMENDMENT A (2026-09-07 13:32 KST) — the production sector, characterised precisely (B2)
+Codex's 13:15 check asked whether the (14)/(37) conflict really excludes ALL nonzero-production solutions. It does not, and the
+answer is sharper than the class name. Computed in `B2_CLOSURE_20260907.md` / `b2_closure.py` (re-run by me), bound to the
+version stated in `B1_SCOPE_QUALIFICATION_20260907.md`.
+
+**SPECIAL_BRANCH=EXISTS, and it carries no bounce.** Solving (14) and (37) simultaneously instead of asserting a conflict, the
+printed system admits exactly one nonzero-production branch: $\dot T=\dot n=0$ with $T$ pinned at the critical value,
+$\Psi=3Hn_\star$ (production exactly balancing dilution), and $\beta H^3=3n_\star$ — a tuned, constant-$H$ steady state, de
+Sitter-like, satisfying the constraint and all evolution equations in both curved KS and flat Bianchi I realisations at their
+respective $\beta$ tunings. **Since $H$ is constant and non-zero on that branch, it never crosses zero: the branch contains no
+turning point and therefore no bounce.**
+
+**So the corrected statement of the production result is:** in GRG's own constant-coefficient thermal specialisation the system
+is over-determined by exactly ONE compatibility condition; the only solutions satisfying it are the tuned steady state above;
+**every evolving-temperature production solution is excluded, and that includes every bouncing one.** `B1_ILL_POSED` is
+therefore narrowed, not withdrawn: it holds for the bouncing sector of the printed thermal specialisation, and the reason is a
+single compatibility condition rather than a flat contradiction.
+
+**And the closure count says where the physics has to be supplied.** With the thermal relations treated as optional closure
+choices rather than assumed (CLOSURE_SUFFICIENT=b,c):
+
+| closure retained | status |
+|---|---|
+| (a) all three constant-coefficient relations, as printed | **over-determined**, one compatibility condition |
+| (b) drop the $n$–$T$ relation | **determined** |
+| (c) $\epsilon=F(T)$ with $p=\epsilon/3$, $F'\neq0$ specified | **determined** |
+| (d) no thermal closure | **under-determined** by one free function; needs a pressure equation of state $p=P(\epsilon,n)$, plus a caloric relation $T=\Theta(\epsilon,n)$ if $T$ is wanted |
+
+**This is the useful deliverable Codex asked for: the precise extra physical input.** The rescue question — does production
+enlarge the bounce set — is *computable* under (b) or (c) and was not computed here. It is the next study, and it needs one
+constitutive choice stated up front, not a framework. Note also that the count assumes a specified $\Psi=\beta H^4$: a number
+balance alone is not a production prescription.
+
+**Thematic observation, offered as an observation and not as a further class:** the no-production bounce needs a tuned
+inequality between constants, and the only production solution the printed specialisation admits needs a tuned $\beta$. Both
+of the model's routes to avoiding the singularity, as printed, run through a tuning condition.
+
+---
+
+## AMENDMENT B (2026-09-07 14:02 KST) — after the independent challenge (`KIMI_B2_CHALLENGE_20260907.md`, B2_REVIEW=AMENDMENT_STANDS)
+The amendment survived, but three things in it were wrong or weak and are corrected here. The referee re-derived every step and
+attacked the gluing point hardest; the attempt strengthened the result rather than breaking it.
+
+**1. My justification was a non-sequitur, and the missing lemma is now stated.** I wrote that the branch carries no bounce
+because "$H$ is constant and non-zero on that branch, so it never crosses zero". Read strictly that does not answer the real
+objection: a branch with no turning point can still be *visited* by a bouncing trajectory that departs it. The correct argument,
+supplied by the referee and re-derived from the filed assumptions (smooth functions on a connected open interval, $T>0$,
+$\Psi=\beta H^4$ with fixed $\beta>0$):
+
+> Where the first-law factor is non-zero, $E=0$ gives $\dot T=-HT$, and (37) then forces $\beta H^4=0$, so $H\equiv0$ there.
+> On the interior of $\{T=T_\star\}$, (37) gives $\beta H^3=3n_\star$, so $H\equiv H_\star>0$. Hence $\{H\neq0\}$ is open and
+> $H\equiv H_\star$ on each component; a component with an interior endpoint would need $H\to H_\star\neq0$ and $H=0$ at the
+> endpoint at once. So $\{H\neq0\}$ is empty or everything. And $H\equiv0$ is impossible in both geometries — in Kantowski–Sachs
+> it forces $v=0$ and then $\dot v=-K/3\neq0$; in flat Bianchi I it forces $\epsilon=0$, i.e. $T=0$, excluded.
+
+**Therefore no solution of the printed system ever crosses $H=0$, and there is nothing to glue a bouncing solution to.** That
+is the argument the conclusion actually rests on, and it was absent from both documents until now.
+
+**2. My narrowing to "the bouncing sector" was an UNDERCLAIM, and inconsistent with my own preceding sentence.** The algebra
+excludes **every evolving interval solution** of the printed thermal specialisation at fixed $\beta>0$ — bouncing or not, the
+static case included — and at any $\beta$ off the single tuned value the printed Kantowski–Sachs system has **no smooth interval
+solutions at all**. The three loopholes I asked the referee to try are closed: production cannot switch on and off, because
+under $\Psi=\beta H^4$ it vanishes exactly where $H$ does; a non-zero-production set of measure zero must be empty, because the
+set is open; and any evolving-temperature interval forces $T=T_\star$ wherever production is non-zero. So `B1_ILL_POSED` is not
+confined to bouncing solutions: it is the printed specialisation admitting **only** the tuned steady state.
+
+**3. "Exactly one compatibility condition" is right only at function level.** After that condition is imposed, the steady state
+additionally requires a parameter-level tuning of $\beta$ — $\beta=81n_\star/\Lambda_\star^{3/2}$ in Kantowski–Sachs and
+$9\sqrt3\,n_\star/\Lambda_\star^{3/2}$ in flat Bianchi I, a ratio of $3\sqrt3$. Both were disclosed in the tuning relations
+already filed, but "exactly ONE compatibility condition" would mislead if read alone. There are two: one functional, one on the
+constants.
+
+**4. Scope, restated here rather than incorporated by reference.** The exclusion rests on smoothness AND on the fixed
+$\Psi=\beta H^4$ prescription. **With a free $\Psi(t)$, or a time-dependent $\beta$, the evolving branch $\dot T=-HT$ exists and
+a continuous gluing at a tuned instant is not excluded by the matter equations.** A reader of this file alone could otherwise
+over-read "every bouncing solution is excluded" as prescription-independent. It is not.
+
+**5. Terminology.** "de Sitter-like" is hedged but loose: the Kantowski–Sachs realisation carries constant non-zero shear and a
+constant transverse scale factor, so it is not constant-curvature de Sitter. Read it as "constant-$H$ steady state".
+
+**What the challenge did not break:** the counting (all eight rows reproduced independently, no uncounted independent equations,
+case (b) genuinely determined), and the scope qualification, which the referee found does not over-correct — the $a^{-6}$
+degeneracy supports the dynamical-unattainability statement that the qualification keeps, and licenses no measure claim that it
+wrongly disclaims.
+
+
+FILE B2_CLOSURE_20260907.md
+# B2 — special solutions and closure sufficiency
+
+Read and computed 2026-09-07. No class is filed here.
+
+The FLUID simultaneous first-law/temperature equations admit a nonzero-production branch. Full field-equation compatibility restricts that branch differently in curved Kantowski–Sachs (KS) and flat Bianchi I (BI). With a specified production prescription, closure cases **(b) and (c) are determined**; case (d) needs a pressure equation of state.
+
+## Exact source and assumptions
+
+Read first: `B1_RESULT_V2_20260907.md` and FINDING 1 of `KIMI_B1_ADVERSARIAL_20260907.md`. Equation source **A** throughout this document and the script means **[arXiv 2007.11556v2 HTML](https://arxiv.org/html/2007.11556v2), read 2026-09-07**, specifically (1), (10)–(17), (25), (28)–(30), (34), (36)–(38), and the thermal relations in §9. Numbered equation references below refer exclusively to A. The endpoint displays v2 dated 23 June 2026. I did not establish Springer publisher-version equation identity. Retrieval was confined to this versioned HTML endpoint; I did not search for subsequent corrections or errata, and draw no conclusion about their existence.
+
+Every calculation below concerns the **FLUID row** using A's effective source. **DIRAC row: not analysed; no equation, closure count, or branch result here transfers to it.** The curved KS equations are rewritten from A. The flat BI equations are explicitly our separate flat Einstein-system reduction with the same effective FLUID source, not equations claimed to be printed for BI in A.
+
+Assumptions/choices made explicit:
+
+- Work on a connected open interval with smooth functions, positive scale factors and temperature, and fixed positive \(\alpha,h_\star,h_n,\kappa\). Use cosmic proper time and \(c=1\). The constant thermal coefficients are the specialisation under test.
+- Take A's phenomenological prescription \(\Psi=\beta H^4\), with **fixed \(\beta>0\)**. Treating this parameter as time independent and excluding negative production are explicit choices. A free \(\Psi(t)\) or a variable \(\beta(t)\) would change the answer.
+- Retain exactly the effective isotropic FLUID stress \(\rho=\epsilon-\alpha n^2\), \(P=p-\alpha n^2\) from A (1); no extra cosmological constant, creation pressure, or additional matter component is introduced. \(\Lambda_*\) below abbreviates \(\kappa\rho_*\), not an added source.
+- For the separate flat BI calculation, assume a diagonal homogeneous metric with three scale factors and isotropic effective FLUID spatial stress. This geometry is an added comparison, not A's curved KS metric.
+- In case (c), “\(\epsilon=\epsilon(T)\)” means a **specified** smooth constitutive function \(F(T)\), locally \(F'(T)\ne0\). Merely naming an unknown function is not a closure. Case (b) is the special choice \(F=h_\star T^4\).
+- Count local evolution after fixing the time coordinate, with compatible initial data. Entropy is an auxiliary reconstruction unless explicitly requested as a state variable. No chemical-potential or equilibrium entropy formula is silently imposed.
+
+## 1. Simultaneous equations: FLUID matter sector
+
+For curved KS use \(V=XY^2\), \(3H=\dot V/V\). For the separate flat BI reduction use \(V=a_1a_2a_3\), \(3H=\sum_i\dot a_i/a_i\). In each geometry separately, expansion of A (14) with the effective FLUID source, and A (34)'s production prescription, gives
+
+\[
+E:=\dot\epsilon-2\alpha n\dot n+3H(\epsilon+p-2\alpha n^2)=0,
+\qquad N:=\dot n+3Hn-\Psi=0.
+\]
+
+Our identity is \(E=\dot\epsilon+3H(\epsilon+p)-2\alpha n\Psi-2\alpha nN\). Thus imposing number balance gives \(\dot\epsilon+3H(\epsilon+p)=2\alpha n\Psi\); it does not supply a pressure equation of state.
+
+With all three thermal relations in A §9, our substitution into A (14), followed by A (37), gives
+
+\[
+E=(4h_\star T^3-6\alpha h_n^2T^5)(\dot T+HT),
+\qquad E\big|_{(37)}=\frac{2\Psi T}{3h_n}(2h_\star-3\alpha h_n^2T^2).
+\]
+
+Hence on an interval with \(\Psi\ne0\), in the curved KS FLUID system, or separately in the flat BI FLUID reduction,
+
+\[
+T=T_*:=\sqrt{\frac{2h_\star}{3\alpha h_n^2}},\quad
+n=n_*:=h_nT_*^3,\quad \dot T=\dot n=0,\quad
+\Psi=3Hn_*=\beta H^4.
+\]
+
+Therefore \(H=H_*=(3n_*/\beta)^{1/3}>0\) is constant, \(V=V_0e^{3H_*(t-t_0)}\), and \(n_*V\) grows even though local number density is constant. These equations describe an expanding production interval, not a contracting interval or a bounce. With a free production function instead, the two matter equations require only \(\Psi=3H(t)n_*\); constant \(H\) follows specifically from the fixed-\(\beta\) prescription.
+
+Our effective-source values are
+
+\[
+\alpha n_*^2=\frac23\epsilon_*,\quad
+\rho_*=\frac13\epsilon_*>0,\quad P_*=-\rho_*,\quad
+\Lambda_*:=\kappa\rho_*=\frac{4\kappa h_\star^3}{27\alpha^2h_n^4}.
+\]
+
+The first law is satisfied exactly. A (17), treated as its printed entropy evolution relation, also admits \(s(t)=2\alpha n_*^2/T_*+C_s/V(t)\). Its residual \(T_*\,d(sV)/dt-2\alpha n_*\Psi V\) vanishes. No additional entropy closure is needed to exhibit this solution.
+
+### Curved KS FLUID: compatibility with the remaining equations of A
+
+Set \(u=\dot X/X\), \(v=\dot Y/Y\), \(K=Y^{-2}>0\), and \(S=\sigma^2=(u-v)^2/3\). Rewriting A (10) gives the constraint and two spatial evolution equations:
+
+\[
+C_K=v^2+2uv+K-\kappa\rho=0,
+\quad \dot v=-\tfrac12(3v^2+K+\kappa P),
+\quad \dot u=-u^2-uv+\tfrac12(v^2+K-\kappa P).
+\]
+
+Our constant-\(H\), constant-source consequences are
+\(S=(\Lambda_*-3H_*^2)/2\) and \(K=3(\Lambda_*-3H_*^2)/2\).
+Both are constant. Since \(\dot K=-2vK\) and \(K>0\), \(v=0\). The spatial equations then force \(K=u^2=\Lambda_*\). Thus the exact curved KS branch is
+
+\[
+\boxed{Y=\Lambda_*^{-1/2},\quad
+X=X_0e^{\sqrt{\Lambda_*}(t-t_0)},\quad
+H_*=\sqrt{\Lambda_*}/3,\quad
+\beta=81n_*/\Lambda_*^{3/2}.}
+\]
+
+Its shear is \(S=\Lambda_*/3\), not zero. The script verifies A (10)'s constraint and both spatial equations, A (11), first law (14), entropy relation (17), number law (34), and temperature law (37); A (36) is the same verified constraint after thermal substitution and A (16) is the definition of \(H\). All residuals vanish. Thus a full curved KS FLUID solution exists at this parameter tuning. For fixed positive parameters away from this tuning there is no such nonzero-production interval under these assumptions. This is not a trajectory matching A §9's suggested collapsing initial radial velocity; those suggested initial data are not additional field equations.
+
+### Flat BI FLUID: separate compatibility calculation
+
+For our flat BI reduction define \(H_i=\dot a_i/a_i\), \(3H=\sum H_i\), \(S=\tfrac12\sum(H_i-H)^2\). The isotropic effective FLUID Einstein equations give
+
+\[
+C_B=H_1H_2+H_1H_3+H_2H_3-\kappa\rho=0,
+\qquad \dot H_i=\frac\kappa2(\rho-P)-3HH_i.
+\]
+
+Our shear identity is \(\dot S=-6HS\). The constant-source, constant-\(H\) Raychaudhuri equation makes \(S\) constant, so \(H>0\) forces \(S=0\). Hence this separate branch is
+
+\[
+\boxed{a_i=a_{i0}e^{\sqrt{\Lambda_*/3}(t-t_0)},\quad
+H_* = \sqrt{\Lambda_*/3},\quad
+\beta=9\sqrt3\,n_*/\Lambda_*^{3/2}.}
+\]
+
+It lies in the isotropic subset of flat BI; there is no strictly nonzero-shear flat BI branch on this production interval with fixed \(\beta\). Its constraint and three directional equations have zero residuals. Its parameter tuning is different from the curved KS tuning; the two geometries cannot be interchanged.
+
+`SPECIAL_BRANCH=EXISTS` means the FLUID simultaneous equations have a branch, including full curved KS and separate flat BI realisations at their respective tunings. It does not mean one exists for every prescribed \(\beta\), or that either solution undergoes a bounce.
+
+## 2. Independent equations and closure count
+
+For **curved KS FLUID**, the first-order geometry unknowns are \(X,Y,u,v\). The independent evolution set is:
+
+1. \(\dot X=uX\), \(\dot Y=vY\).
+2. The two spatial evolution equations written above from A (10).
+3. First law \(E=0\) and production \(N=0\), with specified \(\Psi=\beta H^4\).
+
+This is six evolution equations. \(K=1/Y^2\), \(H=(u+2v)/3\), and \(\Psi\) are definitions, not extra unknown functions. Impose \(C_K=0\) on initial data. Our symbolic identity \(\dot C_K=-3HC_K\) proves propagation under this evolution system. Do not count first law (14) again as an independent equation alongside the full field system and the time derivative of its constraint.
+
+For the **separate flat BI FLUID reduction**, geometry unknowns are \(a_1,a_2,a_3,H_1,H_2,H_3\). The independent evolution set is the three \(\dot a_i=H_i a_i\), the three directional equations above, and \(E=0,N=0\): eight evolution equations. Impose \(C_B=0\) initially. Our identity for this chosen off-constraint evolution is \(\dot C_B=-6HC_B\). The differing off-constraint factors do not change either constraint's propagation. This is a flat derivation using A's FLUID source, not a substitution of zero curvature into a claimed printed BI equation.
+
+The following table keeps algebraic unknowns explicit. “Total” is evolution plus algebraic closure equations; the single propagated initial Hamiltonian constraint in each row is listed separately and is **not an additional evolution equation**. All unknowns are functions of proper time; constants and coordinate normalisations are not free functions.
+
+| FLUID geometry | Case | Every unknown function | Evolution | Algebraic closures | Total | Initial constraint | Status |
+|---|---|---|---:|---:|---:|---:|---|
+| Curved KS | (a) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 3 | 9 | 1 | Over-determined: one compatibility condition |
+| Curved KS | (b) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 2 | 8 | 1 | Determined |
+| Curved KS | (c) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 2 | 8 | 1 | Determined, specified regular F |
+| Curved KS | (d) | X,Y,u,v,epsilon,p,n (7) | 6 | 0 | 6 | 1 | Under-determined: one free function |
+| Flat BI | (a) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 3 | 11 | 1 | Over-determined: one compatibility condition |
+| Flat BI | (b) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 2 | 10 | 1 | Determined |
+| Flat BI | (c) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 2 | 10 | 1 | Determined, specified regular F |
+| Flat BI | (d) | a1,a2,a3,H1,H2,H3,epsilon,p,n (9) | 8 | 0 | 8 | 1 | Under-determined: one free function |
+
+Algebraic closure lists, applied separately to each FLUID geometry:
+
+- **(a):** \(\epsilon=h_\star T^4,\ p=\epsilon/3,\ n=h_nT^3\). The extra compatibility is the factored residual in §1. Over-determined is a generic functional count, not proof of an empty solution set. On the pinned branch the first-law temperature coefficient vanishes; its degenerate rank and subsequent field compatibility must be analysed as above.
+- **(b):** \(\epsilon=h_\star T^4,\ p=\epsilon/3\); \(n\) is independent. Two matter equations determine \(T,n\).
+- **(c):** \(\epsilon=F(T),\ p=\epsilon/3\), with known \(F\). This is the same count as (b); the wording does not create a distinct equation deficit. The matter derivative matrix for \((\dot T,\dot n)\) is \(\left(\begin{smallmatrix}F'&-2\alpha n\\0&1\end{smallmatrix}\right)\), with determinant \(F'\). At zeros of \(F'\) a separate singular-point analysis is required.
+- **(d):** No thermal relation and no pressure EOS. \(\epsilon,n\) are independent; \(p(t)\) is also unknown. Temperature has no role in this dynamical state. If temperature is nevertheless retained as a requested unknown, add one unknown and no equation: then two physical relations are missing.
+
+For curved KS FLUID case (c), and independently for flat BI FLUID case (c), the explicit matter evolution derived here is
+
+\[
+\dot n=\beta H^4-3Hn,\qquad
+\dot T=\frac{2\alpha n\beta H^4-4HF(T)}{F'(T)}.
+\]
+
+Case (b) sets \(F=h_\star T^4\). Substitution into \(E\) gives zero in both cases. **Do not retain A (37) after dropping \(n=h_nT^3\)**: that temperature equation was obtained using that closure. Determined here means a regular local initial-value system with compatible constraint data, not a claim about global existence, stability, a bounce, or microscopic validity.
+
+`CLOSURE_SUFFICIENT=b,c`
+
+## 3. Precisely what extra physical input is needed
+
+For **curved KS FLUID case (d)** the missing input is **one specified pressure equation of state \(p=\mathcal P(\epsilon,n)\)** (smooth on the chosen state domain). For the **separate flat BI FLUID case (d)** the same type of input closes that geometry's equations independently. Choosing \(p=\epsilon/3\) is one concrete possible added assumption: then the first law evolves \(\epsilon\), the prescribed production law evolves \(n\), and geometry evolves from its own spatial equations. Energy conservation alone does not choose this EOS.
+
+If temperature is also required in **curved KS FLUID (d)**, supply a caloric relation \(T=\Theta(\epsilon,n)\) in addition to the pressure EOS. The **flat BI FLUID (d)** temperature extension independently needs the same type of caloric input. An entropy-based thermodynamic constitutive relation may instead supply these relations, but simply appending A (17) introduces \(s\) while giving one entropy evolution equation; it does not determine an otherwise free temperature or pressure.
+
+For **curved KS FLUID (c)**, if \(F\) has not actually been supplied, the missing input is the function \(\epsilon=F(T)\), including its parameters. The **flat BI FLUID (c)** count has the same qualification independently. Stating that such a function exists is insufficient to predict \(T\).
+
+All table rows already include a specified production law. If **curved KS FLUID** instead uses only the balance definition \(\Psi:=\dot n+3Hn\), it needs a prescribed source function or a matter-model production equation that determines \(\Psi\). The **flat BI FLUID** balance-only system independently needs that source input. A derivation of \(\Psi\) from a matter model would improve physical grounding, but is not an additional equation required by the table when A's phenomenological fixed-\(\beta\) prescription is accepted. Conversely, deriving only \(\Psi\) does not supply case (d)'s missing pressure EOS.
+
+## Reproduction and residuals
+
+Run from `bounce/`:
+
+```sh
+/usr/bin/python3 b2_closure.py
+```
+
+Verified with system Python and SymPy 1.14.0; exit 0. The script writes no files. It computes and asserts the energy-balance identity, thermal factorisation, pinned first law and temperature/number relations, entropy reconstruction, both geometries' constraint propagation and Raychaudhuri identities, flat BI shear evolution, each special branch's field and production residuals, and the regular case (b)/(c) matter residuals and determinant identity. Every asserted residual is zero. It also prints the non-identically-zero generic compatibility residual, both defining parameter tunings, all unknown-function counts, the independent equation lists, and:
+
+```text
+SPECIAL_BRANCH=EXISTS
+CLOSURE_SUFFICIENT=b,c
+```
+
+No DIRAC result is asserted. No census, class, or broader physical conclusion is filed.
+
+
+FILE KIMI_B2_CHALLENGE_20260907.md
+B2_REVIEW=AMENDMENT_STANDS
+
+# KIMI B2 CHALLENGE — adversarial review of AMENDMENT A, B2 closure, and the scope qualification
+**Referee: Kimi (k3), 2026-09-07. Target: `B1_RESULT_V2_20260907.md` AMENDMENT A, `B2_CLOSURE_20260907.md`,
+`b2_closure.py`, `B1_SCOPE_QUALIFICATION_20260907.md`. I did not produce this algebra. I re-derived what I checked.**
+
+## 0. What I inspected and ran
+
+- Source paper: N. J. Popławski, *Gen. Relativ. Gravit.* **53**, 18 (2021) — peer-reviewed journal article.
+  Equation claims here are bound to **arXiv:2007.11556v2 HTML (v2 dated 23 Jun 2026), read by me 2026-09-07** —
+  an author-posted hosted copy self-identifying as the published version. I read that **extraction**, and separately
+  reached the **Springer publisher page** (link.springer.com/article/10.1007/s10714-021-02790-7): it confirms only the
+  metadata (journal, volume, article number, 07 Feb 2021, title, abstract); the full text is subscription-walled, so
+  **equation-level identity with the version of record is NOT established** — same binding as the filing itself.
+  Bounded errata search: none found; absence of a later correction is NOT inferred.
+- `b2_closure.py`: re-run from `bounce/` with /usr/bin/python3 + SymPy, exit 0, all residuals zero, tokens as filed.
+- My own independent script `kimi_b2_independent_check.py` (same directory, no imports from theirs): exit 0.
+  It re-derives the (14) expansion from the printed form, the factorisation, the compatibility residual, both branch
+  realisations including (11) with derivative terms, the β tunings, constraint-propagation identities with an
+  UNSUBSTITUTED ῥ (see §2), the case (b)/(c) matter systems, and the full count table.
+- Prior art cited for the no-production structure (Kopczyński PLA 43, 63 (1973); Tafel PLA 45, 341 (1973);
+  Kuchowicz J. Phys. A 8, L29 (1975); Hehl et al. RMP 48, 393 (1976)) is peer-reviewed; I did not re-read those
+  for this challenge — the attacks below are algebraic and do not rely on them.
+
+## 1. ATTACK: "The special branch carries no bounce" — the gluing question. Survives; stated reason is incomplete.
+
+I tried to break this four ways.
+
+**(a) Is H really forced constant on the branch?** Yes. On an interval with Ψ≠0: N=0 with ṅ=0 gives Ψ=3Hn_*;
+the prescription Ψ=βH⁴ then gives H(βH³−3n_*)=0. H=0 forces Ψ=0 (contradiction with production), so
+H³=3n_*/β>0 — a unique real positive root, constant because β and n_* are constants. **H=0 is excluded on the
+branch** precisely because Ψ=3Hn_* would then vanish. Re-derived (PART 1 of my script).
+
+**(b) Could a solution LEAVE or JOIN the branch at finite time, so a bouncing solution touches it?** This is the
+attack that matters, and the amendment's stated reason — "H is constant and non-zero on that branch, so it never
+crosses zero" — does **not** answer it; read strictly, that sentence is a non-sequitur against gluing (a branch with
+no turning point can still be visited by a bouncing trajectory that departs it). Neither B2 nor the amendment proves
+non-gluing. I therefore proved it myself from the filed assumptions (smooth functions on a connected open interval I,
+T>0, Ψ=βH⁴ with fixed β>0), and the attack FAILS:
+
+- On U={A(T)≠0} (open), E=0 gives Ṫ=−HT and (37) then gives βH⁴=0, so H≡0 on U.
+- On W=int{T=T_*}, (37) gives βH³=3n_*, so H≡H_*>0 on W.
+- Hence {H≠0}⊆W, is open, and H≡H_* on each component. A component with an endpoint τ interior to I would have
+  H(τ)=0 (definition of a component boundary) yet H→H_*≠0 along the component — contradicting continuity.
+  So {H≠0} is ∅ or all of I.
+- H≡0 on I is impossible in **both** geometries (PART 2): in KS, H≡0 ⇒ u=−2v, matter constant (Ṅ=0, ρ̇=−3H(ρ+P)=0),
+  and H-preservation plus the constraint force κP₀=−3v²−K/3, κρ₀=K−3v²; constancy of ρ₀,P₀ then forces v=0, after
+  which the v-equation reads v̇=−K/3≠0 since K=1/Y²>0 — contradiction. In flat BI, H≡0 ⇒ Ḣ_i=κ(ρ−P)/2=0, and
+  ρ−P=ε−p=2ε/3, so ε=0, i.e. T=0 — excluded.
+- Therefore **every smooth interval solution has H≡H_*>0 and T≡T_***: no solution ever crosses H=0, no bouncing
+  solution exists at all (in either geometry), and there is nothing to glue the branch to. Junctions would also
+  violate the smoothness the system is posed in.
+
+So the CONCLUSION is correct and in fact stronger than claimed — but the one-sentence justification in the amendment
+is insufficient as written; the non-gluing lemma is unstated in both documents. Reported, not repaired.
+
+**(c) Scope dependence.** The entire exclusion rests on smoothness and on the fixed-β prescription. With a free
+Ψ(t) that can vanish on an interval, the evolving branch Ṫ=−HT exists and a C⁰-gluing at a tuned instant (kink in Ṫ)
+is not excluded by the matter equations. B2 discloses this exactly ("A free Ψ(t) or a variable β(t) would change the
+answer"); **the amendment text does not restate it** — a reader of V2+Amendment alone could over-read "every bouncing
+one is excluded" as prescription-independent. Wording gap, not an error.
+
+**(d) Terminology nit.** "de Sitter-like": the KS realisation has constant NONZERO shear S=Λ_*/3 (disclosed in B2)
+and Y=Λ_*^{−1/2} constant; it is not constant-curvature de Sitter. Hedged with "-like"; nit only.
+
+## 2. ATTACK: the counting. Verified independently; one caveat.
+
+- **All eight table rows reproduce** (PART 6): KS 8 unknowns/6 evolution (a: excess +1; b,c: 0; d: −1 with 7 unknowns);
+  flat BI 10 unknowns/8 evolution (a: +1; b,c: 0; d: −1 with 9).
+- **Are there uncounted independent equations?** No. I checked each candidate against the printed text:
+  (11) is exactly (10)₃−(10)₂ (paper says so; verified algebraically including derivative terms);
+  (36) is the (10)₁ constraint after thermal substitution; (37) is (34) with n=h_nT³ (paper: "follows from the first
+  equation in (34)"); (38) is a rewrite of (37); (17) is (14) restated via (1). None is an independent addition.
+- **Is E=0 legitimately counted as an evolution equation?** Yes, and this was worth checking because (14) is derived
+  from (10). With ῥ left symbolic I get the exact identities (PART 4):
+  Ċ_K+3HC_K = −κ(ρ̇+3H(ρ+P)) = −κE (KS, modulo the spatial equations), and Ċ_B+6HC_B = −κE (BI).
+  So E is precisely the propagator of the constraint: without imposing E, C=0 on initial data would not propagate.
+  B2's warning not to double-count (14) alongside the field system AND the differentiated constraint is exactly right.
+- **K=1/Y², H=(u+2v)/3, Ψ=βH⁴** are definitions/specified functions, not unknowns. Correct.
+- **Case (a): exactly one compatibility condition?** At function level, yes — the excess is one, and the residual
+  −2ΨT(3αh_n²T²−2h*)/(3h_n) is a single functional condition. CAVEAT: after it is imposed (T=T_*), existence of the
+  steady state additionally requires the constant-level tuning β=81n_*/Λ_*^{3/2} (KS) or β=9√3 n_*/Λ_*^{3/2} (BI)
+  (my PART 3; ratio 3√3). That is a second, parameter-level condition — disclosed in the amendment ("βH³=3n_*",
+  "tuned β") and in B2, but "exactly ONE compatibility condition" alone would mislead if read in isolation.
+- **Case (b): does dropping n=h_nT³ leave n unsourced?** No. N=0 sources n (ṅ=βH⁴−3Hn); E sources T;
+  the derivative matrix has determinant F′=4h*T³>0; my independent residual is zero and
+  Ṫ=αβnH⁴/(2h*T³)−HT matches B2. Determined, as filed.
+
+## 3. ATTACK: the narrowing to "the bouncing sector". Loopholes closed — and the exclusion is BROADER than filed.
+
+- **Evolving-temperature solutions with Ψ≠0 only somewhere:** wherever Ψ≠0, T=T_* is forced (§1b), so no evolving
+  production interval exists. "Production switches on and off": under Ψ=βH⁴, Ψ(t)=0 ⟺ H(t)=0, and since H≡H_*>0 on
+  every solution, switching never occurs. "Ψ≠0 only on a measure-zero set": {Ψ≠0}={H≠0} is open (H continuous), so
+  measure-zero ⟺ empty; then H≡0, excluded per §1b in both geometries. All three loopholes are closed — by the
+  assumptions, which B2 states and the amendment incorporates by reference but does not restate.
+- **The narrowing sentence understates the result.** The algebra excludes EVERY evolving interval solution of the
+  printed thermal specialisation at fixed β>0 — bouncing or not, static included (§1b) — and at any β off the single
+  tuned value the printed KS system has NO smooth interval solutions at all. The amendment's own sentence "the only
+  solutions satisfying it are the tuned steady state above" says this; the next sentence ("`B1_ILL_POSED` ... holds for
+  the bouncing sector") then weakens it inconsistently. The imprecision favors the filing (underclaim, not overclaim).
+
+## 4. ATTACK: does the scope qualification over-correct? No.
+
+The a⁻⁶ degeneracy supports: (i) the dynamical-unattainability statement — kept by the qualification, correctly;
+(ii) the critical surface ρ=1 being invariant and codimension-1 — a genericity-adjacent fact about the BOUNDARY, not
+about bounces; (iii) the bounce region being an OPEN subset of initial-data space — which under any smooth measure has
+positive measure, so the degeneracy does not even weakly support bounce "improbability". I find no sense in which the
+degeneracy licenses a genericity claim the qualification wrongly disclaims; if anything, (iii) reinforces the
+disclaimer's direction. Keeping the pre-registered class NAME while disclaiming the measure reading is defensible
+pre-registration hygiene.
+
+## 5. Claimed-loosely and shown-but-not-claimed
+
+- Claimed, justification incomplete in text: the no-bounce conclusion (non-sequitur re gluing; gap closable from filed
+  assumptions — §1b — but not closed in either document).
+- Claimed loosely (all disclosed nearby or in B2): "exactly ONE compatibility condition" (function-level only; the β
+  tuning is a second, parameter-level condition); "narrowed ... to the bouncing sector" (understates; §3);
+  "de Sitter-like" (KS realisation has constant nonzero shear).
+- Shown by the algebra (mine, re-derived; consistent with B2's residuals) but NOT claimed anywhere in the filing:
+  (i) no H≡0 interval can exist in either geometry under the printed thermal specialisation (KS: K>0 contradiction;
+  BI: ε=0); (ii) consequently, at fixed β>0 off the single tuned value the printed system has no interval solutions
+  at all — the paper's §9 evolutionary narrative (collapse → bounce → cycles → inflation) has no smooth solution on
+  any open interval as printed, a statement strictly stronger than "ill-posed for the bouncing sector";
+  (iii) the propagation identities Ċ_K+3HC_K=−κE and Ċ_B+6HC_B=−κE hold with UNSUBSTITUTED ῥ, i.e. the first law is
+  exactly the constraint propagator (B2 asserts propagation; the exact equivalence is not stated).
+
+## 6. Why not WRONG or UNSUPPORTED
+
+WRONG requires a false claim. I found none within the declared assumptions: branch existence, both realisations, both
+β tunings, the exclusion of evolving/bouncing production solutions, all eight count rows, and CLOSURE_SUFFICIENT=b,c
+all reproduce independently, and the script tokens match a fresh run (exit 0). UNSUPPORTED requires the algebra not to
+back the claims; it backs them — the defects are an unstated lemma (gluing), an unrestated scope dependence
+(fixed-β, smoothness), and three disclosed-or-understated wording issues. None is fatal. I attempted to break the
+amendment hardest at the gluing point and the attempt instead strengthened it.
+
+**B2_REVIEW=AMENDMENT_STANDS**
+
+
+FILE B1_SCOPE_QUALIFICATION_20260907.md
+# B1 — scope qualification: what "fine-tuned" may and may not mean here, and to which version the inconsistency is bound
+**Tori, 2026-09-07 13:17 KST. Attaches to `B1_RESULT_V2_20260907.md`. Written in response to Codex's 13:15 interpretation checks, which are correct.**
+
+## 1. The label, corrected to what the algebra supports
+The pre-registered class name is `B1_DEGENERATE_FINE_TUNED`, and a class name declared before computing cannot be renamed
+afterwards without defeating the point of declaring it. But **the class name is not the physical claim**, and the physical claim
+must be stated as what was actually shown:
+
+**What is shown.** For the Weyssenhoff fluid in flat Bianchi I without production, a bounce occurs iff
+$\kappa\alpha_F n_0^2 > \Sigma^2$; equivalently, with the dimensionless $\rho \equiv \Sigma^2/(\kappa\alpha_F n_0^2)$, iff
+$\rho < 1$. **Both terms scale as $a^{-6}$, so $\rho$ is CONSTANT along the evolution.** That is the substantive result, and
+it is a statement about the dynamics, not about probability: **the bounce condition cannot be reached dynamically. A collapsing
+region that starts on the wrong side of the threshold stays there, however far it collapses.** That is what distinguishes this
+from a condition the collapse itself could drive you into, and it is why the threshold matters.
+
+**What is NOT shown, and is now explicitly disclaimed.** A strict inequality between two initial-data constants is a conditional
+threshold. It is not, by itself, a measure of fine-tuning, improbability, or non-genericity in any technical sense. Establishing
+that would require a measure on the space of initial data $(n_0,\Sigma^2,\epsilon_0,\alpha_F)$, and **no such measure is
+defined here, nor is one obviously canonical** — the usual difficulty of measures on cosmological initial data applies in full.
+So: **wherever V2 or its summary suggests improbability, read it as the threshold statement above.** The words "not generic" are
+used in the restricted sense "not attained dynamically from data on the wrong side", and nowhere in the sense "of small measure".
+Any future claim of small measure must define the measure first and justify it, and would be a separate result.
+
+## 2. Version binding for the production-sector inconsistency
+The `B1_ILL_POSED` filing rests on GRG 53, 18's Eqs. (14), (37) and its §9 thermal forms. **The text actually inspected for
+those equations is arXiv 2007.11556v2 (the revised version that self-identifies as the published article), read by the referee
+on 2026-09-07.** The Springer publisher page is behind a cookie handshake that neither the referee nor I could pass, so
+**equation identity between arXiv v2 and the publisher version of record was NOT established for (12)–(14), (17), (36) or (37)**
+— only for the material the source worker had previously read there. The claim is therefore bound to that version, and stated as
+such wherever it appears. It is not asserted of the version of record.
+
+**On later corrections:** searches for errata found none, but those searches were bounded and several publisher endpoints
+returned 403. **Absence of a later correction is NOT inferred.** If an erratum exists that revises (14) or (37), the filing
+changes and should be revisited.
+
+## 3. Incompatibility under declared assumptions is not failure of a family of models
+The inconsistency filed is between printed equations of one paper under one declared thermal specialisation. It is not a claim
+that Einstein–Cartan bounce models generally fail, that particle production cannot rescue a bounce, or that no consistent
+production sector exists. Whether a nonzero-production branch survives the conflict is being computed now (B2) rather than
+assumed; if such a branch exists, the ill-posedness is confined to the generic branch and the filing narrows accordingly.
+
+
+FILE B1_PREREG_BIANCHI_I_BOUNCE_20260907.md
+# B1 — pre-registration: is the Einstein–Cartan bounce generic, or does it need chosen initial data?
+**Tori, 2026-09-07 10:45 KST. DRAFT — declared before any calculation is run. Nothing here is signed, ordered or run.**
+
+## 0. The question, in Duho's words and then in equations
+"Can a collapsing black hole turn into an expanding universe under varied conditions, or only with carefully chosen assumptions?"
+
+Formally: in Einstein–Cartan gravity with a spin fluid, does a collapsing anisotropic region bounce for a robust set of initial
+data, or only on a measure-small set? This is a question about GENERICITY, not about whether one tuned solution bounces — that is
+already published.
+
+## 1. Model, assumptions, published anchors
+- **S3** — Popławski, *Phys. Rev. D* **85**, 107502 (2012), APS version verified: the isotropic torsion bounce, cusp condition
+  `da/dT = 0`, spin-squared term entering as `n²`.
+- **S1** — Popławski, *Gen. Relativ. Gravit.* **53**, 18, publisher full text verified: effective density and pressure
+  `ε̃ = ε − α n_f²`, `p̃ = p − α n_f²` (Eq. 1) with `α = κ(ℏc)²/32`; Kantowski–Sachs metric (Eq. 6); field equations (9)–(11);
+  the singularity-avoidance condition printed unnumbered in §7, `−κ(ε̃ + 3p̃)/2 > 2σ²`; particle production (33)–(38).
+- **S4** — Hehl, von der Heyde, Kerlick & Nester, *Rev. Mod. Phys.* **48**, 393 (1976), APS version verified: the Einstein–Cartan
+  formalism and its shear treatment, (5.21) and (5.24).
+- **Assumptions declared:** classical Einstein–Cartan with the standard spin-fluid ansatz; ultrarelativistic matter `ε ∝ a⁻⁴`;
+  fermion number `n_f ∝ a⁻³` in the absence of production; Bianchi I (flat, anisotropic, homogeneous) — chosen because S1's own
+  geometry is Kantowski–Sachs and S1 states it is approximate and proposes, but does not supply, a replacement.
+
+## 2. What our own record forbids me to assume
+K3 step 3 (`K3S3_CHECK_SHEET_20260904.md`): at the bounce the four-fermion interaction is a **two-thirds** correction
+(`R = |ε̃|/ε = 2/3` at `T_cr`, threshold 0.1, limb A fired); the free-Dirac-gas closure is controlled only below about
+`0.32 T_cr`; "at the bounce nobody has a controlled calculation at all", and limb B (Hartree–Fock) was never written.
+**Therefore `α` is carried as an INTERVAL, not a number**, and no result may depend on the free-gas value at the bounce. Any
+conclusion states which interval it holds on.
+
+## 3. The decisive calculation, and why it is small
+In Bianchi I the mean expansion obeys `3H² = κ ε̃ + σ²` with shear `σ² = Σ²/a⁶`. With `ε = ε₀ a⁻⁴` and `n_f = n₀ a⁻³`:
+
+    3H² = κ ε₀ a⁻⁴ + (Σ² − κ α n₀²) a⁻⁶
+
+**Both the shear term and the torsion term scale as `a⁻⁶`.** So, with no production, a bounce (`H = 0` at finite `a`) requires
+
+    κ α n₀² > Σ²   —   a comparison of two CONSTANTS fixed by initial data, which the dynamics never drives either way,
+
+with `a_min² = (κ α n₀² − Σ²)/(κ ε₀)`. If that is right, the bounce in this model is not generic in the ordinary sense: it holds
+on the side of a sharp inequality in initial data, and shear does not merely delay it — shear competes with it at every epoch on
+equal terms. This is the calculation to do first because it is analytic, it is decidable, and it either exposes the fine-tuning
+or refutes my expectation. Particle production is the pivot precisely because it BREAKS this degeneracy: if `n_f` falls slower
+than `a⁻³`, the torsion term outruns shear. S1 needs production to dominate shear; S1's `βH⁴` law is phenomenological and, in
+S1's own text, not derived microscopically.
+
+## 4. Outcome classes — declared NOW, before any computation
+- **B1_DEGENERATE_FINE_TUNED** — the no-production criterion is a constant inequality as above: the bounce requires chosen
+  initial data, quantified by the dimensionless ratio `κ α n₀²/Σ²`.
+- **B1_GENERIC** — a bounce occurs for an open set of initial data with no inequality on constants, contradicting §3.
+- **B1_PRODUCTION_RESCUES** — with S1's production law the bounce set is enlarged from measure-small to open, with the required
+  `β` range stated and compared with S1's own values.
+- **B1_PRODUCTION_INSUFFICIENT** — production does not enlarge the set over the declared `α` interval and physical `β` range.
+- **B1_UNDERDETERMINED** — the system as published does not determine the answer without an input no source supplies; the missing
+  input is named. (K3 step 3 makes this a live outcome, not a formality.)
+- **B1_ILL_POSED** — the equations as printed do not form a well-posed initial-value problem in the regime where the bounce sits;
+  the obstruction is stated. This too is a real result and would be filed as one.
+
+## 5. Controls that must pass before any class is filed
+- **C1 recovery:** setting `σ² = 0` and no production must reproduce S3's published isotropic bounce, including the cusp
+  condition `da/dT = 0` — a published-value check, not a self-check.
+- **C2 formalism:** the Bianchi I Einstein–Cartan equations used must reduce to S4's (5.21)/(5.24) forms in the stated limit.
+- **C3 well-posedness BEFORE interpretation:** constraint propagation verified, and the integration's regime of validity stated,
+  before any numerical trajectory is read physically.
+- **C4 α-interval:** every reported result is reported across the K3S3 interval, never at a single free-gas value at the bounce.
+- **C5 independent critique:** the derivation and the code are checked by a seat that did not write them, on a different engine
+  from the implementer.
+
+## 6. What would count against my own expectation
+If C1 passes and the Bianchi I criterion turns out NOT to be a constant inequality — for instance if the correct shear evolution
+in Einstein–Cartan carries a torsion coupling that changes its scaling — then `B1_GENERIC` files and §3 is wrong. I would rather
+find that than defend §3.
+
+## 7. Limits, stated now
+This addresses the spin-fluid Einstein–Cartan version of the bounce with the assumptions in §1. It does not address every
+black-hole-universe model, does not test whether our universe is inside a black hole, and says nothing about the Kantowski–Sachs
+case S1 actually solves except by contrast. A negative result would mean: this mechanism, in this class, needs chosen data.
+
+---
+
+## AMENDMENT 1 (2026-09-07 11:50 KST) — which matter row this study is about
+Recorded rather than rewritten; §§0–7 above stand as first declared.
+
+1. **GRG 53, 18 uses the spin FLUID row.** Its abstract, read by me at arXiv 2007.11556 (the revised version the publisher entry
+   corresponds to): "a relativistic spin fluid as a source", and "torsion may prevent a singularity and replace it with a
+   nonsingular bounce if particle production dominates over shear"; its printed $\alpha=\kappa(\hbar c)^2/32$ is the
+   Weyssenhoff coefficient, matching the value our ECSK derivation obtained. **B1's genericity question is therefore asked about
+   the FLUID row**, which is the correct target: the anisotropic avoidance condition we are testing is that paper's own.
+   *Provenance note: the Springer publisher page is behind a cookie handshake I could not pass; the publisher full text was read
+   by the source worker, the abstract sentences above are my own read of the arXiv version. Labelled, not blurred.*
+2. **K3's two-thirds result belongs to the DIRAC row, not this one.** `K3S3_CHECK_SHEET_20260904.md` computes
+   $R=\alpha h_n^2T^2/h_\star$ with $\alpha=(9/16)\kappa$ — the Dirac coefficient of PRD 85, 107502 (corpus entry 10).
+   The fluid coefficient is $\kappa/32$ in $\hbar=1$ units, smaller by a factor of 18. **So §2's interval statement above does
+   not transfer to the fluid row unchanged**, and the honest position is: the self-consistency ratio for the fluid row at the
+   fluid row's OWN turning point has not been computed by anyone here. It is now the first thing B1 computes, and until it is,
+   no claim is made about whether the fluid-row closure is controlled at its bounce.
+3. **Both rows are carried** wherever the effective pressure enters, per Blanc 11:18.
+
+
+exec
+/bin/zsh -lc 'cat bounce/B2_CLOSURE_20260907.md bounce/KIMI_B2_CHALLENGE_20260907.md' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+# B2 — special solutions and closure sufficiency
+
+Read and computed 2026-09-07. No class is filed here.
+
+The FLUID simultaneous first-law/temperature equations admit a nonzero-production branch. Full field-equation compatibility restricts that branch differently in curved Kantowski–Sachs (KS) and flat Bianchi I (BI). With a specified production prescription, closure cases **(b) and (c) are determined**; case (d) needs a pressure equation of state.
+
+## Exact source and assumptions
+
+Read first: `B1_RESULT_V2_20260907.md` and FINDING 1 of `KIMI_B1_ADVERSARIAL_20260907.md`. Equation source **A** throughout this document and the script means **[arXiv 2007.11556v2 HTML](https://arxiv.org/html/2007.11556v2), read 2026-09-07**, specifically (1), (10)–(17), (25), (28)–(30), (34), (36)–(38), and the thermal relations in §9. Numbered equation references below refer exclusively to A. The endpoint displays v2 dated 23 June 2026. I did not establish Springer publisher-version equation identity. Retrieval was confined to this versioned HTML endpoint; I did not search for subsequent corrections or errata, and draw no conclusion about their existence.
+
+Every calculation below concerns the **FLUID row** using A's effective source. **DIRAC row: not analysed; no equation, closure count, or branch result here transfers to it.** The curved KS equations are rewritten from A. The flat BI equations are explicitly our separate flat Einstein-system reduction with the same effective FLUID source, not equations claimed to be printed for BI in A.
+
+Assumptions/choices made explicit:
+
+- Work on a connected open interval with smooth functions, positive scale factors and temperature, and fixed positive \(\alpha,h_\star,h_n,\kappa\). Use cosmic proper time and \(c=1\). The constant thermal coefficients are the specialisation under test.
+- Take A's phenomenological prescription \(\Psi=\beta H^4\), with **fixed \(\beta>0\)**. Treating this parameter as time independent and excluding negative production are explicit choices. A free \(\Psi(t)\) or a variable \(\beta(t)\) would change the answer.
+- Retain exactly the effective isotropic FLUID stress \(\rho=\epsilon-\alpha n^2\), \(P=p-\alpha n^2\) from A (1); no extra cosmological constant, creation pressure, or additional matter component is introduced. \(\Lambda_*\) below abbreviates \(\kappa\rho_*\), not an added source.
+- For the separate flat BI calculation, assume a diagonal homogeneous metric with three scale factors and isotropic effective FLUID spatial stress. This geometry is an added comparison, not A's curved KS metric.
+- In case (c), “\(\epsilon=\epsilon(T)\)” means a **specified** smooth constitutive function \(F(T)\), locally \(F'(T)\ne0\). Merely naming an unknown function is not a closure. Case (b) is the special choice \(F=h_\star T^4\).
+- Count local evolution after fixing the time coordinate, with compatible initial data. Entropy is an auxiliary reconstruction unless explicitly requested as a state variable. No chemical-potential or equilibrium entropy formula is silently imposed.
+
+## 1. Simultaneous equations: FLUID matter sector
+
+For curved KS use \(V=XY^2\), \(3H=\dot V/V\). For the separate flat BI reduction use \(V=a_1a_2a_3\), \(3H=\sum_i\dot a_i/a_i\). In each geometry separately, expansion of A (14) with the effective FLUID source, and A (34)'s production prescription, gives
+
+\[
+E:=\dot\epsilon-2\alpha n\dot n+3H(\epsilon+p-2\alpha n^2)=0,
+\qquad N:=\dot n+3Hn-\Psi=0.
+\]
+
+Our identity is \(E=\dot\epsilon+3H(\epsilon+p)-2\alpha n\Psi-2\alpha nN\). Thus imposing number balance gives \(\dot\epsilon+3H(\epsilon+p)=2\alpha n\Psi\); it does not supply a pressure equation of state.
+
+With all three thermal relations in A §9, our substitution into A (14), followed by A (37), gives
+
+\[
+E=(4h_\star T^3-6\alpha h_n^2T^5)(\dot T+HT),
+\qquad E\big|_{(37)}=\frac{2\Psi T}{3h_n}(2h_\star-3\alpha h_n^2T^2).
+\]
+
+Hence on an interval with \(\Psi\ne0\), in the curved KS FLUID system, or separately in the flat BI FLUID reduction,
+
+\[
+T=T_*:=\sqrt{\frac{2h_\star}{3\alpha h_n^2}},\quad
+n=n_*:=h_nT_*^3,\quad \dot T=\dot n=0,\quad
+\Psi=3Hn_*=\beta H^4.
+\]
+
+Therefore \(H=H_*=(3n_*/\beta)^{1/3}>0\) is constant, \(V=V_0e^{3H_*(t-t_0)}\), and \(n_*V\) grows even though local number density is constant. These equations describe an expanding production interval, not a contracting interval or a bounce. With a free production function instead, the two matter equations require only \(\Psi=3H(t)n_*\); constant \(H\) follows specifically from the fixed-\(\beta\) prescription.
+
+Our effective-source values are
+
+\[
+\alpha n_*^2=\frac23\epsilon_*,\quad
+\rho_*=\frac13\epsilon_*>0,\quad P_*=-\rho_*,\quad
+\Lambda_*:=\kappa\rho_*=\frac{4\kappa h_\star^3}{27\alpha^2h_n^4}.
+\]
+
+The first law is satisfied exactly. A (17), treated as its printed entropy evolution relation, also admits \(s(t)=2\alpha n_*^2/T_*+C_s/V(t)\). Its residual \(T_*\,d(sV)/dt-2\alpha n_*\Psi V\) vanishes. No additional entropy closure is needed to exhibit this solution.
+
+### Curved KS FLUID: compatibility with the remaining equations of A
+
+Set \(u=\dot X/X\), \(v=\dot Y/Y\), \(K=Y^{-2}>0\), and \(S=\sigma^2=(u-v)^2/3\). Rewriting A (10) gives the constraint and two spatial evolution equations:
+
+\[
+C_K=v^2+2uv+K-\kappa\rho=0,
+\quad \dot v=-\tfrac12(3v^2+K+\kappa P),
+\quad \dot u=-u^2-uv+\tfrac12(v^2+K-\kappa P).
+\]
+
+Our constant-\(H\), constant-source consequences are
+\(S=(\Lambda_*-3H_*^2)/2\) and \(K=3(\Lambda_*-3H_*^2)/2\).
+Both are constant. Since \(\dot K=-2vK\) and \(K>0\), \(v=0\). The spatial equations then force \(K=u^2=\Lambda_*\). Thus the exact curved KS branch is
+
+\[
+\boxed{Y=\Lambda_*^{-1/2},\quad
+X=X_0e^{\sqrt{\Lambda_*}(t-t_0)},\quad
+H_*=\sqrt{\Lambda_*}/3,\quad
+\beta=81n_*/\Lambda_*^{3/2}.}
+\]
+
+Its shear is \(S=\Lambda_*/3\), not zero. The script verifies A (10)'s constraint and both spatial equations, A (11), first law (14), entropy relation (17), number law (34), and temperature law (37); A (36) is the same verified constraint after thermal substitution and A (16) is the definition of \(H\). All residuals vanish. Thus a full curved KS FLUID solution exists at this parameter tuning. For fixed positive parameters away from this tuning there is no such nonzero-production interval under these assumptions. This is not a trajectory matching A §9's suggested collapsing initial radial velocity; those suggested initial data are not additional field equations.
+
+### Flat BI FLUID: separate compatibility calculation
+
+For our flat BI reduction define \(H_i=\dot a_i/a_i\), \(3H=\sum H_i\), \(S=\tfrac12\sum(H_i-H)^2\). The isotropic effective FLUID Einstein equations give
+
+\[
+C_B=H_1H_2+H_1H_3+H_2H_3-\kappa\rho=0,
+\qquad \dot H_i=\frac\kappa2(\rho-P)-3HH_i.
+\]
+
+Our shear identity is \(\dot S=-6HS\). The constant-source, constant-\(H\) Raychaudhuri equation makes \(S\) constant, so \(H>0\) forces \(S=0\). Hence this separate branch is
+
+\[
+\boxed{a_i=a_{i0}e^{\sqrt{\Lambda_*/3}(t-t_0)},\quad
+H_* = \sqrt{\Lambda_*/3},\quad
+\beta=9\sqrt3\,n_*/\Lambda_*^{3/2}.}
+\]
+
+It lies in the isotropic subset of flat BI; there is no strictly nonzero-shear flat BI branch on this production interval with fixed \(\beta\). Its constraint and three directional equations have zero residuals. Its parameter tuning is different from the curved KS tuning; the two geometries cannot be interchanged.
+
+`SPECIAL_BRANCH=EXISTS` means the FLUID simultaneous equations have a branch, including full curved KS and separate flat BI realisations at their respective tunings. It does not mean one exists for every prescribed \(\beta\), or that either solution undergoes a bounce.
+
+## 2. Independent equations and closure count
+
+For **curved KS FLUID**, the first-order geometry unknowns are \(X,Y,u,v\). The independent evolution set is:
+
+1. \(\dot X=uX\), \(\dot Y=vY\).
+2. The two spatial evolution equations written above from A (10).
+3. First law \(E=0\) and production \(N=0\), with specified \(\Psi=\beta H^4\).
+
+This is six evolution equations. \(K=1/Y^2\), \(H=(u+2v)/3\), and \(\Psi\) are definitions, not extra unknown functions. Impose \(C_K=0\) on initial data. Our symbolic identity \(\dot C_K=-3HC_K\) proves propagation under this evolution system. Do not count first law (14) again as an independent equation alongside the full field system and the time derivative of its constraint.
+
+For the **separate flat BI FLUID reduction**, geometry unknowns are \(a_1,a_2,a_3,H_1,H_2,H_3\). The independent evolution set is the three \(\dot a_i=H_i a_i\), the three directional equations above, and \(E=0,N=0\): eight evolution equations. Impose \(C_B=0\) initially. Our identity for this chosen off-constraint evolution is \(\dot C_B=-6HC_B\). The differing off-constraint factors do not change either constraint's propagation. This is a flat derivation using A's FLUID source, not a substitution of zero curvature into a claimed printed BI equation.
+
+The following table keeps algebraic unknowns explicit. “Total” is evolution plus algebraic closure equations; the single propagated initial Hamiltonian constraint in each row is listed separately and is **not an additional evolution equation**. All unknowns are functions of proper time; constants and coordinate normalisations are not free functions.
+
+| FLUID geometry | Case | Every unknown function | Evolution | Algebraic closures | Total | Initial constraint | Status |
+|---|---|---|---:|---:|---:|---:|---|
+| Curved KS | (a) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 3 | 9 | 1 | Over-determined: one compatibility condition |
+| Curved KS | (b) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 2 | 8 | 1 | Determined |
+| Curved KS | (c) | X,Y,u,v,epsilon,p,n,T (8) | 6 | 2 | 8 | 1 | Determined, specified regular F |
+| Curved KS | (d) | X,Y,u,v,epsilon,p,n (7) | 6 | 0 | 6 | 1 | Under-determined: one free function |
+| Flat BI | (a) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 3 | 11 | 1 | Over-determined: one compatibility condition |
+| Flat BI | (b) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 2 | 10 | 1 | Determined |
+| Flat BI | (c) | a1,a2,a3,H1,H2,H3,epsilon,p,n,T (10) | 8 | 2 | 10 | 1 | Determined, specified regular F |
+| Flat BI | (d) | a1,a2,a3,H1,H2,H3,epsilon,p,n (9) | 8 | 0 | 8 | 1 | Under-determined: one free function |
+
+Algebraic closure lists, applied separately to each FLUID geometry:
+
+- **(a):** \(\epsilon=h_\star T^4,\ p=\epsilon/3,\ n=h_nT^3\). The extra compatibility is the factored residual in §1. Over-determined is a generic functional count, not proof of an empty solution set. On the pinned branch the first-law temperature coefficient vanishes; its degenerate rank and subsequent field compatibility must be analysed as above.
+- **(b):** \(\epsilon=h_\star T^4,\ p=\epsilon/3\); \(n\) is independent. Two matter equations determine \(T,n\).
+- **(c):** \(\epsilon=F(T),\ p=\epsilon/3\), with known \(F\). This is the same count as (b); the wording does not create a distinct equation deficit. The matter derivative matrix for \((\dot T,\dot n)\) is \(\left(\begin{smallmatrix}F'&-2\alpha n\\0&1\end{smallmatrix}\right)\), with determinant \(F'\). At zeros of \(F'\) a separate singular-point analysis is required.
+- **(d):** No thermal relation and no pressure EOS. \(\epsilon,n\) are independent; \(p(t)\) is also unknown. Temperature has no role in this dynamical state. If temperature is nevertheless retained as a requested unknown, add one unknown and no equation: then two physical relations are missing.
+
+For curved KS FLUID case (c), and independently for flat BI FLUID case (c), the explicit matter evolution derived here is
+
+\[
+\dot n=\beta H^4-3Hn,\qquad
+\dot T=\frac{2\alpha n\beta H^4-4HF(T)}{F'(T)}.
+\]
+
+Case (b) sets \(F=h_\star T^4\). Substitution into \(E\) gives zero in both cases. **Do not retain A (37) after dropping \(n=h_nT^3\)**: that temperature equation was obtained using that closure. Determined here means a regular local initial-value system with compatible constraint data, not a claim about global existence, stability, a bounce, or microscopic validity.
+
+`CLOSURE_SUFFICIENT=b,c`
+
+## 3. Precisely what extra physical input is needed
+
+For **curved KS FLUID case (d)** the missing input is **one specified pressure equation of state \(p=\mathcal P(\epsilon,n)\)** (smooth on the chosen state domain). For the **separate flat BI FLUID case (d)** the same type of input closes that geometry's equations independently. Choosing \(p=\epsilon/3\) is one concrete possible added assumption: then the first law evolves \(\epsilon\), the prescribed production law evolves \(n\), and geometry evolves from its own spatial equations. Energy conservation alone does not choose this EOS.
+
+If temperature is also required in **curved KS FLUID (d)**, supply a caloric relation \(T=\Theta(\epsilon,n)\) in addition to the pressure EOS. The **flat BI FLUID (d)** temperature extension independently needs the same type of caloric input. An entropy-based thermodynamic constitutive relation may instead supply these relations, but simply appending A (17) introduces \(s\) while giving one entropy evolution equation; it does not determine an otherwise free temperature or pressure.
+
+For **curved KS FLUID (c)**, if \(F\) has not actually been supplied, the missing input is the function \(\epsilon=F(T)\), including its parameters. The **flat BI FLUID (c)** count has the same qualification independently. Stating that such a function exists is insufficient to predict \(T\).
+
+All table rows already include a specified production law. If **curved KS FLUID** instead uses only the balance definition \(\Psi:=\dot n+3Hn\), it needs a prescribed source function or a matter-model production equation that determines \(\Psi\). The **flat BI FLUID** balance-only system independently needs that source input. A derivation of \(\Psi\) from a matter model would improve physical grounding, but is not an additional equation required by the table when A's phenomenological fixed-\(\beta\) prescription is accepted. Conversely, deriving only \(\Psi\) does not supply case (d)'s missing pressure EOS.
+
+## Reproduction and residuals
+
+Run from `bounce/`:
+
+```sh
+/usr/bin/python3 b2_closure.py
+```
+
+Verified with system Python and SymPy 1.14.0; exit 0. The script writes no files. It computes and asserts the energy-balance identity, thermal factorisation, pinned first law and temperature/number relations, entropy reconstruction, both geometries' constraint propagation and Raychaudhuri identities, flat BI shear evolution, each special branch's field and production residuals, and the regular case (b)/(c) matter residuals and determinant identity. Every asserted residual is zero. It also prints the non-identically-zero generic compatibility residual, both defining parameter tunings, all unknown-function counts, the independent equation lists, and:
+
+```text
+SPECIAL_BRANCH=EXISTS
+CLOSURE_SUFFICIENT=b,c
+```
+
+No DIRAC result is asserted. No census, class, or broader physical conclusion is filed.
+B2_REVIEW=AMENDMENT_STANDS
+
+# KIMI B2 CHALLENGE — adversarial review of AMENDMENT A, B2 closure, and the scope qualification
+**Referee: Kimi (k3), 2026-09-07. Target: `B1_RESULT_V2_20260907.md` AMENDMENT A, `B2_CLOSURE_20260907.md`,
+`b2_closure.py`, `B1_SCOPE_QUALIFICATION_20260907.md`. I did not produce this algebra. I re-derived what I checked.**
+
+## 0. What I inspected and ran
+
+- Source paper: N. J. Popławski, *Gen. Relativ. Gravit.* **53**, 18 (2021) — peer-reviewed journal article.
+  Equation claims here are bound to **arXiv:2007.11556v2 HTML (v2 dated 23 Jun 2026), read by me 2026-09-07** —
+  an author-posted hosted copy self-identifying as the published version. I read that **extraction**, and separately
+  reached the **Springer publisher page** (link.springer.com/article/10.1007/s10714-021-02790-7): it confirms only the
+  metadata (journal, volume, article number, 07 Feb 2021, title, abstract); the full text is subscription-walled, so
+  **equation-level identity with the version of record is NOT established** — same binding as the filing itself.
+  Bounded errata search: none found; absence of a later correction is NOT inferred.
+- `b2_closure.py`: re-run from `bounce/` with /usr/bin/python3 + SymPy, exit 0, all residuals zero, tokens as filed.
+- My own independent script `kimi_b2_independent_check.py` (same directory, no imports from theirs): exit 0.
+  It re-derives the (14) expansion from the printed form, the factorisation, the compatibility residual, both branch
+  realisations including (11) with derivative terms, the β tunings, constraint-propagation identities with an
+  UNSUBSTITUTED ῥ (see §2), the case (b)/(c) matter systems, and the full count table.
+- Prior art cited for the no-production structure (Kopczyński PLA 43, 63 (1973); Tafel PLA 45, 341 (1973);
+  Kuchowicz J. Phys. A 8, L29 (1975); Hehl et al. RMP 48, 393 (1976)) is peer-reviewed; I did not re-read those
+  for this challenge — the attacks below are algebraic and do not rely on them.
+
+## 1. ATTACK: "The special branch carries no bounce" — the gluing question. Survives; stated reason is incomplete.
+
+I tried to break this four ways.
+
+**(a) Is H really forced constant on the branch?** Yes. On an interval with Ψ≠0: N=0 with ṅ=0 gives Ψ=3Hn_*;
+the prescription Ψ=βH⁴ then gives H(βH³−3n_*)=0. H=0 forces Ψ=0 (contradiction with production), so
+H³=3n_*/β>0 — a unique real positive root, constant because β and n_* are constants. **H=0 is excluded on the
+branch** precisely because Ψ=3Hn_* would then vanish. Re-derived (PART 1 of my script).
+
+**(b) Could a solution LEAVE or JOIN the branch at finite time, so a bouncing solution touches it?** This is the
+attack that matters, and the amendment's stated reason — "H is constant and non-zero on that branch, so it never
+crosses zero" — does **not** answer it; read strictly, that sentence is a non-sequitur against gluing (a branch with
+no turning point can still be visited by a bouncing trajectory that departs it). Neither B2 nor the amendment proves
+non-gluing. I therefore proved it myself from the filed assumptions (smooth functions on a connected open interval I,
+T>0, Ψ=βH⁴ with fixed β>0), and the attack FAILS:
+
+- On U={A(T)≠0} (open), E=0 gives Ṫ=−HT and (37) then gives βH⁴=0, so H≡0 on U.
+- On W=int{T=T_*}, (37) gives βH³=3n_*, so H≡H_*>0 on W.
+- Hence {H≠0}⊆W, is open, and H≡H_* on each component. A component with an endpoint τ interior to I would have
+  H(τ)=0 (definition of a component boundary) yet H→H_*≠0 along the component — contradicting continuity.
+  So {H≠0} is ∅ or all of I.
+- H≡0 on I is impossible in **both** geometries (PART 2): in KS, H≡0 ⇒ u=−2v, matter constant (Ṅ=0, ρ̇=−3H(ρ+P)=0),
+  and H-preservation plus the constraint force κP₀=−3v²−K/3, κρ₀=K−3v²; constancy of ρ₀,P₀ then forces v=0, after
+  which the v-equation reads v̇=−K/3≠0 since K=1/Y²>0 — contradiction. In flat BI, H≡0 ⇒ Ḣ_i=κ(ρ−P)/2=0, and
+  ρ−P=ε−p=2ε/3, so ε=0, i.e. T=0 — excluded.
+- Therefore **every smooth interval solution has H≡H_*>0 and T≡T_***: no solution ever crosses H=0, no bouncing
+  solution exists at all (in either geometry), and there is nothing to glue the branch to. Junctions would also
+  violate the smoothness the system is posed in.
+
+So the CONCLUSION is correct and in fact stronger than claimed — but the one-sentence justification in the amendment
+is insufficient as written; the non-gluing lemma is unstated in both documents. Reported, not repaired.
+
+**(c) Scope dependence.** The entire exclusion rests on smoothness and on the fixed-β prescription. With a free
+Ψ(t) that can vanish on an interval, the evolving branch Ṫ=−HT exists and a C⁰-gluing at a tuned instant (kink in Ṫ)
+is not excluded by the matter equations. B2 discloses this exactly ("A free Ψ(t) or a variable β(t) would change the
+answer"); **the amendment text does not restate it** — a reader of V2+Amendment alone could over-read "every bouncing
+one is excluded" as prescription-independent. Wording gap, not an error.
+
+**(d) Terminology nit.** "de Sitter-like": the KS realisation has constant NONZERO shear S=Λ_*/3 (disclosed in B2)
+and Y=Λ_*^{−1/2} constant; it is not constant-curvature de Sitter. Hedged with "-like"; nit only.
+
+## 2. ATTACK: the counting. Verified independently; one caveat.
+
+- **All eight table rows reproduce** (PART 6): KS 8 unknowns/6 evolution (a: excess +1; b,c: 0; d: −1 with 7 unknowns);
+  flat BI 10 unknowns/8 evolution (a: +1; b,c: 0; d: −1 with 9).
+- **Are there uncounted independent equations?** No. I checked each candidate against the printed text:
+  (11) is exactly (10)₃−(10)₂ (paper says so; verified algebraically including derivative terms);
+  (36) is the (10)₁ constraint after thermal substitution; (37) is (34) with n=h_nT³ (paper: "follows from the first
+  equation in (34)"); (38) is a rewrite of (37); (17) is (14) restated via (1). None is an independent addition.
+- **Is E=0 legitimately counted as an evolution equation?** Yes, and this was worth checking because (14) is derived
+  from (10). With ῥ left symbolic I get the exact identities (PART 4):
+  Ċ_K+3HC_K = −κ(ρ̇+3H(ρ+P)) = −κE (KS, modulo the spatial equations), and Ċ_B+6HC_B = −κE (BI).
+  So E is precisely the propagator of the constraint: without imposing E, C=0 on initial data would not propagate.
+  B2's warning not to double-count (14) alongside the field system AND the differentiated constraint is exactly right.
+- **K=1/Y², H=(u+2v)/3, Ψ=βH⁴** are definitions/specified functions, not unknowns. Correct.
+- **Case (a): exactly one compatibility condition?** At function level, yes — the excess is one, and the residual
+  −2ΨT(3αh_n²T²−2h*)/(3h_n) is a single functional condition. CAVEAT: after it is imposed (T=T_*), existence of the
+  steady state additionally requires the constant-level tuning β=81n_*/Λ_*^{3/2} (KS) or β=9√3 n_*/Λ_*^{3/2} (BI)
+  (my PART 3; ratio 3√3). That is a second, parameter-level condition — disclosed in the amendment ("βH³=3n_*",
+  "tuned β") and in B2, but "exactly ONE compatibility condition" alone would mislead if read in isolation.
+- **Case (b): does dropping n=h_nT³ leave n unsourced?** No. N=0 sources n (ṅ=βH⁴−3Hn); E sources T;
+  the derivative matrix has determinant F′=4h*T³>0; my independent residual is zero and
+  Ṫ=αβnH⁴/(2h*T³)−HT matches B2. Determined, as filed.
+
+## 3. ATTACK: the narrowing to "the bouncing sector". Loopholes closed — and the exclusion is BROADER than filed.
+
+- **Evolving-temperature solutions with Ψ≠0 only somewhere:** wherever Ψ≠0, T=T_* is forced (§1b), so no evolving
+  production interval exists. "Production switches on and off": under Ψ=βH⁴, Ψ(t)=0 ⟺ H(t)=0, and since H≡H_*>0 on
+  every solution, switching never occurs. "Ψ≠0 only on a measure-zero set": {Ψ≠0}={H≠0} is open (H continuous), so
+  measure-zero ⟺ empty; then H≡0, excluded per §1b in both geometries. All three loopholes are closed — by the
+  assumptions, which B2 states and the amendment incorporates by reference but does not restate.
+- **The narrowing sentence understates the result.** The algebra excludes EVERY evolving interval solution of the
+  printed thermal specialisation at fixed β>0 — bouncing or not, static included (§1b) — and at any β off the single
+  tuned value the printed KS system has NO smooth interval solutions at all. The amendment's own sentence "the only
+  solutions satisfying it are the tuned steady state above" says this; the next sentence ("`B1_ILL_POSED` ... holds for
+  the bouncing sector") then weakens it inconsistently. The imprecision favors the filing (underclaim, not overclaim).
+
+## 4. ATTACK: does the scope qualification over-correct? No.
+
+The a⁻⁶ degeneracy supports: (i) the dynamical-unattainability statement — kept by the qualification, correctly;
+(ii) the critical surface ρ=1 being invariant and codimension-1 — a genericity-adjacent fact about the BOUNDARY, not
+about bounces; (iii) the bounce region being an OPEN subset of initial-data space — which under any smooth measure has
+positive measure, so the degeneracy does not even weakly support bounce "improbability". I find no sense in which the
+degeneracy licenses a genericity claim the qualification wrongly disclaims; if anything, (iii) reinforces the
+disclaimer's direction. Keeping the pre-registered class NAME while disclaiming the measure reading is defensible
+pre-registration hygiene.
+
+## 5. Claimed-loosely and shown-but-not-claimed
+
+- Claimed, justification incomplete in text: the no-bounce conclusion (non-sequitur re gluing; gap closable from filed
+  assumptions — §1b — but not closed in either document).
+- Claimed loosely (all disclosed nearby or in B2): "exactly ONE compatibility condition" (function-level only; the β
+  tuning is a second, parameter-level condition); "narrowed ... to the bouncing sector" (understates; §3);
+  "de Sitter-like" (KS realisation has constant nonzero shear).
+- Shown by the algebra (mine, re-derived; consistent with B2's residuals) but NOT claimed anywhere in the filing:
+  (i) no H≡0 interval can exist in either geometry under the printed thermal specialisation (KS: K>0 contradiction;
+  BI: ε=0); (ii) consequently, at fixed β>0 off the single tuned value the printed system has no interval solutions
+  at all — the paper's §9 evolutionary narrative (collapse → bounce → cycles → inflation) has no smooth solution on
+  any open interval as printed, a statement strictly stronger than "ill-posed for the bouncing sector";
+  (iii) the propagation identities Ċ_K+3HC_K=−κE and Ċ_B+6HC_B=−κE hold with UNSUBSTITUTED ῥ, i.e. the first law is
+  exactly the constraint propagator (B2 asserts propagation; the exact equivalence is not stated).
+
+## 6. Why not WRONG or UNSUPPORTED
+
+WRONG requires a false claim. I found none within the declared assumptions: branch existence, both realisations, both
+β tunings, the exclusion of evolving/bouncing production solutions, all eight count rows, and CLOSURE_SUFFICIENT=b,c
+all reproduce independently, and the script tokens match a fresh run (exit 0). UNSUPPORTED requires the algebra not to
+back the claims; it backs them — the defects are an unstated lemma (gluing), an unrestated scope dependence
+(fixed-β, smoothness), and three disclosed-or-understated wording issues. None is fatal. I attempted to break the
+amendment hardest at the gluing point and the attempt instead strengthened it.
+
+**B2_REVIEW=AMENDMENT_STANDS**
+
+exec
+/bin/zsh -lc "rg -n 'interval|alpha|α' bounce/b1_criterion.py bounce/B1_CRITERION_20260907.md bounce/b2_closure.py" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+bounce/b1_criterion.py:23:    AF, AD = s.symbols('alpha_F alpha_D', positive=True)
+bounce/b1_criterion.py:45:    print('ALPHA_FLUID = kappa*hbar**2/32 (symbol alpha_F retained)')
+bounce/b1_criterion.py:46:    print('ALPHA_DIRAC = 9*kappa/16 (hbar=1; symbol alpha_D retained)')
+bounce/b1_criterion.py:50:    for row, alpha, sign, rmp in [('FLUID', AF, -1, rmpF),
+bounce/b1_criterion.py:52:        rho = eps-alpha*n**2
+bounce/b1_criterion.py:53:        P = eps/3 + sign*alpha*n**2
+bounce/b1_criterion.py:55:        source = rmp.subs(qF, alpha*n**2/k) if row == 'FLUID' else \
+bounce/b1_criterion.py:56:            rmp.subs(tauD2, -2*alpha*n**2/k)
+bounce/b1_criterion.py:62:                        - stress.subs(alpha, k*hbar**2/32))
+bounce/b1_criterion.py:65:                        - stress.subs(alpha, 9*k/16))
+bounce/b1_criterion.py:88:        energy = s.factor(edot-2*alpha*n*ndot+3*H*(rho+P))
+bounce/b1_criterion.py:112:        rhs = k*eps0/a**4+(Sigma2-k*alpha*n0**2)/a**6
+bounce/b1_criterion.py:116:        expected = (k*alpha*n0**2-Sigma2)/(k*eps0)
+bounce/b1_criterion.py:119:        correction_ratio = s.factor((alpha*n0**2/(eps0*a**2)).subs(a**2,root))
+bounce/b1_criterion.py:123:        # Root domain is 0 <= z=Sigma2/(kappa*alpha*n_0**2) < 1.
+bounce/b1_criterion.py:124:        assert zero(correction_ratio.subs(Sigma2,z*k*alpha*n0**2)-1/(1-z))
+bounce/b1_criterion.py:127:            Sigma2,k*alpha*n0**2/11))
+bounce/b1_criterion.py:128:        torsion = -k*alpha*n0**2/a**6
+bounce/b1_criterion.py:132:        print(f'CRITERION_{row} = kappa*{alpha}*n_0**2 > Sigma2')
+bounce/b2_closure.py:18:alpha, hn, hs, kappa, beta, T = s.symbols(
+bounce/b2_closure.py:19:    'alpha h_n h_star kappa beta T', positive=True)
+bounce/b2_closure.py:21:E = ed - 2*alpha*n*nd + 3*H*(eps+p-2*alpha*n**2)
+bounce/b2_closure.py:25:check('energy balance identity E - [epsdot+3H(eps+p)-2alpha*n*Psi-2alpha*n*N]',
+bounce/b2_closure.py:26:      E-(ed+3*H*(eps+p)-2*alpha*n*Psi-2*alpha*n*N))
+bounce/b2_closure.py:29:check('thermal factorisation', thermal-(4*hs*T**3-6*alpha*hn**2*T**5)*(Td+H*T))
+bounce/b2_closure.py:32:q = s.solve(2*hs-3*alpha*hn**2*s.Symbol('q'), s.Symbol('q'))[0]
+bounce/b2_closure.py:36:rhos = s.simplify(es-alpha*ns**2)
+bounce/b2_closure.py:37:ps = s.simplify(es/3-alpha*ns**2)
+bounce/b2_closure.py:51:entropy = 2*alpha*ns**2/Ts+sint/V
+bounce/b2_closure.py:52:check('pinned entropy law (17)', Ts*s.diff(entropy*V,t)-2*alpha*ns*(3*H*ns)*V)
+bounce/b2_closure.py:53:print('Entropy reconstruction: s(t)=2*alpha*n_star^2/T_star + C_s/V(t)')
+bounce/b2_closure.py:126:Td_rhs = (2*alpha*n*Psi-4*H*Fval)/Fp
+bounce/b2_closure.py:131:     ed:4*hs*T**3*((2*alpha*n*Psi-4*H*hs*T**4)/(4*hs*T**3)), nd:nd_rhs}))
+bounce/b2_closure.py:133:      s.Matrix([[Fp,-2*alpha*n],[0,1]]).det()-Fp)
+bounce/B1_CRITERION_20260907.md:29:| FLUID | \(\epsilon-\alpha_F n^2\) | \(\epsilon/3-\alpha_F n^2\) | \(\alpha_F=\kappa\hbar^2/32\) |
+bounce/B1_CRITERION_20260907.md:30:| DIRAC | \(\epsilon-\alpha_D n^2\) | \(\epsilon/3+\alpha_D n^2\) | \(\alpha_D=9\kappa/16\), PRD's \(\hbar=1\) units |
+bounce/B1_CRITERION_20260907.md:32:All results retain \(\alpha_F\) and \(\alpha_D\) as symbols, constant in time and
+bounce/B1_CRITERION_20260907.md:35:Amendment 1 supplies no independently controlled fluid interval endpoints; none
+bounce/B1_CRITERION_20260907.md:36:are invented here. The formulas apply pointwise for every positive constant alpha.
+bounce/B1_CRITERION_20260907.md:62:   is \(\alpha_F n^2/\kappa\). This is a normalization/closure identification;
+bounce/B1_CRITERION_20260907.md:100:With \(\kappa q_F^2=\alpha_Fn^2\), the compared expression is exactly
+bounce/B1_CRITERION_20260907.md:102:T_F^{\mu\nu}=(\epsilon+p-2\alpha_Fn^2)u^\mu u^\nu
+bounce/B1_CRITERION_20260907.md:103: +(p-\alpha_Fn^2)g^{\mu\nu}.
+bounce/B1_CRITERION_20260907.md:125:=\frac{9\kappa}{16}n^2g_{\mu\nu}=\alpha_Dn^2g_{\mu\nu}.
+bounce/B1_CRITERION_20260907.md:130:T_{\mu\nu,D}=(\epsilon+p)u_\mu u_\nu+(p+\alpha_Dn^2)g_{\mu\nu},
+bounce/B1_CRITERION_20260907.md:131:\quad \rho_D=\epsilon-\alpha_Dn^2.
+bounce/B1_CRITERION_20260907.md:151:\mathcal C=3H^2-\kappa(\epsilon-\alpha n^2)-S,
+bounce/B1_CRITERION_20260907.md:164:\mathcal E_F=J-2\alpha_F n\Psi,\qquad
+bounce/B1_CRITERION_20260907.md:165:\mathcal E_D=J+6H\alpha_Dn^2-2\alpha_Dn\Psi.
+bounce/B1_CRITERION_20260907.md:171:\boxed{\mathcal R_{C,D}=-6\kappa H\alpha_D n^2}.
+bounce/B1_CRITERION_20260907.md:187:\mathcal R_{C,F}=2\kappa\alpha_Fn\Psi,\qquad
+bounce/B1_CRITERION_20260907.md:188:\mathcal R_{C,D}=-6\kappa H\alpha_Dn^2+2\kappa\alpha_Dn\Psi.
+bounce/B1_CRITERION_20260907.md:197:=-\kappa\left(\frac{4\epsilon}{3n}-2\alpha_Fn\right)\Psi},
+bounce/B1_CRITERION_20260907.md:201:=-\kappa\left[6H\alpha_Dn^2+
+bounce/B1_CRITERION_20260907.md:202: \left(\frac{4\epsilon}{3n}-2\alpha_Dn\right)\Psi\right]}.
+bounce/B1_CRITERION_20260907.md:207:density do not repair propagation on an interval. Stop physical interpretation
+bounce/B1_CRITERION_20260907.md:211:would require \(J_F=2\alpha_Fn\Psi\) or
+bounce/B1_CRITERION_20260907.md:212:\(J_D=2\alpha_Dn\Psi-6H\alpha_Dn^2\). Alternatively an additional stress
+bounce/B1_CRITERION_20260907.md:220:All algebra below assumes \(\epsilon_0,n_0,\kappa,\alpha_r>0\),
+bounce/B1_CRITERION_20260907.md:226:0=\kappa\epsilon_0a^2+\Sigma^2-\kappa\alpha_Fn_0^2.
+bounce/B1_CRITERION_20260907.md:230:\boxed{\kappa\alpha_Fn_0^2>\Sigma^2},\qquad
+bounce/B1_CRITERION_20260907.md:231:\boxed{a_{\min,F}=\sqrt{\frac{\kappa\alpha_Fn_0^2-\Sigma^2}
+bounce/B1_CRITERION_20260907.md:243:\kappa\delta\rho_F=-\kappa\alpha_Fn_0^2a^{-6},\qquad
+bounce/B1_CRITERION_20260907.md:247:\(\kappa\alpha_Fn_0^2/\Sigma^2\), a constant. **SCALING_DEGENERATE_FLUID=YES**:
+bounce/B1_CRITERION_20260907.md:253:\boxed{\kappa\alpha_Dn_0^2>\Sigma^2},\qquad
+bounce/B1_CRITERION_20260907.md:254:\boxed{a_{\min,D}^{\rm formal}=\sqrt{\frac{\kappa\alpha_Dn_0^2-\Sigma^2}
+bounce/B1_CRITERION_20260907.md:265:\(R_r=|\delta\rho_r|/\epsilon=\alpha_rn^2/\epsilon\).
+bounce/B1_CRITERION_20260907.md:268:At the respective root, with \(\Delta_r:=\kappa\alpha_rn_0^2-\Sigma^2>0\),
+bounce/B1_CRITERION_20260907.md:270:\boxed{R_F=\frac{\kappa\alpha_Fn_0^2}{\Delta_F}},\qquad
+bounce/B1_CRITERION_20260907.md:271:\boxed{R_D^{\rm formal}=\frac{\kappa\alpha_Dn_0^2}{\Delta_D}}.
+bounce/B1_CRITERION_20260907.md:281:\(\alpha_rn_b^2=\epsilon_b+S_b/\kappa\). It is not an independent test
+bounce/B1_CRITERION_20260907.md:294:\(\Sigma^2>\kappa\alpha_rn_0^2/11\), subject to the root criterion.
+bounce/B1_CRITERION_20260907.md:297:For an unspecified allowed interval I of positive constant alpha, the criterion
+bounce/B1_CRITERION_20260907.md:299:For a closed interval \([\alpha_-,\alpha_+]\) it holds throughout only if
+bounce/B1_CRITERION_20260907.md:300:\(\kappa\alpha_-n_0^2>\Sigma^2\). These are symbolic interval statements;
+bounce/B1_CRITERION_20260907.md:301:no K3 DIRAC interval is transferred numerically to FLUID.
+bounce/B1_CRITERION_20260907.md:319:\frac{d}{dt}(\kappa\alpha_r n^2a^6)
+bounce/B1_CRITERION_20260907.md:320:=2\kappa\alpha_rna^6\Psi,\qquad
+bounce/B1_CRITERION_20260907.md:323:Thus nonzero net production over an interval breaks \(n\propto a^{-3}\) and
+bounce/B1_CRITERION_20260907.md:329:0=\kappa\epsilon(t)a^6+\Sigma^2-\kappa\alpha_rN(t)^2.
+bounce/B1_CRITERION_20260907.md:335:such as \(\beta H^4\) at H=0, need not conserve N over an interval.
+
+codex
+The records correct one premise in the task: without production, the bounce set was already open; its boundary was codimension one. Analytically, production increases \(na^3\), so torsion outruns shear during collapse in both closures. I’m checking whether the accompanying energy source permits a bounce, rather than inferring rescue from that ratio alone.
+exec
+/bin/zsh -lc "/usr/bin/python3 - <<'PY'
+import sympy
+print('sympy',sympy.__version__)
+try:
+ import scipy
+ print('scipy',scipy.__version__)
+except ImportError: print('no scipy')
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 236ms:
+sympy 1.14.0
+scipy 1.13.1
+
+codex
+The analytic result is stronger than a shifted threshold: for every fixed \(\beta>0\), the \(H^4\) prescription forces every admissible collapsing datum in these closures to bounce. This depends on extrapolating that prescription through collapse. Both closures have identical density and geometry equations; their caloric functions only change the reconstructed temperature. I’ll run and report them separately, with no-production controls and an explicitly declared numerical alpha interval.
+exec
+/bin/zsh -lc "cat > bounce/b3_rescue.py <<'PY'
+#"'!/usr/bin/python3
+"""B3: flat Bianchi I FLUID only. Deterministic, offline, no file writes.
+Run: /usr/bin/python3 b3_rescue.py
+Dependencies: SymPy and SciPy. Definitions, proof and scope: B3_RESCUE_20260907.md.
+"""
+import hashlib
+import math
+from pathlib import Path
+import sympy as sp
+from scipy.integrate import solve_ivp
+from scipy.optimize import brentq
+
+ALPHAS = (0.25, 0.625, 1.0)
+FRACTIONS = (0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+NUMBERS = (0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0)
+BETAS = (0.0, 0.001, 0.01, 0.1, 1.0, 10.0)
+RTOL, ATOL = 2e-10, 2e-12
+
+
+def caloric(T, closure):
+    if closure == '"'b':
+        return T**4
+    return T**4 * (1.0 + T*T/(1.0 + T*T))
+
+
+def temperature(eps, closure):
+    if closure == 'b':
+        return eps**0.25
+    # Globally T"'^4 <= F_c(T) <= 2 T''^4. Bracket in scaled coordinates.
+    scale = eps**0.25
+    z = brentq(lambda z: caloric(z*scale, closure)/eps-1,
+               2**(-0.25), 1.0, xtol=2e-14)
+    return z*scale
+
+
+def verify():
+    H, S, n, T, alpha, k, beta = sp.symbols('"'H S n T alpha k beta')
+    for closure in ('b', 'c'):
+        F = T**4 if closure == 'b' else T**4*(1+T**2/(1+T**2))
+        nd = beta*H**4-3*H*n
+        Td = (2*alpha*n*beta*H**4-4*H*F)/sp.diff(F, T)
+        Hd = k*F/3-3*H**2  # exact directional-equation mean, off constraint
+        Sd = -6*H*S
+        C = 3*H**2-k*(F-alpha*n**2)-S
+        Cd = sum(sp.diff(C, v)*d for v, d in ((H,Hd),(S,Sd),(n,nd),(T,Td)))
+        residual = sp.factor(Cd+6*H*C)
+        energy = sp.factor(sp.diff(F,T)*Td-2*alpha*n*nd+3*H*(4*F/3-2*alpha*n*n))
+        x,u,N,E = sp.symbols('x u N E')
+        prod = beta*u**4*sp.exp(6*x)
+        Ct = 3*u*u-k*E-S+k*alpha*N*N
+        transformed = sp.expand(6*u*(-k*E/3)-k*(-2*u*E+2*alpha*N*prod)+2*k*alpha*N*prod)
+        # T reconstructed from F(T)=E exp(6x) obeys precisely transformed Td.
+        reconstruction = sp.simplify(((-2*u*E+2*alpha*N*prod)+6*u*E)*sp.exp(6*x)
+                                     -(4*u*E+2*alpha*N*prod)*sp.exp(6*x))
+        print(f'CONSTRAINT_RESIDUAL_{closure}={residual}')
+        print(f'CHECK_{closure}: first_law={energy}; transformed_constraint={transformed}; caloric_chain_rule={reconstruction}; Fprime={sp.factor(sp.diff(F,T))}')
+        if any(r "'!= 0 for r in (residual, energy, transformed, reconstruction)):
+            raise SystemExit('"'STOP: nonzero exact residual; no integration performed')
+    # These analytic statements are printed before any numerical integration.
+    for closure in ('b', 'c'):
+        print(f'TORSION_SCALING_{closure}=HELPS; alpha*n"'^2=alpha*a''^-6*(n0+integral(a''^3*Psi*dt))''^2; dln(alpha*n''^2)/dln(a)=-6+2*beta*H''^3/n<-6 (H<0,n>0,beta>0)'"')
+
+
+def integrate(alpha, f, n0, beta, closure, tighter=False):
+    \"\"\"Integrate in d tau=dt/a"'^3; x=-ln a, u=-H a''^3, N=n a''^3, E=eps a''^6.
+    Caloric energy is an invertible state coordinate in EACH specified closure.
+    No constraint projection is used. t is proper time, initially zero.
+    """
+    sigma = f/(1-f)
+    q0 = 1+sigma-alpha*n0*n0
+    if q0 <= 1e-14:
+        return {'"'kind': 'X'}  # no strictly collapsing real initial H
+    y0 = (0.0, math.sqrt(q0/3), n0, 1.0, 0.0)
+    T0 = temperature(1.0, closure)
+    assert abs(caloric(T0, closure)-1) < 1e-12
+
+    def rhs(tau, y):
+        x,u,N,E,t = y
+        prod = beta*u**4*math.exp(6*x)
+        return (u, -E/3, prod, -2*u*E+2*alpha*N*prod, math.exp(-3*x))
+
+    def bounce(tau,y): return y[1]
+    bounce.terminal, bounce.direction = True, -1
+    def cutoff(tau,y): return y[0]-12.0
+    cutoff.terminal, cutoff.direction = True, 1
+    sol = solve_ivp(rhs, (0,2e6), y0, method='DOP853',
+                    rtol=RTOL/(10 if tighter else 1),
+                    atol=ATOL/(10 if tighter else 1), events=(bounce,cutoff))
+    if not sol.success:
+        raise AssertionError(sol.message)
+    x,u,N,E,t = sol.y[:,-1]
+    errors = []
+    for xi,ui,Ni,Ei,ti in sol.y.T:
+        assert Ei > 0 and Ni >= -1e-12
+        errors.append(abs(3*ui*ui-Ei-sigma+alpha*Ni*Ni)/
+                      (3*ui*ui+Ei+sigma+alpha*Ni*Ni))
+    err = max(errors)
+    assert err < 2e-8, (closure, alpha,f,n0,beta,err)
+    if len(sol.t_events[0]):
+        kind = 'B'
+        eps = E*math.exp(6*x)
+        Tb = temperature(eps, closure)
+        assert abs(caloric(Tb,closure)/eps-1) < 1e-11
+        assert eps/3 > 0  # Hdot at H=0; finite positive crossing
+        if beta == 0:
+            exact_a = math.sqrt(alpha*n0*n0-sigma)
+            assert abs(math.exp(-x)/exact_a-1) < 2e-7
+    else:
+        # A finite cutoff alone is NOT classified as a singularity.
+        # beta=0 exact continuation proves a=0 at finite proper time.
+        assert len(sol.t_events[1]) and beta == 0 and alpha*n0*n0 <= sigma
+        kind = 'S'
+        Tb = None
+    expected = 'B' if beta > 0 or alpha*n0*n0 > sigma else 'S'
+    assert kind == expected, (closure,alpha,f,n0,beta,kind,expected)
+    return dict(kind=kind, a=math.exp(-x), t=t, error=err, T=Tb)
+
+
+def main():
+    verify()  # MUST finish for BOTH closures before any integration.
+    print('DOMAIN: FLUID; flat Bianchi I; kappa=h_star=eps0=a0=1; alpha_interval=[0.25,1]; samples='+str(ALPHAS))
+    print('GRID: f='+str(FRACTIONS)+'; n0='+str(NUMBERS)+'; beta='+str(BETAS))
+    print('MAP_LEGEND: B=bounce; S=analytically certified singular continuation; X=inadmissible initial collapse; columns=n0 in printed order')
+    all_results = {}
+    for closure in ('b','c'):
+        results = {}
+        print(f'CLOSURE_{closure}: F(T)='+('T"'^4'"' if closure=='b' else 'T"'^4*(1+T''^2/(1+T''^2))'"')+f'; T0={temperature(1,closure):.12g}')
+        maxerr = 0.0
+        totals = dict(B=0,S=0,X=0)
+        for alpha in ALPHAS:
+            for beta in BETAS:
+                counts = dict(B=0,S=0,X=0)
+                radii = []
+                for f in FRACTIONS:
+                    row = ''
+                    for n0 in NUMBERS:
+                        r = integrate(alpha,f,n0,beta,closure)
+                        results[(alpha,f,n0,beta)] = r
+                        row += r['kind']
+                        counts[r['kind']] += 1
+                        if r['kind'] "'!= '"'X': maxerr = max(maxerr,r['error'])
+                        if r['kind'] == 'B': radii.append(r['a'])
+                    print(f'MAP_{closure} alpha={alpha:g} beta={beta:g} f={f:g} {row}')
+                for key in totals: totals[key] += counts[key]
+                interval = f'{min(radii):.9g},{max(radii):.9g}' if radii else 'none'
+                print(f'GRID_SUMMARY_{closure} alpha={alpha:g} beta={beta:g} B={counts[\"B\"]} S={counts[\"S\"]} X={counts[\"X\"]} bounce_a_range={interval}')
+        # Explicit equality-side controls, including anisotropy, plus refinement.
+        for alpha in ALPHAS:
+            for f in (0.0,0.5,0.9):
+                n0 = math.sqrt((f/(1-f))/alpha)
+                # roundoff at equality: integrate a nearby nonbouncing datum instead
+                # and retain exact equality as an analytic control printed below.
+                nbelow = n0*(1-1e-10)
+                assert integrate(alpha,f,nbelow,0,closure)['kind'] == 'S'
+                assert integrate(alpha,f,n0,0.001,closure)['kind'] == 'B'
+        refinement = 0.0
+        for alpha,f,n0,beta in ((0.25,0.99,0,0.001),(1,0.1,0.5,0),(0.625,0.5,0.1,10)):
+            r = results[(alpha,f,n0,beta)]
+            fine = integrate(alpha,f,n0,beta,closure,True)
+            refinement = max(refinement,abs(r['a']/fine['a']-1))
+        assert refinement < 2e-7
+        print(f'NUMERICS_{closure}: max_normalized_constraint={maxerr:.6g}; max_refinement_relative_a={refinement:.6g}; equality_controls=9; cutoff_x=12_for_beta0_only')
+        print(f'GRID_TOTAL_{closure}: B={totals[\"B\"]} S={totals[\"S\"]} X={totals[\"X\"]}; counts_are_not_probabilities')
+        print(f'BOUNDARY_{closure}: beta=0 has bounce iff alpha*n0"'^2>f/(1-f); every beta>0 admissible datum bounces; relative_nonbounce_boundary=beta=0,alpha*n0''^2<=f/(1-f)'"')
+        print(f'BOUNCE_SET_{closure}=OPEN')
+        all_results[closure] = results
+    assert all(all_results['b'][key]['kind']==all_results['c'][key]['kind'] for key in all_results['b'])
+    print('COMPARISON: strictly_enlarged_by_set_inclusion_for_each_beta>0; beta0_set_already_OPEN; no_measure_claim; no_class_filed')
+    for name in ('b3_rescue.py','B3_RESCUE_20260907.md'):
+        path = Path(__file__).resolve().parent/name
+        if path.exists(): print('SHA256 '+name+' '+hashlib.sha256(path.read_bytes()).hexdigest())
+
+
+if __name__ == '__main__':
+    main()
+PY
+/usr/bin/python3 bounce/b3_rescue.py > bounce/b3_run.txt" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ exited 1 in 715ms:
+Traceback (most recent call last):
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b3_rescue.py", line 175, in <module>
+    main()
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b3_rescue.py", line 137, in main
+    r = integrate(alpha,f,n0,beta,closure)
+  File "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce/b3_rescue.py", line 98, in integrate
+    assert err < 2e-8, (closure, alpha,f,n0,beta,err)
+AssertionError: ('b', 0.25, 0.0, 0.0, 0.0, 0.02517324860345012)
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+p='bounce/b3_rescue.py'
+s=open(p).read().replace('from scipy.integrate import solve_ivp','from scipy.integrate import solve_ivp, quad')
+needle='    y0 = (0.0, math.sqrt(q0/3), n0, 1.0, 0.0)'
+s=s.replace(needle,'''    if beta == 0:
+        # Exact beta=0 reduction, with u as independent variable:
+        # a"'^2=3u''^2-delta, dt/du=-3a. Numerically integrate proper time
+        # all the way to the analytic bounce or singular endpoint.
+        delta = sigma-alpha*n0*n0
+        u0 = math.sqrt(q0/3)
+        end = math.sqrt(max(delta,0)/3)
+        time, quadrature_error = quad(lambda u: 3*math.sqrt(max(0,3*u*u-delta)),
+                                      end,u0,epsabs=2e-12,epsrel=2e-11)
+        kind = '"'B' if delta < 0 else 'S'
+        a = math.sqrt(-delta) if kind == 'B' else 0.0
+        Tb = temperature(a**-4,closure) if kind == 'B' else None
+        return dict(kind=kind,a=a,t=time,error=0.0,T=Tb,quadrature_error=quadrature_error)
+    y0 = (0.0, math.sqrt(q0/3), n0, 1.0, 0.0)''')
+s=s.replace(\"; cutoff_x=12_for_beta0_only\", \"; beta0=exact_reduction_numerical_proper_time_quadrature\")
+# Add algebraic verification of beta0 constraint/reduction.
+s=s.replace(\"        print(f'CONSTRAINT_RESIDUAL_{closure}={residual}')\", \"        delta = sp.symbols('delta')\\n        beta0_residual = sp.expand(3*u*u-(3*u*u-delta)-delta)\\n        assert beta0_residual == 0\\n        print(f'CONSTRAINT_RESIDUAL_{closure}={residual}')\")
+open(p,'w').write(s)
+PY
+/usr/bin/python3 bounce/b3_rescue.py > bounce/b3_run.txt" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 3026ms:
+exec
+/bin/zsh -lc "rg 'CONSTRAINT_|TORSION_|GRID_SUMMARY_|GRID_TOTAL_|NUMERICS_|BOUNCE_SET_' bounce/b3_run.txt" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)
+TORSION_SCALING_c=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)
+GRID_SUMMARY_b alpha=0.25 beta=0 B=12 S=43 X=1 bounce_a_range=0.05,0.942809042
+GRID_SUMMARY_b alpha=0.25 beta=0.001 B=55 S=0 X=1 bounce_a_range=0.0592080562,0.942809049
+GRID_SUMMARY_b alpha=0.25 beta=0.01 B=55 S=0 X=1 bounce_a_range=0.10525063,0.942809118
+GRID_SUMMARY_b alpha=0.25 beta=0.1 B=55 S=0 X=1 bounce_a_range=0.18678813,0.942809802
+GRID_SUMMARY_b alpha=0.25 beta=1 B=55 S=0 X=1 bounce_a_range=0.32848282,0.942816643
+GRID_SUMMARY_b alpha=0.25 beta=10 B=55 S=0 X=1 bounce_a_range=0.552162471,0.942884917
+GRID_SUMMARY_b alpha=0.625 beta=0 B=11 S=38 X=7 bounce_a_range=0.0790569415,0.790569415
+GRID_SUMMARY_b alpha=0.625 beta=0.001 B=49 S=0 X=7 bounce_a_range=0.0663910376,0.790570609
+GRID_SUMMARY_b alpha=0.625 beta=0.01 B=49 S=0 X=7 bounce_a_range=0.118002009,0.790581357
+GRID_SUMMARY_b alpha=0.625 beta=0.1 B=49 S=0 X=7 bounce_a_range=0.209245826,0.790688727
+GRID_SUMMARY_b alpha=0.625 beta=1 B=49 S=0 X=7 bounce_a_range=0.366353899,0.841747683
+GRID_SUMMARY_b alpha=0.625 beta=10 B=49 S=0 X=7 bounce_a_range=0.604108358,0.956576405
+GRID_SUMMARY_b alpha=1 beta=0 B=9 S=37 X=10 bounce_a_range=0.1,0.942809042
+GRID_SUMMARY_b alpha=1 beta=0.001 B=46 S=0 X=10 bounce_a_range=0.0704069085,0.942809057
+GRID_SUMMARY_b alpha=1 beta=0.01 B=46 S=0 X=10 bounce_a_range=0.125127523,0.942809194
+GRID_SUMMARY_b alpha=1 beta=0.1 B=46 S=0 X=10 bounce_a_range=0.221760463,0.942810562
+GRID_SUMMARY_b alpha=1 beta=1 B=46 S=0 X=10 bounce_a_range=0.387147714,0.942824242
+GRID_SUMMARY_b alpha=1 beta=10 B=46 S=0 X=10 bounce_a_range=0.630943553,0.962469765
+NUMERICS_b: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; equality_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_b: B=782 S=118 X=108; counts_are_not_probabilities
+BOUNCE_SET_b=OPEN
+GRID_SUMMARY_c alpha=0.25 beta=0 B=12 S=43 X=1 bounce_a_range=0.05,0.942809042
+GRID_SUMMARY_c alpha=0.25 beta=0.001 B=55 S=0 X=1 bounce_a_range=0.0592080562,0.942809049
+GRID_SUMMARY_c alpha=0.25 beta=0.01 B=55 S=0 X=1 bounce_a_range=0.10525063,0.942809118
+GRID_SUMMARY_c alpha=0.25 beta=0.1 B=55 S=0 X=1 bounce_a_range=0.18678813,0.942809802
+GRID_SUMMARY_c alpha=0.25 beta=1 B=55 S=0 X=1 bounce_a_range=0.32848282,0.942816643
+GRID_SUMMARY_c alpha=0.25 beta=10 B=55 S=0 X=1 bounce_a_range=0.552162471,0.942884917
+GRID_SUMMARY_c alpha=0.625 beta=0 B=11 S=38 X=7 bounce_a_range=0.0790569415,0.790569415
+GRID_SUMMARY_c alpha=0.625 beta=0.001 B=49 S=0 X=7 bounce_a_range=0.0663910376,0.790570609
+GRID_SUMMARY_c alpha=0.625 beta=0.01 B=49 S=0 X=7 bounce_a_range=0.118002009,0.790581357
+GRID_SUMMARY_c alpha=0.625 beta=0.1 B=49 S=0 X=7 bounce_a_range=0.209245826,0.790688727
+GRID_SUMMARY_c alpha=0.625 beta=1 B=49 S=0 X=7 bounce_a_range=0.366353899,0.841747683
+GRID_SUMMARY_c alpha=0.625 beta=10 B=49 S=0 X=7 bounce_a_range=0.604108358,0.956576405
+GRID_SUMMARY_c alpha=1 beta=0 B=9 S=37 X=10 bounce_a_range=0.1,0.942809042
+GRID_SUMMARY_c alpha=1 beta=0.001 B=46 S=0 X=10 bounce_a_range=0.0704069085,0.942809057
+GRID_SUMMARY_c alpha=1 beta=0.01 B=46 S=0 X=10 bounce_a_range=0.125127523,0.942809194
+GRID_SUMMARY_c alpha=1 beta=0.1 B=46 S=0 X=10 bounce_a_range=0.221760463,0.942810562
+GRID_SUMMARY_c alpha=1 beta=1 B=46 S=0 X=10 bounce_a_range=0.387147714,0.942824242
+GRID_SUMMARY_c alpha=1 beta=10 B=46 S=0 X=10 bounce_a_range=0.630943553,0.962469765
+NUMERICS_c: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; equality_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_c: B=782 S=118 X=108; counts_are_not_probabilities
+BOUNCE_SET_c=OPEN
+
+codex
+Both closure grids agree: each has 32 bounces and 118 singular outcomes at \(\beta=0\); at each positive beta, all 150 admissible data bounce. The maximum normalized numerical constraint error is \(1.93\times10^{-10}\). I’m documenting the finite-time proof and set boundary, including that the alpha interval is a sensitivity range, not a controlled physical estimate.
+exec
+/bin/zsh -lc "python3 - <<'PY'
+p='bounce/b3_rescue.py'
+s=open(p).read().replace(\"        Ct = 3*u*u-k*E-S+k*alpha*N*N\\n\",'')
+s=s.replace('    if q0 <= 1e-14:', '    if q0 <= 0:')
+s=s.replace(\"        if beta == 0:\\n            exact_a = math.sqrt(alpha*n0*n0-sigma)\\n            assert abs(math.exp(-x)/exact_a-1) < 2e-7\\n\",'')
+a=s.index('    else:\\n        # A finite cutoff alone')
+b=s.index(\"    expected = 'B'\",a)
+s=s[:a]+'''    else:
+        raise AssertionError('UNRESOLVED: positive-beta run failed to reach bounce; cutoff is not a singularity')
+'''+s[b:]
+s=s.replace('equality_controls=9', 'threshold_controls=9')
+open(p,'w').write(s)
+PY
+cat > bounce/B3_RESCUE_20260907.md <<'MD'
+# B3 — particle production and the bounce set (2026-09-07)
+
+**FLUID, flat Bianchi I only. Both determined closures give an enlarged bounce set by strict set inclusion:** with the prescribed fixed "'`Psi = beta H''^4`, every admissible contracting datum bounces for every beta > 0. At beta = 0, only the strict torsion-dominance subset bounces. No class is filed.
+
+The no-production bounce set was **already OPEN**, as the scope qualification and Kimi challenge explicitly establish. Its **boundary**, not the bounce set, was codimension one. Thus this result is not a change from a threshold-only or measure-small bounce set to an open set. It is removal of the shear-versus-torsion restriction at positive beta, within this mathematical model.
+
+## Inputs and every added assumption
+
+Read: `B1_RESULT_V2_20260907.md`, including Amendments A and B; `B2_CLOSURE_20260907.md`; `KIMI_B2_CHALLENGE_20260907.md`; `B1_SCOPE_QUALIFICATION_20260907.md`; and the B1 pre-registration. B1 criterion'"'s interval qualification was also checked. Equation provenance is inherited from B2's inspected arXiv 2007.11556v2 text; no new source retrieval, publisher-version identification or erratum assertion is made here.
+
+- Diagonal homogeneous flat Bianchi I, positive scale factors, cosmic proper time, smooth isotropic effective FLUID stress, "'`rho=epsilon-alpha n''^2`, `P=epsilon/3-alpha n''^2`. No curvature, extra component, creation pressure, cosmological constant, anisotropic stress or entropy/chemical-potential closure is added. KS and DIRAC are not computed.
+- Positive initial ordinary energy density, nonnegative initial number density and shear; strict initial contraction on the Hamiltonian constraint. Zero number density is allowed because n is independent of T in both requested closures. Positive beta immediately creates particles there.
+- Alpha is positive and constant on each trajectory, varied as an interval parameter. The proof holds for **any interval I contained in (0,infinity)**. The inherited record supplies no controlled numerical FLUID endpoints. The declared **dimensionless sensitivity interval [0.25,1]**, sampled at **0.25,0.625,1**, is an added numerical choice, not a K3 interval or a physical confidence interval. No free-gas bounce value is inserted.
+- The paper'"'s phenomenological **fixed "'`Psi=beta H''^4`** is used for all densities up to the bounce, with beta >= 0; beta=0 is the comparison control. The numerical positive range [0.001,10] is exploratory, not calibrated to the paper or to microscopic production. The mathematical proof covers every fixed beta>0, including outside that range. Extrapolating this law and the effective fluid to high density is an assumption, not evidence of validity there.
+- Set a0=1 by spatial normalization. Use an arbitrary initial density unit epsilon0, number unit n_ref and time unit t_ref=(kappa epsilon0)''^(-1/2). Dimensionless alpha is alpha_phys n_ref''^2/epsilon0, and beta is beta_phys/(n_ref t_ref''^3). The script has kappa=epsilon0=1; the temperature unit makes h_star=1 in (b). This does not fix a microscopic coupling.
+- **Closure (b):** epsilon=T''^4, p=epsilon/3; n follows its independent sourced balance. **Closure (c):** choose once, before mapping, `F(T)=T''^4[1+T''^2/(1+T''^2)]`, p=epsilon/3, again independent n. This is a smooth positive caloric crossover between coefficients 1 and 2 at an order-one temperature scale. Its derivative is `2 T''^3(4 T''^4+7 T''^2+2)/(1+T''^2)''^2>0` for T>0. It is a defensible regular phenomenological representative with a changing caloric coefficient and no singular point; it is not claimed to be a derived equilibrium gas EOS. No equilibrium identity relating p to F is imposed. The crossover scale and amplitude are fixed at one, never fitted to a bounce.
+- Comparing the closures at matched **epsilon0**, rather than matched T0, compares the same physical density data. T0 is 1 in (b) and F_c''^(-1)(1) in (c). Because p=epsilon/3 and Psi has no T dependence, *any globally invertible positive F with positive range (0,infinity)* gives the same density and geometry trajectories. The choice of F_c therefore cannot tune the bounce map; it changes temperature alone. B2'"'s merely local F'"'!=0 would not by itself guarantee a global caloric domain, which the representative here supplies.
+- No measure on initial data is introduced. Counts describe the declared finite grid only. No independent adversarial review is claimed; filing and any separate review remain with the requester.
+
+## 1. Constraint propagation before integration
+
+Let S=sigma''^2 and H be mean expansion. The exact cosmic-time equations, obtained from B2'"'s directional field equations, are
+
+"'```
+a_dot = H a
+H_dot = kappa epsilon/3 - 3 H''^2
+S_dot = -6 H S
+n_dot = beta H''^4 - 3 H n
+epsilon_dot = -4 H epsilon + 2 alpha n beta H''^4
+T_dot = (-4 H F(T) + 2 alpha n beta H''^4)/F'"'(T)
+C = 3 H"'^2 - kappa(epsilon-alpha n''^2) - S.
+```
+
+The epsilon and T equations are alternative coordinates for one equation, not extra independent equations. In (b), `T_dot=-HT+alpha n beta H''^4/(2T''^3)`. In (c), the displayed F and F'"' give the stated regular equation. Neither retains the paper's temperature law (37) derived from n=h_n T"'^3.
+
+Direct differentiation for this specific off-constraint evolution gives
+
+`C_dot + 6 H C = -kappa[epsilon_dot+4H epsilon-2 alpha n beta H''^4] = 0`.
+
+The first-law residual `epsilon_dot-2 alpha n n_dot+3H(4epsilon/3-2alpha n''^2)` is separately zero. The script substitutes each explicit F and calculates these residuals symbolically. **CONSTRAINT_RESIDUAL_b=0; CONSTRAINT_RESIDUAL_c=0.** Both verifications must finish before any integration; a nonzero result stops execution.
+
+For numerical conditioning use d tau=dt/a''^3 and the invertible variables
+
+`x=-ln a, u=-H a''^3, N=n a''^3, E=epsilon a''^6, S0=S a''^6`.
+
+With kappa retained, the exact integrated system is
+
+```
+x'"' = u
+u' = -kappa E/3
+N' = beta u"'^4 exp(6x)
+E'"' = -2u E + 2 alpha N N'
+t' = exp(-3x)
+C_tau = 3u"'^2 - kappa E - S0 + kappa alpha N''^2.
+```
+
+Prime here denotes tau derivative. Differentiating gives **C_tau'"'=0 identically**, without constraint projection. The script verifies this symbolically for both closures and checks the caloric chain rule "'`F'"'(T)T'=exp(6x)[4uE+2alpha N N']"'`. At finite x, reconstructing T from F(T)=E exp(6x) is an exact state-coordinate change; both closures are run separately in these coordinates.
+
+For beta=0, an additional exact reduction avoids subtractive constraint drift close to a singularity: with delta=S0-alpha n0''^2 in script units, `a''^2=3u''^2-delta`, `dt/du=-3 sqrt(3u''^2-delta)`. The script numerically integrates proper time to u=0 (bounce, delta<0) or u=sqrt(delta/3) (singularity, delta>=0). Its reconstructed constraint vanishes algebraically. This reduction is not used for positive beta.
+
+## 2. Scaling, and why the energy source does not undo rescue
+
+In **closure (b)**,
+
+`N(t)=n0+integral_0''^t a''^3 Psi dt`,
+`alpha n''^2 = alpha a''^-6 N(t)''^2`,
+`S=S0 a''^-6`.
+
+Thus `d ln(alpha n''^2)/d ln a=-6+2 beta H''^3/n<-6` during strict collapse with n>0 and beta>0. Equivalently, `d(alpha n''^2/S)/dt=2 alpha n Psi/S>0` when S>0. These integrated relations also cover n0=0; the logarithmic formula is used only once n>0. Production makes n **grow faster** than a''^-3 in collapse. The phrase “falls slower” would confuse collapse with expansion.
+
+In **closure (c)** exactly the same equations and inequalities hold, because its caloric relation changes neither the number balance nor isotropic shear evolution. Its different temperature evolution is explicitly given above. Therefore **TORSION_SCALING_b=HELPS** and **TORSION_SCALING_c=HELPS**. No constant modified power law is assumed: the exponent is instantaneous and the integral is the exact scaling.
+
+This direction of the torsion/shear ratio holds for any nonnegative production, independently of H''^4. It is *not by itself proof of a bounce*: the first law also increases ordinary energy. For either closure, `d(epsilon a''^4)/dt=2 alpha n Psi a''^4>=0`.
+
+To settle that competition, use x as independent variable while H<0 and define
+
+`Q=3H''^2 a''^6 = kappa E + S0-kappa alpha N''^2 > 0`.
+
+Then, with x0=0,
+
+```
+dN/dx = beta (Q/3)''^(3/2) exp(6x)
+dE/dx = -2E + 2 alpha N dN/dx
+dQ/dx = -2 kappa E < 0.
+```
+
+The production contributions to dQ/dx cancel exactly; this cancellation follows from the propagated first law, not from neglecting the energy source. E stays positive, with E>=E0 exp(-2x).
+
+**Finite-collapse proof, every alpha>0 and fixed beta>0.** Set N_star=sqrt(S0/(kappa alpha)). Suppose a trajectory has not bounced and N<=N_star. Then `kappa E=Q-S0+kappa alpha N''^2<=Q`, hence Q_x>=-2Q and Q>=Q0 exp(-2x). Consequently
+
+`N_x >= beta (Q0/3)''^(3/2) exp(3x)`.
+
+Its integral diverges; N cannot remain below the finite N_star. It exceeds N_star at finite x unless a bounce occurs first. Indeed a root with E>0 already requires N>N_star. If initially N=N_star, the strictly positive source crosses immediately; for S0=N0=0 the same statement applies.
+
+Once N1>N_star at some finite x1, define D=kappa alpha N1''^2-S0>0. Monotonic N implies `Q_x=-2(Q+kappa alpha N''^2-S0)<=-2D`. Q reaches zero at finite x, no later than x1+Q(x1)/(2D). There is no earlier finite-x blow-up: Q<=Q0 bounds N_x on every finite-x interval, and the constraint then bounds E. At the root E_b>0 and Q_x=-2kappa E_b<0, so `dt/dx=a''^3 sqrt(3/Q)` is integrable. All state variables are finite there, and
+
+`H_dot_b=kappa epsilon_b/3>0`.
+
+The smooth proper-time system therefore crosses H=0 at a genuine minimum. Finite a and finite shear also keep directional scale factors regular through the finite-time bounce. This proof is identical for (b) and (c).
+
+**Load-bearing prescription dependence:** the exponential lower bound for N_x uses fixed positive beta and precisely Psi=beta H''^4, maintained throughout contraction. A general nonnegative source may integrate to too few particles to reach N_star. Thus the universal rescue proved here is a result of this prescription together with the retained pressure EOS and effective first law, not a theorem about production per se. Although Psi vanishes at H=0, that does not remove the accumulated N. The proof is not uniform in beta->0 or alpha->0; the latter value is excluded.
+
+## 3. Declared initial data, grids and numerical map
+
+Use epsilon0=a0=kappa=1, n0 from the grid, and the **initial shear fraction**
+
+`f=S0/(kappa epsilon0+S0)`, so `S0=f/(1-f)`.
+
+This is a fraction of the positive ordinary-density-plus-shear terms, not a fraction of the effective density. Set `H0=-sqrt((1+S0-alpha n0''^2)/3)` and retain only `1+S0-alpha n0''^2>0`. Invalid or initially turning data are X, never singular outcomes. Any shear orientation with this magnitude has the same mean-volume outcome; for example H_i-H=(sqrt(S0),-sqrt(S0),0) realizes it at a_i0=1.
+
+```
+alpha = (0.25, 0.625, 1)
+f     = (0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+n0    = (0, 0.1, 0.25, 0.5, 0.75, 1, 1.5, 2)
+beta  = (0, 0.001, 0.01, 0.1, 1, 10)
+```
+
+There are 1008 grid cells per closure: 900 admissible and 108 excluded, counting beta copies. The script prints every cell as an eight-character n0 row, and per-alpha/per-beta counts and bounce-radius ranges.
+
+### Closure (b) results
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_b=OPEN`.
+
+### Closure (c) results
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_c=OPEN`. All classifications agree with (b), as the exact coordinate equivalence requires; this agreement is not independent physical evidence for either closure.
+
+### Numerical checks and singularity interpretation
+
+Positive-beta runs use SciPy DOP853, relative tolerance 2e-10 and absolute tolerance 2e-12, with an event for u crossing zero from above. Across each closure'"'s full grid, the maximum normalized propagated-constraint defect is **1.92274e-10**, using denominator "'`3u''^2+E+S0+alpha N''^2`. A guard at x=12 or tau=2e6 causes failure if reached without a bounce; no positive-beta run reaches it. No finite density cutoff is called a singularity.
+
+Beta=0 uses the exact reduction above with SciPy proper-time quadrature (epsabs=2e-12, epsrel=2e-11). For delta>=0, `3H''^2=a''^-4+delta a''^-6`; integration to a=0 gives finite proper time and divergent ordinary energy/curvature. These are analytically certified singular endpoints, rather than solver failures. For delta<0, `a_b=sqrt(-delta)` is finite and has positive H_dot.
+
+Nine extra threshold controls per closure span all three alpha values and f=0,0.5,0.9: a datum just below the equality number (relative offset 1e-10, with exact n0=0 in the isotropic control) is singular at beta=0; the equality number bounces at beta=0.001. Equality itself at beta=0 is covered by the exact analytic formula, avoiding floating-point sign decisions at a square-root equality. Three refinement cases per closure include high shear with weak production, a no-production bounce, and strong production. Tenfold tighter ODE tolerances change the bounce radius by at most **1.42686e-12** relative. The script asserts each positive-beta event is finite with positive epsilon and H_dot and checks the caloric inverse, both symbolic residuals and every grid classification against the analytic theorem.
+
+Verified offline using `/usr/bin/python3 b3_rescue.py` from `bounce/`, SymPy 1.14.0 and SciPy 1.13.1. The script writes no files and reads only its own source and this report to print SHA256s at the end. No network is used.
+
+## 4. Boundary, openness and comparison
+
+Let D be the admissible initial-data domain
+
+`alpha in I subset (0,infinity), epsilon0>0, n0>=0, S0>=0, kappa epsilon0+S0-kappa alpha n0''^2>0`.
+
+For each closure independently,
+
+`B_0 = {d in D: kappa alpha n0''^2>S0}`,
+`B_beta = D for every fixed beta>0`.
+
+At beta=0 the separating surface is `S0=kappa alpha n0''^2` (or f=alpha n0''^2/(1+alpha n0''^2) on the normalized slice). Equality is singular. The strict bounce side is open; the separating surface is codimension one in the interior, with the usual parameter-edge qualifications. For beta>0 there is **no internal separating surface in D**. In the extended space D times [0,infinity), the bounce set is relatively open and its relative boundary is `{beta=0, S0>=kappa alpha n0''^2}`. This boundary description excludes the inadmissibility boundary of D itself.
+
+**Comparison is strict set inclusion, not a probability or volume:** B_0 is a proper subset of B_beta at each fixed beta>0. On the declared grid, every positive-beta slice adds the 118 initially nonbouncing admissible data to the existing 32 bounces; none is lost. This does not establish that bounce radii increase monotonically with beta for every datum, which is unnecessary to the set claim. It also does not imply that increasing alpha raises bounce counts on this particular sampled slice: changing alpha changes which initial data are admissible.
+
+The result holds throughout any positive alpha interval under the specified mathematical assumptions. At any bounce the constraint still requires `alpha n_b''^2=epsilon_b+S_b/kappa>=epsilon_b`: rescue does not make the spin-fluid closure controlled at the bounce. These are conditional FLUID model maps, not a class filing or a statement about black-hole-universe cosmology as a whole.
+
+## Required tokens
+
+```
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS
+TORSION_SCALING_c=HELPS
+BOUNCE_SET_b=OPEN
+BOUNCE_SET_c=OPEN
+GRID_TOTAL_b: B=782 S=118 X=108
+GRID_TOTAL_c: B=782 S=118 X=108
+```
+MD
+/usr/bin/python3 b3_rescue.py' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce
+ succeeded in 2982ms:
+CONSTRAINT_RESIDUAL_b=0
+CHECK_b: first_law=0; transformed_constraint=0; caloric_chain_rule=0; Fprime=4*T**3
+CONSTRAINT_RESIDUAL_c=0
+CHECK_c: first_law=0; transformed_constraint=0; caloric_chain_rule=0; Fprime=2*T**3*(4*T**4 + 7*T**2 + 2)/(T**2 + 1)**2
+TORSION_SCALING_b=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)
+TORSION_SCALING_c=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)
+DOMAIN: FLUID; flat Bianchi I; kappa=h_star=eps0=a0=1; alpha_interval=[0.25,1]; samples=(0.25, 0.625, 1.0)
+GRID: f=(0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99); n0=(0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0); beta=(0.0, 0.001, 0.01, 0.1, 1.0, 10.0)
+MAP_LEGEND: B=bounce; S=analytically certified singular continuation; X=inadmissible initial collapse; columns=n0 in printed order
+CLOSURE_b: F(T)=T^4; T0=1
+MAP_b alpha=0.25 beta=0 f=0 SBBBBBBX
+MAP_b alpha=0.25 beta=0 f=0.1 SSSSBBBB
+MAP_b alpha=0.25 beta=0 f=0.25 SSSSSSBB
+MAP_b alpha=0.25 beta=0 f=0.5 SSSSSSSS
+MAP_b alpha=0.25 beta=0 f=0.75 SSSSSSSS
+MAP_b alpha=0.25 beta=0 f=0.9 SSSSSSSS
+MAP_b alpha=0.25 beta=0 f=0.99 SSSSSSSS
+GRID_SUMMARY_b alpha=0.25 beta=0 B=12 S=43 X=1 bounce_a_range=0.05,0.942809042
+MAP_b alpha=0.25 beta=0.001 f=0 BBBBBBBX
+MAP_b alpha=0.25 beta=0.001 f=0.1 BBBBBBBB
+MAP_b alpha=0.25 beta=0.001 f=0.25 BBBBBBBB
+MAP_b alpha=0.25 beta=0.001 f=0.5 BBBBBBBB
+MAP_b alpha=0.25 beta=0.001 f=0.75 BBBBBBBB
+MAP_b alpha=0.25 beta=0.001 f=0.9 BBBBBBBB
+MAP_b alpha=0.25 beta=0.001 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.25 beta=0.001 B=55 S=0 X=1 bounce_a_range=0.0592080562,0.942809049
+MAP_b alpha=0.25 beta=0.01 f=0 BBBBBBBX
+MAP_b alpha=0.25 beta=0.01 f=0.1 BBBBBBBB
+MAP_b alpha=0.25 beta=0.01 f=0.25 BBBBBBBB
+MAP_b alpha=0.25 beta=0.01 f=0.5 BBBBBBBB
+MAP_b alpha=0.25 beta=0.01 f=0.75 BBBBBBBB
+MAP_b alpha=0.25 beta=0.01 f=0.9 BBBBBBBB
+MAP_b alpha=0.25 beta=0.01 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.25 beta=0.01 B=55 S=0 X=1 bounce_a_range=0.10525063,0.942809118
+MAP_b alpha=0.25 beta=0.1 f=0 BBBBBBBX
+MAP_b alpha=0.25 beta=0.1 f=0.1 BBBBBBBB
+MAP_b alpha=0.25 beta=0.1 f=0.25 BBBBBBBB
+MAP_b alpha=0.25 beta=0.1 f=0.5 BBBBBBBB
+MAP_b alpha=0.25 beta=0.1 f=0.75 BBBBBBBB
+MAP_b alpha=0.25 beta=0.1 f=0.9 BBBBBBBB
+MAP_b alpha=0.25 beta=0.1 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.25 beta=0.1 B=55 S=0 X=1 bounce_a_range=0.18678813,0.942809802
+MAP_b alpha=0.25 beta=1 f=0 BBBBBBBX
+MAP_b alpha=0.25 beta=1 f=0.1 BBBBBBBB
+MAP_b alpha=0.25 beta=1 f=0.25 BBBBBBBB
+MAP_b alpha=0.25 beta=1 f=0.5 BBBBBBBB
+MAP_b alpha=0.25 beta=1 f=0.75 BBBBBBBB
+MAP_b alpha=0.25 beta=1 f=0.9 BBBBBBBB
+MAP_b alpha=0.25 beta=1 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.25 beta=1 B=55 S=0 X=1 bounce_a_range=0.32848282,0.942816643
+MAP_b alpha=0.25 beta=10 f=0 BBBBBBBX
+MAP_b alpha=0.25 beta=10 f=0.1 BBBBBBBB
+MAP_b alpha=0.25 beta=10 f=0.25 BBBBBBBB
+MAP_b alpha=0.25 beta=10 f=0.5 BBBBBBBB
+MAP_b alpha=0.25 beta=10 f=0.75 BBBBBBBB
+MAP_b alpha=0.25 beta=10 f=0.9 BBBBBBBB
+MAP_b alpha=0.25 beta=10 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.25 beta=10 B=55 S=0 X=1 bounce_a_range=0.552162471,0.942884917
+MAP_b alpha=0.625 beta=0 f=0 SBBBBBXX
+MAP_b alpha=0.625 beta=0 f=0.1 SSSBBBXX
+MAP_b alpha=0.625 beta=0 f=0.25 SSSSBBXX
+MAP_b alpha=0.625 beta=0 f=0.5 SSSSSSBX
+MAP_b alpha=0.625 beta=0 f=0.75 SSSSSSSS
+MAP_b alpha=0.625 beta=0 f=0.9 SSSSSSSS
+MAP_b alpha=0.625 beta=0 f=0.99 SSSSSSSS
+GRID_SUMMARY_b alpha=0.625 beta=0 B=11 S=38 X=7 bounce_a_range=0.0790569415,0.790569415
+MAP_b alpha=0.625 beta=0.001 f=0 BBBBBBXX
+MAP_b alpha=0.625 beta=0.001 f=0.1 BBBBBBXX
+MAP_b alpha=0.625 beta=0.001 f=0.25 BBBBBBXX
+MAP_b alpha=0.625 beta=0.001 f=0.5 BBBBBBBX
+MAP_b alpha=0.625 beta=0.001 f=0.75 BBBBBBBB
+MAP_b alpha=0.625 beta=0.001 f=0.9 BBBBBBBB
+MAP_b alpha=0.625 beta=0.001 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.625 beta=0.001 B=49 S=0 X=7 bounce_a_range=0.0663910376,0.790570609
+MAP_b alpha=0.625 beta=0.01 f=0 BBBBBBXX
+MAP_b alpha=0.625 beta=0.01 f=0.1 BBBBBBXX
+MAP_b alpha=0.625 beta=0.01 f=0.25 BBBBBBXX
+MAP_b alpha=0.625 beta=0.01 f=0.5 BBBBBBBX
+MAP_b alpha=0.625 beta=0.01 f=0.75 BBBBBBBB
+MAP_b alpha=0.625 beta=0.01 f=0.9 BBBBBBBB
+MAP_b alpha=0.625 beta=0.01 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.625 beta=0.01 B=49 S=0 X=7 bounce_a_range=0.118002009,0.790581357
+MAP_b alpha=0.625 beta=0.1 f=0 BBBBBBXX
+MAP_b alpha=0.625 beta=0.1 f=0.1 BBBBBBXX
+MAP_b alpha=0.625 beta=0.1 f=0.25 BBBBBBXX
+MAP_b alpha=0.625 beta=0.1 f=0.5 BBBBBBBX
+MAP_b alpha=0.625 beta=0.1 f=0.75 BBBBBBBB
+MAP_b alpha=0.625 beta=0.1 f=0.9 BBBBBBBB
+MAP_b alpha=0.625 beta=0.1 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.625 beta=0.1 B=49 S=0 X=7 bounce_a_range=0.209245826,0.790688727
+MAP_b alpha=0.625 beta=1 f=0 BBBBBBXX
+MAP_b alpha=0.625 beta=1 f=0.1 BBBBBBXX
+MAP_b alpha=0.625 beta=1 f=0.25 BBBBBBXX
+MAP_b alpha=0.625 beta=1 f=0.5 BBBBBBBX
+MAP_b alpha=0.625 beta=1 f=0.75 BBBBBBBB
+MAP_b alpha=0.625 beta=1 f=0.9 BBBBBBBB
+MAP_b alpha=0.625 beta=1 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.625 beta=1 B=49 S=0 X=7 bounce_a_range=0.366353899,0.841747683
+MAP_b alpha=0.625 beta=10 f=0 BBBBBBXX
+MAP_b alpha=0.625 beta=10 f=0.1 BBBBBBXX
+MAP_b alpha=0.625 beta=10 f=0.25 BBBBBBXX
+MAP_b alpha=0.625 beta=10 f=0.5 BBBBBBBX
+MAP_b alpha=0.625 beta=10 f=0.75 BBBBBBBB
+MAP_b alpha=0.625 beta=10 f=0.9 BBBBBBBB
+MAP_b alpha=0.625 beta=10 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=0.625 beta=10 B=49 S=0 X=7 bounce_a_range=0.604108358,0.956576405
+MAP_b alpha=1 beta=0 f=0 SBBBBXXX
+MAP_b alpha=1 beta=0 f=0.1 SSSBBBXX
+MAP_b alpha=1 beta=0 f=0.25 SSSSBBXX
+MAP_b alpha=1 beta=0 f=0.5 SSSSSSXX
+MAP_b alpha=1 beta=0 f=0.75 SSSSSSSX
+MAP_b alpha=1 beta=0 f=0.9 SSSSSSSS
+MAP_b alpha=1 beta=0 f=0.99 SSSSSSSS
+GRID_SUMMARY_b alpha=1 beta=0 B=9 S=37 X=10 bounce_a_range=0.1,0.942809042
+MAP_b alpha=1 beta=0.001 f=0 BBBBBXXX
+MAP_b alpha=1 beta=0.001 f=0.1 BBBBBBXX
+MAP_b alpha=1 beta=0.001 f=0.25 BBBBBBXX
+MAP_b alpha=1 beta=0.001 f=0.5 BBBBBBXX
+MAP_b alpha=1 beta=0.001 f=0.75 BBBBBBBX
+MAP_b alpha=1 beta=0.001 f=0.9 BBBBBBBB
+MAP_b alpha=1 beta=0.001 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=1 beta=0.001 B=46 S=0 X=10 bounce_a_range=0.0704069085,0.942809057
+MAP_b alpha=1 beta=0.01 f=0 BBBBBXXX
+MAP_b alpha=1 beta=0.01 f=0.1 BBBBBBXX
+MAP_b alpha=1 beta=0.01 f=0.25 BBBBBBXX
+MAP_b alpha=1 beta=0.01 f=0.5 BBBBBBXX
+MAP_b alpha=1 beta=0.01 f=0.75 BBBBBBBX
+MAP_b alpha=1 beta=0.01 f=0.9 BBBBBBBB
+MAP_b alpha=1 beta=0.01 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=1 beta=0.01 B=46 S=0 X=10 bounce_a_range=0.125127523,0.942809194
+MAP_b alpha=1 beta=0.1 f=0 BBBBBXXX
+MAP_b alpha=1 beta=0.1 f=0.1 BBBBBBXX
+MAP_b alpha=1 beta=0.1 f=0.25 BBBBBBXX
+MAP_b alpha=1 beta=0.1 f=0.5 BBBBBBXX
+MAP_b alpha=1 beta=0.1 f=0.75 BBBBBBBX
+MAP_b alpha=1 beta=0.1 f=0.9 BBBBBBBB
+MAP_b alpha=1 beta=0.1 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=1 beta=0.1 B=46 S=0 X=10 bounce_a_range=0.221760463,0.942810562
+MAP_b alpha=1 beta=1 f=0 BBBBBXXX
+MAP_b alpha=1 beta=1 f=0.1 BBBBBBXX
+MAP_b alpha=1 beta=1 f=0.25 BBBBBBXX
+MAP_b alpha=1 beta=1 f=0.5 BBBBBBXX
+MAP_b alpha=1 beta=1 f=0.75 BBBBBBBX
+MAP_b alpha=1 beta=1 f=0.9 BBBBBBBB
+MAP_b alpha=1 beta=1 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=1 beta=1 B=46 S=0 X=10 bounce_a_range=0.387147714,0.942824242
+MAP_b alpha=1 beta=10 f=0 BBBBBXXX
+MAP_b alpha=1 beta=10 f=0.1 BBBBBBXX
+MAP_b alpha=1 beta=10 f=0.25 BBBBBBXX
+MAP_b alpha=1 beta=10 f=0.5 BBBBBBXX
+MAP_b alpha=1 beta=10 f=0.75 BBBBBBBX
+MAP_b alpha=1 beta=10 f=0.9 BBBBBBBB
+MAP_b alpha=1 beta=10 f=0.99 BBBBBBBB
+GRID_SUMMARY_b alpha=1 beta=10 B=46 S=0 X=10 bounce_a_range=0.630943553,0.962469765
+NUMERICS_b: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; equality_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_b: B=782 S=118 X=108; counts_are_not_probabilities
+BOUNDARY_b: beta=0 has bounce iff alpha*n0^2>f/(1-f); every beta>0 admissible datum bounces; relative_nonbounce_boundary=beta=0,alpha*n0^2<=f/(1-f)
+BOUNCE_SET_b=OPEN
+CLOSURE_c: F(T)=T^4*(1+T^2/(1+T^2)); T0=0.910759870086
+MAP_c alpha=0.25 beta=0 f=0 SBBBBBBX
+MAP_c alpha=0.25 beta=0 f=0.1 SSSSBBBB
+MAP_c alpha=0.25 beta=0 f=0.25 SSSSSSBB
+MAP_c alpha=0.25 beta=0 f=0.5 SSSSSSSS
+MAP_c alpha=0.25 beta=0 f=0.75 SSSSSSSS
+MAP_c alpha=0.25 beta=0 f=0.9 SSSSSSSS
+MAP_c alpha=0.25 beta=0 f=0.99 SSSSSSSS
+GRID_SUMMARY_c alpha=0.25 beta=0 B=12 S=43 X=1 bounce_a_range=0.05,0.942809042
+MAP_c alpha=0.25 beta=0.001 f=0 BBBBBBBX
+MAP_c alpha=0.25 beta=0.001 f=0.1 BBBBBBBB
+MAP_c alpha=0.25 beta=0.001 f=0.25 BBBBBBBB
+MAP_c alpha=0.25 beta=0.001 f=0.5 BBBBBBBB
+MAP_c alpha=0.25 beta=0.001 f=0.75 BBBBBBBB
+MAP_c alpha=0.25 beta=0.001 f=0.9 BBBBBBBB
+MAP_c alpha=0.25 beta=0.001 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.25 beta=0.001 B=55 S=0 X=1 bounce_a_range=0.0592080562,0.942809049
+MAP_c alpha=0.25 beta=0.01 f=0 BBBBBBBX
+MAP_c alpha=0.25 beta=0.01 f=0.1 BBBBBBBB
+MAP_c alpha=0.25 beta=0.01 f=0.25 BBBBBBBB
+MAP_c alpha=0.25 beta=0.01 f=0.5 BBBBBBBB
+MAP_c alpha=0.25 beta=0.01 f=0.75 BBBBBBBB
+MAP_c alpha=0.25 beta=0.01 f=0.9 BBBBBBBB
+MAP_c alpha=0.25 beta=0.01 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.25 beta=0.01 B=55 S=0 X=1 bounce_a_range=0.10525063,0.942809118
+MAP_c alpha=0.25 beta=0.1 f=0 BBBBBBBX
+MAP_c alpha=0.25 beta=0.1 f=0.1 BBBBBBBB
+MAP_c alpha=0.25 beta=0.1 f=0.25 BBBBBBBB
+MAP_c alpha=0.25 beta=0.1 f=0.5 BBBBBBBB
+MAP_c alpha=0.25 beta=0.1 f=0.75 BBBBBBBB
+MAP_c alpha=0.25 beta=0.1 f=0.9 BBBBBBBB
+MAP_c alpha=0.25 beta=0.1 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.25 beta=0.1 B=55 S=0 X=1 bounce_a_range=0.18678813,0.942809802
+MAP_c alpha=0.25 beta=1 f=0 BBBBBBBX
+MAP_c alpha=0.25 beta=1 f=0.1 BBBBBBBB
+MAP_c alpha=0.25 beta=1 f=0.25 BBBBBBBB
+MAP_c alpha=0.25 beta=1 f=0.5 BBBBBBBB
+MAP_c alpha=0.25 beta=1 f=0.75 BBBBBBBB
+MAP_c alpha=0.25 beta=1 f=0.9 BBBBBBBB
+MAP_c alpha=0.25 beta=1 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.25 beta=1 B=55 S=0 X=1 bounce_a_range=0.32848282,0.942816643
+MAP_c alpha=0.25 beta=10 f=0 BBBBBBBX
+MAP_c alpha=0.25 beta=10 f=0.1 BBBBBBBB
+MAP_c alpha=0.25 beta=10 f=0.25 BBBBBBBB
+MAP_c alpha=0.25 beta=10 f=0.5 BBBBBBBB
+MAP_c alpha=0.25 beta=10 f=0.75 BBBBBBBB
+MAP_c alpha=0.25 beta=10 f=0.9 BBBBBBBB
+MAP_c alpha=0.25 beta=10 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.25 beta=10 B=55 S=0 X=1 bounce_a_range=0.552162471,0.942884917
+MAP_c alpha=0.625 beta=0 f=0 SBBBBBXX
+MAP_c alpha=0.625 beta=0 f=0.1 SSSBBBXX
+MAP_c alpha=0.625 beta=0 f=0.25 SSSSBBXX
+MAP_c alpha=0.625 beta=0 f=0.5 SSSSSSBX
+MAP_c alpha=0.625 beta=0 f=0.75 SSSSSSSS
+MAP_c alpha=0.625 beta=0 f=0.9 SSSSSSSS
+MAP_c alpha=0.625 beta=0 f=0.99 SSSSSSSS
+GRID_SUMMARY_c alpha=0.625 beta=0 B=11 S=38 X=7 bounce_a_range=0.0790569415,0.790569415
+MAP_c alpha=0.625 beta=0.001 f=0 BBBBBBXX
+MAP_c alpha=0.625 beta=0.001 f=0.1 BBBBBBXX
+MAP_c alpha=0.625 beta=0.001 f=0.25 BBBBBBXX
+MAP_c alpha=0.625 beta=0.001 f=0.5 BBBBBBBX
+MAP_c alpha=0.625 beta=0.001 f=0.75 BBBBBBBB
+MAP_c alpha=0.625 beta=0.001 f=0.9 BBBBBBBB
+MAP_c alpha=0.625 beta=0.001 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.625 beta=0.001 B=49 S=0 X=7 bounce_a_range=0.0663910376,0.790570609
+MAP_c alpha=0.625 beta=0.01 f=0 BBBBBBXX
+MAP_c alpha=0.625 beta=0.01 f=0.1 BBBBBBXX
+MAP_c alpha=0.625 beta=0.01 f=0.25 BBBBBBXX
+MAP_c alpha=0.625 beta=0.01 f=0.5 BBBBBBBX
+MAP_c alpha=0.625 beta=0.01 f=0.75 BBBBBBBB
+MAP_c alpha=0.625 beta=0.01 f=0.9 BBBBBBBB
+MAP_c alpha=0.625 beta=0.01 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.625 beta=0.01 B=49 S=0 X=7 bounce_a_range=0.118002009,0.790581357
+MAP_c alpha=0.625 beta=0.1 f=0 BBBBBBXX
+MAP_c alpha=0.625 beta=0.1 f=0.1 BBBBBBXX
+MAP_c alpha=0.625 beta=0.1 f=0.25 BBBBBBXX
+MAP_c alpha=0.625 beta=0.1 f=0.5 BBBBBBBX
+MAP_c alpha=0.625 beta=0.1 f=0.75 BBBBBBBB
+MAP_c alpha=0.625 beta=0.1 f=0.9 BBBBBBBB
+MAP_c alpha=0.625 beta=0.1 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.625 beta=0.1 B=49 S=0 X=7 bounce_a_range=0.209245826,0.790688727
+MAP_c alpha=0.625 beta=1 f=0 BBBBBBXX
+MAP_c alpha=0.625 beta=1 f=0.1 BBBBBBXX
+MAP_c alpha=0.625 beta=1 f=0.25 BBBBBBXX
+MAP_c alpha=0.625 beta=1 f=0.5 BBBBBBBX
+MAP_c alpha=0.625 beta=1 f=0.75 BBBBBBBB
+MAP_c alpha=0.625 beta=1 f=0.9 BBBBBBBB
+MAP_c alpha=0.625 beta=1 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.625 beta=1 B=49 S=0 X=7 bounce_a_range=0.366353899,0.841747683
+MAP_c alpha=0.625 beta=10 f=0 BBBBBBXX
+MAP_c alpha=0.625 beta=10 f=0.1 BBBBBBXX
+MAP_c alpha=0.625 beta=10 f=0.25 BBBBBBXX
+MAP_c alpha=0.625 beta=10 f=0.5 BBBBBBBX
+MAP_c alpha=0.625 beta=10 f=0.75 BBBBBBBB
+MAP_c alpha=0.625 beta=10 f=0.9 BBBBBBBB
+MAP_c alpha=0.625 beta=10 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=0.625 beta=10 B=49 S=0 X=7 bounce_a_range=0.604108358,0.956576405
+MAP_c alpha=1 beta=0 f=0 SBBBBXXX
+MAP_c alpha=1 beta=0 f=0.1 SSSBBBXX
+MAP_c alpha=1 beta=0 f=0.25 SSSSBBXX
+MAP_c alpha=1 beta=0 f=0.5 SSSSSSXX
+MAP_c alpha=1 beta=0 f=0.75 SSSSSSSX
+MAP_c alpha=1 beta=0 f=0.9 SSSSSSSS
+MAP_c alpha=1 beta=0 f=0.99 SSSSSSSS
+GRID_SUMMARY_c alpha=1 beta=0 B=9 S=37 X=10 bounce_a_range=0.1,0.942809042
+MAP_c alpha=1 beta=0.001 f=0 BBBBBXXX
+MAP_c alpha=1 beta=0.001 f=0.1 BBBBBBXX
+MAP_c alpha=1 beta=0.001 f=0.25 BBBBBBXX
+MAP_c alpha=1 beta=0.001 f=0.5 BBBBBBXX
+MAP_c alpha=1 beta=0.001 f=0.75 BBBBBBBX
+MAP_c alpha=1 beta=0.001 f=0.9 BBBBBBBB
+MAP_c alpha=1 beta=0.001 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=1 beta=0.001 B=46 S=0 X=10 bounce_a_range=0.0704069085,0.942809057
+MAP_c alpha=1 beta=0.01 f=0 BBBBBXXX
+MAP_c alpha=1 beta=0.01 f=0.1 BBBBBBXX
+MAP_c alpha=1 beta=0.01 f=0.25 BBBBBBXX
+MAP_c alpha=1 beta=0.01 f=0.5 BBBBBBXX
+MAP_c alpha=1 beta=0.01 f=0.75 BBBBBBBX
+MAP_c alpha=1 beta=0.01 f=0.9 BBBBBBBB
+MAP_c alpha=1 beta=0.01 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=1 beta=0.01 B=46 S=0 X=10 bounce_a_range=0.125127523,0.942809194
+MAP_c alpha=1 beta=0.1 f=0 BBBBBXXX
+MAP_c alpha=1 beta=0.1 f=0.1 BBBBBBXX
+MAP_c alpha=1 beta=0.1 f=0.25 BBBBBBXX
+MAP_c alpha=1 beta=0.1 f=0.5 BBBBBBXX
+MAP_c alpha=1 beta=0.1 f=0.75 BBBBBBBX
+MAP_c alpha=1 beta=0.1 f=0.9 BBBBBBBB
+MAP_c alpha=1 beta=0.1 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=1 beta=0.1 B=46 S=0 X=10 bounce_a_range=0.221760463,0.942810562
+MAP_c alpha=1 beta=1 f=0 BBBBBXXX
+MAP_c alpha=1 beta=1 f=0.1 BBBBBBXX
+MAP_c alpha=1 beta=1 f=0.25 BBBBBBXX
+MAP_c alpha=1 beta=1 f=0.5 BBBBBBXX
+MAP_c alpha=1 beta=1 f=0.75 BBBBBBBX
+MAP_c alpha=1 beta=1 f=0.9 BBBBBBBB
+MAP_c alpha=1 beta=1 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=1 beta=1 B=46 S=0 X=10 bounce_a_range=0.387147714,0.942824242
+MAP_c alpha=1 beta=10 f=0 BBBBBXXX
+MAP_c alpha=1 beta=10 f=0.1 BBBBBBXX
+MAP_c alpha=1 beta=10 f=0.25 BBBBBBXX
+MAP_c alpha=1 beta=10 f=0.5 BBBBBBXX
+MAP_c alpha=1 beta=10 f=0.75 BBBBBBBX
+MAP_c alpha=1 beta=10 f=0.9 BBBBBBBB
+MAP_c alpha=1 beta=10 f=0.99 BBBBBBBB
+GRID_SUMMARY_c alpha=1 beta=10 B=46 S=0 X=10 bounce_a_range=0.630943553,0.962469765
+NUMERICS_c: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; equality_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_c: B=782 S=118 X=108; counts_are_not_probabilities
+BOUNDARY_c: beta=0 has bounce iff alpha*n0^2>f/(1-f); every beta>0 admissible datum bounces; relative_nonbounce_boundary=beta=0,alpha*n0^2<=f/(1-f)
+BOUNCE_SET_c=OPEN
+COMPARISON: strictly_enlarged_by_set_inclusion_for_each_beta>0; beta0_set_already_OPEN; no_measure_claim; no_class_filed
+SHA256 b3_rescue.py 2e560637f8529c7b540ea76881a71aeafa2b3859ee8be035defa8a688391b31a
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+p='bounce/b3_rescue.py'
+s=open(p).read().replace(\"        Ct = 3*u*u-k*E-S+k*alpha*N*N\\n\",'')
+s=s.replace('    if q0 <= 1e-14:', '    if q0 <= 0:')
+s=s.replace(\"        if beta == 0:\\n            exact_a = math.sqrt(alpha*n0*n0-sigma)\\n            assert abs(math.exp(-x)/exact_a-1) < 2e-7\\n\",'')
+a=s.index('    else:\\n        # A finite cutoff alone')
+b=s.index(\"    expected = 'B'\",a)
+s=s[:a]+'''    else:
+        raise AssertionError('UNRESOLVED: positive-beta run failed to reach bounce; cutoff is not a singularity')
+'''+s[b:]
+s=s.replace('equality_controls=9', 'threshold_controls=9')
+open(p,'w').write(s)
+PY
+cat > bounce/B3_RESCUE_20260907.md <<'MD'
+# B3 — particle production and the bounce set (2026-09-07)
+
+**FLUID, flat Bianchi I only. Both determined closures give an enlarged bounce set by strict set inclusion:** under fixed "'`Psi=beta H''^4`, every admissible contracting datum bounces for every beta>0. At beta=0, only the strict torsion-dominance subset bounces. No class is filed.
+
+The no-production bounce set was **already OPEN**, as the scope qualification and Kimi challenge establish. Its **boundary**, not the bounce set, was codimension one. This is removal of the shear-versus-torsion restriction at positive beta, not a transition from a measure-small or threshold-only bounce set to an open set.
+
+## Inputs and all added assumptions
+
+Read: `B1_RESULT_V2_20260907.md`, including Amendments A and B; `B2_CLOSURE_20260907.md`; `KIMI_B2_CHALLENGE_20260907.md`; `B1_SCOPE_QUALIFICATION_20260907.md`; and the B1 pre-registration. B1 criterion'"'s interval qualification was also checked. Equation provenance is inherited from B2's inspected arXiv 2007.11556v2 text. No new source retrieval, publisher-version identification or erratum assertion is made.
+
+- Diagonal homogeneous flat Bianchi I, positive scale factors, cosmic proper time and smooth isotropic effective FLUID stress: "'`rho=epsilon-alpha n''^2`, `P=epsilon/3-alpha n''^2`. No curvature, extra component, creation pressure, cosmological constant, anisotropic stress, chemical-potential or entropy closure is added. KS and DIRAC are not computed.
+- Initial epsilon>0, n>=0 and shear>=0, with strict initial contraction satisfying the Hamiltonian constraint. Zero n is allowed because n is independent of T; positive beta immediately sources it.
+- Alpha is a positive constant on each trajectory, carried as an interval parameter. The proof holds for **any interval I contained in (0,infinity)**. The inherited record supplies no controlled numerical FLUID endpoints. The declared **dimensionless sensitivity interval [0.25,1]**, sampled at **0.25,0.625,1**, is an added numerical choice, not a K3 interval or a physical confidence interval. No free-gas coupling is inserted at the bounce.
+- The paper'"'s phenomenological **fixed "'`Psi=beta H''^4`** is extrapolated through the whole collapse. Beta>=0; zero is the control. The numerical positive range [0.001,10] is exploratory, not calibrated to the paper or to microscopic production. The proof covers every fixed beta>0. Extrapolating the source and effective fluid to high density is a mathematical assumption, not evidence of validity there.
+- Set a0=1 by spatial normalization. Use initial density unit epsilon0, arbitrary number unit n_ref, and time unit t_ref=(kappa epsilon0)''^(-1/2). Dimensionless alpha is alpha_phys n_ref''^2/epsilon0; dimensionless beta is beta_phys/(n_ref t_ref''^3). The script has kappa=epsilon0=1. The temperature unit makes h_star=1 in (b). This does not set a microscopic coupling.
+- **Closure (b):** epsilon=T''^4, p=epsilon/3, n independently sourced. **Closure (c):** fix `F(T)=T''^4[1+T''^2/(1+T''^2)]`, p=epsilon/3, n independently sourced. This smooth positive caloric crossover changes the coefficient from 1 to 2 at an order-one temperature scale. `F'"'=2 T"'^3(4 T''^4+7 T''^2+2)/(1+T''^2)''^2>0` for T>0. It is a regular phenomenological representative of a changing caloric coefficient, not a derived equilibrium-gas EOS; no equilibrium identity relating p to F is imposed. Scale and amplitude are fixed at one, never fitted to a bounce.
+- Closures are compared at matched **epsilon0**, rather than matched T0. T0=1 in (b); T0=F_c''^(-1)(1) in (c). With p=epsilon/3 and no T dependence in Psi, **any globally invertible positive F with range (0,infinity)** gives the same density/geometry dynamics. F_c cannot tune the bounce map; it changes temperature alone. B2'"'s local F'"'!=0 does not alone guarantee a global caloric domain, which this representative supplies.
+- No measure on initial data is introduced. Counts refer only to this finite grid. No independent adversarial review is claimed; filing and any separate review remain with the requester.
+
+## 1. Constraint propagation before integration
+
+Let S=sigma''^2. The exact cosmic-time system obtained from B2'"'s directional field equations is
+
+"'```
+a_dot = H a
+H_dot = kappa epsilon/3 - 3 H''^2
+S_dot = -6 H S
+n_dot = beta H''^4 - 3 H n
+epsilon_dot = -4 H epsilon + 2 alpha n beta H''^4
+T_dot = [-4 H F(T) + 2 alpha n beta H''^4]/F'"'(T)
+C = 3 H"'^2 - kappa(epsilon-alpha n''^2) - S.
+```
+
+Epsilon and T are alternative coordinates for one evolution equation. In (b), `T_dot=-HT+alpha n beta H''^4/(2T''^3)`. In (c), use the explicitly specified F and F'"'. Neither retains the paper's temperature equation (37), which depended on the discarded n=h_n T"'^3 closure.
+
+For this precise off-constraint evolution, direct differentiation gives
+
+`C_dot+6HC=-kappa[epsilon_dot+4H epsilon-2alpha n beta H''^4]=0`.
+
+The first-law residual `epsilon_dot-2alpha n n_dot+3H(4epsilon/3-2alpha n''^2)` also vanishes. The script substitutes each F and symbolically computes both residuals. **CONSTRAINT_RESIDUAL_b=0; CONSTRAINT_RESIDUAL_c=0.** Both checks finish before any numerical integration; a nonzero residual stops the program.
+
+For numerical conditioning use d tau=dt/a''^3 and the invertible coordinates
+
+`x=-ln a, u=-H a''^3, N=n a''^3, E=epsilon a''^6, S0=S a''^6`.
+
+The exact integrated system is
+
+```
+x'"' = u
+u' = -kappa E/3
+N' = beta u"'^4 exp(6x)
+E'"' = -2u E + 2alpha N N'
+t' = exp(-3x)
+C_tau = 3u"'^2 - kappa E - S0 + kappa alpha N''^2.
+```
+
+Prime denotes tau derivative. **C_tau'"'=0 identically**, without projection. The script verifies this identity and the caloric chain rule "'`F'"'(T)T'=exp(6x)[4uE+2alpha N N']"'` for both closures. Reconstructing T from F(T)=E exp(6x) is an exact state-coordinate change. The two closures are run separately in these coordinates.
+
+For beta=0, an additional exact reduction avoids relative constraint drift near a singularity. With delta=S0-alpha n0''^2 in script units, `a''^2=3u''^2-delta` and `dt/du=-3sqrt(3u''^2-delta)`. Proper time is numerically integrated to u=0 for a bounce (delta<0), or u=sqrt(delta/3) for a singularity (delta>=0). Its reconstructed constraint is identically zero, also checked symbolically. This reduction is not used for positive beta.
+
+## 2. Scaling before numerics, including the energy source
+
+**Closure (b):** number balance gives exactly
+
+`N(t)=n0+integral_0''^t a''^3 Psi dt`,
+`alpha n''^2=alpha a''^-6 N(t)''^2`,
+`S=S0 a''^-6`.
+
+During collapse with n>0 and beta>0,
+
+`d ln(alpha n''^2)/d ln a=-6+2beta H''^3/n<-6`.
+
+For S>0, `d(alpha n''^2/S)/dt=2alpha n Psi/S>0`. The integral also covers n0=0; the logarithmic formula is used only for n>0. Number density **grows faster** than a''^-3 in collapse. “Falls slower” would confuse expansion with collapse.
+
+**Closure (c):** the same integral, scaling and inequalities hold, because its caloric relation changes neither number balance nor isotropic shear evolution. Its temperature equation differs as specified above. Thus **TORSION_SCALING_b=HELPS** and **TORSION_SCALING_c=HELPS**. This is an instantaneous exponent plus an exact integral, not a constant modified power-law ansatz.
+
+The helpful torsion/shear direction holds for any nonnegative production, independently of H''^4. But it does not alone prove a bounce: first-law heating gives `d(epsilon a''^4)/dt=2alpha n Psi a''^4>=0`.
+
+To settle the competition analytically, take x as independent variable while H<0, and set
+
+`Q=3H''^2 a''^6=kappa E+S0-kappa alpha N''^2>0`.
+
+Then
+
+```
+N_x = beta (Q/3)''^(3/2) exp(6x)
+E_x = -2E + 2alpha N N_x
+Q_x = -2kappa E < 0.
+```
+
+The source contributions to Q_x cancel **exactly through the first law**, rather than by neglecting heating. E>=E0 exp(-2x)>0.
+
+**Finite-bounce proof for every alpha>0 and fixed beta>0, both closures.** Let N_star=sqrt(S0/(kappa alpha)). Suppose collapse continues with N<=N_star. Then `kappa E=Q-S0+kappa alpha N''^2<=Q`, so Q_x>=-2Q and Q>=Q0 exp(-2x). Therefore
+
+`N_x>=beta (Q0/3)''^(3/2) exp(3x)`.
+
+This has an unbounded integral: N must exceed N_star at finite x unless a bounce intervenes. A root itself requires N>N_star since E>0. Initial equality crosses immediately under the strictly positive source; this includes S0=N0=0.
+
+After N1>N_star at finite x1, define D=kappa alpha N1''^2-S0>0. Monotonic N gives `Q_x=-2(Q+kappa alpha N''^2-S0)<=-2D`, hence a root occurs no later than x1+Q(x1)/(2D). There is no prior finite-x blow-up: Q<=Q0 bounds N_x on finite-x intervals, and the constraint bounds E. At the root, Q_x=-2kappa E_b<0, so `dt/dx=a''^3sqrt(3/Q)` is integrable. All variables are finite, and `H_dot_b=kappa epsilon_b/3>0`. The smooth proper-time system crosses H=0 at a genuine minimum. Finite shear and finite proper time also keep the directional scale factors regular there.
+
+**Prescription dependence is load-bearing.** The exponential lower bound uses fixed positive beta and exactly Psi=beta H''^4 throughout contraction. An arbitrary nonnegative source could create too few particles to reach N_star. Universal rescue is therefore a result of this prescription, the retained p=epsilon/3 EOS and effective first law, not production per se. Psi vanishing at H=0 does not erase previously accumulated N. The proof is not uniform as beta->0 or alpha->0; alpha=0 is excluded.
+
+## 3. Declared grid and numerical results
+
+Set epsilon0=a0=kappa=1 and define the initial shear fraction
+
+`f=S0/(kappa epsilon0+S0)`, so `S0=f/(1-f)`.
+
+This uses the positive ordinary-density-plus-shear terms, not effective density. Set `H0=-sqrt((1+S0-alpha n0''^2)/3)` and retain only `1+S0-alpha n0''^2>0`. Invalid or initially turning data are X, not singular outcomes. Any shear orientation with this magnitude has the same mean-volume outcome; one realization at a_i0=1 is H_i-H=(sqrt(S0),-sqrt(S0),0).
+
+```
+alpha = (0.25, 0.625, 1)
+f     = (0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+n0    = (0, 0.1, 0.25, 0.5, 0.75, 1, 1.5, 2)
+beta  = (0, 0.001, 0.01, 0.1, 1, 10)
+```
+
+Each closure has 1008 cells, of which 900 are admissible and 108 excluded, counting beta copies. The script prints every cell as an eight-character row in n0 order, and per-alpha/per-beta counts and bounce-radius ranges.
+
+### Closure (b)
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_b=OPEN`.
+
+### Closure (c)
+
+| alpha | beta=0: bounce / singular / excluded | Each beta in {0.001,0.01,0.1,1,10}: bounce / singular / excluded |
+|---|---:|---:|
+| 0.25 | 12 / 43 / 1 | 55 / 0 / 1 |
+| 0.625 | 11 / 38 / 7 | 49 / 0 / 7 |
+| 1 | 9 / 37 / 10 | 46 / 0 / 10 |
+
+Total **782 bounce, 118 singular, 108 excluded**. `BOUNCE_SET_c=OPEN`. Exact agreement with (b) follows from coordinate equivalence, not independent physical evidence for either closure.
+
+### Numerical checks and singularity interpretation
+
+Positive-beta runs use SciPy DOP853 with rtol=2e-10, atol=2e-12 and an event for u crossing zero downwards. Each closure'"'s maximum normalized constraint defect is **1.92274e-10**, with denominator "'`3u''^2+E+S0+alpha N''^2`. A guard at x=12 or tau=2e6 fails the run if reached without a bounce; no positive-beta grid run reaches it. No finite density cutoff is called a singularity.
+
+Beta=0 uses the exact reduction with numerical proper-time quadrature (epsabs=2e-12, epsrel=2e-11). If delta>=0, `3H''^2=a''^-4+delta a''^-6` reaches a=0 at finite proper time with divergent ordinary density/curvature. These are analytically certified singular endpoints, not solver failures. If delta<0, `a_b=sqrt(-delta)` is the finite bounce radius.
+
+Nine extra threshold controls per closure cover every alpha and f=0,0.5,0.9. A number just below equality (relative offset 1e-10, exact zero for the isotropic case) is singular at beta=0; the equality number bounces at beta=0.001. Equality at beta=0 is covered by the exact analytic formula, avoiding floating-point sign decisions. Three refinement cases per closure include high shear/weak production, a no-production bounce, and strong production. Tenfold tighter ODE tolerances change the bounce radius by at most **1.42686e-12** relative. Positive-beta events have finite positive epsilon and H_dot. The script asserts the caloric inverses, symbolic residuals, numerical constraint bound and all map classifications against the analytic theorem.
+
+Reproduction: from `bounce/`, run `/usr/bin/python3 b3_rescue.py`. Verified with system Python, SymPy 1.14.0 and SciPy 1.13.1. The script has no network and writes no files; it reads only its own source and this report to print their SHA256s at the end.
+
+## 4. Boundary, openness and comparison
+
+Let D consist of alpha in any positive interval I, epsilon0>0, n0>=0, S0>=0, and `kappa epsilon0+S0-kappa alpha n0''^2>0`. For each closure separately,
+
+`B_0={d in D: kappa alpha n0''^2>S0}`,
+`B_beta=D for every fixed beta>0`.
+
+At beta=0, the separating surface is `S0=kappa alpha n0''^2`, or `f=alpha n0''^2/(1+alpha n0''^2)` on the normalized slice. Equality is singular. The strict bounce side is open; the boundary is codimension one in the interior, with parameter-edge qualifications. For beta>0, **no internal separating surface remains in D**. In the extended space D times [0,infinity), the bounce set is relatively open and its relative boundary is `{beta=0,S0>=kappa alpha n0''^2}`. This excludes the inadmissibility boundary of D itself.
+
+**The comparison is strict set inclusion, not volume or probability:** B_0 is a proper subset of B_beta at each fixed beta>0. On the grid, each positive-beta slice adds all 118 initially nonbouncing admissible data to the existing 32 bounces; none is lost. No claim of monotonic bounce radius with beta is needed. Nor must raw bounce counts increase with alpha on this slice, since alpha changes which initial data are admissible.
+
+The theorem holds throughout every positive alpha interval under the stated assumptions. The bounce constraint still requires `alpha n_b''^2=epsilon_b+S_b/kappa>=epsilon_b`: rescue does not make the spin-fluid closure controlled. This is a conditional FLUID model map, not a class filing or a conclusion about black-hole-universe cosmology as a whole.
+
+## Required tokens
+
+```
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS
+TORSION_SCALING_c=HELPS
+BOUNCE_SET_b=OPEN
+BOUNCE_SET_c=OPEN
+GRID_TOTAL_b: B=782 S=118 X=108
+GRID_TOTAL_c: B=782 S=118 X=108
+```
+MD' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+exec
+/bin/zsh -lc '/usr/bin/python3 b3_rescue.py > b3_run.txt' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce
+exec
+/bin/zsh -lc "sed -n '1,230p' bounce/b3_rescue.py" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+#!/usr/bin/python3
+"""B3: flat Bianchi I FLUID only. Deterministic, offline, no file writes.
+Run: /usr/bin/python3 b3_rescue.py
+Dependencies: SymPy and SciPy. Definitions, proof and scope: B3_RESCUE_20260907.md.
+"""
+import hashlib
+import math
+from pathlib import Path
+import sympy as sp
+from scipy.integrate import solve_ivp, quad
+from scipy.optimize import brentq
+
+ALPHAS = (0.25, 0.625, 1.0)
+FRACTIONS = (0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99)
+NUMBERS = (0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0)
+BETAS = (0.0, 0.001, 0.01, 0.1, 1.0, 10.0)
+RTOL, ATOL = 2e-10, 2e-12
+
+
+def caloric(T, closure):
+    if closure == 'b':
+        return T**4
+    return T**4 * (1.0 + T*T/(1.0 + T*T))
+
+
+def temperature(eps, closure):
+    if closure == 'b':
+        return eps**0.25
+    # Globally T^4 <= F_c(T) <= 2 T^4. Bracket in scaled coordinates.
+    scale = eps**0.25
+    z = brentq(lambda z: caloric(z*scale, closure)/eps-1,
+               2**(-0.25), 1.0, xtol=2e-14)
+    return z*scale
+
+
+def verify():
+    H, S, n, T, alpha, k, beta = sp.symbols('H S n T alpha k beta')
+    for closure in ('b', 'c'):
+        F = T**4 if closure == 'b' else T**4*(1+T**2/(1+T**2))
+        nd = beta*H**4-3*H*n
+        Td = (2*alpha*n*beta*H**4-4*H*F)/sp.diff(F, T)
+        Hd = k*F/3-3*H**2  # exact directional-equation mean, off constraint
+        Sd = -6*H*S
+        C = 3*H**2-k*(F-alpha*n**2)-S
+        Cd = sum(sp.diff(C, v)*d for v, d in ((H,Hd),(S,Sd),(n,nd),(T,Td)))
+        residual = sp.factor(Cd+6*H*C)
+        energy = sp.factor(sp.diff(F,T)*Td-2*alpha*n*nd+3*H*(4*F/3-2*alpha*n*n))
+        x,u,N,E = sp.symbols('x u N E')
+        prod = beta*u**4*sp.exp(6*x)
+        transformed = sp.expand(6*u*(-k*E/3)-k*(-2*u*E+2*alpha*N*prod)+2*k*alpha*N*prod)
+        # T reconstructed from F(T)=E exp(6x) obeys precisely transformed Td.
+        reconstruction = sp.simplify(((-2*u*E+2*alpha*N*prod)+6*u*E)*sp.exp(6*x)
+                                     -(4*u*E+2*alpha*N*prod)*sp.exp(6*x))
+        delta = sp.symbols('delta')
+        beta0_residual = sp.expand(3*u*u-(3*u*u-delta)-delta)
+        assert beta0_residual == 0
+        print(f'CONSTRAINT_RESIDUAL_{closure}={residual}')
+        print(f'CHECK_{closure}: first_law={energy}; transformed_constraint={transformed}; caloric_chain_rule={reconstruction}; Fprime={sp.factor(sp.diff(F,T))}')
+        if any(r != 0 for r in (residual, energy, transformed, reconstruction)):
+            raise SystemExit('STOP: nonzero exact residual; no integration performed')
+    # These analytic statements are printed before any numerical integration.
+    for closure in ('b', 'c'):
+        print(f'TORSION_SCALING_{closure}=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)')
+
+
+def integrate(alpha, f, n0, beta, closure, tighter=False):
+    """Integrate in d tau=dt/a^3; x=-ln a, u=-H a^3, N=n a^3, E=eps a^6.
+    Caloric energy is an invertible state coordinate in EACH specified closure.
+    No constraint projection is used. t is proper time, initially zero.
+    """
+    sigma = f/(1-f)
+    q0 = 1+sigma-alpha*n0*n0
+    if q0 <= 0:
+        return {'kind': 'X'}  # no strictly collapsing real initial H
+    if beta == 0:
+        # Exact beta=0 reduction, with u as independent variable:
+        # a^2=3u^2-delta, dt/du=-3a. Numerically integrate proper time
+        # all the way to the analytic bounce or singular endpoint.
+        delta = sigma-alpha*n0*n0
+        u0 = math.sqrt(q0/3)
+        end = math.sqrt(max(delta,0)/3)
+        time, quadrature_error = quad(lambda u: 3*math.sqrt(max(0,3*u*u-delta)),
+                                      end,u0,epsabs=2e-12,epsrel=2e-11)
+        kind = 'B' if delta < 0 else 'S'
+        a = math.sqrt(-delta) if kind == 'B' else 0.0
+        Tb = temperature(a**-4,closure) if kind == 'B' else None
+        return dict(kind=kind,a=a,t=time,error=0.0,T=Tb,quadrature_error=quadrature_error)
+    y0 = (0.0, math.sqrt(q0/3), n0, 1.0, 0.0)
+    T0 = temperature(1.0, closure)
+    assert abs(caloric(T0, closure)-1) < 1e-12
+
+    def rhs(tau, y):
+        x,u,N,E,t = y
+        prod = beta*u**4*math.exp(6*x)
+        return (u, -E/3, prod, -2*u*E+2*alpha*N*prod, math.exp(-3*x))
+
+    def bounce(tau,y): return y[1]
+    bounce.terminal, bounce.direction = True, -1
+    def cutoff(tau,y): return y[0]-12.0
+    cutoff.terminal, cutoff.direction = True, 1
+    sol = solve_ivp(rhs, (0,2e6), y0, method='DOP853',
+                    rtol=RTOL/(10 if tighter else 1),
+                    atol=ATOL/(10 if tighter else 1), events=(bounce,cutoff))
+    if not sol.success:
+        raise AssertionError(sol.message)
+    x,u,N,E,t = sol.y[:,-1]
+    errors = []
+    for xi,ui,Ni,Ei,ti in sol.y.T:
+        assert Ei > 0 and Ni >= -1e-12
+        errors.append(abs(3*ui*ui-Ei-sigma+alpha*Ni*Ni)/
+                      (3*ui*ui+Ei+sigma+alpha*Ni*Ni))
+    err = max(errors)
+    assert err < 2e-8, (closure, alpha,f,n0,beta,err)
+    if len(sol.t_events[0]):
+        kind = 'B'
+        eps = E*math.exp(6*x)
+        Tb = temperature(eps, closure)
+        assert abs(caloric(Tb,closure)/eps-1) < 1e-11
+        assert eps/3 > 0  # Hdot at H=0; finite positive crossing
+    else:
+        raise AssertionError('UNRESOLVED: positive-beta run failed to reach bounce; cutoff is not a singularity')
+    expected = 'B' if beta > 0 or alpha*n0*n0 > sigma else 'S'
+    assert kind == expected, (closure,alpha,f,n0,beta,kind,expected)
+    return dict(kind=kind, a=math.exp(-x), t=t, error=err, T=Tb)
+
+
+def main():
+    verify()  # MUST finish for BOTH closures before any integration.
+    print('DOMAIN: FLUID; flat Bianchi I; kappa=h_star=eps0=a0=1; alpha_interval=[0.25,1]; samples='+str(ALPHAS))
+    print('GRID: f='+str(FRACTIONS)+'; n0='+str(NUMBERS)+'; beta='+str(BETAS))
+    print('MAP_LEGEND: B=bounce; S=analytically certified singular continuation; X=inadmissible initial collapse; columns=n0 in printed order')
+    all_results = {}
+    for closure in ('b','c'):
+        results = {}
+        print(f'CLOSURE_{closure}: F(T)='+('T^4' if closure=='b' else 'T^4*(1+T^2/(1+T^2))')+f'; T0={temperature(1,closure):.12g}')
+        maxerr = 0.0
+        totals = dict(B=0,S=0,X=0)
+        for alpha in ALPHAS:
+            for beta in BETAS:
+                counts = dict(B=0,S=0,X=0)
+                radii = []
+                for f in FRACTIONS:
+                    row = ''
+                    for n0 in NUMBERS:
+                        r = integrate(alpha,f,n0,beta,closure)
+                        results[(alpha,f,n0,beta)] = r
+                        row += r['kind']
+                        counts[r['kind']] += 1
+                        if r['kind'] != 'X': maxerr = max(maxerr,r['error'])
+                        if r['kind'] == 'B': radii.append(r['a'])
+                    print(f'MAP_{closure} alpha={alpha:g} beta={beta:g} f={f:g} {row}')
+                for key in totals: totals[key] += counts[key]
+                interval = f'{min(radii):.9g},{max(radii):.9g}' if radii else 'none'
+                print(f'GRID_SUMMARY_{closure} alpha={alpha:g} beta={beta:g} B={counts["B"]} S={counts["S"]} X={counts["X"]} bounce_a_range={interval}')
+        # Explicit equality-side controls, including anisotropy, plus refinement.
+        for alpha in ALPHAS:
+            for f in (0.0,0.5,0.9):
+                n0 = math.sqrt((f/(1-f))/alpha)
+                # roundoff at equality: integrate a nearby nonbouncing datum instead
+                # and retain exact equality as an analytic control printed below.
+                nbelow = n0*(1-1e-10)
+                assert integrate(alpha,f,nbelow,0,closure)['kind'] == 'S'
+                assert integrate(alpha,f,n0,0.001,closure)['kind'] == 'B'
+        refinement = 0.0
+        for alpha,f,n0,beta in ((0.25,0.99,0,0.001),(1,0.1,0.5,0),(0.625,0.5,0.1,10)):
+            r = results[(alpha,f,n0,beta)]
+            fine = integrate(alpha,f,n0,beta,closure,True)
+            refinement = max(refinement,abs(r['a']/fine['a']-1))
+        assert refinement < 2e-7
+        print(f'NUMERICS_{closure}: max_normalized_constraint={maxerr:.6g}; max_refinement_relative_a={refinement:.6g}; threshold_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature')
+        print(f'GRID_TOTAL_{closure}: B={totals["B"]} S={totals["S"]} X={totals["X"]}; counts_are_not_probabilities')
+        print(f'BOUNDARY_{closure}: beta=0 has bounce iff alpha*n0^2>f/(1-f); every beta>0 admissible datum bounces; relative_nonbounce_boundary=beta=0,alpha*n0^2<=f/(1-f)')
+        print(f'BOUNCE_SET_{closure}=OPEN')
+        all_results[closure] = results
+    assert all(all_results['b'][key]['kind']==all_results['c'][key]['kind'] for key in all_results['b'])
+    print('COMPARISON: strictly_enlarged_by_set_inclusion_for_each_beta>0; beta0_set_already_OPEN; no_measure_claim; no_class_filed')
+    for name in ('b3_rescue.py','B3_RESCUE_20260907.md'):
+        path = Path(__file__).resolve().parent/name
+        if path.exists(): print('SHA256 '+name+' '+hashlib.sha256(path.read_bytes()).hexdigest())
+
+
+if __name__ == '__main__':
+    main()
+
+ succeeded in 2828ms:
+exec
+/bin/zsh -lc "rg 'CHECK_|GRID_TOTAL_|NUMERICS_|SHA256|CLOSURE_' bounce/b3_run.txt" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+CHECK_b: first_law=0; transformed_constraint=0; caloric_chain_rule=0; Fprime=4*T**3
+CHECK_c: first_law=0; transformed_constraint=0; caloric_chain_rule=0; Fprime=2*T**3*(4*T**4 + 7*T**2 + 2)/(T**2 + 1)**2
+CLOSURE_b: F(T)=T^4; T0=1
+NUMERICS_b: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; threshold_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_b: B=782 S=118 X=108; counts_are_not_probabilities
+CLOSURE_c: F(T)=T^4*(1+T^2/(1+T^2)); T0=0.910759870086
+NUMERICS_c: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; threshold_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_c: B=782 S=118 X=108; counts_are_not_probabilities
+SHA256 b3_rescue.py 2521b2aba944d0e53fc0af0e7ad9ddb99b8ed1b2dd769fc8148200de3c6058bf
+SHA256 B3_RESCUE_20260907.md 657186afe2617f70b14b9106a76cd30f69f2bc9a722e06843689e2cda79037f1
+
+codex
+The report and script are written, and the full run passes. I’m checking the final hashes and file scope. The report explicitly distinguishes prescription-dependent enlargement from openness: both bounce sets were already open without production, and no class or measure claim is filed.
+exec
+/bin/zsh -lc "python3 - <<'PY'
+p='bounce/b3_rescue.py'
+s=open(p).read()
+s=s.replace('''        reconstruction = sp.simplify(((-2*u*E+2*alpha*N*prod)+6*u*E)*sp.exp(6*x)
+                                     -(4*u*E+2*alpha*N*prod)*sp.exp(6*x))''','''        reconstruction = sp.simplify(
+            (sp.diff(F,T)*Td).subs({H:-u*sp.exp(3*x), n:N*sp.exp(3*x)})
+            *sp.exp(-3*x) - (4*u*F+2*alpha*N*prod*sp.exp(6*x)))''')
+s=s.replace('        assert eps/3 > 0', '        assert math.isfinite(eps) and eps/3 > 0')
+s=s.replace(\"        Tb = temperature(a**-4,closure) if kind == 'B' else None\\n        return\", \"        Tb = temperature(a**-4,closure) if kind == 'B' else None\\n        assert math.isfinite(time) and time > 0\\n        if kind == 'B': assert abs(caloric(Tb,closure)*a**4-1) < 1e-11\\n        return\")
+open(p,'w').write(s)
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+exec
+/bin/zsh -lc '/usr/bin/python3 b3_rescue.py > b3_run.txt' in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/bounce
+ succeeded in 3035ms:
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+import hashlib
+p=Path('bounce')
+s=(p/'b3_run.txt').read_text()
+for line in s.splitlines():
+ if line.startswith(('CONSTRAINT_RESIDUAL_', 'TORSION_SCALING_', 'NUMERICS_', 'GRID_TOTAL_', 'BOUNCE_SET_', 'SHA256')): print(line)
+assert s.count('MAP_b ')==126 and s.count('MAP_c ')==126
+assert 'COMPARISON: strictly_enlarged' in s
+for name in ('b3_rescue.py','B3_RESCUE_20260907.md'):
+ digest=hashlib.sha256((p/name).read_bytes()).hexdigest()
+ assert 'SHA256 '+name+' '+digest in s
+(p/'b3_run.txt').unlink()
+print('FINAL_OUTPUTS_VERIFIED; temporary run output removed')
+PY" in /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828
+ succeeded in 0ms:
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)
+TORSION_SCALING_c=HELPS; alpha*n^2=alpha*a^-6*(n0+integral(a^3*Psi*dt))^2; dln(alpha*n^2)/dln(a)=-6+2*beta*H^3/n<-6 (H<0,n>0,beta>0)
+NUMERICS_b: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; threshold_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_b: B=782 S=118 X=108; counts_are_not_probabilities
+BOUNCE_SET_b=OPEN
+NUMERICS_c: max_normalized_constraint=1.92274e-10; max_refinement_relative_a=1.42686e-12; threshold_controls=9; beta0=exact_reduction_numerical_proper_time_quadrature
+GRID_TOTAL_c: B=782 S=118 X=108; counts_are_not_probabilities
+BOUNCE_SET_c=OPEN
+SHA256 b3_rescue.py 1b82e8b09640b28572499ea11a0090a583bcba69d9f623e58fdca07581242520
+SHA256 B3_RESCUE_20260907.md 657186afe2617f70b14b9106a76cd30f69f2bc9a722e06843689e2cda79037f1
+FINAL_OUTPUTS_VERIFIED; temporary run output removed
+
+codex
+Completed both files under `bounce/`; `/usr/bin/python3 b3_rescue.py` passes.
+
+Both closures show strict enlargement under fixed \(\Psi=\beta H^4\): every admissible collapsing datum bounces for \(\beta>0\). The no-production bounce set was already open. No class filed.
+
+```text
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS
+TORSION_SCALING_c=HELPS
+BOUNCE_SET_b=OPEN
+BOUNCE_SET_c=OPEN
+GRID_TOTAL_b: B=782 S=118 X=108
+GRID_TOTAL_c: B=782 S=118 X=108
+```
+
+`B` = bounce, `S` = singular, `X` = inadmissible.
+
+SHA256s:
+
+```text
+B3_RESCUE_20260907.md
+657186afe2617f70b14b9106a76cd30f69f2bc9a722e06843689e2cda79037f1
+
+b3_rescue.py
+1b82e8b09640b28572499ea11a0090a583bcba69d9f623e58fdca07581242520
+```
+tokens used
+78,422
+Completed both files under `bounce/`; `/usr/bin/python3 b3_rescue.py` passes.
+
+Both closures show strict enlargement under fixed \(\Psi=\beta H^4\): every admissible collapsing datum bounces for \(\beta>0\). The no-production bounce set was already open. No class filed.
+
+```text
+CONSTRAINT_RESIDUAL_b=0
+CONSTRAINT_RESIDUAL_c=0
+TORSION_SCALING_b=HELPS
+TORSION_SCALING_c=HELPS
+BOUNCE_SET_b=OPEN
+BOUNCE_SET_c=OPEN
+GRID_TOTAL_b: B=782 S=118 X=108
+GRID_TOTAL_c: B=782 S=118 X=108
+```
+
+`B` = bounce, `S` = singular, `X` = inadmissible.
+
+SHA256s:
+
+```text
+B3_RESCUE_20260907.md
+657186afe2617f70b14b9106a76cd30f69f2bc9a722e06843689e2cda79037f1
+
+b3_rescue.py
+1b82e8b09640b28572499ea11a0090a583bcba69d9f623e58fdca07581242520
+```
