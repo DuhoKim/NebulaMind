@@ -72,3 +72,11 @@ and no observable prediction can follow before that. The concrete choice is writ
 (production completion + constitutive model + spin-current convention, three linked decisions, three honest options). **Awaiting
 Duho on that choice; nothing started.** B7/B8 and both reviewed
 extension reports preserved unchanged.
+
+## MINIMAL-COMPLETION BRANCH (2026-09-08, approved by Duho — outside this lane)
+Folder: `/Users/duhokim/work/Trio/TORI_MINIMAL_COMPLETION_20260908`. Three assumptions ADOPTED BY APPROVAL, not derived (minimal local production law; held algebraic stress complete;
+scalar fluid with no spin transport). L1/L2 are NOT relabelled and stay the record of what holds without them.
+**Result, independently reviewed (M1_REVIEW=VERDICTS_STAND):** the full-interval linear well-posedness theorem **FAILS** on a
+certified negative ratio plus the enthalpy-crossing obstruction; a **local** theorem holds CONDITIONALLY away from that crossing;
+the nonlinear case is UNRESOLVED. So the minimal completion does not deliver evolution through the turn. M2 is now mapping the
+failure domain and attempting the nonlinear estimates under the same assumptions — no new physical choice.
