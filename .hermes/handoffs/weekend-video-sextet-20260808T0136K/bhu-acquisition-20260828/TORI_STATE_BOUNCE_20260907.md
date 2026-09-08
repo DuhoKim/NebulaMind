@@ -61,3 +61,14 @@ Both routes assessed, each author-complete and each independently reviewed on a 
   and no licensed perturbation/response sector.
 - **Recommendation delivered, not executed:** derive that perturbation/response sector once for the curved KS system with
   production, rather than attempting a third observable. Decidable either way. **Awaiting Duho.**
+
+## LINEAR DERIVATION BRANCH — ACTIVE (2026-09-08, outside this lane)
+Folder: `/Users/duhokim/work/Trio/TORI_LINEAR_DERIVATION_20260908`. **The 'awaiting Duho' hold is RESOLVED**; old liveness nudges should no longer report this block as blocked.
+Deriving the linear perturbation/response system for the preserved curved KS spin-fluid model as far as the held equations
+determine it — the object both empirical routes were missing. Author job bzw22abnj (trio-research), tracked. **COMPLETE.** L1 (system) and L2 (derivational items) both delivered and both independently reviewed: SYSTEM_STANDS and STANDS,
+with no physical choice smuggled in as algebra. Everything derivable without new physics is derived. It stops at ONE structural
+place: well-posedness of the completed inhomogeneous system is undetermined until the local completion is fixed, so no spectrum
+and no observable prediction can follow before that. The concrete choice is written up in `SCIENTIFIC_CHOICE_FOR_DUHO.md`
+(production completion + constitutive model + spin-current convention, three linked decisions, three honest options). **Awaiting
+Duho on that choice; nothing started.** B7/B8 and both reviewed
+extension reports preserved unchanged.
