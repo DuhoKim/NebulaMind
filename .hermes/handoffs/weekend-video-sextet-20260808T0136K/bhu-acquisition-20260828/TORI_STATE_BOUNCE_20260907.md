@@ -80,3 +80,16 @@ scalar fluid with no spin transport). L1/L2 are NOT relabelled and stay the reco
 certified negative ratio plus the enthalpy-crossing obstruction; a **local** theorem holds CONDITIONALLY away from that crossing;
 the nonlinear case is UNRESOLVED. So the minimal completion does not deliver evolution through the turn. M2 is now mapping the
 failure domain and attempting the nonlinear estimates under the same assumptions — no new physical choice.
+
+## OPTION B EXECUTED (2026-09-09, Duho selected it — outside this lane)
+Folder: `/Users/duhokim/work/Trio/TORI_SYMBOLIC_STABILITY_20260909`; delivered for Blanc's independent review at `/Users/duhokim/work/Trio/BLANC_FOCUSED_REVIEW_20260909/` with exact
+pins. **Three results, author-stage, awaiting Blanc:**
+1. **Scoped impossibility** — within the existing-field algebraic perfect-fluid family the perturbative Cauchy interval cannot be
+   repaired while preserving the held background: smooth source/pressure responses leave $W=ho+P$ unchanged there, so the
+   zero-inertia endpoint is untouchable inside that family.
+2. **Partial repair, hypothetical and NOT adopted** — a state-dependent production response can preserve the background and
+   remove the negative-speed-squared interior. A hypothetical term is not a closure.
+3. **Metric-causal no-go** — matching the held background at the volume turn forces the squared speed above 11/10, so no matching
+   member of the examined family is metric-causal on an interval containing the turn. **Held turn or metric causality, not both.**
+Verified by me before delivery: 14/14 pins before and after, 3,141 interval steps reproduced, causal recheck reproduced.
+Unchanged: the minimal-completion branch, B7/B8, and every reserved physical input.
