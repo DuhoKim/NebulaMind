@@ -47,3 +47,17 @@ stopped; no V39 was opened and none should be opened by momentum.
   unestablished in the regime where the turn occurs. The turn happens where the spin correction is at least the whole ordinary
   energy density. Viability and unverified regime coincide.
 - **No open decision is pending on me.** Next steps, if any, are Duho's to start.
+
+## EMPIRICAL EXTENSION (2026-09-08, authorised by Duho — lives OUTSIDE this lane)
+Branch folder: `/Users/duhokim/work/Trio/TORI_EMPIRICAL_EXTENSION_20260908` (nothing was written into this lane; B7/B8 untouched).
+Both routes assessed, each author-complete and each independently reviewed on a different engine; both reviews RESULT_STANDS.
+- **Route 1, CMB (Desai & Popławski 2016): MAPPING UNDERDETERMINED.** Background history + reconstructed potential do NOT fix the
+  spectral index; counterexample gives n_s 0.9592 vs 0.9792 from the initial state alone — a 0.02 spread, several times current
+  observational precision. The absence of the perturbation sector was confirmed by an end-to-end read and by the paper's own
+  deferral sentence.
+- **Route 2, STAR spin: BENCHMARK BLOCKED.** No matched transfer carries a local spin-density response to a measured
+  final-hadron polarisation. The reviewer's order-of-magnitude, sign-test and cancellation substitutes all failed.
+- **No comparison was computed in either route — that is the finding.** Both fail at ONE place: the model has a background sector
+  and no licensed perturbation/response sector.
+- **Recommendation delivered, not executed:** derive that perturbation/response sector once for the curved KS system with
+  production, rather than attempting a third observable. Decidable either way. **Awaiting Duho.**
