@@ -8,7 +8,9 @@ this repository.
 `/Users/duhokim/work/Trio/FIXED_R2_DIRECTIONAL_DIAGNOSTIC_20260908/` — complete, awaiting one independent
 review. Headline: 24 vs 14 directional errors, rates 8.63% vs 4.68% with overlapping Wilson intervals,
 exact two-sided p = 0.143, resampled 95% interval for the A difference [-0.0763, +0.0069] includes zero;
-nine of the excess errors fall on the 15 objects where the two human references disagree.
+the 15 objects where the two human references conflict carry 11 of 38 errors (29%) and 7 of the 10 net
+directional excess (70%), while the 552 concordant objects net only +3. Blanc's single review is complete:
+one required correction, applied; no computational defect.
 
 **Preceding block:** fixed-R2 extension batch at `/Users/duhokim/work/Trio/FIXED_R2_EXTENSION_20260908/`
 under Duho's standing authorization ("run it until i check back", reaffirmed 2026-09-08).
