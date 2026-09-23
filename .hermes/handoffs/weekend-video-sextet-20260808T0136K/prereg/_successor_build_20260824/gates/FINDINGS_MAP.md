@@ -635,3 +635,17 @@ decision at γ = −0.10; the synthetic DESIGN control remains unfilled. No pixe
 or network was used.
 
 V136 → V137: Duho ruling (a), direction #66, and "as their recs", direction #69 — V137-H option (ii): BS-3g DESIGN a₀ = 0.95, Γ = 0.10, n_steps = 50, Δγ = 0.004; retained FAILED 0.88 receipt `a8277a19…`; fresh deterministic FAILED receipt `19ffcbab…` (0/5049 inconclusive, draw-94 decision flip), V2 tooling pins, slot unfilled; no pixel, network, or signed/pinned edit.
+
+## V137 → V138 (2026-09-23 — restart amendment: exposure disclosure, readability slot BS-RG, R2 re-pin at BS-3, repeatability criterion, BS-3g edge)
+
+V138 revises signed V137-H under the principal's four chat rulings of 2026-09-23 (recorded verbatim in
+`/Users/duhokim/work/Trio/SPIN_RESTART_READINESS_20260923/blanc/DUHO_RULINGS_20260923.md`): "A with B, waive with
+disclosure" (18:32:01+09:00); "Tier A with disclosure, repair attempt first, stratified 2,000" (18:34:56); "1 as your
+rec" = BS-3 re-pinned to the R2 reader (19:09:10); "okay i sign V138 go ahead with next run" (20:59:39, intent).
+Sources folded: Hwao `HWAO_RESTART_STATUS.md` (4bb45340…), `V138_SKELETON_R2.md` (3fd2d06d…), `RESTART_CENSUS.md`
+(2eb30d5e…); Tori `TORI_PREREG_RESTART_READ.md` (6caee5fe…) Q1/Q4/Q6/Q7/Q8/Q9 — no waiver path exists, so the
+repeatability clause is an acceptance criterion stated in advance; the 09-10 dispositions are archived by the §6.2
+pattern; the readability clause is Q7 with two stated departures; f_R enters as the decomposition of the committee's
+â (Q9), never as code. Choices not yet ruled are tagged PROVISIONAL-BLANC-REC in the draft. No pixel or network was used.
+
+V137 → V138: PRINCIPAL-20260923-AWITHB (rulings 1–8, `DUHO_RULINGS_20260923.md`), TORI-RESTART-Q1, TORI-RESTART-Q4, TORI-RESTART-Q6, TORI-RESTART-Q7, TORI-RESTART-Q8, TORI-RESTART-Q9, HWAO-RESTART-STATUS-§3, HWAO-RESTART-STATUS-§4, HWAO-CENSUS-E (exposure inventory), PILOT-V6 (readability finding 17/200, 15/200), REPEAT-DIAG-REPORT (10 divergent computations, 3 ULP, cause unknown)
