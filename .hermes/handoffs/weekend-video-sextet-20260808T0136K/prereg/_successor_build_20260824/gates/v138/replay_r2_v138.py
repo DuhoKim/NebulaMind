@@ -92,8 +92,28 @@ def _key_fields(r):
             'features':[struct.pack('<d',float(x)).hex() if isinstance(x,(int,float)) else repr(x) for x in (feats if isinstance(feats,list) else (list(feats.values()) if isinstance(feats,dict) else []))],
             'logit':struct.pack('<d',float(inf['logit'])).hex() if 'logit' in inf and isinstance(inf['logit'],(int,float)) else repr(inf.get('logit')),
             'label':inf.get('label'),'selective_label':inf.get('selective_label'),'peak_snr':struct.pack('<d',float(q['peak_snr'])).hex() if isinstance(q.get('peak_snr'),(int,float)) else repr(q.get('peak_snr'))}
+def _load_rows(d):
+    """Driver rows (one per target, incl. pre-inference REFUSED/INPUT_MISSING/ERROR). Time-free by construction."""
+    d=pathlib.Path(d); rows={}
+    for f in sorted(d.glob('worker-*/rows.jsonl')):
+        for line in f.open():
+            r=json.loads(line); k=r['object_key']
+            if k in rows: raise SystemExit(f'REFUSED: duplicate row {k} in {d}')
+            rows[k]=r
+    return rows
+def _row_key(r):
+    def bits(x): return struct.pack('<d',float(x)).hex() if isinstance(x,(int,float)) and not isinstance(x,bool) else repr(x)
+    rd=r.get('render') or {}
+    return {'status':r.get('status'),'stage':r.get('stage'),'reason':r.get('reason'),'error_type':r.get('error_type'),
+            'raster_digest':rd.get('raster_digest'),'peak':bits(rd.get('peak')),'flagged':rd.get('flagged_output_count'),'source_fill':bits(rd.get('source_fill')),
+            'core_tensor_sha256':r.get('core_tensor_sha256'),'label':r.get('label'),'selective_label':r.get('selective_label'),'logit':bits(r.get('logit')),'confidence':bits(r.get('confidence_score')),
+            'input_receipts':json.dumps(r.get('input_receipts'),sort_keys=True)}
 def cmd_compare(a, _write=True):
     A=_load_pass(a.a); B=_load_pass(a.b)
+    RA=_load_rows(a.a); RB=_load_rows(a.b)
+    if not RA or not RB: raise SystemExit('REFUSED: driver rows missing on one side; the 35-class pre-inference refusals cannot be compared')
+    if set(RA)!=set(RB): raise SystemExit(f'REFUSED: row sets differ: only-A {len(set(RA)-set(RB))}, only-B {len(set(RB)-set(RA))}')
+    rows_unequal=[{'object_key':k,'fields':[f for f in _row_key(RA[k]) if _row_key(RA[k])[f]!=_row_key(RB[k])[f]]} for k in RA if _row_key(RA[k])!=_row_key(RB[k])]
     if set(A)!=set(B): raise SystemExit(f'REFUSED: record sets differ: only-A {len(set(A)-set(B))}, only-B {len(set(B)-set(A))}')
     unequal=[]; dec_unequal=[]; maxdz=0.0
     for k in A:
@@ -103,12 +123,12 @@ def cmd_compare(a, _write=True):
         if da!=db: dec_unequal.append(k)
         ia,ib=(A[k].get('inference') or {}),(B[k].get('inference') or {})
         if isinstance(ia.get('logit'),(int,float)) and isinstance(ib.get('logit'),(int,float)): maxdz=max(maxdz,abs(ia['logit']-ib['logit']))
-    primary='PASS' if not unequal else 'FAILED'
+    primary='PASS' if (not unequal and not rows_unequal) else 'FAILED'
     fallback={'criterion':f'label/selective_label/status equal on 100% AND max|dz| <= {DZ_BOUND}','decision_unequal':len(dec_unequal),'max_abs_dz':maxdz,
               'would_pass':(not dec_unequal) and maxdz<=DZ_BOUND,'invoked':primary=='FAILED'}
     rec={'schema':'hwao-v138-replay-receipt-1','utc':utc(),'pass_a':str(a.a),'pass_b':str(a.b),'records':len(A),
-         'primary_criterion':'exact record equality: tensor_sha256, all features (binary64 bits), logit bits, label, selective_label, status, peak_snr bits',
-         'primary':primary,'unequal_records':len(unequal),'unequal_examples':unequal[:20],'fallback':fallback,
+         'primary_criterion':'exact record equality: adapter records (tensor_sha256, all features as binary64 bits, logit bits, label, selective_label, status, peak_snr bits) AND driver rows for every target incl. pre-inference refusals (status, stage, reason, raster digest, peak bits, tensor sha, decision fields, input receipts)',
+         'primary':primary,'unequal_records':len(unequal),'unequal_examples':unequal[:20],'rows_compared':len(RA),'rows_unequal':len(rows_unequal),'rows_unequal_examples':rows_unequal[:20],'fallback':fallback,
          'verdict':'PRIMARY-PASS' if primary=='PASS' else ('FALLBACK-PASS (primary FAILED, disclosed)' if fallback['would_pass'] else 'STOP (primary FAILED and fallback FAILED)'),
          'harness_sha256':sha_file(__file__)}
     if _write: pathlib.Path(a.out).write_text(json.dumps(rec,indent=1,sort_keys=True)); print(json.dumps({k:rec[k] for k in ('records','primary','unequal_records','verdict')}))
