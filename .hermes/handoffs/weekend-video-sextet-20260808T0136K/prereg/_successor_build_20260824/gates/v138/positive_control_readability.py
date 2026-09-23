@@ -27,8 +27,16 @@ def cmd_draw(a):
     man=json.loads(pathlib.Path(a.manifest).read_text()); objs=man['objects']
     if a.seed_hex: seed_hex=a.seed_hex; src={'form':'caller-supplied hex','note':'not drand-anchored unless the caller says so'}
     else:
-        url=f'https://api.drand.sh/8990e7a9aaed2ffed73dbd7092123d6f28993054/public/{a.drand_round}'
-        d=json.loads(urllib.request.urlopen(url,timeout=30).read()); seed_hex=d['randomness']; src={'form':'drand mainnet chain 8990e7a9…','round':a.drand_round,'signature':d.get('signature','')[:32]+'…','fetched_utc':utc()}
+        CHAIN='8990e7a9aaed2ffed73dbd7092123d6f289930540d7651336225dc172e51b2ce'
+        urls=[f'https://api.drand.sh/{CHAIN}/public/{a.drand_round}',f'https://api2.drand.sh/{CHAIN}/public/{a.drand_round}',f'https://api3.drand.sh/{CHAIN}/public/{a.drand_round}']
+        got=[]; errs=[]
+        for url in urls:
+            try: got.append((url,json.loads(urllib.request.urlopen(url,timeout=30).read())))
+            except Exception as e: errs.append(f'{url}: {e}')
+        if len(got)<2: sys.exit('REFUSED: fewer than two drand hosts answered: '+'; '.join(errs))
+        rs={d['randomness'] for _,d in got}
+        if len(rs)!=1 or any(d['round']!=a.drand_round for _,d in got): sys.exit('REFUSED: drand hosts disagree on round/randomness')
+        seed_hex=got[0][1]['randomness']; src={'form':'drand mainnet chain '+CHAIN,'round':a.drand_round,'hosts_agreeing':[u for u,_ in got],'signature':got[0][1].get('signature','')[:32]+'…','fetched_utc':utc(),'bls_verified':False,'note':'two-host agreement, not BLS-verified here'}
     rnd=random.Random(int(seed_hex,16)); order=sorted(objs,key=lambda o:str(o['objid'])); rnd.shuffle(order); pick=order[:a.n]
     salt=sha_b((seed_hex+'|pc400').encode())[:16]
     entries=[{'pid':sha_b(f"{salt}|{o['objid']}".encode())[:20],'objid':str(o['objid']),'ra':o['ra'],'dec':o['dec'],'brick':o['primary_brick'],'expert':int(o['expert'])} for o in pick]
