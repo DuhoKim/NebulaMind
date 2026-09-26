@@ -44,6 +44,7 @@ import stable_cockpit_guard  # noqa: E402
 import gemini_app_usage  # noqa: E402
 import nous_credits_usage  # noqa: E402
 import moonshot_balance_usage  # noqa: E402
+import meta_model_usage  # noqa: E402
 
 
 # Why this endpoint has a cache and a cooldown (2026-08-26)
@@ -91,6 +92,72 @@ def _oauth_cache_write(data: dict[str, Any] | None, last_error: str | None) -> N
 
 
 _CLAUDE_PLAN_DROPFILE = ROOT / '.hermes/state/claude_plan_usage.json'
+_CODEX_APP_DROPFILE = ROOT / '.hermes/state/codex_app_usage.json'
+
+
+def codex_app_gauge(path: Path | None = None, now: datetime | None = None) -> dict[str, Any] | None:
+    """Prefer an account-tool capture to an unrelated, retained CLI pane.
+
+    The capture contains usage fields only, never credentials. Its observation
+    time survives every renderer tick, and an expired capture becomes unknown.
+    """
+    try:
+        capture = json.loads((path or _CODEX_APP_DROPFILE).read_text())
+        if capture.get('schema') != 'NM_CODEX_APP_USAGE_V1':
+            return None
+        stamp = datetime.fromisoformat(capture['observed_at_utc'].replace('Z', '+00:00'))
+        age = ((now or datetime.now(timezone.utc)) - stamp).total_seconds()
+        if age < -60:
+            return None
+        limits = capture['rateLimitsByLimitId']
+        main = limits['codex']
+        subs = []
+        weekly_used = None
+        weekly_label = 'Weekly usage not observed'
+        for key, label in [('codex', 'Codex account'), ('codex_bengalfox', 'Codex Spark')]:
+            for slot in ('primary', 'secondary'):
+                window = (limits.get(key) or {}).get(slot)
+                if not isinstance(window, dict):
+                    continue
+                minutes = window.get('windowDurationMins')
+                period = 'weekly' if minutes == 10080 else '5h' if minutes == 300 else f'{minutes}m'
+                used = window.get('usedPercent')
+                if not isinstance(used, (int, float)) or isinstance(used, bool) or not 0 <= used <= 100:
+                    used = None
+                reset = window.get('resetsAt')
+                reset_label = (datetime.fromtimestamp(reset, timezone(timedelta(hours=9)))
+                               .strftime('%Y-%m-%d %H:%M KST') if isinstance(reset, (int, float)) else 'unknown')
+                value = f'{used:g}% used · {100-used:g}% remaining' if used is not None else 'not observed'
+                value += f' · resets {reset_label}'
+                if key == 'codex' and minutes == 10080:
+                    weekly_used, weekly_label = used, value
+                subs.append({'label': f'{label} {period} used', 'fill_pct': used,
+                             'value_label': value, 'tone': tone_for_used(used)})
+        stale = age > 3600
+        method = capture.get('capture_method') if isinstance(capture.get('capture_method'), str) else None
+        source = capture.get('source_url') if isinstance(capture.get('source_url'), str) else 'user-visible plan usage panel'
+        if stale:
+            for sub in subs:
+                sub['fill_pct'] = None
+                sub['value_label'] = 'Historical: ' + sub['value_label']
+                sub['tone'] = 'warn'
+        return {
+            'provider': 'Codex / gpt seats (ChatGPT Pro)',
+            'kind': 'Codex app account usage capture',
+            'value_label': 'Current usage unknown; capture older than one hour' if stale else weekly_label,
+            'fill_pct': None if stale else weekly_used,
+            'tone': 'warn' if stale else tone_for_used(weekly_used),
+            'status': 'Account capture expired; refresh required' if stale else (
+                'Timestamped operator-confirmed reading' if method else 'Timestamped account-tool reading'),
+            'detail': (f'Usage for the account signed in on Studio. Capture method: {method}. ' if method else
+                       'Usage for the account signed in on Studio, captured with the read-only Codex app usage tool. ')
+                      + 'This snapshot expires after one hour; refreshing the cockpit does not refresh the account reading.',
+            'source_label': (f'Operator-confirmed reading ({source}) recorded {capture["observed_at_utc"]}.' if method else
+                             f'Codex app get_usage_limits captured {capture["observed_at_utc"]}.'),
+            'sub_gauges': subs,
+        }
+    except (OSError, ValueError, TypeError, KeyError, OverflowError):
+        return None
 
 
 def load_claude_plan_dropfile() -> dict[str, Any] | None:
@@ -734,7 +801,31 @@ def active_counts_and_context(panes: list[dict[str, str]]) -> dict[str, Any]:
         target = pane['target'].lower()
         role = pane['role'].lower()
         window = target.split(':', 1)[-1].rsplit('.', 1)[0]
-        if cmd in {'claude', 'claude.exe'} or 'hwao' in role or 'lana' in role or 'lana' in window:
+        # 2026-09-04: a lane pane's SEAT NAME no longer implies its provider. When
+        # Anthropic capacity failed on 09-03 Duho moved hwao/tori to `hermes chat -m
+        # gpt-5.6-sol`, whose pane command is python3.x; the name-first rules below then
+        # counted Hwao as a Claude seat and Tori as nothing, so the dashboard read
+        # claude=1 gpt=0 while both lanes were on gpt. Classify by what the pane is
+        # actually RUNNING first: read the model from the Hermes status line.
+        hermes_model = ''
+        if cmd.startswith('python'):
+            head = capture_pane(pane['pane_id'], 60)
+            m = re.search(r'(gpt-[0-9][A-Za-z0-9.\-]*|kimi-[A-Za-z0-9.\-]*|claude-[A-Za-z0-9.\-]*)', head)
+            if m and ('Hermes' in head or 'YOLO' in head or 'msg=' in head):
+                hermes_model = m.group(1).lower()
+        if hermes_model.startswith('gpt-'):
+            counts['gpt_seats'] += 1
+            for line in capture_pane(pane['pane_id'], 80).splitlines():
+                if '\u2695' in line or '|' in line:
+                    for mm in re.finditer(r'([0-9]+(?:\.[0-9]+)?)%', line):
+                        value = float(mm.group(1))
+                        if 0 <= value <= 100:
+                            hermes_context.append(value)
+        elif hermes_model.startswith('kimi-'):
+            counts['kimi_seats'] += 1
+        elif hermes_model.startswith('claude-'):
+            counts['claude_seats'] += 1
+        elif cmd in {'claude', 'claude.exe'} or 'hwao' in role or 'lana' in role or 'lana' in window:
             counts['claude_seats'] += 1
         elif cmd == 'agy' or 'goru' in role or 'goru' in window:
             counts['agy_seats'] += 1
@@ -985,7 +1076,9 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
                                  f'Active Claude panes: {counts["claude_seats"]}.')
     gauges[i] = g
 
-    if agy:
+    if agy and slash_sources.get('agy_refreshed'):
+        # Re-reading scrollback is not a new quota observation. Keep the
+        # existing gauge and its capture time until /usage actually refreshes.
         gw = agy.get('gemini_weekly') or {}
         g5 = agy.get('gemini_5h') or {}
         aw = agy.get('ag_claude_gpt_weekly') or {}
@@ -1015,7 +1108,11 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
             ],
         }
 
-    if codex:
+    app_codex = codex_app_gauge()
+    if app_codex is not None:
+        i = provider_index(gauges, 'Codex / gpt seats (ChatGPT Pro)')
+        gauges[i] = app_codex
+    elif codex:
         main_model = codex.get('main_model') or 'Codex main'
         main_weekly = codex.get('main_weekly_used_pct')
         main_5h = codex.get('main_5h_used_pct')
@@ -1063,6 +1160,14 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
     i = provider_index(gauges, moonshot_balance_usage.PROVIDER)
     gauges[i] = moonshot_gauge
 
+    # Consume sanitized real-request receipts; never call a model to poll quota.
+    i = provider_index(gauges, meta_model_usage.PROVIDER)
+    gauges[i] = meta_model_usage.fetch_gauge(observed_at)
+    muse_subscription = meta_model_usage.subscription_gauge()
+    if muse_subscription:
+        i = provider_index(gauges, meta_model_usage.SUBSCRIPTION_PROVIDER)
+        gauges[i] = muse_subscription
+
     gpt_pct = telemetry.get('gpt_context_max_used_pct')
     i = provider_index(gauges, 'Hermes / gpt seats (context)')
     gauges[i] = {
@@ -1104,6 +1209,7 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
             f'{gemini_app_usage.PROVIDER} tracks the separate consumer app compute meter. It has no API, so it is refreshed by an operator capture or the high-confidence Chrome usage-page crawler; '
             f'the crawler abstains on weak signals, and readings older than {gemini_app_usage.STALE_AFTER_SECONDS // 3600}h are reported as unknown rather than shown as current.',
             f'{nous_credits_usage.PROVIDER} is a live USD balance from read-only Portal account metadata. Monthly plan dollars and purchased top-up dollars stay separate; no denominator is invented for top-up balance.',
+            'Meta / Muse Spark reads sanitized API receipts only. Per-minute remaining capacity expires after 60 seconds; account spend and balance remain unknown unless reported.',
         ],
         'gemini_app_burn_advice': app_gauge['burn_advice'],
     }
@@ -1141,6 +1247,7 @@ def render_all(canonical: dict[str, Any], reason: str) -> dict[str, Any]:
 
 def collect(refresh_slash: bool, local_refresh_seconds: int | None, slash_refresh_seconds: int | None) -> tuple[dict[str, Any] | None, dict[str, Any] | None, dict[str, Any], dict[str, Any]]:
     panes = tmux_panes()
+    has_app_codex = codex_app_gauge() is not None
     slash_sources: dict[str, Any] = {'local_refresh_seconds': local_refresh_seconds, 'slash_refresh_seconds': slash_refresh_seconds}
     agy = None
     codex = None
@@ -1152,7 +1259,7 @@ def collect(refresh_slash: bool, local_refresh_seconds: int | None, slash_refres
             if agy:
                 slash_sources['agy_refreshed'] = True
                 slash_sources['agy_pane'] = agy_pane['pane_id']
-        codex_pane = choose_pane(panes, 'codex')
+        codex_pane = choose_pane(panes, 'codex') if not has_app_codex else None
         if codex_pane:
             # Codex /status is a TWO-CALL protocol: the first call answers
             # "Limits: refresh requested; run /status again shortly." and only
@@ -1186,7 +1293,7 @@ def collect(refresh_slash: bool, local_refresh_seconds: int | None, slash_refres
             parsed = parse_agy_usage(capture_pane(pane['pane_id'], 500))
             if parsed:
                 agy = parsed
-        if codex is None and (cmd in {'node', 'codex'} or 'codex' in target):
+        if not has_app_codex and codex is None and (cmd in {'node', 'codex'} or 'codex' in target):
             parsed = parse_codex_status(capture_pane(pane['pane_id'], 500))
             if parsed:
                 codex = parsed
@@ -1199,6 +1306,10 @@ def update_once(refresh_slash: bool, render: bool, local_refresh_seconds: int | 
     canonical = load_canonical()
     backup_canonical(canonical, observed_at)
     agy, codex, telemetry, slash_sources = collect(refresh_slash, local_refresh_seconds, slash_refresh_seconds)
+    if agy and slash_sources.get('agy_refreshed'):
+        from trio_usage_rates import atomic_json
+        atomic_json(ROOT / '.hermes/state/agy_usage.json',
+                    {'observed_at_utc': observed_at, 'reading': agy})
     canonical = update_gauges(canonical, agy, codex, telemetry, observed_at, slash_sources)
     result = {
         'marker': MARKER,
